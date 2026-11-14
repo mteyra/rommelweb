@@ -10,7 +10,7 @@ Rommelweb is a spatial community home for Campus Süd I and Campus Süd II in Er
 
 The 3D model is both a useful interface and a progressively verified record of the place. Its accuracy must be inspectable. A beautifully rendered estimate must never masquerade as a measured floor plan.
 
-The current frontend establishes the map, building navigation, source trail and interaction framework. Its eleven exterior models use official Bavarian LoD2 wall, roof and ground surfaces. The unfolded floor study shows thin sections through that shell at provisional or approved elevations; it does not establish occupied floor boundaries. The dark spatial interface provides restored OSM streets and paths, a thin camera-relative hiking signpost, a compact searchable house picker, a centered group strip with public activity-page QR codes, and a right-side timeline for personal drafts.
+The current frontend establishes the map, building navigation, source trail and interaction framework. Its eleven exterior models use official Bavarian LoD2 wall, roof and ground surfaces. The unfolded floor study shows thin sections through that shell at provisional or approved elevations; it does not establish occupied floor boundaries. The spatial interface provides restored OSM streets and paths, direct house selection, a compact searchable directory, a centered group strip with public activity-page QR codes, and a right-side timeline for personal drafts. Day/night mode defaults to night.
 
 Public QR codes lead to the cited activity websites. House WhatsApp cards show a locked state without an invitation URL or private QR. Timeline drafts exist only in the open tab's memory, can be exported as `.ics`, and disappear on reload or close. There is no connected community event feed, account system or publishing service.
 
@@ -64,9 +64,11 @@ All eleven addresses have been matched to building objects in [Bayerische Vermes
 
 Use the official exterior polygons directly. OSM supplies retained reference/context data and mapped storey counts; it does not replace the LoD2 roofs with rectangular approximations. LoD2 is a standardized exterior model, not a current detailed facade or interior survey. Source building-base height differences are preserved, but surveyed terrain between buildings is absent.
 
-The dark redesign uses closer camera framing while retaining the original metre scale, footprints, heights and separations. Streets and paths follow retained OSM geometry: mapped widths become ribbons, while unknown widths remain centerlines. Their flat display elevation is not surveyed terrain. Decorative trees and gray context-building volumes remain absent.
+The presentation uses closer camera framing while retaining the original metre scale, footprints, heights and separations. Day/night mode changes display materials and interface colors together; it does not simulate observed sunlight, artificial lighting or resident activity. Streets and paths follow retained OSM geometry: mapped widths become ribbons, while unknown widths remain centerlines. Their flat display elevation is not surveyed terrain. Decorative trees and gray context-building volumes remain absent.
 
-A separate procedural material layer adds vertical timber seams to the newer houses and horizontal plate courses with faint short joints to the older houses, clipped to the existing wall surfaces. The palette retains natural timber and older brown façades with neutral charcoal/gray roofs. Material direction follows inspected photos; colors, spacing and floor bands remain schematic. No façade photograph or invented window grid is embedded. See [FACADE-REFERENCES.md](FACADE-REFERENCES.md).
+A separate procedural material layer adds vertical timber seams to the newer houses and horizontal plate courses with faint short joints to the older houses, clipped to the existing wall surfaces. The palette retains natural timber and older brown façades with neutral charcoal/gray roofs. Material direction follows inspected photos; colors, spacing and floor bands remain schematic. No façade photograph is embedded. See [FACADE-REFERENCES.md](FACADE-REFERENCES.md).
+
+The newer houses also carry a replaceable **schematic upper-window layer** from `src/windows.js`: tall narrow dark frames, lower transoms, head strips and sideways offsets between rows. The resident sketch supports approximately 1.10 m as a typical width; exact opening positions, heights, bay spacing and row offsets remain unmeasured. Ground-floor glazing, stairs and loggias remain unmodeled. The patches do not cut or modify the LoD2 shell and do not create room records or suggest occupancy. This appearance study has separate evidence status from the official exterior and approved interior geometry. See [WINDOW-REFERENCES.md](WINDOW-REFERENCES.md).
 
 Unfolding a building switches to a **level study** of thin horizontal intersections through the actual LoD2 shell, separated vertically for inspection. Upper outlines can shrink or split with the older houses' stepped and sloping roof geometry. The study does not repeat a full-footprint volume at every level or classify the resulting area as occupied space. Roof geometry is not converted into another resident floor.
 
@@ -100,6 +102,7 @@ Each revision records `source_id`, source URL, observation date, license/reuse s
 | Footprint | Mapped polygon or licensed site plan | Roofline, height, interior layout |
 | Vertical levels | Plan level labels or resident-confirmed floor count | Exact heights, split levels or roof access |
 | Height | Measured elevations or authoritative drawing | Internal ceiling clearance |
+| Window appearance | Identified-house photos and a typical-room sketch | Exact opening position, full façade schedule, floor elevation or room assignment |
 | Room marker | Existing public map point | Wall outline, occupancy or accessibility |
 | Room geometry | Dimensioned floor plan | Current resident or furniture arrangement |
 | Entrance | Site observation or approved plan | Opening hours or access entitlement |
@@ -108,15 +111,17 @@ Confidence values are `authoritative`, `measured`, `source_mapped`, `resident_co
 
 ### Interaction and performance
 
-The normal path is campus overview → building focus → unfolded sections → selected floor/space. The thin signpost offers nearby destinations and the **All houses** picker reaches every building. Sign arrows rotate relative to the camera; their distances are straight lines from the selected building center, or the overview origin, to destination building centers. They are not walking routes or entrance distances. The Rommelweb brand button restores the overview. Dragging orbits the camera and the wheel zooms; the separate plus/minus and top-view dock is removed. Camera and floor separation respect reduced-motion preferences.
+The normal path is campus overview → building focus → unfolded sections → selected floor/space. Hover highlights a house and a click focuses it. The compact **All houses** directory reaches every building without precise model picking. A primary click on empty map space restores the overview, as does the Rommelweb brand. A gesture guard excludes orbit drags, cancelled gestures and multi-pointer gestures from that reset action. Dragging orbits and the wheel zooms. The selected-house unfolding control remains beside the directory trigger.
 
-Groups are explored in a short strip centered below the breadcrumb, with floating previous/next arrows and a **Details** expansion for descriptions and destination links. Known group locations select the associated house; an unplaced group remains campus-wide. Public QR codes are generated locally; the expanded details provide the corresponding text link. The right-side timeline opens without replacing the campus. It orders personal drafts and supports viewing their house, removing them and exporting calendar files; shared event creation remains future work.
+The top-right **Groups** button toggles a short strip centered below the breadcrumb. Floating previous/next arrows browse the groups; animated **Details** expansion reveals descriptions and destination links. Known group locations select the associated house; an unplaced group remains campus-wide. Public QR codes are generated locally; the expanded details provide the corresponding text link. The **Timeline** button in the same top-right bubble is the timeline's sole entry point. Its drawer orders personal drafts and supports viewing their house, removing them and exporting calendar files; shared event creation remains future work.
+
+The top-right appearance toggle switches between a warm daylight palette and the default night palette. The theme has no relationship to who is home, live weather or actual lighting. Camera, floor, group and theme motion respect reduced-motion preferences.
 
 On mobile, use the compact house picker and responsive overlays, opening one main overlay at a time. Never require precise taps on a thin wireframe. Provide keyboard selection, text equivalents for map actions, and a building/facility list if WebGL fails. Screen-reader labels describe buildings and selected spaces without narrating every line segment.
 
 Use instancing or merged line geometry for repeated elements, bounded device pixel ratio, and render-on-demand when idle. Lazy-load detailed floors after a building is selected. Do not fetch protected interior assets until the user is authorized. Keep data independent of Three.js objects so rendering changes do not rewrite the campus records.
 
-The interface stays silent: no music, interaction sounds, speech or audio playback. Motion has a reduced-motion alternative. Mapped path unions are generated ahead of time and checked against source records; browsers receive the static result and retain a source-centerline fallback. Camera bearings, QR content and floor transitions have explicit continuity and cancellation handling so rapid interaction does not leave mismatched state.
+The interface stays silent: no music, interaction sounds, speech or audio playback. Motion has a reduced-motion alternative. Mapped path unions are generated ahead of time and checked against source records; browsers receive the static result and retain a source-centerline fallback. Camera, QR content, group details and floor transitions have explicit continuity and cancellation handling so rapid interaction does not leave mismatched state.
 
 ## 4. Public and private boundaries
 
@@ -266,7 +271,7 @@ Retention periods are explicit operator policy before the pilot: define deletion
 
 | Phase | Deliverable | Exit criterion |
 |---|---|---|
-| 0 — public foundation | Pages-ready dark spatial frontend, eleven official LoD2 exteriors, OSM streets/paths, schematic façade detail, signpost/picker, public group QR strip, local timeline, provisional exterior-section study and accessible fallback | No private data or false security; verify publication after the private-repository/free-plan restriction is resolved |
+| 0 — public foundation | Pages-ready day/night spatial frontend, eleven official LoD2 exteriors, OSM streets/paths, separate schematic façade/window detail, direct house selection and directory, public group QR strip, local timeline, provisional exterior-section study and accessible fallback | No private data or false security; verify publication after the private-repository/free-plan restriction is resolved |
 | 1 — verified spatial detail | One building validated at a time; floor labels and room markers refined into supported geometry | Source, reuse permission, dimensions and uncertainty recorded |
 | 2 — resident pilot | Supabase EU backend, Auth, expiring memberships, steward tools, protected groups and scoped event editing | Security and operational checks below pass with test accounts |
 | 3 — neighbor connections | Opt-in discovery, knock requests, blocking/reporting and then accepted conversations | Abuse handling, revocation and retention tested |

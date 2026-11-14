@@ -42,7 +42,7 @@ function scanIntervals(rings, axis, value) {
   return intervals;
 }
 
-function surfaceFrame(surface) {
+export function surfaceFrame(surface) {
   if (surface.type !== 'WallSurface' || !Array.isArray(surface.points) || surface.points.length < 4) return null;
   const points = surface.points;
   const normal = [0, 0, 0];
@@ -64,7 +64,7 @@ function surfaceFrame(surface) {
   const rings = [points, ...(surface.holes || [])].map(ring => ring.map(project));
   const us = rings[0].map(point => point[0]), vs = rings[0].map(point => point[1]);
   const minU = Math.min(...us), maxU = Math.max(...us), minV = Math.min(...vs), maxV = Math.max(...vs);
-  return { origin, v, rings, lift, minU, maxU, minV, maxV };
+  return { origin, normal: n, u, v, rings, lift, minU, maxU, minV, maxV };
 }
 
 /**

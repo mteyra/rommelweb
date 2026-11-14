@@ -10,15 +10,26 @@ import { roomReferences, roomReferenceSource } from './room-references.js';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const base = import.meta.env.BASE_URL;
-const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, pickerOpen: false, groupIndex: 0, search: '', drafts: [] };
-let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0, directionKey = '';
-let renderedGroupId = null;
+const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, pickerOpen: false, groupIndex: 0, search: '', drafts: [], theme: 'night' };
+let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0;
+let renderedGroupId = null, groupVisibilityAnimation, groupSizeAnimation;
 const qrCache = new Map();
 const narrow = () => matchMedia('(max-width: 700px)').matches;
 const crowdedOverlays = () => matchMedia('(max-width: 1100px)').matches;
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const house = number => campus.buildings.find(building => building.number === number);
 const setHash = hash => history.replaceState(null, '', `#${hash}`);
+
+function setTheme(theme) {
+  state.theme = theme === 'day' ? 'day' : 'night';
+  document.body.dataset.theme = state.theme;
+  const label = `Switch to ${state.theme === 'day' ? 'night' : 'day'} mode`;
+  $('#toggle-theme').setAttribute('aria-pressed', state.theme === 'day');
+  $('#toggle-theme').setAttribute('aria-label', label);
+  $('#toggle-theme').title = label;
+  $('meta[name="theme-color"]').content = state.theme === 'day' ? '#e8e5da' : '#151715';
+  scene?.setTheme(state.theme);
+}
 
 function toast(message) {
   $('#toast').textContent = message;
@@ -49,52 +60,10 @@ function travel(number, { fromGroup = false, focus = true } = {}) {
   $('#floor-detail').open = false;
   scene?.select(number, focus);
   $('#location-trail').textContent = number ? `CAMPUS SÜD ${house(number).campus} / HOUSE ${number}` : 'ERLANGEN / CAMPUS SÜD';
-  $('#post-heading').textContent = number ? 'EXPLORING FROM' : 'AT THE CROSSING';
-  $('#post-title').textContent = number ? `House ${number}.` : 'Campus Süd.';
-  $('#scene-caption').textContent = number ? 'Drag to find your angle. Follow a sign to move on.' : 'Follow a sign. Find your people.';
+  $('#scene-caption').textContent = number ? 'Drag to orbit. Click outside a house to return.' : 'Choose a house to explore.';
   renderHouse();
   renderDirectory();
-  updateDirections(scene?.navigationSnapshot?.() || fallbackDirections());
   if (!fromGroup) setHash(number ? `house-${number}` : 'campus');
-}
-
-function fallbackDirections() {
-  const origin = state.selected ? house(state.selected).centroid : [-8, -9];
-  return { heading: 0, directions: campus.buildings.filter(b => b.number !== state.selected).map(b => ({
-    number: b.number, distance: Math.hypot(b.centroid[0] - origin[0], b.centroid[1] - origin[1]),
-    angle: Math.atan2(b.centroid[0] - origin[0], -(b.centroid[1] - origin[1])),
-  })) };
-}
-
-function rotateBearing(element, angle) {
-  const previous = Number(element.dataset.bearing ?? angle);
-  const continuous = previous + Math.atan2(Math.sin(angle - previous), Math.cos(angle - previous));
-  element.dataset.bearing = String(continuous);
-  element.style.transform = `rotate(${continuous}rad)`;
-}
-
-function updateDirections(snapshot) {
-  if (!snapshot?.directions) return;
-  const directions = [...snapshot.directions].sort((a, b) => a.distance - b.distance).slice(0, 3);
-  const key = directions.map(direction => direction.number).join(',');
-  if (key !== directionKey) {
-    directionKey = key;
-    $('#direction-list').innerHTML = directions.map(direction => {
-      const b = house(direction.number);
-      return `<button class="direction-sign" data-destination="${b.number}" title="Move to House ${b.number}. Distance is straight-line between building centers."><span class="direction-icon" style="--house-color:${b.color}">${b.number}</span><span class="direction-copy"><strong>${esc(b.name)}</strong><small>Campus Süd ${b.campus}</small></span><span class="direction-distance"></span><span class="direction-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></button>`;
-    }).join('');
-    $$('[data-destination]').forEach(button => button.onclick = () => { travel(button.dataset.destination); $('#all-houses').focus({ preventScroll: true }); });
-  }
-  for (const direction of directions) {
-    const button = $(`[data-destination="${direction.number}"]`);
-    rotateBearing(button.querySelector('.direction-arrow'), direction.angle);
-    button.querySelector('.direction-distance').textContent = `${Math.round(direction.distance)} m`;
-    const lateral = Math.sin(direction.angle);
-    if (!button.dataset.side) button.dataset.side = lateral < -0.08 ? 'left' : 'right';
-    else if (lateral < -0.24) button.dataset.side = 'left';
-    else if (lateral > 0.08) button.dataset.side = 'right';
-  }
-  rotateBearing($('#north-arrow'), -snapshot.heading);
 }
 
 function setPicker(open, focus = false) {
@@ -111,7 +80,6 @@ function setPicker(open, focus = false) {
 
 function renderDirectory() {
   const buildings = filterBuildings(campus.buildings, state.search, 'all');
-  $('#house-count').textContent = campus.buildings.length;
   $('#building-list').innerHTML = buildings.map(b => `<button class="building-item ${state.selected === b.number ? 'selected' : ''}" data-house="${b.number}" aria-pressed="${state.selected === b.number}"><span class="building-color" style="--house-color:${b.color};background:${b.color}"></span><span class="building-number">${b.number}</span><span class="building-copy"><strong>${esc(b.name)}</strong><small>Süd ${b.campus} · ${b.levels} levels</small></span><span aria-hidden="true">↗</span></button>`).join('') || '<p class="empty-state">No houses found. Try a number or color.</p>';
   $$('#building-list [data-house]').forEach(button => button.onclick = () => { travel(button.dataset.house); $('#all-houses').focus({ preventScroll: true }); });
 }
@@ -148,13 +116,14 @@ function renderFloor() {
 }
 
 function setGroups(open, focus = false) {
+  const changed = state.groupsOpen !== open;
   if (!open && state.groupsOpen && location.hash.startsWith('#group-')) {
     setHash(state.selected ? `house-${state.selected}` : 'campus');
   }
   state.groupsOpen = open;
-  $('#group-deck').hidden = !open;
   $('#open-groups').setAttribute('aria-expanded', open);
   document.body.classList.toggle('group-open', open);
+  if (changed) animateGroupVisibility(open);
   if (!open) {
     qrRevision++;
     $$('.group-copy, .group-qr').forEach(element => element.classList.remove('is-changing'));
@@ -167,12 +136,59 @@ function setGroups(open, focus = false) {
   }
 }
 
+function animateGroupVisibility(open) {
+  const deck = $('#group-deck');
+  if (!open && deck.contains(document.activeElement)) $('#open-groups').focus({ preventScroll: true });
+  const current = getComputedStyle(deck);
+  const from = deck.hidden
+    ? { opacity: 0, translate: '0 -8px', scale: '0.985' }
+    : { opacity: current.opacity, translate: current.translate, scale: current.scale };
+  groupVisibilityAnimation?.cancel();
+  deck.inert = !open;
+  if (reducedMotion()) {
+    deck.hidden = !open;
+    return;
+  }
+  deck.hidden = false;
+  const animation = deck.animate([
+    from,
+    open ? { opacity: 1, translate: '0 0', scale: '1' } : { opacity: 0, translate: '0 -8px', scale: '0.985' },
+  ], { duration: open ? 280 : 200, easing: 'cubic-bezier(.22,1,.36,1)' });
+  groupVisibilityAnimation = animation;
+  animation.finished.then(() => {
+    if (groupVisibilityAnimation !== animation) return;
+    groupVisibilityAnimation = null;
+    deck.hidden = !state.groupsOpen;
+  }).catch(() => {});
+}
+
+function resizeGroup(update) {
+  const deck = $('#group-deck');
+  const before = deck.getBoundingClientRect().height;
+  groupSizeAnimation?.cancel();
+  update();
+  const after = deck.getBoundingClientRect().height;
+  if (deck.hidden || !state.groupsOpen || reducedMotion() || Math.abs(before - after) < 1) return;
+  const animation = deck.animate([{ height: `${before}px` }, { height: `${after}px` }], {
+    duration: 300, easing: 'cubic-bezier(.22,1,.36,1)',
+  });
+  groupSizeAnimation = animation;
+  animation.finished.then(() => {
+    if (groupSizeAnimation === animation) groupSizeAnimation = null;
+  }).catch(() => {});
+}
+
 function setGroupDetails(open) {
-  state.groupDetails = open;
-  $('#group-details').hidden = !open;
-  $('#group-toggle-details').setAttribute('aria-expanded', open);
-  $('#group-toggle-details').textContent = open ? 'Less ↑' : 'Details ↓';
-  $('#group-deck').classList.toggle('details-open', open);
+  resizeGroup(() => {
+    state.groupDetails = open;
+    $('#group-details').hidden = !open;
+    $('#group-toggle-details').setAttribute('aria-expanded', open);
+    $('#group-toggle-details').textContent = open ? 'Less ↑' : 'Details ↓';
+    $('#group-deck').classList.toggle('details-open', open);
+  });
+  if (open && !reducedMotion()) $('#group-details').animate([
+    { opacity: 0, translate: '0 -3px' }, { opacity: 1, translate: '0 0' },
+  ], { duration: 260, easing: 'ease-out' });
 }
 
 async function renderGroup() {
@@ -237,7 +253,6 @@ function setTimeline(open, focus = false) {
   state.timelineOpen = open;
   $('#timeline-panel').hidden = !open;
   $('#open-timeline').setAttribute('aria-expanded', open);
-  $('#timeline-tab').setAttribute('aria-expanded', open);
   document.body.classList.toggle('timeline-open', open);
   if (open) {
     setPicker(false);
@@ -258,8 +273,8 @@ function renderTimeline() {
     return `${label}<article class="timeline-entry"><span class="timeline-time">${esc(event.time)}</span><button class="timeline-event-button" data-event="${event.id}"><span class="timeline-audience">LOCAL DRAFT · HOUSE ${esc(event.house)}</span><strong>${esc(event.title)}</strong><small>${esc(event.description || 'A plan taking shape.')}</small><span class="timeline-location">View plan ↗</span></button></article>`;
   }).join('') : `<div class="timeline-empty"><span class="timeline-dot"></span><h3>Room for something good.</h3><p>No community events are connected yet.</p><p>Start a little plan. Keep it here, or export it to your calendar.</p></div>`}<p class="timeline-note">Europe/Berlin · ${drafts.length ? 'These drafts belong only to this open tab.' : 'A quiet board, waiting for the community.'}</p>`;
   $$('[data-event]').forEach(button => button.onclick = () => eventDialog(button.dataset.event));
-  $('#timeline-tab').dataset.count = String(drafts.length);
-  $('#timeline-tab').setAttribute('aria-label', `Open timeline${drafts.length ? `, ${drafts.length} local drafts` : ''}`);
+  $('#open-timeline').dataset.count = String(drafts.length);
+  $('#open-timeline').setAttribute('aria-label', `Open timeline${drafts.length ? `, ${drafts.length} local drafts` : ''}`);
 }
 
 function eventDraftDialog() {
@@ -288,7 +303,7 @@ function privateAccess(title = 'Your resident community') {
 }
 
 function toolsDialog() {
-  modal(`<div class="modal-eyebrow">ROMMELWEB / FIELD NOTES</div><h2 class="modal-title">A place taking shape.</h2><p class="modal-lead">Eleven real houses. A community we can build together.</p><div class="tool-links"><button class="outline-button" id="tools-rooms">Published room designs ↗</button><button class="outline-button" id="tools-sources">Model & façade sources ↗</button><button class="outline-button" id="tools-correction">Add a building detail ↗</button><button class="outline-button" id="tools-resident">Resident privacy & knocking ↗</button><a class="outline-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architectural brief ↗</a></div><p class="field-note">Drag to orbit · scroll to zoom · arrow keys on the map to orbit · / to find a house · Escape to close an overlay.</p><p class="field-note">Independent resident project. <a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></p>`);
+  modal(`<div class="modal-eyebrow">ROMMELWEB / FIELD NOTES</div><h2 class="modal-title">A place taking shape.</h2><p class="modal-lead">Eleven real houses. A community we can build together.</p><div class="tool-links"><button class="outline-button" id="tools-rooms">Published room designs ↗</button><button class="outline-button" id="tools-sources">Model & façade sources ↗</button><button class="outline-button" id="tools-correction">Add a building detail ↗</button><button class="outline-button" id="tools-resident">Resident privacy & knocking ↗</button><a class="outline-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architectural brief ↗</a></div><p class="field-note">Click a house to explore · click empty space to return · drag to orbit · scroll to zoom · arrow keys on the map to orbit · / to find a house · Escape to close an overlay.</p><p class="field-note">Independent resident project. <a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></p>`);
   $('#tools-rooms').onclick = () => roomReferencesDialog();
   $('#tools-sources').onclick = () => { $('#modal').close(); accuracyDialog(); };
   $('#tools-correction').onclick = () => { $('#modal').close(); correctionDialog(); };
@@ -310,7 +325,7 @@ function roomReferencesDialog(campusId = house(state.selected)?.campus || 'I') {
 
 function accuracyDialog() {
   const model = lod2.buildings.find(building => building.number === state.selected);
-  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams on the newer houses; staggered horizontal plates on the older ones. These are schematic material patterns. Seam spacing, floor bands and opening positions are not a measured façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Inspected photographs & references ↗</a></div><div class="source-item"><strong>Interiors still need your knowledge</strong><p>Floor counts come from OSM. Unfolded floor intervals are provisional until approved plans arrive. There are no invented room numbers, resident locations or occupancy records.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
+  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and staggered window frames on the newer residential houses; horizontal plates on the older ones. These are schematic material patterns. Seam spacing, floor bands and opening positions are not a measured façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Window study ↗</a></div><div class="source-item"><strong>Interiors still need your knowledge</strong><p>Floor counts come from OSM. Unfolded floor intervals are provisional until approved plans arrive. There are no invented room numbers, resident locations or occupancy records.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
 }
 
 function correctionDialog(number = state.selected || '', floor = state.floor) {
@@ -338,9 +353,8 @@ function activateFallback() {
   state.floor = null;
   $('#map-labels').replaceChildren();
   fallbackMap($('#scene'), campus, number => travel(number));
-  $('#scene-caption').textContent = '2D view · choose a house from the signpost.';
+  $('#scene-caption').textContent = '2D view · choose a house to explore.';
   renderHouse();
-  updateDirections(fallbackDirections());
 }
 
 async function init() {
@@ -356,13 +370,12 @@ async function init() {
       Object.assign(building, { height: model.height, baseY: model.baseY, footprint: model.groundPolygons[0] });
     });
     groups = [...clubs, ...campus.buildings.map(building => ({ id: `house-${building.number}`, title: `House ${building.number}`, category: `${building.name.toUpperCase()} / WHATSAPP`, house: building.number, location: `Campus Süd ${building.campus}`, description: 'The little conversations that make a house a home. A private space for the people who live here.', source: null }))];
-    $('#scene').addEventListener('rommel:camera', event => updateDirections(event.detail));
     try { scene = new CampusScene($('#scene'), $('#map-labels'), campus, lod2, interiors, number => travel(number), selectFloor); }
     catch (error) { console.warn('3D unavailable; using the map fallback.', error); activateFallback(); }
+    setTheme(state.theme);
     await scene?.pathLoad;
     $('#scene-loading').hidden = true;
     renderDirectory();
-    updateDirections(scene?.navigationSnapshot?.() || fallbackDirections());
     renderTimeline();
     $('#home-button').onclick = () => travel(null);
     $('#close-house').onclick = () => { travel(null); $('#all-houses').focus({ preventScroll: true }); };
@@ -376,7 +389,6 @@ async function init() {
       setGroups(!state.groupsOpen, true);
       if (state.groupsOpen) setHash(`group-${groups[state.groupIndex].id}`);
     };
-    $('#close-groups').onclick = () => { setGroups(false); $('#open-groups').focus(); };
     $('#group-prev').onclick = () => stepGroup(-1);
     $('#group-next').onclick = () => stepGroup(1);
     $('#group-toggle-details').onclick = () => setGroupDetails(!state.groupDetails);
@@ -384,10 +396,10 @@ async function init() {
       if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); event.stopPropagation(); stepGroup(event.key === 'ArrowLeft' ? -1 : 1); }
     });
     $('#open-timeline').onclick = () => setTimeline(!state.timelineOpen, true);
-    $('#timeline-tab').onclick = () => setTimeline(!state.timelineOpen, true);
     $('#close-timeline').onclick = () => { setTimeline(false); $('#open-timeline').focus(); };
     $('#draft-event').onclick = eventDraftDialog;
     $('#open-tools').onclick = toolsDialog;
+    $('#toggle-theme').onclick = () => setTheme(state.theme === 'night' ? 'day' : 'night');
     $('#accuracy-button').onclick = accuracyDialog;
     $('#explode-building').onclick = () => {
       state.exploded = !state.exploded;

@@ -4,12 +4,12 @@ Checked on 14 November 2026.
 
 ## Build and geometry
 
-- `npm test`: **44 passing tests** covering address matching, exterior polygon validity, source heights, independent footprint alignment, source checksums, required attribution, interior-schema approval/provenance, malformed geometry, private-field rejection, anchored floor interpolation, façade clipping, stable detail subsets, source immutability, camera fitting, camera-relative bearings, time-based/reversible/reduced motion, pointer cancellation, unioned paths and cache failures, exterior sections and calendar export.
-- `npm run build`: passed, including the path-cache source check. The JavaScript bundle includes Three.js and local QR generation and is about 176 kB gzipped. Vite reports its standard warning for an uncompressed chunk above 500 kB. Polygon-union tooling is a development dependency and is not imported by the application.
+- `npm test`: **50 passing tests** covering address matching, exterior polygon validity, source heights, independent footprint alignment, source checksums, required attribution, interior-schema approval/provenance, malformed geometry, private-field rejection, anchored floor interpolation, façade clipping, stable detail subsets, source immutability, camera fitting, time-based/reversible/reduced motion, pointer cancellation and empty-space selection, theme interpolation and material coverage, clipped upper-window appearances across source-split walls, unioned paths and cache failures, exterior sections and calendar export.
+- `npm run build`: passed, including the path-cache source check. The JavaScript bundle includes Three.js and local QR generation and is about 179 kB gzipped. Vite reports its standard warning for an uncompressed chunk above 500 kB. Polygon-union tooling is a development dependency and is not imported by the application.
 - Production assets use the `/rommelweb/` base path.
 - The published interior dataset is empty. No individual room numbers, resident identities, occupancy records or private invitations are included.
 - Official geometry: eleven address-matched buildings, 289 exterior surfaces; source dates, attribution and checksums retained.
-- Neutral charcoal presentation, gray roofs and natural timber tones; older brown walls retained. No schematic trees or gray context buildings. Photo-informed material seams are clipped to the official surfaces. Their direction is sourced; spacing and storey bands remain schematic.
+- Night-default charcoal presentation and switchable warm daylight, gray roofs and natural timber tones; older brown walls retained. No schematic trees or gray context buildings. Photo-informed material seams are clipped to the official surfaces. Their direction is sourced; spacing and storey bands remain schematic. Tall staggered upper-window marks are separately qualified and clipped to each source wall, including source-split broad faces; ground-floor, stair and loggia details remain unmodeled.
 - Joined 99 mapped outdoor paths and streets. Forty-five use explicit source width tags; 54 remain centerlines. Tests cover crossing-path unions, bounded corner joins, holes, exact source coordinates, stale-cache rejection and safe fallback.
 - Every above-ground floor section closes and remains within the official shell. Tests include courtyard holes, disjoint wings, sloping roofs and more than 400 interior point samples against the source shell. All five older houses have different outlines on successive levels, with top section areas at least 15% smaller than ground sections. These are exterior intersections, not living-area measurements.
 - Exterior dimensions and relative positions remain in metres. The closer view is a camera change.
@@ -18,31 +18,31 @@ Checked on 14 November 2026.
 
 ## Browser verification
 
-The application was exercised in an isolated headless Firefox instance through WebDriver BiDi. The latest production pass checks the changed UI, motion, room references and fallback behavior; retained baseline checks below also cover the unchanged draft-event and approved-plan workflows.
+The application was exercised in an isolated headless Firefox instance through WebDriver BiDi. The latest production pass checks the direct map navigation, day/night display, animated group UI, room references and fallback behavior; retained baseline checks below also cover the unchanged draft-event and approved-plan workflows.
 
 | Area | Observed result |
 | --- | --- |
 | Desktop, 1440 × 1000 | Eleven house labels; WebGL renders; overlays hidden initially; no horizontal overflow |
-| Mobile, 390 × 844 | Compact signpost, house picker, QR overlay, timeline and floor tray usable without horizontal overflow |
+| Mobile, 390 × 844 | House picker, QR overlay, timeline and floor tray usable in both themes without horizontal overflow |
 | Small phone, 320 × 568 | Group card and resident-info dialog remain usable; no horizontal overflow |
 | Map | House selection, camera focus, three-level sections for older houses and eight-level sections for 57a; individual section selection and provisional-height disclosure |
 | Approved-plan renderer | An isolated synthetic room outline and label appear only on their selected floor section; switching floors hides the label. Fixture data remains outside the repository and production build |
-| Navigation | Branched post works by pointer; arrows respond to keyboard orbit; picker reaches all houses; brand restores overview; zoom/top-view button dock removed |
-| Bearing continuity | Crossing the ±π heading boundary rotates by the small angular difference instead of a full turn |
+| Navigation | Canvas hover highlights and click focuses a house; empty-space primary click restores overview and clears selection; dragging preserves selection; picker and brand remain accessible; pole and its code removed |
+| Appearance | Night is the default; day/night button transitions scene materials and UI; foreground, background, window frames, floors and fallback remain legible in both palettes |
 | URL state | Direct house/group URLs select their target; closing a group normalizes its URL to the house |
 | Keyboard | House selection retains focus; left/right arrows navigate the group carousel; Escape closes overlays and dialogs |
-| Groups | Collapsed desktop strip is under 135px high and horizontally centered; arrows lie outside both edges; Details expands, changing group collapses; carousel moves to its house |
-| Rapid carousel input | Five immediate next/previous actions settle on the matching title, QR and house; closing during transition stays closed; keyboard focus leaves hidden details correctly |
+| Groups | Collapsed desktop strip sits at 77px, under 135px high and horizontally centered; arrows lie outside both edges; Details animates open/closed; changing group collapses details and moves to its house. Groups bubble toggles the card; no close icon |
+| Rapid carousel input | Five immediate next/previous actions settle on the matching title, QR and house; rapid open/close reversals settle with correct visibility/inert state; closing during detail motion stays closed; keyboard focus leaves hidden details correctly |
 | Room references | Both campus tabs show their matching sketches and qualifications, retain keyboard focus, return focus to the floor link, and fit the 320px dialog |
 | Group links | Public activity QR generated locally and paired with the correct source link; private house cards expose a lock icon, no invitation QR |
 | Planned resident controls | Explicitly disclose that authentication, private groups and neighbor services are not connected |
-| Timeline | Empty community state; tab-memory draft creation, chronological display, detail view, removal and ICS export with Europe/Berlin timezone |
+| Timeline | One entry point in the top-right bubble, with no side tab; empty community state; retained tab-memory draft creation, chronological display, detail view, removal and ICS export with Europe/Berlin timezone |
 | Calendar export | Text escaping prevents injected properties; multilingual lines fold within the 75-octet limit and unfold losslessly |
-| Mobile overlays | Opening timeline hides groups; opening the picker hides other main overlays |
+| Mobile overlays | Opening timeline hides groups and the map controls beneath it on phones; its bubble closes it before reopening the directory. Opening the picker closes other main overlays |
 | Local privacy boundary | Application creates no cookies, localStorage or sessionStorage entries |
 | Silent experience | No audio/video elements or audio playback code; no sound is introduced by interactions |
 | Production assets | Geometry, bundled JavaScript and both local font families load with the `/rommelweb/` base path |
-| WebGL failure | Simulated context loss during a floor study produces an eleven-house SVG fallback; directory remains functional; floor controls close and unfolding is disabled |
+| WebGL failure | Simulated context loss produces an eleven-house SVG fallback with day/night styling; directory and empty-space deselection remain functional; floor controls close and unfolding is disabled |
 | Console | No errors during these interaction checks |
 
 Initial-release checks also exercised correction downloads. The current exterior-section renderer was checked with an isolated synthetic interior fixture; it is not a representation of any real room. Interior validation remains covered by the automated suite.

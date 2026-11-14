@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createFacadeSegments, createStoreyJointSegments, FACADE_PROFILES } from '../src/facade.js';
-import { navigationDirections, CampusScene } from '../src/scene.js';
+import { CampusScene } from '../src/scene.js';
 import * as THREE from 'three';
 
 const rectangle = {
@@ -80,18 +80,6 @@ test('storey joints retain exact provided elevations and clip around wall openin
   assert.deepEqual(rectangle, before);
   assert.deepEqual(createStoreyJointSegments({...rectangle, type: 'RoofSurface'}, [3]), []);
   assert.throws(() => createStoreyJointSegments(rectangle, [NaN]), /finite metres/);
-});
-
-test('signpost arrows rotate with camera heading while source distances remain metric', () => {
-  const buildings = [{number: 'origin', centroid: [0, 0]}, {number: 'N', centroid: [0, -20]}, {number: 'E', centroid: [30, 0]}, {number: 'S', centroid: [0, 40]}];
-  const northFacing = navigationDirections([0, 0], buildings, 0, 'origin');
-  assert.deepEqual(northFacing.map(direction => direction.number), ['N', 'E', 'S']);
-  assert.equal(northFacing[0].angle, 0);
-  assert.equal(northFacing[1].angle, Math.PI / 2);
-  const eastFacing = navigationDirections([0, 0], buildings, Math.PI / 2, 'origin');
-  assert.equal(eastFacing[0].angle, -Math.PI / 2);
-  assert.equal(eastFacing[1].angle, 0);
-  assert.deepEqual(eastFacing.map(direction => direction.distance), [20, 30, 40]);
 });
 
 test('camera fitting keeps metre-scale bounds on screen across desktop and portrait viewports', () => {

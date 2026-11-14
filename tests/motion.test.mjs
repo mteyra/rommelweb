@@ -97,6 +97,24 @@ test('camera gestures and cancelled pointers cannot select a house accidentally'
     dispatch('pointerdown');
     dispatch('pointerup');
     assert.deepEqual(selections, ['57a']);
+    mock.selected = '57a';
+    mock.pickAt = () => undefined;
+    dispatch('pointerdown');
+    dispatch('pointerup', {clientX: 60});
+    dispatch('pointerdown');
+    dispatch('pointermove', {clientX: 60, buttons: 1});
+    dispatch('pointermove', {clientX: 20, buttons: 1});
+    dispatch('pointerup');
+    dispatch('pointerdown', {button: 2});
+    dispatch('pointerup', {button: 2});
+    dispatch('pointerdown');
+    dispatch('pointerdown', {pointerId: 2, isPrimary: false});
+    dispatch('pointerup', {pointerId: 2, isPrimary: false});
+    dispatch('pointerup');
+    assert.deepEqual(selections, ['57a'], 'empty-space camera gestures must retain the selected house');
+    dispatch('pointerdown');
+    dispatch('pointerup');
+    assert.deepEqual(selections, ['57a', null], 'a true primary click on empty space returns to campus');
   } finally {
     if (previousDocument === undefined) delete globalThis.document;
     else globalThis.document = previousDocument;

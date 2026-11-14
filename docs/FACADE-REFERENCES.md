@@ -1,6 +1,6 @@
 # Façade reference study
 
-Inspected 14 November 2026. This study supports a wireframe material layer for the two building generations. The official LoD2 source remains the authority for the rendered exterior envelope. Photographs establish visible surface character; they do not supply measured elevation drawings.
+Inspected 14 November 2026. This study supports a wireframe material layer for the two building generations. The official LoD2 source remains the authority for the rendered exterior envelope. Photographs establish visible surface character; they do not supply measured elevation drawings. The later [window reference study](WINDOW-REFERENCES.md) supports a separate illustrative upper-window layer for the six newer houses.
 
 ## Reference register
 
@@ -26,7 +26,7 @@ The dominant fine-grain direction is **vertical**. Thin, closely spaced timber b
 
 Windows are tall and dark-framed. Some have visible dark shutters or blinds. Window positions do not form one universally aligned vertical grid: NEW-1 and NEW-2 show shifts between floors. Bright green surfaces and metal railings occur at open loggias. The photographs do not establish their complete arrangement on every building face.
 
-Use vertical seam lines to communicate the timber character. The exact board widths, joint gaps, window dimensions, sill levels and façade-element boundaries have not been measured. The façade system is shared across the newer buildings, but a repeated procedural pattern does not establish identical details. House 51a's communal functions are an additional reason not to copy a residential elevation onto it.
+Use vertical seam lines to communicate the timber character. The exact board widths, joint gaps, window dimensions, sill levels and façade-element boundaries have not been measured. The façade system is shared across the newer buildings, but a repeated procedural pattern does not establish identical details. The later window study identifies house 51a in a photograph: its two upper storeys have the same broad window character, while its shared ground floor needs separate treatment.
 
 ### Campus Süd I: horizontal rectangular plates
 
@@ -46,7 +46,7 @@ The following numbers are **optional visual parameters**, not measurements of th
 | Old-house plate courses | Horizontal lines at roughly 0.25–0.35 m display pitch | Orientation and course pattern observed; pitch inferred |
 | Old-house plate joints | Short vertical joints about 0.9–1.4 m apart, alternating their offset by course | Elongated staggered plate pattern observed; module and stagger amount inferred |
 | Storey separator emphasis | Use existing provisional floor intervals only as a subtle visualization guide | Thin bands observed on new houses; actual separator elevations unmeasured |
-| Windows, doors and loggias | Retain any source geometry already present; add no claimed exact openings from a generic grid | Broad character observed; complete house/face inventory absent |
+| Windows, doors and loggias | Retain source geometry; the newer houses may receive a separate schematic upper-window appearance layer, with ground, stair and recess exceptions | See [window references](WINDOW-REFERENCES.md); character observed, exact positions and complete house/face inventory absent |
 
 Implementation principles:
 
@@ -54,7 +54,7 @@ Implementation principles:
 2. Make generated seams a distinct **schematic façade detail** layer. They are visual annotation, not additional surveyed geometry, room boundaries or structural members.
 3. Keep silhouette and roof edges clearer than material seams. Fine detail should emerge when zooming in without turning the campus overview into a dense wire mesh.
 4. Apply material directions in each wall's local plane. “Vertical” follows world elevation; horizontal courses follow level intersections with the wall.
-5. Do not use procedural windows to imply exact room counts or neighbor locations. A future window layer needs a per-house, per-face reference with orientation and review status.
+5. Do not use procedural windows to imply exact room counts or neighbor locations. The separate newer-house upper-window layer is a photo-informed appearance study. Measured façade reconstruction still needs per-house, per-face references with orientation and review status.
 6. Hide the schematic material layer during the provisional exploded-floor study unless it is explicitly shown as illustrative. Do not make repeated floor slabs look like independently verified façade sections.
 7. Remove the schematic trees, decorative gray volumes and other unwanted context from the scene as requested. Their disappearance is a presentation choice, not evidence that those real-world features are absent. Retain source context data separately.
 
