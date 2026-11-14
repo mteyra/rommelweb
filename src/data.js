@@ -11,12 +11,6 @@ export function roomsFor(markers, number, floor) {
     .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 }
 
-export function filterBuildings(buildings, search, campus) {
-  const term = search.trim().toLowerCase();
-  return buildings.filter(b => (campus === 'all' || b.campus === campus) &&
-    `${b.number} ${b.name} ${b.address} ${b.wings.join(' ')} campus süd ${b.campus}`.toLowerCase().includes(term));
-}
-
 export function floorName(floor) { return Number(floor) === 0 ? 'Ground floor · EG' : `Floor ${floor} · ${floor}. OG`; }
 
 export function escapeHTML(value) {

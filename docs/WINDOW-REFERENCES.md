@@ -1,6 +1,10 @@
 # Campus Süd II window references
 
-Inspected 14 November 2026. This addendum supports **photo-informed, unmeasured window linework** on the six newer houses. It does not turn the official LoD2 building envelopes into a measured façade or room model. See [the material study](FACADE-REFERENCES.md) and [geometry provenance](GEOMETRY.md).
+Inspected 14 November 2026; updated with the resident's iteration 6 correction. This addendum supports **photo-informed, unmeasured window linework** on the six newer houses. It does not turn the official LoD2 building envelopes into a measured façade or room model. See [the material study](FACADE-REFERENCES.md), [older-house windows](OLD-WINDOW-REFERENCES.md) and [geometry provenance](GEOMETRY.md).
+
+## Resident correction: house 51a
+
+The resident has explicitly corrected the blue house's window pattern: **51a's upper window rows align vertically**. This local observation is authoritative project input and supersedes any previous generic stagger inferred for this house from the shared newer-building style. Use no alternating row offset on 51a. Its exact bay pitch, individual opening coordinates, floor elevations and full face inventory remain unverified. The source photographs still support its tall narrow upper windows and distinct café/shared ground floor.
 
 ## Primary sources and identifiable houses
 
@@ -24,7 +28,7 @@ The `/2023/08/` upload path is not a verified photography date. These are primar
 
 **Opening shape.** Room windows are tall and slim, with dark frames and a horizontal transom in the lower part. The architect explicitly describes floor-to-ceiling windows. The lower pane should therefore not automatically be treated as a solid wall panel. A dark head strip or blind zone is visible above many openings. The photograph contains different blind positions; a neutral repeated graphic can communicate the construction without reproducing that transient state.
 
-**Horizontal rhythm.** Successive rows shift sideways within the façade's room-width rhythm. A perfectly aligned stack of equal squares would miss the photographed character. The observed arrangement also includes aligned pairs and irregular interruptions: it does **not** establish one universal checkerboard or an exact two-row cycle on every face. Photographs 527 and 939 are the clearest comparison.
+**Horizontal rhythm.** Photographs 527 and 939 show successive rows shifting sideways within the façade's room-width rhythm. The observed arrangement also includes aligned pairs and irregular interruptions: it does **not** establish one universal checkerboard or an exact two-row cycle on every face. In particular, **51a uses vertically aligned rows according to the resident correction above**; it must not inherit a generic stagger.
 
 **Material and floor boundaries.** Narrow vertical timber boards fill the wall between openings. Thin dark horizontal strips separate storeys. These strips help the window rows read as part of the building, but the photographs do not measure their elevations.
 

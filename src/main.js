@@ -1,7 +1,7 @@
 import './styles.css';
 import QRCode from 'qrcode';
 import { CampusScene, fallbackMap } from './scene.js';
-import { clubs, filterBuildings, floorName, escapeHTML as esc, downloadFile } from './data.js';
+import { clubs, floorName, escapeHTML as esc, downloadFile } from './data.js';
 import { validateInteriorData, getInteriorLevel } from './interiors.js';
 import { calendarDraft, orderedDrafts } from './events.js';
 import { icon } from './icons.js';
@@ -10,12 +10,11 @@ import { roomReferences, roomReferenceSource } from './room-references.js';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const base = import.meta.env.BASE_URL;
-const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, pickerOpen: false, groupIndex: 0, search: '', drafts: [], theme: 'night' };
+const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, groupIndex: 0, drafts: [], theme: 'night' };
 let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0;
-let renderedGroupId = null, groupVisibilityAnimation, groupSizeAnimation;
+let renderedGroupId = null, groupSizeAnimation;
+const panelAnimations = new WeakMap();
 const qrCache = new Map();
-const narrow = () => matchMedia('(max-width: 700px)').matches;
-const crowdedOverlays = () => matchMedia('(max-width: 1100px)').matches;
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const house = number => campus.buildings.find(building => building.number === number);
 const setHash = hash => history.replaceState(null, '', `#${hash}`);
@@ -54,7 +53,6 @@ function travel(number, { fromGroup = false, focus = true } = {}) {
   state.selected = number;
   state.floor = null;
   state.exploded = false;
-  setPicker(false);
   if (!fromGroup) setGroups(false);
   document.body.classList.toggle('house-open', Boolean(number));
   $('#floor-detail').open = false;
@@ -62,26 +60,7 @@ function travel(number, { fromGroup = false, focus = true } = {}) {
   $('#location-trail').textContent = number ? `CAMPUS SÜD ${house(number).campus} / HOUSE ${number}` : 'ERLANGEN / CAMPUS SÜD';
   $('#scene-caption').textContent = number ? 'Drag to orbit. Click outside a house to return.' : 'Choose a house to explore.';
   renderHouse();
-  renderDirectory();
   if (!fromGroup) setHash(number ? `house-${number}` : 'campus');
-}
-
-function setPicker(open, focus = false) {
-  state.pickerOpen = open;
-  $('#house-picker').hidden = !open;
-  $('#all-houses').setAttribute('aria-expanded', open);
-  document.body.classList.toggle('picker-open', open);
-  if (open) {
-    if (narrow()) { setGroups(false); setTimeline(false); }
-    renderDirectory();
-    if (focus) $('#building-search').focus();
-  }
-}
-
-function renderDirectory() {
-  const buildings = filterBuildings(campus.buildings, state.search, 'all');
-  $('#building-list').innerHTML = buildings.map(b => `<button class="building-item ${state.selected === b.number ? 'selected' : ''}" data-house="${b.number}" aria-pressed="${state.selected === b.number}"><span class="building-color" style="--house-color:${b.color};background:${b.color}"></span><span class="building-number">${b.number}</span><span class="building-copy"><strong>${esc(b.name)}</strong><small>Süd ${b.campus} · ${b.levels} levels</small></span><span aria-hidden="true">↗</span></button>`).join('') || '<p class="empty-state">No houses found. Try a number or color.</p>';
-  $$('#building-list [data-house]').forEach(button => button.onclick = () => { travel(button.dataset.house); $('#all-houses').focus({ preventScroll: true }); });
 }
 
 function renderHouse() {
@@ -123,42 +102,42 @@ function setGroups(open, focus = false) {
   state.groupsOpen = open;
   $('#open-groups').setAttribute('aria-expanded', open);
   document.body.classList.toggle('group-open', open);
-  if (changed) animateGroupVisibility(open);
+  if (changed) animatePanelVisibility($('#group-deck'), $('#open-groups'), open);
   if (!open) {
     qrRevision++;
     $$('.group-copy, .group-qr').forEach(element => element.classList.remove('is-changing'));
   }
   if (open) {
-    setPicker(false);
-    if (crowdedOverlays()) setTimeline(false);
+    setTimeline(false);
     renderGroup();
     if (focus) $('#group-next').focus({ preventScroll: true });
   }
 }
 
-function animateGroupVisibility(open) {
-  const deck = $('#group-deck');
-  if (!open && deck.contains(document.activeElement)) $('#open-groups').focus({ preventScroll: true });
-  const current = getComputedStyle(deck);
-  const from = deck.hidden
-    ? { opacity: 0, translate: '0 -8px', scale: '0.985' }
+function animatePanelVisibility(panel, toggle, open, offset = '0 -8px') {
+  if (!open && panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
+  const current = getComputedStyle(panel);
+  const resting = { opacity: 0, translate: offset, scale: '0.985' };
+  const from = panel.hidden
+    ? resting
     : { opacity: current.opacity, translate: current.translate, scale: current.scale };
-  groupVisibilityAnimation?.cancel();
-  deck.inert = !open;
+  panelAnimations.get(panel)?.cancel();
+  panelAnimations.delete(panel);
+  panel.inert = !open;
   if (reducedMotion()) {
-    deck.hidden = !open;
+    panel.hidden = !open;
     return;
   }
-  deck.hidden = false;
-  const animation = deck.animate([
+  panel.hidden = false;
+  const animation = panel.animate([
     from,
-    open ? { opacity: 1, translate: '0 0', scale: '1' } : { opacity: 0, translate: '0 -8px', scale: '0.985' },
-  ], { duration: open ? 280 : 200, easing: 'cubic-bezier(.22,1,.36,1)' });
-  groupVisibilityAnimation = animation;
+    open ? { opacity: 1, translate: '0 0', scale: '1' } : resting,
+  ], { duration: open ? 300 : 220, easing: 'cubic-bezier(.22,1,.36,1)' });
+  panelAnimations.set(panel, animation);
   animation.finished.then(() => {
-    if (groupVisibilityAnimation !== animation) return;
-    groupVisibilityAnimation = null;
-    deck.hidden = !state.groupsOpen;
+    if (panelAnimations.get(panel) !== animation) return;
+    panelAnimations.delete(panel);
+    panel.hidden = !open;
   }).catch(() => {});
 }
 
@@ -250,13 +229,13 @@ function stepGroup(delta) {
 }
 
 function setTimeline(open, focus = false) {
+  const changed = state.timelineOpen !== open;
   state.timelineOpen = open;
-  $('#timeline-panel').hidden = !open;
   $('#open-timeline').setAttribute('aria-expanded', open);
   document.body.classList.toggle('timeline-open', open);
+  if (changed) animatePanelVisibility($('#timeline-panel'), $('#open-timeline'), open, '16px 0');
   if (open) {
-    setPicker(false);
-    if (crowdedOverlays()) setGroups(false);
+    setGroups(false);
     renderTimeline();
     if (focus) $('#close-timeline').focus({ preventScroll: true });
   }
@@ -303,7 +282,7 @@ function privateAccess(title = 'Your resident community') {
 }
 
 function toolsDialog() {
-  modal(`<div class="modal-eyebrow">ROMMELWEB / FIELD NOTES</div><h2 class="modal-title">A place taking shape.</h2><p class="modal-lead">Eleven real houses. A community we can build together.</p><div class="tool-links"><button class="outline-button" id="tools-rooms">Published room designs ↗</button><button class="outline-button" id="tools-sources">Model & façade sources ↗</button><button class="outline-button" id="tools-correction">Add a building detail ↗</button><button class="outline-button" id="tools-resident">Resident privacy & knocking ↗</button><a class="outline-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architectural brief ↗</a></div><p class="field-note">Click a house to explore · click empty space to return · drag to orbit · scroll to zoom · arrow keys on the map to orbit · / to find a house · Escape to close an overlay.</p><p class="field-note">Independent resident project. <a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></p>`);
+  modal(`<div class="modal-eyebrow">ROMMELWEB / FIELD NOTES</div><h2 class="modal-title">A place taking shape.</h2><p class="modal-lead">Eleven real houses. A community we can build together.</p><div class="tool-links"><button class="outline-button" id="tools-rooms">Published room designs ↗</button><button class="outline-button" id="tools-sources">Model & façade sources ↗</button><button class="outline-button" id="tools-correction">Add a building detail ↗</button><button class="outline-button" id="tools-resident">Resident privacy & knocking ↗</button><a class="outline-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architectural brief ↗</a></div><p class="field-note">Click a house to explore · click empty space to return · drag to orbit · scroll to zoom · arrow keys on the map to orbit · Tab to a house label and Enter to explore · Escape to close an overlay.</p><p class="field-note">Independent resident project. <a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></p>`);
   $('#tools-rooms').onclick = () => roomReferencesDialog();
   $('#tools-sources').onclick = () => { $('#modal').close(); accuracyDialog(); };
   $('#tools-correction').onclick = () => { $('#modal').close(); correctionDialog(); };
@@ -325,7 +304,7 @@ function roomReferencesDialog(campusId = house(state.selected)?.campus || 'I') {
 
 function accuracyDialog() {
   const model = lod2.buildings.find(building => building.number === state.selected);
-  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and staggered window frames on the newer residential houses; horizontal plates on the older ones. These are schematic material patterns. Seam spacing, floor bands and opening positions are not a measured façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Window study ↗</a></div><div class="source-item"><strong>Interiors still need your knowledge</strong><p>Floor counts come from OSM. Unfolded floor intervals are provisional until approved plans arrive. There are no invented room numbers, resident locations or occupancy records.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
+  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and tall windows on the newer houses; horizontal plates and smaller, aligned windows on the older ones. Blue House’s aligned rows follow a resident correction. Window spacing and older façade row heights are schematic, separate from the floor sections. Openings fit within the official walls; exact placement still needs a façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interiors still need your knowledge</strong><p>Floor counts come from OSM. Unfolded floor intervals are provisional until approved plans arrive. There are no invented room numbers, resident locations or occupancy records.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
 }
 
 function correctionDialog(number = state.selected || '', floor = state.floor) {
@@ -375,12 +354,9 @@ async function init() {
     setTheme(state.theme);
     await scene?.pathLoad;
     $('#scene-loading').hidden = true;
-    renderDirectory();
     renderTimeline();
     $('#home-button').onclick = () => travel(null);
-    $('#close-house').onclick = () => { travel(null); $('#all-houses').focus({ preventScroll: true }); };
-    $('#all-houses').onclick = () => setPicker(!state.pickerOpen, true);
-    $('#building-search').oninput = event => { state.search = event.target.value; renderDirectory(); };
+    $('#close-house').onclick = () => { travel(null); $('#home-button').focus({ preventScroll: true }); };
     $('#open-groups').onclick = () => {
       if (!state.groupsOpen) {
         state.groupIndex = state.selected ? groups.findIndex(group => group.id === `house-${state.selected}`) : 0;
@@ -410,16 +386,11 @@ async function init() {
       $('#scene-caption').textContent = state.exploded ? 'Sections through the exterior. Room plans come next.' : 'Photo-informed linework on the official exterior.';
     };
     $('#all-floors').onclick = () => selectFloor(null);
-    matchMedia('(max-width: 1100px)').addEventListener('change', event => {
-      if (event.matches && state.groupsOpen && state.timelineOpen) setTimeline(false);
-    });
     document.addEventListener('rommel:webgl-lost', activateFallback);
     document.addEventListener('keydown', event => {
       if ($('#modal').open) return;
-      if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable) { event.preventDefault(); setPicker(true, true); }
       if (event.key === 'Escape') {
-        if (state.pickerOpen) { setPicker(false); $('#all-houses').focus(); }
-        else if (state.timelineOpen) { setTimeline(false); $('#open-timeline').focus(); }
+        if (state.timelineOpen) { setTimeline(false); $('#open-timeline').focus(); }
         else if (state.groupsOpen) { setGroups(false); $('#open-groups').focus(); }
       }
     });

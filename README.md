@@ -10,23 +10,25 @@ This independent resident project starts with the actual eleven houses and grows
 
 ![Rommelweb dark campus explorer with eleven official exterior models](docs/preview/campus.png)
 
-Preview details: [daylight campus](docs/preview/day-campus.png) · [group carousel](docs/preview/groups.png) · [expanded group details](docs/preview/group-details.png) · [timber and window study](docs/preview/timber-detail.png) · [daylight detail](docs/preview/day-timber-detail.png) · [older-house floor sections](docs/preview/unfolded-levels.png) · [published room references](docs/preview/room-references.png) · [phone layout](docs/preview/mobile.png) · [timeline](docs/preview/timeline.png).
+Preview details: [daylight campus](docs/preview/day-campus.png) · [group carousel](docs/preview/groups.png) · [expanded group details](docs/preview/group-details.png) · [timber and window study](docs/preview/timber-detail.png) · [daylight detail](docs/preview/day-timber-detail.png) · [older windows](docs/preview/older-windows.png) · [aligned Blue House windows](docs/preview/blue-house.png) · [older-house floor sections](docs/preview/unfolded-levels.png) · [published room references](docs/preview/room-references.png) · [phone layout](docs/preview/mobile.png) · [timeline](docs/preview/timeline.png).
 
 ## This release
 
 - An interactive Three.js map using **official Bavarian LoD2 geometry**: 289 wall, roof and ground surfaces across eleven address-matched buildings.
 - A full-screen spatial interface with **day/night mode**, defaulting to night. Daylight uses warm off-white ground and neutral light panels; geographical alignment, metre scale, source roof shapes, heights and relative building-base elevations remain unchanged.
 - Hover a house to highlight it, then click to focus. A primary click on empty map space restores the campus overview; dragging, cancelled gestures and multi-pointer gestures do not trigger that action. The Rommelweb brand also restores the overview. Drag to orbit and use the wheel to zoom.
-- A quiet **All houses** trigger opens a compact searchable directory. The selected house's floor-unfold control sits beside it, leaving the model as the main navigation.
+- Buildings and their address-label buttons are the navigation, with keyboard access through the labels. The selected house's floor-unfold control stays at bottom left.
 - Photo-informed façade linework: vertical timber seams on the newer houses and horizontal plate courses with faint short joints on the older houses. Natural timber and older brown façades sit beneath neutral charcoal/gray roofs. Colors, seam spacing and floor bands are schematic; source polygons are unchanged.
-- A separate **schematic upper-window layer** adds narrow dark frames, lower transoms, head strips and staggered rows to the newer houses. Typical width is referenced to a resident sketch; positions, heights and repetition are unmeasured. Ground-floor glazing, stairs and loggias remain unmodeled, and no window creates a room or occupancy record. See the [window evidence](docs/WINDOW-REFERENCES.md).
+- A separate **schematic window layer** adds narrow dark frames, lower transoms and head strips to the newer houses. Blue House **51a has vertically aligned upper rows**, following a resident correction; the other newer houses retain illustrative row offsets. Typical width is referenced to a resident sketch, while positions, heights and repetition remain unmeasured. Newer-house ground-floor glazing, stairs and loggias remain unmodeled. See the [newer-window evidence](docs/WINDOW-REFERENCES.md).
+- Older houses now have three aligned appearance rows where complete windows fit the source shell, including regular ground-row windows. Their approximately 1.05 × 1.55 m profile and 0.95 m sill come from one unassigned room sketch. Row spacing uses a broad horizontal roof as a visual guide and leaves the floor-section elevations unchanged. No opening establishes a room, occupancy or usable roof space. See the [older-window evidence](docs/OLD-WINDOW-REFERENCES.md).
 - Continuous streets and paths from retained OSM geometry: joined outlines at intersections, mapped widths where available and crisp screen-width centerlines otherwise. Decorative trees and gray context-building blocks remain absent.
 - An unfolded **level study** made of thin horizontal sections through the actual LoD2 shell. Upper outlines can shrink or split beneath the older houses' stepped roofs. OSM floor counts and provisional heights determine the initial sections; they do not establish occupancy or usable headroom.
-- The top-right **Groups** button opens and closes a short strip centered beneath the breadcrumb. Floating previous/next arrows browse groups; **Details** expands with a smooth height transition. Locally generated QR codes lead to public activity pages and known houses: cinema at 55, bicycle workshop at 57, garden behind 59, and Sprachcafé at 51a. House WhatsApp cards remain locked and expose no invite link or private QR.
+- The top-right **Groups** button opens and closes a larger, readable card centered beneath the breadcrumb. Floating previous/next arrows browse groups; **Details** expands with a smooth height transition. Locally generated QR codes lead to public activity pages and known houses: cinema at 55, bicycle workshop at 57, garden behind 59, and Sprachcafé at 51a. House WhatsApp cards remain locked and expose no invite link or private QR.
 - A quiet, silent interface: camera, floor, theme and group transitions ease between states; façade line density adjusts to the view, and cached QR codes change with their titles. Reduced-motion preferences are respected. No audio code or media is included.
 - **Published room designs**, available under floor details and map information, links to resident sketches for both campuses and the operator's 2026 categories. Approximate living-zone dimensions remain separate from category-average areas and geolocated interior geometry.
 - The top-right **Timeline** button is the timeline's sole entry point. Its drawer supports personal event drafts, house links, removal and `.ics` export. Drafts exist only in the open tab's memory and disappear on reload or close; no events are published or sent.
-- A responsive house picker and a 2D fallback when WebGL is unavailable.
+- Groups and Timeline are mutually exclusive at every viewport width. Both animate into and out of view, safely reverse an interrupted transition, and switch immediately for reduced motion.
+- A 2D fallback with keyboard-accessible house buttons when WebGL is unavailable.
 - Local correction-file downloads for building details. The form uploads nothing.
 - A concrete architectural brief, residency-validation workflow and proposed API contract.
 
@@ -63,8 +65,8 @@ The GitHub Actions workflow is configured to build, test and deploy `dist/` thro
 | `src/paths.js` | Path-source normalization, cache validation and lightweight rendering geometry |
 | `src/path-network.js` | Development-time buffering and union of explicitly mapped path widths |
 | `src/facade.js` | Photo-informed schematic seams clipped to unchanged exterior surfaces |
-| `src/windows.js` | Separate schematic upper-window patches, source references and unmeasured appearance parameters |
-| `src/main.js` | House picker, animated group/QR carousel, theme control, local timeline and dialogs |
+| `src/windows.js` | Separate newer/older window profiles, house-specific corrections and appearance-only row guides |
+| `src/main.js` | House selection, animated group/QR carousel, theme control, local timeline and dialogs |
 | `src/data.js` | Public community listings and small data helpers |
 | `src/room-references.js` | Cited room typologies and approximate dimensions, without room placements |
 | `src/events.js` | Order personal drafts and export calendar files |
@@ -84,6 +86,7 @@ The GitHub Actions workflow is configured to build, test and deploy `dist/` thro
 | `docs/GEOMETRY.md` | Detailed geometry provenance, transformations and uncertainties |
 | `docs/FACADE-REFERENCES.md` | Inspected photo references and schematic material-line limits |
 | `docs/WINDOW-REFERENCES.md` | Identified-house photographs, narrow-window typology and unmeasured-placement limits |
+| `docs/OLD-WINDOW-REFERENCES.md` | Older-house photographs, typical window dimensions, aligned-row character and roof safeguards |
 | `docs/OLD-BUILDING-SECTIONS.md` | Older-house roof/floor evidence, clear-height limits and plate-cladding refinement |
 | `docs/ROOM-TYPOLOGY-RESEARCH.md` | Public room drawings, dimensions, operator categories and evidence limits |
 | `docs/RESEARCH.md` | Source register and confirmed campus/community facts |
@@ -106,7 +109,7 @@ Read the scripts' `--help` and [geometry notes](docs/GEOMETRY.md) before refresh
 
 Rebuild the path cache whenever mapped paths change. `npm run build` checks that its source digest is current. Polygon union runs during development, not on the browser's animation thread; missing or invalid cache data falls back to the original source centerlines.
 
-`src/windows.js` keeps its appearance parameters in `WINDOW_PROFILE`. Its upper-window patches are clipped to broad source wall surfaces and their holes, then rendered separately from the official shell. Changing a bay pitch, row offset or frame detail changes an illustration; it does not update the authoritative geometry. Use the [window evidence](docs/WINDOW-REFERENCES.md) before refining this layer, and collect address-and-direction façade evidence before claiming exact opening positions.
+`src/windows.js` keeps appearance parameters in `WINDOW_PROFILE` and `OLD_WINDOW_PROFILE`; `getWindowProfile` applies the resident correction for 51a. Candidate openings must fit the source-wall union before their rendering batches are clipped to individual surfaces. `getOldFacadeRowGuides` supplies separate appearance rows for older houses without modifying the floor-section guides. Changing a bay pitch, row offset or frame detail changes an illustration; it does not update the authoritative geometry. Use the [newer](docs/WINDOW-REFERENCES.md) and [older](docs/OLD-WINDOW-REFERENCES.md) window evidence before refining this layer, and collect address-and-direction façade evidence before claiming exact opening positions.
 
 Start an interior contribution by selecting a house, choosing **Unfold the floors**, opening a level's details and selecting **Add a floor detail**. The downloaded JSON is a proposal, not an automatic geometry edit. Establish plan reuse permission, remove personal/security details, and follow the validation checklist before adding it to the public model.
 
@@ -120,6 +123,6 @@ The [interior schema](docs/INTERIOR-FORMAT.md) and renderer already support part
 
 House names, color conventions and community facts are referenced to [Rommelwood e.V.](https://rommelwood.de/) and the [Studierendenwerk](https://www.werkswelt.de/). Their original map artwork, photographs, prose, contact lists and private invitations are not included.
 
-Façade photographs are linked in the [material study](docs/FACADE-REFERENCES.md) and [window study](docs/WINDOW-REFERENCES.md) and are not bundled. Procedural material seams and upper windows are separate approximate visual annotations. They are not measured façades, exact opening schedules or room placements.
+Façade photographs are linked in the [material study](docs/FACADE-REFERENCES.md), [newer-window study](docs/WINDOW-REFERENCES.md) and [older-window study](docs/OLD-WINDOW-REFERENCES.md) and are not bundled. Procedural material seams and windows are separate approximate visual annotations. They are not measured façades, exact opening schedules or room placements.
 
 Manrope and JetBrains Mono use the SIL Open Font License; notices are in `public/fonts/LICENSES.txt`. Third-party code retains its package licenses.

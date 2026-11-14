@@ -1,6 +1,6 @@
 # Geometry, provenance and accuracy
 
-This release combines an **official LoD2 exterior model** of all eleven dorms with OSM storey counts, rendered streets/paths and separately retained reference/context data. The building walls, standard roof forms, footprints and heights come from Bavarian surveying open data. The day/night presentation adds separate photo-informed schematic material seams and newer-house upper windows while retaining the source geometry. Unfolded levels are thin horizontal sections through that exterior, at provisional or approved floor elevations. LoD2 is still a simplified exterior model, not a complete as-built twin. Interior walls, individual floor elevations, exact window/door positions and room geometry remain unverified; the current interior dataset is empty.
+This release combines an **official LoD2 exterior model** of all eleven dorms with OSM storey counts, rendered streets/paths and separately retained reference/context data. The building walls, standard roof forms, footprints and heights come from Bavarian surveying open data. The day/night presentation adds separate photo-informed schematic material seams and newer/older window studies while retaining the source geometry. Unfolded levels are thin horizontal sections through that exterior, at provisional or approved floor elevations. LoD2 is still a simplified exterior model, not a complete as-built twin. Interior walls, individual floor elevations, exact window/door positions and room geometry remain unverified; the current interior dataset is empty.
 
 ## Official exterior model
 
@@ -41,7 +41,8 @@ The source serializes millimetres; this does not mean millimetre surveying accur
 | Streets and paths | Retained outdoor OSM highway ways; mapped `width` where present | Mapped horizontal alignment. Known widths render as ribbons; unknown widths as centerlines. Flat display elevation is not terrain data. |
 | Trees and neighboring buildings | Retained OSM nodes/ways | Research/reference data only; no schematic trees or gray neighboring blocks are drawn |
 | Façade material seams | [Inspected architect/operator photographs](FACADE-REFERENCES.md) | Direction and broad material character observed; procedural seam pitch, joint positions and floor bands are illustrative |
-| Newer-house upper-window appearance | [Identified-house photographs and typical-room sketch](WINDOW-REFERENCES.md) | Tall narrow frames, lower transoms, head strips and shifted rows observed. Typical width is a sketch reference; positions, heights, spacing, count and offsets are illustrative, not a measured opening schedule. |
+| Newer-house upper-window appearance | [Identified-house photographs, typical-room sketch and 51a resident correction](WINDOW-REFERENCES.md) | Tall narrow frames, lower transoms and head strips observed; 51a uses aligned rows per resident correction. Typical width is a sketch reference; positions, heights, spacing and counts remain illustrative. |
+| Older-house window appearance | [Operator photographs and typical-room sketch](OLD-WINDOW-REFERENCES.md) | Approximately 1.05 × 1.55 m with 0.95 m sill from one unassigned sketch. Aligned rows and one horizontal transom follow photo character; pitch, tints and placement are illustrative. Appearance rows do not establish actual floors or occupied roof space. |
 | Room index | Permission-gated contribution dataset | No individual room markers republished from the existing site; aggregate research only. Accepted room records need an approved source and explicit floor labels. |
 
 Data was retrieved on 14 November 2026. The exact OSM base timestamp is retained in `public/data/campus.json` and `data/source/osm-raw.json`.
@@ -50,9 +51,9 @@ Data was retrieved on 14 November 2026. The exact OSM base timestamp is retained
 
 The camera now frames the campus more closely. No building has been enlarged, moved toward its neighbors or independently rescaled: the shared coordinate system remains measured in metres. Camera movement, perspective and viewport fitting change the view, not the source dimensions.
 
-Houses highlight on hover and focus on click; the compact **All houses** directory provides a text alternative. A primary click on empty map space restores the overview. The pointer guard rejects dragging, cancelled gestures and multi-pointer gestures, so orbiting does not also reset the view. Dragging orbits, the wheel zooms and the Rommelweb brand also restores the overview.
+Houses highlight on hover and focus on click. Their address labels are buttons with equivalent keyboard access, and the 2D fallback exposes keyboard-accessible house buttons. A primary click on empty map space restores the overview. The pointer guard rejects dragging, cancelled gestures and multi-pointer gestures, so orbiting does not also reset the view. Dragging orbits, the wheel zooms and the Rommelweb brand also restores the overview.
 
-Night is the initial theme. The top-right appearance button switches to warm daylight ground and neutral light interface panels while transitioning the scene's display materials. These palettes are illustrative, not measured finishes, solar studies or observed lighting states. They do not alter the geometry or indicate resident activity. The **Groups** button toggles the centered strip with external browsing arrows and animated details; **Timeline** in the same bubble is the timeline's sole entry point. All interaction remains silent, with reduced-motion alternatives.
+Night is the initial theme. The top-right appearance button switches to warm daylight ground and neutral light interface panels while transitioning the scene's display materials. These palettes are illustrative, not measured finishes, solar studies or observed lighting states. They do not alter the geometry or indicate resident activity. The **Groups** button toggles the larger centered card with external browsing arrows and animated details; **Timeline** in the same bubble is the timeline's sole entry point. The two panels are mutually exclusive at all viewport widths, with animated entry/exit and safe reversal when toggled rapidly. All interaction remains silent, with immediate state changes for reduced motion.
 
 Streets and paths are drawn from retained OSM coordinates. Outdoor ways with a valid mapped width have restrained gray ribbons and edges; other ways retain centerlines rather than receiving an invented physical width. Indoor highway ways are omitted. Schematic trees and gray context-building volumes remain absent. Paths and the ground guide use flat display planes because no surveyed terrain model is available.
 
@@ -66,15 +67,29 @@ Fine façade strokes blend into a coarser subset when their projected spacing be
 
 The broad material patterns are grounded in the [façade reference study](FACADE-REFERENCES.md), refined by the [older-building addendum](OLD-BUILDING-SECTIONS.md). No source photos, traced textures or claimed exact loggia positions are added. Material detail, the window appearance study below, official exterior surfaces and future approved interior geometry retain separate evidence status.
 
-## Schematic upper-window layer
+## Schematic window layers
+
+### Newer houses and the 51a correction
 
 `src/windows.js` adds a replaceable appearance layer to the six newer houses. The [window reference study](WINDOW-REFERENCES.md) identifies several photographed houses and records tall narrow dark frames, lower transoms, head strips and side-to-side row shifts. A typical newer-room sketch annotates approximately **1.10 m** window width, with units inferred from the drawing. It supplies no complete opening schedule or measured elevation.
 
-`WINDOW_PROFILE` keeps the source URLs, qualification and visual parameters together. The current 2.55 m maximum height, 3.4 m bay pitch, 0.55 m alternating offset and frame details are **rendering choices**, not surveyed dimensions. Row placement follows the provisional level guides. The alternating pattern communicates the photographed character; it does not claim the same exact cycle on every house or face.
+`WINDOW_PROFILE` keeps the source URLs, qualification and visual parameters together. The current 2.55 m maximum height, 3.4 m bay pitch, 0.55 m alternating offset and frame details are **rendering choices**, not surveyed dimensions. Row placement follows the provisional or approved level guides. The alternating pattern communicates the photographed character; it does not claim the same exact cycle on every house or face.
 
-Window patches are clipped against triangulated source walls, including holes, and rendered as separate frame, glass, head and sill batches. Their small surface offsets prevent visual interference with the original shell. The authoritative LoD2 polygons are unchanged. Broad-wall and clipping guards avoid narrow or incomplete patches; they do not establish a verified façade type or orientation.
+`getWindowProfile` overrides the row offset to zero for **Blue House 51a**. Its vertically aligned upper rows follow a resident correction, recorded separately from the family default. That correction settles the intended alignment character; it does not supply measured pitch, heights or opening coordinates.
 
-Ground-floor glazing, stair structures, loggias and other recess details remain unmodeled. The layer creates no room IDs, room counts, interior boundaries, occupancy state or lighting schedule. Its generated patch count is only a rendering diagnostic. The window group follows the assembled exterior and disappears during the unfolded level study, so illustrative openings do not stand in for approved floor plans.
+### Older-house appearance rows
+
+`OLD_WINDOW_PROFILE` uses approximately **1.05 m width, 1.55 m height and a 0.95 m sill**, derived from one unassigned typical-room sketch. It uses aligned columns, one horizontal mid-height transom and no deep head strip. The 3.25 m bay pitch, frame geometry and muted warm frame tint are illustrative. The [older-window evidence](OLD-WINDOW-REFERENCES.md) separates these typology cues from a measured façade inventory.
+
+`getOldFacadeRowGuides` derives three candidate rows from the largest qualifying broad horizontal `RoofSurface`, preserving any approved level anchors. With no approved anchors, this divides the appearance height into three equal guide intervals. It falls back to official model height if no suitable surface exists or an approved anchor would exceed that appearance height. This keeps the appearance rows below a broad roof rather than spacing them to the highest cap. **It does not change floor-section guides, measure floor-to-floor height or prove occupied space behind a wall.**
+
+Older-window candidates are limited to ground-connected wall portions at least 4.8 m high. The complete opening plus 0.08 m clearance must fit the source-wall union. These rendering guards reject roof-only fragments, low wall portions and cut-off windows; they do not establish a room's use. Regular ground-row windows are included where they fit, while large shared-room glazing, entrances, dormers and skylights remain unmodeled.
+
+### Source-shell and interior boundary
+
+Candidate openings are checked against adjacent source-wall regions, then their batches are clipped to each original triangulated wall, including holes. Frame, glass, transom/head and sill batches remain separate. Their small surface offsets prevent visual interference with the original shell. The authoritative LoD2 polygons are unchanged. Coverage and clipping guards avoid incomplete patches; they do not establish a verified façade type or orientation.
+
+Newer-house ground-floor glazing, stair structures, loggias and other recess details remain unmodeled. Neither window family creates room IDs, room counts, interior boundaries, occupancy state or a lighting schedule. Generated patch counts are only rendering diagnostics. The window groups follow the assembled exterior and disappear during the unfolded level study, so illustrative openings do not stand in for approved floor plans or imply occupation of the older houses' roof triangles.
 
 To improve this layer, record address and viewing direction, retain reuse permission for any source intended for publication, establish a reliable scale dimension and review an opening inventory. Keep schematic appearance parameters separate until the evidence supports exact geometry. Source photographs and drawings remain external links and are not bundled.
 

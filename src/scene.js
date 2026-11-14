@@ -8,7 +8,7 @@ import { pathSources, loadPathNetwork, triangulatePathPolygons, pathBoundarySegm
 import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
-import { createBuildingWindowStudies, WINDOW_PROFILE } from './windows.js';
+import { createBuildingWindowStudies, getWindowProfile, getOldFacadeRowGuides } from './windows.js';
 
 const PAPER = 0x151715;
 const INK = 0xa8aaa3;
@@ -21,13 +21,13 @@ export const SCENE_THEMES = Object.freeze({
     background: PAPER, ink: INK, activeInk: ACTIVE_INK, compass: 0x676963,
     roadFill: 0x555754, footFill: 0x66665f, pathBoundary: 0x464a42, roadLine: 0x5b5d56, footLine: 0x50534b, stepsLine: 0x68685e,
     roof: 0x363837, timber: 0x504638, plates: 0x382f29, timberHatch: 0x968575, plateHatch: 0x9b8e7f, joints: 0xa49783, floor: 0x777a75,
-    room: ACTIVE_INK, sharedSpace: 0xb6a886, windowGlass: 0x202b2c, windowFrame: 0x111715, windowSill: 0x7f8179,
+    room: ACTIVE_INK, sharedSpace: 0xb6a886, windowGlass: 0x202b2c, windowFrame: 0x111715, windowSill: 0x7f8179, oldWindowFrame: 0xad8454,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
     roadFill: 0x989c90, footFill: 0xb8b8a9, pathBoundary: 0x9a9f90, roadLine: 0x92988a, footLine: 0xa4aa99, stepsLine: 0x909786,
     roof: 0x74776f, timber: 0xa18a6d, plates: 0x695044, timberHatch: 0x705b47, plateHatch: 0xa98a73, joints: 0x544f42, floor: 0x899a89,
-    room: 0x354a3b, sharedSpace: 0x82653b, windowGlass: 0x667979, windowFrame: 0x303d38, windowSill: 0xa5afa4,
+    room: 0x354a3b, sharedSpace: 0x82653b, windowGlass: 0x667979, windowFrame: 0x303d38, windowSill: 0xa5afa4, oldWindowFrame: 0xa67e49,
   }),
 });
 
@@ -226,7 +226,12 @@ export class CampusScene {
     const detailSegments = [], distantSegments = [], jointSegments = [];
     const windowLayers = {frame: [], glass: [], head: [], sill: []};
     let windowCount = 0;
-    const windowStudies = family === 'timber' ? createBuildingWindowStudies(official.surfaces, floorElevations.map(elevation => data.baseY + elevation), data.baseY + data.height) : new Map();
+    const windowProfile = getWindowProfile(data.number, family);
+    const windowRows = family === 'plates' ? getOldFacadeRowGuides(official, data.levels, this.interiors) : {
+      elevations: floorElevations.map(elevation => data.baseY + elevation), relativeElevations: floorElevations, guideHeight: data.height,
+      status: 'Schematic window rows follow the current provisional or approved floor guides; opening positions are not surveyed.',
+    };
+    const windowStudies = createBuildingWindowStudies(official.surfaces, windowRows.elevations, data.baseY + windowRows.guideHeight, {house: data.number, family});
     for (const surface of official.surfaces) {
       const outer = surface.points.slice(0, -1).map(p => new THREE.Vector3(...p));
       if (outer.length < 3) continue;
@@ -319,13 +324,14 @@ export class CampusScene {
     exterior.add(joints);
     const windowGroup = new THREE.Group(), windowMaterials = [];
     windowGroup.userData = {
-      role: 'schematic-window-study', ...WINDOW_PROFILE, windowCount,
-      source: data.number === '51a' ? 'https://www.karlundp.de/wp-content/uploads/2023/08/Campus_Sued_Erlangen-158.jpg' : WINDOW_PROFILE.source,
-      scope: 'Upper storeys of broad facades, including adjacent near-coplanar source patches. Every mark is clipped to its original wall. Ground communal spaces, highly fragmented stair faces and loggia geometry remain unmodeled.',
+      role: 'schematic-window-study', ...windowProfile, windowCount, rowGuides: windowRows,
+      scope: family === 'plates'
+        ? 'Three aligned appearance rows, including ground, on grounded multistorey wall portions. Complete windows plus clearance must fit the local source wall; roof-only patches and low shared wings are excluded. Larger common-room glazing is unmodeled.'
+        : 'Upper storeys of broad facades, including adjacent near-coplanar source patches. Every mark is clipped to its original wall. Ground communal spaces, highly fragmented stair faces and loggia geometry remain unmodeled.',
     };
     for (const [layer, positions] of Object.entries(windowLayers)) {
       if (!positions.length) continue;
-      const themeRole = layer === 'glass' ? 'windowGlass' : layer === 'sill' ? 'windowSill' : 'windowFrame';
+      const themeRole = layer === 'glass' ? 'windowGlass' : layer === 'sill' ? 'windowSill' : family === 'plates' ? 'oldWindowFrame' : 'windowFrame';
       const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: layer === 'glass' ? 0.87 : 0.96, depthWrite: true});
       material.userData = {themeRole, windowLayer: layer};
       const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
@@ -505,6 +511,7 @@ export class CampusScene {
       mappedPathWidths: this.pathSourceRecords.filter(source => source.width !== null).length,
       theme: this.theme,
       schematicWindows: [...this.buildings.values()].reduce((sum, building) => sum + building.windowGroup.userData.windowCount, 0),
+      windowStudies: [...this.buildings.values()].map(building => ({number: building.data.number, count: building.windowGroup.userData.windowCount, rows: building.windowGroup.userData.rowGuides.relativeElevations, alignment: building.windowGroup.userData.alternateOffset === 0 ? 'aligned' : 'schematic offsets'})),
       floorSections: [...this.buildings.values()].map(b => ({ number: b.data.number, areas: b.floorSections.map(section => section.area), openChains: b.floorSections.reduce((sum, section) => sum + section.openChains.length, 0) })),
       contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photo-informed schematic material and window study; opening positions are illustrative, with no room assignments or interior boundaries' };
   }
@@ -783,8 +790,8 @@ export function fallbackMap(container, campus, onSelect) {
   const svg = document.createElementNS(ns, 'svg');
   svg.setAttribute('viewBox', '-140 -115 260 240');
   svg.classList.add('fallback-map');
-  svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', 'Two-dimensional map of the eleven dorm footprints. Select houses using the directory.');
+  svg.setAttribute('role', 'group');
+  svg.setAttribute('aria-label', 'Two-dimensional campus map. Tab to a house and press Enter or Space to explore it.');
   svg.addEventListener('click', event => {
     if (event.target === svg && event.button === 0) onSelect(null);
   });
@@ -795,7 +802,17 @@ export function fallbackMap(container, campus, onSelect) {
     polygon.setAttribute('fill-opacity', '.18');
     polygon.setAttribute('stroke', '#a8aaa3');
     polygon.setAttribute('stroke-width', '.6');
+    polygon.setAttribute('tabindex', '0');
+    polygon.setAttribute('role', 'button');
+    polygon.setAttribute('aria-label', `Explore House ${b.number}, ${b.name}`);
     polygon.addEventListener('click', () => onSelect(b.number));
+    polygon.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        event.stopPropagation();
+        onSelect(b.number);
+      }
+    });
     const title = document.createElementNS(ns, 'title');
     title.textContent = b.address;
     polygon.appendChild(title);

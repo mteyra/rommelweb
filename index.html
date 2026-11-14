@@ -9,9 +9,9 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <a href="#all-houses" id="skip-to-places" class="skip-link">Skip to places</a>
+    <a href="#scene" id="skip-to-map" class="skip-link">Skip to map</a>
     <main id="app" aria-label="Rommelwood campus explorer">
-      <div id="scene" tabindex="0" role="region" aria-label="Interactive 3D campus. Drag to orbit, scroll to zoom, or use arrow keys. Choose All houses for keyboard navigation."></div>
+      <div id="scene" tabindex="0" role="region" aria-label="Interactive 3D campus. Drag to orbit, scroll to zoom, or use arrow keys. Tab to a house label and press Enter to explore."></div>
       <div id="map-labels" class="map-labels"></div>
       <div id="scene-loading" role="status"><span class="loading-orbit" aria-hidden="true"></span>Finding our place.<small>Loading the campus in 3D…</small></div>
 
@@ -42,11 +42,6 @@
         <div id="timeline-content" class="timeline-content"></div>
         <div class="timeline-footer"><button id="draft-event" class="outline-button"><span aria-hidden="true">＋</span> Plan something locally</button><p>Drafts stay in this session. Nothing is published.</p></div>
       </aside>
-      <nav class="directory-control" aria-label="Campus directory">
-        <button id="all-houses" class="all-houses" aria-expanded="false" aria-controls="house-picker"><span>All houses</span><span class="all-houses-arrow" aria-hidden="true">↗</span></button>
-        <section id="house-picker" class="house-picker" aria-label="House directory" hidden><div class="picker-heading"><span class="eyebrow">FIND YOUR WAY</span><span class="picker-hint">ESC TO CLOSE</span></div><label class="search-box"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><input id="building-search" type="search" placeholder="House, color or wing…" aria-label="Search houses by address, color or wing" autocomplete="off"></label><div id="building-list" class="building-list" aria-label="Campus houses"></div></section>
-      </nav>
-
       <section id="house-controls" class="house-controls" aria-label="Selected house and floors" hidden>
         <div class="house-control-heading"><div><span class="eyebrow">A CLOSER LOOK</span><h2 id="selected-house"></h2></div><button id="close-house" class="panel-close" aria-label="Return to the whole campus">×</button></div>
         <button id="explode-building" class="outline-button" aria-expanded="false" aria-controls="floor-controls"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 8 4-8 4-8-4 8-4ZM2 10l8 4 8-4M2 14l8 4 8-4"/></svg><span>Unfold the floors</span><span aria-hidden="true">↗</span></button>
