@@ -3,10 +3,11 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { getInteriorLevel, getLevelElevations } from './interiors.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createFacadeSegments, createStoreyJointSegments, FACADE_PROFILES } from './facade.js';
+import { floorSection, triangulateSection } from './sections.js';
 
-const PAPER = 0x101916;
-const INK = 0x9fae92;
-const ACTIVE_INK = 0xd1dfbd;
+const PAPER = 0x151715;
+const INK = 0xa8aaa3;
+const ACTIVE_INK = 0xdfdfd5;
 const HOME_DIRECTION = new THREE.Vector3(0.85, 1.05, 1).normalize();
 const HOME_TARGET = new THREE.Vector3(-3, 11, -7);
 
@@ -58,6 +59,7 @@ export class CampusScene {
     sun.position.set(-100, 180, 70);
     this.scene.add(sun);
     this.makeGround();
+    this.makePaths();
     for (const building of campus.buildings) this.makeBuilding(building);
     this.campusBounds = new THREE.Box3();
     for (const building of lod2.buildings) for (const surface of building.surfaces) {
@@ -80,24 +82,46 @@ export class CampusScene {
     this.scene.add(ground);
     const radius = 127;
     const points = Array.from({ length: 161 }, (_, i) => [Math.sin(i * Math.PI * 2 / 160) * radius, -0.3, Math.cos(i * Math.PI * 2 / 160) * radius]);
-    this.line(points, 0x53634f, 0.18);
+    this.line(points, 0x676963, 0.14);
     for (let i = 0; i < 4; i++) {
       const angle = i * Math.PI / 2;
       this.line([[Math.sin(angle) * (radius - 1.5), -0.29, Math.cos(angle) * (radius - 1.5)], [Math.sin(angle) * (radius + 1.5), -0.29, Math.cos(angle) * (radius + 1.5)]], INK, 0.3);
     }
   }
 
-  footprintShape(points) {
-    const shape = new THREE.Shape();
-    points.forEach(([x, z], i) => i ? shape.lineTo(x, -z) : shape.moveTo(x, -z));
-    shape.closePath();
-    return shape;
-  }
-
-  extrude(points, height) {
-    const geometry = new THREE.ExtrudeGeometry(this.footprintShape(points), { depth: height, bevelEnabled: false, steps: 1 });
-    geometry.rotateX(-Math.PI / 2);
-    return geometry;
+  makePaths() {
+    this.paths = new THREE.Group();
+    this.paths.userData = { role: 'OSM-streets-and-paths', source: 'OpenStreetMap contributors, ODbL', elevationStatus: 'Flat display plane; terrain height unavailable.' };
+    this.pathCount = 0;
+    for (const path of this.campus.context) {
+      if (path.kind !== 'path' || !path.tags.highway || path.tags.indoor === 'yes') continue;
+      const mappedWidth = Number(path.tags.width);
+      const road = ['residential', 'service', 'unclassified'].includes(path.tags.highway);
+      const metadata = { role: 'sourced-path', osmId: path.id, source: path.osmUrl, highway: path.tags.highway, name: path.tags.name || null };
+      if (Number.isFinite(mappedWidth) && mappedWidth > 0 && mappedWidth <= 30) {
+        const positions = [], edges = [];
+        for (let i = 1; i < path.points.length; i++) {
+          const a = path.points[i - 1], b = path.points[i], length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          if (length < 0.001) continue;
+          const dx = -(b[1] - a[1]) / length * mappedWidth / 2, dz = (b[0] - a[0]) / length * mappedWidth / 2;
+          const leftA = [a[0] + dx, -0.27, a[1] + dz], rightA = [a[0] - dx, -0.27, a[1] - dz];
+          const leftB = [b[0] + dx, -0.27, b[1] + dz], rightB = [b[0] - dx, -0.27, b[1] - dz];
+          positions.push(...leftA, ...rightA, ...leftB, ...rightA, ...rightB, ...leftB);
+          edges.push(...leftA, ...leftB, ...rightA, ...rightB);
+        }
+        const ribbon = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)),
+          new THREE.MeshBasicMaterial({ color: road ? 0x555754 : 0x66665f, transparent: true, opacity: road ? 0.27 : 0.17, side: THREE.DoubleSide, depthWrite: false }));
+        ribbon.userData = { ...metadata, mappedWidth };
+        const outline = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(edges, 3)),
+          new THREE.LineBasicMaterial({ color: 0x7a7d75, transparent: true, opacity: road ? 0.19 : 0.13, depthWrite: false }));
+        this.paths.add(ribbon, outline);
+      } else {
+        const centerline = this.line(path.points.map(([x, z]) => [x, -0.26, z]), 0x7b7c74, road ? 0.26 : 0.23, this.paths);
+        centerline.userData = { ...metadata, widthStatus: 'Unknown; centerline only.' };
+      }
+      this.pathCount++;
+    }
+    this.scene.add(this.paths);
   }
 
 
@@ -156,7 +180,7 @@ export class CampusScene {
       parts.forEach(part => part.dispose());
       const roof = type === 'RoofSurface';
       const fill = new THREE.MeshBasicMaterial({
-        color: roof ? 0x26372c : family === 'timber' ? 0x343c2c : 0x382f29,
+        color: roof ? 0x363837 : family === 'timber' ? 0x504638 : 0x382f29,
         side: THREE.DoubleSide, transparent: true, opacity: roof ? 0.72 : 0.54,
         depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1,
       });
@@ -175,8 +199,16 @@ export class CampusScene {
     const facadeGroups = [];
     const facadeMaterials = [];
     for (const [index, segments] of [detailSegments, distantSegments].entries()) {
-      const material = new THREE.LineBasicMaterial({ color: family === 'timber' ? 0x7d8765 : 0x8f8d73, transparent: true, opacity: index ? 0.2 : 0.16, depthWrite: false });
-      const hatch = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3)), material);
+      const material = new THREE.LineBasicMaterial({ color: family === 'timber' ? 0x968575 : 0x9b8e7f, transparent: true, opacity: index ? 0.2 : 0.16, depthWrite: false, vertexColors: family === 'plates' });
+      const hatchGeometry = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3));
+      if (family === 'plates') {
+        // Photographs show dominant horizontal courses; vertical plate joints are faint.
+        hatchGeometry.setAttribute('color', new THREE.Float32BufferAttribute(segments.flatMap(([a, b]) => {
+          const brightness = Math.abs(a[1] - b[1]) > 0.0001 ? (index ? 0.07 : 0.24) : 1;
+          return Array(6).fill(brightness);
+        }), 3));
+      }
+      const hatch = new THREE.LineSegments(hatchGeometry, material);
       hatch.renderOrder = 1;
       hatch.userData = { role: 'schematic-material-hatching', ...FACADE_PROFILES[family], segmentCount: segments.length };
       hatch.visible = index === 1;
@@ -184,7 +216,7 @@ export class CampusScene {
       facadeGroups.push(hatch);
       facadeMaterials.push(material);
     }
-    const jointMaterial = new THREE.LineBasicMaterial({ color: 0x76866b, transparent: true, opacity: 0.34, depthWrite: false });
+    const jointMaterial = new THREE.LineBasicMaterial({ color: 0xa49783, transparent: true, opacity: 0.34, depthWrite: false });
     const joints = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(jointSegments.flat(2), 3)), jointMaterial);
     joints.renderOrder = 2;
     joints.userData = {
@@ -199,17 +231,24 @@ export class CampusScene {
     const lineMaterials = [];
     const pickables = [];
     const interiorGroups = [];
+    const floorSections = [];
     for (let floor = 0; floor < data.levels; floor++) {
       const slab = new THREE.Group();
-      const geometry = this.extrude(data.footprint, (floorElevations[floor + 1] ?? data.height) - floorElevations[floor]);
-      const material = new THREE.MeshBasicMaterial({ color: 0x617052, transparent: true, opacity: 0.11, depthWrite: false, side: THREE.DoubleSide });
+      const section = floorSection(official, floorElevations[floor]);
+      floorSections.push(section);
+      const triangles = triangulateSection(section, 0);
+      const geometry = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(triangles.flat(2), 3));
+      geometry.computeVertexNormals();
+      const material = new THREE.MeshBasicMaterial({ color: 0x777a75, transparent: true, opacity: 0.22, depthWrite: false, side: THREE.DoubleSide });
       const mesh = new THREE.Mesh(geometry, material);
-      mesh.userData = { house: data.number, floor };
+      mesh.userData = { house: data.number, floor, role: 'source-envelope-section', sourceId: official.id, sectionStatus: section.sourceStatus, sampleElevation: section.sampleElevation };
       slab.add(mesh);
       const lineMat = new THREE.LineBasicMaterial({ color: INK, transparent: true, opacity: 0.68 });
-      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geometry, 12), lineMat);
+      const boundary = section.polygons.flatMap(polygon => [polygon.outer, ...polygon.holes]).flatMap(ring =>
+        ring.slice(1).flatMap((point, i) => [[ring[i][0], 0.005, ring[i][1]], [point[0], 0.005, point[1]]]));
+      const edges = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(boundary.flat(), 3)), lineMat);
       slab.add(edges);
-      slab.position.y = data.baseY + floorElevations[floor] + 0.15;
+      slab.position.y = data.baseY + floorElevations[floor];
       const interior = new THREE.Group();
       const approved = getInteriorLevel(this.interiors, data.number, floor);
       for (const space of approved?.spaces || []) {
@@ -241,9 +280,9 @@ export class CampusScene {
     el.dataset.house = data.number;
     el.addEventListener('click', () => this.onSelect(data.number));
     this.labelsElement.appendChild(el);
-    const record = { data, group, floorGroups, floorElevations, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, jointMaterial, joints, label: el, currentGap: 0, targetGap: 0 };
+    const record = { data, group, floorGroups, floorElevations, floorSections, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, jointMaterial, joints, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
-    this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.height + data.baseY + record.currentGap * (data.levels - 1) + 3, data.centroid[1]), type: 'house', number: data.number });
+    this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], (this.exploded && this.selected === data.number ? floorElevations.at(-1) : data.height) + data.baseY + record.currentGap * (data.levels - 1) + 3, data.centroid[1]), type: 'house', number: data.number });
   }
 
   addGeographicLabels() {
@@ -258,6 +297,7 @@ export class CampusScene {
 
   focusBounds() {
     if (!this.selected) return this.campusBounds.clone();
+    if (this.exploded) return new THREE.Box3().setFromPoints(this.focusPoints());
     const b = this.buildings.get(this.selected);
     const bounds = new THREE.Box3();
     for (const [x, z] of b.data.footprint) {
@@ -270,11 +310,8 @@ export class CampusScene {
   focusPoints() {
     if (this.selected && this.exploded) {
       const building = this.buildings.get(this.selected);
-      const height = building.data.height + 5 * (building.data.levels - 1);
-      return building.data.footprint.flatMap(([x, z]) => [
-        new THREE.Vector3(x, building.data.baseY, z),
-        new THREE.Vector3(x, building.data.baseY + height, z),
-      ]);
+      return building.floorSections.flatMap((section, floor) => section.polygons.flatMap(polygon => polygon.outer.map(([x, z]) =>
+        new THREE.Vector3(x, building.data.baseY + building.floorElevations[floor] + 5 * floor, z))));
     }
     return this.lod2.buildings.filter(building => !this.selected || building.number === this.selected)
       .flatMap(building => building.surfaces.flatMap(surface => surface.points.map(point => new THREE.Vector3(...point))));
@@ -323,6 +360,8 @@ export class CampusScene {
     return { buildings: this.buildings.size, officialSurfaces: this.lod2.buildings.reduce((sum, b) => sum + b.surfaces.length, 0),
       facadeSegments: [...this.buildings.values()].reduce((sum, b) => sum + b.facadeGroups[0].userData.segmentCount, 0),
       storeyJointSegments: [...this.buildings.values()].reduce((sum, b) => sum + b.joints.userData.segmentCount, 0),
+      sourcePaths: this.pathCount,
+      floorSections: [...this.buildings.values()].map(b => ({ number: b.data.number, areas: b.floorSections.map(section => section.area), openChains: b.floorSections.reduce((sum, section) => sum + section.openChains.length, 0) })),
       contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photo-informed schematic material marks; no invented windows or room boundaries' };
   }
 
@@ -507,7 +546,7 @@ export class CampusScene {
       if (b.currentGap !== b.targetGap) {
         changed = true;
         b.currentGap = Math.abs(b.targetGap - b.currentGap) < 0.002 ? b.targetGap : b.currentGap + (b.targetGap - b.currentGap) * (this.reduced ? 1 : 0.12);
-        b.floorGroups.forEach((floor, i) => { floor.position.y = b.data.baseY + b.floorElevations[i] + i * b.currentGap + 0.15; });
+        b.floorGroups.forEach((floor, i) => { floor.position.y = b.data.baseY + b.floorElevations[i] + i * b.currentGap; });
       }
     }
     if (this.controls.update()) changed = true;
@@ -560,7 +599,7 @@ export function fallbackMap(container, campus, onSelect) {
     polygon.setAttribute('points', b.footprint.map(p => p.join(',')).join(' '));
     polygon.setAttribute('fill', b.color);
     polygon.setAttribute('fill-opacity', '.18');
-    polygon.setAttribute('stroke', '#9fae92');
+    polygon.setAttribute('stroke', '#a8aaa3');
     polygon.setAttribute('stroke-width', '.6');
     polygon.addEventListener('click', () => onSelect(b.number));
     const title = document.createElementNS(ns, 'title');
@@ -570,7 +609,7 @@ export function fallbackMap(container, campus, onSelect) {
     const text = document.createElementNS(ns, 'text');
     text.setAttribute('x', b.centroid[0]); text.setAttribute('y', b.centroid[1]);
     text.setAttribute('text-anchor', 'middle'); text.setAttribute('font-size', '5');
-    text.setAttribute('fill', '#c8d5b6');
+    text.setAttribute('fill', '#dfdfd5');
     text.textContent = b.number;
     svg.appendChild(text);
   }

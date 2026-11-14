@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101916" />
+    <meta name="theme-color" content="#151715" />
     <meta name="description" content="Explore Rommelwood in 3D. Eleven houses, shared places and a community taking shape at Campus Süd I and II, Erlangen." />
     <title>Rommelweb — Find your people.</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -32,7 +32,8 @@
       <section id="group-deck" class="group-deck" aria-label="Explore campus groups" hidden>
         <button id="close-groups" class="panel-close" aria-label="Close groups">×</button>
         <div class="group-qr-column"><div id="group-qr" class="group-qr" aria-label="Group link"></div><small id="group-qr-label">PUBLIC COMMUNITY PAGE</small></div>
-        <div class="group-copy"><div id="group-kicker" class="eyebrow">AROUND THE NEIGHBORHOOD</div><h1 id="group-title">Find your people.</h1><p id="group-description"></p><button id="group-location" class="group-location"></button><div class="group-actions"><a id="group-action" class="full-button" target="_blank" rel="noopener">Explore group ↗</a><span id="group-status"></span></div></div>
+        <div class="group-copy"><div id="group-kicker" class="eyebrow">AROUND THE NEIGHBORHOOD</div><h1 id="group-title">Find your people.</h1><button id="group-location" class="group-location"></button><button id="group-toggle-details" class="group-toggle-details" aria-expanded="false" aria-controls="group-details">Details ↓</button></div>
+        <div id="group-details" class="group-details" hidden><p id="group-description"></p><div class="group-actions"><a id="group-action" class="full-button" target="_blank" rel="noopener">Explore group ↗</a><span id="group-status"></span></div></div>
         <div class="group-pagination"><button id="group-prev" class="round-button" aria-label="Previous group">←</button><span id="group-position" role="status" aria-live="polite"></span><button id="group-next" class="round-button" aria-label="Next group">→</button></div>
       </section>
 
@@ -56,7 +57,6 @@
         <div id="floor-controls" class="floor-controls" hidden><div class="floor-control-label"><span class="eyebrow">CHOOSE A LEVEL</span><button id="all-floors" class="text-button">All levels</button></div><div id="floor-buttons" class="floor-buttons" role="group" aria-label="Select a floor"></div><details id="floor-detail" class="floor-detail"><summary>Floor details <span aria-hidden="true">＋</span></summary><div id="floor-detail-content"></div></details></div>
       </section>
 
-      <div class="map-controls" role="group" aria-label="Map controls"><button id="zoom-in" aria-label="Zoom in" title="Zoom in">＋</button><button id="zoom-out" aria-label="Zoom out" title="Zoom out">−</button><span class="control-divider" aria-hidden="true"></span><button id="top-view" aria-label="Toggle top view" title="Top view" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 8 4-8 4-8-4 8-4ZM2 10l8 4 8-4M2 14l8 4 8-4"/></svg></button><button id="reset-view" aria-label="Reset campus view" title="Reset view">⟲</button></div>
       <div class="map-bottomline"><p id="scene-caption" class="scene-caption">Follow a sign. Find your people.</p><div class="map-attribution"><a href="https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=lod2" target="_blank" rel="noopener">3D: Bayerische Vermessungsverwaltung · CC BY 4.0</a><span aria-hidden="true">·</span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">Floor counts © OpenStreetMap contributors</a><button id="accuracy-button">Model accuracy ↗</button></div></div>
     </main>
     <dialog id="modal"><div id="modal-body"></div><button id="modal-close" class="modal-close" aria-label="Close dialog">×</button></dialog>

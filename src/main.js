@@ -9,9 +9,10 @@ import { icon } from './icons.js';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const base = import.meta.env.BASE_URL;
-const state = { selected: null, floor: null, exploded: false, groupsOpen: false, timelineOpen: false, pickerOpen: false, groupIndex: 0, search: '', drafts: [] };
+const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, pickerOpen: false, groupIndex: 0, search: '', drafts: [] };
 let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0, directionKey = '';
 const narrow = () => matchMedia('(max-width: 700px)').matches;
+const crowdedOverlays = () => matchMedia('(max-width: 1100px)').matches;
 const house = number => campus.buildings.find(building => building.number === number);
 const setHash = hash => history.replaceState(null, '', `#${hash}`);
 
@@ -43,7 +44,6 @@ function travel(number, { fromGroup = false, focus = true } = {}) {
   document.body.classList.toggle('house-open', Boolean(number));
   $('#floor-detail').open = false;
   scene?.select(number, focus);
-  $('#top-view').setAttribute('aria-pressed', Boolean(scene?.topView));
   $('#location-trail').textContent = number ? `CAMPUS SÜD ${house(number).campus} / HOUSE ${number}` : 'ERLANGEN / CAMPUS SÜD';
   $('#post-heading').textContent = number ? 'EXPLORING FROM' : 'AT THE CROSSING';
   $('#post-title').textContent = number ? `House ${number}.` : 'Campus Süd.';
@@ -128,7 +128,7 @@ function selectFloor(floor) {
 function renderFloor() {
   const level = getInteriorLevel(interiors, state.selected, state.floor);
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
-  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<span class="room-chip">${esc(space.label)}</span>`).join('')}</div><p>${level.elevation} m above building base. Approved outlines are visible on this floor.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'The exterior is sourced. These floor intervals are a study, pending real floor heights and plans.' : 'This floor is waiting for its verified room layout. No walls or room numbers are guessed.'}</p><button class="text-button" id="contribute-floor">Add a floor detail ↗</button>`;
+  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<span class="room-chip">${esc(space.label)}</span>`).join('')}</div><p>${level.elevation} m above building base. Approved outlines are visible on this floor.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This section follows the exterior at a provisional floor height. It does not identify occupied rooms or usable headroom. Room plans still need verification.'}</p><button class="text-button" id="contribute-floor">Add a floor detail ↗</button>`;
   if ($('#contribute-floor')) $('#contribute-floor').onclick = () => correctionDialog(state.selected, state.floor);
 }
 
@@ -142,15 +142,25 @@ function setGroups(open, focus = false) {
   document.body.classList.toggle('group-open', open);
   if (open) {
     setPicker(false);
-    if (narrow()) setTimeline(false);
+    if (crowdedOverlays()) setTimeline(false);
     renderGroup();
     if (focus) $('#group-next').focus({ preventScroll: true });
   }
 }
 
+function setGroupDetails(open) {
+  state.groupDetails = open;
+  $('#group-details').hidden = !open;
+  $('#group-toggle-details').setAttribute('aria-expanded', open);
+  $('#group-toggle-details').textContent = open ? 'Less ↑' : 'Details ↓';
+  $('#group-deck').classList.toggle('details-open', open);
+}
+
 async function renderGroup() {
   const group = groups[state.groupIndex];
   const revision = ++qrRevision;
+  if ($('#group-details').contains(document.activeElement)) $('#group-toggle-details').focus({ preventScroll: true });
+  setGroupDetails(false);
   $('#group-title').textContent = group.title;
   $('#group-kicker').textContent = group.category;
   $('#group-description').textContent = group.description;
@@ -168,7 +178,7 @@ async function renderGroup() {
     action.removeAttribute('role');
     $('#group-qr').innerHTML = '';
     try {
-      const svg = await QRCode.toString(group.source, { type: 'svg', margin: 4, width: 144, errorCorrectionLevel: 'M', color: { dark: '#15251cff', light: '#e3e8d8ff' } });
+      const svg = await QRCode.toString(group.source, { type: 'svg', margin: 4, width: 144, errorCorrectionLevel: 'M', color: { dark: '#292725ff', light: '#eee9e2ff' } });
       if (revision === qrRevision) { $('#group-qr').innerHTML = svg; $('#group-qr').setAttribute('aria-label', `QR code for the public ${group.title} activity page`); }
     } catch { if (revision === qrRevision) $('#group-qr').innerHTML = `<span class="qr-unavailable">Use the link ↗</span>`; }
   } else {
@@ -197,7 +207,7 @@ function setTimeline(open, focus = false) {
   document.body.classList.toggle('timeline-open', open);
   if (open) {
     setPicker(false);
-    if (narrow()) setGroups(false);
+    if (crowdedOverlays()) setGroups(false);
     renderTimeline();
     if (focus) $('#close-timeline').focus({ preventScroll: true });
   }
@@ -276,9 +286,10 @@ function correctionDialog(number = state.selected || '', floor = state.floor) {
 function activateFallback() {
   scene?.dispose();
   scene = null;
+  state.exploded = false;
+  state.floor = null;
   $('#map-labels').replaceChildren();
   fallbackMap($('#scene'), campus, number => travel(number));
-  $('.map-controls').hidden = true;
   $('#scene-caption').textContent = '2D view · choose a house from the signpost.';
   renderHouse();
   updateDirections(fallbackDirections());
@@ -319,6 +330,7 @@ async function init() {
     $('#close-groups').onclick = () => { setGroups(false); $('#open-groups').focus(); };
     $('#group-prev').onclick = () => stepGroup(-1);
     $('#group-next').onclick = () => stepGroup(1);
+    $('#group-toggle-details').onclick = () => setGroupDetails(!state.groupDetails);
     $('#group-deck').addEventListener('keydown', event => {
       if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); event.stopPropagation(); stepGroup(event.key === 'ArrowLeft' ? -1 : 1); }
     });
@@ -334,18 +346,12 @@ async function init() {
       scene?.explode(state.exploded);
       scene?.setFloor(null);
       renderHouse();
-      $('#scene-caption').textContent = state.exploded ? 'A floor study. Real room plans come next.' : 'Photo-informed linework on the official exterior.';
+      $('#scene-caption').textContent = state.exploded ? 'Sections through the exterior. Room plans come next.' : 'Photo-informed linework on the official exterior.';
     };
     $('#all-floors').onclick = () => selectFloor(null);
-    $('#zoom-in').onclick = () => scene?.zoom(0.82);
-    $('#zoom-out').onclick = () => scene?.zoom(1.22);
-    $('#reset-view').onclick = () => travel(null);
-    $('#top-view').onclick = event => {
-      const button = event.currentTarget;
-      const enabled = button.getAttribute('aria-pressed') !== 'true';
-      button.setAttribute('aria-pressed', enabled);
-      scene?.setTop(enabled);
-    };
+    matchMedia('(max-width: 1100px)').addEventListener('change', event => {
+      if (event.matches && state.groupsOpen && state.timelineOpen) setTimeline(false);
+    });
     document.addEventListener('rommel:webgl-lost', activateFallback);
     document.addEventListener('keydown', event => {
       if ($('#modal').open) return;
