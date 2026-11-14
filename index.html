@@ -30,9 +30,11 @@
         </nav>
       </header>
 
-      <section id="group-deck" class="group-deck" aria-label="Explore campus groups" hidden>
+      <div id="group-backdrop" class="group-backdrop" aria-hidden="true" hidden></div>
+      <section id="group-deck" class="group-deck" aria-label="Explore campus groups" tabindex="-1" hidden>
+        <div class="group-dialog-bar"><button id="group-back" class="group-back" aria-label="Return to compact group view">← Back to map</button><button id="group-close" class="panel-close" aria-label="Close group">×</button></div>
         <div class="group-qr-column"><div id="group-qr" class="group-qr" aria-label="Group link"></div><small id="group-qr-label">PUBLIC COMMUNITY PAGE</small></div>
-        <div class="group-copy"><div id="group-kicker" class="eyebrow">AROUND THE NEIGHBORHOOD</div><h1 id="group-title">Find your people.</h1><button id="group-location" class="group-location"></button><button id="group-toggle-details" class="group-toggle-details" aria-expanded="false" aria-controls="group-details">Details ↓</button></div>
+        <div class="group-copy"><div id="group-symbol" class="group-symbol" aria-hidden="true"></div><div id="group-kicker" class="eyebrow">AROUND THE NEIGHBORHOOD</div><h1 id="group-title">Find your people.</h1><button id="group-location" class="group-location"></button><button id="group-toggle-details" class="group-toggle-details" aria-expanded="false" aria-controls="group-details">Details ↓</button></div>
         <div id="group-details" class="group-details" hidden><p id="group-description"></p><div class="group-actions"><a id="group-action" class="full-button" target="_blank" rel="noopener">Explore group ↗</a><span id="group-status"></span></div></div>
         <div class="group-pagination"><button id="group-prev" class="round-button" aria-label="Previous group">←</button><span id="group-position" role="status" aria-live="polite"></span><button id="group-next" class="round-button" aria-label="Next group">→</button></div>
       </section>
@@ -42,6 +44,7 @@
         <div id="timeline-content" class="timeline-content"></div>
         <div class="timeline-footer"><button id="draft-event" class="outline-button"><span aria-hidden="true">＋</span> Plan something locally</button><p>Drafts stay in this session. Nothing is published.</p></div>
       </aside>
+      <div id="floor-stage" class="floor-stage" role="status" aria-live="polite" aria-atomic="true" hidden><strong id="floor-stage-title"></strong><p id="floor-stage-note"></p></div>
       <section id="house-controls" class="house-controls" aria-label="Selected house and floors" hidden>
         <div class="house-control-heading"><div><span class="eyebrow">A CLOSER LOOK</span><h2 id="selected-house"></h2></div><button id="close-house" class="panel-close" aria-label="Return to the whole campus">×</button></div>
         <button id="explode-building" class="outline-button" aria-expanded="false" aria-controls="floor-controls"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 8 4-8 4-8-4 8-4ZM2 10l8 4 8-4M2 14l8 4 8-4"/></svg><span>Unfold the floors</span><span aria-hidden="true">↗</span></button>

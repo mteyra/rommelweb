@@ -87,7 +87,7 @@ export function validateInteriorData(interiors, campus, lod2) {
     const approvedLevels = [];
     for (const [position, level] of entry.levels.entries()) {
       const levelPath = `${path}.levels[${position}]`;
-      object(level, levelPath, ['index', 'label', 'elevation', 'source', 'reviewedAt', 'spaces']);
+      object(level, levelPath, ['index', 'label', 'elevation', 'source', 'reviewedAt', 'spaces', 'doors']);
       if (!Number.isInteger(level.index) || level.index < 0 || level.index >= mapped.levels) fail(`${levelPath}.index`, `must be an above-ground floor from 0 to ${mapped.levels - 1}`);
       if (floorIndexes.has(level.index)) fail(`${levelPath}.index`, 'duplicates a floor in this house');
       floorIndexes.add(level.index);
@@ -107,6 +107,31 @@ export function validateInteriorData(interiors, campus, lod2) {
         text(space.label, `${spacePath}.label`);
         if (!SPACE_KINDS.has(space.kind)) fail(`${spacePath}.kind`, `must be one of ${[...SPACE_KINDS].join(', ')}`);
         polygon(space.polygon, `${spacePath}.polygon`);
+      }
+      if (level.doors !== undefined && !Array.isArray(level.doors)) fail(`${levelPath}.doors`, 'must be an array of approved door geometry');
+      for (const [doorIndex, door] of (level.doors || []).entries()) {
+        const doorPath = `${levelPath}.doors[${doorIndex}]`;
+        object(door, doorPath, ['id', 'label', 'spaceId', 'toSpaceId', 'segment', 'hinge', 'swing']);
+        if (typeof door.id !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,79}$/.test(door.id)) fail(`${doorPath}.id`, 'must be a stable 1–80 character geometry identifier');
+        if (stableIds.has(door.id)) fail(`${doorPath}.id`, 'duplicates a space or door ID');
+        stableIds.add(door.id);
+        text(door.label, `${doorPath}.label`);
+        const sourceSpace = level.spaces.find(space => space.id === door.spaceId);
+        if (!sourceSpace) fail(`${doorPath}.spaceId`, 'must reference a space on the same floor');
+        if (!Array.isArray(door.segment) || door.segment.length !== 2 || !door.segment.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))) {
+          fail(`${doorPath}.segment`, 'must contain two finite [campus-local x, campus-local z] endpoints');
+        }
+        const width = Math.hypot(door.segment[1][0] - door.segment[0][0], door.segment[1][1] - door.segment[0][1]);
+        if (width < 0.4 || width > 3) fail(`${doorPath}.segment`, 'must describe an opening between 0.4 and 3 metres wide');
+        const onBoundary = space => space.polygon.slice(1).some((point, index) => door.segment.every(endpoint => onSegment(space.polygon[index], point, endpoint)));
+        if (!onBoundary(sourceSpace)) fail(`${doorPath}.segment`, 'must lie on one boundary edge of its referenced space');
+        if (door.toSpaceId !== undefined) {
+          const destination = level.spaces.find(space => space.id === door.toSpaceId);
+          if (!destination || destination === sourceSpace || !onBoundary(destination)) fail(`${doorPath}.toSpaceId`, 'must reference a different same-floor space sharing this door boundary');
+        }
+        if ((door.hinge === undefined) !== (door.swing === undefined)) fail(doorPath, 'hinge and swing must be supplied together or both omitted');
+        if (door.hinge !== undefined && !['start', 'end'].includes(door.hinge)) fail(`${doorPath}.hinge`, 'must be start or end');
+        if (door.swing !== undefined && !['left', 'right'].includes(door.swing)) fail(`${doorPath}.swing`, 'must be left or right relative to the closed leaf from hinge to opposite endpoint');
       }
     }
     approvedLevels.sort((a, b) => a.index - b.index);

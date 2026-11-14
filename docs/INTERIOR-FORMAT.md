@@ -2,6 +2,8 @@
 
 `public/data/interiors.json` is intentionally empty. No floorplan, room boundary or room number has been invented for this release. The adapter lets approved plans be added later without replacing the public exterior model.
 
+The first chosen interior pilot is **older Red House 55 in Campus Süd I, second floor (2. OG / index 2)**, following the user's selections. House 55 uses the resident house/wing labels 1 & 2; it is not newer house 55a. Its present internal layout still needs to be established. The [House 55 evidence review](INTERIOR-PLAN-EVIDENCE.md#first-interior-pilot-red-house-55) found no usable current whole-floor plan. Begin with a measured or permission-cleared plan of that floor and keep unknown rooms, doors and roof-space boundaries unmodeled.
+
 The complete public dataset currently is:
 
 ```json
@@ -58,9 +60,30 @@ Coordinates use the same horizontal system as the exterior model: origin latitud
 
 Validation checks structural/geometric consistency. It **does not prove** that a submitted layout matches the building, a source grants permission, or text is free of personal information. A human must compare approved polygons against plans, verify floor heights, check their placement within the correct building and review every public field. The shape-field allowlist prevents accidental resident/contact/occupancy columns from being published, but ordinary strings still need review.
 
+## Door geometry and interaction
+
+A level may also contain `doors`. Omit the array when door positions have not been verified. Each door has:
+
+| Field | Meaning |
+| --- | --- |
+| `id` | Stable geometry ID, unique across all doors and spaces. |
+| `label` | Physical opening label, with no resident or occupancy information. |
+| `spaceId` | The physical space this door serves, on the same floor. |
+| `segment` | Two `[x, z]` endpoints describing the closed opening, on one boundary edge of that space. Accepted width is 0.4–3 m. |
+| `toSpaceId` | Optional adjoining space on this floor. If given, it must share the complete opening boundary. |
+| `hinge`, `swing` | Optional pair: `hinge` is `start` or `end`; `swing` is `left` or `right` from the hinge toward the other closed-leaf endpoint. In the plan, x is east and z south. Omit both when the source does not identify the swing. |
+
+`toSpaceId` describes shared partition-line topology. Use it only when both submitted space polygons genuinely share that line. Clear-room polygons separated by wall thickness do not meet this condition: preserve their source coordinates and omit the adjacency until a thickness/threshold model is added. Do not silently snap room outlines together or interpret partition-line polygons as clear floor-area measurements.
+
+The renderer draws approved space outlines as a low **1.05 m display cutaway**, with room/corridor floor tint, wall returns, door gaps and—when specified—door-swing arcs. This cut height supports inspection; it is not a measured ceiling or partition height. Door openings are removed from both adjacent drawn wall edges.
+
+Unfolding isolates a house and shows its floor stack. Selecting a floor hides its siblings and moves to a nearly overhead view. Approved room and door targets then support pointer and keyboard selection. The popup identifies the physical space and its plan source; resident profiles and knocking are placeholders for the future authenticated service. Nothing is sent, and no resident is inferred from a room number.
+
+No detailed floor plans are currently published. Until an identified plan is reviewed and added, the view displays the source-envelope section with an explicit missing-plan note. See [INTERIOR-PLAN-EVIDENCE.md](INTERIOR-PLAN-EVIDENCE.md) for the plan search and required evidence.
+
 ## Fictional template only
 
-The following illustrates structure. Its coordinates and identifier are synthetic, its source fields are blank and `approved` is false. **It intentionally fails validation and must never be displayed as a real room.** Replace every example value with verified, permission-cleared material before adding an entry to the public dataset.
+The following illustrates structure. Its coordinates and identifier are synthetic, its source fields are blank and `approved` is false. **It intentionally fails validation and must never be displayed as a real room.** Although house 55 is now the chosen pilot, the example's floor 0 and rectangle are not a selected floor or evidence about that house. Replace every example value with verified, permission-cleared material before adding an entry to the public dataset.
 
 ```json
 {

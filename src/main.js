@@ -13,6 +13,7 @@ const base = import.meta.env.BASE_URL;
 const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, groupIndex: 0, drafts: [], theme: 'night' };
 let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0;
 let renderedGroupId = null, groupSizeAnimation;
+const groupBackgroundState = new Map();
 const panelAnimations = new WeakMap();
 const qrCache = new Map();
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -66,36 +67,69 @@ function travel(number, { fromGroup = false, focus = true } = {}) {
 function renderHouse() {
   const b = house(state.selected);
   $('#house-controls').hidden = !b;
-  if (!b) return;
+  if (!b) { renderFloor(); return; }
   $('#selected-house').textContent = `${b.number} · ${b.name}`;
   $('#explode-building').innerHTML = `${icon('layers')}<span>${state.exploded ? 'Bring it together' : 'Unfold the floors'}</span><span aria-hidden="true">↗</span>`;
   $('#explode-building').setAttribute('aria-expanded', state.exploded);
   $('#explode-building').disabled = !scene;
   $('#floor-controls').hidden = !state.exploded;
   $('#floor-buttons').innerHTML = Array.from({ length: b.levels }, (_, floor) => `<button class="floor-button ${state.floor === floor ? 'active' : ''}" data-floor="${floor}" aria-pressed="${state.floor === floor}">${floor === 0 ? 'EG' : `${floor}. OG`}</button>`).join('');
-  $$('[data-floor]').forEach(button => button.onclick = () => selectFloor(Number(button.dataset.floor)));
+  $$('#floor-buttons [data-floor]').forEach(button => button.onclick = () => selectFloor(Number(button.dataset.floor)));
   renderFloor();
 }
 
 function selectFloor(floor) {
   if (!state.selected || (floor !== null && (!Number.isInteger(floor) || floor < 0 || floor >= house(state.selected).levels))) return;
+  const focusedFloorLabel = document.activeElement.classList.contains('floor-label');
   state.floor = floor;
   if (!state.exploded) { state.exploded = true; scene?.explode(true); renderHouse(); }
   scene?.setFloor(floor);
-  $$('[data-floor]').forEach(button => { const active = Number(button.dataset.floor) === floor; button.classList.toggle('active', active); button.setAttribute('aria-pressed', active); });
+  $$('#floor-buttons [data-floor]').forEach(button => { const active = Number(button.dataset.floor) === floor; button.classList.toggle('active', active); button.setAttribute('aria-pressed', active); });
   renderFloor();
+  if (focusedFloorLabel) {
+    $(`#floor-buttons [data-floor="${floor}"]`)?.focus({ preventScroll: true });
+  }
 }
 
 function renderFloor() {
   const level = getInteriorLevel(interiors, state.selected, state.floor);
+  const inFloors = Boolean(state.selected && state.exploded);
+  document.body.classList.toggle('floors-open', inFloors);
+  document.body.classList.toggle('floor-plan-open', inFloors && state.floor !== null);
+  document.body.dataset.view = !state.selected ? 'campus' : !inFloors ? 'house' : state.floor === null ? 'floors' : 'floor';
+  $('#floor-stage').hidden = !inFloors;
+  $('#floor-stage-title').textContent = inFloors ? `House ${state.selected} / ${state.floor === null ? 'Floor study' : level?.label || floorName(state.floor)}` : '';
+  $('#floor-stage-note').textContent = state.floor === null ? 'Choose a level to look inside.'
+    : level?.spaces.length ? 'Explore a room or a marked doorway.' : 'Interior plan awaiting a verified layout.';
+  $('#all-floors').setAttribute('aria-pressed', state.floor === null);
+  if (inFloors) $('#scene-caption').textContent = state.floor === null
+    ? 'A house on its own. Select a floor to look closer.'
+    : 'Almost overhead. Drag to adjust; All levels returns to the stack.';
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
-  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<span class="room-chip">${esc(space.label)}</span>`).join('')}</div><p>${level.elevation} m above building base. Approved outlines are visible on this floor.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This section follows the exterior at a provisional floor height. It does not identify occupied rooms or usable headroom. Room plans still need verification.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
+  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip" data-space="${esc(space.id)}">${esc(space.label)}</button>`).join('')}</div><p>${level.elevation} m above building base. Approved room and doorway geometry; walls shown as a low cutaway.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This is the exterior section at a provisional floor height. A house-and-floor plan is needed to place its rooms, corridors and doors accurately.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
+  $$('#floor-detail-content [data-space]').forEach(button => button.onclick = () => spaceDialog({house: state.selected, floor: state.floor, spaceId: button.dataset.space}));
   if ($('#contribute-floor')) $('#contribute-floor').onclick = () => correctionDialog(state.selected, state.floor);
   if ($('#room-references')) $('#room-references').onclick = () => roomReferencesDialog();
 }
 
+function spaceDialog({ house: number, floor, spaceId, openingId }) {
+  if (number !== state.selected || floor !== state.floor || !state.exploded) return;
+  const level = getInteriorLevel(interiors, number, floor);
+  const space = level?.spaces.find(space => space.id === spaceId);
+  const door = openingId ? level?.doors?.find(door => door.id === openingId && door.spaceId === spaceId) : null;
+  if (!space || openingId && !door) return;
+  const residentPreview = space.kind === 'room' ? `<div class="space-person-placeholder">${icon('lock')}<strong>Resident card · coming later</strong><p>A resident can choose what to share here once verified access is connected.</p></div><button class="full-button" disabled>Knocking · not connected</button>` : '';
+  modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(space.label)}</h2><p class="modal-lead">${esc(door ? door.label : space.kind === 'room' ? 'A room in the house.' : space.kind.replace('-', ' '))}</p>${residentPreview}<p class="source-note">Physical space from ${esc(level.source)} · reviewed ${esc(level.reviewedAt)}. No resident information or occupancy is published.</p>`);
+}
+
 function setGroups(open, focus = false) {
   const changed = state.groupsOpen !== open;
+  if (open) {
+    setTimeline(false);
+    if (changed && state.groupDetails) setGroupDetails(false, { animate: false, focus: false });
+  } else {
+    setGroupModality(false);
+  }
   if (!open && state.groupsOpen && location.hash.startsWith('#group-')) {
     setHash(state.selected ? `house-${state.selected}` : 'campus');
   }
@@ -105,10 +139,9 @@ function setGroups(open, focus = false) {
   if (changed) animatePanelVisibility($('#group-deck'), $('#open-groups'), open);
   if (!open) {
     qrRevision++;
-    $$('.group-copy, .group-qr').forEach(element => element.classList.remove('is-changing'));
+    $$('.group-copy, .group-qr, .group-details').forEach(element => element.classList.remove('is-changing'));
   }
   if (open) {
-    setTimeline(false);
     renderGroup();
     if (focus) $('#group-next').focus({ preventScroll: true });
   }
@@ -126,6 +159,7 @@ function animatePanelVisibility(panel, toggle, open, offset = '0 -8px') {
   panel.inert = !open;
   if (reducedMotion()) {
     panel.hidden = !open;
+    if (panel.id === 'group-deck' && !open) setGroupDetails(false, { animate: false, focus: false });
     return;
   }
   panel.hidden = false;
@@ -138,18 +172,25 @@ function animatePanelVisibility(panel, toggle, open, offset = '0 -8px') {
     if (panelAnimations.get(panel) !== animation) return;
     panelAnimations.delete(panel);
     panel.hidden = !open;
+    if (panel.id === 'group-deck' && !open) setGroupDetails(false, { animate: false, focus: false });
   }).catch(() => {});
 }
 
-function resizeGroup(update) {
+function resizeGroup(update, animate = true) {
   const deck = $('#group-deck');
-  const before = deck.getBoundingClientRect().height;
+  const before = deck.getBoundingClientRect();
   groupSizeAnimation?.cancel();
+  groupSizeAnimation = null;
   update();
-  const after = deck.getBoundingClientRect().height;
-  if (deck.hidden || !state.groupsOpen || reducedMotion() || Math.abs(before - after) < 1) return;
-  const animation = deck.animate([{ height: `${before}px` }, { height: `${after}px` }], {
-    duration: 300, easing: 'cubic-bezier(.22,1,.36,1)',
+  const after = deck.getBoundingClientRect();
+  const changed = ['x', 'y', 'width', 'height'].some(key => Math.abs(before[key] - after[key]) > 1);
+  if (!animate || deck.hidden || !state.groupsOpen || reducedMotion() || !changed) return;
+  const frame = rect => ({
+    left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`,
+    height: `${rect.height}px`, transform: 'none',
+  });
+  const animation = deck.animate([frame(before), frame(after)], {
+    duration: 380, easing: 'cubic-bezier(.22,1,.36,1)',
   });
   groupSizeAnimation = animation;
   animation.finished.then(() => {
@@ -157,17 +198,60 @@ function resizeGroup(update) {
   }).catch(() => {});
 }
 
-function setGroupDetails(open) {
+function setGroupModality(open) {
+  const deck = $('#group-deck');
+  $('#group-backdrop').hidden = !open;
+  document.body.classList.toggle('group-details-open', open);
+  if (open) {
+    deck.setAttribute('role', 'dialog');
+    deck.setAttribute('aria-modal', 'true');
+    deck.setAttribute('aria-labelledby', 'group-title');
+    deck.removeAttribute('aria-label');
+    for (const element of [...$('#app').children, $('#skip-to-map')]) {
+      if (element === deck || element.id === 'group-backdrop') continue;
+      if (!groupBackgroundState.has(element)) groupBackgroundState.set(element, element.inert);
+      element.inert = true;
+    }
+  } else {
+    deck.removeAttribute('role');
+    deck.removeAttribute('aria-modal');
+    deck.removeAttribute('aria-labelledby');
+    deck.setAttribute('aria-label', 'Explore campus groups');
+    for (const [element, wasInert] of groupBackgroundState) element.inert = wasInert;
+    groupBackgroundState.clear();
+  }
+}
+
+function setGroupDetails(open, { animate = true, focus = true } = {}) {
+  if (open && !state.groupsOpen) return;
+  const changed = state.groupDetails !== open;
   resizeGroup(() => {
     state.groupDetails = open;
     $('#group-details').hidden = !open;
     $('#group-toggle-details').setAttribute('aria-expanded', open);
     $('#group-toggle-details').textContent = open ? 'Less ↑' : 'Details ↓';
     $('#group-deck').classList.toggle('details-open', open);
-  });
-  if (open && !reducedMotion()) $('#group-details').animate([
+    setGroupModality(open);
+  }, animate);
+  if (changed && focus && state.groupsOpen) {
+    $(open ? '#group-back' : '#group-toggle-details').focus({ preventScroll: true });
+  }
+  if (changed && open && animate && !reducedMotion()) $('#group-details').animate([
     { opacity: 0, translate: '0 -3px' }, { opacity: 1, translate: '0 0' },
-  ], { duration: 260, easing: 'ease-out' });
+  ], { duration: 300, easing: 'ease-out' });
+}
+
+function containGroupFocus(event) {
+  if (!state.groupDetails || !state.groupsOpen || event.key !== 'Tab' || $('#modal').open) return;
+  const controls = $$('#group-deck button:not(:disabled), #group-deck a[href]')
+    .filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+  const first = controls[0], last = controls.at(-1);
+  if (!first) return;
+  if ((event.shiftKey && (document.activeElement === first || !$('#group-deck').contains(document.activeElement))) ||
+      (!event.shiftKey && document.activeElement === last)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first).focus({ preventScroll: true });
+  }
 }
 
 async function renderGroup() {
@@ -175,7 +259,7 @@ async function renderGroup() {
   const revision = ++qrRevision;
   const changing = renderedGroupId !== null && renderedGroupId !== group.id;
   const animated = changing && !reducedMotion();
-  if (animated) $$('.group-copy, .group-qr').forEach(element => element.classList.add('is-changing'));
+  if (animated) $$('.group-copy, .group-qr, .group-details').forEach(element => element.classList.add('is-changing'));
   if (group.source && !qrCache.has(group.source)) {
     qrCache.set(group.source, QRCode.toString(group.source, {
       type: 'svg', margin: 4, width: 144, errorCorrectionLevel: 'M',
@@ -187,13 +271,17 @@ async function renderGroup() {
     animated ? new Promise(resolve => setTimeout(resolve, 90)) : null,
   ]);
   if (revision !== qrRevision || !state.groupsOpen) return;
-  if ($('#group-details').contains(document.activeElement)) $('#group-toggle-details').focus({ preventScroll: true });
-  setGroupDetails(false);
-  $('#group-title').textContent = group.title;
-  $('#group-kicker').textContent = group.category;
-  $('#group-description').textContent = group.description;
+  resizeGroup(() => {
+    $('#group-title').textContent = group.title;
+    $('#group-kicker').textContent = group.category;
+    $('#group-description').textContent = group.description;
+    $('#group-symbol').innerHTML = icon(group.icon || 'chat');
+  });
   $('#group-location').innerHTML = `${icon('pin')} ${esc(group.house ? `House ${group.house} · ${group.location}` : group.location)} ↗`;
-  $('#group-location').onclick = () => travel(group.house, { fromGroup: true });
+  $('#group-location').onclick = () => {
+    if (state.groupDetails) setGroupDetails(false);
+    travel(group.house, { fromGroup: true });
+  };
   $('#group-position').textContent = `${String(state.groupIndex + 1).padStart(2, '0')} / ${groups.length}`;
   $('#group-status').textContent = group.source ? 'Public activity page' : 'Invite not connected yet';
   $('#group-qr').classList.toggle('is-locked', !group.source);
@@ -216,7 +304,7 @@ async function renderGroup() {
   }
   renderedGroupId = group.id;
   requestAnimationFrame(() => {
-    if (revision === qrRevision) $$('.group-copy, .group-qr').forEach(element => element.classList.remove('is-changing'));
+    if (revision === qrRevision) $$('.group-copy, .group-qr, .group-details').forEach(element => element.classList.remove('is-changing'));
   });
 }
 
@@ -229,13 +317,13 @@ function stepGroup(delta) {
 }
 
 function setTimeline(open, focus = false) {
+  if (open) setGroups(false);
   const changed = state.timelineOpen !== open;
   state.timelineOpen = open;
   $('#open-timeline').setAttribute('aria-expanded', open);
   document.body.classList.toggle('timeline-open', open);
   if (changed) animatePanelVisibility($('#timeline-panel'), $('#open-timeline'), open, '16px 0');
   if (open) {
-    setGroups(false);
     renderTimeline();
     if (focus) $('#close-timeline').focus({ preventScroll: true });
   }
@@ -245,12 +333,13 @@ function renderTimeline() {
   const drafts = orderedDrafts(state.drafts);
   const today = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'short', timeZone: 'Europe/Berlin' }).format(new Date());
   let previousDay = '';
+  $('#timeline-panel').classList.toggle('is-empty', !drafts.length);
   $('#timeline-content').innerHTML = `<div class="timeline-day"><span class="timeline-dot"></span><span>${esc(today)}</span><small>NOW</small></div>${drafts.length ? drafts.map(event => {
     const day = new Date(`${event.date}T12:00:00`).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
     const label = event.date !== previousDay ? `<div class="timeline-day"><span class="timeline-dot"></span><span>${day}</span></div>` : '';
     previousDay = event.date;
     return `${label}<article class="timeline-entry"><span class="timeline-time">${esc(event.time)}</span><button class="timeline-event-button" data-event="${event.id}"><span class="timeline-audience">LOCAL DRAFT · HOUSE ${esc(event.house)}</span><strong>${esc(event.title)}</strong><small>${esc(event.description || 'A plan taking shape.')}</small><span class="timeline-location">View plan ↗</span></button></article>`;
-  }).join('') : `<div class="timeline-empty"><span class="timeline-dot"></span><h3>Room for something good.</h3><p>No community events are connected yet.</p><p>Start a little plan. Keep it here, or export it to your calendar.</p></div>`}<p class="timeline-note">Europe/Berlin · ${drafts.length ? 'These drafts belong only to this open tab.' : 'A quiet board, waiting for the community.'}</p>`;
+  }).join('') : `<div class="timeline-empty"><span class="timeline-dot"></span><h3>Your next good plan.</h3><p>The community calendar isn’t connected yet. Start a personal draft, then export it to your calendar.</p></div>`}<p class="timeline-note">Europe/Berlin${drafts.length ? ' · Drafts stay in this tab' : ''}</p>`;
   $$('[data-event]').forEach(button => button.onclick = () => eventDialog(button.dataset.event));
   $('#open-timeline').dataset.count = String(drafts.length);
   $('#open-timeline').setAttribute('aria-label', `Open timeline${drafts.length ? `, ${drafts.length} local drafts` : ''}`);
@@ -349,12 +438,13 @@ async function init() {
       Object.assign(building, { height: model.height, baseY: model.baseY, footprint: model.groundPolygons[0] });
     });
     groups = [...clubs, ...campus.buildings.map(building => ({ id: `house-${building.number}`, title: `House ${building.number}`, category: `${building.name.toUpperCase()} / WHATSAPP`, house: building.number, location: `Campus Süd ${building.campus}`, description: 'The little conversations that make a house a home. A private space for the people who live here.', source: null }))];
-    try { scene = new CampusScene($('#scene'), $('#map-labels'), campus, lod2, interiors, number => travel(number), selectFloor); }
+    try { scene = new CampusScene($('#scene'), $('#map-labels'), campus, lod2, interiors, number => travel(number), selectFloor, spaceDialog); }
     catch (error) { console.warn('3D unavailable; using the map fallback.', error); activateFallback(); }
     setTheme(state.theme);
     await scene?.pathLoad;
     $('#scene-loading').hidden = true;
     renderTimeline();
+    renderHouse();
     $('#home-button').onclick = () => travel(null);
     $('#close-house').onclick = () => { travel(null); $('#home-button').focus({ preventScroll: true }); };
     $('#open-groups').onclick = () => {
@@ -368,7 +458,11 @@ async function init() {
     $('#group-prev').onclick = () => stepGroup(-1);
     $('#group-next').onclick = () => stepGroup(1);
     $('#group-toggle-details').onclick = () => setGroupDetails(!state.groupDetails);
+    $('#group-back').onclick = () => setGroupDetails(false);
+    $('#group-close').onclick = () => setGroups(false);
+    $('#group-backdrop').onclick = () => setGroupDetails(false);
     $('#group-deck').addEventListener('keydown', event => {
+      containGroupFocus(event);
       if (['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); event.stopPropagation(); stepGroup(event.key === 'ArrowLeft' ? -1 : 1); }
     });
     $('#open-timeline').onclick = () => setTimeline(!state.timelineOpen, true);
@@ -383,14 +477,15 @@ async function init() {
       scene?.explode(state.exploded);
       scene?.setFloor(null);
       renderHouse();
-      $('#scene-caption').textContent = state.exploded ? 'Sections through the exterior. Room plans come next.' : 'Photo-informed linework on the official exterior.';
+      if (!state.exploded) $('#scene-caption').textContent = 'Photo-informed linework on the official exterior.';
     };
     $('#all-floors').onclick = () => selectFloor(null);
     document.addEventListener('rommel:webgl-lost', activateFallback);
     document.addEventListener('keydown', event => {
       if ($('#modal').open) return;
       if (event.key === 'Escape') {
-        if (state.timelineOpen) { setTimeline(false); $('#open-timeline').focus(); }
+        if (state.groupDetails && state.groupsOpen) { setGroupDetails(false); }
+        else if (state.timelineOpen) { setTimeline(false); $('#open-timeline').focus(); }
         else if (state.groupsOpen) { setGroups(false); $('#open-groups').focus(); }
       }
     });

@@ -1,17 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { Scene } from 'three';
+import { Group, Scene } from 'three';
 import { CampusScene } from '../src/scene.js';
 import { pathSources, validatePathNetwork } from '../src/paths.js';
 
 const campus = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url), 'utf8'));
 const cache = JSON.parse(await readFile(new URL('../public/data/path-network.json', import.meta.url), 'utf8'));
 const sourceRecords = pathSources(campus.context);
-const sceneMock = () => ({
-  campus, scene: new Scene(), pathSourceRecords: sourceRecords,
-  drawPathNetwork: CampusScene.prototype.drawPathNetwork,
-});
+const sceneMock = () => {
+  const scene = new Scene(), contextGroup = new Group();
+  scene.add(contextGroup);
+  return {
+    campus, scene, contextGroup, contextMix: 1, pathSourceRecords: sourceRecords,
+    drawPathNetwork: CampusScene.prototype.drawPathNetwork,
+    applyContextMix: CampusScene.prototype.applyContextMix,
+  };
+};
 
 function checkCenterlines(mock, expected) {
   const lines = mock.paths.children.filter(object => object.userData.role === 'sourced-centerlines');
@@ -35,6 +40,8 @@ test('rendered network preserves source provenance with no invented widths for u
   assert.equal(mock.pathCount, sourceRecords.length);
   assert.deepEqual(mock.paths.userData.sources, sourceRecords);
   assert.equal(mock.paths.userData.cacheStatus, 'validated');
+  assert.equal(mock.paths.parent, mock.contextGroup, 'mapped paths participate in the campus-context fade');
+  assert.equal(mock.contextGroup.parent, mock.scene);
   const meshes = mock.paths.children.filter(object => object.userData.role === 'sourced-path-network');
   assert.deepEqual(meshes.flatMap(object => object.userData.sourceIds).sort(), sourceRecords.filter(source => source.width !== null).map(source => source.id).sort());
   for (const mesh of meshes) assert.ok([...mesh.geometry.getAttribute('position').array].every(Number.isFinite));
@@ -46,8 +53,25 @@ test('missing derived geometry falls back to all exact outdoor source centerline
   const mock = sceneMock();
   CampusScene.prototype.drawPathNetwork.call(mock, null);
   assert.equal(mock.paths.userData.cacheStatus, 'source-centerlines');
+  assert.equal(mock.paths.parent, mock.contextGroup);
   assert.equal(mock.paths.children.filter(object => object.isMesh && !object.isLineSegments2).length, 0);
   checkCenterlines(mock, sourceRecords);
   assert.equal(sourceRecords.length, 99);
   assert.equal(sourceRecords.some(source => campus.context.find(item => item.id === source.id)?.tags.indoor === 'yes'), false);
+});
+
+test('a late path cache replacement retains context isolation and detaches the obsolete network', () => {
+  const mock = sceneMock();
+  mock.drawPathNetwork(null);
+  const previous = mock.paths;
+  mock.applyContextMix(0);
+  mock.drawPathNetwork(cache);
+  assert.equal(previous.parent, null);
+  assert.equal(mock.paths.parent, mock.contextGroup);
+  assert.equal(mock.contextGroup.children.length, 1);
+  assert.equal(mock.contextGroup.visible, false);
+  assert.ok(mock.paths.children.every(object => object.material.opacity === 0));
+  mock.applyContextMix(1);
+  assert.equal(mock.contextGroup.visible, true);
+  assert.ok(mock.paths.children.every(object => object.material.opacity > 0), 'restoring the campus must restore original path opacity');
 });

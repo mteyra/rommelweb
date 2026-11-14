@@ -9,11 +9,12 @@ import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 import { createBuildingWindowStudies, getWindowProfile, getOldFacadeRowGuides } from './windows.js';
+import { createInteriorWireframe, INTERIOR_CUT_HEIGHT } from './interior-wireframe.js';
 
 const PAPER = 0x151715;
 const INK = 0xa8aaa3;
 const ACTIVE_INK = 0xdfdfd5;
-const HOME_DIRECTION = new THREE.Vector3(0.85, 1.05, 1).normalize();
+export const HOME_DIRECTION = new THREE.Vector3(-0.46, 0.447, 1).normalize();
 const HOME_TARGET = new THREE.Vector3(-3, 11, -7);
 const TRANSITION_MS = 650;
 export const SCENE_THEMES = Object.freeze({
@@ -61,8 +62,17 @@ export function advanceFloorMotion(building, now) {
   return true;
 }
 
+/** Display separation only: source floor elevations and model scale stay intact. */
+export function explodedFloorGap(building) {
+  const points = building.data.footprint || building.floorSections?.flatMap(section => section.polygons.flatMap(polygon => polygon.outer)) || [];
+  if (!points.length) return 10;
+  const width = Math.max(...points.map(point => point[0])) - Math.min(...points.map(point => point[0]));
+  const depth = Math.max(...points.map(point => point[1])) - Math.min(...points.map(point => point[1]));
+  return Math.max(10, Math.min(20, Math.hypot(width, depth) * 0.32));
+}
+
 export class CampusScene {
-  constructor(container, labels, campus, lod2, interiors, onSelect, onFloor) {
+  constructor(container, labels, campus, lod2, interiors, onSelect, onFloor, onSpace = () => {}) {
     this.container = container;
     this.labelsElement = labels;
     this.campus = campus;
@@ -70,6 +80,7 @@ export class CampusScene {
     this.interiors = interiors;
     this.onSelect = onSelect;
     this.onFloor = onFloor;
+    this.onSpace = onSpace;
     this.buildings = new Map();
     this.labels = [];
     this.raycaster = new THREE.Raycaster();
@@ -85,6 +96,10 @@ export class CampusScene {
     container.appendChild(this.renderer.domElement);
     this.renderer.domElement.setAttribute('aria-hidden', 'true');
     this.scene = new THREE.Scene();
+    this.contextGroup = new THREE.Group();
+    this.contextGroup.userData.role = 'campus-context';
+    this.contextMix = 1;
+    this.scene.add(this.contextGroup);
     this.scene.fog = new THREE.Fog(PAPER, 440, 1000);
     this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 1600);
     this.camera.position.copy(HOME_TARGET).addScaledVector(HOME_DIRECTION, 265);
@@ -137,10 +152,10 @@ export class CampusScene {
     this.scene.add(ground);
     const radius = 127;
     const points = Array.from({ length: 161 }, (_, i) => [Math.sin(i * Math.PI * 2 / 160) * radius, -0.3, Math.cos(i * Math.PI * 2 / 160) * radius]);
-    this.line(points, 0x676963, 0.14, this.scene, 'compass');
+    this.line(points, 0x676963, 0.14, this.contextGroup, 'compass');
     for (let i = 0; i < 4; i++) {
       const angle = i * Math.PI / 2;
-      this.line([[Math.sin(angle) * (radius - 1.5), -0.29, Math.cos(angle) * (radius - 1.5)], [Math.sin(angle) * (radius + 1.5), -0.29, Math.cos(angle) * (radius + 1.5)]], INK, 0.3, this.scene, 'ink');
+      this.line([[Math.sin(angle) * (radius - 1.5), -0.29, Math.cos(angle) * (radius - 1.5)], [Math.sin(angle) * (radius + 1.5), -0.29, Math.cos(angle) * (radius + 1.5)]], INK, 0.3, this.contextGroup, 'ink');
     }
   }
 
@@ -162,7 +177,7 @@ export class CampusScene {
 
   drawPathNetwork(network) {
     if (this.paths) {
-      this.scene.remove(this.paths);
+      this.paths.removeFromParent();
       this.paths.traverse(object => { object.geometry?.dispose(); object.material?.dispose(); });
     }
     this.paths = new THREE.Group();
@@ -200,10 +215,50 @@ export class CampusScene {
       centerline.material.userData.themeRole = family === 'road' ? 'roadLine' : family === 'steps' ? 'stepsLine' : 'footLine';
       this.paths.add(centerline);
     }
-    this.scene.add(this.paths);
+    this.contextGroup.add(this.paths);
+    this.applyContextMix(this.contextMix);
     this.applyTheme?.(this.themeMix || 0);
   }
 
+  applyContextMix(mix) {
+    this.contextMix = mix;
+    this.contextGroup.visible = mix > 0;
+    this.contextGroup.traverse(object => {
+      for (const material of [object.material].flat().filter(Boolean)) {
+        material.userData.contextOpacity ??= material.opacity;
+        material.transparent = true;
+        material.opacity = material.userData.contextOpacity * mix;
+      }
+    });
+  }
+
+  setContextVisible(visible) {
+    const to = visible ? 1 : 0;
+    this.contextTween = this.reduced || this.contextMix === to ? null : {start: performance.now(), from: this.contextMix, to};
+    if (!this.contextTween) this.applyContextMix(to);
+  }
+
+  updateViewVisibility() {
+    for (const [number, building] of this.buildings) {
+      const isolated = this.exploded && number === this.selected;
+      building.group.visible = !this.exploded || isolated;
+      building.floorGroups.forEach((group, floor) => {
+        group.visible = building.group.visible && !building.exterior.visible && (!isolated || this.activeFloor == null || this.activeFloor === floor);
+      });
+      building.interiorGroups.forEach((group, floor) => {
+        group.visible = isolated && (this.activeFloor == null || this.activeFloor === floor);
+      });
+    }
+    // Hide DOM targets synchronously so rapid travel cannot activate stale labels.
+    for (const label of this.labels) if (!this.labelInCurrentView(label)) label.el.hidden = true;
+  }
+
+  labelInCurrentView(label) {
+    if (label.type === 'context') return !this.selected && !this.exploded;
+    if (label.type === 'floor') return this.exploded && label.number === this.selected && this.activeFloor == null;
+    if (label.type === 'room' || label.type === 'door') return this.exploded && label.number === this.selected && label.floor === this.activeFloor;
+    return !this.exploded;
+  }
 
   line(points, color = INK, opacity = 1, group = this.scene, themeRole = null) {
     const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points.map(p => new THREE.Vector3(...p))),
@@ -345,6 +400,7 @@ export class CampusScene {
     const fillMaterials = [];
     const lineMaterials = [];
     const pickables = [];
+    const interiorPickables = [];
     const interiorGroups = [];
     const floorSections = [];
     for (let floor = 0; floor < data.levels; floor++) {
@@ -365,18 +421,35 @@ export class CampusScene {
       const edges = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(boundary.flat(), 3)), lineMat);
       slab.add(edges);
       slab.position.y = data.baseY + floorElevations[floor];
-      const interior = new THREE.Group();
       const approved = getInteriorLevel(this.interiors, data.number, floor);
-      for (const space of approved?.spaces || []) {
-        this.line(space.polygon.map(([x, z]) => [x, 0.06, z]), space.kind === 'room' ? ACTIVE_INK : 0xb6a886, 1, interior, space.kind === 'room' ? 'room' : 'sharedSpace');
-        const el = document.createElement('span');
-        el.className = 'room-label';
-        el.textContent = space.label;
+      const wireframe = createInteriorWireframe(approved, {house: data.number, floor});
+      const interior = wireframe.group;
+      interiorPickables.push(...wireframe.pickables);
+      for (const label of wireframe.labels) {
+        if (!label.position) continue;
+        const el = document.createElement('button');
+        el.type = 'button';
+        el.className = `room-label${label.kind === 'door' ? ' door-label' : ''}`;
+        el.textContent = label.text;
+        el.setAttribute('aria-label', `Explore ${label.text}, House ${data.number}, ${floor === 0 ? 'ground floor' : `floor ${floor}`}`);
+        const details = {house: data.number, floor, spaceId: label.spaceId, ...(label.openingId ? {openingId: label.openingId} : {})};
+        el.addEventListener('click', () => this.openSpace(details));
         this.labelsElement.appendChild(el);
-        const points = space.polygon.slice(0, -1);
-        const center = points.reduce((sum, [x, z]) => [sum[0] + x / points.length, sum[1] + z / points.length], [0, 0]);
-        this.labels.push({ el, getPosition: () => new THREE.Vector3(center[0], slab.position.y + 0.25, center[1]), type: 'room', number: data.number, floor });
+        this.labels.push({ el, getPosition: () => new THREE.Vector3(label.position[0], slab.position.y + label.position[1], label.position[2]), type: label.kind === 'door' ? 'door' : 'room', number: data.number, floor });
       }
+      const floorLabel = document.createElement('button');
+      floorLabel.type = 'button';
+      floorLabel.className = 'floor-label';
+      floorLabel.textContent = floor === 0 ? 'EG' : `${floor}. OG`;
+      floorLabel.setAttribute('aria-label', `Explore House ${data.number}, ${approved?.label || (floor === 0 ? 'ground floor' : `floor ${floor}`)}`);
+      floorLabel.addEventListener('click', () => this.onFloor(floor));
+      this.labelsElement.appendChild(floorLabel);
+      this.labels.push({el: floorLabel, type: 'floor', number: data.number, floor, getPosition: () => {
+        const right = new THREE.Vector3(1, 0, 0).applyQuaternion(this.camera.quaternion);
+        const points = section.polygons.flatMap(polygon => polygon.outer);
+        const anchor = points.reduce((best, point) => !best || point[0] * right.x + point[1] * right.z > best[0] * right.x + best[1] * right.z ? point : best, null) || data.centroid;
+        return new THREE.Vector3(anchor[0] + right.x * 1.4, slab.position.y + 0.6, anchor[1] + right.z * 1.4);
+      }});
       interior.visible = false;
       slab.add(interior);
       interiorGroups.push(interior);
@@ -398,7 +471,7 @@ export class CampusScene {
     el.addEventListener('pointerenter', () => this.setHovered(data.number));
     el.addEventListener('pointerleave', () => this.setHovered(null));
     this.labelsElement.appendChild(el);
-    const record = { data, group, floorGroups, floorElevations, floorSections, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, label: el, currentGap: 0, targetGap: 0 };
+    const record = { data, group, floorGroups, floorElevations, floorSections, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
     this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.baseY + Math.max(data.height, record.exterior.visible ? data.height : floorElevations.at(-1) + record.currentGap * (data.levels - 1)) + 3, data.centroid[1]), type: 'house', number: data.number });
   }
@@ -415,27 +488,31 @@ export class CampusScene {
 
   focusBounds() {
     if (!this.selected) return this.campusBounds.clone();
-    if (this.exploded) return new THREE.Box3().setFromPoints(this.focusPoints());
-    const b = this.buildings.get(this.selected);
-    const bounds = new THREE.Box3();
-    for (const [x, z] of b.data.footprint) {
-      bounds.expandByPoint(new THREE.Vector3(x, b.data.baseY, z));
-      bounds.expandByPoint(new THREE.Vector3(x, b.data.baseY + b.data.height + (this.exploded ? 5 * (b.data.levels - 1) : 0), z));
-    }
-    return bounds;
+    return new THREE.Box3().setFromPoints(this.focusPoints());
   }
 
   focusPoints() {
     if (this.selected && this.exploded) {
       const building = this.buildings.get(this.selected);
-      return building.floorSections.flatMap((section, floor) => section.polygons.flatMap(polygon => polygon.outer.map(([x, z]) =>
-        new THREE.Vector3(x, building.data.baseY + building.floorElevations[floor] + 5 * floor, z))));
+      return building.floorSections.flatMap((section, floor) => {
+        if (this.activeFloor != null && this.activeFloor !== floor) return [];
+        const y = building.data.baseY + building.floorElevations[floor] + building.targetGap * floor;
+        const approved = getInteriorLevel(this.interiors, building.data.number, floor);
+        const points = [
+          ...(section.polygons.length ? section.polygons.flatMap(polygon => polygon.outer) : building.data.footprint),
+          ...(approved?.spaces.flatMap(space => space.polygon) || []),
+        ];
+        return points.flatMap(([x, z]) => [
+          new THREE.Vector3(x, y, z),
+          new THREE.Vector3(x, y + (approved ? INTERIOR_CUT_HEIGHT : 0.12), z),
+        ]);
+      });
     }
     return this.lod2.buildings.filter(building => !this.selected || building.number === this.selected)
       .flatMap(building => building.surfaces.flatMap(surface => surface.points.map(point => new THREE.Vector3(...point))));
   }
 
-  fittedCamera(direction = HOME_DIRECTION, padding = this.selected ? 1.38 : 1.2) {
+  fittedCamera(direction = HOME_DIRECTION, padding = this.selected ? this.exploded ? 1.16 : 1.38 : 1.2) {
     const bounds = this.focusBounds();
     const target = bounds.getCenter(new THREE.Vector3());
     const outward = direction.clone().normalize();
@@ -444,14 +521,28 @@ export class CampusScene {
     const up = new THREE.Vector3().crossVectors(outward, right).normalize();
     const tanV = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
     const tanH = tanV * this.camera.aspect;
+    const viewport = this.container?.getBoundingClientRect();
+    // Leave room for the floor title and the compact bottom tray on phones.
+    // Fit within those screen bounds without changing the metre-scale model.
+    const floorView = this.exploded && viewport;
+    const phoneFloor = this.exploded && viewport?.width <= 700;
+    const top = phoneFloor ? Math.min(148, viewport.height * 0.27) : floorView ? viewport.width <= 1100 ? 164 : 140 : 0;
+    const bottom = phoneFloor ? Math.min(196, viewport.height * 0.35) : floorView ? 70 : 0;
+    const upper = floorView ? 1 - 2 * top / viewport.height : 1;
+    const lower = floorView ? -1 + 2 * bottom / viewport.height : -1;
+    const center = (upper + lower) / 2;
     let distance = 24;
     const points = this.focusPoints?.() || [bounds.min.x, bounds.max.x].flatMap(x => [bounds.min.y, bounds.max.y].flatMap(y => [bounds.min.z, bounds.max.z].map(z => new THREE.Vector3(x, y, z))));
     for (const point of points) {
       const corner = point.clone().sub(target);
-      distance = Math.max(distance, corner.dot(outward) + padding * Math.abs(corner.dot(right)) / tanH,
-        corner.dot(outward) + padding * Math.abs(corner.dot(up)) / tanV);
+      const depth = corner.dot(outward), vertical = padding * corner.dot(up) / tanV;
+      distance = Math.max(distance, depth + padding * Math.abs(corner.dot(right)) / tanH,
+        (vertical + upper * depth) / (upper - center),
+        (-vertical - lower * depth) / (center - lower));
     }
-    return { target, position: target.clone().addScaledVector(outward, Math.min(distance, 840)) };
+    distance = Math.min(distance, 840);
+    target.addScaledVector(up, -center * distance * tanV);
+    return { target, position: target.clone().addScaledVector(outward, distance) };
   }
 
   setTheme(theme) {
@@ -536,12 +627,16 @@ export class CampusScene {
 
   select(number, focus = true) {
     if (number && !this.buildings.has(number)) return;
+    const fromInterior = this.exploded;
+    const previousDirection = fromInterior ? this.buildingViewDirection || HOME_DIRECTION : this.camera.position.clone().sub(this.controls.target).normalize();
     this.dirty = true;
+    this.tween = null;
     this.selected = number;
     this.hovered = null;
     this.hoverDirty = Boolean(this.mousePosition);
     this.exploded = false;
     this.activeFloor = null;
+    if (fromInterior) this.topView = false;
     for (const [num, building] of this.buildings) {
       const active = num === number, dim = number && !active;
       building.targetGap = building.currentGap = 0;
@@ -553,8 +648,10 @@ export class CampusScene {
       building.label.classList.toggle('selected', active);
       building.label.classList.toggle('muted', Boolean(dim));
     }
+    this.setContextVisible(true);
+    this.updateViewVisibility();
     if (focus && number) {
-      const direction = this.camera.position.clone().sub(this.controls.target).normalize();
+      const direction = previousDirection.clone();
       if (!this.topView) direction.y = Math.max(direction.y, 0.48);
       const frame = this.fittedCamera(direction.normalize());
       this.animateCamera(frame.position, frame.target);
@@ -564,28 +661,51 @@ export class CampusScene {
   explode(enabled) {
     if (!this.selected) return;
     this.dirty = true;
+    if (enabled && !this.exploded) {
+      this.buildingViewDirection = this.camera.position.clone().sub(this.controls.target).normalize();
+      const direction = this.buildingViewDirection.clone();
+      direction.y = 0;
+      if (direction.lengthSq() < 0.01) direction.copy(HOME_DIRECTION).setY(0);
+      this.stackDirection = direction.normalize().setY(0.55).normalize();
+    }
     this.exploded = enabled;
+    this.activeFloor = null;
+    this.topView = false;
     const b = this.buildings.get(this.selected);
-    b.targetGap = enabled ? 5 : 0;
+    b.targetGap = enabled ? explodedFloorGap(b) : 0;
     b.gapTween = this.reduced ? null : { start: performance.now(), from: b.currentGap, to: b.targetGap };
     if (this.reduced) b.currentGap = b.targetGap;
     b.exterior.visible = !enabled && (this.reduced || b.currentGap === 0);
-    b.floorGroups.forEach((f, i) => {
-      f.visible = !b.exterior.visible;
-      if (this.reduced) f.position.y = b.data.baseY + b.floorElevations[i] + i * b.currentGap;
-    });
-    const direction = this.topView ? new THREE.Vector3(0, 1, 0.0001) : this.camera.position.clone().sub(this.controls.target).normalize();
-    const frame = this.fittedCamera(direction, enabled ? 1.3 : 1.38);
+    b.floorGroups.forEach((f, i) => { f.position.y = b.data.baseY + b.floorElevations[i] + i * b.currentGap; });
+    this.setContextVisible(!enabled);
+    this.updateViewVisibility();
+    this.applyBuildingAppearance(b);
+    const direction = enabled ? this.stackDirection || HOME_DIRECTION : this.buildingViewDirection || HOME_DIRECTION;
+    const frame = this.fittedCamera(direction);
     this.animateCamera(frame.position, frame.target);
   }
 
   setFloor(floor) {
-    this.dirty = true;
-    this.activeFloor = floor;
-    if (!this.selected) return;
     const b = this.buildings.get(this.selected);
+    if (!b || floor !== null && (!Number.isInteger(floor) || floor < 0 || floor >= b.floorGroups.length)) return;
+    this.dirty = true;
+    if (floor !== null && !this.exploded) this.explode(true);
+    this.activeFloor = floor;
     this.applyBuildingAppearance(b);
-    b.interiorGroups.forEach((group, i) => { group.visible = floor === i; });
+    this.updateViewVisibility();
+    if (!this.exploded) return;
+    // Align the remaining floor movement with this camera transition.
+    if (b.gapTween) b.gapTween = {start: performance.now(), from: b.currentGap, to: b.targetGap};
+    this.topView = floor !== null;
+    const direction = floor === null ? this.stackDirection || HOME_DIRECTION : new THREE.Vector3(0, 1, 0.025);
+    const frame = this.fittedCamera(direction);
+    this.animateCamera(frame.position, frame.target);
+  }
+
+  openSpace(details) {
+    if (!this.exploded || details.house !== this.selected) return;
+    if (details.floor !== this.activeFloor) { this.onFloor(details.floor); return; }
+    this.onSpace(details);
   }
 
   setTop(enabled) {
@@ -618,7 +738,17 @@ export class CampusScene {
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.pointer.set(((clientX - rect.left) / rect.width) * 2 - 1, -((clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    return this.raycaster.intersectObjects([...this.buildings.values()].flatMap(building => building.exterior.visible ? building.exteriorPickables : building.pickables))[0];
+    const candidates = [...this.buildings.values()].flatMap(building => {
+      if (!building.group.visible) return [];
+      if (building.exterior.visible) return building.exteriorPickables;
+      return [
+        ...building.pickables.filter(mesh => building.floorGroups[mesh.userData.floor]?.visible),
+        ...building.interiorPickables.filter(mesh => mesh.userData.floor === this.activeFloor && building.floorGroups[mesh.userData.floor]?.visible && building.interiorGroups[mesh.userData.floor]?.visible),
+      ];
+    });
+    const hits = this.raycaster.intersectObjects(candidates);
+    // A door's slightly raised target wins over the room behind its threshold.
+    return hits.find(hit => hit.object.userData.role === 'interior-opening') || hits[0];
   }
 
   setHovered(number) {
@@ -640,7 +770,8 @@ export class CampusScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
-    const direction = this.hasFitted ? this.camera.position.clone().sub(this.controls.target).normalize() : HOME_DIRECTION;
+    const direction = this.tween ? this.tween.endPosition.clone().sub(this.tween.endTarget).normalize() :
+      this.hasFitted ? this.camera.position.clone().sub(this.controls.target).normalize() : HOME_DIRECTION;
     const frame = this.fittedCamera(direction);
     this.tween = null;
     this.camera.position.copy(frame.position);
@@ -679,7 +810,8 @@ export class CampusScene {
       if (!pressed || pressed.dragged || pressed.id !== e.pointerId || e.button !== 0 || Math.hypot(e.clientX - pressed.x, e.clientY - pressed.y) > 5) return;
       const hit = this.pickAt(e.clientX, e.clientY);
       if (hit) {
-        const { house, floor } = hit.object.userData;
+        const { house, floor, spaceId, openingId } = hit.object.userData;
+        if (spaceId) { this.openSpace({house, floor, spaceId, ...(openingId ? {openingId} : {})}); return; }
         if (house === this.selected && this.exploded) this.onFloor(floor);
         else this.onSelect(house);
       } else if (this.selected) this.onSelect(null);
@@ -727,7 +859,7 @@ export class CampusScene {
 
   render() {
     if (this.container.offsetWidth === 0) return;
-    let changed = this.dirty || Boolean(this.tween) || Boolean(this.themeTween) || this.hoverDirty;
+    let changed = this.dirty || Boolean(this.tween) || Boolean(this.themeTween) || Boolean(this.contextTween) || this.hoverDirty;
     this.dirty = false;
     if (this.tween) {
       const t = Math.min((performance.now() - this.tween.start) / TRANSITION_MS, 1);
@@ -741,6 +873,11 @@ export class CampusScene {
       const t = Math.min((now - this.themeTween.start) / TRANSITION_MS, 1);
       this.applyTheme(this.themeTween.from + (this.themeTween.to - this.themeTween.from) * motionEase(t));
       if (t === 1) this.themeTween = null;
+    }
+    if (this.contextTween) {
+      const t = Math.min((now - this.contextTween.start) / TRANSITION_MS, 1);
+      this.applyContextMix(this.contextTween.from + (this.contextTween.to - this.contextTween.from) * motionEase(t));
+      if (t === 1) this.contextTween = null;
     }
     for (const building of this.buildings.values()) if (advanceFloorMotion(building, now)) changed = true;
     if (this.controls.update()) changed = true;
@@ -772,8 +909,7 @@ export class CampusScene {
       const v = label.getPosition().project(this.camera);
       const x = (v.x + 1) * width / 2, y = (-v.y + 1) * height / 2;
       let visible = v.z > -1 && v.z < 1 && x > 35 && x < width - 35 && y > 45 && y < height - 80;
-      if (this.selected && label.type === 'context') visible = false;
-      if (label.type === 'room' && (!this.exploded || label.number !== this.selected || label.floor !== this.activeFloor)) visible = false;
+      if (!this.labelInCurrentView(label)) visible = false;
       if (this.community && label.type === 'house' && sorted.some(l => l.type === 'club' && l.number === label.number)) visible = false;
       if (visible && label.type !== 'context') {
         if (occupied.some(p => Math.abs(p.x - x) < 64 && Math.abs(p.y - y) < 29)) visible = false;

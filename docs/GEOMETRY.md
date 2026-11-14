@@ -43,17 +43,18 @@ The source serializes millimetres; this does not mean millimetre surveying accur
 | Façade material seams | [Inspected architect/operator photographs](FACADE-REFERENCES.md) | Direction and broad material character observed; procedural seam pitch, joint positions and floor bands are illustrative |
 | Newer-house upper-window appearance | [Identified-house photographs, typical-room sketch and 51a resident correction](WINDOW-REFERENCES.md) | Tall narrow frames, lower transoms and head strips observed; 51a uses aligned rows per resident correction. Typical width is a sketch reference; positions, heights, spacing and counts remain illustrative. |
 | Older-house window appearance | [Operator photographs and typical-room sketch](OLD-WINDOW-REFERENCES.md) | Approximately 1.05 × 1.55 m with 0.95 m sill from one unassigned sketch. Aligned rows and one horizontal transom follow photo character; pitch, tints and placement are illustrative. Appearance rows do not establish actual floors or occupied roof space. |
+| Interior spaces and physical doors | Reviewed, registered house-and-floor plans under [INTERIOR-FORMAT.md](INTERIOR-FORMAT.md) | Renderer and validator implemented; the published dataset is empty. [Current research](INTERIOR-PLAN-EVIDENCE.md) has not established a usable current full-floor plan. |
 | Room index | Permission-gated contribution dataset | No individual room markers republished from the existing site; aggregate research only. Accepted room records need an approved source and explicit floor labels. |
 
 Data was retrieved on 14 November 2026. The exact OSM base timestamp is retained in `public/data/campus.json` and `data/source/osm-raw.json`.
 
 ## Spatial presentation and day/night mode
 
-The camera now frames the campus more closely. No building has been enlarged, moved toward its neighbors or independently rescaled: the shared coordinate system remains measured in metres. Camera movement, perspective and viewport fitting change the view, not the source dimensions.
+The overview camera looks from the southwest at a lower angle and frames the campus more closely. No building has been enlarged, moved toward its neighbors or independently rescaled: the shared coordinate system remains measured in metres. Camera movement, perspective and viewport fitting change the view, not the source dimensions.
 
 Houses highlight on hover and focus on click. Their address labels are buttons with equivalent keyboard access, and the 2D fallback exposes keyboard-accessible house buttons. A primary click on empty map space restores the overview. The pointer guard rejects dragging, cancelled gestures and multi-pointer gestures, so orbiting does not also reset the view. Dragging orbits, the wheel zooms and the Rommelweb brand also restores the overview.
 
-Night is the initial theme. The top-right appearance button switches to warm daylight ground and neutral light interface panels while transitioning the scene's display materials. These palettes are illustrative, not measured finishes, solar studies or observed lighting states. They do not alter the geometry or indicate resident activity. The **Groups** button toggles the larger centered card with external browsing arrows and animated details; **Timeline** in the same bubble is the timeline's sole entry point. The two panels are mutually exclusive at all viewport widths, with animated entry/exit and safe reversal when toggled rapidly. All interaction remains silent, with immediate state changes for reduced motion.
+Night is the initial theme. The top-right appearance button switches to warm daylight ground and neutral light interface panels while transitioning the scene's display materials. These palettes are illustrative, not measured finishes, solar studies or observed lighting states. They do not alter the geometry or indicate resident activity. The **Groups** button toggles the centered card with external browsing arrows; **Details** opens a large centered panel. **Timeline** in the same bubble opens a compact, aligned drawer and is its sole entry point. The two panels are mutually exclusive at all viewport widths, with animated entry/exit and safe reversal when toggled rapidly. All interaction remains silent, with immediate state changes for reduced motion.
 
 Streets and paths are drawn from retained OSM coordinates. Outdoor ways with a valid mapped width have restrained gray ribbons and edges; other ways retain centerlines rather than receiving an invented physical width. Indoor highway ways are omitted. Schematic trees and gray context-building volumes remain absent. Paths and the ground guide use flat display planes because no surveyed terrain model is available.
 
@@ -97,11 +98,23 @@ To improve this layer, record address and viewing direction, retain reuse permis
 
 `src/sections.js` intersects the official wall, roof and ground shell with a horizontal plane for each level. It retains closed outlines, holes and disconnected parts. The rendered study consists of thin filled planes and their boundary lines, separated vertically for inspection. It does not stack repeated full-footprint building volumes. Higher cuts through the older houses can shrink or separate into wings where the source roof geometry requires it.
 
+Unfolding isolates the selected house by hiding the other houses. Selecting a floor hides the sibling sections and fits a nearly overhead view to that floor. These visibility and camera changes do not move any source vertex or change a floor's recorded elevation; vertical separation of the stack is an inspection offset.
+
 The section's elevation comes from `getLevelElevations`: verified records remain exact anchors, and unknown guides interpolate between the nearest anchors, with the official model height as the terminal boundary. With no approved records the initial spacing is uniform. That boundary is not a verified ceiling, and a section through the shell is not an occupied-area calculation. OSM fallback `height` fields are 3 m × storeys and must not replace official exterior heights.
 
 At ground level, the serialized base altitude and rounded ground vertices differ by a few millimetres. `floorSection` samples just inside the shell when needed to obtain a closed contour, while keeping the displayed section at its requested guide or approved elevation. It retains the actual sample elevation and offset as metadata. This is numerical handling of the source representation, not additional surveying precision.
 
-No roof cap, roof-space occupancy or usable headroom is inferred during unfolding. The [older-building evidence](OLD-BUILDING-SECTIONS.md) includes a typical-room sketch with approximately 2.50 m clear ceiling height; it does not establish floor-to-floor heights or complete occupied outlines. Approved space polygons remain a separate layer, displayed only for the selected floor under the [interior format](INTERIOR-FORMAT.md).
+No roof cap, roof-space occupancy or usable headroom is inferred during unfolding. The [older-building evidence](OLD-BUILDING-SECTIONS.md) includes a typical-room sketch with approximately 2.50 m clear ceiling height; it does not establish floor-to-floor heights or complete occupied outlines. Approved space polygons remain a separate layer on their corresponding sections under the [interior format](INTERIOR-FORMAT.md). Selecting one floor isolates its plan and enables its space/door targets.
+
+## Interior spaces and physical doors
+
+`src/interior-wireframe.js` accepts validated, approved floor records and renders room/corridor polygons, labels and low wireframe walls. The **1.05 m display cutaway** improves inspection; it is not a measured partition height, ceiling height or headroom claim. Door segments create gaps in the drawn walls and selectable opening targets. Hinge/swing arcs appear only when specified in the source record.
+
+Door records refer to stable physical-space IDs, not people. A selected room or door opens source information and an unconnected resident-card placeholder. The public renderer supplies no occupancy, resident identity or messaging service. Pointer targets and keyboard-accessible labels refer to the same approved geometry.
+
+The schema's optional `toSpaceId` requires both polygons to share the complete opening boundary. Clear-room outlines separated by wall thickness must retain their measured coordinates and omit that adjacency until a thickness/threshold representation is available. The renderer must not manufacture shared boundaries or convert partition-line areas into clear-room measurements.
+
+`public/data/interiors.json` still contains an empty `buildings` object. Typical-room sketches, site directories and historical planning drawings do not establish a current full-floor layout. Until a source is identified by house and floor, registered to the exterior, reviewed and cleared for reuse, the selected floor remains an exterior section with a missing-plan note. See [INTERIOR-PLAN-EVIDENCE.md](INTERIOR-PLAN-EVIDENCE.md) for the evidence search and [INTERIOR-FORMAT.md](INTERIOR-FORMAT.md) for contribution and validation requirements.
 
 ## Building register
 

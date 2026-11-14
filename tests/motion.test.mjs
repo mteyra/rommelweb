@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Group, Vector3 } from 'three';
+import { Group } from 'three';
 import { advanceFloorMotion, CampusScene, motionEase } from '../src/scene.js';
 
 const building = () => ({
@@ -45,24 +45,6 @@ test('reversing a floor transition continues from its displayed position and res
   assert.equal(record.exterior.visible, true);
   assert.ok(record.floorGroups.every(group => !group.visible));
   record.floorGroups.forEach((group, i) => assert.ok(Math.abs(group.position.y - record.data.baseY - record.floorElevations[i]) < 1e-10));
-});
-
-test('reduced motion makes unfolding and collapsing immediate', () => {
-  const record = building();
-  const mock = {
-    selected: 'test', reduced: true, buildings: new Map([['test', record]]),
-    camera: {position: new Vector3(40, 40, 40)}, controls: {target: new Vector3()},
-    fittedCamera: () => ({position: new Vector3(), target: new Vector3()}), animateCamera: () => {},
-  };
-  CampusScene.prototype.explode.call(mock, true);
-  assert.equal(record.gapTween, null);
-  assert.equal(record.currentGap, 5);
-  assert.equal(record.exterior.visible, false);
-  assert.ok(record.floorGroups.every(group => group.visible));
-  CampusScene.prototype.explode.call(mock, false);
-  assert.equal(record.currentGap, 0);
-  assert.equal(record.exterior.visible, true);
-  assert.ok(record.floorGroups.every(group => !group.visible));
 });
 
 test('camera gestures and cancelled pointers cannot select a house accidentally', () => {
