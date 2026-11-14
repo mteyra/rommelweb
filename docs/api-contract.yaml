@@ -1,0 +1,867 @@
+openapi: 3.0.3
+info:
+  title: Rommelweb resident API — future proposal
+  version: 0.1.0-proposal
+  description: |
+    Design contract only. These endpoints are not implemented by the GitHub
+    Pages prototype and this document does not configure a live backend.
+    Recommended implementation: Supabase Auth, EU-region PostgreSQL, scoped
+    server functions, row-level security and an unexposed private schema.
+
+    Every protected request validates the Auth JWT, account status, applicable
+    active residency, audience and role grant in the database at request time.
+    A valid JWT alone does not establish residency. Expired/revoked memberships
+    cannot be revived by cached role claims, retries or stale browser sessions.
+    Private responses use Cache-Control: no-store. Invite secrets and private
+    response bodies must not be logged, cached by service workers or embedded
+    in the public repository/build.
+
+    Enrollment is permitted to authenticated applicants without active
+    residency. /membership returns the caller's own membership state even
+    when inactive. Other operations require current eligibility unless stated.
+    Generic 404/accepted responses avoid disclosing private resource existence.
+servers:
+  - url: https://api.rommelweb.example/v1
+    description: Reserved example domain; no production API exists here.
+security:
+  - bearerAuth: []
+tags:
+  - name: Membership
+  - name: Groups
+  - name: Knocks
+  - name: Events
+paths:
+  /membership:
+    get:
+      tags: [Membership]
+      operationId: getOwnMembership
+      summary: Read the caller's own current and pending membership state
+      description: |
+        Requires an authenticated, non-suspended account. May return inactive,
+        expired or pending state so the UI can explain renewal. It never
+        returns another resident, a private room association or verification
+        evidence. All dates are server timestamps.
+      responses:
+        '200':
+          description: Own state only
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipState'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /membership/requests:
+    post:
+      tags: [Membership]
+      operationId: requestMembership
+      summary: Request verification for one residence building
+      description: |
+        Authenticated applicants may submit. This creates a pending request,
+        never an active residency. The server validates the building against
+        the maintained campus inventory. House 51a remains eligible for
+        steward-confirmed residence; its community label does not prove
+        exclusive nonresidential use.
+        Repeated requests are deduplicated per account/building and rate-limited.
+        No document uploads, legal identity fields or room numbers are accepted.
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [buildingId]
+              properties:
+                buildingId:
+                  $ref: '#/components/schemas/Id'
+      responses:
+        '202':
+          description: Pending verification; no access has been granted
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipRequest'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /membership/requests/{requestId}/decision:
+    post:
+      tags: [Membership]
+      operationId: decideMembershipRequest
+      summary: Approve or decline a membership request within a steward's scope
+      description: |
+        Requires an active building_steward verification grant for the requested
+        building. The final decision, validity interval and grant are checked
+        in the same database transaction. Request locking and idempotency
+        prevent duplicate approvals. Self-approval is prohibited. Approval
+        records the outcome of the agreed verification process; it must not
+        silently accept an email domain or room-number knowledge as proof.
+        The caller cannot grant a role through this endpoint.
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [decision, verificationMethod]
+              properties:
+                decision:
+                  type: string
+                  enum: [approved, declined]
+                verificationMethod:
+                  type: string
+                  enum: [in_person, authorized_housing_confirmation]
+                validFrom:
+                  type: string
+                  format: date-time
+                  description: Required for approval; future start grants no current access.
+                validUntil:
+                  type: string
+                  format: date-time
+                  description: Required for approval, after validFrom and within renewal policy.
+      responses:
+        '200':
+          description: Decision recorded; confirmation details limited to authorized steward
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipRequest'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /membership/{membershipId}/revoke:
+    post:
+      tags: [Membership]
+      operationId: revokeMembership
+      summary: Revoke an applicable membership and its inherited access
+      description: |
+        A resident may leave their own membership. A steward may revoke only
+        within an active verification scope; a separately authorized operator
+        may suspend according to the documented process. Authorization, target
+        membership revocation, discoverability removal and inherited role
+        revocation are transactional. Next private requests fail even with old
+        JWTs. WhatsApp removal is a separate manual offboarding task.
+      parameters:
+        - name: membershipId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [reason]
+              properties:
+                reason:
+                  type: string
+                  enum: [resident_left, moved, verification_withdrawn, moderation]
+      responses:
+        '204':
+          description: Applicable membership revoked; already revoked is an idempotent success
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /groups:
+    get:
+      tags: [Groups]
+      operationId: listEligibleGroups
+      summary: List only group metadata the caller is allowed to discover
+      description: |
+        Requires active residency. Group audiences may be campus-, building-
+        or club-scoped. Filters narrow results but never expand access.
+        Invitation secrets and member lists are excluded. Pagination counts
+        and cursors must not reveal ineligible groups.
+      parameters:
+        - name: buildingId
+          in: query
+          schema:
+            $ref: '#/components/schemas/Id'
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Authorized group metadata
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, nextCursor]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Group'
+                  nextCursor:
+                    type: string
+                    nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /groups/{groupId}/invitation:
+    post:
+      tags: [Groups]
+      operationId: releaseGroupInvitation
+      summary: Release an invite only after current scope authorization
+      description: |
+        Rechecks active residency, group audience, club membership where
+        applicable and link availability. Returns an allowlisted WhatsApp URL
+        from private storage. It cannot make a raw WhatsApp invite single-use
+        or revoke a copy already retrieved. Do not claim automatic offboarding
+        from consumer WhatsApp. Audit the release without the secret URL.
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Authorized release of the current invitation
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [url, requiresAdminApproval]
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                    description: Secret; allowlisted destination host, never a generic redirect.
+                  requiresAdminApproval:
+                    type: boolean
+                    description: Administrator-maintained setting; not a security guarantee.
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /knocks:
+    post:
+      tags: [Knocks]
+      operationId: sendKnock
+      summary: Request contact with an eligible, discoverable resident
+      description: |
+        Requires current residency and a discovery token from an authorized
+        opt-in profile response. The opaque token does not grant access by
+        itself. Check recipient eligibility, visibility, knock preferences,
+        both-direction blocks, per-pair pending state and rate limits inside
+        the mutation. Return a generic acknowledgement for hidden, blocked,
+        expired or invalid targets to avoid enumerating residents. This
+        endpoint does not address arbitrary physical room numbers.
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [discoveryToken, introduction]
+              properties:
+                discoveryToken:
+                  type: string
+                  minLength: 32
+                  maxLength: 1024
+                introduction:
+                  type: string
+                  minLength: 1
+                  maxLength: 240
+      responses:
+        '202':
+          description: Generic receipt; does not confirm recipient existence, delivery or acceptance
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accepted'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    get:
+      tags: [Knocks]
+      operationId: listOwnKnocks
+      summary: Read the eligible caller's own received contact requests
+      description: |
+        Only the intended recipient can read an incoming request. Exclude
+        expired, revoked and blocked participants. Do not expose ignored or
+        blocked status to senders. No global request counts.
+      parameters:
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Caller-owned incoming requests
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, nextCursor]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IncomingKnock'
+                  nextCursor:
+                    type: string
+                    nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /knocks/{knockId}/decision:
+    post:
+      tags: [Knocks]
+      operationId: decideKnock
+      summary: Accept, ignore or block a received knock
+      description: |
+        Recipient only, with active residency. Acceptance rechecks sender and
+        recipient eligibility and blocks transactionally before creating any
+        conversation. Ignore/block outcomes remain private to the recipient.
+        Blocking closes related pending requests and prevents future contact.
+        Reports need a separately reviewed moderation endpoint before launch.
+      parameters:
+        - name: knockId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [decision]
+              properties:
+                decision:
+                  type: string
+                  enum: [accept, ignore, block]
+      responses:
+        '204':
+          description: Recipient's decision recorded
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /events:
+    get:
+      tags: [Events]
+      operationId: listEligibleEvents
+      summary: List published events inside the caller's allowed audiences
+      description: |
+        Requires current residency. Drafts are returned only through a future
+        editor-specific operation. A separate public static feed may contain
+        explicitly public events only. RSVP identities are excluded here.
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: buildingId
+          in: query
+          schema:
+            $ref: '#/components/schemas/Id'
+        - $ref: '#/components/parameters/Cursor'
+      responses:
+        '200':
+          description: Authorized events in a bounded time window
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, nextCursor]
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+                  nextCursor:
+                    type: string
+                    nullable: true
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      tags: [Events]
+      operationId: createEvent
+      summary: Create a draft within an active organizer's resource scope
+      description: |
+        Requires a current event-edit grant for ownerScope. A building
+        steward's scope and a club organizer's scope are independent.
+        Validate audiences and venue IDs; do not trust submitted ownership.
+        Creation always starts as draft. Public publication requires a
+        separate active publication permission checked by the update path.
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventInput'
+      responses:
+        '201':
+          description: Draft created
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+            ETag:
+              $ref: '#/components/headers/Revision'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /events/{eventId}:
+    patch:
+      tags: [Events]
+      operationId: updateEvent
+      summary: Edit, publish or cancel an event under a revision precondition
+      description: |
+        Requires current edit permission for the stored event ownerScope,
+        rechecked at the final write. Audience expansion and public publication
+        need the corresponding publication grant. ownerScope cannot be
+        changed here. Use If-Match from the current event revision; reject
+        conflicting edits rather than silently overwriting. Cancel preserves
+        a suitable cancellation record for authorized attendees.
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+        - name: If-Match
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Exact ETag/revision returned by the latest authorized event read.
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              minProperties: 1
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                  maxLength: 120
+                description:
+                  type: string
+                  maxLength: 4000
+                startsAt:
+                  type: string
+                  format: date-time
+                endsAt:
+                  type: string
+                  format: date-time
+                timezone:
+                  type: string
+                  enum: [Europe/Berlin]
+                venueId:
+                  $ref: '#/components/schemas/Id'
+                audience:
+                  $ref: '#/components/schemas/Audience'
+                state:
+                  type: string
+                  enum: [draft, published, cancelled]
+      responses:
+        '200':
+          description: Event updated with a new revision
+          headers:
+            Cache-Control:
+              $ref: '#/components/headers/NoStore'
+            ETag:
+              $ref: '#/components/headers/Revision'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '401':
+          $ref: '#/components/responses/Unauthenticated'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '412':
+          description: Revision changed; reread before applying a new edit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Supabase Auth JWT, validated server-side. Database checks still require
+        a current non-revoked residency and relevant scoped grants.
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 16
+        maxLength: 128
+      description: |
+        Caller-generated key scoped to authenticated account and operation.
+        Same key plus same body reuses the original logical effect; a different
+        body conflicts. Recheck authorization before returning a private retry
+        response. Never replay a secret response to a revoked caller.
+    Cursor:
+      name: cursor
+      in: query
+      schema:
+        type: string
+        maxLength: 1024
+      description: Opaque bounded pagination cursor; does not carry authorization.
+  headers:
+    NoStore:
+      description: Private responses are never publicly cacheable.
+      schema:
+        type: string
+        enum: [no-store]
+    Revision:
+      description: Opaque revision for the next If-Match update.
+      schema:
+        type: string
+  responses:
+    Unauthenticated:
+      description: Missing, invalid or expired authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Caller is ineligible; response must not expose private target details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource is absent or not visible to this caller; use one generic response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidRequest:
+      description: Invalid fields, interval, audience or resource type; no private details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: Conflicting state, concurrent decision or idempotency-key body mismatch
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Caller limit reached; no recipient-specific activity disclosed
+      headers:
+        Retry-After:
+          description: Seconds before a caller-level retry is permitted
+          schema:
+            type: integer
+            minimum: 1
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Id:
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Opaque stable resource ID; never a room number, person name or authorization token.
+    Error:
+      type: object
+      additionalProperties: false
+      required: [code, message, requestId]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+          description: Safe public-facing explanation, with no secret values or private existence clues.
+        requestId:
+          type: string
+    Accepted:
+      type: object
+      additionalProperties: false
+      required: [status]
+      properties:
+        status:
+          type: string
+          enum: [received]
+    MembershipState:
+      type: object
+      additionalProperties: false
+      required: [memberships, requests]
+      properties:
+        memberships:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [id, buildingId, state, validFrom, validUntil]
+            properties:
+              id:
+                $ref: '#/components/schemas/Id'
+              buildingId:
+                $ref: '#/components/schemas/Id'
+              state:
+                type: string
+                enum: [scheduled, active, expired, revoked]
+              validFrom:
+                type: string
+                format: date-time
+              validUntil:
+                type: string
+                format: date-time
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/MembershipRequest'
+    MembershipRequest:
+      type: object
+      additionalProperties: false
+      required: [id, buildingId, state]
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        buildingId:
+          $ref: '#/components/schemas/Id'
+        state:
+          type: string
+          enum: [pending, approved, declined, cancelled]
+    Group:
+      type: object
+      additionalProperties: false
+      required: [id, name, description, invitationAvailable]
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          type: string
+          maxLength: 120
+        description:
+          type: string
+          maxLength: 2000
+        buildingId:
+          type: string
+          nullable: true
+        clubId:
+          type: string
+          nullable: true
+        invitationAvailable:
+          type: boolean
+          description: Metadata only; eligibility is checked again on release.
+    IncomingKnock:
+      type: object
+      additionalProperties: false
+      required: [id, senderDisplayName, introduction, expiresAt]
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        senderDisplayName:
+          type: string
+        introduction:
+          type: string
+          maxLength: 240
+        expiresAt:
+          type: string
+          format: date-time
+    Scope:
+      type: object
+      additionalProperties: false
+      required: [kind, id]
+      properties:
+        kind:
+          type: string
+          enum: [building, club]
+        id:
+          $ref: '#/components/schemas/Id'
+    Audience:
+      type: object
+      additionalProperties: false
+      required: [kind]
+      description: |
+        buildings requires a nonempty buildingIds list; club requires clubId;
+        invitees requires a separately authorized invitation operation.
+        Unrelated scope fields are rejected. Server validates each ID and the
+        caller's publication authority; no ID in this object grants access.
+      properties:
+        kind:
+          type: string
+          enum: [public, residents, buildings, club, invitees]
+        buildingIds:
+          type: array
+          minItems: 1
+          maxItems: 10
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/Id'
+        clubId:
+          $ref: '#/components/schemas/Id'
+    EventInput:
+      type: object
+      additionalProperties: false
+      required: [title, startsAt, endsAt, timezone, ownerScope, audience]
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 120
+        description:
+          type: string
+          maxLength: 4000
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+          description: Must be after startsAt; server enforces a bounded event duration.
+        timezone:
+          type: string
+          enum: [Europe/Berlin]
+        ownerScope:
+          $ref: '#/components/schemas/Scope'
+        venueId:
+          $ref: '#/components/schemas/Id'
+        audience:
+          $ref: '#/components/schemas/Audience'
+    Event:
+      type: object
+      additionalProperties: false
+      required: [id, title, startsAt, endsAt, timezone, ownerScope, audience, state, revision]
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          type: string
+        description:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+          enum: [Europe/Berlin]
+        ownerScope:
+          $ref: '#/components/schemas/Scope'
+        venueId:
+          type: string
+          nullable: true
+        audience:
+          $ref: '#/components/schemas/Audience'
+        state:
+          type: string
+          enum: [draft, published, cancelled]
+        revision:
+          type: string
+          description: Current opaque revision; authorized reads supply it for guarded editing.

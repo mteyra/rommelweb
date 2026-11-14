@@ -1,0 +1,6689 @@
+{
+  "metadata": {
+    "version": 1,
+    "retrievedAt": "2026-11-14T20:27:28.601859+00:00",
+    "osmTimestamp": "2026-11-14T20:25:50Z",
+    "origin": {
+      "latitude": 49.5766,
+      "longitude": 11.0298
+    },
+    "projection": {
+      "type": "local equirectangular",
+      "units": "metres",
+      "axes": {
+        "x": "east",
+        "z": "south",
+        "y": "up"
+      },
+      "earthRadius": 6371008.8,
+      "formula": "x = radians(lon - origin.longitude) * radius * cos(radians(origin.latitude)); z = -radians(lat - origin.latitude) * radius"
+    },
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "copyrightUrl": "https://www.openstreetmap.org/copyright",
+    "sources": [
+      {
+        "id": "osm",
+        "url": "https://www.openstreetmap.org/#map=18/49.5766/11.0298",
+        "usage": "All footprints, building level counts and context geometry"
+      },
+      {
+        "id": "rommelmap",
+        "url": "https://rommelwood.de/map/",
+        "usage": "House marker labels and points"
+      },
+      {
+        "id": "houses",
+        "url": "https://rommelwood.de/wohnen/h%C3%A4user/",
+        "usage": "Colour and wing number convention"
+      }
+    ],
+    "bounds": {
+      "west": 11.028,
+      "south": 49.5755,
+      "east": 11.0316,
+      "north": 49.5778
+    },
+    "uncertainties": [
+      "Building heights are an estimated 3m per storey, not measured.",
+      "OSM footprints and levels are mapped, not survey-certified.",
+      "Detailed pitched roof profiles, facades, interior walls and room polygons are not modeled.",
+      "Nearby contextual buildings/ways extend outside query bounds; UI should clip its own drawing extent."
+    ]
+  },
+  "buildings": [
+    {
+      "id": "house-49",
+      "number": "49",
+      "address": "Erwin-Rommel-Straße 49",
+      "campus": "II",
+      "name": "Black house",
+      "color": "#97a8b2",
+      "wings": [
+        11
+      ],
+      "levels": 6,
+      "height": 18.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          -69.99,
+          -81.528
+        ],
+        [
+          -81.504,
+          -79.293
+        ],
+        [
+          -92.659,
+          -77.125
+        ],
+        [
+          -89.046,
+          -58.544
+        ],
+        [
+          -88.138,
+          -53.885
+        ],
+        [
+          -65.469,
+          -58.288
+        ],
+        [
+          -69.99,
+          -81.528
+        ]
+      ],
+      "centroid": [
+        -79.064,
+        -67.707
+      ],
+      "coordinates": [
+        [
+          11.0288293,
+          49.5773332
+        ],
+        [
+          11.0286696,
+          49.5773131
+        ],
+        [
+          11.0285149,
+          49.5772936
+        ],
+        [
+          11.028565,
+          49.5771265
+        ],
+        [
+          11.0285776,
+          49.5770846
+        ],
+        [
+          11.028892,
+          49.5771242
+        ],
+        [
+          11.0288293,
+          49.5773332
+        ]
+      ],
+      "marker": [
+        -80.755,
+        -76.725
+      ],
+      "osmId": 408479447,
+      "osmUrl": "https://www.openstreetmap.org/way/408479447",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "49",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "6",
+        "loc_name": "Haus 11",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:shape": "flat"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-51",
+      "number": "51",
+      "address": "Erwin-Rommel-Straße 51",
+      "campus": "I",
+      "name": "Yellow house",
+      "color": "#f5cc6b",
+      "wings": [
+        7,
+        8
+      ],
+      "levels": 3,
+      "height": 9.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          -34.71,
+          -41.687
+        ],
+        [
+          -52.541,
+          -25.386
+        ],
+        [
+          -47.378,
+          -19.737
+        ],
+        [
+          -55.043,
+          -12.732
+        ],
+        [
+          -59.362,
+          -17.458
+        ],
+        [
+          -65.44,
+          -11.898
+        ],
+        [
+          -55.973,
+          -1.534
+        ],
+        [
+          -60.804,
+          2.88
+        ],
+        [
+          -55.209,
+          8.996
+        ],
+        [
+          -36.895,
+          -7.739
+        ],
+        [
+          -39.822,
+          -10.942
+        ],
+        [
+          -39.144,
+          -11.564
+        ],
+        [
+          -38.265,
+          -12.365
+        ],
+        [
+          -40.356,
+          -14.656
+        ],
+        [
+          -34.753,
+          -19.782
+        ],
+        [
+          -30.442,
+          -15.056
+        ],
+        [
+          -24.255,
+          -20.716
+        ],
+        [
+          -34.003,
+          -31.379
+        ],
+        [
+          -29.259,
+          -35.716
+        ],
+        [
+          -34.71,
+          -41.687
+        ]
+      ],
+      "centroid": [
+        -44.82,
+        -16.272
+      ],
+      "coordinates": [
+        [
+          11.0293186,
+          49.5769749
+        ],
+        [
+          11.0290713,
+          49.5768283
+        ],
+        [
+          11.0291429,
+          49.5767775
+        ],
+        [
+          11.0290366,
+          49.5767145
+        ],
+        [
+          11.0289767,
+          49.576757
+        ],
+        [
+          11.0288924,
+          49.576707
+        ],
+        [
+          11.0290237,
+          49.5766138
+        ],
+        [
+          11.0289567,
+          49.5765741
+        ],
+        [
+          11.0290343,
+          49.5765191
+        ],
+        [
+          11.0292883,
+          49.5766696
+        ],
+        [
+          11.0292477,
+          49.5766984
+        ],
+        [
+          11.0292571,
+          49.576704
+        ],
+        [
+          11.0292693,
+          49.5767112
+        ],
+        [
+          11.0292403,
+          49.5767318
+        ],
+        [
+          11.029318,
+          49.5767779
+        ],
+        [
+          11.0293778,
+          49.5767354
+        ],
+        [
+          11.0294636,
+          49.5767863
+        ],
+        [
+          11.0293284,
+          49.5768822
+        ],
+        [
+          11.0293942,
+          49.5769212
+        ],
+        [
+          11.0293186,
+          49.5769749
+        ]
+      ],
+      "marker": [
+        -39.144,
+        -11.564
+      ],
+      "osmId": 45017880,
+      "osmUrl": "https://www.openstreetmap.org/way/45017880",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "51",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:colour": "maroon",
+        "building:levels": "3",
+        "loc_name": "gelbes Haus",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:colour": "darkgrey",
+        "roof:shape": "flat"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-51a",
+      "number": "51a",
+      "address": "Erwin-Rommel-Straße 51a",
+      "campus": "II",
+      "name": "Blue house",
+      "color": "#72aaff",
+      "wings": [
+        16
+      ],
+      "levels": 3,
+      "height": 9.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          -44.545,
+          29.622
+        ],
+        [
+          -30.283,
+          44.745
+        ],
+        [
+          -13.923,
+          29.322
+        ],
+        [
+          -28.185,
+          14.2
+        ],
+        [
+          -44.545,
+          29.622
+        ]
+      ],
+      "centroid": [
+        -29.234,
+        29.472
+      ],
+      "coordinates": [
+        [
+          11.0291822,
+          49.5763336
+        ],
+        [
+          11.02938,
+          49.5761976
+        ],
+        [
+          11.0296069,
+          49.5763363
+        ],
+        [
+          11.0294091,
+          49.5764723
+        ],
+        [
+          11.0291822,
+          49.5763336
+        ]
+      ],
+      "marker": [
+        -36.051,
+        21.127
+      ],
+      "osmId": 369941495,
+      "osmUrl": "https://www.openstreetmap.org/way/369941495",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "51a",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "3",
+        "description": "Erweiterung des Wohnheims an der Erwin Rommel Straße",
+        "loc_name": "Haus 16",
+        "operator": "Studentenwerk Erlangen Nürnberg",
+        "roof:shape": "flat",
+        "source": "Anwohner"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-53",
+      "number": "53",
+      "address": "Erwin-Rommel-Straße 53",
+      "campus": "I",
+      "name": "Orange house",
+      "color": "#f4a56e",
+      "wings": [
+        9,
+        10
+      ],
+      "levels": 3,
+      "height": 9.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          -41.149,
+          -54.274
+        ],
+        [
+          -34.934,
+          -60.012
+        ],
+        [
+          -32.763,
+          -57.666
+        ],
+        [
+          -22.482,
+          -67.173
+        ],
+        [
+          -18.711,
+          -63.092
+        ],
+        [
+          -16.684,
+          -60.902
+        ],
+        [
+          -21.378,
+          -56.565
+        ],
+        [
+          -14.622,
+          -49.259
+        ],
+        [
+          -8.962,
+          -54.486
+        ],
+        [
+          -6.59,
+          -51.973
+        ],
+        [
+          5.711,
+          -38.607
+        ],
+        [
+          -0.375,
+          -32.98
+        ],
+        [
+          -2.704,
+          -35.505
+        ],
+        [
+          -12.272,
+          -26.653
+        ],
+        [
+          -13.094,
+          -25.897
+        ],
+        [
+          -18.862,
+          -32.135
+        ],
+        [
+          -14.19,
+          -36.45
+        ],
+        [
+          -19.605,
+          -42.31
+        ],
+        [
+          -21.789,
+          -40.286
+        ],
+        [
+          -22.215,
+          -40.564
+        ],
+        [
+          -23.066,
+          -41.665
+        ],
+        [
+          -26.534,
+          -38.462
+        ],
+        [
+          -41.149,
+          -54.274
+        ]
+      ],
+      "centroid": [
+        -17.785,
+        -46.475
+      ],
+      "coordinates": [
+        [
+          11.0292293,
+          49.5770881
+        ],
+        [
+          11.0293155,
+          49.5771397
+        ],
+        [
+          11.0293456,
+          49.5771186
+        ],
+        [
+          11.0294882,
+          49.5772041
+        ],
+        [
+          11.0295405,
+          49.5771674
+        ],
+        [
+          11.0295686,
+          49.5771477
+        ],
+        [
+          11.0295035,
+          49.5771087
+        ],
+        [
+          11.0295972,
+          49.577043
+        ],
+        [
+          11.0296757,
+          49.57709
+        ],
+        [
+          11.0297086,
+          49.5770674
+        ],
+        [
+          11.0298792,
+          49.5769472
+        ],
+        [
+          11.0297948,
+          49.5768966
+        ],
+        [
+          11.0297625,
+          49.5769193
+        ],
+        [
+          11.0296298,
+          49.5768397
+        ],
+        [
+          11.0296184,
+          49.5768329
+        ],
+        [
+          11.0295384,
+          49.576889
+        ],
+        [
+          11.0296032,
+          49.5769278
+        ],
+        [
+          11.0295281,
+          49.5769805
+        ],
+        [
+          11.0294978,
+          49.5769623
+        ],
+        [
+          11.0294919,
+          49.5769648
+        ],
+        [
+          11.0294801,
+          49.5769747
+        ],
+        [
+          11.029432,
+          49.5769459
+        ],
+        [
+          11.0292293,
+          49.5770881
+        ]
+      ],
+      "marker": [
+        -22.215,
+        -40.564
+      ],
+      "osmId": 45017886,
+      "osmUrl": "https://www.openstreetmap.org/way/45017886",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "53",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "3",
+        "loc_name": "oranges Haus",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:levels": "0",
+        "roof:shape": "many"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-53a",
+      "number": "53a",
+      "address": "Erwin-Rommel-Straße 53a",
+      "campus": "II",
+      "name": "Purple house",
+      "color": "#b49af5",
+      "wings": [
+        12
+      ],
+      "levels": 5,
+      "height": 15.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          1.435,
+          -62.948
+        ],
+        [
+          23.239,
+          -57.71
+        ],
+        [
+          25.906,
+          -68.808
+        ],
+        [
+          27.925,
+          -77.214
+        ],
+        [
+          28.79,
+          -80.828
+        ],
+        [
+          6.987,
+          -86.065
+        ],
+        [
+          1.435,
+          -62.948
+        ]
+      ],
+      "centroid": [
+        15.114,
+        -71.888
+      ],
+      "coordinates": [
+        [
+          11.0298199,
+          49.5771661
+        ],
+        [
+          11.0301223,
+          49.577119
+        ],
+        [
+          11.0301593,
+          49.5772188
+        ],
+        [
+          11.0301873,
+          49.5772944
+        ],
+        [
+          11.0301993,
+          49.5773269
+        ],
+        [
+          11.0298969,
+          49.577374
+        ],
+        [
+          11.0298199,
+          49.5771661
+        ]
+      ],
+      "marker": [
+        23.073,
+        -68.941
+      ],
+      "osmId": 408479297,
+      "osmUrl": "https://www.openstreetmap.org/way/408479297",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "53a",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "5",
+        "loc_name": "Haus 12",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:shape": "flat"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-55",
+      "number": "55",
+      "address": "Erwin-Rommel-Straße 55",
+      "campus": "I",
+      "name": "Red house",
+      "color": "#f17e7f",
+      "wings": [
+        1,
+        2
+      ],
+      "levels": 3,
+      "height": 9.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          0.224,
+          -7.884
+        ],
+        [
+          -10.433,
+          2.024
+        ],
+        [
+          -16.814,
+          -4.837
+        ],
+        [
+          -21.645,
+          -0.345
+        ],
+        [
+          -22.676,
+          0.612
+        ],
+        [
+          -4.852,
+          19.782
+        ],
+        [
+          -1.586,
+          16.757
+        ],
+        [
+          -0.714,
+          17.691
+        ],
+        [
+          0.382,
+          18.87
+        ],
+        [
+          2.725,
+          16.69
+        ],
+        [
+          8.378,
+          22.773
+        ],
+        [
+          3.418,
+          27.387
+        ],
+        [
+          6.972,
+          31.212
+        ],
+        [
+          8.948,
+          33.336
+        ],
+        [
+          19.331,
+          23.685
+        ],
+        [
+          21.797,
+          26.631
+        ],
+        [
+          27.846,
+          20.738
+        ],
+        [
+          13.858,
+          5.693
+        ],
+        [
+          8.285,
+          10.875
+        ],
+        [
+          0.793,
+          2.824
+        ],
+        [
+          5.826,
+          -1.857
+        ],
+        [
+          0.224,
+          -7.884
+        ]
+      ],
+      "centroid": [
+        3.215,
+        12.051
+      ],
+      "coordinates": [
+        [
+          11.0298031,
+          49.5766709
+        ],
+        [
+          11.0296553,
+          49.5765818
+        ],
+        [
+          11.0295668,
+          49.5766435
+        ],
+        [
+          11.0294998,
+          49.5766031
+        ],
+        [
+          11.0294855,
+          49.5765945
+        ],
+        [
+          11.0297327,
+          49.5764221
+        ],
+        [
+          11.029778,
+          49.5764493
+        ],
+        [
+          11.0297901,
+          49.5764409
+        ],
+        [
+          11.0298053,
+          49.5764303
+        ],
+        [
+          11.0298378,
+          49.5764499
+        ],
+        [
+          11.0299162,
+          49.5763952
+        ],
+        [
+          11.0298474,
+          49.5763537
+        ],
+        [
+          11.0298967,
+          49.5763193
+        ],
+        [
+          11.0299241,
+          49.5763002
+        ],
+        [
+          11.0300681,
+          49.576387
+        ],
+        [
+          11.0301023,
+          49.5763605
+        ],
+        [
+          11.0301862,
+          49.5764135
+        ],
+        [
+          11.0299922,
+          49.5765488
+        ],
+        [
+          11.0299149,
+          49.5765022
+        ],
+        [
+          11.029811,
+          49.5765746
+        ],
+        [
+          11.0298808,
+          49.5766167
+        ],
+        [
+          11.0298031,
+          49.5766709
+        ]
+      ],
+      "marker": [
+        -0.714,
+        17.691
+      ],
+      "osmId": 45017890,
+      "osmUrl": "https://www.openstreetmap.org/way/45017890",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "55",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:colour": "maroon",
+        "building:levels": "3",
+        "loc_name": "rotes Haus",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:levels": "0",
+        "roof:shape": "many"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-55a",
+      "number": "55a",
+      "address": "Erwin-Rommel-Straße 55a",
+      "campus": "II",
+      "name": "Grey house",
+      "color": "#a5b6bb",
+      "wings": [
+        13
+      ],
+      "levels": 6,
+      "height": 18.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          11.875,
+          -30.278
+        ],
+        [
+          18.134,
+          -7.962
+        ],
+        [
+          40.428,
+          -14.222
+        ],
+        [
+          39.678,
+          -16.902
+        ],
+        [
+          34.162,
+          -36.539
+        ],
+        [
+          22.77,
+          -33.336
+        ],
+        [
+          11.875,
+          -30.278
+        ]
+      ],
+      "centroid": [
+        26.151,
+        -22.249
+      ],
+      "coordinates": [
+        [
+          11.0299647,
+          49.5768723
+        ],
+        [
+          11.0300515,
+          49.5766716
+        ],
+        [
+          11.0303607,
+          49.5767279
+        ],
+        [
+          11.0303503,
+          49.576752
+        ],
+        [
+          11.0302738,
+          49.5769286
+        ],
+        [
+          11.0301158,
+          49.5768998
+        ],
+        [
+          11.0299647,
+          49.5768723
+        ]
+      ],
+      "marker": [
+        23.794,
+        -31.135
+      ],
+      "osmId": 408479296,
+      "osmUrl": "https://www.openstreetmap.org/way/408479296",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "55a",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:colour": "#85552e",
+        "building:levels": "6",
+        "loc_name": "Haus 13",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:shape": "flat"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-57",
+      "number": "57",
+      "address": "Erwin-Rommel-Straße 57",
+      "campus": "I",
+      "name": "White house",
+      "color": "#e9f1ec",
+      "wings": [
+        3,
+        4
+      ],
+      "levels": 3,
+      "height": 9.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          43.644,
+          11.175
+        ],
+        [
+          49.102,
+          17.113
+        ],
+        [
+          42.057,
+          23.584
+        ],
+        [
+          51.806,
+          34.192
+        ],
+        [
+          45.886,
+          39.641
+        ],
+        [
+          41.517,
+          34.893
+        ],
+        [
+          33.34,
+          42.41
+        ],
+        [
+          38.438,
+          47.947
+        ],
+        [
+          23.152,
+          62.002
+        ],
+        [
+          17.708,
+          56.076
+        ],
+        [
+          20.47,
+          53.529
+        ],
+        [
+          11.298,
+          43.555
+        ],
+        [
+          9.085,
+          41.142
+        ],
+        [
+          15.293,
+          35.438
+        ],
+        [
+          17.009,
+          37.306
+        ],
+        [
+          18.227,
+          38.629
+        ],
+        [
+          21.393,
+          42.076
+        ],
+        [
+          27.11,
+          36.817
+        ],
+        [
+          25.2,
+          34.737
+        ],
+        [
+          26.188,
+          33.837
+        ],
+        [
+          27.038,
+          33.047
+        ],
+        [
+          23.743,
+          29.467
+        ],
+        [
+          43.644,
+          11.175
+        ]
+      ],
+      "centroid": [
+        31.473,
+        37.207
+      ],
+      "coordinates": [
+        [
+          11.0304053,
+          49.5764995
+        ],
+        [
+          11.030481,
+          49.5764461
+        ],
+        [
+          11.0303833,
+          49.5763879
+        ],
+        [
+          11.0305185,
+          49.5762925
+        ],
+        [
+          11.0304364,
+          49.5762435
+        ],
+        [
+          11.0303758,
+          49.5762862
+        ],
+        [
+          11.0302624,
+          49.5762186
+        ],
+        [
+          11.0303331,
+          49.5761688
+        ],
+        [
+          11.0301211,
+          49.5760424
+        ],
+        [
+          11.0300456,
+          49.5760957
+        ],
+        [
+          11.0300839,
+          49.5761186
+        ],
+        [
+          11.0299567,
+          49.5762083
+        ],
+        [
+          11.029926,
+          49.57623
+        ],
+        [
+          11.0300121,
+          49.5762813
+        ],
+        [
+          11.0300359,
+          49.5762645
+        ],
+        [
+          11.0300528,
+          49.5762526
+        ],
+        [
+          11.0300967,
+          49.5762216
+        ],
+        [
+          11.030176,
+          49.5762689
+        ],
+        [
+          11.0301495,
+          49.5762876
+        ],
+        [
+          11.0301632,
+          49.5762957
+        ],
+        [
+          11.030175,
+          49.5763028
+        ],
+        [
+          11.0301293,
+          49.576335
+        ],
+        [
+          11.0304053,
+          49.5764995
+        ]
+      ],
+      "marker": [
+        26.188,
+        33.837
+      ],
+      "osmId": 45017866,
+      "osmUrl": "https://www.openstreetmap.org/way/45017866",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "57",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "3",
+        "loc_name": "weißes Haus",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:levels": "0",
+        "roof:shape": "many"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-57a",
+      "number": "57a",
+      "address": "Erwin-Rommel-Straße 57a",
+      "campus": "II",
+      "name": "Turquoise house",
+      "color": "#72dcca",
+      "wings": [
+        14
+      ],
+      "levels": 8,
+      "height": 24.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          59.189,
+          7.506
+        ],
+        [
+          70.3,
+          10.319
+        ],
+        [
+          81.13,
+          13.065
+        ],
+        [
+          81.973,
+          9.718
+        ],
+        [
+          86.71,
+          -8.996
+        ],
+        [
+          82.925,
+          -9.952
+        ],
+        [
+          75.123,
+          -11.92
+        ],
+        [
+          64.77,
+          -14.544
+        ],
+        [
+          59.189,
+          7.506
+        ]
+      ],
+      "centroid": [
+        72.95,
+        -0.741
+      ],
+      "coordinates": [
+        [
+          11.0306209,
+          49.5765325
+        ],
+        [
+          11.030775,
+          49.5765072
+        ],
+        [
+          11.0309252,
+          49.5764825
+        ],
+        [
+          11.0309369,
+          49.5765126
+        ],
+        [
+          11.0310026,
+          49.5766809
+        ],
+        [
+          11.0309501,
+          49.5766895
+        ],
+        [
+          11.0308419,
+          49.5767072
+        ],
+        [
+          11.0306983,
+          49.5767308
+        ],
+        [
+          11.0306209,
+          49.5765325
+        ]
+      ],
+      "marker": [
+        75.707,
+        -8.896
+      ],
+      "osmId": 403754283,
+      "osmUrl": "https://www.openstreetmap.org/way/403754283",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "57a",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:colour": "brown",
+        "building:levels": "8",
+        "elevator": "yes",
+        "loc_name": "Haus 14",
+        "max_level": "7",
+        "min_level": "0",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:shape": "flat"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-59",
+      "number": "59",
+      "address": "Erwin-Rommel-Straße 59",
+      "campus": "I",
+      "name": "Green house",
+      "color": "#acd394",
+      "wings": [
+        5,
+        6
+      ],
+      "levels": 3,
+      "height": 9.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          -0.584,
+          47.069
+        ],
+        [
+          4.881,
+          53.129
+        ],
+        [
+          2.3,
+          55.453
+        ],
+        [
+          7.491,
+          61.224
+        ],
+        [
+          9.763,
+          59.178
+        ],
+        [
+          10.693,
+          60.212
+        ],
+        [
+          11.731,
+          61.357
+        ],
+        [
+          15.293,
+          58.155
+        ],
+        [
+          30.954,
+          75.535
+        ],
+        [
+          24.969,
+          80.928
+        ],
+        [
+          20.564,
+          76.035
+        ],
+        [
+          8.061,
+          87.299
+        ],
+        [
+          2.762,
+          81.417
+        ],
+        [
+          9.258,
+          75.568
+        ],
+        [
+          1.918,
+          67.418
+        ],
+        [
+          -3.829,
+          72.599
+        ],
+        [
+          -19.561,
+          55.119
+        ],
+        [
+          -13.728,
+          49.871
+        ],
+        [
+          -9.236,
+          54.853
+        ],
+        [
+          -0.584,
+          47.069
+        ]
+      ],
+      "centroid": [
+        5.875,
+        66.286
+      ],
+      "coordinates": [
+        [
+          11.0297919,
+          49.5761767
+        ],
+        [
+          11.0298677,
+          49.5761222
+        ],
+        [
+          11.0298319,
+          49.5761013
+        ],
+        [
+          11.0299039,
+          49.5760494
+        ],
+        [
+          11.0299354,
+          49.5760678
+        ],
+        [
+          11.0299483,
+          49.5760585
+        ],
+        [
+          11.0299627,
+          49.5760482
+        ],
+        [
+          11.0300121,
+          49.576077
+        ],
+        [
+          11.0302293,
+          49.5759207
+        ],
+        [
+          11.0301463,
+          49.5758722
+        ],
+        [
+          11.0300852,
+          49.5759162
+        ],
+        [
+          11.0299118,
+          49.5758149
+        ],
+        [
+          11.0298383,
+          49.5758678
+        ],
+        [
+          11.0299284,
+          49.5759204
+        ],
+        [
+          11.0298266,
+          49.5759937
+        ],
+        [
+          11.0297469,
+          49.5759471
+        ],
+        [
+          11.0295287,
+          49.5761043
+        ],
+        [
+          11.0296096,
+          49.5761515
+        ],
+        [
+          11.0296719,
+          49.5761067
+        ],
+        [
+          11.0297919,
+          49.5761767
+        ]
+      ],
+      "marker": [
+        10.693,
+        60.212
+      ],
+      "osmId": 45017868,
+      "osmUrl": "https://www.openstreetmap.org/way/45017868",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "59",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "3",
+        "loc_name": "grünes Haus",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:levels": "0",
+        "roof:shape": "many"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    },
+    {
+      "id": "house-59a",
+      "number": "59a",
+      "address": "Erwin-Rommel-Straße 59a",
+      "campus": "II",
+      "name": "Pink house",
+      "color": "#eb9dbb",
+      "wings": [
+        15
+      ],
+      "levels": 6,
+      "height": 18.0,
+      "floorHeight": 3,
+      "heightStatus": "estimated",
+      "heightNote": "Visualization uses 3 m per storey. No surveyed heights or detailed roof geometry available.",
+      "footprint": [
+        [
+          56.326,
+          66.495
+        ],
+        [
+          79.204,
+          66.339
+        ],
+        [
+          79.046,
+          43.044
+        ],
+        [
+          74.489,
+          43.066
+        ],
+        [
+          68.613,
+          43.144
+        ],
+        [
+          56.168,
+          43.222
+        ],
+        [
+          56.326,
+          66.495
+        ]
+      ],
+      "centroid": [
+        67.689,
+        54.777
+      ],
+      "coordinates": [
+        [
+          11.0305812,
+          49.576002
+        ],
+        [
+          11.0308985,
+          49.5760034
+        ],
+        [
+          11.0308963,
+          49.5762129
+        ],
+        [
+          11.0308331,
+          49.5762127
+        ],
+        [
+          11.0307516,
+          49.576212
+        ],
+        [
+          11.030579,
+          49.5762113
+        ],
+        [
+          11.0305812,
+          49.576002
+        ]
+      ],
+      "marker": [
+        67.776,
+        44.478
+      ],
+      "osmId": 403754282,
+      "osmUrl": "https://www.openstreetmap.org/way/403754282",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "59a",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "dormitory",
+        "building:levels": "6",
+        "loc_name": "Haus 15",
+        "operator": "Studentenwerk Erlangen-Nürnberg",
+        "roof:shape": "flat"
+      },
+      "geometryStatus": "OSM mapped footprint",
+      "levelsStatus": "OSM building:levels",
+      "interiorStatus": "Room point locations available separately; walls and dimensions unverified."
+    }
+  ],
+  "context": [
+    {
+      "id": "node/10697395653",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        61.323,
+        -34.393
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395653"
+    },
+    {
+      "id": "node/10697395656",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        64.798,
+        -34.17
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395656"
+    },
+    {
+      "id": "node/10697395657",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        4.708,
+        -14.567
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395657"
+    },
+    {
+      "id": "node/10697395658",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        41.61,
+        44.044
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395658"
+    },
+    {
+      "id": "node/10697395665",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        42.901,
+        46.424
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395665"
+    },
+    {
+      "id": "node/10697395667",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        77.222,
+        27.832
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395667"
+    },
+    {
+      "id": "node/10697395668",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        54.711,
+        -7.806
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395668"
+    },
+    {
+      "id": "node/10697395670",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        57.74,
+        -34.76
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395670"
+    },
+    {
+      "id": "node/10697395671",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        78.902,
+        19.215
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395671"
+    },
+    {
+      "id": "node/10697395672",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        39.793,
+        61.936
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395672"
+    },
+    {
+      "id": "node/10697395673",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        0.649,
+        23.629
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395673"
+    },
+    {
+      "id": "node/10697395676",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        37.262,
+        64.871
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395676"
+    },
+    {
+      "id": "node/10697395679",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        4.211,
+        -33.792
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395679"
+    },
+    {
+      "id": "node/10697395681",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        22.813,
+        3.269
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395681"
+    },
+    {
+      "id": "node/10697395685",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        83.192,
+        18.425
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395685"
+    },
+    {
+      "id": "node/10697395690",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        58.021,
+        -5.426
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395690"
+    },
+    {
+      "id": "node/10697395692",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        3.648,
+        -18.614
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395692"
+    },
+    {
+      "id": "node/10697395696",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        42.692,
+        58.655
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697395696"
+    },
+    {
+      "id": "node/10697405306",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        7.47,
+        -21.205
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697405306"
+    },
+    {
+      "id": "node/10697405311",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        53.933,
+        -2.88
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697405311"
+    },
+    {
+      "id": "node/10697405315",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        39.923,
+        4.003
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697405315"
+    },
+    {
+      "id": "node/10697405320",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        59.679,
+        -15.089
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697405320"
+    },
+    {
+      "id": "node/10697625855",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -26.115,
+        48.737
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697625855"
+    },
+    {
+      "id": "node/10697625873",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -5.242,
+        46.78
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697625873"
+    },
+    {
+      "id": "node/10697625876",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -9.179,
+        50.638
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697625876"
+    },
+    {
+      "id": "node/10697625881",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -10.541,
+        34.159
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10697625881"
+    },
+    {
+      "id": "node/10707478319",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -31.595,
+        11.231
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478319"
+    },
+    {
+      "id": "node/10707478320",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -51.207,
+        -103.534
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478320"
+    },
+    {
+      "id": "node/10707478331",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -36.556,
+        15.945
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478331"
+    },
+    {
+      "id": "node/10707478332",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -47.177,
+        25.875
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478332"
+    },
+    {
+      "id": "node/10707478333",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -50.724,
+        -112.096
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478333"
+    },
+    {
+      "id": "node/10707478335",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -50.176,
+        -120.424
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478335"
+    },
+    {
+      "id": "node/10707478336",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -41.877,
+        20.838
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478336"
+    },
+    {
+      "id": "node/10707478341",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -50.601,
+        -116.232
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478341"
+    },
+    {
+      "id": "node/10707478346",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -51.027,
+        -107.759
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10707478346"
+    },
+    {
+      "id": "node/10716638389",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        31.826,
+        -56.265
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10716638389"
+    },
+    {
+      "id": "node/10717342501",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        19.749,
+        -91.191
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717342501"
+    },
+    {
+      "id": "node/10717361406",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        8.739,
+        -91.425
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361406"
+    },
+    {
+      "id": "node/10717361411",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -23.549,
+        -121.247
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361411"
+    },
+    {
+      "id": "node/10717361419",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        41.92,
+        -81.028
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361419"
+    },
+    {
+      "id": "node/10717361424",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        39.916,
+        -87.144
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361424"
+    },
+    {
+      "id": "node/10717361434",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -23.094,
+        -131.822
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361434"
+    },
+    {
+      "id": "node/10717361444",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        25.308,
+        -92.259
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361444"
+    },
+    {
+      "id": "node/10717361449",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        14.485,
+        -91.18
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361449"
+    },
+    {
+      "id": "node/10717361453",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        41.877,
+        -74.2
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361453"
+    },
+    {
+      "id": "node/10717361461",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -23.246,
+        -128.186
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361461"
+    },
+    {
+      "id": "node/10717361467",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -23.779,
+        -118.623
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361467"
+    },
+    {
+      "id": "node/10717361474",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        29.973,
+        -93.415
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361474"
+    },
+    {
+      "id": "node/10717361483",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        50.681,
+        -95.594
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361483"
+    },
+    {
+      "id": "node/10717361491",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        37.897,
+        -95.494
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361491"
+    },
+    {
+      "id": "node/10717361498",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        51.121,
+        -92.003
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361498"
+    },
+    {
+      "id": "node/10717361508",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -23.361,
+        -125.117
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361508"
+    },
+    {
+      "id": "node/10717361509",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        51.012,
+        -99.464
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361509"
+    },
+    {
+      "id": "node/10717361529",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        40.197,
+        -66.973
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717361529"
+    },
+    {
+      "id": "node/10717362808",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -33.261,
+        -132.278
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10717362808"
+    },
+    {
+      "id": "node/10724135989",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -6.9,
+        -25.152
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10724135989"
+    },
+    {
+      "id": "node/10724135990",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -5.494,
+        -5.148
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10724135990"
+    },
+    {
+      "id": "node/10724135991",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -1.637,
+        -27.932
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10724135991"
+    },
+    {
+      "id": "node/10724136001",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -10.967,
+        -3.369
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10724136001"
+    },
+    {
+      "id": "node/10724327072",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        33.081,
+        7.483
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10724327072"
+    },
+    {
+      "id": "node/10728963301",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        49.686,
+        27.343
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10728963301"
+    },
+    {
+      "id": "node/10728963303",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        37.695,
+        -10.53
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10728963303"
+    },
+    {
+      "id": "node/10729006108",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        49.513,
+        39.852
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006108"
+    },
+    {
+      "id": "node/10729006112",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        10.505,
+        3.97
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006112"
+    },
+    {
+      "id": "node/10729006114",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        40.291,
+        -8.139
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006114"
+    },
+    {
+      "id": "node/10729006115",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        6.806,
+        1.156
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006115"
+    },
+    {
+      "id": "node/10729006116",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        23.606,
+        -6.227
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006116"
+    },
+    {
+      "id": "node/10729006118",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        44.271,
+        -13.254
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006118"
+    },
+    {
+      "id": "node/10729006119",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        49.123,
+        23.206
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006119"
+    },
+    {
+      "id": "node/10729006120",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        27.428,
+        -5.704
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006120"
+    },
+    {
+      "id": "node/10729006123",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        32.763,
+        -5.348
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006123"
+    },
+    {
+      "id": "node/10729006124",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "needleleaved",
+        "natural": "tree"
+      },
+      "points": [
+        31.617,
+        -9.507
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006124"
+    },
+    {
+      "id": "node/10729006125",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        10.253,
+        -12.131
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006125"
+    },
+    {
+      "id": "node/10729006127",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        36.404,
+        -6.194
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10729006127"
+    },
+    {
+      "id": "node/10733321736",
+      "kind": "tree",
+      "tags": {
+        "leaf_type": "broadleaved",
+        "natural": "tree"
+      },
+      "points": [
+        -23.664,
+        -23.729
+      ],
+      "osmUrl": "https://www.openstreetmap.org/node/10733321736"
+    },
+    {
+      "id": "way/31325762",
+      "kind": "building",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "24",
+        "addr:postcode": "91058",
+        "addr:street": "Liegnitzer Straße",
+        "amenity": "school",
+        "building": "yes",
+        "check_date": "2024-06-27",
+        "name": "Sonderpädagogisches Förderzentrum Erlangen",
+        "phone": "+49 9131 39919",
+        "roof:shape": "gabled",
+        "short_name": "Förderschule",
+        "website": "https://www.sfz-e.de"
+      },
+      "points": [
+        [
+          -178.626,
+          -36.85
+        ],
+        [
+          -166.975,
+          -36.895
+        ],
+        [
+          -139.662,
+          -37.017
+        ],
+        [
+          -126.504,
+          -37.072
+        ],
+        [
+          -126.431,
+          -21.216
+        ],
+        [
+          -136.374,
+          -21.172
+        ],
+        [
+          -136.36,
+          -19.215
+        ],
+        [
+          -168.027,
+          -19.081
+        ],
+        [
+          -168.042,
+          -21.038
+        ],
+        [
+          -178.561,
+          -20.994
+        ],
+        [
+          -178.626,
+          -36.85
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/31325762",
+      "levels": 1,
+      "height": 3
+    },
+    {
+      "id": "way/37240673",
+      "kind": "path",
+      "tags": {
+        "bicycle": "designated",
+        "foot": "designated",
+        "highway": "footway",
+        "lit": "no",
+        "motorcar": "no",
+        "motorcycle": "no",
+        "surface": "pebblestone",
+        "tracktype": "grade2"
+      },
+      "points": [
+        [
+          161.17,
+          -5.449
+        ],
+        [
+          116.734,
+          -17.736
+        ],
+        [
+          97.23,
+          -15.022
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/37240673"
+    },
+    {
+      "id": "way/40401110",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle",
+        "smoothness": "intermediate",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -171.33,
+          155.184
+        ],
+        [
+          -161.012,
+          148.59
+        ],
+        [
+          -128.241,
+          119.101
+        ],
+        [
+          -91.354,
+          85.898
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/40401110"
+    },
+    {
+      "id": "way/40401111",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "service": "parking_aisle",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -128.241,
+          119.101
+        ],
+        [
+          -139.294,
+          107.381
+        ],
+        [
+          -144.039,
+          102.355
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/40401111"
+    },
+    {
+      "id": "way/41484701",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "1"
+      },
+      "points": [
+        [
+          -10.722,
+          -17.191
+        ],
+        [
+          -26.584,
+          -36.183
+        ],
+        [
+          -22.215,
+          -40.564
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/41484701"
+    },
+    {
+      "id": "way/45017873",
+      "kind": "building",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "61",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "apartments",
+        "building:levels": "2",
+        "roof:levels": "0",
+        "roof:shape": "many"
+      },
+      "points": [
+        [
+          44.292,
+          68.908
+        ],
+        [
+          33.924,
+          78.537
+        ],
+        [
+          33.34,
+          77.914
+        ],
+        [
+          27.247,
+          83.574
+        ],
+        [
+          31.213,
+          87.844
+        ],
+        [
+          29.829,
+          89.134
+        ],
+        [
+          31.869,
+          91.325
+        ],
+        [
+          33.34,
+          89.957
+        ],
+        [
+          37.825,
+          94.783
+        ],
+        [
+          43.377,
+          89.623
+        ],
+        [
+          46.895,
+          93.415
+        ],
+        [
+          52.822,
+          87.911
+        ],
+        [
+          45.013,
+          79.504
+        ],
+        [
+          49.909,
+          74.945
+        ],
+        [
+          44.292,
+          68.908
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/45017873",
+      "levels": 2,
+      "height": 6
+    },
+    {
+      "id": "way/45017893",
+      "kind": "building",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "63",
+        "addr:postcode": "91058",
+        "addr:street": "Erwin-Rommel-Straße",
+        "building": "apartments",
+        "building:colour": "#85552e",
+        "building:levels": "1",
+        "roof:levels": "1",
+        "roof:shape": "many"
+      },
+      "points": [
+        [
+          34.068,
+          101.176
+        ],
+        [
+          42.497,
+          110.417
+        ],
+        [
+          49.131,
+          104.368
+        ],
+        [
+          55.028,
+          110.85
+        ],
+        [
+          41.92,
+          122.804
+        ],
+        [
+          27.536,
+          107.014
+        ],
+        [
+          28.949,
+          105.724
+        ],
+        [
+          27.543,
+          104.19
+        ],
+        [
+          31.033,
+          100.998
+        ],
+        [
+          32.497,
+          102.6
+        ],
+        [
+          34.068,
+          101.176
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/45017893",
+      "levels": 1,
+      "height": 3
+    },
+    {
+      "id": "way/147415942",
+      "kind": "path",
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Egerlandstraße",
+        "parking:left": "lane",
+        "parking:left:orientation": "parallel",
+        "parking:right": "no",
+        "sidewalk": "both",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "width": "8"
+      },
+      "points": [
+        [
+          -65.966,
+          30.145
+        ],
+        [
+          -75.246,
+          38.874
+        ],
+        [
+          -128.003,
+          88.389
+        ],
+        [
+          -144.039,
+          102.355
+        ],
+        [
+          -156.75,
+          113.83
+        ],
+        [
+          -198.656,
+          152.46
+        ],
+        [
+          -229.61,
+          181.115
+        ],
+        [
+          -246.121,
+          196.181
+        ],
+        [
+          -280.997,
+          229.462
+        ],
+        [
+          -291.365,
+          239.025
+        ],
+        [
+          -304.733,
+          251.001
+        ],
+        [
+          -342.097,
+          282.791
+        ],
+        [
+          -351.117,
+          290.475
+        ],
+        [
+          -354.642,
+          293.355
+        ],
+        [
+          -364.989,
+          301.817
+        ],
+        [
+          -383.765,
+          316.561
+        ],
+        [
+          -396.606,
+          326.535
+        ],
+        [
+          -415.634,
+          341.38
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/147415942"
+    },
+    {
+      "id": "way/158514202",
+      "kind": "building",
+      "tags": {
+        "addr:city": "Erlangen",
+        "addr:country": "DE",
+        "addr:housenumber": "10",
+        "addr:postcode": "91058",
+        "addr:street": "Nikolaus-Fiebiger-Straße",
+        "building": "university",
+        "building:levels": "4",
+        "name": "Chemikum",
+        "operator": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+        "ref": "G133.01",
+        "roof:levels": "0",
+        "roof:shape": "flat"
+      },
+      "points": [
+        [
+          -67.654,
+          -232.598
+        ],
+        [
+          -59.297,
+          -232.086
+        ],
+        [
+          -52.664,
+          -231.686
+        ],
+        [
+          -54.142,
+          -207.568
+        ],
+        [
+          -54.336,
+          -204.443
+        ],
+        [
+          -44.393,
+          -203.832
+        ],
+        [
+          -46.16,
+          -175.032
+        ],
+        [
+          -56.103,
+          -175.644
+        ],
+        [
+          -56.557,
+          -168.194
+        ],
+        [
+          -57.069,
+          -159.843
+        ],
+        [
+          -47.14,
+          -159.231
+        ],
+        [
+          -48.885,
+          -130.788
+        ],
+        [
+          -58.814,
+          -131.399
+        ],
+        [
+          -59.16,
+          -125.773
+        ],
+        [
+          -60.451,
+          -104.701
+        ],
+        [
+          -75.433,
+          -105.624
+        ],
+        [
+          -74.258,
+          -124.839
+        ],
+        [
+          -73.804,
+          -132.2
+        ],
+        [
+          -74.986,
+          -132.278
+        ],
+        [
+          -123.439,
+          -135.247
+        ],
+        [
+          -122.639,
+          -148.279
+        ],
+        [
+          -121.673,
+          -164.068
+        ],
+        [
+          -72.037,
+          -161.033
+        ],
+        [
+          -71.064,
+          -176.9
+        ],
+        [
+          -131.392,
+          -180.603
+        ],
+        [
+          -129.618,
+          -209.536
+        ],
+        [
+          -71.064,
+          -205.944
+        ],
+        [
+          -69.29,
+          -205.833
+        ],
+        [
+          -68.829,
+          -213.406
+        ],
+        [
+          -67.654,
+          -232.598
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/158514202",
+      "levels": 4,
+      "height": 12
+    },
+    {
+      "id": "way/218415450",
+      "kind": "path",
+      "tags": {
+        "access": "private",
+        "highway": "service",
+        "lit": "yes",
+        "service": "parking_aisle"
+      },
+      "points": [
+        [
+          -147.219,
+          -59.245
+        ],
+        [
+          -142.568,
+          -50.538
+        ],
+        [
+          -122.747,
+          -49.682
+        ],
+        [
+          -103.279,
+          -11.62
+        ],
+        [
+          -91.188,
+          -14.322
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/218415450"
+    },
+    {
+      "id": "way/244950524",
+      "kind": "building",
+      "tags": {
+        "building": "shed",
+        "building:colour": "#cccccc"
+      },
+      "points": [
+        [
+          -115.703,
+          99.887
+        ],
+        [
+          -122.048,
+          92.937
+        ],
+        [
+          -100.943,
+          73.689
+        ],
+        [
+          -94.605,
+          80.65
+        ],
+        [
+          -115.703,
+          99.887
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/244950524",
+      "levels": 1,
+      "height": 3
+    },
+    {
+      "id": "way/293174672",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "no",
+        "smoothness": "good",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -48.727,
+          -97.896
+        ],
+        [
+          -75.902,
+          -99.508
+        ],
+        [
+          -80.351,
+          -101.399
+        ],
+        [
+          -82.673,
+          -105.268
+        ],
+        [
+          -82.088,
+          -118.034
+        ],
+        [
+          -85.766,
+          -124.994
+        ],
+        [
+          -91.181,
+          -127.997
+        ],
+        [
+          -123.093,
+          -130.988
+        ],
+        [
+          -125.898,
+          -134.179
+        ],
+        [
+          -125.552,
+          -148.379
+        ],
+        [
+          -125.393,
+          -154.695
+        ],
+        [
+          -126.042,
+          -160.599
+        ],
+        [
+          -129.763,
+          -172.753
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/293174672"
+    },
+    {
+      "id": "way/347992471",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-28",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "good",
+        "source:width": "ARCore",
+        "surface": "paving_stones",
+        "width": "5.1"
+      },
+      "points": [
+        [
+          27.219,
+          90.613
+        ],
+        [
+          31.588,
+          94.827
+        ],
+        [
+          34.97,
+          98.085
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/347992471"
+    },
+    {
+      "id": "way/347992472",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-02-27",
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -7.982,
+          24.029
+        ],
+        [
+          -0.714,
+          17.691
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/347992472"
+    },
+    {
+      "id": "way/369940130",
+      "kind": "path",
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Erwin-Rommel-Straße",
+        "name:etymology:wikidata": "Q14060",
+        "parking:both": "lane",
+        "parking:both:orientation": "parallel",
+        "sidewalk": "right",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "intermediate",
+        "source:width": "ARCore",
+        "subject:wikidata": "Q14060",
+        "surface": "asphalt",
+        "width": "10.3"
+      },
+      "points": [
+        [
+          -39.144,
+          63.781
+        ],
+        [
+          -32.367,
+          71.71
+        ],
+        [
+          -20.376,
+          84.92
+        ],
+        [
+          -6.439,
+          100.554
+        ],
+        [
+          6.006,
+          114.564
+        ],
+        [
+          11.104,
+          120.246
+        ],
+        [
+          22.301,
+          134.023
+        ],
+        [
+          31.047,
+          142.041
+        ],
+        [
+          36.549,
+          144.776
+        ],
+        [
+          39.209,
+          146.222
+        ],
+        [
+          44.119,
+          147.878
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/369940130"
+    },
+    {
+      "id": "way/369940133",
+      "kind": "path",
+      "tags": {
+        "cycleway:left": "no",
+        "cycleway:right": "track",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Erwin-Rommel-Straße",
+        "name:etymology:wikidata": "Q14060",
+        "parking:left": "half_on_kerb",
+        "parking:left:orientation": "parallel",
+        "sidewalk": "right",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "good",
+        "subject:wikidata": "Q14060",
+        "surface": "asphalt",
+        "width": "8"
+      },
+      "points": [
+        [
+          -120.187,
+          -68.441
+        ],
+        [
+          -109.048,
+          -47.903
+        ],
+        [
+          -102.811,
+          -36.172
+        ],
+        [
+          -91.188,
+          -14.322
+        ],
+        [
+          -65.966,
+          30.145
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/369940133"
+    },
+    {
+      "id": "way/403434684",
+      "kind": "building",
+      "tags": {
+        "building": "university",
+        "building:levels": "5",
+        "name": "Anorganische Chemie",
+        "ref": "G112.01",
+        "roof:levels": "0",
+        "roof:shape": "flat"
+      },
+      "points": [
+        [
+          -80.985,
+          102.978
+        ],
+        [
+          -42.028,
+          146.299
+        ],
+        [
+          -46.549,
+          150.358
+        ],
+        [
+          -43.968,
+          153.238
+        ],
+        [
+          -44.595,
+          153.805
+        ],
+        [
+          -45.886,
+          154.961
+        ],
+        [
+          -48.474,
+          152.093
+        ],
+        [
+          -61.597,
+          163.902
+        ],
+        [
+          -63.825,
+          165.903
+        ],
+        [
+          -67.445,
+          161.878
+        ],
+        [
+          -90.258,
+          136.503
+        ],
+        [
+          -99.429,
+          126.318
+        ],
+        [
+          -110.569,
+          113.93
+        ],
+        [
+          -88.765,
+          94.327
+        ],
+        [
+          -83.062,
+          100.665
+        ],
+        [
+          -79.356,
+          97.329
+        ],
+        [
+          -77.272,
+          99.642
+        ],
+        [
+          -80.985,
+          102.978
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/403434684",
+      "levels": 5,
+      "height": 15
+    },
+    {
+      "id": "way/403434690",
+      "kind": "building",
+      "tags": {
+        "building": "university",
+        "building:levels": "2",
+        "nohousenumber": "yes",
+        "ref": "G112.01",
+        "roof:shape": "flat"
+      },
+      "points": [
+        [
+          -145.625,
+          145.888
+        ],
+        [
+          -110.569,
+          113.93
+        ],
+        [
+          -99.429,
+          126.318
+        ],
+        [
+          -110.18,
+          136.158
+        ],
+        [
+          -100.929,
+          146.266
+        ],
+        [
+          -114.607,
+          158.753
+        ],
+        [
+          -123.187,
+          149.357
+        ],
+        [
+          -133.699,
+          158.953
+        ],
+        [
+          -145.625,
+          145.888
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/403434690",
+      "levels": 2,
+      "height": 6
+    },
+    {
+      "id": "way/435676238",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "service": "parking_aisle",
+        "smoothness": "bad",
+        "surface": "gravel"
+      },
+      "points": [
+        [
+          39.505,
+          -128.364
+        ],
+        [
+          6.655,
+          -130.321
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/435676238"
+    },
+    {
+      "id": "way/435676242",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "service": "parking_aisle",
+        "smoothness": "intermediate",
+        "surface": "compacted"
+      },
+      "points": [
+        [
+          42.67,
+          -181.559
+        ],
+        [
+          41.603,
+          -163.668
+        ],
+        [
+          40.435,
+          -144.02
+        ],
+        [
+          39.505,
+          -128.364
+        ],
+        [
+          61.265,
+          -127.074
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/435676242"
+    },
+    {
+      "id": "way/444278002",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -58.014,
+          20.493
+        ],
+        [
+          -64.351,
+          7.861
+        ],
+        [
+          -66.666,
+          1.401
+        ],
+        [
+          -68.375,
+          -5.004
+        ],
+        [
+          -69.471,
+          -11.509
+        ],
+        [
+          -69.622,
+          -17.502
+        ],
+        [
+          -69.161,
+          -20.938
+        ],
+        [
+          -67.92,
+          -25.697
+        ],
+        [
+          -63.861,
+          -35.405
+        ],
+        [
+          -57.631,
+          -49.137
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/444278002"
+    },
+    {
+      "id": "way/448452086",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "service": "driveway"
+      },
+      "points": [
+        [
+          -7.542,
+          135.892
+        ],
+        [
+          -6.633,
+          135.135
+        ],
+        [
+          -2.805,
+          131.922
+        ],
+        [
+          4.391,
+          125.884
+        ],
+        [
+          11.104,
+          120.246
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/448452086"
+    },
+    {
+      "id": "way/448452087",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "3"
+      },
+      "points": [
+        [
+          14.226,
+          57.043
+        ],
+        [
+          10.693,
+          60.212
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/448452087"
+    },
+    {
+      "id": "way/457737398",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-02-28",
+        "highway": "footway",
+        "lit": "no",
+        "smoothness": "bad",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          11.104,
+          120.246
+        ],
+        [
+          31.588,
+          94.827
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/457737398"
+    },
+    {
+      "id": "way/484125171",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          33.636,
+          75.968
+        ],
+        [
+          38.438,
+          71.654
+        ],
+        [
+          43.68,
+          64.738
+        ],
+        [
+          48.164,
+          57.844
+        ],
+        [
+          51.387,
+          50.827
+        ],
+        [
+          53.738,
+          40.675
+        ],
+        [
+          54.134,
+          36.628
+        ],
+        [
+          55.447,
+          22.283
+        ],
+        [
+          49.837,
+          6.883
+        ],
+        [
+          47.162,
+          2.646
+        ],
+        [
+          46.506,
+          -2.602
+        ],
+        [
+          47.479,
+          -7.561
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125171"
+    },
+    {
+      "id": "way/484125172",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "2"
+      },
+      "points": [
+        [
+          16.49,
+          57.177
+        ],
+        [
+          33.636,
+          75.968
+        ],
+        [
+          18.545,
+          89.879
+        ],
+        [
+          6.345,
+          93.315
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125172"
+    },
+    {
+      "id": "way/484125174",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-27",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "paving_stones",
+        "width": "2.7"
+      },
+      "points": [
+        [
+          23.044,
+          27.966
+        ],
+        [
+          29.201,
+          22.006
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125174"
+    },
+    {
+      "id": "way/484125176",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-27",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "asphalt",
+        "width": "2.5"
+      },
+      "points": [
+        [
+          29.201,
+          22.006
+        ],
+        [
+          42.115,
+          9.452
+        ],
+        [
+          47.162,
+          2.646
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125176"
+    },
+    {
+      "id": "way/484125177",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-28",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "good",
+        "source:width": "ARCore",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          54.134,
+          36.628
+        ],
+        [
+          68.735,
+          40.853
+        ],
+        [
+          74.482,
+          40.953
+        ],
+        [
+          84.929,
+          40.764
+        ],
+        [
+          94.007,
+          40.697
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125177"
+    },
+    {
+      "id": "way/484125178",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-01-30",
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          68.735,
+          40.853
+        ],
+        [
+          68.613,
+          43.144
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125178"
+    },
+    {
+      "id": "way/484125179",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          74.482,
+          40.953
+        ],
+        [
+          74.489,
+          43.066
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125179"
+    },
+    {
+      "id": "way/484125180",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          -23.678,
+          -8.473
+        ],
+        [
+          -14.867,
+          -10.019
+        ],
+        [
+          -1.572,
+          -11.32
+        ],
+        [
+          11.601,
+          -7.706
+        ],
+        [
+          21.169,
+          -2.38
+        ],
+        [
+          27.565,
+          -0.167
+        ],
+        [
+          30.946,
+          0.167
+        ],
+        [
+          34.184,
+          -0.534
+        ],
+        [
+          40.86,
+          -2.335
+        ],
+        [
+          43.708,
+          -4.926
+        ],
+        [
+          45.345,
+          -6.16
+        ],
+        [
+          47.479,
+          -7.561
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125180"
+    },
+    {
+      "id": "way/484125181",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-27",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "asphalt",
+        "width": "1.4"
+      },
+      "points": [
+        [
+          40.86,
+          -2.335
+        ],
+        [
+          45.165,
+          -0.167
+        ],
+        [
+          47.162,
+          2.646
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125181"
+    },
+    {
+      "id": "way/484125182",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          86.725,
+          11.364
+        ],
+        [
+          85.78,
+          15.022
+        ],
+        [
+          68.771,
+          18.002
+        ],
+        [
+          64.647,
+          19.326
+        ],
+        [
+          55.447,
+          22.283
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125182"
+    },
+    {
+      "id": "way/484125184",
+      "kind": "path",
+      "tags": {
+        "check_date:handrail": "2023-05-16",
+        "handrail": "yes",
+        "highway": "steps",
+        "incline": "down",
+        "lit": "yes",
+        "ramp": "no",
+        "smoothness": "good",
+        "step_count": "7",
+        "surface": "asphalt",
+        "tactile_paving": "no"
+      },
+      "points": [
+        [
+          68.771,
+          18.002
+        ],
+        [
+          70.3,
+          10.319
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484125184"
+    },
+    {
+      "id": "way/484131538",
+      "kind": "path",
+      "tags": {
+        "cycleway:both": "lane",
+        "cycleway:both:lane": "advisory",
+        "highway": "residential",
+        "lanes": "2",
+        "lit": "yes",
+        "maxspeed:type": "DE:urban",
+        "name": "Nikolaus-Fiebiger-Straße",
+        "name:etymology:wikidata": "Q2789910",
+        "parking:both": "no",
+        "sidewalk": "left",
+        "sidewalk:left:surface": "paving_stones",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "asphalt",
+        "width": "7.5"
+      },
+      "points": [
+        [
+          44.119,
+          147.878
+        ],
+        [
+          46.03,
+          142.485
+        ],
+        [
+          49.311,
+          138.093
+        ],
+        [
+          81.425,
+          108.671
+        ],
+        [
+          87.878,
+          100.987
+        ],
+        [
+          91.671,
+          90.324
+        ],
+        [
+          92.738,
+          76.669
+        ],
+        [
+          94.007,
+          40.697
+        ],
+        [
+          95.125,
+          18.436
+        ],
+        [
+          95.377,
+          13.933
+        ],
+        [
+          97.23,
+          -15.022
+        ],
+        [
+          102.479,
+          -96.484
+        ],
+        [
+          103.294,
+          -110.884
+        ],
+        [
+          104.246,
+          -127.574
+        ],
+        [
+          104.31,
+          -129.12
+        ],
+        [
+          105.969,
+          -159.198
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484131538"
+    },
+    {
+      "id": "way/484133806",
+      "kind": "building",
+      "tags": {
+        "building": "shed",
+        "building:levels": "1",
+        "loc_name": "Müllplatz",
+        "roof:shape": "flat"
+      },
+      "points": [
+        [
+          -28.632,
+          56.999
+        ],
+        [
+          -31.992,
+          60.123
+        ],
+        [
+          -10.195,
+          83.508
+        ],
+        [
+          -6.843,
+          80.383
+        ],
+        [
+          -28.632,
+          56.999
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/484133806",
+      "levels": 1,
+      "height": 3
+    },
+    {
+      "id": "way/485472809",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -33.196,
+          85.709
+        ],
+        [
+          -38.12,
+          90.824
+        ],
+        [
+          -67.048,
+          117.444
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/485472809"
+    },
+    {
+      "id": "way/485472810",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "no",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -91.354,
+          85.898
+        ],
+        [
+          -86.097,
+          87.8
+        ],
+        [
+          -69.233,
+          80.65
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/485472810"
+    },
+    {
+      "id": "way/485472811",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -79.183,
+          103.734
+        ],
+        [
+          -67.048,
+          117.444
+        ],
+        [
+          -45.093,
+          141.129
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/485472811"
+    },
+    {
+      "id": "way/485472812",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          4.391,
+          125.884
+        ],
+        [
+          -1.031,
+          120.747
+        ],
+        [
+          -33.196,
+          85.709
+        ],
+        [
+          -68.396,
+          46.446
+        ],
+        [
+          -71.309,
+          45.457
+        ],
+        [
+          -75.246,
+          38.874
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/485472812"
+    },
+    {
+      "id": "way/493408073",
+      "kind": "path",
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Liegnitzer Straße",
+        "sidewalk": "both",
+        "sidewalk:both:surface": "paving_stones",
+        "smoothness": "intermediate",
+        "surface": "paving_stones",
+        "width": "6"
+      },
+      "points": [
+        [
+          -133.822,
+          -63.804
+        ],
+        [
+          -120.187,
+          -68.441
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/493408073"
+    },
+    {
+      "id": "way/521368330",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "no",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "1"
+      },
+      "points": [
+        [
+          0.505,
+          -58.322
+        ],
+        [
+          -1.889,
+          -57.866
+        ],
+        [
+          -9.965,
+          -57.933
+        ],
+        [
+          -11.875,
+          -58.055
+        ],
+        [
+          -13.851,
+          -58.767
+        ],
+        [
+          -18.033,
+          -63.548
+        ],
+        [
+          -18.711,
+          -63.092
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/521368330"
+    },
+    {
+      "id": "way/527905978",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-01-23",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          -1.572,
+          -11.32
+        ],
+        [
+          -1.341,
+          -15.679
+        ],
+        [
+          -1.781,
+          -19.659
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/527905978"
+    },
+    {
+      "id": "way/527905979",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          73.963,
+          -31.857
+        ],
+        [
+          75.888,
+          -29.066
+        ],
+        [
+          75.167,
+          -20.538
+        ],
+        [
+          74.871,
+          -17.068
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/527905979"
+    },
+    {
+      "id": "way/527905980",
+      "kind": "building",
+      "tags": {
+        "access": "yes",
+        "amenity": "parking",
+        "building": "parking",
+        "building:colour": "grey",
+        "building:levels": "6",
+        "building:material": "metal",
+        "capacity:disabled": "yes",
+        "fee": "no",
+        "maxheight": "2",
+        "maxweight": "3",
+        "name": "Parkhaus Chemikum",
+        "opening_hours": "24/7",
+        "operator": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+        "operator:type": "university",
+        "parking": "multi-storey",
+        "roof:shape": "flat",
+        "surface": "concrete",
+        "trailer": "no"
+      },
+      "points": [
+        [
+          89.529,
+          -35.56
+        ],
+        [
+          75.34,
+          -36.539
+        ],
+        [
+          56.11,
+          -37.873
+        ],
+        [
+          61.035,
+          -109.127
+        ],
+        [
+          94.447,
+          -106.814
+        ],
+        [
+          93.783,
+          -97.173
+        ],
+        [
+          89.529,
+          -35.56
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/527905980",
+      "levels": 6,
+      "height": 18
+    },
+    {
+      "id": "way/550916449",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-01-23",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "tracktype": "grade2",
+        "width": "2"
+      },
+      "points": [
+        [
+          47.479,
+          -7.561
+        ],
+        [
+          51.539,
+          -15.823
+        ],
+        [
+          52.555,
+          -18.002
+        ],
+        [
+          52.909,
+          -21.06
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/550916449"
+    },
+    {
+      "id": "way/550916450",
+      "kind": "path",
+      "tags": {
+        "handrail": "yes",
+        "highway": "steps",
+        "incline": "down",
+        "lit": "yes",
+        "ramp": "no",
+        "smoothness": "good",
+        "step_count": "5",
+        "surface": "paving_stones",
+        "tactile_paving": "no",
+        "width": "2"
+      },
+      "points": [
+        [
+          8.047,
+          -30.523
+        ],
+        [
+          11.709,
+          -30.979
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/550916450"
+    },
+    {
+      "id": "way/550916451",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-01-23",
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "5"
+      },
+      "points": [
+        [
+          22.171,
+          -38.829
+        ],
+        [
+          22.143,
+          -36.65
+        ],
+        [
+          22.345,
+          -34.648
+        ],
+        [
+          22.77,
+          -33.336
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/550916451"
+    },
+    {
+      "id": "way/562235006",
+      "kind": "path",
+      "tags": {
+        "covered": "yes",
+        "highway": "service",
+        "indoor": "yes",
+        "lanes": "2",
+        "lanes:backward": "1",
+        "lanes:forward": "1",
+        "maxheight": "2",
+        "maxspeed": "10",
+        "maxweight": "3",
+        "service": "parking_aisle",
+        "smoothness": "excellent",
+        "source": "survey",
+        "surface": "asphalt",
+        "trailer": "no"
+      },
+      "points": [
+        [
+          92.666,
+          -97.307
+        ],
+        [
+          93.286,
+          -97.229
+        ],
+        [
+          93.783,
+          -97.173
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/562235006"
+    },
+    {
+      "id": "way/607111403",
+      "kind": "building",
+      "tags": {
+        "building": "service",
+        "building:colour": "white",
+        "building:levels": "1",
+        "building:part": "yes",
+        "building:use": "service",
+        "frequency": "50",
+        "location": "indoor",
+        "name": "TS 444 Erwin-Rommel-Str. 54",
+        "operator": "Erlanger Stadtwerke",
+        "operator:short": "ESTW",
+        "operator:wikidata": "Q1355293",
+        "operator:wikipedia": "de:Erlanger Stadtwerke",
+        "power": "transformer",
+        "ref": "P=ML15632,ML15623;A=;T=TS 444",
+        "roof:colour": "grey",
+        "roof:shape": "flat",
+        "substation": "minor_distribution",
+        "transformer": "main"
+      },
+      "points": [
+        [
+          -102.717,
+          -5.838
+        ],
+        [
+          -100.489,
+          -1.434
+        ],
+        [
+          -97.583,
+          -3.013
+        ],
+        [
+          -99.804,
+          -7.261
+        ],
+        [
+          -102.717,
+          -5.838
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/607111403",
+      "levels": 1,
+      "height": 3
+    },
+    {
+      "id": "way/608174928",
+      "kind": "path",
+      "tags": {
+        "access": "private",
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "trail_visibility": "excellent",
+        "width": "2"
+      },
+      "points": [
+        [
+          -109.048,
+          -47.903
+        ],
+        [
+          -105.356,
+          -50.116
+        ],
+        [
+          -103.344,
+          -51.317
+        ],
+        [
+          -93.733,
+          -57.076
+        ],
+        [
+          -89.046,
+          -58.544
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608174928"
+    },
+    {
+      "id": "way/608174929",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          -121.572,
+          -71.02
+        ],
+        [
+          -112.631,
+          -76.235
+        ],
+        [
+          -103.481,
+          -79.983
+        ],
+        [
+          -96.148,
+          -80.416
+        ],
+        [
+          -93.985,
+          -80.105
+        ],
+        [
+          -82.384,
+          -83.496
+        ],
+        [
+          -71.374,
+          -86.71
+        ],
+        [
+          -70.336,
+          -86.61
+        ],
+        [
+          -55.274,
+          -92.348
+        ],
+        [
+          -49.102,
+          -93.004
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608174929"
+    },
+    {
+      "id": "way/608174930",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-27",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "trail_visibility": "excellent",
+        "width": "1"
+      },
+      "points": [
+        [
+          -93.733,
+          -57.076
+        ],
+        [
+          -94.281,
+          -63.348
+        ],
+        [
+          -93.416,
+          -65.094
+        ],
+        [
+          -96.148,
+          -80.416
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608174930"
+    },
+    {
+      "id": "way/608174931",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -12.272,
+          -26.653
+        ],
+        [
+          -5.552,
+          -18.959
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608174931"
+    },
+    {
+      "id": "way/608174932",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "1"
+      },
+      "points": [
+        [
+          -9.965,
+          -57.933
+        ],
+        [
+          -5.732,
+          -52.807
+        ],
+        [
+          -6.59,
+          -51.973
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608174932"
+    },
+    {
+      "id": "way/608178018",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -47.083,
+          -123.827
+        ],
+        [
+          -44.011,
+          -123.693
+        ],
+        [
+          -41.408,
+          -167.115
+        ],
+        [
+          -39.483,
+          -212.483
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178018"
+    },
+    {
+      "id": "way/608178019",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          38.596,
+          -41.609
+        ],
+        [
+          36.931,
+          -48.726
+        ],
+        [
+          35.294,
+          -55.331
+        ],
+        [
+          33.492,
+          -61.469
+        ],
+        [
+          30.406,
+          -66.272
+        ],
+        [
+          25.906,
+          -68.808
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178019"
+    },
+    {
+      "id": "way/608178020",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "segregated": "no",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -50.097,
+          -60.446
+        ],
+        [
+          -50.017,
+          -69.452
+        ],
+        [
+          -49.678,
+          -78.682
+        ],
+        [
+          -49.102,
+          -93.004
+        ],
+        [
+          -48.727,
+          -97.896
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178020"
+    },
+    {
+      "id": "way/608178021",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "tracktype": "grade2",
+        "width": "2"
+      },
+      "points": [
+        [
+          74.871,
+          -17.068
+        ],
+        [
+          61.006,
+          -19.559
+        ],
+        [
+          56.362,
+          -20.571
+        ],
+        [
+          52.909,
+          -21.06
+        ],
+        [
+          50.717,
+          -29.678
+        ],
+        [
+          46.686,
+          -35.026
+        ],
+        [
+          42.843,
+          -39.207
+        ],
+        [
+          40.341,
+          -40.797
+        ],
+        [
+          38.596,
+          -41.609
+        ],
+        [
+          29.591,
+          -38.34
+        ],
+        [
+          22.171,
+          -38.829
+        ],
+        [
+          17.665,
+          -42.732
+        ],
+        [
+          11.789,
+          -46.858
+        ],
+        [
+          8.847,
+          -47.747
+        ],
+        [
+          4.074,
+          -54.93
+        ],
+        [
+          0.505,
+          -58.322
+        ],
+        [
+          -4.355,
+          -63.915
+        ],
+        [
+          -12.575,
+          -70.52
+        ],
+        [
+          -22.272,
+          -74.812
+        ],
+        [
+          -30.506,
+          -75.357
+        ],
+        [
+          -38.697,
+          -73.522
+        ],
+        [
+          -42.663,
+          -71.12
+        ],
+        [
+          -46.679,
+          -65.36
+        ],
+        [
+          -48.727,
+          -62.414
+        ],
+        [
+          -50.097,
+          -60.446
+        ],
+        [
+          -57.631,
+          -49.137
+        ],
+        [
+          -63.803,
+          -47.614
+        ],
+        [
+          -72.203,
+          -44.211
+        ],
+        [
+          -80.978,
+          -41.187
+        ],
+        [
+          -88.023,
+          -40.019
+        ],
+        [
+          -96.451,
+          -39.452
+        ],
+        [
+          -102.811,
+          -36.172
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178021"
+    },
+    {
+      "id": "way/608178024",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -39.144,
+          -11.564
+        ],
+        [
+          -30.449,
+          -2.68
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178024"
+    },
+    {
+      "id": "way/608178027",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-03-03",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -67.473,
+          -73.745
+        ],
+        [
+          -70.336,
+          -86.61
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178027"
+    },
+    {
+      "id": "way/608178964",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-01-30",
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -48.727,
+          -97.896
+        ],
+        [
+          -47.184,
+          -122.226
+        ],
+        [
+          -47.083,
+          -123.827
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608178964"
+    },
+    {
+      "id": "way/608716939",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "trail_visibility": "excellent",
+        "width": "2"
+      },
+      "points": [
+        [
+          81.973,
+          9.718
+        ],
+        [
+          86.725,
+          11.364
+        ],
+        [
+          95.377,
+          13.933
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608716939"
+    },
+    {
+      "id": "way/608716940",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          50.717,
+          -29.678
+        ],
+        [
+          56.73,
+          -31.624
+        ],
+        [
+          73.963,
+          -31.857
+        ],
+        [
+          75.34,
+          -36.539
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608716940"
+    },
+    {
+      "id": "way/608716941",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          43.247,
+          -102.244
+        ],
+        [
+          44.869,
+          -97.563
+        ],
+        [
+          47.076,
+          -91.213
+        ],
+        [
+          48.525,
+          -84.419
+        ],
+        [
+          48.799,
+          -79.304
+        ],
+        [
+          48.33,
+          -73.033
+        ],
+        [
+          47.191,
+          -68.118
+        ],
+        [
+          45.886,
+          -62.925
+        ],
+        [
+          44.581,
+          -59.912
+        ],
+        [
+          41.884,
+          -55.92
+        ],
+        [
+          36.931,
+          -48.726
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608716941"
+    },
+    {
+      "id": "way/608719778",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "tracktype": "grade2",
+        "traffic_sign": "DE:240",
+        "width": "2"
+      },
+      "points": [
+        [
+          -31.249,
+          -1.457
+        ],
+        [
+          -30.449,
+          -2.68
+        ],
+        [
+          -26.75,
+          -5.849
+        ],
+        [
+          -23.678,
+          -8.473
+        ],
+        [
+          -19.093,
+          -12.81
+        ],
+        [
+          -10.722,
+          -17.191
+        ],
+        [
+          -5.552,
+          -18.959
+        ],
+        [
+          -1.781,
+          -19.659
+        ],
+        [
+          4.478,
+          -24.863
+        ],
+        [
+          6.936,
+          -28.377
+        ],
+        [
+          8.047,
+          -30.523
+        ],
+        [
+          9.381,
+          -35.438
+        ],
+        [
+          9.445,
+          -41.253
+        ],
+        [
+          8.847,
+          -47.747
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608719778"
+    },
+    {
+      "id": "way/608719779",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-02-27",
+        "highway": "path",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          6.972,
+          31.212
+        ],
+        [
+          1.997,
+          35.66
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608719779"
+    },
+    {
+      "id": "way/608719780",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "2"
+      },
+      "points": [
+        [
+          23.981,
+          31.313
+        ],
+        [
+          26.188,
+          33.837
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608719780"
+    },
+    {
+      "id": "way/608721950",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-03-14",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "intermediate",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -26.361,
+          66.339
+        ],
+        [
+          -32.367,
+          71.71
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608721950"
+    },
+    {
+      "id": "way/608721951",
+      "kind": "path",
+      "tags": {
+        "check_date:surface": "2023-03-14",
+        "highway": "path",
+        "smoothness": "intermediate",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -14.197,
+          79.516
+        ],
+        [
+          -20.376,
+          84.92
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/608721951"
+    },
+    {
+      "id": "way/610643472",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          22.345,
+          -34.648
+        ],
+        [
+          11.709,
+          -30.979
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/610643472"
+    },
+    {
+      "id": "way/658891139",
+      "kind": "path",
+      "tags": {
+        "check_date:ramp": "2025-11-05",
+        "handrail": "yes",
+        "highway": "steps",
+        "incline": "up",
+        "lit": "yes",
+        "platform_lift": "no",
+        "ramp": "no",
+        "step:height": "0.15",
+        "step_count": "7",
+        "surface": "concrete",
+        "tactile_paving": "yes",
+        "tactile_writing": "no"
+      },
+      "points": [
+        [
+          94.476,
+          -127.963
+        ],
+        [
+          104.246,
+          -127.574
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/658891139"
+    },
+    {
+      "id": "way/660521928",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-01-10",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          43.247,
+          -102.244
+        ],
+        [
+          52.433,
+          -106.214
+        ],
+        [
+          60.905,
+          -111.673
+        ],
+        [
+          67.257,
+          -115.176
+        ],
+        [
+          90.445,
+          -127.963
+        ],
+        [
+          94.476,
+          -127.963
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/660521928"
+    },
+    {
+      "id": "way/689330960",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lanes": "2",
+        "lanes:backward": "1",
+        "lanes:forward": "1",
+        "lit": "yes",
+        "maxheight": "2",
+        "maxspeed": "10",
+        "maxweight": "3",
+        "service": "parking_aisle",
+        "smoothness": "excellent",
+        "source": "survey",
+        "surface": "asphalt",
+        "trailer": "no"
+      },
+      "points": [
+        [
+          93.783,
+          -97.173
+        ],
+        [
+          102.479,
+          -96.484
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330960"
+    },
+    {
+      "id": "way/689330961",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "service": "driveway",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          90.445,
+          -127.963
+        ],
+        [
+          90.899,
+          -142.185
+        ],
+        [
+          93.38,
+          -156.93
+        ],
+        [
+          93.928,
+          -160.177
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330961"
+    },
+    {
+      "id": "way/689330964",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -39.144,
+          63.781
+        ],
+        [
+          -35.402,
+          60.49
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330964"
+    },
+    {
+      "id": "way/689330965",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -59.708,
+          24.819
+        ],
+        [
+          -65.966,
+          30.145
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330965"
+    },
+    {
+      "id": "way/689330967",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "service": "parking_aisle",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -6.439,
+          100.554
+        ],
+        [
+          -0.555,
+          94.794
+        ],
+        [
+          6.345,
+          93.315
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330967"
+    },
+    {
+      "id": "way/689330971",
+      "kind": "path",
+      "tags": {
+        "check_date:smoothness": "2025-11-05",
+        "highway": "service",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "asphalt",
+        "width": "4"
+      },
+      "points": [
+        [
+          97.23,
+          -15.022
+        ],
+        [
+          88.333,
+          -14.933
+        ],
+        [
+          74.871,
+          -17.068
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330971"
+    },
+    {
+      "id": "way/689330972",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt"
+      },
+      "points": [
+        [
+          -38.697,
+          -73.522
+        ],
+        [
+          -49.678,
+          -78.682
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/689330972"
+    },
+    {
+      "id": "way/726617975",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "incline": "down",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "1"
+      },
+      "points": [
+        [
+          36.931,
+          -48.726
+        ],
+        [
+          28.603,
+          -50.649
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/726617975"
+    },
+    {
+      "id": "way/772755709",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -74.986,
+          -132.278
+        ],
+        [
+          -75.376,
+          -124.883
+        ],
+        [
+          -74.258,
+          -124.839
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/772755709"
+    },
+    {
+      "id": "way/772755711",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          -81.504,
+          -79.293
+        ],
+        [
+          -82.384,
+          -83.496
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/772755711"
+    },
+    {
+      "id": "way/818163757",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -1.017,
+          38.629
+        ],
+        [
+          1.997,
+          35.66
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163757"
+    },
+    {
+      "id": "way/818163758",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -11.601,
+          27.421
+        ],
+        [
+          -7.982,
+          24.029
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163758"
+    },
+    {
+      "id": "way/818163759",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -8.011,
+          31.224
+        ],
+        [
+          -35.402,
+          60.49
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163759"
+    },
+    {
+      "id": "way/818163760",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "paving_stones",
+        "width": "3.2"
+      },
+      "points": [
+        [
+          20.946,
+          29.734
+        ],
+        [
+          23.981,
+          31.313
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163760"
+    },
+    {
+      "id": "way/818163761",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "paving_stones",
+        "width": "2.5"
+      },
+      "points": [
+        [
+          4.052,
+          44.0
+        ],
+        [
+          20.946,
+          29.734
+        ],
+        [
+          23.044,
+          27.966
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163761"
+    },
+    {
+      "id": "way/818163762",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "paving_stones",
+        "width": "3"
+      },
+      "points": [
+        [
+          15.235,
+          55.853
+        ],
+        [
+          14.226,
+          57.043
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163762"
+    },
+    {
+      "id": "way/818163763",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -35.316,
+          2.302
+        ],
+        [
+          -11.601,
+          27.421
+        ],
+        [
+          -8.011,
+          31.224
+        ],
+        [
+          -1.017,
+          38.629
+        ],
+        [
+          4.052,
+          44.0
+        ],
+        [
+          15.235,
+          55.853
+        ],
+        [
+          16.49,
+          57.177
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163763"
+    },
+    {
+      "id": "way/818163764",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -56.882,
+          22.217
+        ],
+        [
+          -58.014,
+          20.493
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163764"
+    },
+    {
+      "id": "way/818163765",
+      "kind": "path",
+      "tags": {
+        "highway": "pedestrian",
+        "lit": "yes",
+        "noname": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -59.708,
+          24.819
+        ],
+        [
+          -56.882,
+          22.217
+        ],
+        [
+          -35.316,
+          2.302
+        ],
+        [
+          -31.249,
+          -1.457
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/818163765"
+    },
+    {
+      "id": "way/859019540",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "incline": "up",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones",
+        "width": "1"
+      },
+      "points": [
+        [
+          -46.679,
+          -65.36
+        ],
+        [
+          -44.343,
+          -61.836
+        ],
+        [
+          -44.79,
+          -57.999
+        ],
+        [
+          -45.396,
+          -52.784
+        ],
+        [
+          -48.712,
+          -49.015
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/859019540"
+    },
+    {
+      "id": "way/1110035381",
+      "kind": "path",
+      "tags": {
+        "cycleway:left": "no",
+        "cycleway:right": "track",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Erwin-Rommel-Straße",
+        "name:etymology:wikidata": "Q14060",
+        "sidewalk": "right",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "good",
+        "subject:wikidata": "Q14060",
+        "surface": "asphalt",
+        "width": "9"
+      },
+      "points": [
+        [
+          -187.553,
+          -193.769
+        ],
+        [
+          -170.789,
+          -162.856
+        ],
+        [
+          -169.332,
+          -160.11
+        ],
+        [
+          -121.572,
+          -71.02
+        ],
+        [
+          -120.187,
+          -68.441
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1110035381"
+    },
+    {
+      "id": "way/1150184642",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          74.871,
+          -17.068
+        ],
+        [
+          75.123,
+          -11.92
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1150184642"
+    },
+    {
+      "id": "way/1152701916",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          74.871,
+          -17.068
+        ],
+        [
+          82.925,
+          -9.952
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1152701916"
+    },
+    {
+      "id": "way/1153015479",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "yes",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -26.75,
+          -5.849
+        ],
+        [
+          -21.645,
+          -0.345
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1153015479"
+    },
+    {
+      "id": "way/1153043003",
+      "kind": "path",
+      "tags": {
+        "highway": "service",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          95.081,
+          -111.473
+        ],
+        [
+          103.294,
+          -110.884
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1153043003"
+    },
+    {
+      "id": "way/1154086397",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "surface": "ground"
+      },
+      "points": [
+        [
+          -26.584,
+          -36.183
+        ],
+        [
+          -44.79,
+          -57.999
+        ],
+        [
+          -48.727,
+          -62.414
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1154086397"
+    },
+    {
+      "id": "way/1173244207",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "surface": "dirt"
+      },
+      "points": [
+        [
+          31.314,
+          -78.837
+        ],
+        [
+          30.406,
+          -66.272
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1173244207"
+    },
+    {
+      "id": "way/1173244208",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "surface": "dirt"
+      },
+      "points": [
+        [
+          31.314,
+          -78.837
+        ],
+        [
+          36.448,
+          -89.167
+        ],
+        [
+          44.869,
+          -97.563
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1173244208"
+    },
+    {
+      "id": "way/1173244209",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "lit": "yes",
+        "surface": "dirt"
+      },
+      "points": [
+        [
+          67.257,
+          -115.176
+        ],
+        [
+          62.513,
+          -118.968
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1173244209"
+    },
+    {
+      "id": "way/1173244210",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "width": "2"
+      },
+      "points": [
+        [
+          52.909,
+          -21.06
+        ],
+        [
+          39.678,
+          -16.902
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1173244210"
+    },
+    {
+      "id": "way/1173244211",
+      "kind": "path",
+      "tags": {
+        "highway": "path",
+        "surface": "dirt"
+      },
+      "points": [
+        [
+          19.158,
+          -97.24
+        ],
+        [
+          31.314,
+          -78.837
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1173244211"
+    },
+    {
+      "id": "way/1173269451",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "source:width": "ARCore",
+        "surface": "asphalt",
+        "width": "3"
+      },
+      "points": [
+        [
+          -48.727,
+          -97.896
+        ],
+        [
+          -9.546,
+          -95.35
+        ],
+        [
+          16.54,
+          -96.695
+        ],
+        [
+          19.158,
+          -97.24
+        ],
+        [
+          43.247,
+          -102.244
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1173269451"
+    },
+    {
+      "id": "way/1176286578",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "check_date:surface": "2023-02-28",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "good",
+        "source:width": "ARCore",
+        "surface": "paving_stones",
+        "width": "2.2"
+      },
+      "points": [
+        [
+          18.545,
+          89.879
+        ],
+        [
+          27.219,
+          90.613
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1176286578"
+    },
+    {
+      "id": "way/1178408370",
+      "kind": "path",
+      "tags": {
+        "bicycle": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "lit": "yes",
+        "smoothness": "excellent",
+        "surface": "asphalt",
+        "trail_visibility": "excellent",
+        "width": "2"
+      },
+      "points": [
+        [
+          -96.451,
+          -39.452
+        ],
+        [
+          -103.344,
+          -51.317
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1178408370"
+    },
+    {
+      "id": "way/1190965963",
+      "kind": "path",
+      "tags": {
+        "highway": "footway",
+        "lit": "no",
+        "smoothness": "good",
+        "surface": "paving_stones"
+      },
+      "points": [
+        [
+          -1.031,
+          120.747
+        ],
+        [
+          -12.906,
+          131.955
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1190965963"
+    },
+    {
+      "id": "way/1408868360",
+      "kind": "path",
+      "tags": {
+        "cycleway:both": "no",
+        "highway": "residential",
+        "lit": "yes",
+        "maxspeed": "30",
+        "name": "Erwin-Rommel-Straße",
+        "name:etymology:wikidata": "Q14060",
+        "parking:left": "no",
+        "parking:right": "lane",
+        "parking:right:orientation": "parallel",
+        "sidewalk": "right",
+        "sidewalk:right:surface": "paving_stones",
+        "smoothness": "intermediate",
+        "source:width": "ARCore",
+        "subject:wikidata": "Q14060",
+        "surface": "asphalt",
+        "width": "10.3"
+      },
+      "points": [
+        [
+          -65.966,
+          30.145
+        ],
+        [
+          -60.011,
+          38.451
+        ],
+        [
+          -39.144,
+          63.781
+        ]
+      ],
+      "osmUrl": "https://www.openstreetmap.org/way/1408868360"
+    }
+  ]
+}

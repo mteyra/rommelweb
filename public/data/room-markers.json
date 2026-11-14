@@ -1,0 +1,105 @@
+{
+  "source": "https://rommelwood.de/map/",
+  "retrieved": "2026-11-14",
+  "description": "Research summary of the public room index. Individual source records are withheld from the starter until reuse and geometry are validated. No resident identity, occupancy, contact information or access credentials.",
+  "geometryStatus": "unverified-orientation-points",
+  "recordsStatus": "metadata-only",
+  "observedMarkerCount": 703,
+  "usage": "Build a verified room index from approved plans or resident contributions. Do not draw room walls from source orientation coordinates or interpret a marker as an occupant.",
+  "coverage": "Incomplete: no room markers for 51a; modern ground-floor and group-living rooms may be absent.",
+  "rights": "Source: Rommelwood public map. No explicit open license for its custom room database was identified. Public starter contains aggregate research metadata only; full records require established reuse permission. Original cartography, prose, imagery and personal details are not copied.",
+  "summary": {
+    "49": {
+      "markerCount": 70,
+      "floors": {
+        "1": 14,
+        "2": 14,
+        "3": 14,
+        "4": 14,
+        "5": 14
+      }
+    },
+    "51": {
+      "markerCount": 71,
+      "floors": {
+        "0": 25,
+        "1": 25,
+        "2": 21
+      }
+    },
+    "53": {
+      "markerCount": 68,
+      "floors": {
+        "0": 24,
+        "1": 24,
+        "2": 20
+      }
+    },
+    "53a": {
+      "markerCount": 56,
+      "floors": {
+        "1": 14,
+        "2": 14,
+        "3": 14,
+        "4": 14
+      }
+    },
+    "55": {
+      "markerCount": 68,
+      "floors": {
+        "0": 24,
+        "1": 24,
+        "2": 20
+      }
+    },
+    "55a": {
+      "markerCount": 70,
+      "floors": {
+        "1": 14,
+        "2": 14,
+        "3": 14,
+        "4": 14,
+        "5": 14
+      }
+    },
+    "57": {
+      "markerCount": 68,
+      "floors": {
+        "0": 24,
+        "1": 24,
+        "2": 20
+      }
+    },
+    "57a": {
+      "markerCount": 98,
+      "floors": {
+        "1": 14,
+        "2": 14,
+        "3": 14,
+        "4": 14,
+        "5": 14,
+        "6": 14,
+        "7": 14
+      }
+    },
+    "59": {
+      "markerCount": 64,
+      "floors": {
+        "0": 20,
+        "1": 24,
+        "2": 20
+      }
+    },
+    "59a": {
+      "markerCount": 70,
+      "floors": {
+        "1": 14,
+        "2": 14,
+        "3": 14,
+        "4": 14,
+        "5": 14
+      }
+    }
+  },
+  "markers": []
+}

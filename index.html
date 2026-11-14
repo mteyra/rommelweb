@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3f3eb" />
+    <meta name="description" content="Explore Rommelwood in 3D. An independent, source-backed campus map and a foundation for a private resident community at Campus Süd I and II, Erlangen." />
+    <title>Rommelweb — A place to belong.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a href="#directory" class="skip-link">Skip to content</a>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#map" aria-label="Rommelweb home">
+          <svg width="30" height="34" viewBox="0 0 30 34" fill="none" aria-hidden="true"><path d="M15 2 28 9.5v15L15 32 2 24.5v-15L15 2Z M2 9.5 15 17 28 9.5M15 17v15M8.5 5.75 21.5 13.25v15M8.5 13.25v15M8.5 20.75 21.5 13.25" stroke="currentColor" stroke-width="1.4"/></svg>
+          <span>rommelweb<span class="brand-dot">.</span></span>
+        </a>
+        <nav aria-label="Main navigation" class="main-nav">
+          <button data-view="map" class="nav-button active">The campus</button>
+          <button data-view="community" class="nav-button">Community</button>
+          <button data-view="events" class="nav-button">What’s on</button>
+          <button data-view="blueprint" class="nav-button">The blueprint <span>↗</span></button>
+        </nav>
+        <button id="resident-entry" class="resident-button"><span class="lock-icon" aria-hidden="true">⌑</span> Resident access <span>↗</span></button>
+      </header>
+
+      <main id="map-view" class="map-layout">
+        <aside class="directory-panel" id="directory" tabindex="-1">
+          <div class="eyebrow"><span class="status-dot"></span> ERLANGEN · CAMPUS SÜD</div>
+          <h1>Eleven houses.<br>One neighborhood.</h1>
+          <p class="intro">A new perspective on the place<br class="desktop-only"> we call home.</p>
+          <label class="search-box"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4 4"/></svg><input id="building-search" type="search" placeholder="Find your house…" aria-label="Search houses by address, color or wing" autocomplete="off"><kbd>/</kbd></label>
+          <div class="directory-heading"><span>EXPLORE THE HOUSES</span><span id="house-count">11</span></div>
+          <div class="campus-filters" aria-label="Filter campus">
+            <button data-campus="all" class="active">All houses</button><button data-campus="I">Süd I</button><button data-campus="II">Süd II</button>
+          </div>
+          <div id="building-list" class="building-list" aria-label="Buildings"></div>
+          <div class="directory-footer"><span class="small-cross">＋</span><div><strong>Built together.</strong><p>Know a floor, a room, a little detail?<br><button id="contribute">Help complete the map <span>↗</span></button></p></div></div>
+        </aside>
+
+        <section class="map-stage" aria-label="Interactive 3D campus map">
+          <div class="map-header"><div class="view-breadcrumb"><button id="campus-home">CAMPUS SÜD</button><span id="selection-breadcrumb"></span></div><span class="map-version">SPATIAL ATLAS / 0.1</span></div>
+          <div id="scene" tabindex="0" role="region" aria-label="3D map. Drag to orbit, scroll to zoom, arrow keys to orbit. Use the building directory to select a house."></div>
+          <div id="map-labels" class="map-labels"></div>
+          <div id="scene-loading">Building the neighborhood<span>Loading the public map…</span></div>
+          <div class="map-controls" aria-label="Map controls">
+            <button id="zoom-in" aria-label="Zoom in" title="Zoom in">＋</button>
+            <button id="zoom-out" aria-label="Zoom out" title="Zoom out">−</button>
+            <span></span>
+            <button id="top-view" aria-label="Toggle top view" title="Top view" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 8 5-8 5-8-5 8-5Zm-8 9 8 5 8-5M2 15l8 5 8-5"/></svg></button>
+            <button id="reset-view" aria-label="Reset campus view" title="Reset view">⟲</button>
+          </div>
+          <div class="compass" title="Geographic north"><span>N</span><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20"/><path id="north-arrow" d="m22 8 5 22-5-4-5 4Z"/></svg></div>
+          <div class="scene-caption"><span class="caption-cross">＋</span><span id="scene-caption">Your campus, from a different angle.</span></div>
+          <div class="map-bottom">
+            <div class="layer-switch" aria-label="Map layer"><button data-layer="buildings" class="active"><span>◇</span> Buildings</button><button data-layer="community"><span>⌘</span> Community</button></div>
+            <span class="map-hint">DRAG TO ORBIT <i>·</i> SCROLL TO ZOOM</span>
+          </div>
+          <div class="map-attribution"><a href="https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=lod2" target="_blank" rel="noopener">3D: Bayerische Vermessungsverwaltung · CC BY 4.0</a><span>·</span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a><button id="accuracy-button">Model accuracy ↗</button></div>
+        </section>
+
+        <aside class="inspector" id="inspector" aria-label="Building details"></aside>
+      </main>
+
+      <section id="community-view" class="content-view" tabindex="-1" hidden></section>
+      <section id="events-view" class="content-view" tabindex="-1" hidden></section>
+      <section id="blueprint-view" class="content-view" tabindex="-1" hidden></section>
+      <footer class="global-footer"><span>AN INDEPENDENT RESIDENT PROJECT</span><span>49.5767° N &nbsp; 11.0298° E</span><a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></footer>
+    </div>
+    <dialog id="modal"><div id="modal-body"></div><button id="modal-close" class="modal-close" aria-label="Close dialog">×</button></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
