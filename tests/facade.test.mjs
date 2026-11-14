@@ -42,6 +42,14 @@ test('different source material patterns stay schematic and coarse detail uses f
   assert.deepEqual(createFacadeSegments({...rectangle, type: 'RoofSurface'}, 'timber'), []);
 });
 
+test('coarse timber seams are a stable subset of detailed seams during camera LOD blending', () => {
+  const fine = createFacadeSegments(rectangle, 'timber', 1);
+  const coarse = createFacadeSegments(rectangle, 'timber', 4);
+  for (const [a, b] of coarse) {
+    assert.ok(fine.some(([c, d]) => Math.hypot(...a.map((value, i) => value - c[i])) < 1e-8 && Math.hypot(...b.map((value, i) => value - d[i])) < 1e-8), 'board seams must not shift when detail changes');
+  }
+});
+
 test('all real LoD2 walls can be hatched without changing the official model', async () => {
   const source = JSON.parse(await readFile(new URL('../public/data/lod2.json', import.meta.url), 'utf8'));
   const before = JSON.stringify(source);

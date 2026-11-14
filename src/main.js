@@ -5,14 +5,18 @@ import { clubs, filterBuildings, floorName, escapeHTML as esc, downloadFile } fr
 import { validateInteriorData, getInteriorLevel } from './interiors.js';
 import { calendarDraft, orderedDrafts } from './events.js';
 import { icon } from './icons.js';
+import { roomReferences, roomReferenceSource } from './room-references.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const base = import.meta.env.BASE_URL;
 const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, pickerOpen: false, groupIndex: 0, search: '', drafts: [] };
 let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0, directionKey = '';
+let renderedGroupId = null;
+const qrCache = new Map();
 const narrow = () => matchMedia('(max-width: 700px)').matches;
 const crowdedOverlays = () => matchMedia('(max-width: 1100px)').matches;
+const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const house = number => campus.buildings.find(building => building.number === number);
 const setHash = hash => history.replaceState(null, '', `#${hash}`);
 
@@ -62,6 +66,13 @@ function fallbackDirections() {
   })) };
 }
 
+function rotateBearing(element, angle) {
+  const previous = Number(element.dataset.bearing ?? angle);
+  const continuous = previous + Math.atan2(Math.sin(angle - previous), Math.cos(angle - previous));
+  element.dataset.bearing = String(continuous);
+  element.style.transform = `rotate(${continuous}rad)`;
+}
+
 function updateDirections(snapshot) {
   if (!snapshot?.directions) return;
   const directions = [...snapshot.directions].sort((a, b) => a.distance - b.distance).slice(0, 3);
@@ -76,11 +87,14 @@ function updateDirections(snapshot) {
   }
   for (const direction of directions) {
     const button = $(`[data-destination="${direction.number}"]`);
-    button.querySelector('.direction-arrow').style.transform = `rotate(${direction.angle}rad)`;
+    rotateBearing(button.querySelector('.direction-arrow'), direction.angle);
     button.querySelector('.direction-distance').textContent = `${Math.round(direction.distance)} m`;
-    button.dataset.side = Math.sin(direction.angle) < -0.15 ? 'left' : 'right';
+    const lateral = Math.sin(direction.angle);
+    if (!button.dataset.side) button.dataset.side = lateral < -0.08 ? 'left' : 'right';
+    else if (lateral < -0.24) button.dataset.side = 'left';
+    else if (lateral > 0.08) button.dataset.side = 'right';
   }
-  $('#north-arrow').style.transform = `rotate(${-snapshot.heading}rad)`;
+  rotateBearing($('#north-arrow'), -snapshot.heading);
 }
 
 function setPicker(open, focus = false) {
@@ -128,8 +142,9 @@ function selectFloor(floor) {
 function renderFloor() {
   const level = getInteriorLevel(interiors, state.selected, state.floor);
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
-  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<span class="room-chip">${esc(space.label)}</span>`).join('')}</div><p>${level.elevation} m above building base. Approved outlines are visible on this floor.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This section follows the exterior at a provisional floor height. It does not identify occupied rooms or usable headroom. Room plans still need verification.'}</p><button class="text-button" id="contribute-floor">Add a floor detail ↗</button>`;
+  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<span class="room-chip">${esc(space.label)}</span>`).join('')}</div><p>${level.elevation} m above building base. Approved outlines are visible on this floor.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This section follows the exterior at a provisional floor height. It does not identify occupied rooms or usable headroom. Room plans still need verification.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
   if ($('#contribute-floor')) $('#contribute-floor').onclick = () => correctionDialog(state.selected, state.floor);
+  if ($('#room-references')) $('#room-references').onclick = () => roomReferencesDialog();
 }
 
 function setGroups(open, focus = false) {
@@ -140,6 +155,10 @@ function setGroups(open, focus = false) {
   $('#group-deck').hidden = !open;
   $('#open-groups').setAttribute('aria-expanded', open);
   document.body.classList.toggle('group-open', open);
+  if (!open) {
+    qrRevision++;
+    $$('.group-copy, .group-qr').forEach(element => element.classList.remove('is-changing'));
+  }
   if (open) {
     setPicker(false);
     if (crowdedOverlays()) setTimeline(false);
@@ -159,6 +178,20 @@ function setGroupDetails(open) {
 async function renderGroup() {
   const group = groups[state.groupIndex];
   const revision = ++qrRevision;
+  const changing = renderedGroupId !== null && renderedGroupId !== group.id;
+  const animated = changing && !reducedMotion();
+  if (animated) $$('.group-copy, .group-qr').forEach(element => element.classList.add('is-changing'));
+  if (group.source && !qrCache.has(group.source)) {
+    qrCache.set(group.source, QRCode.toString(group.source, {
+      type: 'svg', margin: 4, width: 144, errorCorrectionLevel: 'M',
+      color: { dark: '#292725ff', light: '#eee9e2ff' },
+    }).catch(() => null));
+  }
+  const [svg] = await Promise.all([
+    group.source ? qrCache.get(group.source) : null,
+    animated ? new Promise(resolve => setTimeout(resolve, 90)) : null,
+  ]);
+  if (revision !== qrRevision || !state.groupsOpen) return;
   if ($('#group-details').contains(document.activeElement)) $('#group-toggle-details').focus({ preventScroll: true });
   setGroupDetails(false);
   $('#group-title').textContent = group.title;
@@ -176,11 +209,8 @@ async function renderGroup() {
     action.textContent = 'Visit the group ↗';
     action.onclick = null;
     action.removeAttribute('role');
-    $('#group-qr').innerHTML = '';
-    try {
-      const svg = await QRCode.toString(group.source, { type: 'svg', margin: 4, width: 144, errorCorrectionLevel: 'M', color: { dark: '#292725ff', light: '#eee9e2ff' } });
-      if (revision === qrRevision) { $('#group-qr').innerHTML = svg; $('#group-qr').setAttribute('aria-label', `QR code for the public ${group.title} activity page`); }
-    } catch { if (revision === qrRevision) $('#group-qr').innerHTML = `<span class="qr-unavailable">Use the link ↗</span>`; }
+    $('#group-qr').innerHTML = svg || '<span class="qr-unavailable">Use the link ↗</span>';
+    $('#group-qr').setAttribute('aria-label', svg ? `QR code for the public ${group.title} activity page` : 'QR unavailable. Open Details for the activity link.');
   } else {
     action.href = '#resident-access';
     action.setAttribute('role', 'button');
@@ -189,6 +219,10 @@ async function renderGroup() {
     $('#group-qr').innerHTML = `${icon('lock')}<span>Residents<br>only</span>`;
     $('#group-qr').setAttribute('aria-label', 'Private resident invitation is not connected. No QR code is published.');
   }
+  renderedGroupId = group.id;
+  requestAnimationFrame(() => {
+    if (revision === qrRevision) $$('.group-copy, .group-qr').forEach(element => element.classList.remove('is-changing'));
+  });
 }
 
 function stepGroup(delta) {
@@ -254,10 +288,24 @@ function privateAccess(title = 'Your resident community') {
 }
 
 function toolsDialog() {
-  modal(`<div class="modal-eyebrow">ROMMELWEB / FIELD NOTES</div><h2 class="modal-title">A place taking shape.</h2><p class="modal-lead">Eleven real houses. A community we can build together.</p><div class="tool-links"><button class="outline-button" id="tools-sources">Model & façade sources ↗</button><button class="outline-button" id="tools-correction">Add a building detail ↗</button><button class="outline-button" id="tools-resident">Resident privacy & knocking ↗</button><a class="outline-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architectural brief ↗</a></div><p class="field-note">Drag to orbit · scroll to zoom · arrow keys on the map to orbit · / to find a house · Escape to close an overlay.</p><p class="field-note">Independent resident project. <a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></p>`);
+  modal(`<div class="modal-eyebrow">ROMMELWEB / FIELD NOTES</div><h2 class="modal-title">A place taking shape.</h2><p class="modal-lead">Eleven real houses. A community we can build together.</p><div class="tool-links"><button class="outline-button" id="tools-rooms">Published room designs ↗</button><button class="outline-button" id="tools-sources">Model & façade sources ↗</button><button class="outline-button" id="tools-correction">Add a building detail ↗</button><button class="outline-button" id="tools-resident">Resident privacy & knocking ↗</button><a class="outline-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener">Architectural brief ↗</a></div><p class="field-note">Drag to orbit · scroll to zoom · arrow keys on the map to orbit · / to find a house · Escape to close an overlay.</p><p class="field-note">Independent resident project. <a href="https://rommelwood.de/" target="_blank" rel="noopener">Meet Rommelwood e.V. ↗</a></p>`);
+  $('#tools-rooms').onclick = () => roomReferencesDialog();
   $('#tools-sources').onclick = () => { $('#modal').close(); accuracyDialog(); };
   $('#tools-correction').onclick = () => { $('#modal').close(); correctionDialog(); };
   $('#tools-resident').onclick = () => { $('#modal').close(); privateAccess(); };
+}
+
+function roomReferencesDialog(campusId = house(state.selected)?.campus || 'I') {
+  const reference = roomReferences[campusId];
+  if (!reference) return;
+  const alreadyOpen = $('#modal').open;
+  const returnFocus = lastFocus;
+  modal(`<div class="modal-eyebrow">PUBLISHED ROOM REFERENCES</div><h2 class="modal-title">A first look inside.</h2><p class="modal-lead">Examples from the resident association and operator. These drawings are not assigned to individual rooms on the map.</p><div class="reference-tabs" role="group" aria-label="Choose a campus">${Object.keys(roomReferences).map(id => `<button class="outline-button" data-reference-campus="${id}" aria-pressed="${campusId === id}">Süd ${id} · ${id === 'I' ? 'older' : 'newer'} houses</button>`).join('')}</div><p class="field-note">${esc(reference.houses)}</p><div class="source-list">${reference.plans.map(plan => `<div class="source-item"><strong>${esc(plan.title)}</strong><p>${esc(plan.description)}</p><a href="${plan.url}" target="_blank" rel="noopener">${esc(plan.label)} ↗</a></div>`).join('')}<div class="source-item"><strong>Operator’s 2026 room categories</strong><p>${esc(reference.categories)}</p><p class="field-note">These are category averages including proportional communal areas, not clear-room dimensions or a whole shared apartment’s area.</p><a href="${reference.operatorUrl}" target="_blank" rel="noopener">Open the operator’s factsheet · PDF ↗</a></div></div><p class="source-note">Sketch dimensions are approximate; centimetres are inferred from the drawings. Rooms may be mirrored. Clear ceiling height does not establish floor-to-floor height. <a href="${roomReferenceSource}" target="_blank" rel="noopener">Read Rommelwood’s original notes ↗</a></p>`);
+  if (alreadyOpen) lastFocus = returnFocus;
+  $$('[data-reference-campus]').forEach(button => button.onclick = () => {
+    roomReferencesDialog(button.dataset.referenceCampus);
+    $(`[data-reference-campus="${button.dataset.referenceCampus}"]`).focus({ preventScroll: true });
+  });
 }
 
 function accuracyDialog() {
@@ -311,6 +359,7 @@ async function init() {
     $('#scene').addEventListener('rommel:camera', event => updateDirections(event.detail));
     try { scene = new CampusScene($('#scene'), $('#map-labels'), campus, lod2, interiors, number => travel(number), selectFloor); }
     catch (error) { console.warn('3D unavailable; using the map fallback.', error); activateFallback(); }
+    await scene?.pathLoad;
     $('#scene-loading').hidden = true;
     renderDirectory();
     updateDirections(scene?.navigationSnapshot?.() || fallbackDirections());
@@ -355,7 +404,7 @@ async function init() {
     document.addEventListener('rommel:webgl-lost', activateFallback);
     document.addEventListener('keydown', event => {
       if ($('#modal').open) return;
-      if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) { event.preventDefault(); setPicker(true, true); }
+      if (event.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) && !document.activeElement.isContentEditable) { event.preventDefault(); setPicker(true, true); }
       if (event.key === 'Escape') {
         if (state.pickerOpen) { setPicker(false); $('#all-houses').focus(); }
         else if (state.timelineOpen) { setTimeline(false); $('#open-timeline').focus(); }

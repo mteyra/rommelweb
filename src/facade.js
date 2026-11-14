@@ -81,7 +81,9 @@ export function createFacadeSegments(surface, family = 'timber', detail = 1) {
   const add = (a, b) => segments.push([lift(a), lift(b)]);
   if (family === 'timber') {
     const pitch = profile.spacing * detail;
-    for (let value = Math.ceil(minU / pitch) * pitch + pitch * 0.12; value < maxU; value += pitch) {
+    // Coarse LOD keeps a subset of the fine boards, so blending never slides
+    // material seams sideways as the camera approaches.
+    for (let value = Math.ceil(minU / pitch) * pitch + profile.spacing * 0.12; value < maxU; value += pitch) {
       for (const [a, b] of scanIntervals(rings, 0, value)) add([value, a], [value, b]);
     }
   } else {

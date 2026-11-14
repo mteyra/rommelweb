@@ -4,12 +4,39 @@ import { getInteriorLevel, getLevelElevations } from './interiors.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createFacadeSegments, createStoreyJointSegments, FACADE_PROFILES } from './facade.js';
 import { floorSection, triangulateSection } from './sections.js';
+import { pathSources, loadPathNetwork, triangulatePathPolygons, pathBoundarySegments } from './paths.js';
+import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
+import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 
 const PAPER = 0x151715;
 const INK = 0xa8aaa3;
 const ACTIVE_INK = 0xdfdfd5;
 const HOME_DIRECTION = new THREE.Vector3(0.85, 1.05, 1).normalize();
 const HOME_TARGET = new THREE.Vector3(-3, 11, -7);
+const TRANSITION_MS = 650;
+
+/** A shared zero-velocity, zero-acceleration start and finish for map motion. */
+export function motionEase(progress) {
+  const t = Math.max(0, Math.min(1, progress));
+  return t * t * t * (t * (t * 6 - 15) + 10);
+}
+
+/** Absolute time keeps floor movement identical on fast and slow displays. */
+export function advanceFloorMotion(building, now) {
+  if (!building.gapTween) return false;
+  const t = Math.min((now - building.gapTween.start) / TRANSITION_MS, 1);
+  building.currentGap = building.gapTween.from + (building.gapTween.to - building.gapTween.from) * motionEase(t);
+  building.floorGroups.forEach((floor, i) => { floor.position.y = building.data.baseY + building.floorElevations[i] + i * building.currentGap; });
+  if (t === 1) {
+    building.gapTween = null;
+    if (building.targetGap === 0) {
+      building.exterior.visible = true;
+      building.floorGroups.forEach(floor => { floor.visible = false; });
+    }
+  }
+  return true;
+}
 
 /** Clockwise bearings, zero geographic north; view-relative angles zero screen-up. */
 export function navigationDirections(origin, buildings, heading, excludedNumber = null) {
@@ -53,7 +80,17 @@ export class CampusScene {
     this.controls.minDistance = 20;
     this.controls.maxDistance = 850;
     this.controls.enablePan = true;
-    this.controls.addEventListener('start', () => { this.tween = null; });
+    this.controls.addEventListener('start', () => {
+      this.tween = null;
+      this.isInteracting = true;
+      this.setHovered(null);
+      this.renderer.domElement.style.cursor = 'grabbing';
+    });
+    this.controls.addEventListener('end', () => {
+      this.isInteracting = false;
+      this.hoverDirty = true;
+      this.renderer.domElement.style.cursor = 'grab';
+    });
     this.scene.add(new THREE.AmbientLight(0xffffff, 2.6));
     const sun = new THREE.DirectionalLight(0xffffff, 2);
     sun.position.set(-100, 180, 70);
@@ -71,6 +108,7 @@ export class CampusScene {
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(container);
     this.resize();
+    this.renderer.domElement.style.cursor = 'grab';
     this.renderer.setAnimationLoop(() => this.render());
   }
 
@@ -89,37 +127,58 @@ export class CampusScene {
     }
   }
 
-  makePaths() {
-    this.paths = new THREE.Group();
-    this.paths.userData = { role: 'OSM-streets-and-paths', source: 'OpenStreetMap contributors, ODbL', elevationStatus: 'Flat display plane; terrain height unavailable.' };
-    this.pathCount = 0;
-    for (const path of this.campus.context) {
-      if (path.kind !== 'path' || !path.tags.highway || path.tags.indoor === 'yes') continue;
-      const mappedWidth = Number(path.tags.width);
-      const road = ['residential', 'service', 'unclassified'].includes(path.tags.highway);
-      const metadata = { role: 'sourced-path', osmId: path.id, source: path.osmUrl, highway: path.tags.highway, name: path.tags.name || null };
-      if (Number.isFinite(mappedWidth) && mappedWidth > 0 && mappedWidth <= 30) {
-        const positions = [], edges = [];
-        for (let i = 1; i < path.points.length; i++) {
-          const a = path.points[i - 1], b = path.points[i], length = Math.hypot(b[0] - a[0], b[1] - a[1]);
-          if (length < 0.001) continue;
-          const dx = -(b[1] - a[1]) / length * mappedWidth / 2, dz = (b[0] - a[0]) / length * mappedWidth / 2;
-          const leftA = [a[0] + dx, -0.27, a[1] + dz], rightA = [a[0] - dx, -0.27, a[1] - dz];
-          const leftB = [b[0] + dx, -0.27, b[1] + dz], rightB = [b[0] - dx, -0.27, b[1] - dz];
-          positions.push(...leftA, ...rightA, ...leftB, ...rightA, ...rightB, ...leftB);
-          edges.push(...leftA, ...leftB, ...rightA, ...rightB);
+  makePaths(network = null) {
+    this.pathSourceRecords = pathSources(this.campus.context);
+    this.pathCount = this.pathSourceRecords.length;
+    this.drawPathNetwork(network);
+    if (!network) {
+      const url = `${import.meta.env?.BASE_URL || './'}data/path-network.json`;
+      this.pathLoad = loadPathNetwork(this.campus.context, url).then(cached => {
+        if (!this.disposed && cached) {
+          this.drawPathNetwork(cached);
+          this.dirty = true;
         }
-        const ribbon = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)),
-          new THREE.MeshBasicMaterial({ color: road ? 0x555754 : 0x66665f, transparent: true, opacity: road ? 0.27 : 0.17, side: THREE.DoubleSide, depthWrite: false }));
-        ribbon.userData = { ...metadata, mappedWidth };
-        const outline = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(edges, 3)),
-          new THREE.LineBasicMaterial({ color: 0x7a7d75, transparent: true, opacity: road ? 0.19 : 0.13, depthWrite: false }));
-        this.paths.add(ribbon, outline);
-      } else {
-        const centerline = this.line(path.points.map(([x, z]) => [x, -0.26, z]), 0x7b7c74, road ? 0.26 : 0.23, this.paths);
-        centerline.userData = { ...metadata, widthStatus: 'Unknown; centerline only.' };
+        return cached;
+      });
+    }
+  }
+
+  drawPathNetwork(network) {
+    if (this.paths) {
+      this.scene.remove(this.paths);
+      this.paths.traverse(object => { object.geometry?.dispose(); object.material?.dispose(); });
+    }
+    this.paths = new THREE.Group();
+    this.paths.userData = {
+      role: 'OSM-streets-and-paths', source: 'OpenStreetMap contributors, ODbL',
+      sources: this.pathSourceRecords, cacheStatus: network ? 'validated' : 'source-centerlines',
+      elevationStatus: 'Flat display plane; terrain height unavailable.',
+      geometryStatus: network?.sourceStatus || 'Source centerlines only; derived network unavailable.',
+    };
+    if (network) {
+      for (const [family, polygons] of [['road', network.roadPolygons], ['footpath', network.footpathPolygons]]) {
+        if (!polygons.length) continue;
+        const road = family === 'road';
+        const ribbon = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(triangulatePathPolygons(polygons, -0.27), 3)),
+          new THREE.MeshBasicMaterial({ color: road ? 0x555754 : 0x66665f, transparent: true, opacity: road ? 0.27 : 0.18, side: THREE.DoubleSide, depthWrite: false }));
+        ribbon.userData = { role: 'sourced-path-network', family, sourceIds: network.sources.filter(source => source.width !== null && (source.family === 'road') === road).map(source => source.id) };
+        this.paths.add(ribbon);
       }
-      this.pathCount++;
+      const boundary = new LineSegments2(new LineSegmentsGeometry().setPositions(pathBoundarySegments(network.polygons, -0.255)),
+        new LineMaterial({ color: 0x464a42, linewidth: 0.85, alphaToCoverage: true, depthWrite: false }));
+      boundary.userData.role = 'unioned-network-boundary';
+      this.paths.add(boundary);
+    }
+    const centerlines = network ? network.centerlines : this.pathSourceRecords;
+    for (const family of ['road', 'footpath', 'steps']) {
+      const sources = centerlines.filter(source => source.family === family);
+      if (!sources.length) continue;
+      const positions = sources.flatMap(source => source.points.slice(1).flatMap((point, i) =>
+        [[source.points[i][0], -0.25, source.points[i][1]], [point[0], -0.25, point[1]]])).flat();
+      const centerline = new LineSegments2(new LineSegmentsGeometry().setPositions(positions),
+        new LineMaterial({ color: family === 'road' ? 0x5b5d56 : family === 'steps' ? 0x68685e : 0x50534b, linewidth: family === 'road' ? 1.3 : 1.05, alphaToCoverage: true, depthWrite: false }));
+      centerline.userData = { role: 'sourced-centerlines', family, sourceIds: sources.map(source => source.id), widthStatus: 'Screen-width linework; no ground width inferred.' };
+      this.paths.add(centerline);
     }
     this.scene.add(this.paths);
   }
@@ -279,10 +338,12 @@ export class CampusScene {
     el.setAttribute('aria-label', `Select house ${data.number}, ${data.name}`);
     el.dataset.house = data.number;
     el.addEventListener('click', () => this.onSelect(data.number));
+    el.addEventListener('pointerenter', () => this.setHovered(data.number));
+    el.addEventListener('pointerleave', () => this.setHovered(null));
     this.labelsElement.appendChild(el);
-    const record = { data, group, floorGroups, floorElevations, floorSections, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, jointMaterial, joints, label: el, currentGap: 0, targetGap: 0 };
+    const record = { data, group, floorGroups, floorElevations, floorSections, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
-    this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], (this.exploded && this.selected === data.number ? floorElevations.at(-1) : data.height) + data.baseY + record.currentGap * (data.levels - 1) + 3, data.centroid[1]), type: 'house', number: data.number });
+    this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.baseY + Math.max(data.height, record.exterior.visible ? data.height : floorElevations.at(-1) + record.currentGap * (data.levels - 1)) + 3, data.centroid[1]), type: 'house', number: data.number });
   }
 
   addGeographicLabels() {
@@ -361,6 +422,8 @@ export class CampusScene {
       facadeSegments: [...this.buildings.values()].reduce((sum, b) => sum + b.facadeGroups[0].userData.segmentCount, 0),
       storeyJointSegments: [...this.buildings.values()].reduce((sum, b) => sum + b.joints.userData.segmentCount, 0),
       sourcePaths: this.pathCount,
+      pathCache: this.paths.userData.cacheStatus,
+      mappedPathWidths: this.pathSourceRecords.filter(source => source.width !== null).length,
       floorSections: [...this.buildings.values()].map(b => ({ number: b.data.number, areas: b.floorSections.map(section => section.area), openChains: b.floorSections.reduce((sum, section) => sum + section.openChains.length, 0) })),
       contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photo-informed schematic material marks; no invented windows or room boundaries' };
   }
@@ -387,13 +450,16 @@ export class CampusScene {
     if (number && !this.buildings.has(number)) return;
     this.dirty = true;
     this.selected = number;
+    this.hovered = null;
+    this.hoverDirty = Boolean(this.mousePosition);
     this.exploded = false;
     this.activeFloor = null;
     for (const [num, building] of this.buildings) {
       const active = num === number, dim = number && !active;
-      building.targetGap = 0;
+      building.targetGap = building.currentGap = 0;
+      building.gapTween = null;
       building.exterior.visible = true;
-      building.floorGroups.forEach(f => { f.visible = false; });
+      building.floorGroups.forEach((f, i) => { f.visible = false; f.position.y = building.data.baseY + building.floorElevations[i]; });
       building.exteriorLines.forEach(m => { m.color.set(active ? ACTIVE_INK : INK); m.opacity = dim ? 0.2 : active ? 0.98 : 0.76; });
       building.exteriorFills.forEach(m => { m.opacity = dim ? 0.16 : m.userData.role === 'RoofSurface' ? 0.72 : active ? 0.65 : 0.54; });
       building.facadeMaterials.forEach((m, index) => { m.opacity = dim ? 0.045 : index ? 0.2 : active ? 0.22 : 0.16; });
@@ -417,8 +483,13 @@ export class CampusScene {
     this.exploded = enabled;
     const b = this.buildings.get(this.selected);
     b.targetGap = enabled ? 5 : 0;
-    b.exterior.visible = !enabled;
-    b.floorGroups.forEach(f => { f.visible = enabled; });
+    b.gapTween = this.reduced ? null : { start: performance.now(), from: b.currentGap, to: b.targetGap };
+    if (this.reduced) b.currentGap = b.targetGap;
+    b.exterior.visible = !enabled && (this.reduced || b.currentGap === 0);
+    b.floorGroups.forEach((f, i) => {
+      f.visible = !b.exterior.visible;
+      if (this.reduced) f.position.y = b.data.baseY + b.floorElevations[i] + i * b.currentGap;
+    });
     const direction = this.topView ? new THREE.Vector3(0, 1, 0.0001) : this.camera.position.clone().sub(this.controls.target).normalize();
     const frame = this.fittedCamera(direction, enabled ? 1.3 : 1.38);
     this.animateCamera(frame.position, frame.target);
@@ -460,6 +531,29 @@ export class CampusScene {
     this.tween = { start: performance.now(), position: this.camera.position.clone(), target: this.controls.target.clone(), endPosition: position, endTarget: target };
   }
 
+  pickAt(clientX, clientY) {
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    this.pointer.set(((clientX - rect.left) / rect.width) * 2 - 1, -((clientY - rect.top) / rect.height) * 2 + 1);
+    this.raycaster.setFromCamera(this.pointer, this.camera);
+    return this.raycaster.intersectObjects([...this.buildings.values()].flatMap(building => building.exterior.visible ? building.exteriorPickables : building.pickables))[0];
+  }
+
+  setHovered(number) {
+    if (this.hovered === number) return;
+    const previous = this.hovered;
+    this.hovered = number;
+    this.dirty = true;
+    for (const house of new Set([previous, number])) {
+      const building = this.buildings.get(house);
+      if (!building) continue;
+      const active = house === this.selected, dim = this.selected && !active, hovered = house === number;
+      building.exteriorLines.forEach(material => {
+        material.opacity = active ? 0.98 : hovered ? 0.94 : dim ? 0.2 : 0.76;
+        material.color.set(active || hovered ? ACTIVE_INK : INK);
+      });
+    }
+  }
+
   resize() {
     const { width, height } = this.container.getBoundingClientRect();
     if (!width || !height) return;
@@ -478,13 +572,32 @@ export class CampusScene {
 
   bind() {
     let start;
-    this.renderer.domElement.addEventListener('pointerdown', e => { start = { x: e.clientX, y: e.clientY }; });
+    const activePointers = new Set();
+    this.renderer.domElement.addEventListener('pointerdown', e => {
+      activePointers.add(e.pointerId);
+      start = activePointers.size === 1 && e.isPrimary && e.button === 0 ? { id: e.pointerId, x: e.clientX, y: e.clientY } : null;
+    });
+    this.renderer.domElement.addEventListener('pointercancel', e => {
+      activePointers.delete(e.pointerId);
+      start = null;
+    });
+    this.renderer.domElement.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse' || e.buttons) return;
+      this.mousePosition = { x: e.clientX, y: e.clientY };
+      this.hoverDirty = true;
+    });
+    this.renderer.domElement.addEventListener('pointerleave', () => {
+      this.mousePosition = null;
+      this.hoverDirty = false;
+      this.setHovered(null);
+      this.renderer.domElement.style.cursor = this.isInteracting ? 'grabbing' : 'grab';
+    });
     this.renderer.domElement.addEventListener('pointerup', e => {
-      if (!start || Math.hypot(e.clientX - start.x, e.clientY - start.y) > 5) return;
-      const rect = this.renderer.domElement.getBoundingClientRect();
-      this.pointer.set(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
-      this.raycaster.setFromCamera(this.pointer, this.camera);
-      const hit = this.raycaster.intersectObjects([...this.buildings.values()].flatMap(b => b.exterior.visible ? b.exteriorPickables : b.pickables))[0];
+      activePointers.delete(e.pointerId);
+      const pressed = start;
+      start = null;
+      if (!pressed || pressed.id !== e.pointerId || e.button !== 0 || Math.hypot(e.clientX - pressed.x, e.clientY - pressed.y) > 5) return;
+      const hit = this.pickAt(e.clientX, e.clientY);
       if (hit) {
         const { house, floor } = hit.object.userData;
         if (house === this.selected && this.exploded) this.onFloor(floor);
@@ -519,6 +632,7 @@ export class CampusScene {
   }
 
   dispose() {
+    this.disposed = true;
     this.renderer.setAnimationLoop(null);
     document.removeEventListener('visibilitychange', this.visibilityHandler);
     this.resizeObserver.disconnect();
@@ -533,29 +647,36 @@ export class CampusScene {
 
   render() {
     if (this.container.offsetWidth === 0) return;
-    let changed = this.dirty || Boolean(this.tween);
+    let changed = this.dirty || Boolean(this.tween) || this.hoverDirty;
     this.dirty = false;
     if (this.tween) {
-      const t = Math.min((performance.now() - this.tween.start) / 650, 1);
-      const eased = 1 - (1 - t) ** 3;
+      const t = Math.min((performance.now() - this.tween.start) / TRANSITION_MS, 1);
+      const eased = motionEase(t);
       this.camera.position.lerpVectors(this.tween.position, this.tween.endPosition, eased);
       this.controls.target.lerpVectors(this.tween.target, this.tween.endTarget, eased);
       if (t === 1) this.tween = null;
     }
-    for (const b of this.buildings.values()) {
-      if (b.currentGap !== b.targetGap) {
-        changed = true;
-        b.currentGap = Math.abs(b.targetGap - b.currentGap) < 0.002 ? b.targetGap : b.currentGap + (b.targetGap - b.currentGap) * (this.reduced ? 1 : 0.12);
-        b.floorGroups.forEach((floor, i) => { floor.position.y = b.data.baseY + b.floorElevations[i] + i * b.currentGap; });
-      }
-    }
+    const now = performance.now();
+    for (const building of this.buildings.values()) if (advanceFloorMotion(building, now)) changed = true;
     if (this.controls.update()) changed = true;
+    if (this.hoverDirty && !this.isInteracting && !this.tween) {
+      this.hoverDirty = false;
+      const hit = this.mousePosition && this.pickAt(this.mousePosition.x, this.mousePosition.y);
+      this.setHovered(hit?.object.userData.house || null);
+      this.renderer.domElement.style.cursor = hit ? 'pointer' : 'grab';
+    }
     // Keep OrbitControls damping responsive without redrawing a static campus.
     if (!changed) return;
+    const pixelsPerRadian = this.container.clientHeight / (2 * Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2)));
     for (const b of this.buildings.values()) {
       const distance = this.camera.position.distanceTo(new THREE.Vector3(b.data.centroid[0], b.data.baseY + b.data.height / 2, b.data.centroid[1]));
-      b.facadeGroups[0].visible = distance < 150;
-      b.facadeGroups[1].visible = distance >= 150;
+      const pitch = b.materialFamily === 'timber' ? FACADE_PROFILES.timber.spacing : FACADE_PROFILES.plates.courseHeight;
+      const detail = THREE.MathUtils.smoothstep(pitch * pixelsPerRadian / distance, 0.8, 1.5);
+      const active = b.data.number === this.selected, dim = this.selected && !active;
+      b.facadeMaterials[0].opacity = detail * (dim ? 0.045 : active ? 0.22 : 0.16);
+      b.facadeMaterials[1].opacity = (1 - detail) * (dim ? 0.045 : 0.2);
+      b.facadeGroups[0].visible = detail > 0.005;
+      b.facadeGroups[1].visible = detail < 0.995;
     }
     this.renderer.render(this.scene, this.camera);
     const { width, height } = this.container.getBoundingClientRect();
@@ -579,11 +700,6 @@ export class CampusScene {
     const snapshot = this.navigationSnapshot();
     this.container.dispatchEvent(new CustomEvent('rommel:camera', { detail: snapshot }));
     this.navigationListener?.(snapshot);
-    const arrow = document.getElementById('north-arrow');
-    if (arrow) {
-      arrow.style.transform = `rotate(${-snapshot.heading}rad)`;
-      arrow.style.transformOrigin = '50% 50%';
-    }
   }
 }
 

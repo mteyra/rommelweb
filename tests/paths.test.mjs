@@ -3,31 +3,51 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { Scene } from 'three';
 import { CampusScene } from '../src/scene.js';
+import { pathSources, validatePathNetwork } from '../src/paths.js';
 
-test('ground paths use only mapped outdoor OSM ways, with ribbons only for explicit source widths', async () => {
-  const campus = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url), 'utf8'));
-  const mock = { campus, scene: new Scene(), line: CampusScene.prototype.line };
-  CampusScene.prototype.makePaths.call(mock);
-  const expected = campus.context.filter(item => item.kind === 'path' && item.tags.highway && item.tags.indoor !== 'yes');
-  const rendered = mock.paths.children.filter(object => object.userData.role === 'sourced-path');
-  assert.equal(mock.pathCount, expected.length);
-  assert.deepEqual(rendered.map(object => object.userData.osmId).sort(), expected.map(item => item.id).sort());
-  for (const object of rendered) {
-    const source = expected.find(item => item.id === object.userData.osmId);
-    assert.equal(object.userData.source, source.osmUrl);
-    const positions = object.geometry.getAttribute('position');
-    assert.ok([...positions.array].every(Number.isFinite));
-    if (object.isMesh) {
-      assert.equal(object.userData.mappedWidth, Number(source.tags.width), 'road width must come from a tag');
-      for (let i = 0; i < positions.count; i += 6) {
-        const left = [positions.getX(i), positions.getZ(i)], right = [positions.getX(i + 1), positions.getZ(i + 1)];
-        assert.ok(Math.abs(Math.hypot(left[0] - right[0], left[1] - right[1]) - object.userData.mappedWidth) < 0.0001);
-        const center = [(left[0] + right[0]) / 2, (left[1] + right[1]) / 2];
-        assert.ok(source.points.some(point => Math.hypot(point[0] - center[0], point[1] - center[1]) < 0.0001), 'ribbon must stay centered on the mapped path');
-      }
-    } else {
-      assert.equal(positions.count, source.points.length);
-      source.points.forEach(([x, z], i) => assert.ok(Math.hypot(positions.getX(i) - x, positions.getZ(i) - z) < 0.0001));
-    }
+const campus = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url), 'utf8'));
+const cache = JSON.parse(await readFile(new URL('../public/data/path-network.json', import.meta.url), 'utf8'));
+const sourceRecords = pathSources(campus.context);
+const sceneMock = () => ({
+  campus, scene: new Scene(), pathSourceRecords: sourceRecords,
+  drawPathNetwork: CampusScene.prototype.drawPathNetwork,
+});
+
+function checkCenterlines(mock, expected) {
+  const lines = mock.paths.children.filter(object => object.userData.role === 'sourced-centerlines');
+  assert.deepEqual(lines.flatMap(object => object.userData.sourceIds).sort(), expected.map(source => source.id).sort());
+  for (const object of lines) {
+    const sources = expected.filter(source => source.family === object.userData.family);
+    const starts = object.geometry.getAttribute('instanceStart'), ends = object.geometry.getAttribute('instanceEnd');
+    const segments = sources.flatMap(source => source.points.slice(1).map((point, i) => [source.points[i], point]));
+    assert.equal(starts.count, segments.length);
+    segments.forEach(([a, b], i) => {
+      assert.ok(Math.hypot(starts.getX(i) - a[0], starts.getZ(i) - a[1]) < 0.0001);
+      assert.ok(Math.hypot(ends.getX(i) - b[0], ends.getZ(i) - b[1]) < 0.0001);
+    });
   }
+}
+
+test('rendered network preserves source provenance with no invented widths for untagged paths', async () => {
+  await validatePathNetwork(cache, campus.context);
+  const mock = sceneMock();
+  CampusScene.prototype.makePaths.call(mock, cache);
+  assert.equal(mock.pathCount, sourceRecords.length);
+  assert.deepEqual(mock.paths.userData.sources, sourceRecords);
+  assert.equal(mock.paths.userData.cacheStatus, 'validated');
+  const meshes = mock.paths.children.filter(object => object.userData.role === 'sourced-path-network');
+  assert.deepEqual(meshes.flatMap(object => object.userData.sourceIds).sort(), sourceRecords.filter(source => source.width !== null).map(source => source.id).sort());
+  for (const mesh of meshes) assert.ok([...mesh.geometry.getAttribute('position').array].every(Number.isFinite));
+  assert.equal(mock.paths.children.filter(object => object.userData.role === 'unioned-network-boundary').length, 1);
+  checkCenterlines(mock, sourceRecords.filter(source => source.width === null));
+});
+
+test('missing derived geometry falls back to all exact outdoor source centerlines', () => {
+  const mock = sceneMock();
+  CampusScene.prototype.drawPathNetwork.call(mock, null);
+  assert.equal(mock.paths.userData.cacheStatus, 'source-centerlines');
+  assert.equal(mock.paths.children.filter(object => object.isMesh && !object.isLineSegments2).length, 0);
+  checkCenterlines(mock, sourceRecords);
+  assert.equal(sourceRecords.length, 99);
+  assert.equal(sourceRecords.some(source => campus.context.find(item => item.id === source.id)?.tags.indoor === 'yes'), false);
 });

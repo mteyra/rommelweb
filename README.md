@@ -10,7 +10,7 @@ This independent resident project starts with the actual eleven houses and grows
 
 ![Rommelweb dark campus explorer with eleven official exterior models](docs/preview/campus.png)
 
-Preview details: [group carousel](docs/preview/groups.png) · [expanded group details](docs/preview/group-details.png) · [timber linework](docs/preview/timber-detail.png) · [older-house floor sections](docs/preview/unfolded-levels.png) · [phone layout](docs/preview/mobile.png) · [timeline](docs/preview/timeline.png).
+Preview details: [group carousel](docs/preview/groups.png) · [expanded group details](docs/preview/group-details.png) · [timber linework](docs/preview/timber-detail.png) · [older-house floor sections](docs/preview/unfolded-levels.png) · [published room references](docs/preview/room-references.png) · [phone layout](docs/preview/mobile.png) · [timeline](docs/preview/timeline.png).
 
 ## This release
 
@@ -19,9 +19,11 @@ Preview details: [group carousel](docs/preview/groups.png) · [expanded group de
 - A thin hiking-style signpost with camera-relative arrows and straight-line distances to nearby houses, plus a compact searchable **All houses** picker.
 - Clickable houses, smooth camera focus, drag-to-orbit and wheel zoom. The Rommelweb brand button restores the campus overview; the separate zoom/top-view dock has been removed.
 - Photo-informed façade linework: vertical timber seams on the newer houses and horizontal plate courses with faint short joints on the older houses. Natural timber and older brown façades sit beneath neutral charcoal/gray roofs. Colors, seam spacing and floor bands are schematic; source polygons are unchanged.
-- Streets and paths restored from retained OSM geometry, using mapped widths where available and centerlines otherwise. Decorative trees and gray context-building blocks remain absent.
+- Continuous streets and paths from retained OSM geometry: joined outlines at intersections, mapped widths where available and crisp screen-width centerlines otherwise. Decorative trees and gray context-building blocks remain absent.
 - An unfolded **level study** made of thin horizontal sections through the actual LoD2 shell. Upper outlines can shrink or split beneath the older houses' stepped roofs. OSM floor counts and provisional heights determine the initial sections; they do not establish occupancy or usable headroom.
 - A short group strip centered beneath the breadcrumb, with floating previous/next arrows and expandable **Details**. Locally generated QR codes lead to public activity pages and known houses: cinema at 55, bicycle workshop at 57, garden behind 59, and Sprachcafé at 51a. House WhatsApp cards remain locked and expose no invite link or private QR.
+- A quiet, silent interface: camera and floor movement ease together, sign bearings cross north without spinning, façade line density adjusts to the view, and cached QR codes change with their titles. Reduced-motion preferences are respected. No audio code or media is included.
+- **Published room designs**, available under floor details and map information, links to resident sketches for both campuses and the operator's 2026 categories. Approximate living-zone dimensions remain separate from category-average areas and geolocated interior geometry.
 - A right-side timeline for personal event drafts, with house links, removal and `.ics` export. Drafts exist only in the open tab's memory and disappear on reload or close; no events are published or sent.
 - A responsive house picker and a 2D fallback when WebGL is unavailable.
 - Local correction-file downloads for building details. The form uploads nothing.
@@ -57,24 +59,30 @@ The GitHub Actions workflow is configured to build, test and deploy `dist/` thro
 | --- | --- |
 | `src/scene.js` | Official exterior rendering, OSM paths, camera-relative directions and separated level sections |
 | `src/sections.js` | Horizontal intersections through the source shell, preserving holes and separate parts |
+| `src/paths.js` | Path-source normalization, cache validation and lightweight rendering geometry |
+| `src/path-network.js` | Development-time buffering and union of explicitly mapped path widths |
 | `src/facade.js` | Photo-informed schematic seams clipped to unchanged exterior surfaces |
 | `src/main.js` | Signpost, house picker, group/QR carousel, local timeline and dialogs |
 | `src/data.js` | Public community listings and small data helpers |
+| `src/room-references.js` | Cited room typologies and approximate dimensions, without room placements |
 | `src/events.js` | Order personal drafts and export calendar files |
 | `src/interiors.js` | Validate approved plans and interpolate unknown floor guides around verified elevations |
 | `src/styles.css` | Responsive dark spatial interface |
 | `public/data/lod2.json` | Official exterior polygons transformed into campus coordinates |
 | `public/data/campus.json` | OSM footprints, storey counts, context and house identity references |
+| `public/data/path-network.json` | Precomputed OSM path joins with source records and SHA-256 |
 | `public/data/campus.geojson` | OSM reference footprints and context in geographic coordinates |
 | `public/data/room-markers.json` | Aggregate room-source research metadata; no individual records |
 | `public/data/interiors.json` | Approved interior geometry; empty until plans are reviewed |
 | `data/source/` | Retained source subset, snapshots and checksums |
 | `scripts/acquire-lod2.py` | Reproduce official geometry using pinned projection tooling |
 | `scripts/acquire-campus.py` | Reproduce the OSM reference and context dataset |
+| `scripts/build-path-network.mjs` | Rebuild the path cache; `--check` rejects stale source references |
 | `docs/ARCHITECTURE.md` | Product, privacy, data model, permissions and staged delivery |
 | `docs/GEOMETRY.md` | Detailed geometry provenance, transformations and uncertainties |
 | `docs/FACADE-REFERENCES.md` | Inspected photo references and schematic material-line limits |
 | `docs/OLD-BUILDING-SECTIONS.md` | Older-house roof/floor evidence, clear-height limits and plate-cladding refinement |
+| `docs/ROOM-TYPOLOGY-RESEARCH.md` | Public room drawings, dimensions, operator categories and evidence limits |
 | `docs/RESEARCH.md` | Source register and confirmed campus/community facts |
 | `docs/RESIDENT-VALIDATION.md` | Collaborative validation and first-resident pilot |
 | `docs/INTERIOR-FORMAT.md` | How to add approved room outlines, labels and floor elevations |
@@ -88,9 +96,12 @@ The official source subset is retained so reproduction does not depend on a chan
 ```sh
 uv run scripts/acquire-lod2.py
 python3 scripts/acquire-campus.py
+npm run paths:build
 ```
 
 Read the scripts' `--help` and [geometry notes](docs/GEOMETRY.md) before refreshing sources. Explicit fetches can update upstream data; review the resulting diff and source dates.
+
+Rebuild the path cache whenever mapped paths change. `npm run build` checks that its source digest is current. Polygon union runs during development, not on the browser's animation thread; missing or invalid cache data falls back to the original source centerlines.
 
 Start an interior contribution by selecting a house, choosing **Unfold the floors**, opening a level's details and selecting **Add a floor detail**. The downloaded JSON is a proposal, not an automatic geometry edit. Establish plan reuse permission, remove personal/security details, and follow the validation checklist before adding it to the public model.
 

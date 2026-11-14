@@ -1,24 +1,16 @@
 @font-face {
   font-family: Manrope;
-
   src: url('/fonts/manrope.woff2') format('woff2');
-
   font-style: normal;
-
   font-weight: 200 800;
-
   font-display: swap;
 }
 
 @font-face {
   font-family: 'JetBrains Mono';
-
   src: url('/fonts/jetbrains-mono.woff2') format('woff2');
-
   font-style: normal;
-
   font-weight: 100 800;
-
   font-display: swap;
 }
 
@@ -43,6 +35,7 @@
   --edge: 30px;
   --shadow: 0 20px 80px #0005;
   --blur: blur(24px);
+  --ease-out: cubic-bezier(.22, .68, .22, 1);
 }
 
 * {
@@ -182,7 +175,6 @@ input,textarea,select {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #161716;
 }
 
 #scene {
@@ -190,6 +182,17 @@ input,textarea,select {
   inset: 0;
   outline-offset: -4px;
   touch-action: none;
+}
+
+#scene,
+#map-labels {
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+}
+
+body[data-ready] #scene,
+body[data-ready] #map-labels {
+  opacity: 1;
 }
 
 #scene canvas {
@@ -205,7 +208,6 @@ input,textarea,select {
   height: 90px;
   pointer-events: none;
   z-index: 30;
-  background: linear-gradient(#16171666,transparent);
 }
 
 .world-header>* {
@@ -224,6 +226,7 @@ input,textarea,select {
   font-weight: 600;
   letter-spacing: -1.1px;
   line-height: 1.2;
+  min-height: 32px;
 }
 
 .brand svg {
@@ -242,10 +245,6 @@ input,textarea,select {
 
 .location-trail {
   position: absolute;
-  left: 50%;
-  top: 38px;
-  transform: translateX(-50%);
-  max-width: calc(100% - 670px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -253,7 +252,6 @@ input,textarea,select {
   font-size: 9px;
   font-weight: 400;
   letter-spacing: 1.4px;
-  color: #bfc0b7;
 }
 
 .location-trail span {
@@ -337,7 +335,6 @@ input,textarea,select {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  background: #161716;
   font-size: 22px;
   font-weight: 400;
   letter-spacing: -.7px;
@@ -519,8 +516,6 @@ input,textarea,select {
   pointer-events: none;
 }
 
-/* A quiet wayfinding post: directional arms, not a directory sidebar. */
-
 .house-picker {
   position: absolute;
   bottom: 0;
@@ -669,8 +664,6 @@ input,textarea,select {
   line-height: 1.8;
 }
 
-/* Group cards keep the QR and its destination beside each other. */
-
 .panel-close,.modal-close {
   display: grid;
   place-items: center;
@@ -738,7 +731,7 @@ input,textarea,select {
 }
 
 .timeline-header .eyebrow {
-  font-size: 7px;
+  font-size: 8px;
   letter-spacing: 1.6px;
   color: #a0a199;
 }
@@ -752,8 +745,8 @@ input,textarea,select {
 
 .timeline-header .panel-close {
   margin: -6px -6px 0 0;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
 .timeline-content {
@@ -807,7 +800,7 @@ input,textarea,select {
 
 .timeline-date,.timeline-time {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: .4px;
   line-height: 1.6;
   color: #a0a199;
@@ -821,14 +814,14 @@ input,textarea,select {
 .timeline-item h3,.timeline-entry h3,.timeline-item strong,.timeline-entry strong {
   display: block;
   margin: 5px 0 7px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: -.2px;
 }
 
 .timeline-item p,.timeline-entry p {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.8;
   color: #a0a099;
   overflow-wrap: anywhere;
@@ -843,7 +836,7 @@ input,textarea,select {
   border: 1px solid #c8c8bf26;
   border-radius: 3px;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 8px;
   line-height: 1.4;
   color: #a6a79f;
 }
@@ -910,7 +903,7 @@ input,textarea,select {
 }
 
 .timeline-footer p {
-  font-size: 8px;
+  font-size: 9px;
   line-height: 1.7;
   color: #8b8c85;
   text-align: center;
@@ -976,14 +969,15 @@ body.timeline-open .timeline-tab {
 }
 
 .floor-control-label .eyebrow {
-  font-size: 7px;
+  font-size: 8px;
   letter-spacing: 1.2px;
 }
 
 .text-button {
-  padding: 0;
+  min-height: 28px;
+  padding: 4px 0;
   color: #babab2;
-  font-size: 8px;
+  font-size: 10px;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -997,15 +991,15 @@ body.timeline-open .timeline-tab {
 .floor-button {
   display: grid;
   place-items: center;
-  min-width: 37px;
-  min-height: 31px;
+  min-width: 40px;
+  min-height: 36px;
   padding: 6px 9px;
   background: #191b1933;
   border: 1px solid #d3d4ca26;
   border-radius: 3px;
   color: #b3b3ab;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .floor-button:hover {
@@ -1034,7 +1028,8 @@ body.timeline-open .timeline-tab {
   gap: 9px;
   cursor: pointer;
   color: #c5c6bc;
-  font-size: 9px;
+  min-height: 28px;
+  font-size: 10px;
   list-style: none;
 }
 
@@ -1051,7 +1046,7 @@ body.timeline-open .timeline-tab {
 }
 
 .floor-detail-content,.floor-detail p,.floor-empty {
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.85;
   color: #a1a29a;
 }
@@ -1061,7 +1056,7 @@ body.timeline-open .timeline-tab {
 }
 
 .floor-detail .source-note {
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .floor-empty strong {
@@ -1112,6 +1107,7 @@ body.timeline-open .timeline-tab {
   bottom: 15px;
   z-index: 12;
   pointer-events: none;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1213,7 +1209,7 @@ body.timeline-open .timeline-tab {
 
 .source-note {
   display: block;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.8;
   color: #9b9b94;
   margin-top: 11px;
@@ -1302,7 +1298,7 @@ body.timeline-open .timeline-tab {
 }
 
 .field-note {
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.85;
   color: #9b9b94;
   font-weight: 400;
@@ -1578,68 +1574,8 @@ body.timeline-open .timeline-tab {
   line-height: 1.9;
 }
 
-.calendar-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 16px 0;
-}
-
-.calendar-nav h2 {
-  font-size: 18px;
-}
-
-.calendar-nav>div {
-  display: flex;
-  gap: 4px;
-}
-
-.calendar-nav button {
-  min-width: 27px;
-  min-height: 27px;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  font-size: 12px;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7,1fr);
-  gap: 3px;
-}
-
-.calendar-weekday {
-  font-family: var(--mono);
-  font-size: 7px;
-  text-align: center;
-  color: #a0a199;
-  padding-bottom: 8px;
-}
-
-.calendar-day {
-  font-family: var(--mono);
-  font-size: 9px;
-  padding: 6px;
-  border: 1px solid #d3d4ca13;
-  min-height: 30px;
-  border-radius: 3px;
-  background: #d3d4ca03;
-}
-
-.calendar-day.today {
-  background: #d3d4ca1b;
-  border-color: #d3d4ca67;
-  color: #e8e8de;
-}
-
-.calendar-day.outside {
-  border-color: transparent;
-  background: transparent;
-}
-
 /* Content supplied by the place, group and event controllers. */
+
 .house-label.selected {
   color: #1f211e;
   background: var(--accent);
@@ -1697,7 +1633,7 @@ body.timeline-open .timeline-tab {
   padding-bottom: 13px;
   border-bottom: 1px solid #d3d4ca1b;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: .2px;
   color: #cacac1;
 }
@@ -1705,7 +1641,7 @@ body.timeline-open .timeline-tab {
 .timeline-day small {
   margin-left: auto;
   color: #9a9a93;
-  font-size: 7px;
+  font-size: 8px;
   letter-spacing: 1.1px;
 }
 
@@ -1743,7 +1679,7 @@ body.timeline-open .timeline-tab {
 
 .timeline-event-button > small {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.8;
   color: #a2a39b;
   overflow-wrap: anywhere;
@@ -1752,12 +1688,12 @@ body.timeline-open .timeline-tab {
 .timeline-location {
   display: block;
   margin-top: 12px;
-  font-size: 9px;
+  font-size: 10px;
   color: #c5c5bc;
 }
 
 .timeline-note {
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.9;
   color: #8e8f88;
   margin-top: 25px;
@@ -1797,6 +1733,44 @@ body.timeline-open .timeline-tab {
   color: #bdbdb5;
 }
 
+.reference-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 12px;
+}
+
+.reference-tabs .outline-button {
+  flex: 1 1 190px;
+  width: auto;
+  min-height: 42px;
+  padding: 10px 13px;
+  font-size: 11px;
+}
+
+.reference-tabs [aria-pressed='true'] {
+  border-color: #c7bfae80;
+  background: #d6ccba14;
+  color: #f1ece3;
+}
+
+.reference-tabs + .field-note {
+  margin-top: 0;
+}
+
+.floor-reference-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-top: 10px;
+}
+
+.floor-reference-actions .text-button {
+  min-height: 30px;
+  text-align: left;
+}
+
 .modal-actions:has(#remove-event) {
   flex-wrap: wrap;
 }
@@ -1821,7 +1795,7 @@ body.timeline-open .timeline-tab {
 
 #floor-detail-content > small {
   display: block;
-  font-size: 8px;
+  font-size: 9px;
   line-height: 1.85;
   color: #a1a29a;
   margin-top: 10px;
@@ -1849,7 +1823,6 @@ body.timeline-open .timeline-tab {
 
 @media (max-width:1200px) {
   .location-trail {
-    max-width: calc(100% - 610px);
     font-size: 8px;
   }
 
@@ -1880,15 +1853,6 @@ body.timeline-open .timeline-tab {
 
   .brand svg {
     width: 21px;
-  }
-
-  .location-trail {
-    left: 22px;
-    top: 66px;
-    transform: none;
-    max-width: calc(100% - 80px);
-    font-size: 8px;
-    letter-spacing: 1px;
   }
 
   .waybar {
@@ -1946,7 +1910,7 @@ body.timeline-open .timeline-tab {
     font-size: 10px;
     gap: 6px;
     padding: 9px 10px;
-    min-height: 34px;
+    min-height: 36px;
   }
 
   .waybar button svg {
@@ -1957,14 +1921,6 @@ body.timeline-open .timeline-tab {
   .waybar .waybar-info {
     width: 31px;
     padding: 8px;
-  }
-
-  .location-trail {
-    left: 18px;
-    top: 61px;
-    font-size: 7px;
-    letter-spacing: 1.1px;
-    max-width: calc(100% - 60px);
   }
 
   .location-trail span {
@@ -2020,9 +1976,9 @@ body.timeline-open .timeline-tab {
   }
 
   .floor-button {
-    min-width: 34px;
-    min-height: 33px;
-    font-size: 8px;
+    min-width: 46px;
+    min-height: 36px;
+    font-size: 10px;
   }
 
   .timeline-tab {
@@ -2125,7 +2081,7 @@ body.timeline-open .timeline-tab {
   .waybar button {
     padding: 9px 8px;
     gap: 5px;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .waybar .waybar-info {
@@ -2249,7 +2205,6 @@ body.timeline-open .timeline-tab {
 }
 
 @media (max-height:650px) and (min-width:701px) {
-
   .timeline-panel {
     top: 88px;
     bottom: 68px;
@@ -2265,10 +2220,6 @@ body.timeline-open .timeline-tab {
 }
 
 @media (max-height:650px) and (max-width:700px) {
-  .location-trail {
-    display: none;
-  }
-
   .house-picker {
     bottom: 141px;
     max-height: calc(100dvh - 223px);
@@ -2311,8 +2262,6 @@ body.timeline-open .timeline-tab {
   }
 }
 
-/* On a phone, the path signs sit below the campus instead of across it. */
-
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after {
     scroll-behavior: auto !important;
@@ -2322,6 +2271,7 @@ body.timeline-open .timeline-tab {
 }
 
 /* Quiet neutral instruments. The campus keeps its own material colors. */
+
 #app,
 #scene-loading {
   background: #151715;
@@ -2340,33 +2290,22 @@ body.timeline-open .timeline-tab {
   color: #aaa99b;
 }
 
-/* Thin direction blades fixed to one weathered post. */
 .trailpost {
   position: absolute;
   left: var(--edge);
   bottom: 78px;
-  width: 222px;
   z-index: 15;
 }
 
 .trailpost::before {
   content: '';
   position: absolute;
-  left: 34px;
-  top: 40px;
-  bottom: 17px;
-  width: 3px;
   z-index: -1;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #625f4c77, #93907766 45%, #36363399);
 }
 
 .post-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0 13px 18px 22px;
 }
 
 .post-top .eyebrow {
@@ -2376,16 +2315,13 @@ body.timeline-open .timeline-tab {
 .post-top h2 {
   max-width: 166px;
   margin: 0;
-  font-size: 19px;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: -.65px;
   color: #d8d8ce;
 }
 
 .compass {
   position: relative;
-  width: 25px;
   flex: 0 0 25px;
   color: #aaa997;
 }
@@ -2401,8 +2337,6 @@ body.timeline-open .timeline-tab {
 }
 
 .compass svg {
-  width: 25px;
-  height: 25px;
   transform-origin: center;
 }
 
@@ -2421,7 +2355,6 @@ body.timeline-open .timeline-tab {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
   padding-bottom: 1px;
 }
 
@@ -2429,11 +2362,6 @@ body.timeline-open .timeline-tab {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 198px;
-  min-height: 33px;
-  margin-left: 21px;
-  padding: 8px 20px 8px 14px;
   text-align: left;
   background: none;
   color: #cdcdc4;
@@ -2445,30 +2373,21 @@ body.timeline-open .timeline-tab {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(105deg, #373734eb, #2d2d2add);
   clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 50%, calc(100% - 11px) 100%, 0 100%);
-  box-shadow: inset 0 1px #d8d5b817, inset 0 -1px #15161466;
   transition: background-color 170ms, opacity 170ms;
 }
 
 .direction-sign[data-side='left'] {
-  margin-left: 0;
   padding-left: 22px;
   padding-right: 13px;
-  width: 200px;
 }
 
 .direction-sign[data-side='left']::before {
   clip-path: polygon(11px 0, 100% 0, 100% 100%, 11px 100%, 0 50%);
-  background: linear-gradient(105deg, #333330dd, #3b3b37eb);
 }
 
 .direction-sign:hover {
   color: #f4f4e9;
-}
-
-.direction-sign:hover::before {
-  background: #474743dc;
 }
 
 .direction-sign:focus-visible {
@@ -2477,12 +2396,9 @@ body.timeline-open .timeline-tab {
 }
 
 .direction-icon {
-  width: 28px;
   flex: 0 0 28px;
   font-family: var(--mono);
-  font-size: 11px;
   font-weight: 400;
-  letter-spacing: -.35px;
   color: var(--house-color, #d6d6cb);
 }
 
@@ -2493,7 +2409,6 @@ body.timeline-open .timeline-tab {
 
 .direction-copy strong {
   display: block;
-  font-size: 10px;
   font-weight: 400;
   letter-spacing: .1px;
   line-height: 1.25;
@@ -2507,10 +2422,7 @@ body.timeline-open .timeline-tab {
 
 .direction-arrow {
   display: block;
-  width: 13px;
-  height: 13px;
   flex: 0 0 13px;
-  color: #c4c4ba;
   transform-origin: center;
 }
 
@@ -2523,9 +2435,7 @@ body.timeline-open .timeline-tab {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-left: 23px;
   padding: 15px 0 0;
-  min-height: 30px;
   font-size: 9px;
   color: #adaea5;
 }
@@ -2550,6 +2460,7 @@ body.picker-open .trailpost {
 }
 
 /* A community appears just beneath the place breadcrumb. */
+
 .group-deck {
   position: absolute;
   top: 87px;
@@ -2587,6 +2498,7 @@ body.picker-open .trailpost {
   border-radius: 3px;
   background: #e8e8de;
   color: #2a2b28;
+  transition: opacity 150ms ease;
 }
 
 .group-qr svg,
@@ -2603,7 +2515,7 @@ body.picker-open .trailpost {
   max-width: 90px;
   margin-top: 8px;
   font-family: var(--mono);
-  font-size: 6px;
+  font-size: 7px;
   letter-spacing: .3px;
   line-height: 1.6;
   text-align: center;
@@ -2628,7 +2540,7 @@ body.picker-open .trailpost {
 .group-qr.is-locked > span,
 .group-qr .qr-unavailable {
   font-family: var(--mono);
-  font-size: 6px;
+  font-size: 7px;
   text-align: center;
   line-height: 1.45;
   letter-spacing: .2px;
@@ -2637,17 +2549,46 @@ body.picker-open .trailpost {
 .group-copy {
   position: relative;
   min-width: 0;
+  transition: opacity 150ms ease, translate 180ms var(--ease-out);
+}
+
+.group-copy.is-changing,
+.group-qr.is-changing {
+  opacity: 0;
+  transition-duration: 90ms;
+}
+
+.group-copy.is-changing {
+  translate: 0 2px;
+}
+
+.group-deck:not([hidden]),
+.timeline-panel:not([hidden]),
+.house-picker:not([hidden]),
+#modal[open] {
+  animation: instrument-arrive 180ms var(--ease-out);
+}
+
+@keyframes instrument-arrive {
+  from {
+    opacity: 0;
+    translate: 0 5px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 .group-copy .eyebrow {
-  font-size: 6px;
+  font-size: 7px;
   letter-spacing: 1.35px;
   line-height: 1.3;
   color: #9a9b92;
 }
 
 .group-copy h1 {
-  margin: 5px 0 7px;
+  margin: 4px 0;
   font-size: 21px;
   line-height: 1.15;
   letter-spacing: -.65px;
@@ -2661,10 +2602,10 @@ body.picker-open .trailpost {
 .group-location {
   display: block;
   width: 100%;
-  min-height: 14px;
+  min-height: 24px;
   padding: 0 62px 0 0;
   font-family: var(--mono);
-  font-size: 7px;
+  font-size: 8px;
   line-height: 1.5;
   letter-spacing: -.1px;
   text-align: left;
@@ -2685,9 +2626,8 @@ body.picker-open .trailpost {
 .group-toggle-details {
   position: absolute;
   right: 0;
-  bottom: -3px;
   padding: 3px 0 3px 5px;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.5;
   color: #c7c8bd;
 }
@@ -2698,10 +2638,10 @@ body.picker-open .trailpost {
 
 .group-deck > .panel-close {
   position: absolute;
-  top: -26px;
-  right: -2px;
-  width: 22px;
-  height: 22px;
+  top: -33px;
+  right: -7px;
+  width: 32px;
+  height: 32px;
   border: 0;
   background: none;
   color: #b5b6ac;
@@ -2722,8 +2662,8 @@ body.picker-open .trailpost {
   top: 29px;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -2731,7 +2671,7 @@ body.picker-open .trailpost {
   color: #d7d8cd;
   font-size: 24px;
   font-weight: 300;
-  opacity: .47;
+  opacity: .6;
 }
 
 .group-pagination > button:hover,
@@ -2783,13 +2723,13 @@ body.picker-open .trailpost {
 
 .group-actions .full-button {
   width: auto;
-  min-height: 32px;
+  min-height: 36px;
   padding: 9px 12px;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .group-actions > span {
-  font-size: 8px;
+  font-size: 9px;
   line-height: 1.7;
   color: #989a90;
 }
@@ -2818,9 +2758,9 @@ body.picker-open .trailpost {
 }
 
 /* A single unfolding action, expanding only when the user asks. */
+
 .house-controls {
   position: absolute;
-  left: calc(var(--edge) + 252px);
   bottom: 78px;
   z-index: 16;
   width: 191px;
@@ -2838,7 +2778,7 @@ body.picker-open .trailpost {
   justify-content: center;
   gap: 9px;
   width: 100%;
-  min-height: 34px;
+  min-height: 36px;
   padding: 9px 13px;
   border: 1px solid #cacbc027;
   border-radius: 30px;
@@ -2933,29 +2873,28 @@ body.picker-open .house-controls {
   }
 
   .group-copy h1 {
-    margin: 5px 0 6px;
+    margin: 4px 0;
     font-size: 18px;
     letter-spacing: -.5px;
   }
 
   .group-copy .eyebrow {
-    font-size: 5.5px;
+    font-size: 7px;
     letter-spacing: 1px;
   }
 
   .group-location {
-    padding-right: 48px;
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .group-toggle-details {
-    font-size: 8px;
+    font-size: 9px;
   }
 
   .group-pagination > button {
     top: 25px;
-    width: 29px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     font-size: 22px;
   }
 
@@ -2968,13 +2907,12 @@ body.picker-open .house-controls {
   }
 
   .group-deck > .panel-close {
-    top: -24px;
-    right: -2px;
+    top: -33px;
+    right: -7px;
   }
 
   .group-deck:has(#group-toggle-details[aria-expanded='true']) {
     grid-template-columns: 64px minmax(0, 1fr);
-    max-height: calc(100dvh - 280px);
     overflow-y: auto;
     scrollbar-width: thin;
   }
@@ -2985,7 +2923,7 @@ body.picker-open .house-controls {
   }
 
   .group-deck:has(#group-toggle-details[aria-expanded='true']) .group-qr-column > small {
-    font-size: 5px;
+    font-size: 7px;
   }
 
   .group-details {
@@ -2994,7 +2932,7 @@ body.picker-open .house-controls {
   }
 
   .group-details > p {
-    font-size: 10px;
+    font-size: 11px;
     line-height: 1.8;
   }
 
@@ -3005,45 +2943,17 @@ body.picker-open .house-controls {
   }
 
   .group-actions .full-button {
-    font-size: 8px;
+    font-size: 10px;
     padding: 8px 10px;
-    min-height: 30px;
+    min-height: 36px;
   }
 
   .group-actions > span {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   .trailpost {
-    width: 181px;
     bottom: 99px;
-  }
-
-  .trailpost::before {
-    left: 26px;
-    top: 33px;
-    bottom: 11px;
-    width: 2px;
-  }
-
-  .post-top {
-    gap: 10px;
-    padding: 0 5px 14px 17px;
-  }
-
-  .post-top h2 {
-    font-size: 17px;
-    letter-spacing: -.5px;
-  }
-
-  .compass {
-    width: 20px;
-    flex-basis: 20px;
-  }
-
-  .compass svg {
-    width: 20px;
-    height: 20px;
   }
 
   .compass > span {
@@ -3051,57 +2961,25 @@ body.picker-open .house-controls {
     top: -7px;
   }
 
-  .direction-list {
-    gap: 7px;
-  }
-
-  .direction-list > .direction-sign:nth-child(n+3) {
-    display: none;
-  }
-
   .direction-sign,
   .direction-sign[data-side='left'] {
-    width: 168px;
     min-height: 30px;
-    gap: 7px;
     padding-top: 7px;
     padding-bottom: 7px;
   }
 
   .direction-sign {
-    margin-left: 15px;
     padding-left: 10px;
     padding-right: 15px;
   }
 
   .direction-sign[data-side='left'] {
-    margin-left: 0;
     padding-left: 18px;
     padding-right: 9px;
   }
 
-  .direction-icon {
-    width: 23px;
-    flex-basis: 23px;
-    font-size: 10px;
-  }
-
-  .direction-copy strong {
-    font-size: 9px;
-    letter-spacing: 0;
-  }
-
-  .direction-arrow {
-    width: 11px;
-    height: 11px;
-    flex-basis: 11px;
-  }
-
   .all-houses {
-    min-height: 27px;
-    margin-left: 18px;
-    padding-top: 12px;
-    font-size: 8px;
+    font-size: 10px;
   }
 
   body.house-open .direction-list,
@@ -3120,15 +2998,14 @@ body.picker-open .house-controls {
   }
 
   .house-controls {
-    left: auto;
     right: 18px;
     bottom: 104px;
     width: 169px;
   }
 
   .house-controls > .outline-button {
-    font-size: 9px;
-    min-height: 32px;
+    font-size: 10px;
+    min-height: 36px;
     padding: 8px 11px;
     gap: 7px;
   }
@@ -3164,30 +3041,24 @@ body.picker-open .house-controls {
   }
 
   .group-location {
-    padding-right: 39px;
-    font-size: 7px;
-  }
-
-  .group-toggle-details {
     font-size: 8px;
   }
 
+  .group-toggle-details {
+    font-size: 9px;
+  }
+
   #group-prev {
-    left: -34px;
+    left: -38px;
   }
 
   #group-next {
-    right: -34px;
+    right: -38px;
   }
 
   .group-pagination > button {
-    width: 27px;
+    width: 36px;
     top: 21px;
-  }
-
-  body.house-open .trailpost,
-  body.group-open .trailpost {
-    width: 136px;
   }
 
   body.house-open .post-top,
@@ -3213,15 +3084,14 @@ body.picker-open .house-controls {
   }
 
   .group-deck:has(#group-toggle-details[aria-expanded='true']) {
-    max-height: calc(100dvh - 225px);
     overflow-y: auto;
     scrollbar-width: thin;
   }
 }
 
 .group-toggle-details {
-  min-height: 24px;
-  bottom: -5px;
+  min-height: 32px;
+  bottom: -4px;
 }
 
 .group-deck:has(#group-toggle-details[aria-expanded='true']) {
@@ -3248,6 +3118,7 @@ body.picker-open .house-controls {
 }
 
 /* The direction blades share one real attachment axis, rather than a list edge. */
+
 .trailpost {
   --mast-x: 131px;
   width: 283px;
@@ -3300,6 +3171,13 @@ body.picker-open .house-controls {
   gap: 7px;
   transform: perspective(550px) rotateY(-7deg) rotate(-1deg);
   transform-origin: 16px 50%;
+  transition: margin-left 240ms var(--ease-out), width 240ms var(--ease-out),
+    padding 240ms var(--ease-out), transform 240ms var(--ease-out),
+    color 160ms, scale 160ms;
+}
+
+.direction-sign:active {
+  scale: .985;
 }
 
 .direction-sign::before {
@@ -3352,7 +3230,7 @@ body.picker-open .house-controls {
 }
 
 .direction-copy strong {
-  font-size: 9px;
+  font-size: 10px;
   color: #e1ddd4;
   text-shadow: 0 1px 1px #201b1544;
 }
@@ -3395,7 +3273,7 @@ body.picker-open .house-controls {
   }
 
   .post-top h2 {
-    font-size: 15px;
+    font-size: 16px;
     letter-spacing: -.4px;
   }
 
@@ -3413,13 +3291,9 @@ body.picker-open .house-controls {
     gap: 8px;
   }
 
-  .direction-list > .direction-sign:nth-child(n+3) {
-    display: flex;
-  }
-
   .direction-sign {
     width: 147px;
-    min-height: 29px;
+    min-height: 32px;
     margin-left: calc(var(--mast-x) - 15px);
     padding: 7px 12px 7px 26px;
     gap: 5px;
@@ -3450,7 +3324,7 @@ body.picker-open .house-controls {
   }
 
   .direction-copy strong {
-    font-size: 8px;
+    font-size: 9px;
     letter-spacing: -.05px;
   }
 
@@ -3507,12 +3381,6 @@ body.picker-open .house-controls {
   }
 }
 
-@media (max-height:650px) and (max-width:700px) {
-  .direction-list > .direction-sign:nth-child(n+3) {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion:reduce) {
   .direction-sign::before {
     transition: none;
@@ -3520,6 +3388,7 @@ body.picker-open .house-controls {
 }
 
 /* On phones retain two useful branches: the nearest one on each side when available. */
+
 @media (max-width:700px) {
   .direction-list > .direction-sign:nth-child(n+3) {
     display: none;

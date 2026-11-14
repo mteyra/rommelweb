@@ -53,7 +53,13 @@ The thin hiking-style signpost uses camera-relative bearings and straight-line d
 
 Streets and paths are drawn from retained OSM coordinates. Outdoor ways with a valid mapped width have restrained gray ribbons and edges; other ways retain centerlines rather than receiving an invented physical width. Indoor highway ways are omitted. Schematic trees and gray context-building volumes remain absent. Paths and the ground guide use flat display planes because no surveyed terrain model is available.
 
+The display network buffers the **45 explicitly tagged widths**, joins corners and unions overlaps; it preserves the centerline coordinates of all **99 outdoor ways**. The other **54 ways** retain screen-width linework. Road and footpath fills are disjoint, and the shared outer boundary removes the old per-segment seams at crossings. Rounded joins and caps are display choices, not surveyed kerb geometry. They do not establish a routable graph or accessible entrances.
+
+`npm run paths:build` produces `public/data/path-network.json` from the retained context. The cache includes all normalized source records and a SHA-256 digest. Both the build gate and runtime validate those references; missing, stale or failed cache loads use original source centerlines. Polygon union is computed once during development, so browsers do not repeat it. `polyclip-ts` is a development dependency and is absent from the application bundle.
+
 `src/facade.js` generates surface-clipped seam segments without editing the LoD2 rings. New houses use vertical timber lines; old houses emphasize long horizontal plate courses and keep short staggered joints faint to avoid a brick-grid appearance. **Seam pitches are rendering parameters, not measured construction dimensions.** Thin storey-joint marks on newer houses use provisional floor elevations. Natural timber and older brown façade tones remain distinct from neutral charcoal/gray roofs. These display colors are not measured surface finishes. The material marks disappear with the assembled exterior when switching to the unfolded level study.
+
+Fine façade strokes blend into a coarser subset when their projected spacing becomes too small, reducing shimmer during orbiting without changing any source surface. Camera and floor transitions use elapsed time and share a smooth start/stop curve; folding restores the assembled source shell after the section plates return. Reduced-motion mode places the camera and plates immediately.
 
 The broad patterns are grounded in the [façade reference study](FACADE-REFERENCES.md), refined by the [older-building addendum](OLD-BUILDING-SECTIONS.md). No source photos, traced textures, invented windows or claimed exact loggia positions are added. Material detail, official exterior surfaces and future approved interior geometry retain separate evidence status.
 
@@ -135,6 +141,8 @@ python3 scripts/acquire-campus.py
 python3 scripts/acquire-campus.py --fetch
 ```
 
+After changing the retained path source, run `npm run paths:build`. The normal application build rejects a stale cache; inspect changes to both the source and derived network before committing.
+
 The script requests only public building ways, highway ways and tree nodes in a small campus bounding box. It retains complete OSM responses and sanitized house-marker facts. It does not persist the source site's whole HTML or scrape resident identities. It fails if all 11 distinct expected address-tagged dorm footprints cannot be found. Room acquisition is separate.
 
 For the official exterior model, `uv` resolves the pinned `pyproj` dependency from inline script metadata:
@@ -155,6 +163,6 @@ After refresh, review the diff, especially changed addresses, footprints, levels
 
 The official LoD2-derived database (`data/source/dorms-lod2.gml`, `public/data/lod2.json`) is **CC BY 4.0**. Credit **Datenquelle: Bayerische Vermessungsverwaltung – www.geodaten.bayern.de**, link the source and licence, and indicate that data has been subsetted and coordinate-transformed for this visualization.
 
-The OSM-derived database in `data/source/osm-raw.json`, `public/data/campus.geojson` and the OSM-derived geometry/tag fields of `public/data/campus.json` is made available under the [Open Database Licence 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Keep **© OpenStreetMap contributors**, with a visible link to [OpenStreetMap copyright and licence information](https://www.openstreetmap.org/copyright), on the map. The downloadable GeoJSON represents the OSM reference and context layer. The rendered dorm exteriors come from the separately licensed `lod2.json`.
+The OSM-derived database in `data/source/osm-raw.json`, `public/data/campus.geojson`, `public/data/path-network.json` and the OSM-derived geometry/tag fields of `public/data/campus.json` is made available under the [Open Database Licence 1.0](https://opendatacommons.org/licenses/odbl/1-0/). Keep **© OpenStreetMap contributors**, with a visible link to [OpenStreetMap copyright and licence information](https://www.openstreetmap.org/copyright), on the map. The downloadable GeoJSON represents the OSM reference and context layer. The rendered dorm exteriors come from the separately licensed `lod2.json`.
 
 House naming and aggregate room-research facts come from the cited public resident association pages. Individual room marker records have not been republished without reuse permission. No licence is asserted over third-party website text or photographs, and none of their photos or descriptive prose is reproduced in the model. This project is not affiliated with or an official service of FAU, Studierendenwerk or Rommelwood e.V.

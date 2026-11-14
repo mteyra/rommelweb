@@ -72,6 +72,8 @@ Unfolding a building switches to a **level study** of thin horizontal intersecti
 
 Section elevations use mapped storeys and official model height, with approved floor elevations anchoring refinements. With the current empty interior dataset the guide intervals remain uniform and provisional. Neither a roof-height interpolation nor a section through the exterior establishes a finished-floor height, ceiling clearance or room boundary. The [older-building research](OLD-BUILDING-SECTIONS.md) separates typical-room ceiling evidence and resident roof-space observations from verified whole-floor plans. [GEOMETRY.md](GEOMETRY.md) documents the section method, coordinate transforms and reproducible acquisition.
 
+The public **Published room designs** view is a separate reference catalog. It links to resident sketches and operator category charts for both campuses, distinguishing approximate clear living-zone dimensions from category averages that include communal space. Its records do not have house/floor/room placements and never populate `interiors.json`. See [ROOM-TYPOLOGY-RESEARCH.md](ROOM-TYPOLOGY-RESEARCH.md).
+
 ### Spatial model
 
 Use the hierarchy `campus → building → entrance → level → space`. A space can be a bedroom, apartment, kitchen, corridor, lounge, workshop or other shared facility. A club can occupy a space, meet at an outdoor location or span several buildings.
@@ -113,6 +115,8 @@ Groups are explored in a short strip centered below the breadcrumb, with floatin
 On mobile, use the compact house picker and responsive overlays, opening one main overlay at a time. Never require precise taps on a thin wireframe. Provide keyboard selection, text equivalents for map actions, and a building/facility list if WebGL fails. Screen-reader labels describe buildings and selected spaces without narrating every line segment.
 
 Use instancing or merged line geometry for repeated elements, bounded device pixel ratio, and render-on-demand when idle. Lazy-load detailed floors after a building is selected. Do not fetch protected interior assets until the user is authorized. Keep data independent of Three.js objects so rendering changes do not rewrite the campus records.
+
+The interface stays silent: no music, interaction sounds, speech or audio playback. Motion has a reduced-motion alternative. Mapped path unions are generated ahead of time and checked against source records; browsers receive the static result and retain a source-centerline fallback. Camera bearings, QR content and floor transitions have explicit continuity and cancellation handling so rapid interaction does not leave mismatched state.
 
 ## 4. Public and private boundaries
 
