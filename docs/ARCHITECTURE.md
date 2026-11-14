@@ -10,7 +10,11 @@ Rommelweb is a spatial community home for Campus Süd I and Campus Süd II in Er
 
 The 3D model is both a useful interface and a progressively verified record of the place. Its accuracy must be inspectable. A beautifully rendered estimate must never masquerade as a measured floor plan.
 
-The first public release establishes the map, building navigation, source trail and interaction framework. Its eleven exterior models use official Bavarian LoD2 wall, roof and ground surfaces; its exploded floor intervals remain illustrative. The private resident service will be piloted in one building before wider enrollment. GitHub Pages remains the public frontend deployment target; a separate backend enforces resident access.
+The current frontend establishes the map, building navigation, source trail and interaction framework. Its eleven exterior models use official Bavarian LoD2 wall, roof and ground surfaces; its exploded floor intervals remain illustrative. The dark spatial interface provides a camera-relative hiking signpost, a compact searchable house picker, a group carousel with public activity-page QR codes, and a right-side timeline for personal drafts.
+
+Public QR codes lead to the cited activity websites. House WhatsApp cards show a locked state without an invitation URL or private QR. Timeline drafts exist only in the open tab's memory, can be exported as `.ics`, and disappear on reload or close. There is no connected community event feed, account system or publishing service.
+
+The private resident service will be piloted in one building before wider enrollment. GitHub Pages remains the public frontend deployment target; a separate backend will enforce resident access. Publication is not complete: the current free account plan does not support Pages for this private repository. The repository remains private and no public-visibility approval has been given. See [RELEASE-CHECKS.md](RELEASE-CHECKS.md) for the publication state.
 
 ### Success criteria
 
@@ -58,9 +62,11 @@ See [RESEARCH.md](RESEARCH.md) for the source audit, [GEOMETRY.md](GEOMETRY.md) 
 
 All eleven addresses have been matched to building objects in [Bayerische Vermessungsverwaltung LoD2-BY](https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=lod2), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The official tile `LoD2_32_646_5492_2_BY` supplies 289 exterior polygons, including articulated roof surfaces for the older houses. Source checksums, footprint currency and per-building model creation dates are retained. The source's millimetre serialization precision is not a claim of millimetre surveying accuracy.
 
-Use the official exterior polygons directly. OSM supplies context and mapped storey counts; it does not replace the LoD2 roofs with rectangular approximations. LoD2 is a standardized exterior model, not a current detailed facade or interior survey. The terrain between buildings is schematic even though source building-base height differences are preserved.
+Use the official exterior polygons directly. OSM supplies retained reference/context data and mapped storey counts; it does not replace the LoD2 roofs with rectangular approximations. LoD2 is a standardized exterior model, not a current detailed facade or interior survey. Source building-base height differences are preserved, but surveyed terrain between buildings is absent.
 
-Exploding a building switches to a **level study**: uniform intervals based on mapped storeys and official model height. Those intervals are provisional. Do not represent their elevations as actual finished-floor levels or derive interior walls from them. [GEOMETRY.md](GEOMETRY.md) documents the coordinate transforms and reproducible acquisition.
+The dark redesign uses closer camera framing while retaining the original metre scale, footprints, heights and separations. Decorative trees and gray context volumes are no longer drawn. A separate procedural material layer adds vertical timber seams to the newer houses and staggered horizontal plate joints to the older houses, clipped to the existing wall surfaces. Orientation follows inspected photos; spacing and floor bands remain schematic. No façade photograph or invented window grid is embedded. See [FACADE-REFERENCES.md](FACADE-REFERENCES.md).
+
+Exploding a building switches to a **level study**: intervals based on mapped storeys and official model height, with approved elevations able to anchor future refinements. With the current empty interior dataset those intervals are uniform and provisional. Do not represent them as actual finished-floor levels or derive interior walls from them. [GEOMETRY.md](GEOMETRY.md) documents the coordinate transforms and reproducible acquisition.
 
 ### Spatial model
 
@@ -96,9 +102,11 @@ Confidence values are `authoritative`, `measured`, `source_mapped`, `resident_co
 
 ### Interaction and performance
 
-The normal path is campus overview → building focus → isolated envelope → exploded levels → selected floor/space. A persistent breadcrumb restores the previous scale. Animate the camera and floor separation with reduced-motion support. A plan view should be available for reading room labels.
+The normal path is campus overview → building focus → exploded levels → selected floor/space. The signpost offers nearby destinations and the **All houses** picker reaches every building. Sign arrows rotate relative to the camera; their distances are straight lines from the selected building center, or the overview origin, to destination building centers. They are not walking routes or entrance distances. The home control restores the overview. Camera and floor separation respect reduced-motion preferences, and a top view is available for floor inspection.
 
-On mobile, use a compact building picker and a bottom information sheet. Never require precise taps on a thin wireframe. Provide keyboard selection, text equivalents for map actions, and a building/facility list if WebGL fails. Screen-reader labels describe buildings and selected spaces without narrating every line segment.
+Groups are explored in a compact carousel. Known group locations select the associated house; an unplaced group remains campus-wide. Public QR codes are generated locally and duplicate a visible destination link. The right-side timeline opens without replacing the campus. It orders personal drafts and supports viewing their house, removing them and exporting calendar files; shared event creation remains future work.
+
+On mobile, use the compact house picker and responsive overlays, opening one main overlay at a time. Never require precise taps on a thin wireframe. Provide keyboard selection, text equivalents for map actions, and a building/facility list if WebGL fails. Screen-reader labels describe buildings and selected spaces without narrating every line segment.
 
 Use instancing or merged line geometry for repeated elements, bounded device pixel ratio, and render-on-demand when idle. Lazy-load detailed floors after a building is selected. Do not fetch protected interior assets until the user is authorized. Keep data independent of Three.js objects so rendering changes do not rewrite the campus records.
 
@@ -107,12 +115,12 @@ Use instancing or merged line geometry for repeated elements, bounded device pix
 | Surface | Public GitHub Pages payload | Future protected service |
 |---|---|---|
 | Campus | Approved exterior geometry, public address labels and sources | Restricted plans when applicable |
-| Buildings and clubs | Approved descriptions and public facility locations | Member-only group directory and organizers' private contacts |
+| Buildings and clubs | Approved descriptions, public facility locations and locally generated QR codes for public activity URLs | Member-only group directory and organizers' private contacts |
 | People | Explanation of opt-in participation | Profiles, account identities and discovery permissions |
 | Rooms | Aggregate metadata initially; individual markers only with reuse permission and accuracy labels | Private residency-to-room association |
-| Events | Explicitly published public events | Resident-, building-, club- and invitation-scoped events |
+| Events | Current frontend: volatile personal drafts and local `.ics` export. Future: explicitly published public events | Resident-, building-, club- and invitation-scoped events, editors and publishing |
 | Communication | Explanation and clearly labeled preview controls | Knocks, conversations, moderation and notifications |
-| WhatsApp | Group purpose where approved for public display | Actual invitation secrets and release audit |
+| WhatsApp | Group purpose and explicit locked/unconnected state; no invitation QR | Actual invitation secrets and release audit |
 
 No private record may be embedded in JavaScript, static JSON, source maps, Git history or a public build artifact. Client-side hiding, a secret URL and `robots.txt` do not enforce access. Real resident data must not be used as demonstration content.
 
@@ -120,7 +128,7 @@ No private record may be embedded in JavaScript, static JSON, source maps, Git h
 
 Use **Supabase Auth, an EU-region PostgreSQL database, Edge Functions/server functions and row-level security (RLS)**. This is the recommended implementation, not an integration installed by the public prototype.
 
-The static frontend calls an API adapter. Initially the adapter provides public data and explicit unavailable states. The production adapter calls the authenticated server functions. Shared types and response schemas keep UI components independent of the hosting choice.
+The resident frontend will call an API adapter backed by authenticated server functions. The current static frontend loads public JSON and provides explicit unavailable states for resident services. Shared types and response schemas should keep future UI components independent of the hosting choice.
 
 ```mermaid
 flowchart LR
@@ -212,6 +220,8 @@ Do not promise full chat integration, phone-number privacy inside WhatsApp or au
 
 ## 9. Events, clubs and the network view
 
+The current timeline is a personal drafting tool: entries remain in JavaScript memory for the open tab and can be removed, located on the map or exported as `.ics`. It has no server persistence, shared editing, live feed or invitations. The following requirements describe the future shared event service.
+
 An event has an owner, venue, timezone, lifecycle and independent audience: public, all current residents, selected buildings, club members or named invitees. An editor's permission is a scoped grant. A bike-team organizer can manage that club's events without seeing residents' room records.
 
 Support drafts, publication, cancellation, capacity and RSVP as separate states. Keep instants in UTC and display/recurrence timezone as `Europe/Berlin`; daylight-saving transitions and ambiguous times require explicit handling. Recurring events have occurrence exceptions. Public calendar exports contain public events only.
@@ -248,7 +258,7 @@ Retention periods are explicit operator policy before the pilot: define deletion
 
 | Phase | Deliverable | Exit criterion |
 |---|---|---|
-| 0 — public foundation | Live GitHub Pages map, eleven official LoD2 exteriors, sourced campus inventory, building focus, provisional level study, accuracy labels and accessible fallback | No private data or working-looking false security |
+| 0 — public foundation | Pages-ready dark spatial frontend, eleven official LoD2 exteriors, schematic façade detail, signpost/picker, public group QR carousel, local timeline, provisional level study and accessible fallback | No private data or false security; verify publication after the private-repository/free-plan restriction is resolved |
 | 1 — verified spatial detail | One building validated at a time; floor labels and room markers refined into supported geometry | Source, reuse permission, dimensions and uncertainty recorded |
 | 2 — resident pilot | Supabase EU backend, Auth, expiring memberships, steward tools, protected groups and scoped event editing | Security and operational checks below pass with test accounts |
 | 3 — neighbor connections | Opt-in discovery, knock requests, blocking/reporting and then accepted conversations | Abuse handling, revocation and retention tested |

@@ -1,11 +1,24 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { getInteriorLevel, getLevelElevations } from './interiors.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { createFacadeSegments, createStoreyJointSegments, FACADE_PROFILES } from './facade.js';
 
-const PAPER = 0xf0f2e9;
-const INK = 0x365b50;
-const HOME = new THREE.Vector3(190, 205, 235);
-const HOME_TARGET = new THREE.Vector3(-8, 0, -9);
+const PAPER = 0x101916;
+const INK = 0x9fae92;
+const ACTIVE_INK = 0xd1dfbd;
+const HOME_DIRECTION = new THREE.Vector3(0.85, 1.05, 1).normalize();
+const HOME_TARGET = new THREE.Vector3(-3, 11, -7);
+
+/** Clockwise bearings, zero geographic north; view-relative angles zero screen-up. */
+export function navigationDirections(origin, buildings, heading, excludedNumber = null) {
+  return buildings.filter(building => building.number !== excludedNumber).map(building => {
+    const dx = building.centroid[0] - origin[0], dz = building.centroid[1] - origin[1];
+    const bearing = (Math.atan2(dx, -dz) + Math.PI * 2) % (Math.PI * 2);
+    const angle = Math.atan2(Math.sin(bearing - heading), Math.cos(bearing - heading));
+    return { number: building.number, angle, distance: Math.hypot(dx, dz), bearing };
+  }).sort((a, b) => a.distance - b.distance);
+}
 
 export class CampusScene {
   constructor(container, labels, campus, lod2, interiors, onSelect, onFloor) {
@@ -28,16 +41,16 @@ export class CampusScene {
     container.appendChild(this.renderer.domElement);
     this.renderer.domElement.setAttribute('aria-hidden', 'true');
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.Fog(PAPER, 370, 730);
-    this.camera = new THREE.PerspectiveCamera(36, 1, 0.1, 1300);
-    this.camera.position.copy(HOME);
+    this.scene.fog = new THREE.Fog(PAPER, 440, 1000);
+    this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 1600);
+    this.camera.position.copy(HOME_TARGET).addScaledVector(HOME_DIRECTION, 265);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.target.copy(HOME_TARGET);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.09;
     this.controls.maxPolarAngle = Math.PI / 2.08;
     this.controls.minDistance = 20;
-    this.controls.maxDistance = 600;
+    this.controls.maxDistance = 850;
     this.controls.enablePan = true;
     this.controls.addEventListener('start', () => { this.tween = null; });
     this.scene.add(new THREE.AmbientLight(0xffffff, 2.6));
@@ -45,8 +58,12 @@ export class CampusScene {
     sun.position.set(-100, 180, 70);
     this.scene.add(sun);
     this.makeGround();
-    this.makeContext();
     for (const building of campus.buildings) this.makeBuilding(building);
+    this.campusBounds = new THREE.Box3();
+    for (const building of lod2.buildings) for (const surface of building.surfaces) {
+      for (const point of surface.points) this.campusBounds.expandByPoint(new THREE.Vector3(...point));
+    }
+    this.campusCenter = this.campusBounds.getCenter(new THREE.Vector3());
     this.addGeographicLabels();
     this.bind();
     this.resizeObserver = new ResizeObserver(() => this.resize());
@@ -56,17 +73,18 @@ export class CampusScene {
   }
 
   makeGround() {
-    const grid = new THREE.GridHelper(600, 120, 0xc3cdc0, 0xd9dfd1);
-    grid.material.transparent = true;
-    grid.material.opacity = 0.38;
-    grid.position.y = -0.2;
-    this.scene.add(grid);
-    const border = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(-140, 0, -130), new THREE.Vector3(130, 0, -130),
-      new THREE.Vector3(130, 0, 130), new THREE.Vector3(-140, 0, 130),
-    ]), new THREE.LineDashedMaterial({ color: 0xa6b7a8, dashSize: 2, gapSize: 2 }));
-    border.computeLineDistances();
-    this.scene.add(border);
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(1800, 1800), new THREE.MeshBasicMaterial({ color: PAPER }));
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -0.35;
+    ground.userData.role = 'minimal-ground';
+    this.scene.add(ground);
+    const radius = 127;
+    const points = Array.from({ length: 161 }, (_, i) => [Math.sin(i * Math.PI * 2 / 160) * radius, -0.3, Math.cos(i * Math.PI * 2 / 160) * radius]);
+    this.line(points, 0x53634f, 0.18);
+    for (let i = 0; i < 4; i++) {
+      const angle = i * Math.PI / 2;
+      this.line([[Math.sin(angle) * (radius - 1.5), -0.29, Math.cos(angle) * (radius - 1.5)], [Math.sin(angle) * (radius + 1.5), -0.29, Math.cos(angle) * (radius + 1.5)]], INK, 0.3);
+    }
   }
 
   footprintShape(points) {
@@ -82,34 +100,6 @@ export class CampusScene {
     return geometry;
   }
 
-  makeContext() {
-    const treeMaterial = new THREE.LineBasicMaterial({ color: 0x99af89, transparent: true, opacity: 0.32 });
-    const treeGeometry = new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(3.7, 0));
-    for (const item of this.campus.context) {
-      if (item.kind === 'tree') {
-        const [x, z] = item.points;
-        if (Math.abs(x) > 140 || Math.abs(z) > 130) continue;
-        const tree = new THREE.LineSegments(treeGeometry, treeMaterial);
-        tree.position.set(x, 4.2, z);
-        tree.scale.y = 1.35;
-        this.scene.add(tree);
-        this.line([[x, 0, z], [x, 3.4, z]], 0xb0bca4, 0.45);
-      } else if (item.kind === 'building') {
-        const pts = item.points;
-        if (!Array.isArray(pts?.[0]) || pts.some(([x, z]) => Math.abs(x) > 160 || Math.abs(z) > 155)) continue;
-        const geometry = this.extrude(pts, Number(item.tags?.['building:levels'] || 2) * 3);
-        const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0xdde4d7, transparent: true, opacity: 0.25, depthWrite: false }));
-        const lines = new THREE.LineSegments(new THREE.EdgesGeometry(geometry), new THREE.LineBasicMaterial({ color: 0xa6b5a2, transparent: true, opacity: 0.25 }));
-        this.scene.add(mesh, lines);
-      } else if (Array.isArray(item.points?.[0])) {
-        const pts = item.points;
-        const valid = pts.filter(([x, z]) => Math.abs(x) < 170 && Math.abs(z) < 155);
-        if (valid.length < 2 || valid.length !== pts.length) continue;
-        const road = ['residential', 'service', 'tertiary'].includes(item.tags?.highway);
-        this.line(valid.map(([x, z]) => [x, 0.08, z]), road ? 0x82988b : 0xb5c0ae, road ? 0.45 : 0.5);
-      }
-    }
-  }
 
   line(points, color = INK, opacity = 1, group = this.scene) {
     const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points.map(p => new THREE.Vector3(...p))),
@@ -122,12 +112,16 @@ export class CampusScene {
     const group = new THREE.Group();
     const official = this.lod2.buildings.find(b => b.number === data.number);
     const exterior = new THREE.Group();
+    exterior.userData = { role: 'official-LoD2-exterior', sourceId: official.id };
     const exteriorFills = [], exteriorLines = [], exteriorPickables = [];
+    const geometries = new Map();
+    const edges = new Map();
+    const family = data.campus === 'II' ? 'timber' : 'plates';
+    const floorElevations = getLevelElevations(this.interiors, data.number, data.levels, data.height);
+    const detailSegments = [], distantSegments = [], jointSegments = [];
     for (const surface of official.surfaces) {
       const outer = surface.points.slice(0, -1).map(p => new THREE.Vector3(...p));
       if (outer.length < 3) continue;
-      // Project each planar CityGML surface onto its strongest normal axis,
-      // triangulate the concave contour, then restore original 3D coordinates.
       const normal = new THREE.Vector3();
       for (let i = 0; i < outer.length; i++) {
         const a = outer[i], b = outer[(i + 1) % outer.length];
@@ -135,43 +129,80 @@ export class CampusScene {
         normal.y += (a.z - b.z) * (a.x + b.x);
         normal.z += (a.x - b.x) * (a.y + b.y);
       }
-      const axis = Math.abs(normal.x) > Math.abs(normal.y) && Math.abs(normal.x) > Math.abs(normal.z) ? 'x' :
-        Math.abs(normal.y) > Math.abs(normal.z) ? 'y' : 'z';
+      const axis = Math.abs(normal.x) > Math.abs(normal.y) && Math.abs(normal.x) > Math.abs(normal.z) ? 'x' : Math.abs(normal.y) > Math.abs(normal.z) ? 'y' : 'z';
       const project = p => axis === 'x' ? new THREE.Vector2(p.y, p.z) : axis === 'y' ? new THREE.Vector2(p.x, p.z) : new THREE.Vector2(p.x, p.y);
       const holes = (surface.holes || []).map(h => h.slice(0, -1).map(p => new THREE.Vector3(...p)));
       const indices = THREE.ShapeUtils.triangulateShape(outer.map(project), holes.map(h => h.map(project))).flat();
-      const all = [...outer, ...holes.flat()];
       const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.Float32BufferAttribute(all.flatMap(v => [v.x, v.y, v.z]), 3));
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute([...outer, ...holes.flat()].flatMap(v => [v.x, v.y, v.z]), 3));
       geometry.setIndex(indices);
       geometry.computeVertexNormals();
-      const fill = new THREE.MeshBasicMaterial({ color: surface.type === 'RoofSurface' ? 0xc6d9bd : data.color, side: THREE.DoubleSide, transparent: true, opacity: surface.type === 'RoofSurface' ? 0.22 : 0.15, depthWrite: false });
+      if (!geometries.has(surface.type)) geometries.set(surface.type, []);
+      geometries.get(surface.type).push(geometry);
+      for (const ring of [surface.points, ...(surface.holes || [])]) {
+        for (let i = 0; i < ring.length - 1; i++) {
+          const a = ring[i], b = ring[i + 1];
+          const key = [a.join(','), b.join(',')].sort().join('|');
+          edges.set(key, [a, b]);
+        }
+      }
+      detailSegments.push(...createFacadeSegments(surface, family, 1));
+      distantSegments.push(...createFacadeSegments(surface, family, 4));
+      if (family === 'timber') jointSegments.push(...createStoreyJointSegments(surface, floorElevations.slice(1).map(elevation => data.baseY + elevation)));
+    }
+    // Batch by material while preserving every official source vertex/triangle.
+    for (const [type, parts] of geometries) {
+      const geometry = mergeGeometries(parts);
+      parts.forEach(part => part.dispose());
+      const roof = type === 'RoofSurface';
+      const fill = new THREE.MeshBasicMaterial({
+        color: roof ? 0x26372c : family === 'timber' ? 0x343c2c : 0x382f29,
+        side: THREE.DoubleSide, transparent: true, opacity: roof ? 0.72 : 0.54,
+        depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1,
+      });
+      fill.userData.role = type;
       const mesh = new THREE.Mesh(geometry, fill);
-      mesh.userData = { house: data.number, floor: null };
+      mesh.userData = { house: data.number, floor: null, source: 'LoD2-BY' };
       exterior.add(mesh);
       exteriorFills.push(fill);
       exteriorPickables.push(mesh);
-      for (const ring of [surface.points, ...(surface.holes || [])]) {
-        const line = this.line(ring, INK, 0.8, exterior);
-        exteriorLines.push(line.material);
-      }
     }
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: INK, transparent: true, opacity: 0.76, depthWrite: false });
+    const sourceEdges = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([...edges.values()].flat(2), 3)), edgeMaterial);
+    sourceEdges.renderOrder = 2;
+    exterior.add(sourceEdges);
+    exteriorLines.push(edgeMaterial);
+    const facadeGroups = [];
+    const facadeMaterials = [];
+    for (const [index, segments] of [detailSegments, distantSegments].entries()) {
+      const material = new THREE.LineBasicMaterial({ color: family === 'timber' ? 0x7d8765 : 0x8f8d73, transparent: true, opacity: index ? 0.2 : 0.16, depthWrite: false });
+      const hatch = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3)), material);
+      hatch.renderOrder = 1;
+      hatch.userData = { role: 'schematic-material-hatching', ...FACADE_PROFILES[family], segmentCount: segments.length };
+      hatch.visible = index === 1;
+      exterior.add(hatch);
+      facadeGroups.push(hatch);
+      facadeMaterials.push(material);
+    }
+    const jointMaterial = new THREE.LineBasicMaterial({ color: 0x76866b, transparent: true, opacity: 0.34, depthWrite: false });
+    const joints = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(jointSegments.flat(2), 3)), jointMaterial);
+    joints.renderOrder = 2;
+    joints.userData = {
+      role: 'schematic-storey-joints', segmentCount: jointSegments.length,
+      source: FACADE_PROFILES.timber.source,
+      status: 'Photo-informed horizontal joints at provisional floor elevations, not measured facade features.',
+    };
+    exterior.add(joints);
     group.add(exterior);
     const floorGroups = [];
     const fillMaterials = [];
     const lineMaterials = [];
     const pickables = [];
-    const floorElevations = getLevelElevations(this.interiors, data.number, data.levels, data.height);
     const interiorGroups = [];
-    const shadow = new THREE.Mesh(new THREE.ShapeGeometry(this.footprintShape(data.footprint)),
-      new THREE.MeshBasicMaterial({ color: 0x627861, transparent: true, opacity: 0.07, depthWrite: false, side: THREE.DoubleSide }));
-    shadow.rotation.x = -Math.PI / 2;
-    shadow.position.set(1.8, 0.025, 1.8);
-    group.add(shadow);
     for (let floor = 0; floor < data.levels; floor++) {
       const slab = new THREE.Group();
       const geometry = this.extrude(data.footprint, (floorElevations[floor + 1] ?? data.height) - floorElevations[floor]);
-      const material = new THREE.MeshBasicMaterial({ color: data.color, transparent: true, opacity: 0.11, depthWrite: false, side: THREE.DoubleSide });
+      const material = new THREE.MeshBasicMaterial({ color: 0x617052, transparent: true, opacity: 0.11, depthWrite: false, side: THREE.DoubleSide });
       const mesh = new THREE.Mesh(geometry, material);
       mesh.userData = { house: data.number, floor };
       slab.add(mesh);
@@ -182,7 +213,7 @@ export class CampusScene {
       const interior = new THREE.Group();
       const approved = getInteriorLevel(this.interiors, data.number, floor);
       for (const space of approved?.spaces || []) {
-        this.line(space.polygon.map(([x, z]) => [x, 0.06, z]), space.kind === 'room' ? 0x194c3c : 0x8c7152, 1, interior);
+        this.line(space.polygon.map(([x, z]) => [x, 0.06, z]), space.kind === 'room' ? ACTIVE_INK : 0xb6a886, 1, interior);
         const el = document.createElement('span');
         el.className = 'room-label';
         el.textContent = space.label;
@@ -210,23 +241,89 @@ export class CampusScene {
     el.dataset.house = data.number;
     el.addEventListener('click', () => this.onSelect(data.number));
     this.labelsElement.appendChild(el);
-    const record = { data, group, floorGroups, floorElevations, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, label: el, currentGap: 0, targetGap: 0 };
+    const record = { data, group, floorGroups, floorElevations, interiorGroups, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, jointMaterial, joints, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
     this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.height + data.baseY + record.currentGap * (data.levels - 1) + 3, data.centroid[1]), type: 'house', number: data.number });
   }
 
   addGeographicLabels() {
-    for (const [text, x, z, cls] of [
-      ['ERWIN-ROMMEL-STRASSE', -109, -8, 'road-label'],
-      ['TOWARDS TECHFAK ↙', -85, 101, 'place-label'],
-      ['AT THE EDGE OF THE FOREST', 90, -115, 'place-label'],
-    ]) {
+    for (const [text, x, z] of [['N', 0, -132], ['E', 132, 0], ['S', 0, 132], ['W', -132, 0]]) {
       const el = document.createElement('span');
-      el.className = cls;
+      el.className = 'place-label compass-label';
       el.textContent = text;
       this.labelsElement.appendChild(el);
-      this.labels.push({ el, getPosition: () => new THREE.Vector3(x, 0, z), type: 'context' });
+      this.labels.push({ el, getPosition: () => new THREE.Vector3(x, -0.2, z), type: 'context' });
     }
+  }
+
+  focusBounds() {
+    if (!this.selected) return this.campusBounds.clone();
+    const b = this.buildings.get(this.selected);
+    const bounds = new THREE.Box3();
+    for (const [x, z] of b.data.footprint) {
+      bounds.expandByPoint(new THREE.Vector3(x, b.data.baseY, z));
+      bounds.expandByPoint(new THREE.Vector3(x, b.data.baseY + b.data.height + (this.exploded ? 5 * (b.data.levels - 1) : 0), z));
+    }
+    return bounds;
+  }
+
+  focusPoints() {
+    if (this.selected && this.exploded) {
+      const building = this.buildings.get(this.selected);
+      const height = building.data.height + 5 * (building.data.levels - 1);
+      return building.data.footprint.flatMap(([x, z]) => [
+        new THREE.Vector3(x, building.data.baseY, z),
+        new THREE.Vector3(x, building.data.baseY + height, z),
+      ]);
+    }
+    return this.lod2.buildings.filter(building => !this.selected || building.number === this.selected)
+      .flatMap(building => building.surfaces.flatMap(surface => surface.points.map(point => new THREE.Vector3(...point))));
+  }
+
+  fittedCamera(direction = HOME_DIRECTION, padding = this.selected ? 1.38 : 1.2) {
+    const bounds = this.focusBounds();
+    const target = bounds.getCenter(new THREE.Vector3());
+    const outward = direction.clone().normalize();
+    const right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), outward).normalize();
+    if (right.lengthSq() < 0.5) right.set(1, 0, 0);
+    const up = new THREE.Vector3().crossVectors(outward, right).normalize();
+    const tanV = Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2));
+    const tanH = tanV * this.camera.aspect;
+    let distance = 24;
+    const points = this.focusPoints?.() || [bounds.min.x, bounds.max.x].flatMap(x => [bounds.min.y, bounds.max.y].flatMap(y => [bounds.min.z, bounds.max.z].map(z => new THREE.Vector3(x, y, z))));
+    for (const point of points) {
+      const corner = point.clone().sub(target);
+      distance = Math.max(distance, corner.dot(outward) + padding * Math.abs(corner.dot(right)) / tanH,
+        corner.dot(outward) + padding * Math.abs(corner.dot(up)) / tanV);
+    }
+    return { target, position: target.clone().addScaledVector(outward, Math.min(distance, 840)) };
+  }
+
+  navigationSnapshot() {
+    const horizontal = this.controls.target.clone().sub(this.camera.position);
+    const heading = (Math.atan2(horizontal.x, -horizontal.z) + Math.PI * 2) % (Math.PI * 2);
+    const selected = this.selected ? this.buildings.get(this.selected)?.data : null;
+    const origin = selected?.centroid || [this.campusCenter.x, this.campusCenter.z];
+    const point = new THREE.Vector3(origin[0], selected?.baseY || 0, origin[1]).project(this.camera);
+    const { width, height } = this.container.getBoundingClientRect();
+    return {
+      heading, originNumber: this.selected || null,
+      anchor: { x: (point.x + 1) * width / 2, y: (1 - point.y) * height / 2, visible: point.z > -1 && point.z < 1 && Math.abs(point.x) <= 1 && Math.abs(point.y) <= 1 },
+      directions: navigationDirections(origin, this.campus.buildings, heading, this.selected),
+    };
+  }
+
+  setNavigationListener(listener) {
+    if (listener != null && typeof listener !== 'function') throw new Error('Navigation listener must be a function or null');
+    this.navigationListener = listener;
+    if (listener) listener(this.navigationSnapshot());
+  }
+
+  renderingSummary() {
+    return { buildings: this.buildings.size, officialSurfaces: this.lod2.buildings.reduce((sum, b) => sum + b.surfaces.length, 0),
+      facadeSegments: [...this.buildings.values()].reduce((sum, b) => sum + b.facadeGroups[0].userData.segmentCount, 0),
+      storeyJointSegments: [...this.buildings.values()].reduce((sum, b) => sum + b.joints.userData.segmentCount, 0),
+      contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photo-informed schematic material marks; no invented windows or room boundaries' };
   }
 
   setCommunity(enabled, clubs) {
@@ -237,6 +334,7 @@ export class CampusScene {
     if (!enabled) return;
     clubs.filter(c => c.house).forEach(club => {
       const building = this.buildings.get(club.house);
+      if (!building) return;
       const el = document.createElement('button');
       el.className = 'club-label';
       el.textContent = club.title;
@@ -247,6 +345,7 @@ export class CampusScene {
   }
 
   select(number, focus = true) {
+    if (number && !this.buildings.has(number)) return;
     this.dirty = true;
     this.selected = number;
     this.exploded = false;
@@ -256,20 +355,20 @@ export class CampusScene {
       building.targetGap = 0;
       building.exterior.visible = true;
       building.floorGroups.forEach(f => { f.visible = false; });
-      building.exteriorLines.forEach(m => { m.color.set(active ? 0x194c3c : INK); m.opacity = dim ? 0.22 : 0.78; });
-      building.exteriorFills.forEach(m => { m.opacity = active ? 0.28 : dim ? 0.05 : 0.16; });
+      building.exteriorLines.forEach(m => { m.color.set(active ? ACTIVE_INK : INK); m.opacity = dim ? 0.2 : active ? 0.98 : 0.76; });
+      building.exteriorFills.forEach(m => { m.opacity = dim ? 0.16 : m.userData.role === 'RoofSurface' ? 0.72 : active ? 0.65 : 0.54; });
+      building.facadeMaterials.forEach((m, index) => { m.opacity = dim ? 0.045 : index ? 0.2 : active ? 0.22 : 0.16; });
+      building.jointMaterial.opacity = dim ? 0.07 : active ? 0.46 : 0.34;
       building.label.classList.toggle('selected', active);
       building.label.classList.toggle('muted', Boolean(dim));
-      building.lineMaterials.forEach(m => { m.color.set(active ? 0x194c3c : INK); m.opacity = dim ? 0.2 : 0.72; });
+      building.lineMaterials.forEach(m => { m.color.set(active ? ACTIVE_INK : INK); m.opacity = dim ? 0.2 : 0.72; });
       building.fillMaterials.forEach(m => { m.opacity = active ? 0.21 : dim ? 0.035 : 0.11; });
     }
     if (focus && number) {
-      const b = this.buildings.get(number).data;
-      const target = new THREE.Vector3(b.centroid[0], b.baseY + b.height / 2, b.centroid[1]);
       const direction = this.camera.position.clone().sub(this.controls.target).normalize();
-      direction.y = Math.max(direction.y, 0.65);
-      direction.normalize();
-      this.animateCamera(target.clone().addScaledVector(direction, 110 + b.height * 1.3), target);
+      if (!this.topView) direction.y = Math.max(direction.y, 0.48);
+      const frame = this.fittedCamera(direction.normalize());
+      this.animateCamera(frame.position, frame.target);
     } else if (focus) this.reset();
   }
 
@@ -281,10 +380,9 @@ export class CampusScene {
     b.targetGap = enabled ? 5 : 0;
     b.exterior.visible = !enabled;
     b.floorGroups.forEach(f => { f.visible = enabled; });
-    const height = b.data.height + (enabled ? 5 * (b.data.levels - 1) : 0);
-    const target = new THREE.Vector3(b.data.centroid[0], b.data.baseY + height / 2, b.data.centroid[1]);
-    const direction = new THREE.Vector3(0.9, 0.8, 1).normalize();
-    this.animateCamera(target.clone().addScaledVector(direction, 110 + height * 1.15), target);
+    const direction = this.topView ? new THREE.Vector3(0, 1, 0.0001) : this.camera.position.clone().sub(this.controls.target).normalize();
+    const frame = this.fittedCamera(direction, enabled ? 1.3 : 1.38);
+    this.animateCamera(frame.position, frame.target);
   }
 
   setFloor(floor) {
@@ -298,22 +396,23 @@ export class CampusScene {
   }
 
   setTop(enabled) {
-    const target = this.controls.target.clone();
-    this.animateCamera(enabled ? target.clone().add(new THREE.Vector3(0, this.selected ? 145 : 340, 0.01)) :
-      target.clone().add(this.selected ? new THREE.Vector3(85, 90, 105) : HOME.clone().sub(HOME_TARGET)), target);
+    this.topView = enabled;
+    const frame = this.fittedCamera(enabled ? new THREE.Vector3(0, 1, 0.0001) : HOME_DIRECTION);
+    this.animateCamera(frame.position, frame.target);
   }
 
   zoom(amount) {
     const target = this.controls.target.clone();
     const displacement = this.camera.position.clone().sub(target).multiplyScalar(amount);
-    displacement.clampLength(25, 580);
+    displacement.clampLength(20, 840);
     this.animateCamera(target.clone().add(displacement), target);
   }
 
   reset() {
     this.select(null, false);
-    const offset = HOME.clone().sub(HOME_TARGET).multiplyScalar(Math.max(1, 0.92 / this.camera.aspect));
-    this.animateCamera(HOME_TARGET.clone().add(offset), HOME_TARGET.clone());
+    this.topView = false;
+    const frame = this.fittedCamera(HOME_DIRECTION);
+    this.animateCamera(frame.position, frame.target);
   }
 
   animateCamera(position, target) {
@@ -329,13 +428,13 @@ export class CampusScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
-    const homeScale = Math.max(1, 0.92 / this.camera.aspect);
-    if (!this.selected && homeScale !== this.homeScale) {
-      this.tween = null;
-      const offset = this.camera.position.clone().sub(this.controls.target).multiplyScalar(homeScale / (this.homeScale || 1));
-      this.camera.position.copy(this.controls.target).add(offset);
-    }
-    this.homeScale = homeScale;
+    const direction = this.hasFitted ? this.camera.position.clone().sub(this.controls.target).normalize() : HOME_DIRECTION;
+    const frame = this.fittedCamera(direction);
+    this.tween = null;
+    this.camera.position.copy(frame.position);
+    this.controls.target.copy(frame.target);
+    this.controls.update();
+    this.hasFitted = true;
   }
 
   bind() {
@@ -398,7 +497,7 @@ export class CampusScene {
     let changed = this.dirty || Boolean(this.tween);
     this.dirty = false;
     if (this.tween) {
-      const t = Math.min((performance.now() - this.tween.start) / 900, 1);
+      const t = Math.min((performance.now() - this.tween.start) / 650, 1);
       const eased = 1 - (1 - t) ** 3;
       this.camera.position.lerpVectors(this.tween.position, this.tween.endPosition, eased);
       this.controls.target.lerpVectors(this.tween.target, this.tween.endTarget, eased);
@@ -414,6 +513,11 @@ export class CampusScene {
     if (this.controls.update()) changed = true;
     // Keep OrbitControls damping responsive without redrawing a static campus.
     if (!changed) return;
+    for (const b of this.buildings.values()) {
+      const distance = this.camera.position.distanceTo(new THREE.Vector3(b.data.centroid[0], b.data.baseY + b.data.height / 2, b.data.centroid[1]));
+      b.facadeGroups[0].visible = distance < 150;
+      b.facadeGroups[1].visible = distance >= 150;
+    }
     this.renderer.render(this.scene, this.camera);
     const { width, height } = this.container.getBoundingClientRect();
     const occupied = [];
@@ -433,11 +537,13 @@ export class CampusScene {
       label.el.hidden = !visible;
       if (visible) label.el.style.transform = `translate(-50%, -100%) translate(${x}px, ${y}px)`;
     }
+    const snapshot = this.navigationSnapshot();
+    this.container.dispatchEvent(new CustomEvent('rommel:camera', { detail: snapshot }));
+    this.navigationListener?.(snapshot);
     const arrow = document.getElementById('north-arrow');
     if (arrow) {
-      const angle = Math.atan2(this.camera.position.x - this.controls.target.x, this.camera.position.z - this.controls.target.z);
-      arrow.style.transform = `rotate(${-angle}rad)`;
-      arrow.style.transformOrigin = '22px 22px';
+      arrow.style.transform = `rotate(${-snapshot.heading}rad)`;
+      arrow.style.transformOrigin = '50% 50%';
     }
   }
 }
@@ -454,7 +560,7 @@ export function fallbackMap(container, campus, onSelect) {
     polygon.setAttribute('points', b.footprint.map(p => p.join(',')).join(' '));
     polygon.setAttribute('fill', b.color);
     polygon.setAttribute('fill-opacity', '.18');
-    polygon.setAttribute('stroke', '#365b50');
+    polygon.setAttribute('stroke', '#9fae92');
     polygon.setAttribute('stroke-width', '.6');
     polygon.addEventListener('click', () => onSelect(b.number));
     const title = document.createElementNS(ns, 'title');
@@ -464,6 +570,7 @@ export function fallbackMap(container, campus, onSelect) {
     const text = document.createElementNS(ns, 'text');
     text.setAttribute('x', b.centroid[0]); text.setAttribute('y', b.centroid[1]);
     text.setAttribute('text-anchor', 'middle'); text.setAttribute('font-size', '5');
+    text.setAttribute('fill', '#c8d5b6');
     text.textContent = b.number;
     svg.appendChild(text);
   }

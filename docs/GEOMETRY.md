@@ -1,6 +1,6 @@
 # Geometry, provenance and accuracy
 
-This release combines an **official LoD2 exterior model** of all eleven dorms with OSM context and mapped storey counts. The building walls, standard roof forms, footprints and heights come from Bavarian surveying open data. LoD2 is still a simplified exterior model, not a complete as-built twin. Interior walls, individual floor elevations, window/door positions and room geometry remain unverified.
+This release combines an **official LoD2 exterior model** of all eleven dorms with OSM storey counts and separately retained reference/context data. The building walls, standard roof forms, footprints and heights come from Bavarian surveying open data. The dark spatial presentation adds photo-informed schematic material seams while retaining the source geometry. LoD2 is still a simplified exterior model, not a complete as-built twin. Interior walls, individual floor elevations, window/door positions and room geometry remain unverified.
 
 ## Official exterior model
 
@@ -38,10 +38,23 @@ The source serializes millimetres; this does not mean millimetre surveying accur
 | Public house label point | [Rommelwood map](https://rommelwood.de/map/) | Approximate label position; use polygon centroid for 3D labels |
 | Interior floor envelopes | Uniform division using height and mapped storeys | **Visualization estimate**, not surveyed storey elevations. OSM fallback `height` fields are 3 m × storeys and must not replace official exterior heights. |
 | Roof | Official LoD2 `RoofSurface` polygons | Standard-form model, including complex older-house roofs; details below LoD2 are absent |
-| Context paths/roads/trees | OSM ways and tree nodes | Source-backed map positions; tree size, trunk/canopy geometry and path width are illustrative |
+| Context paths/roads/trees | Retained OSM ways and tree nodes | Reference data only in this presentation; schematic trees and gray neighboring blocks have been removed from the scene |
+| Façade material seams | [Inspected architect/operator photographs](FACADE-REFERENCES.md) | Direction and broad material character observed; procedural seam pitch, joint positions and floor bands are illustrative |
 | Room index | Permission-gated contribution dataset | No individual room markers republished from the existing site; aggregate research only. Accepted room records need an approved source and explicit floor labels. |
 
 Data was retrieved on 14 November 2026. The exact OSM base timestamp is retained in `public/data/campus.json` and `data/source/osm-raw.json`.
+
+## Dark spatial presentation
+
+The camera now frames the campus more closely. No building has been enlarged, moved toward its neighbors or independently rescaled: the shared coordinate system remains measured in metres. Camera movement, perspective and viewport fitting change the view, not the source dimensions.
+
+The hiking-style signpost uses camera-relative bearings and straight-line distances from the selected building center, or the overview origin, to destination building centers. These are visual navigation aids, not measured walking routes or verified entrance locations. The north indicator rotates with the view.
+
+Schematic trees, gray context-building volumes and other earlier context decoration are absent from the scene. The source context remains available for research and future reviewed layers. The remaining ground guide is a graphic element, not surveyed terrain.
+
+`src/facade.js` generates surface-clipped seam segments without editing the LoD2 rings. New houses use vertical timber lines; old houses use horizontal plate courses with staggered short joints. The current close-up display parameters are 0.18 m timber pitch and 1.2 m × 0.3 m plate modules, with coarser detail at a distance. **These are rendering parameters, not measured construction dimensions.** Thin storey-joint marks use provisional floor elevations. The material marks disappear with the assembled exterior when switching to the exploded level study.
+
+The broad patterns are grounded in the [façade reference study](FACADE-REFERENCES.md). No source photos, traced textures, invented windows or claimed exact loggia positions are added. Material detail, official exterior surfaces and future approved interior geometry retain separate evidence status.
 
 ## Building register
 
@@ -76,11 +89,11 @@ The 3D axes are x east, y up, z south. Horizontal coordinates are rounded to 1 m
 
 LoD2 source coordinates use EPSG:25832 (ETRS89 / UTM zone 32N), transformed to WGS84 through PROJ before the same local projection. Vertical positions preserve the original DHHN2016 height differences: `y = source NHN altitude − 289.589 m`, the minimum source ground altitude across the eleven buildings. `baseY` is each building’s ground offset. The model does not yet include surveyed terrain between houses.
 
-OSM queries return complete ways crossing the geographic query bounds. Some contextual roads and neighbouring buildings extend beyond the dorm. Clip their drawing extent in the view rather than changing stored source coordinates.
+OSM queries return complete ways crossing the geographic query bounds. Some retained contextual roads and neighbouring buildings extend beyond the dorm. If a context layer is reintroduced, clip its drawing extent in the view rather than changing stored source coordinates.
 
 ## Room-marker discrepancy
 
-Research of the existing public resident map found 703 dorm room point markers across ten of the eleven houses. House 51a has none. These individual markers are **not republished in this repository** because permission to reuse the assembled room database has not been established. The deployed room-data envelope contains aggregate counts only and an empty marker list. An approved source or resident contribution must populate the room index. The source used explicit floor labels; no room-number parsing was necessary. New-house source points began at floor 1, so absence of floor-0 rooms does not mean that the ground floor is absent.
+Research of the existing public resident map found 703 dorm room point markers across ten of the eleven houses. House 51a has none. These individual markers are **not republished in this repository** because permission to reuse the assembled room database has not been established. The public build's room-data envelope contains aggregate counts only and an empty marker list. An approved source or resident contribution must populate the room index. The source used explicit floor labels; no room-number parsing was necessary. New-house source points began at floor 1, so absence of floor-0 rooms does not mean that the ground floor is absent.
 
 A ray-casting containment check against the address-matched OSM polygons finds **247 of 703 points outside their building footprint**:
 
