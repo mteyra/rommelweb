@@ -2,9 +2,9 @@
 
 A spatial community home for **Campus Süd I and II**, Erwin-Rommel-Straße, Erlangen.
 
-**Pages deployment target:** https://mteyra.github.io/rommelweb/
+**Live demo:** https://mteyra.github.io/rommelweb/
 
-Deployment is awaiting an account or repository change: GitHub's current free plan rejected Pages for this private repository. The repository remains private, and no approval to make it public has been given. The build and publishing workflow are ready. See [release checks](docs/RELEASE-CHECKS.md).
+The repository and GitHub Pages demo are public. The deployment and live map were verified on 14 November 2026. See [release checks](docs/RELEASE-CHECKS.md).
 
 This independent resident project starts with the actual eleven houses and grows toward a private, verified community. It is not an official FAU, Studierendenwerk or Rommelwood e.V. service.
 
@@ -54,7 +54,7 @@ npm run preview
 
 The base path is `/rommelweb/`. `npm run dev` prints the complete local URL. Dependencies, fonts, geometry and UI assets are served locally; the running map does not contact map tiles, analytics, geolocation or a third-party CDN. QR codes are generated in the browser from public activity URLs, without a QR service. External pages open only when their link or QR is followed.
 
-The GitHub Actions workflow is configured to build, test and deploy `dist/` through GitHub Pages on pushes to `main`. Pages activation is currently blocked by the private-repository/free-plan restriction above. Once the user approves public repository visibility or enables a plan supporting private-repository Pages, configure **Settings → Pages → Source: GitHub Actions**. The intended website audience is public; source-repository privacy does not protect resident data in a static build.
+The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pages on pushes to `main`, using **Settings → Pages → Source: GitHub Actions**. Both the repository and demo are intended for public access. Keep resident records, private invitations and credentials out of source, Git history and static assets.
 
 ## Project guide
 

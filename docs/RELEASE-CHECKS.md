@@ -54,10 +54,10 @@ These are targeted release checks, not a complete accessibility audit or a secur
 
 ## Publication
 
-GitHub's Pages setup API returned HTTP 422:
+With the user’s authorization, `mteyra/rommelweb` is public and GitHub Pages is enabled with GitHub Actions as its source. HTTPS is enforced.
 
-> Your current plan does not support GitHub Pages for this repository.
+Live site: https://mteyra.github.io/rommelweb/
 
-The existing `mteyra/rommelweb` repository is private. Making its source public requires the user's approval; an account plan supporting Pages for private repositories is another route. The source and Actions workflow are ready for activation.
+The first successful publication is [Publish Rommelweb run 43650092599](https://github.com/mteyra/rommelweb/actions/runs/43650092599), deploying application commit `6552e800a6916e26ada2ce561389645e75857130`. The live URL returned HTTP 200. An isolated Firefox session rendered all eleven WebGL houses and verified house selection, day/night mode, locked house-group placeholders, exclusive Groups/Timeline panels and no audio elements. The CSS, JavaScript, icon, both local fonts and all four data assets returned HTTP 200; there were no browser console errors.
 
-Once that account/repository condition is resolved, enable **Settings → Pages → Source: GitHub Actions**, run the **Publish Rommelweb** workflow and verify the resulting Pages URL. The URL alone is not evidence of a completed deployment.
+The public demo includes no resident authentication, private records or invitation secrets; those services remain future work.

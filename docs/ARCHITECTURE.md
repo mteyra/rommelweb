@@ -14,7 +14,7 @@ The current frontend establishes the map, building navigation, source trail and 
 
 Public QR codes lead to the cited activity websites. House WhatsApp cards show a locked state without an invitation URL or private QR. Timeline drafts exist only in the open tab's memory, can be exported as `.ics`, and disappear on reload or close. There is no connected community event feed, account system or publishing service.
 
-The private resident service will be piloted in one building before wider enrollment. GitHub Pages remains the public frontend deployment target; a separate backend will enforce resident access. Publication is not complete: the current free account plan does not support Pages for this private repository. The repository remains private and no public-visibility approval has been given. See [RELEASE-CHECKS.md](RELEASE-CHECKS.md) for the publication state.
+The private resident service will be piloted in one building before wider enrollment. Public repository visibility and GitHub Pages publication are authorized for the static frontend; a separate backend will enforce resident access. See [RELEASE-CHECKS.md](RELEASE-CHECKS.md) for the verified publication state.
 
 ### Success criteria
 
@@ -275,7 +275,7 @@ Retention periods are explicit operator policy before the pilot: define deletion
 
 | Phase | Deliverable | Exit criterion |
 |---|---|---|
-| 0 — public foundation | Pages-ready day/night spatial frontend, eleven official LoD2 exteriors, OSM streets/paths, separate schematic façade/window detail, direct building/label selection, public group QR card, local timeline, provisional exterior-section study and accessible fallback | No private data or false security; verify publication after the private-repository/free-plan restriction is resolved |
+| 0 — public foundation | Public day/night spatial frontend, eleven official LoD2 exteriors, OSM streets/paths, separate schematic façade/window detail, direct building/label selection, public group QR card, local timeline, provisional exterior-section study and accessible fallback | No private data or false security; successful Pages deployment and verified live assets |
 | 1 — verified spatial detail | One building validated at a time; floor labels and room markers refined into supported geometry | Source, reuse permission, dimensions and uncertainty recorded |
 | 2 — resident pilot | Supabase EU backend, Auth, expiring memberships, steward tools, protected groups and scoped event editing | Security and operational checks below pass with test accounts |
 | 3 — neighbor connections | Opt-in discovery, knock requests, blocking/reporting and then accepted conversations | Abuse handling, revocation and retention tested |
