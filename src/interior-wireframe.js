@@ -4,11 +4,12 @@ import * as THREE from 'three';
 export const INTERIOR_CUT_HEIGHT = 1.05;
 const EPSILON = 1e-6;
 
-function splitAtDoors(a, b, doors) {
+function splitAtDoors(a, b, doors, tolerance = EPSILON) {
   const dx = b[0] - a[0], dz = b[1] - a[1], lengthSquared = dx * dx + dz * dz;
+  if (lengthSquared < EPSILON ** 2) return [];
   const intervals = [];
   for (const door of doors) {
-    if (!door.segment.every(point => Math.abs(dx * (point[1] - a[1]) - dz * (point[0] - a[0])) < EPSILON)) continue;
+    if (!door.segment.every(point => Math.abs(dx * (point[1] - a[1]) - dz * (point[0] - a[0])) / Math.sqrt(lengthSquared) <= tolerance)) continue;
     const ts = door.segment.map(point => ((point[0] - a[0]) * dx + (point[1] - a[1]) * dz) / lengthSquared).sort((x, y) => x - y);
     const low = Math.max(0, ts[0]), high = Math.min(1, ts[1]);
     if (high - low > EPSILON) intervals.push([low, high]);
@@ -24,47 +25,68 @@ function splitAtDoors(a, b, doors) {
   return kept.map(pair => pair.map(t => [a[0] + dx * t, a[1] + dz * t]));
 }
 
+function followsSketch(a, b, boundaries) {
+  return boundaries.some(([start, end]) => {
+    const dx = end[0] - start[0], dz = end[1] - start[1], length = Math.hypot(dx, dz);
+    return [a, b].every(point => {
+      const along = ((point[0] - start[0]) * dx + (point[1] - start[1]) * dz) / length;
+      return Math.abs(dx * (point[1] - start[1]) - dz * (point[0] - start[0])) / length <= 0.02 && along >= -0.06 && along <= length + 0.06;
+    });
+  });
+}
+
 function trianglesForSpace(space, height) {
-  const points = space.polygon.slice(0, -1);
-  return THREE.ShapeUtils.triangulateShape(points.map(([x, z]) => new THREE.Vector2(x, z)), [])
+  const outer = space.polygon.slice(0, -1), holes = (space.holes || []).map(ring => ring.slice(0, -1));
+  const points = [...outer, ...holes.flat()];
+  return THREE.ShapeUtils.triangulateShape(outer.map(([x, z]) => new THREE.Vector2(x, z)), holes.map(ring => ring.map(([x, z]) => new THREE.Vector2(x, z))))
     .flatMap(triangle => triangle.flatMap(index => [points[index][0], height, points[index][1]]));
 }
 
 /** Keep the label inside its polygon, including L-shaped rooms and corridors. */
 function labelPosition(space) {
   const triangles = trianglesForSpace(space, 0.16);
-  let best = null, maxArea = -1;
+  let best = null, maxArea = -1, totalArea = 0;
+  const weighted = [0, 0, 0];
   for (let index = 0; index < triangles.length; index += 9) {
     const a = triangles.slice(index, index + 3), b = triangles.slice(index + 3, index + 6), c = triangles.slice(index + 6, index + 9);
     const area = Math.abs((b[0] - a[0]) * (c[2] - a[2]) - (b[2] - a[2]) * (c[0] - a[0]));
+    const center = a.map((value, axis) => (value + b[axis] + c[axis]) / 3);
+    center.forEach((value, axis) => { weighted[axis] += value * area; });
+    totalArea += area;
     if (area > maxArea) {
       maxArea = area;
-      best = a.map((value, axis) => (value + b[axis] + c[axis]) / 3);
+      best = center;
+    }
+  }
+  // The area centroid centers rectangular bays. Concave circulation can put
+  // its centroid outside the room or inside a stair hole, so check triangles.
+  if (totalArea) {
+    const center = weighted.map(value => value / totalArea);
+    for (let i = 0; i < triangles.length; i += 9) {
+      const vertices = [0, 3, 6].map(offset => [triangles[i + offset], triangles[i + offset + 2]]);
+      const signs = vertices.map((a, index) => {
+        const b = vertices[(index + 1) % 3];
+        return (b[0] - a[0]) * (center[2] - a[1]) - (b[1] - a[1]) * (center[0] - a[0]);
+      });
+      if (signs.every(value => value >= -EPSILON) || signs.every(value => value <= EPSILON)) return center;
     }
   }
   return best;
 }
 
 /**
- * Render only validated, approved geometry. Empty coverage stays empty.
+ * Render validated approved plans or explicitly identified resident studies.
  * Coordinates remain campus-local metres; all heights here are display offsets.
  */
 export function createInteriorWireframe(level, { house, floor }) {
   const group = new THREE.Group(), pickables = [], labels = [];
-  group.userData = { role: 'approved-interior-cutaway', cutHeight: INTERIOR_CUT_HEIGHT };
+  group.userData = { role: level?.isStudy ? 'resident-interior-study' : 'approved-interior-cutaway', cutHeight: INTERIOR_CUT_HEIGHT };
   if (!level) return { group, pickables, labels };
   const doors = level.doors || [];
-  const walls = [], joints = new Set();
-  const addWall = (a, b) => {
+  const joints = new Map();
+  const addWall = (a, b, estimated) => {
     const key = [a.join(','), b.join(',')].sort().join('|');
-    if (joints.has(key)) return;
-    joints.add(key);
-    walls.push(
-      a[0], 0.045, a[1], b[0], 0.045, b[1],
-      a[0], INTERIOR_CUT_HEIGHT, a[1], b[0], INTERIOR_CUT_HEIGHT, b[1],
-      a[0], 0.045, a[1], a[0], INTERIOR_CUT_HEIGHT, a[1],
-      b[0], 0.045, b[1], b[0], INTERIOR_CUT_HEIGHT, b[1],
-    );
+    if (!joints.has(key) || !estimated) joints.set(key, {a, b, estimated});
   };
   for (const space of level.spaces) {
     const material = new THREE.MeshBasicMaterial({
@@ -77,16 +99,45 @@ export function createInteriorWireframe(level, { house, floor }) {
     mesh.userData = { house, floor, spaceId: space.id, role: 'interior-space' };
     group.add(mesh);
     pickables.push(mesh);
-    for (let index = 1; index < space.polygon.length; index++) {
-      for (const [a, b] of splitAtDoors(space.polygon[index - 1], space.polygon[index], doors)) addWall(a, b);
+    for (const ring of [space.polygon, ...(space.holes || [])]) {
+      for (let index = 1; index < ring.length; index++) {
+        for (const [a, b] of splitAtDoors(ring[index - 1], ring[index], doors, level.isStudy ? 0.002 : EPSILON)) {
+          const estimated = level.isStudy && space.confidence === 'estimated' && !followsSketch(a, b, level.sketchBoundaries || []);
+          addWall(a, b, estimated);
+        }
+      }
     }
-    labels.push({ text: space.label, position: labelPosition(space), spaceId: space.id, kind: 'space' });
+    labels.push({ text: space.label, shortText: space.shortLabel, position: labelPosition(space), spaceId: space.id, kind: 'space', confidence: space.confidence });
+    if (space.kind === 'stairs' && space.polygon.length === 5 && !space.holes?.length) {
+      const p = space.polygon;
+      const lengths = p.slice(1).map((b, i) => Math.hypot(b[0] - p[i][0], b[1] - p[i][1]));
+      const start = lengths.indexOf(Math.max(...lengths)), a = p[start], b = p[(start + 1) % 4], c = p[(start + 2) % 4], d = p[(start + 3) % 4];
+      const treads = Array.from({length: 8}, (_, index) => {
+        const t = (index + 1) / 9;
+        return [a[0] + (b[0] - a[0]) * t, 0.07, a[1] + (b[1] - a[1]) * t, d[0] + (c[0] - d[0]) * t, 0.07, d[1] + (c[1] - d[1]) * t];
+      }).flat();
+      const material = new THREE.LineBasicMaterial({color: 0xb6a886, transparent: true, opacity: 0.8});
+      material.userData.themeRole = 'sharedSpace';
+      const steps = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(treads, 3)), material);
+      steps.userData.role = 'schematic-stair-treads';
+      group.add(steps);
+    }
   }
-  const wallMaterial = new THREE.LineBasicMaterial({ color: 0xdfdfd5, transparent: true, opacity: 0.7 });
-  wallMaterial.userData.themeRole = 'room';
-  const wallLines = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(walls, 3)), wallMaterial);
-  wallLines.userData.role = 'interior-walls';
-  group.add(wallLines);
+  for (const estimated of [false, true]) {
+    const walls = [...joints.values()].filter(joint => Boolean(joint.estimated) === estimated).flatMap(({a, b}) => [
+      a[0], 0.045, a[1], b[0], 0.045, b[1], a[0], INTERIOR_CUT_HEIGHT, a[1], b[0], INTERIOR_CUT_HEIGHT, b[1],
+      a[0], 0.045, a[1], a[0], INTERIOR_CUT_HEIGHT, a[1], b[0], 0.045, b[1], b[0], INTERIOR_CUT_HEIGHT, b[1],
+    ]);
+    if (!walls.length) continue;
+    const material = estimated
+      ? new THREE.LineDashedMaterial({color: 0xdfdfd5, transparent: true, opacity: 0.58, dashSize: 0.23, gapSize: 0.16})
+      : new THREE.LineBasicMaterial({color: 0xdfdfd5, transparent: true, opacity: 0.7});
+    material.userData.themeRole = 'room';
+    const lines = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(walls, 3)), material);
+    if (estimated) lines.computeLineDistances();
+    lines.userData.role = estimated ? 'estimated-interior-walls' : 'interior-walls';
+    group.add(lines);
+  }
 
   for (const door of doors) {
     const [a, b] = door.segment, dx = b[0] - a[0], dz = b[1] - a[1];
@@ -122,7 +173,7 @@ export function createInteriorWireframe(level, { house, floor }) {
     const lines = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(), 3)), lineMaterial);
     lines.userData.role = 'interior-door-symbol';
     group.add(lines);
-    labels.push({ text: door.label, position: center, spaceId: door.spaceId, openingId: door.id, kind: 'door' });
+    labels.push({ text: door.label, position: center, spaceId: door.spaceId, openingId: door.id, kind: 'door', confidence: door.confidence });
   }
   return { group, pickables, labels };
 }

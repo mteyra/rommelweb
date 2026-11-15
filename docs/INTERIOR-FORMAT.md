@@ -1,10 +1,10 @@
 # Approved interior geometry format
 
-`public/data/interiors.json` is intentionally empty. No floorplan, room boundary or room number has been invented for this release. The adapter lets approved plans be added later without replacing the public exterior model.
+`public/data/interiors.json` is intentionally empty: no interior geometry has been approved as a measured plan. The separate `public/data/interior-studies.json` contains a clearly labeled, unmeasured House 55 study with sketch-following and estimated cells. Neither dataset assigns residents, and the study has no physical room numbers. The adapter lets approved plans be added later without replacing the public exterior model.
 
-The first chosen interior pilot is **older Red House 55 in Campus Süd I, second floor (2. OG / index 2)**, following the user's selections. House 55 uses the resident house/wing labels 1 & 2; it is not newer house 55a. Its present internal layout still needs to be established. The [House 55 evidence review](INTERIOR-PLAN-EVIDENCE.md#first-interior-pilot-red-house-55) found no usable current whole-floor plan. Begin with a measured or permission-cleared plan of that floor and keep unknown rooms, doors and roof-space boundaries unmodeled.
+The first chosen interior pilot is **older Red House 55 in Campus Süd I, second floor (2. OG / index 2)**, following the user's selections. House 55 uses the resident house/wing labels 1 & 2; it is not newer house 55a. The user's annotated screenshot now supports a [resident-sketch study](HOUSE55-INTERIOR-STUDY.md), while the [public-source review](INTERIOR-PLAN-EVIDENCE.md#first-interior-pilot-red-house-55) found no usable current whole-floor plan. Estimates stay in the study layer until measurements and review establish approved geometry.
 
-The complete public dataset currently is:
+The complete **approved** dataset currently is:
 
 ```json
 {
@@ -14,6 +14,20 @@ The complete public dataset currently is:
 ```
 
 Use `validateInteriorData(interiors, campus, lod2)` after loading all three datasets. It returns `true` or throws an error naming the invalid field. Only render interior geometry after successful validation. `getInteriorLevel(interiors, house, index)` returns the approved level record or `null`; it is a lookup helper, not a substitute for validation.
+
+## Separate unmeasured study format
+
+`src/interior-studies.js` validates `interior-studies.json` independently with `validateInteriorStudies(studies, campus, lod2)`. It is not an alternate way to mark a plan approved. `getDisplayLevel(interiors, studies, house, index)` returns an approved level first, otherwise an available study marked `isStudy: true`. The study format has no `approved` or `elevation` field and cannot influence the approved floor-height anchors.
+
+The current study covers only **House 55 / index 2**: seven sketch-divided bays plus twelve estimated bays, an approximate central stair and a potential corridor. Its displayed floor omits the two green-marked absent areas. All room openings and the stair-access gap are estimated; no hinges or swings are supplied. The **19 candidate bays** do not establish a current room count, and the source map's 20 markers remain an unresolved cross-check.
+
+The study's `schemaVersion: 1` envelope contains `buildings`, with a source and levels for each house. Levels carry their index, label, source/notes, `floorOutline`, optional `excludedAreas` and `sketchBoundaries`, spaces and doors. `sketchBoundaries` retains source-following line segments for the evidence display. Spaces use `confidence: "sketch"` or `"estimated"`; “sketch” describes correspondence to the resident mark, not measured coordinates. Temporary IDs/labels must not be presented as actual room numbers. Study polygons may include holes, unlike the approved version-1 space format below. Door segments still refer to a space boundary, and any `toSpaceId` must share the complete boundary.
+
+Spaces can supply an optional plain `shortLabel` of up to 16 characters for compact map markers. The full label and confidence remain in the accessible name and popup. Study validation rejects overlapping spaces, floor-filled exclusion zones, spaces covering floor holes, and holes crossing their own outer boundary. Shared edges and a corridor surrounding a separate stair polygon are supported. Rounded study door endpoints allow 2 mm of collinearity tolerance; approved geometry retains its stricter tolerance.
+
+The renderer distinguishes estimated walls with dashed strokes and shows source/evidence notes in floor details and selection dialogs. Study dialogs offer correction suggestions without resident-card placeholders. The corridor is a geometry hypothesis, not an approved route; displayed stair treads are symbolic. A validated study is structurally accepted data, not proof of its real-world layout.
+
+`studyFloorSection` substitutes the study's displayed outline for that floor only. The official LoD2 geometry and provisional elevation remain intact. Other floors retain their original sections. See [HOUSE55-INTERIOR-STUDY.md](HOUSE55-INTERIOR-STUDY.md) for screenshot registration, uncertainty and reproduction notes.
 
 ## Partial floor elevations
 
@@ -37,7 +51,7 @@ Ground-level contour sampling may move a few millimetres inside the source shell
 
 | Field | Meaning |
 | --- | --- |
-| `approved` | Must be `true` to appear in the published dataset. Keep drafts outside public assets. |
+| `approved` | Must be `true` to appear in `interiors.json`. Unapproved drafts cannot enter this asset; explicitly labeled studies use the separate format described above. |
 | `source` | Nonempty public source citation or approved plan reference. Do not embed secret download URLs, names or private correspondence. |
 | `reviewedAt` | Real completed review date, `YYYY-MM-DD`, not a future date. |
 | `reusePermission` | Nonempty explanation of the permission or licence covering reuse and public display of this geometry. The field records a decision; it does not obtain permission. |
@@ -79,7 +93,7 @@ The renderer draws approved space outlines as a low **1.05 m display cutaway**, 
 
 Unfolding isolates a house and shows its floor stack. Selecting a floor hides its siblings and moves to a nearly overhead view. Approved room and door targets then support pointer and keyboard selection. The popup identifies the physical space and its plan source; resident profiles and knocking are placeholders for the future authenticated service. Nothing is sent, and no resident is inferred from a room number.
 
-No detailed floor plans are currently published. Until an identified plan is reviewed and added, the view displays the source-envelope section with an explicit missing-plan note. See [INTERIOR-PLAN-EVIDENCE.md](INTERIOR-PLAN-EVIDENCE.md) for the plan search and required evidence.
+No measured floor plans are currently approved. House 55 / 2. OG displays the separate resident-sketch study; other floors without approved or study records display the source-envelope section with an explicit missing-plan note. See [INTERIOR-PLAN-EVIDENCE.md](INTERIOR-PLAN-EVIDENCE.md) for the plan search and required evidence.
 
 ## Fictional template only
 

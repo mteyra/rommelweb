@@ -929,6 +929,94 @@ body[data-theme='day'] .waybar .theme-moon {
   color: #d0d1c7;
 }
 
+.room-label.is-estimated,
+.room-chip.is-estimated {
+  border-style: dashed;
+}
+
+.room-label.is-estimated::before,
+.room-chip.is-estimated::before {
+  content: "≈ ";
+  opacity: .8;
+}
+
+.floor-detail .study-evidence {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.study-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  margin: 6px 0 10px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  line-height: 1.6;
+}
+
+.study-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.study-legend > span::before {
+  content: "";
+  width: 14px;
+  border-top: 1px solid currentColor;
+}
+
+.study-legend > [data-evidence='estimated']::before {
+  border-top-style: dashed;
+}
+
+.study-legend > [data-evidence='excluded']::before {
+  height: 8px;
+  border: 1px solid currentColor;
+  background: transparent;
+  opacity: .65;
+}
+
+.study-notes {
+  margin: 9px 0;
+  padding-left: 14px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.85;
+}
+
+.study-notes li + li {
+  margin-top: 5px;
+}
+
+.study-card-evidence {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 16px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.study-card-evidence.is-estimated {
+  border-style: dashed;
+}
+
+.study-identity-note,
+.study-item-note {
+  margin: 12px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
 .map-bottomline {
   position: absolute;
   left: var(--edge);
@@ -3464,6 +3552,89 @@ body[data-theme='day'] .floor-label:focus-visible {
   border-style: dashed;
 }
 
+button.study-marker {
+  min-width: 28px;
+  min-height: 28px;
+  padding: 5px 7px;
+  border-radius: 5px;
+  font-size: 11px;
+  box-shadow: 0 2px 10px #0002;
+}
+
+button.study-marker.door-label {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  min-height: 26px;
+  padding: 4px;
+  border-radius: 50%;
+  color: #d4c6a9;
+}
+
+button.study-marker.door-label::before {
+  content: none;
+}
+
+button.study-marker.door-label .icon {
+  width: 13px;
+  height: 13px;
+}
+
+body[data-theme='day'] button.study-marker.door-label {
+  color: #715833;
+}
+
+@media (min-width:701px) {
+  .floor-plan-open .house-controls:has(#explode-building[aria-expanded='true']) {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    left: 50%;
+    bottom: 65px;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100vw - 60px);
+    padding: 10px 14px;
+    overflow: visible;
+    border-radius: 10px;
+  }
+
+  .floor-plan-open .house-controls:has(#explode-building[aria-expanded='true']) > .outline-button {
+    width: auto;
+    min-height: 36px;
+    padding: 4px 2px;
+    border: 0;
+    background: transparent;
+    white-space: nowrap;
+  }
+
+  .floor-plan-open .floor-controls { display: contents; }
+  .floor-plan-open .floor-control-label { margin: 0; }
+  .floor-plan-open .floor-control-label .eyebrow { display: none; }
+  .floor-plan-open #all-floors { white-space: nowrap; }
+  .floor-plan-open .floor-buttons { flex-wrap: nowrap; overflow-x: auto; }
+  .floor-plan-open .floor-button { flex-shrink: 0; }
+  .floor-plan-open .floor-detail { margin: 0; padding: 0; border: 0; }
+  .floor-plan-open .floor-detail summary { white-space: nowrap; min-height: 36px; }
+  .floor-plan-open .floor-detail[open] summary { margin: 0; }
+  .floor-plan-open #floor-detail-content {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    width: 320px;
+    max-height: min(500px, calc(100vh - 230px));
+    overflow: auto;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #242622fa;
+    box-shadow: 0 12px 40px #0003;
+  }
+  body[data-theme='day'].floor-plan-open #floor-detail-content { background: #f5f1e8fa; }
+}
+
 @media (max-width:1100px) {
   .floor-stage { top: 111px; }
 }
@@ -3472,6 +3643,13 @@ body[data-theme='day'] .floor-label:focus-visible {
   .floor-stage { top: 96px; }
   .floor-stage strong { font-size: 13px; }
   .floor-stage p { font-size: 8px; }
+  button.study-marker:not(.door-label) {
+    min-width: 24px;
+    min-height: 24px;
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+  .study-marker.is-estimated:not(.door-label)::before { content: none; }
 }
 
 /* Keep the phone's floor controls below the drawing, not over its center. */

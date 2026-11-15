@@ -8,7 +8,7 @@ The live GitHub Pages application publishes building geometry and community info
 - No cookies or browser storage created by application code.
 - Correction forms and event planning forms stay in memory, then download a user-controlled file.
 - External source links use `noopener` and open only after a visitor selects them.
-- The public build contains no individual room records. Aggregate counts are research observations, not current occupancy.
+- No individual source-map room records or resident-to-room associations are published. Aggregate counts are research observations. The separate House 55 sketch study contains temporary geometry labels and explicit estimates, with no physical room numbers or occupancy claims.
 - Private-looking actions explain the missing secure service. Client-side UI hiding is never described as authentication.
 
 GitHub and the visitor's network providers can still receive ordinary hosting request data. Outbound source links follow their destination's policies. Calendar and correction downloads contain the text entered by their creator; sharing a downloaded file shares that text.

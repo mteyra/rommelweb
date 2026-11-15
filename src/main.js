@@ -2,7 +2,8 @@ import './styles.css';
 import QRCode from 'qrcode';
 import { CampusScene, fallbackMap } from './scene.js';
 import { clubs, floorName, escapeHTML as esc, downloadFile } from './data.js';
-import { validateInteriorData, getInteriorLevel } from './interiors.js';
+import { validateInteriorData } from './interiors.js';
+import { validateInteriorStudies, getDisplayLevel } from './interior-studies.js';
 import { calendarDraft, orderedDrafts } from './events.js';
 import { icon } from './icons.js';
 import { roomReferences, roomReferenceSource } from './room-references.js';
@@ -11,7 +12,7 @@ const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const base = import.meta.env.BASE_URL;
 const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, groupIndex: 0, drafts: [], theme: 'night' };
-let campus, lod2, interiors, scene, groups, toastTimer, lastFocus, qrRevision = 0;
+let campus, lod2, interiors, studies, scene, groups, toastTimer, lastFocus, qrRevision = 0;
 let renderedGroupId = null, groupSizeAnimation;
 const groupBackgroundState = new Map();
 const panelAnimations = new WeakMap();
@@ -92,32 +93,63 @@ function selectFloor(floor) {
 }
 
 function renderFloor() {
-  const level = getInteriorLevel(interiors, state.selected, state.floor);
+  const level = getDisplayLevel(interiors, studies, state.selected, state.floor);
   const inFloors = Boolean(state.selected && state.exploded);
   document.body.classList.toggle('floors-open', inFloors);
   document.body.classList.toggle('floor-plan-open', inFloors && state.floor !== null);
   document.body.dataset.view = !state.selected ? 'campus' : !inFloors ? 'house' : state.floor === null ? 'floors' : 'floor';
   $('#floor-stage').hidden = !inFloors;
-  $('#floor-stage-title').textContent = inFloors ? `House ${state.selected} / ${state.floor === null ? 'Floor study' : level?.label || floorName(state.floor)}` : '';
+  $('#floor-stage-title').textContent = inFloors ? `House ${state.selected} / ${state.floor === null ? 'Floor study' : level?.isStudy ? `${state.floor}. OG` : level?.label || floorName(state.floor)}` : '';
   $('#floor-stage-note').textContent = state.floor === null ? 'Choose a level to look inside.'
-    : level?.spaces.length ? 'Explore a room or a marked doorway.' : 'Interior plan awaiting a verified layout.';
+    : level?.isStudy ? 'Resident sketch · dashed divisions are estimates.'
+      : level?.spaces.length ? 'Explore a room or a marked doorway.' : 'Interior plan awaiting a verified layout.';
+  $('#floor-stage').classList.toggle('is-study', Boolean(level?.isStudy));
   $('#all-floors').setAttribute('aria-pressed', state.floor === null);
   if (inFloors) $('#scene-caption').textContent = state.floor === null
     ? 'A house on its own. Select a floor to look closer.'
     : 'Almost overhead. Drag to adjust; All levels returns to the stack.';
-  $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
-  $('#floor-detail-content').innerHTML = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip" data-space="${esc(space.id)}">${esc(space.label)}</button>`).join('')}</div><p>${level.elevation} m above building base. Approved room and doorway geometry; walls shown as a low cutaway.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>` : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This is the exterior section at a provisional floor height. A house-and-floor plan is needed to place its rooms, corridors and doors accurately.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
+  $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : level?.isStudy ? 'Rooms & drawing key' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
+  const spaceButtons = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip${level.isStudy && space.confidence === 'estimated' ? ' is-estimated' : ''}" data-space="${esc(space.id)}"${level.isStudy ? ` aria-label="${esc(`${space.label}, ${space.confidence === 'estimated' ? 'estimated area' : 'resident sketch'}, temporary study label`)}"` : ''}>${esc(space.label)}</button>`).join('')}</div>` : '';
+  $('#floor-detail-content').innerHTML = level?.isStudy
+    ? `<p class="study-evidence">A resident-sketch study</p><div class="study-legend" aria-label="Drawing key"><span data-evidence="sketch">Sketch</span><span data-evidence="estimated">Estimate</span>${level.excludedAreas?.length ? '<span data-evidence="excluded">Excluded</span>' : ''}</div>${spaceButtons}<p>Lettered labels are temporary, not physical room numbers. Divisions and doorway positions still need verification.</p>${studyNotes(level)}<small>Source: ${esc(level.source)}</small><div class="floor-reference-actions"><button class="text-button" id="contribute-floor">Correct this study ↗</button></div>`
+    : level ? `${spaceButtons}<p>${level.elevation} m above building base. Approved room and doorway geometry; walls shown as a low cutaway.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>`
+      : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This is the exterior section at a provisional floor height. A house-and-floor plan is needed to place its rooms, corridors and doors accurately.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
   $$('#floor-detail-content [data-space]').forEach(button => button.onclick = () => spaceDialog({house: state.selected, floor: state.floor, spaceId: button.dataset.space}));
   if ($('#contribute-floor')) $('#contribute-floor').onclick = () => correctionDialog(state.selected, state.floor);
   if ($('#room-references')) $('#room-references').onclick = () => roomReferencesDialog();
 }
 
+function studyNotes(level) {
+  const notes = (Array.isArray(level.notes) ? level.notes : [level.notes]).filter(note => typeof note === 'string' && note.trim());
+  return notes.length ? `<ul class="study-notes">${notes.map(note => `<li>${esc(note)}</li>`).join('')}</ul>` : '';
+}
+
 function spaceDialog({ house: number, floor, spaceId, openingId }) {
   if (number !== state.selected || floor !== state.floor || !state.exploded) return;
-  const level = getInteriorLevel(interiors, number, floor);
+  const level = getDisplayLevel(interiors, studies, number, floor);
   const space = level?.spaces.find(space => space.id === spaceId);
   const door = openingId ? level?.doors?.find(door => door.id === openingId && door.spaceId === spaceId) : null;
   if (!space || openingId && !door) return;
+  if (level.isStudy) {
+    const item = door || space;
+    const estimated = item.confidence === 'estimated';
+    const title = `${door ? door.label : space.label} · study`;
+    const description = door
+      ? estimated ? 'Estimated doorway position. The opening, hinge and direction still need verification.' : 'Doorway marked in the resident sketch. Its position and dimensions still need verification.'
+      : space.kind === 'room'
+        ? estimated ? 'An estimated room division within the resident sketch.' : 'A room area marked in the resident sketch; its boundaries are approximate.'
+        : space.kind === 'stairs'
+          ? estimated ? 'Estimated stair area. Its shape and connections between floors are unverified.' : 'Stair area marked in the resident sketch. Its exact shape and connections between floors are unverified.'
+          : estimated ? 'An estimated space within the resident sketch.' : 'A space marked in the resident sketch; its boundaries are approximate.';
+    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
+    $('#correct-space-study').onclick = () => {
+      correctionDialog(number, floor);
+      const observation = $('#correction-form').elements.observation;
+      observation.value = `House ${number}, ${level.label}, study label “${item.label}”: `;
+      observation.focus({ preventScroll: true });
+    };
+    return;
+  }
   const residentPreview = space.kind === 'room' ? `<div class="space-person-placeholder">${icon('lock')}<strong>Resident card · coming later</strong><p>A resident can choose what to share here once verified access is connected.</p></div><button class="full-button" disabled>Knocking · not connected</button>` : '';
   modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(space.label)}</h2><p class="modal-lead">${esc(door ? door.label : space.kind === 'room' ? 'A room in the house.' : space.kind.replace('-', ' '))}</p>${residentPreview}<p class="source-note">Physical space from ${esc(level.source)} · reviewed ${esc(level.reviewedAt)}. No resident information or occupancy is published.</p>`);
 }
@@ -393,7 +425,7 @@ function roomReferencesDialog(campusId = house(state.selected)?.campus || 'I') {
 
 function accuracyDialog() {
   const model = lod2.buildings.find(building => building.number === state.selected);
-  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and tall windows on the newer houses; horizontal plates and smaller, aligned windows on the older ones. Blue House’s aligned rows follow a resident correction. Window spacing and older façade row heights are schematic, separate from the floor sections. Openings fit within the official walls; exact placement still needs a façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interiors still need your knowledge</strong><p>Floor counts come from OSM. Unfolded floor intervals are provisional until approved plans arrive. There are no invented room numbers, resident locations or occupancy records.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
+  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and tall windows on the newer houses; horizontal plates and smaller, aligned windows on the older ones. Blue House’s aligned rows follow a resident correction. Window spacing and older façade row heights are schematic, separate from the floor sections. Openings fit within the official walls; exact placement still needs a façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interiors, built from resident knowledge</strong><p>Floor counts come from OSM; floor heights remain provisional until approved plans arrive. Resident-sketch studies use temporary labels and distinguish marked areas from estimated room divisions and doorway positions. They are separate from approved geometry and still need measurements. No resident information or occupancy is published.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
 }
 
 function correctionDialog(number = state.selected || '', floor = state.floor) {
@@ -427,18 +459,19 @@ function activateFallback() {
 
 async function init() {
   try {
-    [campus, lod2, interiors] = await Promise.all(['campus.json', 'lod2.json', 'interiors.json'].map(async file => {
+    [campus, lod2, interiors, studies] = await Promise.all(['campus.json', 'lod2.json', 'interiors.json', 'interior-studies.json'].map(async file => {
       const response = await fetch(`${base}data/${file}`);
       if (!response.ok) throw new Error(`Map data unavailable (${response.status})`);
       return response.json();
     }));
     validateInteriorData(interiors, campus, lod2);
+    validateInteriorStudies(studies, campus, lod2);
     campus.buildings.forEach(building => {
       const model = lod2.buildings.find(item => item.number === building.number);
       Object.assign(building, { height: model.height, baseY: model.baseY, footprint: model.groundPolygons[0] });
     });
     groups = [...clubs, ...campus.buildings.map(building => ({ id: `house-${building.number}`, title: `House ${building.number}`, category: `${building.name.toUpperCase()} / WHATSAPP`, house: building.number, location: `Campus Süd ${building.campus}`, description: 'The little conversations that make a house a home. A private space for the people who live here.', source: null }))];
-    try { scene = new CampusScene($('#scene'), $('#map-labels'), campus, lod2, interiors, number => travel(number), selectFloor, spaceDialog); }
+    try { scene = new CampusScene($('#scene'), $('#map-labels'), campus, lod2, interiors, number => travel(number), selectFloor, spaceDialog, studies); }
     catch (error) { console.warn('3D unavailable; using the map fallback.', error); activateFallback(); }
     setTheme(state.theme);
     await scene?.pathLoad;

@@ -1,4 +1,5 @@
 const paths = {
+  door: '<path d="M6 21V3h12v18M3 21h18M14 12h.01"/>',
   film: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9h4m-4 6h4M17 9h4m-4 6h4"/>',
   bike: '<circle cx="6" cy="16" r="4"/><circle cx="18" cy="16" r="4"/><path d="m6 16 5-9 7 9M6 16h8l-4-7M9 7h4m3-3h3l-2 6"/>',
   leaf: '<path d="M20 3C6 2 2 9 5 16c6 8 17 1 15-13Z M5 20 16 8M9 15l-1-5m5 1h4"/>',

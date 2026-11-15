@@ -115,6 +115,27 @@ test('selecting one floor hides siblings and fits only its actual section almost
   assert.equal(view.activeFloor, null, 'invalid levels cannot hide the selected building');
 });
 
+test('study-floor selection and portrait resize use the plan axes without changing ordinary or approved floor views', () => {
+  const view = fixture(), building = view.buildings.get('51'), before = structuredClone(building.floorSections);
+  const axis = new THREE.Vector3(Math.cos(0.7), 0, Math.sin(0.7));
+  const outer = [[0, 0], [30, 0], [30, 6], [0, 6], [0, 0]].map(([x, z]) => [x * axis.x - z * axis.z, x * axis.z + z * axis.x]);
+  view.studies = {schemaVersion: 1, buildings: {'51': {levels: [{index: 1, floorOutline: [{outer}], spaces: []}]}}};
+  const screenRight = () => new THREE.Vector3(1, 0, 0).applyQuaternion(view.camera.quaternion);
+  view.explode(true);
+  view.setFloor(1);
+  assert.ok(Math.abs(screenRight().dot(axis)) > 0.999, 'selecting the study aligns its long axis horizontally');
+  view.container.getBoundingClientRect = () => ({width: 390, height: 844});
+  view.resize();
+  assert.ok(Math.abs(screenRight().dot(axis)) < 1e-8, 'portrait resize rotates the study long axis vertically');
+  assert.ok(view.camera.position.clone().sub(view.controls.target).normalize().y > 0.999);
+  view.setFloor(0);
+  assert.ok(screenRight().x > 0.999, 'unmapped floors retain their ordinary overhead orientation');
+  view.interiors = {schemaVersion: 1, buildings: {'51': {approved: true, levels: [{index: 1, spaces: []}]}}};
+  view.setFloor(1);
+  assert.ok(screenRight().x > 0.999, 'an approved plan must not inherit the superseded study orientation');
+  assert.deepEqual(building.floorSections, before);
+});
+
 test('resize during floor travel fits its destination and house travel cancels isolation and stale floor transitions', () => {
   const view = fixture(false), building = view.buildings.get('51');
   view.explode(true);

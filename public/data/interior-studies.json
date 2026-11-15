@@ -1,0 +1,1556 @@
+{
+  "schemaVersion": 1,
+  "buildings": {
+    "55": {
+      "source": "Resident annotation supplied on 2026-11-15; registered against the existing LoD2 exterior.",
+      "sourceDate": "2026-11-15",
+      "levels": [
+        {
+          "index": 2,
+          "label": "2. OG — resident sketch study",
+          "source": "Resident sketch supplied on 15 November 2026, aligned to Bavaria’s official exterior model.",
+          "notes": "Draft only: seven marked bays, twelve estimated bays, approximate stairs and a potential corridor. Nineteen candidates are not a confirmed room count; actual room numbers, doors and measured floor height are unknown.",
+          "floorOutline": [
+            {
+              "outer": [
+                [
+                  -20.400017,
+                  3.670562
+                ],
+                [
+                  -14.146591,
+                  -2.075863
+                ],
+                [
+                  -10.615,
+                  1.784
+                ],
+                [
+                  -0.810355,
+                  -7.225048
+                ],
+                [
+                  4.90702,
+                  -0.968298
+                ],
+                [
+                  3.313861,
+                  0.497504
+                ],
+                [
+                  0.87,
+                  2.745
+                ],
+                [
+                  7.924865,
+                  10.450124
+                ],
+                [
+                  7.238,
+                  11.079
+                ],
+                [
+                  13.3,
+                  17.717
+                ],
+                [
+                  14.24,
+                  16.857
+                ],
+                [
+                  19.764,
+                  11.799
+                ],
+                [
+                  27.098837,
+                  19.82719
+                ],
+                [
+                  20.839776,
+                  25.577108
+                ],
+                [
+                  20.154574,
+                  24.825672
+                ],
+                [
+                  19.87247,
+                  24.517666
+                ],
+                [
+                  19.224,
+                  23.807
+                ],
+                [
+                  11.605421,
+                  30.80674
+                ],
+                [
+                  8.904876,
+                  27.85618
+                ],
+                [
+                  5.893531,
+                  24.565323
+                ],
+                [
+                  6.353601,
+                  24.144121
+                ],
+                [
+                  6.504,
+                  24.006977
+                ],
+                [
+                  7.76,
+                  22.857
+                ],
+                [
+                  2.304,
+                  16.898
+                ],
+                [
+                  2.219,
+                  16.976
+                ],
+                [
+                  0.48,
+                  15.075
+                ],
+                [
+                  1.043,
+                  14.558
+                ],
+                [
+                  -4.866,
+                  8.09
+                ],
+                [
+                  -5.773,
+                  8.924
+                ],
+                [
+                  -11.109,
+                  13.826
+                ],
+                [
+                  -19.495962,
+                  4.659388
+                ],
+                [
+                  -20.400017,
+                  3.670562
+                ]
+              ],
+              "holes": []
+            }
+          ],
+          "excludedAreas": [
+            {
+              "id": "study-55-2-no-floor-1",
+              "label": "No floor — lower green mark",
+              "polygon": [
+                [
+                  -5.295,
+                  20.183
+                ],
+                [
+                  -1.531,
+                  16.724
+                ],
+                [
+                  -1.432,
+                  16.833
+                ],
+                [
+                  0.48,
+                  15.075
+                ],
+                [
+                  1.043,
+                  14.558
+                ],
+                [
+                  -4.866,
+                  8.09
+                ],
+                [
+                  -5.773,
+                  8.924
+                ],
+                [
+                  -11.109,
+                  13.826
+                ],
+                [
+                  -5.295,
+                  20.183
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-no-floor-2",
+              "label": "No floor — upper green mark",
+              "polygon": [
+                [
+                  13.3,
+                  17.717
+                ],
+                [
+                  14.24,
+                  16.857
+                ],
+                [
+                  19.764,
+                  11.799
+                ],
+                [
+                  13.944,
+                  5.43
+                ],
+                [
+                  8.185,
+                  10.735
+                ],
+                [
+                  7.925,
+                  10.45
+                ],
+                [
+                  7.238,
+                  11.079
+                ],
+                [
+                  13.3,
+                  17.717
+                ]
+              ]
+            }
+          ],
+          "sketchBoundaries": [
+            [
+              [
+                -14.876302,
+                0.908636
+              ],
+              [
+                -6.720332,
+                9.800573
+              ]
+            ],
+            [
+              [
+                -12.936803,
+                3.023149
+              ],
+              [
+                -17.325471,
+                7.048576
+              ]
+            ],
+            [
+              [
+                -11.119196,
+                5.004771
+              ],
+              [
+                -15.507863,
+                9.030198
+              ]
+            ],
+            [
+              [
+                -8.920446,
+                7.401929
+              ],
+              [
+                -13.309114,
+                11.427355
+              ]
+            ],
+            [
+              [
+                15.413428,
+                19.654003
+              ],
+              [
+                19.228325,
+                23.813144
+              ]
+            ],
+            [
+              [
+                8.678103,
+                25.831859
+              ],
+              [
+                15.413428,
+                19.654003
+              ]
+            ],
+            [
+              [
+                13.280032,
+                21.610823
+              ],
+              [
+                17.094929,
+                25.769964
+              ]
+            ],
+            [
+              [
+                11.376527,
+                23.356778
+              ],
+              [
+                15.191424,
+                27.515919
+              ]
+            ],
+            [
+              [
+                1.232207,
+                -2.387203
+              ],
+              [
+                -7.207269,
+                5.353755
+              ]
+            ],
+            [
+              [
+                -7.207269,
+                5.353755
+              ],
+              [
+                -10.549476,
+                1.709958
+              ]
+            ],
+            [
+              [
+                5.390086,
+                7.679654
+              ],
+              [
+                1.586356,
+                11.168557
+              ]
+            ],
+            [
+              [
+                1.586356,
+                11.168557
+              ],
+              [
+                -2.937062,
+                6.23696
+              ]
+            ],
+            [
+              [
+                -2.937062,
+                6.23696
+              ],
+              [
+                0.866667,
+                2.748057
+              ]
+            ],
+            [
+              [
+                6.396876,
+                13.421589
+              ],
+              [
+                11.871041,
+                19.389725
+              ]
+            ],
+            [
+              [
+                11.871041,
+                19.389725
+              ],
+              [
+                7.913844,
+                23.019392
+              ]
+            ],
+            [
+              [
+                2.439679,
+                17.051257
+              ],
+              [
+                6.396876,
+                13.421589
+              ]
+            ],
+            [
+              [
+                22.35654,
+                22.399103
+              ],
+              [
+                15.89165,
+                15.350843
+              ]
+            ]
+          ],
+          "spaces": [
+            {
+              "id": "study-55-2-sw-1",
+              "label": "Sketch room A",
+              "shortLabel": "A",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Four bays are explicitly divided in red. The gross boundaries follow rectified hand strokes; these are not physical room numbers or measured partitions.",
+              "polygon": [
+                [
+                  -19.253922,
+                  4.923928
+                ],
+                [
+                  -14.880006,
+                  0.904598
+                ],
+                [
+                  -12.936803,
+                  3.023149
+                ],
+                [
+                  -17.317049,
+                  7.040852
+                ],
+                [
+                  -19.253922,
+                  4.923928
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-2",
+              "label": "Sketch room B",
+              "shortLabel": "B",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Four bays are explicitly divided in red. The gross boundaries follow rectified hand strokes; these are not physical room numbers or measured partitions.",
+              "polygon": [
+                [
+                  -17.317049,
+                  7.040852
+                ],
+                [
+                  -12.936803,
+                  3.023149
+                ],
+                [
+                  -11.119196,
+                  5.004771
+                ],
+                [
+                  -15.501904,
+                  9.024732
+                ],
+                [
+                  -17.317049,
+                  7.040852
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-3",
+              "label": "Sketch room C",
+              "shortLabel": "C",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Four bays are explicitly divided in red. The gross boundaries follow rectified hand strokes; these are not physical room numbers or measured partitions.",
+              "polygon": [
+                [
+                  -15.501904,
+                  9.024732
+                ],
+                [
+                  -11.119196,
+                  5.004771
+                ],
+                [
+                  -8.920446,
+                  7.401929
+                ],
+                [
+                  -13.306133,
+                  11.424622
+                ],
+                [
+                  -15.501904,
+                  9.024732
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-4",
+              "label": "Sketch room D",
+              "shortLabel": "D",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Four bays are explicitly divided in red. The gross boundaries follow rectified hand strokes; these are not physical room numbers or measured partitions.",
+              "polygon": [
+                [
+                  -13.306133,
+                  11.424622
+                ],
+                [
+                  -8.920446,
+                  7.401929
+                ],
+                [
+                  -6.723464,
+                  9.797159
+                ],
+                [
+                  -11.109,
+                  13.826
+                ],
+                [
+                  -13.306133,
+                  11.424622
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-east-1",
+              "label": "Sketch room E",
+              "shortLabel": "E",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Three bays are explicitly divided in red. The separate upper question-mark block is not counted here; marks on lower exterior walls are not plan divisions.",
+              "polygon": [
+                [
+                  13.280032,
+                  21.610823
+                ],
+                [
+                  15.413428,
+                  19.654003
+                ],
+                [
+                  19.223289,
+                  23.807653
+                ],
+                [
+                  17.091488,
+                  25.766212
+                ],
+                [
+                  13.280032,
+                  21.610823
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-east-2",
+              "label": "Sketch room F",
+              "shortLabel": "F",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Three bays are explicitly divided in red. The separate upper question-mark block is not counted here; marks on lower exterior walls are not plan divisions.",
+              "polygon": [
+                [
+                  11.376527,
+                  23.356778
+                ],
+                [
+                  13.280032,
+                  21.610823
+                ],
+                [
+                  17.091488,
+                  25.766212
+                ],
+                [
+                  15.189406,
+                  27.513719
+                ],
+                [
+                  11.376527,
+                  23.356778
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-east-3",
+              "label": "Sketch room G",
+              "shortLabel": "G",
+              "kind": "room",
+              "confidence": "sketch",
+              "note": "Three bays are explicitly divided in red. The separate upper question-mark block is not counted here; marks on lower exterior walls are not plan divisions.",
+              "polygon": [
+                [
+                  8.683005,
+                  25.827363
+                ],
+                [
+                  11.376527,
+                  23.356778
+                ],
+                [
+                  15.189406,
+                  27.513719
+                ],
+                [
+                  12.493,
+                  29.991
+                ],
+                [
+                  8.683005,
+                  25.827363
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-1",
+              "label": "West estimate 1",
+              "shortLabel": "W1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: four equal candidate bays estimated from its facade run and the approximately 3m gross pitch of the marked bays. Count and dividers need resident confirmation.",
+              "polygon": [
+                [
+                  -4.218096,
+                  -4.093828
+                ],
+                [
+                  -2.109932,
+                  -6.030926
+                ],
+                [
+                  1.225226,
+                  -2.3808
+                ],
+                [
+                  -0.877662,
+                  -0.451964
+                ],
+                [
+                  -4.218096,
+                  -4.093828
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-2",
+              "label": "West estimate 2",
+              "shortLabel": "W2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: four equal candidate bays estimated from its facade run and the approximately 3m gross pitch of the marked bays. Count and dividers need resident confirmation.",
+              "polygon": [
+                [
+                  -6.326261,
+                  -2.15673
+                ],
+                [
+                  -4.218096,
+                  -4.093828
+                ],
+                [
+                  -0.877662,
+                  -0.451964
+                ],
+                [
+                  -2.987531,
+                  1.483276
+                ],
+                [
+                  -6.326261,
+                  -2.15673
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-3",
+              "label": "West estimate 3",
+              "shortLabel": "W3",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: four equal candidate bays estimated from its facade run and the approximately 3m gross pitch of the marked bays. Count and dividers need resident confirmation.",
+              "polygon": [
+                [
+                  -8.434425,
+                  -0.219632
+                ],
+                [
+                  -6.326261,
+                  -2.15673
+                ],
+                [
+                  -2.987531,
+                  1.483276
+                ],
+                [
+                  -5.0974,
+                  3.418515
+                ],
+                [
+                  -8.434425,
+                  -0.219632
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-4",
+              "label": "West estimate 4",
+              "shortLabel": "W4",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: four equal candidate bays estimated from its facade run and the approximately 3m gross pitch of the marked bays. Count and dividers need resident confirmation.",
+              "polygon": [
+                [
+                  -10.54259,
+                  1.717465
+                ],
+                [
+                  -8.434425,
+                  -0.219632
+                ],
+                [
+                  -5.0974,
+                  3.418515
+                ],
+                [
+                  -7.207269,
+                  5.353755
+                ],
+                [
+                  -10.54259,
+                  1.717465
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-left-1",
+              "label": "Center left estimate 1",
+              "shortLabel": "L1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: two equal candidate bays. Its roughly 6.7m run does not establish a room count; this is a provisional study choice.",
+              "polygon": [
+                [
+                  -2.937062,
+                  6.23696
+                ],
+                [
+                  0.87,
+                  2.745
+                ],
+                [
+                  3.129531,
+                  5.212796
+                ],
+                [
+                  -0.675353,
+                  8.702758
+                ],
+                [
+                  -2.937062,
+                  6.23696
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-left-2",
+              "label": "Center left estimate 2",
+              "shortLabel": "L2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: two equal candidate bays. Its roughly 6.7m run does not establish a room count; this is a provisional study choice.",
+              "polygon": [
+                [
+                  -0.675353,
+                  8.702758
+                ],
+                [
+                  3.129531,
+                  5.212796
+                ],
+                [
+                  5.389063,
+                  7.680593
+                ],
+                [
+                  1.586356,
+                  11.168557
+                ],
+                [
+                  -0.675353,
+                  8.702758
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-right-1",
+              "label": "Center right estimate 1",
+              "shortLabel": "R1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Weakest count estimate: three candidate bays in roughly 8.1m imply about 2.7m gross per bay before walls. Two bays remain plausible; do not interpret three as confirmed.",
+              "polygon": [
+                [
+                  2.442202,
+                  17.048943
+                ],
+                [
+                  6.396876,
+                  13.421589
+                ],
+                [
+                  8.221598,
+                  15.410968
+                ],
+                [
+                  4.265148,
+                  19.03995
+                ],
+                [
+                  2.442202,
+                  17.048943
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-right-2",
+              "label": "Center right estimate 2",
+              "shortLabel": "R2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Weakest count estimate: three candidate bays in roughly 8.1m imply about 2.7m gross per bay before walls. Two bays remain plausible; do not interpret three as confirmed.",
+              "polygon": [
+                [
+                  4.265148,
+                  19.03995
+                ],
+                [
+                  8.221598,
+                  15.410968
+                ],
+                [
+                  10.046319,
+                  17.400346
+                ],
+                [
+                  6.088094,
+                  21.030957
+                ],
+                [
+                  4.265148,
+                  19.03995
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-right-3",
+              "label": "Center right estimate 3",
+              "shortLabel": "R3",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Weakest count estimate: three candidate bays in roughly 8.1m imply about 2.7m gross per bay before walls. Two bays remain plausible; do not interpret three as confirmed.",
+              "polygon": [
+                [
+                  6.088094,
+                  21.030957
+                ],
+                [
+                  10.046319,
+                  17.400346
+                ],
+                [
+                  11.871041,
+                  19.389725
+                ],
+                [
+                  7.876997,
+                  23.05319
+                ],
+                [
+                  7.725782,
+                  22.88833
+                ],
+                [
+                  7.76,
+                  22.857
+                ],
+                [
+                  6.088094,
+                  21.030957
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-upper-right-1",
+              "label": "Upper right estimate 1",
+              "shortLabel": "N1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: three equal candidate bays estimated from its roughly 9.4m facade run. Count and divider locations are unconfirmed.",
+              "polygon": [
+                [
+                  15.888578,
+                  15.347494
+                ],
+                [
+                  19.764,
+                  11.799
+                ],
+                [
+                  21.914333,
+                  14.152667
+                ],
+                [
+                  18.046613,
+                  17.700263
+                ],
+                [
+                  15.888578,
+                  15.347494
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-upper-right-2",
+              "label": "Upper right estimate 2",
+              "shortLabel": "N2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: three equal candidate bays estimated from its roughly 9.4m facade run. Count and divider locations are unconfirmed.",
+              "polygon": [
+                [
+                  18.046613,
+                  17.700263
+                ],
+                [
+                  21.914333,
+                  14.152667
+                ],
+                [
+                  24.064667,
+                  16.506333
+                ],
+                [
+                  20.201577,
+                  20.049683
+                ],
+                [
+                  18.046613,
+                  17.700263
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-upper-right-3",
+              "label": "Upper right estimate 3",
+              "shortLabel": "N3",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Question-mark zone: three equal candidate bays estimated from its roughly 9.4m facade run. Count and divider locations are unconfirmed.",
+              "polygon": [
+                [
+                  20.201577,
+                  20.049683
+                ],
+                [
+                  24.064667,
+                  16.506333
+                ],
+                [
+                  26.215,
+                  18.86
+                ],
+                [
+                  22.359291,
+                  22.402102
+                ],
+                [
+                  20.201577,
+                  20.049683
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-stairs",
+              "label": "Stairs — resident mark",
+              "shortLabel": "Stairs",
+              "kind": "stairs",
+              "confidence": "sketch",
+              "note": "The resident marks central stairs in blue. This rectangle records their approximate position and run direction, not a surveyed stair enclosure, riser count, width or landing arrangement.",
+              "polygon": [
+                [
+                  0.908023,
+                  12.396826
+                ],
+                [
+                  4.080487,
+                  9.48694
+                ],
+                [
+                  5.659622,
+                  11.208571
+                ],
+                [
+                  2.487158,
+                  14.118456
+                ],
+                [
+                  0.908023,
+                  12.396826
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-potential-corridor",
+              "label": "Potential corridor",
+              "shortLabel": "Hall",
+              "kind": "corridor",
+              "confidence": "estimated",
+              "note": "Connected remainder between sketch bays and the marked stair zone, limited to the annotated flat-roof plan. It is a circulation hypothesis, not an approved route, egress plan or proof of usable floor area.",
+              "polygon": [
+                [
+                  -14.880006,
+                  0.904598
+                ],
+                [
+                  -13.000153,
+                  -0.82286
+                ],
+                [
+                  -10.615,
+                  1.784
+                ],
+                [
+                  -10.54259,
+                  1.717465
+                ],
+                [
+                  -7.207269,
+                  5.353755
+                ],
+                [
+                  1.225226,
+                  -2.3808
+                ],
+                [
+                  3.608,
+                  0.227
+                ],
+                [
+                  0.87,
+                  2.745
+                ],
+                [
+                  -2.937062,
+                  6.23696
+                ],
+                [
+                  1.586356,
+                  11.168557
+                ],
+                [
+                  5.389063,
+                  7.680593
+                ],
+                [
+                  7.924865,
+                  10.450124
+                ],
+                [
+                  7.238,
+                  11.079
+                ],
+                [
+                  13.3,
+                  17.717
+                ],
+                [
+                  14.24,
+                  16.857
+                ],
+                [
+                  15.888578,
+                  15.347494
+                ],
+                [
+                  22.359291,
+                  22.402102
+                ],
+                [
+                  19.957,
+                  24.609
+                ],
+                [
+                  19.224,
+                  23.807
+                ],
+                [
+                  19.223289,
+                  23.807653
+                ],
+                [
+                  15.413428,
+                  19.654003
+                ],
+                [
+                  8.683005,
+                  25.827363
+                ],
+                [
+                  6.783263,
+                  23.751288
+                ],
+                [
+                  7.725782,
+                  22.88833
+                ],
+                [
+                  7.876997,
+                  23.05319
+                ],
+                [
+                  11.871041,
+                  19.389725
+                ],
+                [
+                  6.396876,
+                  13.421589
+                ],
+                [
+                  2.442202,
+                  17.048943
+                ],
+                [
+                  2.304,
+                  16.898
+                ],
+                [
+                  2.219,
+                  16.976
+                ],
+                [
+                  0.48,
+                  15.075
+                ],
+                [
+                  1.043,
+                  14.558
+                ],
+                [
+                  -4.866,
+                  8.09
+                ],
+                [
+                  -5.773,
+                  8.924
+                ],
+                [
+                  -6.723464,
+                  9.797159
+                ],
+                [
+                  -14.880006,
+                  0.904598
+                ]
+              ],
+              "holes": [
+                [
+                  [
+                    0.908023,
+                    12.396826
+                  ],
+                  [
+                    2.487158,
+                    14.118456
+                  ],
+                  [
+                    5.659622,
+                    11.208571
+                  ],
+                  [
+                    4.080487,
+                    9.48694
+                  ],
+                  [
+                    0.908023,
+                    12.396826
+                  ]
+                ]
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "id": "study-55-2-opening-sw-1",
+              "label": "Estimated opening — Sketch room A",
+              "spaceId": "study-55-2-sw-1",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -14.21073,
+                  1.634266
+                ],
+                [
+                  -13.602375,
+                  2.297518
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-sw-2",
+              "label": "Estimated opening — Sketch room B",
+              "spaceId": "study-55-2-sw-2",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -12.332177,
+                  3.682334
+                ],
+                [
+                  -11.723821,
+                  4.345586
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-sw-3",
+              "label": "Estimated opening — Sketch room C",
+              "spaceId": "study-55-2-sw-3",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -10.323999,
+                  5.871724
+                ],
+                [
+                  -9.715643,
+                  6.534976
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-sw-4",
+              "label": "Estimated opening — Sketch room D",
+              "spaceId": "study-55-2-sw-4",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -8.124567,
+                  8.269625
+                ],
+                [
+                  -7.516211,
+                  8.932877
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-east-1",
+              "label": "Estimated opening — Sketch room E",
+              "spaceId": "study-55-2-east-1",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  14.678356,
+                  20.328235
+                ],
+                [
+                  14.015104,
+                  20.936591
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-east-2",
+              "label": "Estimated opening — Sketch room F",
+              "spaceId": "study-55-2-east-2",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  12.659905,
+                  22.179623
+                ],
+                [
+                  11.996653,
+                  22.787979
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-east-3",
+              "label": "Estimated opening — Sketch room G",
+              "spaceId": "study-55-2-east-3",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  10.358941,
+                  24.290141
+                ],
+                [
+                  9.695689,
+                  24.898497
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-west-1",
+              "label": "Estimated opening — West estimate 1",
+              "spaceId": "study-55-2-west-1",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  0.508899,
+                  -1.723761
+                ],
+                [
+                  -0.154353,
+                  -1.115405
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-west-2",
+              "label": "Estimated opening — West estimate 2",
+              "spaceId": "study-55-2-west-2",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -1.60097,
+                  0.211478
+                ],
+                [
+                  -2.264222,
+                  0.819834
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-west-3",
+              "label": "Estimated opening — West estimate 3",
+              "spaceId": "study-55-2-west-3",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -3.710839,
+                  2.146718
+                ],
+                [
+                  -4.374091,
+                  2.755074
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-west-4",
+              "label": "Estimated opening — West estimate 4",
+              "spaceId": "study-55-2-west-4",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -5.820708,
+                  4.081957
+                ],
+                [
+                  -6.48396,
+                  4.690313
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-center-left-1",
+              "label": "Estimated opening — Center left estimate 1",
+              "spaceId": "study-55-2-center-left-1",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  -2.110386,
+                  7.138233
+                ],
+                [
+                  -1.50203,
+                  7.801485
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-center-left-2",
+              "label": "Estimated opening — Center left estimate 2",
+              "spaceId": "study-55-2-center-left-2",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  0.151324,
+                  9.604032
+                ],
+                [
+                  0.75968,
+                  10.267283
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-center-right-1",
+              "label": "Estimated opening — Center right estimate 1",
+              "spaceId": "study-55-2-center-right-1",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  7.005059,
+                  14.084653
+                ],
+                [
+                  7.613415,
+                  14.747905
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-center-right-2",
+              "label": "Estimated opening — Center right estimate 2",
+              "spaceId": "study-55-2-center-right-2",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  8.82978,
+                  16.074031
+                ],
+                [
+                  9.438136,
+                  16.737283
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-center-right-3",
+              "label": "Estimated opening — Center right estimate 3",
+              "spaceId": "study-55-2-center-right-3",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  10.654502,
+                  18.06341
+                ],
+                [
+                  11.262858,
+                  18.726662
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-upper-right-1",
+              "label": "Estimated opening — Upper right estimate 1",
+              "spaceId": "study-55-2-upper-right-1",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  16.664954,
+                  16.193927
+                ],
+                [
+                  17.27331,
+                  16.857179
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-upper-right-2",
+              "label": "Estimated opening — Upper right estimate 2",
+              "spaceId": "study-55-2-upper-right-2",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  18.819917,
+                  18.543347
+                ],
+                [
+                  19.428273,
+                  19.206599
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-upper-right-3",
+              "label": "Estimated opening — Upper right estimate 3",
+              "spaceId": "study-55-2-upper-right-3",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "segment": [
+                [
+                  20.97488,
+                  20.892767
+                ],
+                [
+                  21.583236,
+                  21.556019
+                ]
+              ],
+              "toSpaceId": "study-55-2-potential-corridor"
+            },
+            {
+              "id": "study-55-2-opening-stairs",
+              "label": "Estimated stair access",
+              "spaceId": "study-55-2-stairs",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 1.10m access gap at the open end of the blue stair mark; this is not evidence of a door leaf or an actual measured landing.",
+              "segment": [
+                [
+                  1.325817,
+                  12.85232
+                ],
+                [
+                  2.069363,
+                  13.662962
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

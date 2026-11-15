@@ -2,6 +2,8 @@
 const SPACE_KINDS = new Set(['room', 'corridor', 'stairs', 'lift', 'shared', 'service']);
 const EPSILON = 1e-8;
 
+export { polygon as validateInteriorPolygon };
+
 function fail(path, message) {
   throw new Error(`Interior data ${path}: ${message}`);
 }

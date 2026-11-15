@@ -2,9 +2,11 @@
 
 Reviewed 15 November 2026 for the room, corridor and selectable-door view. **No current, address-and-floor-matched whole-floor plan was obtained in this public-source review.** There are useful typical-room sketches and a proposed architectural site plan containing small floor layouts, but neither establishes the actual room and door arrangement of a selected dorm floor. This describes the evidence found, not proof that suitable plans do not exist.
 
+The user subsequently supplied an annotated model view for House 55 / 2. OG. It now supports a **separate unmeasured resident-sketch study**, not an approved current floor plan. See [HOUSE55-INTERIOR-STUDY.md](HOUSE55-INTERIOR-STUDY.md) for the marked areas, inferred counts and measurement gaps.
+
 ## First interior pilot: Red House 55
 
-The user selected **Erwin-Rommel-Straße 55, the older Red House in Campus Süd I, second floor (2. OG / index 2)** as the first real interior to build. This is distinct from newer house **55a**. The selected floor's layout is not yet verified, and this choice adds no approved interior geometry.
+The user selected **Erwin-Rommel-Straße 55, the older Red House in Campus Süd I, second floor (2. OG / index 2)** as the first real interior to build. This is distinct from newer house **55a**. Their annotation marks seven bay divisions, four unknown-subdivision regions, central stairs and two absent floor areas. Twelve estimated bays complete a **19-candidate study**, with a potential corridor and all doorway positions explicitly estimated. Its temporary labels identify no physical room number. The selected floor's measured layout remains unverified, and no approved interior geometry has been added.
 
 A targeted follow-up on 15 November 2026 searched the exact address, Red/Rotes Haus, Rommelwohnheim/Rommelwood, Grundriss, Etagenplan, Geschoss and refurbishment/architect references. It found no current whole-floor drawing tied to house 55 and a particular floor.
 
@@ -15,7 +17,7 @@ A targeted follow-up on 15 November 2026 searched the exact address, Red/Rotes H
 | [BayernLabo 2014 funding report, printed p. 65](https://bayernlabo.de/fileadmin/user_upload/foerderinstitut/85_downloadcenter/bayernlabo-foerderbericht-2014-es.pdf#page=65) | The historical funding table names Erwin-Rommel-Str. 55, **68 student places**, and refurbishment | This is a 2014 funding record, not a present-day room count, floor distribution or architectural drawing |
 | [Current Süd I operator page](https://www.werkswelt.de/index.php?id=wohnanlage-campus-sud-i) and [resident room sketches](https://rommelwood.de/wohnen/zimmergrundriss/) | Complex-wide accommodation categories and individual apartment examples | Neither assigns a complete plan to a house 55 floor; do not tile a typical room around the exterior |
 
-The next useful input is **a current plan of house 55, 2. OG**: a permission-cleared plan or measured resident sketch showing its rooms, corridor, stairs/shared spaces and known door openings. It needs orientation/reference points, a reliable scale dimension and actual floor-height evidence before publication as approved geometry. Mark any unoccupied roof area and unknown regions explicitly; different upper levels must be checked individually. The complete collection checklist follows below.
+The next useful input is **a current plan or measurements of house 55, 2. OG**. The annotation already provides a starting arrangement; confirm its unknown-zone counts, especially the tight central-right estimate, then measure rooms, corridor, stair/landing and door openings. Orientation/reference points, reliable scale dimensions and actual floor-height evidence are needed before publication as approved geometry. Retain the marked absent areas and unresolved regions as explicit evidence rather than assuming a complete occupied outline; different upper levels must be checked individually. The collection checklist follows below.
 
 ## Sources checked
 
@@ -47,7 +49,7 @@ There is no need for resident names, current occupancy, contact details, access 
 
 ## Fit with the current data model
 
-The public `interiors.json` still contains no approved floor records at the time of this research. [INTERIOR-FORMAT.md](INTERIOR-FORMAT.md) is the authoritative implementation contract. It supports per-floor elevations and simple polygons for rooms, corridors, stairs, lifts, shared and service spaces. The current door extension records a stable physical ID, two segment endpoints and a referenced space; an optional second space expresses reviewed adjacency. Hinge/swing can be omitted together.
+The public `interiors.json` still contains no approved floor records. The new `interior-studies.json` separately carries the House 55 / 2. OG resident interpretation with `sketch` and `estimated` evidence tags; it cannot supply approval or measured floor-height anchors. [INTERIOR-FORMAT.md](INTERIOR-FORMAT.md) is the authoritative implementation contract. Approved records support per-floor elevations and simple polygons for rooms, corridors, stairs, lifts, shared and service spaces. The door extension records a stable physical ID, two segment endpoints and a referenced space; an optional second space expresses reviewed adjacency. Hinge/swing can be omitted together.
 
 Choose and preserve the polygon convention when tracing. **Clear-room boundaries separated by wall thickness do not share an edge.** Keep those measured polygons intact and omit `toSpaceId` until a wall/threshold representation supports their connection. Shared partition-line topology can support current two-space adjacency, but its polygon area must not be reported as measured clear floor area. Do not snap one convention into the other silently.
 
@@ -55,4 +57,4 @@ For future door popups, the public geometry should identify only the physical sp
 
 ## Reuse boundary
 
-No open redistribution licence was established for the referenced architectural drawings, photographs or resident sketches. This study links them and records limited factual observations; it does not bundle their images or trace a proposed plan into the live dorm model. Official exterior geometry keeps its separate attribution. New approved interior data needs its own source and reuse record.
+No open redistribution licence was established for the referenced third-party architectural drawings, photographs or resident room sketches. This review links them and records limited factual observations; it does not bundle their images or trace a proposed architectural plan into the live dorm model. The user's separate House 55 annotation was supplied for implementation, including estimates in the unknown zones; its derived geometry is labeled as an unmeasured study. Official exterior geometry keeps its separate attribution. New approved interior data needs its own source and reuse record.

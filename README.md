@@ -17,13 +17,14 @@ Preview details: [daylight campus](docs/preview/day-campus.png) · [group carous
 - An interactive Three.js map using **official Bavarian LoD2 geometry**: 289 wall, roof and ground surfaces across eleven address-matched buildings.
 - A full-screen spatial interface with **day/night mode**, defaulting to night, and a lower overview from the southwest. Daylight uses warm off-white ground and neutral light panels; geographical alignment, metre scale, source roof shapes, heights and relative building-base elevations remain unchanged.
 - Hover a house to highlight it, then click to focus. A primary click on empty map space restores the campus overview; dragging, cancelled gestures and multi-pointer gestures do not trigger that action. The Rommelweb brand also restores the overview. Drag to orbit and use the wheel to zoom.
-- Buildings and their address-label buttons are the navigation, with keyboard access through the labels. The selected house's floor-unfold control stays at bottom left.
+- Buildings and their address-label buttons are the navigation, with keyboard access through the labels. The selected house's unfold control starts at bottom left; a selected floor uses a compact control bar below its drawing.
 - Photo-informed façade linework: vertical timber seams on the newer houses and horizontal plate courses with faint short joints on the older houses. Natural timber and older brown façades sit beneath neutral charcoal/gray roofs. Colors, seam spacing and floor bands are schematic; source polygons are unchanged.
 - A separate **schematic window layer** adds narrow dark frames, lower transoms and head strips to the newer houses. Blue House **51a has vertically aligned upper rows**, following a resident correction; the other newer houses retain illustrative row offsets. Typical width is referenced to a resident sketch, while positions, heights and repetition remain unmeasured. Newer-house ground-floor glazing, stairs and loggias remain unmodeled. See the [newer-window evidence](docs/WINDOW-REFERENCES.md).
 - Older houses now have three aligned appearance rows where complete windows fit the source shell, including regular ground-row windows. Their approximately 1.05 × 1.55 m profile and 0.95 m sill come from one unassigned room sketch. Row spacing uses a broad horizontal roof as a visual guide and leaves the floor-section elevations unchanged. No opening establishes a room, occupancy or usable roof space. See the [older-window evidence](docs/OLD-WINDOW-REFERENCES.md).
 - Continuous streets and paths from retained OSM geometry: joined outlines at intersections, mapped widths where available and crisp screen-width centerlines otherwise. Decorative trees and gray context-building blocks remain absent.
 - An unfolded **level study** isolates the selected house and separates thin horizontal sections through its actual LoD2 shell. Selecting a floor hides the other levels and moves to a nearly overhead view. Upper outlines can shrink or split beneath the older houses' stepped roofs. OSM floor counts and provisional heights determine the initial sections; they do not establish occupancy or usable headroom.
-- A framework for approved **room, corridor and physical-door wireframes**, including selectable spaces and doors, a low display cutaway and sourced swing arcs when known. No actual interior plans are published yet; the current view explains the missing evidence. Resident cards and knocking remain unconnected placeholders.
+- **Red House 55 / 2. OG** has a separate resident-sketch study: seven bays divided in the annotation and twelve estimated bays, totaling **19 candidates**. Two green-marked areas are excluded from its displayed floor, the central stair follows the blue mark, and a potential corridor and all doorway positions are estimated. Temporary labels, solid/dashed linework and evidence notes distinguish the sketch from measured geometry. The drawing aligns with the building axes and turns vertically on portrait phones; compact room markers and door buttons open evidence cards. The uncertain central-right count and the public map's 20-marker cross-check remain unresolved. See the [House 55 study](docs/HOUSE55-INTERIOR-STUDY.md).
+- A framework for approved **room, corridor and physical-door wireframes**, including selectable spaces and doors, a low display cutaway and sourced swing arcs when known. Approved `interiors.json` remains empty; the sketch uses its own `interior-studies.json` dataset and cannot set verified floor heights. Study popups explain their evidence and accept correction-file suggestions. No resident identity or physical room number is assigned.
 - The top-right **Groups** button opens and closes a readable card centered beneath the breadcrumb. Floating previous/next arrows browse groups; **Details** expands into a large centered panel with a smooth transition. Locally generated QR codes lead to public activity pages and known houses: cinema at 55, bicycle workshop at 57, garden behind 59, and Sprachcafé at 51a. House WhatsApp cards remain locked and expose no invite link or private QR.
 - A quiet, silent interface: camera, floor, theme and group transitions ease between states; façade line density adjusts to the view, and cached QR codes change with their titles. Reduced-motion preferences are respected. No audio code or media is included.
 - **Published room designs**, available under floor details and map information, links to resident sketches for both campuses and the operator's 2026 categories. Approximate living-zone dimensions remain separate from category-average areas and geolocated interior geometry.
@@ -35,7 +36,7 @@ Preview details: [daylight campus](docs/preview/day-campus.png) · [group carous
 
 ## What still requires evidence or infrastructure
 
-**Interiors:** the first selected pilot is **Red House 55, second floor (2. OG)**. It needs a current plan or measured sketch. All houses need plans identified by house and floor, with approved room labels, room/corridor boundaries, door positions, real floor elevations, stairs and accessible routes. Research found typical-room sketches and planning illustrations, but no verified current full-floor plan suitable for this model. See the [interior-plan evidence](docs/INTERIOR-PLAN-EVIDENCE.md) and [contribution format](docs/INTERIOR-FORMAT.md). The existing public map's individual room database has not been republished: its reuse rights are unclear and many coordinates are unsuitable for precise geometry. The public room-data starter contains aggregate research metadata and no individual room records.
+**Interiors:** the first selected pilot is **Red House 55, second floor (2. OG)**. Its annotated screenshot now supports an explicitly unmeasured study. Counts, partitions, corridor and door locations still need a current plan or measurements before becoming approved geometry. All houses need plans identified by house and floor, with approved room labels, real floor elevations, stairs and accessible routes. Research found typical-room sketches and planning illustrations, but no verified current full-floor plan suitable for this model. See the [interior-plan evidence](docs/INTERIOR-PLAN-EVIDENCE.md) and [contribution format](docs/INTERIOR-FORMAT.md). The existing public map's individual room database has not been republished: its reuse rights are unclear and many coordinates are unsuitable for precise geometry. Its public room-data starter contains aggregate metadata and no individual source records; the new sketch cells are independent study references.
 
 **Resident services:** authentication, residency verification, WhatsApp invitations, discoverability, knocking, messages, shared event publishing and personal connection graphs. The interface explains these planned features; it does not simulate a secure backend.
 
@@ -72,7 +73,8 @@ The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pag
 | `src/room-references.js` | Cited room typologies and approximate dimensions, without room placements |
 | `src/events.js` | Order personal drafts and export calendar files |
 | `src/interiors.js` | Validate approved spaces and doors; interpolate unknown floor guides around verified elevations |
-| `src/interior-wireframe.js` | Approved interior cutaways, door gaps, sourced swing arcs and selectable physical-space targets |
+| `src/interior-studies.js` | Validate unmeasured studies, prefer approved records, and apply separate display-floor outlines |
+| `src/interior-wireframe.js` | Approved/study cutaways, evidence-styled walls, door gaps and selectable space targets |
 | `src/styles.css` | Responsive day/night spatial interface and reduced-motion styles |
 | `public/data/lod2.json` | Official exterior polygons transformed into campus coordinates |
 | `public/data/campus.json` | OSM footprints, storey counts, context and house identity references |
@@ -80,10 +82,12 @@ The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pag
 | `public/data/campus.geojson` | OSM reference footprints and context in geographic coordinates |
 | `public/data/room-markers.json` | Aggregate room-source research metadata; no individual records |
 | `public/data/interiors.json` | Approved interior geometry; empty until plans are reviewed |
+| `public/data/interior-studies.json` | Separate unmeasured resident study for House 55 / 2. OG |
 | `data/source/` | Retained source subset, snapshots and checksums |
 | `scripts/acquire-lod2.py` | Reproduce official geometry using pinned projection tooling |
 | `scripts/acquire-campus.py` | Reproduce the OSM reference and context dataset |
 | `scripts/build-path-network.mjs` | Rebuild the path cache; `--check` rejects stale source references |
+| `scripts/generate-house55-study.mjs` | Reproduce screenshot registration, sketch interpretation and explicit bay/door estimates |
 | `docs/ARCHITECTURE.md` | Product, privacy, data model, permissions and staged delivery |
 | `docs/GEOMETRY.md` | Detailed geometry provenance, transformations and uncertainties |
 | `docs/FACADE-REFERENCES.md` | Inspected photo references and schematic material-line limits |
@@ -92,6 +96,7 @@ The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pag
 | `docs/OLD-BUILDING-SECTIONS.md` | Older-house roof/floor evidence, clear-height limits and plate-cladding refinement |
 | `docs/ROOM-TYPOLOGY-RESEARCH.md` | Public room drawings, dimensions, operator categories and evidence limits |
 | `docs/INTERIOR-PLAN-EVIDENCE.md` | Full-floor plan search, usable evidence limits and minimum inputs for an accurate interior |
+| `docs/HOUSE55-INTERIOR-STUDY.md` | Resident annotation, 19 candidate bays, registration, exclusions and unresolved count checks |
 | `docs/RESEARCH.md` | Source register and confirmed campus/community facts |
 | `docs/RESIDENT-VALIDATION.md` | Collaborative validation and first-resident pilot |
 | `docs/INTERIOR-FORMAT.md` | How to add approved room/corridor outlines, doors, labels and floor elevations |
@@ -116,7 +121,9 @@ Rebuild the path cache whenever mapped paths change. `npm run build` checks that
 
 Start an interior contribution by selecting a house, choosing **Unfold the floors**, opening a level's details and selecting **Add a floor detail**. The downloaded JSON is a proposal, not an automatic geometry edit. Establish plan reuse permission, remove personal/security details, and follow the validation checklist before adding it to the public model.
 
-The [interior schema](docs/INTERIOR-FORMAT.md) and renderer support partial approved plans. Selecting the corresponding unfolded floor can show room/corridor outlines, door openings, labels and a low 1.05 m display cutaway. This display height is not a measured wall or ceiling height. Door swing is drawn only when supplied by the source, and space/door selection opens physical-plan information without resident data. The published dataset remains empty pending a reviewed plan; see the [interior-plan evidence](docs/INTERIOR-PLAN-EVIDENCE.md).
+The [interior schema](docs/INTERIOR-FORMAT.md) and renderer support partial approved plans. Selecting the corresponding unfolded floor can show room/corridor outlines, door openings, labels and a low 1.05 m display cutaway. This display height is not a measured wall or ceiling height. Door swing is drawn only when supplied by the source. Approved `interiors.json` remains empty pending a reviewed plan; see the [interior-plan evidence](docs/INTERIOR-PLAN-EVIDENCE.md).
+
+The separate `interior-studies.json` layer currently covers only **House 55 / index 2**. Its sketch and estimated cells use temporary labels, with all door positions explicitly estimated and no hinge/swing inferred. `getDisplayLevel` prefers an approved plan if one is later added for the same floor. A study neither creates approval nor supplies a floor-height anchor. Its displayed plate omits the two resident-marked absent areas while preserving the official source model.
 
 Verified floor elevations anchor the model; unverified guides interpolate between them and remain provisional. Each guide produces an exterior section, rather than another full-footprint building volume. A verified elevation still does not turn that exterior section into an approved occupied-area boundary. See the [older-building research](docs/OLD-BUILDING-SECTIONS.md).
 

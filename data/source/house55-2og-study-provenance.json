@@ -1,0 +1,1304 @@
+{
+  "schemaVersion": 1,
+  "status": "resident-sketch-and-explicit-estimates",
+  "house": "55",
+  "levelIndex": 2,
+  "generatedForDate": "2026-11-15",
+  "generator": "node scripts/generate-house55-study.mjs",
+  "source": "Resident annotated House 55 / 2. OG screenshot supplied in this project on 2026-11-15; registered to Bayerische Vermessungsverwaltung LoD2 exterior.",
+  "annotation": {
+    "filename": "house55-2og-resident-markup.png",
+    "originalFilename": "codex-clipboard-iLXgxr.png",
+    "archivedPath": "data/source/house55-2og-resident-markup.png",
+    "width": 1317,
+    "height": 694,
+    "sha256": "46e8288900b26170fa83ee93ae8bbaa68a0385e55280ade3d01583cd94a757ba",
+    "observation": "Red: room bays and four question-mark zones. Green: two areas explicitly marked as no floor. Blue: central stairs. Lower facade marks are not counted as 2. OG plan divisions.",
+    "reusePermission": "Resident supplied the annotation for implementation in rommelweb and explicitly authorized estimates where counts are unknown."
+  },
+  "geometrySource": {
+    "path": "public/data/lod2.json",
+    "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+    "buildingId": "DEBY_LOD2_3166499",
+    "footprintCurrency": "2025-10-14",
+    "creationDate": "2021-04-15",
+    "attribution": "Datenquelle: Bayerische Vermessungsverwaltung – www.geodaten.bayern.de",
+    "license": "CC BY 4.0",
+    "sourceUrl": "https://geodaten.bayern.de/opengeodata/OpenDataDetail.html?pn=lod2"
+  },
+  "registration": {
+    "method": "Least-squares 8-parameter planar homography from seventeen manually observed same-plane source corners; h33=1.",
+    "sourcePlaneCampusY": 11.401,
+    "sourcePlaneAltitudeNHN": 300.99,
+    "sourcePlaneMeaning": "Visible horizontal roof used only to register plan positions; not the second-floor elevation.",
+    "localAxesInCampusXZ": {
+      "x": [
+        0.6759509953291936,
+        0.7369465733100823
+      ],
+      "y": [
+        -0.7369465733100823,
+        0.6759509953291936
+      ]
+    },
+    "localOriginInCampusXZ": [
+      0,
+      0
+    ],
+    "observationCanvas": {
+      "width": 1344,
+      "height": 702,
+      "meaning": "Manual digitization canvas; the original image is rescaled to this coordinate grid for the retained observations."
+    },
+    "observationCanvasToOriginalPixelScale": [
+      0.9799107142857143,
+      0.9886039886039886
+    ],
+    "localMetresToObservationCanvasPixelsRowMajor": [
+      27.08046949994313,
+      -1.6085326265963564,
+      421.35439493598597,
+      -0.5116942623744374,
+      25.305795521355545,
+      187.08016937895914,
+      0.00014592172848608328,
+      -0.003023048726603575,
+      1
+    ],
+    "localMetresToImagePixelsRowMajor": [
+      26.536442210881773,
+      -1.5762183550799118,
+      412.88968610914696,
+      -0.5058629887291447,
+      25.017410387209043,
+      184.9482016367488,
+      0.00014592172848608328,
+      -0.003023048726603575,
+      1
+    ],
+    "controls": [
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 0,
+        "sourcePoint": [
+          -11.109,
+          11.401,
+          13.826
+        ],
+        "pixel": [
+          480.15625,
+          656.433048
+        ],
+        "observationCanvasPixel": [
+          490,
+          664
+        ],
+        "projectedPixel": [
+          481.712377,
+          656.761186
+        ],
+        "residualPixels": 1.590348
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 5,
+        "sourcePoint": [
+          2.219,
+          11.401,
+          16.976
+        ],
+        "pixel": [
+          791.767857,
+          435.974359
+        ],
+        "observationCanvasPixel": [
+          808,
+          441
+        ],
+        "projectedPixel": [
+          791.078775,
+          436.104376
+        ],
+        "residualPixels": 0.70124
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 6,
+        "sourcePoint": [
+          2.304,
+          11.401,
+          16.898
+        ],
+        "pixel": [
+          792.747768,
+          433.008547
+        ],
+        "observationCanvasPixel": [
+          809,
+          438
+        ],
+        "projectedPixel": [
+          790.981373,
+          432.980734
+        ],
+        "residualPixels": 1.766614
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 7,
+        "sourcePoint": [
+          7.76,
+          11.401,
+          22.857
+        ],
+        "pixel": [
+          1011.267857,
+          429.054131
+        ],
+        "observationCanvasPixel": [
+          1032,
+          434
+        ],
+        "projectedPixel": [
+          1010.197106,
+          428.454451
+        ],
+        "residualPixels": 1.227243
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 8,
+        "sourcePoint": [
+          6.783,
+          11.401,
+          23.751
+        ],
+        "pixel": [
+          1012.247768,
+          464.643875
+        ],
+        "observationCanvasPixel": [
+          1033,
+          470
+        ],
+        "projectedPixel": [
+          1012.172071,
+          464.386214
+        ],
+        "residualPixels": 0.26855
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 9,
+        "sourcePoint": [
+          12.493,
+          11.401,
+          29.991
+        ],
+        "pixel": [
+          1241.546875,
+          460.689459
+        ],
+        "observationCanvasPixel": [
+          1267,
+          466
+        ],
+        "projectedPixel": [
+          1242.054277,
+          459.660732
+        ],
+        "residualPixels": 1.147055
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 10,
+        "sourcePoint": [
+          19.224,
+          11.401,
+          23.807
+        ],
+        "pixel": [
+          1220.96875,
+          217.492877
+        ],
+        "observationCanvasPixel": [
+          1246,
+          220
+        ],
+        "projectedPixel": [
+          1221.917255,
+          217.963098
+        ],
+        "residualPixels": 1.058664
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 11,
+        "sourcePoint": [
+          19.957,
+          11.401,
+          24.609
+        ],
+        "pixel": [
+          1250.366071,
+          216.504274
+        ],
+        "observationCanvasPixel": [
+          1276,
+          219
+        ],
+        "projectedPixel": [
+          1250.594282,
+          217.427848
+        ],
+        "residualPixels": 0.951352
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 12,
+        "sourcePoint": [
+          26.215,
+          11.401,
+          18.86
+        ],
+        "pixel": [
+          1231.747768,
+          3.954416
+        ],
+        "observationCanvasPixel": [
+          1257,
+          4
+        ],
+        "projectedPixel": [
+          1232.139374,
+          4.464251
+        ],
+        "residualPixels": 0.642874
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 13,
+        "sourcePoint": [
+          19.764,
+          11.401,
+          11.799
+        ],
+        "pixel": [
+          985.790179,
+          7.908832
+        ],
+        "observationCanvasPixel": [
+          1006,
+          8
+        ],
+        "projectedPixel": [
+          985.721972,
+          8.737965
+        ],
+        "residualPixels": 0.831934
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 17,
+        "sourcePoint": [
+          7.925,
+          11.401,
+          10.45
+        ],
+        "pixel": [
+          759.430804,
+          210.57265
+        ],
+        "observationCanvasPixel": [
+          775,
+          213
+        ],
+        "projectedPixel": [
+          758.834835,
+          209.323897
+        ],
+        "residualPixels": 1.383676
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 18,
+        "sourcePoint": [
+          0.87,
+          11.401,
+          2.745
+        ],
+        "pixel": [
+          481.136161,
+          215.51567
+        ],
+        "observationCanvasPixel": [
+          491,
+          218
+        ],
+        "projectedPixel": [
+          481.84744,
+          214.713497
+        ],
+        "residualPixels": 1.0721
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 19,
+        "sourcePoint": [
+          3.608,
+          11.401,
+          0.227
+        ],
+        "pixel": [
+          482.116071,
+          120.609687
+        ],
+        "observationCanvasPixel": [
+          492,
+          122
+        ],
+        "projectedPixel": [
+          482.160633,
+          119.99519
+        ],
+        "residualPixels": 0.61611
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 20,
+        "sourcePoint": [
+          -2.11,
+          11.401,
+          -6.031
+        ],
+        "pixel": [
+          259.676339,
+          123.575499
+        ],
+        "observationCanvasPixel": [
+          265,
+          125
+        ],
+        "projectedPixel": [
+          259.320086,
+          123.992527
+        ],
+        "residualPixels": 0.548479
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 21,
+        "sourcePoint": [
+          -10.615,
+          11.401,
+          1.784
+        ],
+        "pixel": [
+          250.857143,
+          426.088319
+        ],
+        "observationCanvasPixel": [
+          256,
+          431
+        ],
+        "projectedPixel": [
+          250.184095,
+          425.769618
+        ],
+        "residualPixels": 0.74469
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 22,
+        "sourcePoint": [
+          -13,
+          11.401,
+          -0.823
+        ],
+        "pixel": [
+          152.866071,
+          428.065527
+        ],
+        "observationCanvasPixel": [
+          156,
+          433
+        ],
+        "projectedPixel": [
+          153.792272,
+          427.711527
+        ],
+        "residualPixels": 0.991546
+      },
+      {
+        "sourceSurfaceIndex": 39,
+        "sourceVertexIndex": 23,
+        "sourcePoint": [
+          -19.254,
+          11.401,
+          4.924
+        ],
+        "pixel": [
+          144.046875,
+          662.364672
+        ],
+        "observationCanvasPixel": [
+          147,
+          670
+        ],
+        "projectedPixel": [
+          144.030834,
+          664.013248
+        ],
+        "residualPixels": 1.648653
+      }
+    ],
+    "rmsResidualPixels": 1.089178,
+    "maximumResidualPixels": 1.766614,
+    "residualMeaning": "Fit consistency only. It is not survey accuracy. Hand-drawn strokes, wall thickness, intended boundary placement and the source model remain uncertain.",
+    "registrationUncertainty": "Approximately 1.1px fit residual at roughly 27px/m; annotate interior positions to no better than several decimetres. No calibrated uncertainty bound is established.",
+    "omittedRidgeControls": [
+      2,
+      3,
+      15,
+      16
+    ]
+  },
+  "floorGeometry": {
+    "method": "Original horizontal LoD2 envelope section at the unchanged provisional index-2 elevation, minus the complete plan projections of the two resident-marked sloping roof wings.",
+    "provisionalElevationAboveBuildingBase": 6.327333333333333,
+    "provisionalPlaneCampusY": 9.149333333333333,
+    "elevationStatus": "Unchanged roof-height / 3 guide; not a measured storey elevation, and distinct from the roof plane used for registration.",
+    "sourceSectionAreaMetresSquared": 637.124358,
+    "retainedFloorOutlineAreaMetresSquared": 561.338573,
+    "removedFromSourceSectionAreaMetresSquared": 75.785785,
+    "greenProjectionAreaMetresSquared": 149.34914,
+    "sourceSectionLocalBoundsMetres": [
+      -11.092203,
+      -6.589466,
+      32.93563,
+      17.532438
+    ],
+    "sourceSectionDimensionsMetres": [
+      44.027832,
+      24.121904
+    ],
+    "annotatedFlatPlanAreaMetresSquared": 510.616179,
+    "unassignedSteppedEdgeAreaMetresSquared": 50.72249,
+    "unassignedSteppedEdgePolygons": [
+      {
+        "outer": [
+          [
+            -20.400017,
+            3.670562
+          ],
+          [
+            -14.146591,
+            -2.075863
+          ],
+          [
+            -13.000153,
+            -0.82286
+          ],
+          [
+            -19.253922,
+            4.923928
+          ],
+          [
+            -19.495962,
+            4.659388
+          ],
+          [
+            -20.400017,
+            3.670562
+          ]
+        ],
+        "holes": []
+      },
+      {
+        "outer": [
+          [
+            -2.109932,
+            -6.030926
+          ],
+          [
+            -0.810355,
+            -7.225048
+          ],
+          [
+            4.90702,
+            -0.968298
+          ],
+          [
+            3.608,
+            0.227
+          ],
+          [
+            -2.109932,
+            -6.030926
+          ]
+        ],
+        "holes": []
+      },
+      {
+        "outer": [
+          [
+            5.893531,
+            24.565323
+          ],
+          [
+            6.353601,
+            24.144121
+          ],
+          [
+            6.504,
+            24.006977
+          ],
+          [
+            6.783263,
+            23.751288
+          ],
+          [
+            12.493,
+            29.991
+          ],
+          [
+            19.224,
+            23.807
+          ],
+          [
+            11.605421,
+            30.80674
+          ],
+          [
+            8.904876,
+            27.85618
+          ],
+          [
+            5.893531,
+            24.565323
+          ]
+        ],
+        "holes": []
+      },
+      {
+        "outer": [
+          [
+            19.224,
+            23.807
+          ],
+          [
+            19.957,
+            24.609
+          ],
+          [
+            26.215,
+            18.86
+          ],
+          [
+            19.764,
+            11.799
+          ],
+          [
+            27.098837,
+            19.82719
+          ],
+          [
+            20.839776,
+            25.577108
+          ],
+          [
+            20.154574,
+            24.825672
+          ],
+          [
+            19.87247,
+            24.517666
+          ],
+          [
+            19.224,
+            23.807
+          ]
+        ],
+        "holes": []
+      }
+    ],
+    "unassignedMeaning": "Source section beyond the annotated flat-roof footprint. Retained in the plate but given no room or circulation function; the screenshot does not resolve these edges.",
+    "numericalCleanup": "Polygon clipping uses 0.00000001m precision; isolated remnants below 0.000001m² are discarded. Candidate outer edges extend 0.05m before exact source clipping to avoid numerical circulation gaps along nearly orthogonal source walls; final source exterior vertices are unchanged.",
+    "noOccupancyClaim": "Neither shell intersection nor a candidate room polygon proves occupied, rentable, habitable or safe space."
+  },
+  "roomInterpretation": {
+    "explicitlyDividedSketchBays": 7,
+    "estimatedBays": 12,
+    "candidateTotal": 19,
+    "knownCounts": {
+      "southwest": 4,
+      "east": 3
+    },
+    "selectedUnknownCounts": {
+      "west": 4,
+      "centerLeft": 2,
+      "centerRight": 3,
+      "upperRight": 3
+    },
+    "alternateCenterRightCount": 2,
+    "alternateCandidateTotal": 18,
+    "publicMapFloor2MarkerCount": 20,
+    "countDiscrepancy": "The public resident-map aggregate reports 20 floor-2 markers. This does not establish 20 physical rooms. The 19-bay sketch interpretation remains provisional; an omitted bay, a different typology, a marker issue or changed layout is unresolved. No extra room is forced to match the aggregate.",
+    "noRoomNumbers": "All identifiers and alphabetic labels are study references; none represent actual physical room numbers or residents.",
+    "zoneMeasurements": [
+      {
+        "id": "sw-known-four",
+        "selectedCount": 4,
+        "confidence": "sketch",
+        "note": "Four bays are explicitly divided in red. The gross boundaries follow rectified hand strokes; these are not physical room numbers or measured partitions.",
+        "rectifiedLocalBoundsMetres": [
+          -9.386036,
+          11.577233,
+          2.679884,
+          17.532438
+        ],
+        "runMetres": 12.065919,
+        "averageGrossBayMetres": 3.01648,
+        "rooms": [
+          {
+            "id": "study-55-2-sw-1",
+            "grossAreaMetresSquared": 17.065583,
+            "grossBayWidthMetres": 2.86929
+          },
+          {
+            "id": "study-55-2-sw-2",
+            "grossAreaMetresSquared": 15.98709,
+            "grossBayWidthMetres": 2.688963
+          },
+          {
+            "id": "study-55-2-sw-3",
+            "grossAreaMetresSquared": 19.351506,
+            "grossBayWidthMetres": 3.252824
+          },
+          {
+            "id": "study-55-2-sw-4",
+            "grossAreaMetresSquared": 19.362872,
+            "grossBayWidthMetres": 3.254842
+          }
+        ],
+        "observed": {
+          "pixels": [
+            [
+              152.866071,
+              494.301994
+            ],
+            [
+              480.15625,
+              493.31339
+            ],
+            [
+              480.15625,
+              656.433048
+            ],
+            [
+              145.026786,
+              662.364672
+            ]
+          ],
+          "observationCanvasPixels": [
+            [
+              156,
+              500
+            ],
+            [
+              490,
+              499
+            ],
+            [
+              490,
+              664
+            ],
+            [
+              148,
+              670
+            ]
+          ],
+          "registeredLocalCorners": [
+            [
+              -9.325222,
+              11.465269
+            ],
+            [
+              2.596653,
+              11.689197
+            ],
+            [
+              2.624121,
+              17.519682
+            ],
+            [
+              -9.352959,
+              17.460591
+            ]
+          ],
+          "edgeLengthsMetres": [
+            11.923978,
+            5.83055,
+            11.977225,
+            5.995386
+          ]
+        }
+      },
+      {
+        "id": "east-known-three",
+        "selectedCount": 3,
+        "confidence": "sketch",
+        "note": "Three bays are explicitly divided in red. The separate upper question-mark block is not counted here; marks on lower exterior walls are not plan divisions.",
+        "rectifiedLocalBoundsMetres": [
+          24.902672,
+          1.92627,
+          30.54642,
+          11.065773
+        ],
+        "runMetres": 9.139503,
+        "averageGrossBayMetres": 3.046501,
+        "rooms": [
+          {
+            "id": "study-55-2-east-1",
+            "grossAreaMetresSquared": 16.320011,
+            "grossBayWidthMetres": 2.894914
+          },
+          {
+            "id": "study-55-2-east-2",
+            "grossAreaMetresSquared": 14.567155,
+            "grossBayWidthMetres": 2.582962
+          },
+          {
+            "id": "study-55-2-east-3",
+            "grossAreaMetresSquared": 20.641067,
+            "grossBayWidthMetres": 3.661628
+          }
+        ],
+        "observed": {
+          "pixels": [
+            [
+              1080.841518,
+              221.447293
+            ],
+            [
+              1220.96875,
+              217.492877
+            ],
+            [
+              1241.546875,
+              460.689459
+            ],
+            [
+              1080.841518,
+              464.643875
+            ]
+          ],
+          "observationCanvasPixels": [
+            [
+              1103,
+              224
+            ],
+            [
+              1246,
+              220
+            ],
+            [
+              1267,
+              466
+            ],
+            [
+              1103,
+              470
+            ]
+          ],
+          "registeredLocalCorners": [
+            [
+              25.196667,
+              1.948832
+            ],
+            [
+              30.504558,
+              1.906294
+            ],
+            [
+              30.524641,
+              11.103123
+            ],
+            [
+              24.608678,
+              11.119984
+            ]
+          ],
+          "edgeLengthsMetres": [
+            5.308061,
+            9.19685,
+            5.915988,
+            9.189982
+          ]
+        }
+      },
+      {
+        "id": "west-question",
+        "selectedCount": 4,
+        "confidence": "estimated",
+        "note": "Question-mark zone: four equal candidate bays estimated from its facade run and the approximately 3m gross pitch of the marked bays. Count and dividers need resident confirmation.",
+        "rectifiedLocalBoundsMetres": [
+          -5.870781,
+          -2.521703,
+          -0.926329,
+          8.930248
+        ],
+        "runMetres": 11.451951,
+        "averageGrossBayMetres": 2.862988,
+        "rooms": [
+          {
+            "id": "study-55-2-west-1",
+            "grossAreaMetresSquared": 14.128588,
+            "grossBayWidthMetres": 2.862988
+          },
+          {
+            "id": "study-55-2-west-2",
+            "grossAreaMetresSquared": 14.144788,
+            "grossBayWidthMetres": 2.862988
+          },
+          {
+            "id": "study-55-2-west-3",
+            "grossAreaMetresSquared": 14.137569,
+            "grossBayWidthMetres": 2.862988
+          },
+          {
+            "id": "study-55-2-west-4",
+            "grossAreaMetresSquared": 14.130349,
+            "grossBayWidthMetres": 2.862988
+          }
+        ],
+        "observed": {
+          "pixels": [
+            [
+              259.676339,
+              123.575499
+            ],
+            [
+              387.064732,
+              123.575499
+            ],
+            [
+              387.064732,
+              417.190883
+            ],
+            [
+              250.857143,
+              426.088319
+            ]
+          ],
+          "observationCanvasPixels": [
+            [
+              265,
+              125
+            ],
+            [
+              395,
+              125
+            ],
+            [
+              395,
+              422
+            ],
+            [
+              256,
+              431
+            ]
+          ],
+          "registeredLocalCorners": [
+            [
+              -5.857732,
+              -2.537969
+            ],
+            [
+              -1.012654,
+              -2.438
+            ],
+            [
+              -0.840005,
+              8.819596
+            ],
+            [
+              -5.835444,
+              9.0409
+            ]
+          ],
+          "edgeLengthsMetres": [
+            4.846109,
+            11.25892,
+            5.000339,
+            11.578891
+          ]
+        }
+      },
+      {
+        "id": "center-left-question",
+        "selectedCount": 2,
+        "confidence": "estimated",
+        "note": "Question-mark zone: two equal candidate bays. Its roughly 6.7m run does not establish a room count; this is a provisional study choice.",
+        "rectifiedLocalBoundsMetres": [
+          2.610996,
+          1.218864,
+          9.302929,
+          6.380337
+        ],
+        "runMetres": 6.691933,
+        "averageGrossBayMetres": 3.345967,
+        "rooms": [
+          {
+            "id": "study-55-2-center-left-1",
+            "grossAreaMetresSquared": 17.280303,
+            "grossBayWidthMetres": 3.345967
+          },
+          {
+            "id": "study-55-2-center-left-2",
+            "grossAreaMetresSquared": 17.270414,
+            "grossBayWidthMetres": 3.345967
+          }
+        ],
+        "observed": {
+          "pixels": [
+            [
+              481.136161,
+              215.51567
+            ],
+            [
+              660.459821,
+              213.538462
+            ],
+            [
+              660.459821,
+              344.034188
+            ],
+            [
+              480.15625,
+              351.94302
+            ]
+          ],
+          "observationCanvasPixels": [
+            [
+              491,
+              218
+            ],
+            [
+              674,
+              216
+            ],
+            [
+              674,
+              348
+            ],
+            [
+              490,
+              356
+            ]
+          ],
+          "registeredLocalCorners": [
+            [
+              2.58435,
+              1.244932
+            ],
+            [
+              9.342624,
+              1.309571
+            ],
+            [
+              9.263233,
+              6.302881
+            ],
+            [
+              2.572008,
+              6.457794
+            ]
+          ],
+          "edgeLengthsMetres": [
+            6.758584,
+            4.99394,
+            6.693018,
+            5.212876
+          ]
+        }
+      },
+      {
+        "id": "center-right-question",
+        "selectedCount": 3,
+        "confidence": "estimated",
+        "note": "Weakest count estimate: three candidate bays in roughly 8.1m imply about 2.7m gross per bay before walls. Two bays remain plausible; do not interpret three as confirmed.",
+        "rectifiedLocalBoundsMetres": [
+          14.214969,
+          4.358181,
+          22.313433,
+          9.727901
+        ],
+        "runMetres": 8.098464,
+        "averageGrossBayMetres": 2.699488,
+        "rooms": [
+          {
+            "id": "study-55-2-center-right-1",
+            "grossAreaMetresSquared": 14.489506,
+            "grossBayWidthMetres": 2.699488
+          },
+          {
+            "id": "study-55-2-center-right-2",
+            "grossAreaMetresSquared": 14.496011,
+            "grossBayWidthMetres": 2.699488
+          },
+          {
+            "id": "study-55-2-center-right-3",
+            "grossAreaMetresSquared": 14.51287,
+            "grossBayWidthMetres": 2.699488
+          }
+        ],
+        "observed": {
+          "pixels": [
+            [
+              795.6875,
+              287.683761
+            ],
+            [
+              1012.247768,
+              287.683761
+            ],
+            [
+              1012.247768,
+              429.054131
+            ],
+            [
+              792.747768,
+              433.008547
+            ]
+          ],
+          "observationCanvasPixels": [
+            [
+              812,
+              291
+            ],
+            [
+              1033,
+              291
+            ],
+            [
+              1033,
+              434
+            ],
+            [
+              809,
+              438
+            ]
+          ],
+          "registeredLocalCorners": [
+            [
+              14.354672,
+              4.272386
+            ],
+            [
+              22.462763,
+              4.443976
+            ],
+            [
+              22.164103,
+              9.755304
+            ],
+            [
+              14.075266,
+              9.726727
+            ]
+          ],
+          "edgeLengthsMetres": [
+            8.109907,
+            5.319719,
+            8.088888,
+            5.461492
+          ]
+        }
+      },
+      {
+        "id": "upper-right-question",
+        "selectedCount": 3,
+        "confidence": "estimated",
+        "note": "Question-mark zone: three equal candidate bays estimated from its roughly 9.4m facade run. Count and divider locations are unconfirmed.",
+        "rectifiedLocalBoundsMetres": [
+          22.054728,
+          -6.589466,
+          31.618868,
+          -1.334879
+        ],
+        "runMetres": 9.56414,
+        "averageGrossBayMetres": 3.188047,
+        "rooms": [
+          {
+            "id": "study-55-2-upper-right-1",
+            "grossAreaMetresSquared": 16.753792,
+            "grossBayWidthMetres": 3.188047
+          },
+          {
+            "id": "study-55-2-upper-right-2",
+            "grossAreaMetresSquared": 16.721824,
+            "grossBayWidthMetres": 3.188047
+          },
+          {
+            "id": "study-55-2-upper-right-3",
+            "grossAreaMetresSquared": 16.712448,
+            "grossBayWidthMetres": 3.188047
+          }
+        ],
+        "observed": {
+          "pixels": [
+            [
+              985.790179,
+              7.908832
+            ],
+            [
+              1231.747768,
+              3.954416
+            ],
+            [
+              1236.647321,
+              134.450142
+            ],
+            [
+              996.569196,
+              139.393162
+            ]
+          ],
+          "observationCanvasPixels": [
+            [
+              1006,
+              8
+            ],
+            [
+              1257,
+              4
+            ],
+            [
+              1262,
+              136
+            ],
+            [
+              1017,
+              141
+            ]
+          ],
+          "registeredLocalCorners": [
+            [
+              22.059169,
+              -6.623253
+            ],
+            [
+              31.605369,
+              -6.59176
+            ],
+            [
+              31.364812,
+              -1.337972
+            ],
+            [
+              22.189083,
+              -1.331787
+            ]
+          ],
+          "edgeLengthsMetres": [
+            9.546251,
+            5.259292,
+            9.175731,
+            5.293061
+          ]
+        }
+      }
+    ]
+  },
+  "stairs": {
+    "registeredLocalBoundsMetres": [
+      9.749577,
+      3.405605,
+      12.085745,
+      7.710482
+    ],
+    "approximateRunMetres": 4.304877,
+    "approximateWidthMetres": 2.336168,
+    "runInCampusXZ": [
+      [
+        4.870055,
+        10.347755
+      ],
+      [
+        1.69759,
+        13.257641
+      ]
+    ],
+    "observed": {
+      "pixels": [
+        [
+          673.198661,
+          266.923077
+        ],
+        [
+          735.912946,
+          266.923077
+        ],
+        [
+          735.912946,
+          379.623932
+        ],
+        [
+          673.198661,
+          381.60114
+        ]
+      ],
+      "observationCanvasPixels": [
+        [
+          687,
+          270
+        ],
+        [
+          751,
+          270
+        ],
+        [
+          751,
+          384
+        ],
+        [
+          687,
+          386
+        ]
+      ],
+      "registeredLocalCorners": [
+        [
+          9.787257,
+          3.380808
+        ],
+        [
+          12.138107,
+          3.430403
+        ],
+        [
+          12.033383,
+          7.698426
+        ],
+        [
+          9.711897,
+          7.722538
+        ]
+      ],
+      "edgeLengthsMetres": [
+        2.351372,
+        4.269308,
+        2.321612,
+        4.342385
+      ]
+    }
+  },
+  "validation": {
+    "roomOverlapMetresSquared": 0,
+    "spaceOutsideFloorMetresSquared": 0,
+    "floorInsideExcludedGreenMetresSquared": 0,
+    "doorBoundaryChecksPassed": true,
+    "sourceVerticesModified": false,
+    "publicInteriorDataModified": false
+  }
+}

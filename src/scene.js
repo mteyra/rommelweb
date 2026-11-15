@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { getInteriorLevel, getLevelElevations } from './interiors.js';
+import { getLevelElevations } from './interiors.js';
+import { getDisplayLevel, studyFloorSection, studyPlanDirection } from './interior-studies.js';
+import { icon } from './icons.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createFacadeSegments, createStoreyJointSegments, FACADE_PROFILES } from './facade.js';
 import { floorSection, triangulateSection } from './sections.js';
@@ -72,12 +74,13 @@ export function explodedFloorGap(building) {
 }
 
 export class CampusScene {
-  constructor(container, labels, campus, lod2, interiors, onSelect, onFloor, onSpace = () => {}) {
+  constructor(container, labels, campus, lod2, interiors, onSelect, onFloor, onSpace = () => {}, studies = null) {
     this.container = container;
     this.labelsElement = labels;
     this.campus = campus;
     this.lod2 = lod2;
     this.interiors = interiors;
+    this.studies = studies;
     this.onSelect = onSelect;
     this.onFloor = onFloor;
     this.onSpace = onSpace;
@@ -405,7 +408,8 @@ export class CampusScene {
     const floorSections = [];
     for (let floor = 0; floor < data.levels; floor++) {
       const slab = new THREE.Group();
-      const section = floorSection(official, floorElevations[floor]);
+      const level = getDisplayLevel(this.interiors, this.studies, data.number, floor);
+      const section = studyFloorSection(floorSection(official, floorElevations[floor]), level);
       floorSections.push(section);
       const triangles = triangulateSection(section, 0);
       const geometry = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(triangles.flat(2), 3));
@@ -413,25 +417,26 @@ export class CampusScene {
       const material = new THREE.MeshBasicMaterial({ color: 0x777a75, transparent: true, opacity: 0.22, depthWrite: false, side: THREE.DoubleSide });
       material.userData.themeRole = 'floor';
       const mesh = new THREE.Mesh(geometry, material);
-      mesh.userData = { house: data.number, floor, role: 'source-envelope-section', sourceId: official.id, sectionStatus: section.sourceStatus, sampleElevation: section.sampleElevation };
+      mesh.userData = { house: data.number, floor, role: level?.isStudy ? 'resident-floor-outline' : 'source-envelope-section', sourceId: official.id, sectionStatus: section.sourceStatus, sampleElevation: section.sampleElevation };
       slab.add(mesh);
       const lineMat = new THREE.LineBasicMaterial({ color: INK, transparent: true, opacity: 0.68 });
-      const boundary = section.polygons.flatMap(polygon => [polygon.outer, ...polygon.holes]).flatMap(ring =>
+      const boundary = section.polygons.flatMap(polygon => [polygon.outer, ...(polygon.holes || [])]).flatMap(ring =>
         ring.slice(1).flatMap((point, i) => [[ring[i][0], 0.005, ring[i][1]], [point[0], 0.005, point[1]]]));
       const edges = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(boundary.flat(), 3)), lineMat);
       slab.add(edges);
       slab.position.y = data.baseY + floorElevations[floor];
-      const approved = getInteriorLevel(this.interiors, data.number, floor);
-      const wireframe = createInteriorWireframe(approved, {house: data.number, floor});
+      const wireframe = createInteriorWireframe(level, {house: data.number, floor});
       const interior = wireframe.group;
       interiorPickables.push(...wireframe.pickables);
       for (const label of wireframe.labels) {
         if (!label.position) continue;
         const el = document.createElement('button');
         el.type = 'button';
-        el.className = `room-label${label.kind === 'door' ? ' door-label' : ''}`;
-        el.textContent = label.text;
-        el.setAttribute('aria-label', `Explore ${label.text}, House ${data.number}, ${floor === 0 ? 'ground floor' : `floor ${floor}`}`);
+        el.className = `room-label${label.kind === 'door' ? ' door-label' : ''}${level?.isStudy ? ' study-marker' : ''}${label.confidence === 'estimated' ? ' is-estimated' : ''}`;
+        if (label.kind === 'door' && level?.isStudy) el.innerHTML = icon('door');
+        else el.textContent = level?.isStudy ? label.shortText || label.text : label.text;
+        el.title = label.text;
+        el.setAttribute('aria-label', `Explore ${label.text}${level?.isStudy ? `, ${label.confidence === 'estimated' ? 'estimated layout' : 'resident sketch'}` : ''}, House ${data.number}, ${floor === 0 ? 'ground floor' : `floor ${floor}`}`);
         const details = {house: data.number, floor, spaceId: label.spaceId, ...(label.openingId ? {openingId: label.openingId} : {})};
         el.addEventListener('click', () => this.openSpace(details));
         this.labelsElement.appendChild(el);
@@ -441,7 +446,7 @@ export class CampusScene {
       floorLabel.type = 'button';
       floorLabel.className = 'floor-label';
       floorLabel.textContent = floor === 0 ? 'EG' : `${floor}. OG`;
-      floorLabel.setAttribute('aria-label', `Explore House ${data.number}, ${approved?.label || (floor === 0 ? 'ground floor' : `floor ${floor}`)}`);
+      floorLabel.setAttribute('aria-label', `Explore House ${data.number}, ${level?.label || (floor === 0 ? 'ground floor' : `floor ${floor}`)}`);
       floorLabel.addEventListener('click', () => this.onFloor(floor));
       this.labelsElement.appendChild(floorLabel);
       this.labels.push({el: floorLabel, type: 'floor', number: data.number, floor, getPosition: () => {
@@ -497,14 +502,14 @@ export class CampusScene {
       return building.floorSections.flatMap((section, floor) => {
         if (this.activeFloor != null && this.activeFloor !== floor) return [];
         const y = building.data.baseY + building.floorElevations[floor] + building.targetGap * floor;
-        const approved = getInteriorLevel(this.interiors, building.data.number, floor);
+        const level = getDisplayLevel(this.interiors, this.studies, building.data.number, floor);
         const points = [
           ...(section.polygons.length ? section.polygons.flatMap(polygon => polygon.outer) : building.data.footprint),
-          ...(approved?.spaces.flatMap(space => space.polygon) || []),
+          ...(level?.spaces.flatMap(space => space.polygon) || []),
         ];
         return points.flatMap(([x, z]) => [
           new THREE.Vector3(x, y, z),
-          new THREE.Vector3(x, y + (approved ? INTERIOR_CUT_HEIGHT : 0.12), z),
+          new THREE.Vector3(x, y + (level ? INTERIOR_CUT_HEIGHT : 0.12), z),
         ]);
       });
     }
@@ -527,7 +532,7 @@ export class CampusScene {
     const floorView = this.exploded && viewport;
     const phoneFloor = this.exploded && viewport?.width <= 700;
     const top = phoneFloor ? Math.min(148, viewport.height * 0.27) : floorView ? viewport.width <= 1100 ? 164 : 140 : 0;
-    const bottom = phoneFloor ? Math.min(196, viewport.height * 0.35) : floorView ? 70 : 0;
+    const bottom = phoneFloor ? Math.min(196, viewport.height * 0.35) : floorView ? this.activeFloor !== null ? 150 : 70 : 0;
     const upper = floorView ? 1 - 2 * top / viewport.height : 1;
     const lower = floorView ? -1 + 2 * bottom / viewport.height : -1;
     const center = (upper + lower) / 2;
@@ -697,7 +702,11 @@ export class CampusScene {
     // Align the remaining floor movement with this camera transition.
     if (b.gapTween) b.gapTween = {start: performance.now(), from: b.currentGap, to: b.targetGap};
     this.topView = floor !== null;
-    const direction = floor === null ? this.stackDirection || HOME_DIRECTION : new THREE.Vector3(0, 1, 0.025);
+    const level = getDisplayLevel(this.interiors, this.studies, this.selected, floor);
+    const viewport = this.container.getBoundingClientRect();
+    const direction = floor === null ? this.stackDirection || HOME_DIRECTION
+      : level?.isStudy ? new THREE.Vector3(...studyPlanDirection(level, viewport.width < 700 && viewport.height > viewport.width))
+        : new THREE.Vector3(0, 1, 0.025);
     const frame = this.fittedCamera(direction);
     this.animateCamera(frame.position, frame.target);
   }
@@ -770,8 +779,10 @@ export class CampusScene {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
-    const direction = this.tween ? this.tween.endPosition.clone().sub(this.tween.endTarget).normalize() :
+    let direction = this.tween ? this.tween.endPosition.clone().sub(this.tween.endTarget).normalize() :
       this.hasFitted ? this.camera.position.clone().sub(this.controls.target).normalize() : HOME_DIRECTION;
+    const level = this.exploded && this.activeFloor !== null && getDisplayLevel(this.interiors, this.studies, this.selected, this.activeFloor);
+    if (level?.isStudy && this.topView) direction = new THREE.Vector3(...studyPlanDirection(level, width < 700 && height > width));
     const frame = this.fittedCamera(direction);
     this.tween = null;
     this.camera.position.copy(frame.position);
@@ -905,15 +916,25 @@ export class CampusScene {
     const occupied = [];
     // Selected label gets first priority when labels collide.
     const sorted = [...this.labels].sort((a, b) => Number(b.number === this.selected) - Number(a.number === this.selected));
-    for (const label of sorted) {
+    const projected = sorted.map(label => {
       const v = label.getPosition().project(this.camera);
       const x = (v.x + 1) * width / 2, y = (-v.y + 1) * height / 2;
       let visible = v.z > -1 && v.z < 1 && x > 35 && x < width - 35 && y > 45 && y < height - 80;
       if (!this.labelInCurrentView(label)) visible = false;
       if (this.community && label.type === 'house' && sorted.some(l => l.type === 'club' && l.number === label.number)) visible = false;
+      label.el.hidden = !visible;
+      return {label, x, y, visible};
+    });
+    // Measure together before writing positions: text length and icon targets
+    // must participate in collisions, not just a fixed distance between anchors.
+    const measured = projected.map(item => ({...item, w: item.visible ? item.label.el.offsetWidth : 0, h: item.visible ? item.label.el.offsetHeight : 0}));
+    for (const {label, x, y, w, h, visible: eligible} of measured) {
+      let visible = eligible;
+      const bounds = {left: x - w / 2, right: x + w / 2, top: y - h, bottom: y};
+      if (bounds.left < 10 || bounds.right > width - 10) visible = false;
       if (visible && label.type !== 'context') {
-        if (occupied.some(p => Math.abs(p.x - x) < 64 && Math.abs(p.y - y) < 29)) visible = false;
-        else occupied.push({ x, y });
+        if (occupied.some(p => bounds.left < p.right + 3 && bounds.right > p.left - 3 && bounds.top < p.bottom + 3 && bounds.bottom > p.top - 3)) visible = false;
+        else occupied.push(bounds);
       }
       label.el.hidden = !visible;
       if (visible) label.el.style.transform = `translate(-50%, -100%) translate(${x}px, ${y}px)`;
