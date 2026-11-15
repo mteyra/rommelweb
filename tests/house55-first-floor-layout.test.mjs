@@ -68,7 +68,7 @@ test('the exact top-floor frame, retained singles and staircase are reused witho
   assert.deepEqual(previous,frozenPrevious);
   assert.deepEqual(generated.coordinateFrame,top.coordinateFrame);
   assert.deepEqual(generated.stair,top.stair);
-  for(const source of top.rooms.filter(room=>!['A','W1'].includes(room.label))){
+  for(const source of top.rooms.filter(room=>!['A','W1','G','N3'].includes(room.label))){
     const target=generated.rooms.find(room=>room.label===source.label);
     for(const field of ['polygon','modulePolygon','sideWalls','doorSegment','windowSegment']){
       assert.deepEqual(target[field],source[field],`${source.label} ${field} keeps its exact top-floor location`);
@@ -79,11 +79,11 @@ test('the exact top-floor frame, retained singles and staircase are reused witho
   assert.deepEqual(createFirstFloorPlan(top,previous),generated);
 });
 
-test('twenty singles and two gross shared envelopes implement the extra module at each end',()=>{
+test('sixteen singles and four gross shared envelopes include both marked room pairs',()=>{
   assert.deepEqual(plan.rooms.map(room=>room.label).sort(),[
-    'B','C','D','E','F','G','H','L1','L2','L3','N1','N2','N3','N4','R1','R2','R3','W2','W3','W4',
+    'B','C','D','E','F','L1','L2','L3','N1','N2','R1','R2','R3','W2','W3','W4',
   ]);
-  assert.deepEqual(plan.sharedApartments.map(room=>room.label).sort(),['A','W1']);
+  assert.deepEqual(plan.sharedApartments.map(room=>room.label).sort(),['A','G–H','N3–N4','W1']);
   for(const room of plan.rooms){
     sideLengths(room.polygon).forEach((n,i)=>close(n,[2.7,2.7,6,6][i],`${room.label} clear side`));
     sideLengths(room.modulePolygon).forEach((n,i)=>close(n,[3.1,3.1,6,6][i],`${room.label} module side`));
@@ -99,16 +99,23 @@ test('twenty singles and two gross shared envelopes implement the extra module a
     return [Math.min(...points.map(p=>p[0])),Math.min(...points.map(p=>p[1])),
       Math.max(...points.map(p=>p[0])),Math.max(...points.map(p=>p[1]))];
   };
-  const expected={W1:[0,-3.1,7.4,3.1],A:[-8.1,12.4,-1.9,19.8],H:[30.1,14.5,36.1,17.2],N4:[38.2,-2.4,40.9,3.6]};
-  for(const room of [...plan.sharedApartments,...plan.rooms.filter(room=>['H','N4'].includes(room.label))]){
+  const expected={
+    W1:[0,-3.1,7.4,3.1],A:[-8.1,12.4,-1.9,19.8],
+    'G–H':[28.7,11.2,36.1,17.4],'N3–N4':[34.9,-2.4,41.1,5],
+  };
+  for(const room of plan.sharedApartments){
     bounds(room).forEach((n,i)=>close(n,expected[room.label][i],`${room.label} bounds`));
+  }
+  for(const label of ['G','H','N3','N4']){
+    assert.ok(!plan.rooms.some(room=>room.label===label),`${label} is absorbed into its shared envelope`);
+    assert.ok(!plan.wallBands.some(band=>band.id.includes(`wall-${label}-`)),`${label} divider strips are removed`);
   }
 });
 
-test('apartments, wall strips, circulation and stair cover precisely the new floor',()=>{
+test('apartments, enclosed balconies, wall strips, hallways and stair cover precisely the floor',()=>{
   const groups=[
-    [plan.rooms,324],[plan.sharedApartments,91.76],[plan.wallBands,48],
-    [plan.corridors,86.8],[plan.circulationExtensions,53.94],[[plan.stair],19.98],
+    [plan.rooms,259.2],[plan.sharedApartments,183.52],[plan.wallBands,38.4],
+    [plan.corridors,69.44],[plan.commonAreas,53.94],[[plan.stair],19.98],
   ];
   for(const [items,expected]of groups)close(items.reduce((sum,item)=>sum+ringArea(item.polygon),0),expected);
   const pieces=groups.flatMap(([items])=>items.map(item=>polygon(item.polygon)));
@@ -123,7 +130,7 @@ test('apartments, wall strips, circulation and stair cover precisely the new flo
   }
 });
 
-test('full-width hallway junctions connect the open strips and unchanged stair',()=>{
+test('shortened hallways retain full-width junctions and balconies have separate boundaries',()=>{
   for(const hall of plan.corridors)close(sideLengths(hall.polygon)[0],1.4,`${hall.bank} clear width`);
   const circulation=[...plan.corridors.map(hall=>({name:hall.bank,polygon:hall.polygon})),
     {name:'Stair',polygon:plan.stair.polygon}];
@@ -136,19 +143,48 @@ test('full-width hallway junctions connect the open strips and unchanged stair',
     }
   }
   assert.deepEqual(connections.sort(),['A-W','E-N','E-R','L-Stair','L-W','R-Stair']);
-  for(const extension of plan.circulationExtensions){
+  assert.deepEqual(plan.circulationExtensions,[]);
+  for(const extension of plan.commonAreas){
     const hall=plan.corridors.find(item=>item.bank===extension.bank);
-    close(sharedBoundaryLength(extension.polygon,hall.polygon),9.3,'Strip opens fully to its bank hallway');
+    close(sharedBoundaryLength(extension.polygon,hall.polygon),9.3,'Balcony shares the marked wall with its hall');
   }
   const registeredHalls=level.spaces.filter(space=>space.kind==='corridor');
-  assert.equal(registeredHalls.length,2,'Each strip is part of its hall, without an artificial room boundary');
-  close(registeredHalls.reduce((sum,hall)=>sum+ringArea(hall.polygon),0),140.74);
+  assert.equal(registeredHalls.length,2);
+  close(registeredHalls.reduce((sum,hall)=>sum+ringArea(hall.polygon),0),69.44);
+  assert.deepEqual(level.spaces.filter(space=>space.kind==='service').map(space=>space.label).sort(),
+    ['East balcony','West balcony']);
+  for(const bank of ['E','N']){
+    close(ringArea(plan.corridors.find(hall=>hall.bank===bank).polygon),6.2*1.4,`${bank} hall ends at merged apartment`);
+  }
 });
 
-test('all apartments reach the stair through twenty-four actual doorway connections',()=>{
+test('each balcony has one door at the stair end of its enclosed hallway boundary',()=>{
+  const expected={
+    R:[[19.65,5],[20.55,5]],
+    L:[[15.55,12.4],[16.45,12.4]],
+  };
+  assert.equal(plan.commonAreas.length,2);
+  for(const common of plan.commonAreas){
+    close(common.width,9.3);
+    close(common.depth,2.9);
+    close(ringArea(common.polygon),26.97);
+    common.doorSegment.map(imagePoint).forEach((point,i)=>point.forEach((value,j)=>
+      close(value,expected[common.bank][i][j],`${common.bank} door location`)));
+    const doors=level.doors.filter(door=>door.spaceId===common.id||door.toSpaceId===common.id);
+    assert.equal(doors.length,1,`${common.label} has exactly one entrance`);
+    const doorway=doors[0];
+    const destination=level.spaces.find(space=>space.id===
+      (doorway.spaceId===common.id?doorway.toSpaceId:doorway.spaceId));
+    assert.equal(destination.kind,'corridor');
+  }
+});
+
+test('all apartments and balconies reach the stair through twenty-four actual doorway connections',()=>{
+  assert.equal(level.spaces.length,25);
   assert.equal(level.doors.length,24);
-  assert.equal(level.spaces.filter(space=>space.kind==='room').length,20);
-  assert.equal(level.spaces.filter(space=>space.kind==='shared').length,2);
+  assert.equal(level.spaces.filter(space=>space.kind==='room').length,16);
+  assert.equal(level.spaces.filter(space=>space.kind==='shared').length,4);
+  assert.equal(level.spaces.filter(space=>space.kind==='service').length,2);
   const adjacency=new Map(level.spaces.map(space=>[space.id,new Set()]));
   for(const door of level.doors){
     const [a,b]=door.segment,samples=[a,b,[(a[0]+b[0])/2,(a[1]+b[1])/2]];
@@ -164,6 +200,10 @@ test('all apartments reach the stair through twenty-four actual doorway connecti
     if(!visited.has(neighbor)){visited.add(neighbor);queue.push(neighbor);}
   }
   assert.equal(visited.size,level.spaces.length,'Every apartment connects to the same stair');
+  for(const space of level.spaces.filter(space=>['room','shared','service'].includes(space.kind))){
+    assert.equal(level.doors.filter(door=>door.spaceId===space.id||door.toSpaceId===space.id).length,1,
+      `${space.label} has exactly one entrance`);
+  }
   assert.ok(level.spaces.every(space=>space.id.startsWith('study-55-1-')));
   assert.ok([...level.doors,...level.layoutWindows,...level.wallBands].every(item=>item.id.startsWith('module-55-1-')));
 });

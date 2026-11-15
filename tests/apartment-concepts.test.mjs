@@ -249,7 +249,8 @@ test('every published old-house room returns an unchanged, safe fixed-size conce
     for (const raw of studies.buildings[id].levels) {
       const level = {...raw, isStudy: true}, rooms = level.spaces.filter(space => space.kind === 'room');
       assert.ok(rooms.length, `${id}/${level.index} has room candidates to audit`);
-      if (id === '55') assert.equal(rooms.length, 20, 'each House 55 module study keeps 20 single-room references');
+      if (id === '55') assert.equal(rooms.length, level.index === 2 ? 20 : 16,
+        'House 55 keeps 20 top-floor singles and 16 singles beside the lower-floor shared apartments');
       const levelBefore = JSON.stringify(level), counts = {full: 0, partial: 0, unavailable: 0};
       for (const room of rooms) {
         const label = `${id}/${level.index}/${room.shortLabel || room.id}`;

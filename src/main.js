@@ -178,12 +178,16 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
     const extrapolated = level.extrapolatedFrom !== undefined;
     const independent = isIndependentLayout(level);
     const sharedApartments = independent && level.spaces.some(space => space.kind === 'shared');
+    const enclosedCommonAreas = independent && level.spaces.some(space => space.kind === 'service');
     const title = `${door ? door.label : space.label} · study`;
     const description = independent
       ? door ? 'A schematic doorway in the independent room layout. Its position and opening details remain adjustable.'
         : space.kind === 'room' ? 'A clear room rectangle using the chosen 2.70 × 6.00 m dimensions, arranged within a 3.10 m module.'
           : space.kind === 'shared' ? 'A whole shared-apartment envelope. Its internal rooms, services and wall positions remain unresolved.'
-          : space.kind === 'corridor' ? sharedApartments
+          : space.kind === 'service' ? 'A common area enclosed from the hallway, with its own marked doorway.'
+          : space.kind === 'corridor' ? enclosedCommonAreas
+            ? 'A 1.40 m wide hallway connecting the apartments and enclosed common areas.'
+            : sharedApartments
             ? 'Circulation joining the 1.40 m hall runs and retained common areas.'
             : 'A 1.40 m wide hallway in the independent room layout.'
             : 'A proposed space in the independent room layout. Its arrangement still needs verification.'

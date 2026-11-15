@@ -2,7 +2,20 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — House 55 ground-floor continuation
+## Current revision — House 55 shared pairs and common enclosures
+
+Both **1. OG and EG** now contain **16 singles and four shared apartments**. The marked N3–N4 and G–H pairs each form one **6.20 × 7.40 m** gross envelope with two retained windows and one entrance. Their former room dividers and the hallway portions inside the new envelopes are removed.
+
+Each first-floor **9.30 × 2.90 m balcony** is enclosed from its hall, with one doorway near the stair end. EG extends these enclosures over the retained outer strips to form the **9.30 × 7.40 m cinema east/R** and **laundry west/L**. Its **7.83 m²** stair-side spur remains unassigned.
+
+- Geometry checks verify complete non-overlapping floor coverage, exact shared envelopes, trimmed 1.40 m halls, connected access and deterministic data. Each floor retains **25 spaces, 24 doorway symbols and 24 layout windows**.
+- Renderer checks verify each common enclosure has complete perimeter walls apart from its single **0.90 m** doorway. Common-area cards remain distinct from apartment cards.
+- The [preservation receipt](evidence/house55-common-enclosures-preservation.json) verifies the complete top floor and all other houses are unchanged. Both lower-floor outlines, existing A/W1 shared apartments, every layout-window position, folded exterior evidence, standalone top study and sandbox are preserved.
+- **All 218 tests pass**, along with the production build and path-cache check. Isolated Firefox checks pass at **1440 × 1000**, **390 × 844** and **320 × 568**, covering both merged apartments, common-area cards, singles, day/night, the top floor and folding, with no horizontal overflow or application console errors. See the [browser receipt](evidence/house55-common-enclosures-browser-checks.json).
+
+Reviewed images: [first floor](preview/house55-enclosures-first-floor.png), [ground floor](preview/house55-enclosures-ground-floor.png), [phone](preview/house55-enclosures-phone.png) and [laundry card](preview/house55-enclosures-laundry-card.png).
+
+## Previous revision — House 55 ground-floor continuation
 
 House 55 / **EG** now repeats the completed 1. OG apartment layout and retains the three blue-marked areas: two **9.30 × 4.50 m** strips and the **2.70 × 2.90 m** stair-side extension. The restored **91.53 m²** remains unassigned floor area, giving a **716.01 m²** footprint. Both upper floors are unchanged.
 

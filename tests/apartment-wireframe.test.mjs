@@ -148,7 +148,7 @@ test('all current House 55 room concepts render finite, unscaled geometry on all
   for (const source of studies.buildings['55'].levels) {
     const level = getDisplayLevel(approved, studies, '55', source.index);
     const rooms = level.spaces.filter(space => space.kind === 'room');
-    assert.equal(rooms.length, 20);
+    assert.equal(rooms.length, source.index === 2 ? 20 : 16);
     for (const room of rooms) {
       const concept = apartmentConcept(level, room);
       assert.equal(concept.status, 'concept', `${source.label}, ${room.shortLabel}: ${JSON.stringify(concept.diagnostics)}`);

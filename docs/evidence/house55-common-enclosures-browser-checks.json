@@ -1,0 +1,30 @@
+{
+  "checks": [
+    "1. OG: both merged shared cards, both common enclosures, remaining single dimensions, original outline and day/night.",
+    "1. OG at 390px: no horizontal overflow.",
+    "1. OG at 320px: no horizontal overflow.",
+    "EG: both merged shared cards, both common enclosures, remaining single dimensions, original outline and day/night.",
+    "EG at 390px: no horizontal overflow.",
+    "EG at 320px: no horizontal overflow.",
+    "2. OG retains 23 spaces and original dimension summary.",
+    "Fold returns to exterior."
+  ],
+  "url": "http://127.0.0.1:4186/rommelweb/",
+  "errors": [],
+  "revision": "House 55 lower-floor shared apartments and common enclosures",
+  "browser": "Isolated Firefox",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      568
+    ]
+  ]
+}

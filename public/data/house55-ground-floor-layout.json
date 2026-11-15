@@ -34,7 +34,7 @@
     "placement": "Rigid orientation and centering only; dimensions are not fitted or rescaled to the LoD2 shell."
   },
   "sourceHashes": {
-    "public/data/house55-first-floor-layout.json": "2551942277ebb3328cdd8e1e7763245e9f2ac60fd301404fb68be3868f09e378"
+    "public/data/house55-first-floor-layout.json": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3"
   },
   "derivedFromLevelIndex": 1,
   "reconciliation": {
@@ -127,125 +127,6 @@
     "holes": []
   },
   "rooms": [
-    {
-      "id": "study-55-0-east-3",
-      "label": "G",
-      "bank": "E",
-      "polygon": [
-        [
-          0,
-          -1.7
-        ],
-        [
-          6,
-          -1.7
-        ],
-        [
-          6,
-          1
-        ],
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          -1.7
-        ]
-      ],
-      "modulePolygon": [
-        [
-          0,
-          -1.9
-        ],
-        [
-          6,
-          -1.9
-        ],
-        [
-          6,
-          1.2
-        ],
-        [
-          0,
-          1.2
-        ],
-        [
-          0,
-          -1.9
-        ]
-      ],
-      "sideWalls": [
-        [
-          [
-            0,
-            -1.9
-          ],
-          [
-            6,
-            -1.9
-          ],
-          [
-            6,
-            -1.7
-          ],
-          [
-            0,
-            -1.7
-          ],
-          [
-            0,
-            -1.9
-          ]
-        ],
-        [
-          [
-            0,
-            1
-          ],
-          [
-            6,
-            1
-          ],
-          [
-            6,
-            1.2
-          ],
-          [
-            0,
-            1.2
-          ],
-          [
-            0,
-            1
-          ]
-        ]
-      ],
-      "width": 2.7,
-      "depth": 6,
-      "area": 16.2,
-      "rotation": 90,
-      "doorSegment": [
-        [
-          6,
-          -0.8
-        ],
-        [
-          6,
-          0.1
-        ]
-      ],
-      "windowSegment": [
-        [
-          0,
-          -0.875
-        ],
-        [
-          0,
-          0.175
-        ]
-      ]
-    },
     {
       "id": "study-55-0-east-2",
       "label": "F",
@@ -481,125 +362,6 @@
         [
           0,
           6.375
-        ]
-      ]
-    },
-    {
-      "id": "study-55-0-upper-right-3",
-      "label": "N3",
-      "bank": "N",
-      "polygon": [
-        [
-          -1.7,
-          8.8
-        ],
-        [
-          1,
-          8.8
-        ],
-        [
-          1,
-          14.8
-        ],
-        [
-          -1.7,
-          14.8
-        ],
-        [
-          -1.7,
-          8.8
-        ]
-      ],
-      "modulePolygon": [
-        [
-          -1.9,
-          8.8
-        ],
-        [
-          1.2,
-          8.8
-        ],
-        [
-          1.2,
-          14.8
-        ],
-        [
-          -1.9,
-          14.8
-        ],
-        [
-          -1.9,
-          8.8
-        ]
-      ],
-      "sideWalls": [
-        [
-          [
-            -1.9,
-            8.8
-          ],
-          [
-            -1.7,
-            8.8
-          ],
-          [
-            -1.7,
-            14.8
-          ],
-          [
-            -1.9,
-            14.8
-          ],
-          [
-            -1.9,
-            8.8
-          ]
-        ],
-        [
-          [
-            1,
-            8.8
-          ],
-          [
-            1.2,
-            8.8
-          ],
-          [
-            1.2,
-            14.8
-          ],
-          [
-            1,
-            14.8
-          ],
-          [
-            1,
-            8.8
-          ]
-        ]
-      ],
-      "width": 2.7,
-      "depth": 6,
-      "area": 16.2,
-      "rotation": 0,
-      "doorSegment": [
-        [
-          -0.8,
-          8.8
-        ],
-        [
-          0.1,
-          8.8
-        ]
-      ],
-      "windowSegment": [
-        [
-          -0.875,
-          14.8
-        ],
-        [
-          0.175,
-          14.8
         ]
       ]
     },
@@ -2268,244 +2030,6 @@
           8.275
         ]
       ]
-    },
-    {
-      "id": "study-55-0-east-4",
-      "label": "H",
-      "bank": "E",
-      "polygon": [
-        [
-          0,
-          -4.8
-        ],
-        [
-          6,
-          -4.8
-        ],
-        [
-          6,
-          -2.1
-        ],
-        [
-          0,
-          -2.1
-        ],
-        [
-          0,
-          -4.8
-        ]
-      ],
-      "modulePolygon": [
-        [
-          0,
-          -5
-        ],
-        [
-          6,
-          -5
-        ],
-        [
-          6,
-          -1.9
-        ],
-        [
-          0,
-          -1.9
-        ],
-        [
-          0,
-          -5
-        ]
-      ],
-      "sideWalls": [
-        [
-          [
-            0,
-            -5
-          ],
-          [
-            6,
-            -5
-          ],
-          [
-            6,
-            -4.8
-          ],
-          [
-            0,
-            -4.8
-          ],
-          [
-            0,
-            -5
-          ]
-        ],
-        [
-          [
-            0,
-            -2.1
-          ],
-          [
-            6,
-            -2.1
-          ],
-          [
-            6,
-            -1.9
-          ],
-          [
-            0,
-            -1.9
-          ],
-          [
-            0,
-            -2.1
-          ]
-        ]
-      ],
-      "width": 2.7,
-      "depth": 6,
-      "area": 16.2,
-      "rotation": 90,
-      "doorSegment": [
-        [
-          6,
-          -3.9
-        ],
-        [
-          6,
-          -3
-        ]
-      ],
-      "windowSegment": [
-        [
-          0,
-          -3.975
-        ],
-        [
-          0,
-          -2.925
-        ]
-      ]
-    },
-    {
-      "id": "study-55-0-upper-right-4",
-      "label": "N4",
-      "bank": "N",
-      "polygon": [
-        [
-          -4.8,
-          8.8
-        ],
-        [
-          -2.1,
-          8.8
-        ],
-        [
-          -2.1,
-          14.8
-        ],
-        [
-          -4.8,
-          14.8
-        ],
-        [
-          -4.8,
-          8.8
-        ]
-      ],
-      "modulePolygon": [
-        [
-          -5,
-          8.8
-        ],
-        [
-          -1.9,
-          8.8
-        ],
-        [
-          -1.9,
-          14.8
-        ],
-        [
-          -5,
-          14.8
-        ],
-        [
-          -5,
-          8.8
-        ]
-      ],
-      "sideWalls": [
-        [
-          [
-            -5,
-            8.8
-          ],
-          [
-            -4.8,
-            8.8
-          ],
-          [
-            -4.8,
-            14.8
-          ],
-          [
-            -5,
-            14.8
-          ],
-          [
-            -5,
-            8.8
-          ]
-        ],
-        [
-          [
-            -2.1,
-            8.8
-          ],
-          [
-            -1.9,
-            8.8
-          ],
-          [
-            -1.9,
-            14.8
-          ],
-          [
-            -2.1,
-            14.8
-          ],
-          [
-            -2.1,
-            8.8
-          ]
-        ]
-      ],
-      "width": 2.7,
-      "depth": 6,
-      "area": 16.2,
-      "rotation": 0,
-      "doorSegment": [
-        [
-          -3.9,
-          8.8
-        ],
-        [
-          -3,
-          8.8
-        ]
-      ],
-      "windowSegment": [
-        [
-          -3.975,
-          14.8
-        ],
-        [
-          -2.925,
-          14.8
-        ]
-      ]
     }
   ],
   "sharedApartments": [
@@ -2638,6 +2162,136 @@
           ]
         ]
       ]
+    },
+    {
+      "id": "study-55-0-upper-right-3",
+      "label": "N3–N4",
+      "bank": "N",
+      "kind": "shared",
+      "polygon": [
+        [
+          1.2,
+          14.8
+        ],
+        [
+          -5,
+          14.8
+        ],
+        [
+          -5,
+          7.4
+        ],
+        [
+          1.2,
+          7.4
+        ],
+        [
+          1.2,
+          14.8
+        ]
+      ],
+      "width": 6.2,
+      "depth": 7.4,
+      "area": 45.88,
+      "areaBasis": "assumed-gross-envelope",
+      "moduleCount": 2,
+      "doorSegment": [
+        [
+          1.2,
+          8.55
+        ],
+        [
+          1.2,
+          7.65
+        ]
+      ],
+      "windowSegments": [
+        [
+          [
+            -0.875,
+            14.8
+          ],
+          [
+            0.175,
+            14.8
+          ]
+        ],
+        [
+          [
+            -3.975,
+            14.8
+          ],
+          [
+            -2.925,
+            14.8
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "study-55-0-east-3",
+      "label": "G–H",
+      "bank": "E",
+      "kind": "shared",
+      "polygon": [
+        [
+          7.4,
+          1.2
+        ],
+        [
+          0,
+          1.2
+        ],
+        [
+          0,
+          -5
+        ],
+        [
+          7.4,
+          -5
+        ],
+        [
+          7.4,
+          1.2
+        ]
+      ],
+      "width": 6.2,
+      "depth": 7.4,
+      "area": 45.88,
+      "areaBasis": "assumed-gross-envelope",
+      "moduleCount": 2,
+      "doorSegment": [
+        [
+          7.15,
+          1.2
+        ],
+        [
+          6.25,
+          1.2
+        ]
+      ],
+      "windowSegments": [
+        [
+          [
+            0,
+            -0.875
+          ],
+          [
+            0,
+            0.175
+          ]
+        ],
+        [
+          [
+            0,
+            -3.975
+          ],
+          [
+            0,
+            -2.925
+          ]
+        ]
+      ]
     }
   ],
   "corridors": [
@@ -2656,11 +2310,11 @@
         ],
         [
           6,
-          -5
+          1.2
         ],
         [
           7.4,
-          -5
+          1.2
         ],
         [
           7.4,
@@ -2679,11 +2333,11 @@
           8.8
         ],
         [
-          -5,
+          1.2,
           8.8
         ],
         [
-          -5,
+          1.2,
           7.4
         ],
         [
@@ -2810,19 +2464,22 @@
       "width": 1.4
     }
   ],
-  "circulationExtensions": [
+  "circulationExtensions": [],
+  "commonAreas": [
     {
-      "id": "module-55-0-open-R",
-      "label": "East open circulation",
+      "id": "study-55-0-common-R",
+      "label": "Cinema",
       "bank": "R",
+      "kind": "service",
+      "use": "cinema",
       "polygon": [
         [
           16.7,
-          10.3
+          14.8
         ],
         [
           7.4,
-          10.3
+          14.8
         ],
         [
           7.4,
@@ -2834,17 +2491,30 @@
         ],
         [
           16.7,
-          10.3
+          14.8
         ]
       ],
       "width": 9.3,
-      "depth": 2.9,
-      "area": 26.97
+      "depth": 7.4,
+      "area": 68.82,
+      "doorSegment": [
+        [
+          16.45,
+          7.4
+        ],
+        [
+          15.55,
+          7.4
+        ]
+      ],
+      "note": "Resident-confirmed cinema beside the R hallway. The 9.30 x 7.40 m enclosure includes the retained blue-marked outer strip and has one hallway entrance near the stairs. Exact door offset and internal fittings remain illustrative."
     },
     {
-      "id": "module-55-0-open-L",
-      "label": "West open circulation",
+      "id": "study-55-0-common-L",
+      "label": "Laundry",
       "bank": "L",
+      "kind": "service",
+      "use": "laundry",
       "polygon": [
         [
           28.7,
@@ -2856,11 +2526,11 @@
         ],
         [
           19.4,
-          -2.9
+          -7.4
         ],
         [
           28.7,
-          -2.9
+          -7.4
         ],
         [
           28.7,
@@ -2868,63 +2538,22 @@
         ]
       ],
       "width": 9.3,
-      "depth": 2.9,
-      "area": 26.97
+      "depth": 7.4,
+      "area": 68.82,
+      "doorSegment": [
+        [
+          20.55,
+          0
+        ],
+        [
+          19.65,
+          0
+        ]
+      ],
+      "note": "Resident-confirmed laundry beside the L hallway. The 9.30 x 7.40 m enclosure includes the retained blue-marked outer strip and has one hallway entrance near the stairs. Exact door offset and internal fittings remain illustrative."
     }
   ],
   "wallBands": [
-    {
-      "id": "module-55-0-wall-G-0",
-      "label": "G side wall 1",
-      "polygon": [
-        [
-          0,
-          -1.9
-        ],
-        [
-          6,
-          -1.9
-        ],
-        [
-          6,
-          -1.7
-        ],
-        [
-          0,
-          -1.7
-        ],
-        [
-          0,
-          -1.9
-        ]
-      ]
-    },
-    {
-      "id": "module-55-0-wall-G-1",
-      "label": "G side wall 2",
-      "polygon": [
-        [
-          0,
-          1
-        ],
-        [
-          6,
-          1
-        ],
-        [
-          6,
-          1.2
-        ],
-        [
-          0,
-          1.2
-        ],
-        [
-          0,
-          1
-        ]
-      ]
-    },
     {
       "id": "module-55-0-wall-F-0",
       "label": "F side wall 1",
@@ -3026,58 +2655,6 @@
         [
           0,
           7.2
-        ]
-      ]
-    },
-    {
-      "id": "module-55-0-wall-N3-0",
-      "label": "N3 side wall 1",
-      "polygon": [
-        [
-          -1.9,
-          8.8
-        ],
-        [
-          -1.7,
-          8.8
-        ],
-        [
-          -1.7,
-          14.8
-        ],
-        [
-          -1.9,
-          14.8
-        ],
-        [
-          -1.9,
-          8.8
-        ]
-      ]
-    },
-    {
-      "id": "module-55-0-wall-N3-1",
-      "label": "N3 side wall 2",
-      "polygon": [
-        [
-          1,
-          8.8
-        ],
-        [
-          1.2,
-          8.8
-        ],
-        [
-          1.2,
-          14.8
-        ],
-        [
-          1,
-          14.8
-        ],
-        [
-          1,
-          8.8
         ]
       ]
     },
@@ -3808,110 +3385,6 @@
           9.1
         ]
       ]
-    },
-    {
-      "id": "module-55-0-wall-H-0",
-      "label": "H side wall 1",
-      "polygon": [
-        [
-          0,
-          -5
-        ],
-        [
-          6,
-          -5
-        ],
-        [
-          6,
-          -4.8
-        ],
-        [
-          0,
-          -4.8
-        ],
-        [
-          0,
-          -5
-        ]
-      ]
-    },
-    {
-      "id": "module-55-0-wall-H-1",
-      "label": "H side wall 2",
-      "polygon": [
-        [
-          0,
-          -2.1
-        ],
-        [
-          6,
-          -2.1
-        ],
-        [
-          6,
-          -1.9
-        ],
-        [
-          0,
-          -1.9
-        ],
-        [
-          0,
-          -2.1
-        ]
-      ]
-    },
-    {
-      "id": "module-55-0-wall-N4-0",
-      "label": "N4 side wall 1",
-      "polygon": [
-        [
-          -5,
-          8.8
-        ],
-        [
-          -4.8,
-          8.8
-        ],
-        [
-          -4.8,
-          14.8
-        ],
-        [
-          -5,
-          14.8
-        ],
-        [
-          -5,
-          8.8
-        ]
-      ]
-    },
-    {
-      "id": "module-55-0-wall-N4-1",
-      "label": "N4 side wall 2",
-      "polygon": [
-        [
-          -2.1,
-          8.8
-        ],
-        [
-          -1.9,
-          8.8
-        ],
-        [
-          -1.9,
-          14.8
-        ],
-        [
-          -2.1,
-          14.8
-        ],
-        [
-          -2.1,
-          8.8
-        ]
-      ]
     }
   ],
   "stair": {
@@ -4259,26 +3732,28 @@
     }
   ],
   "totals": {
-    "singleCount": 20,
-    "sharedApartmentCount": 2,
-    "apartmentCount": 22,
+    "singleCount": 16,
+    "sharedApartmentCount": 4,
+    "apartmentCount": 20,
     "moduleCount": 24,
-    "singleClearArea": 324,
-    "sharedEnvelopeArea": 91.76,
-    "sideWallArea": 48,
-    "bankHallArea": 86.8,
-    "openCirculationArea": 53.94,
+    "singleClearArea": 259.2,
+    "sharedEnvelopeArea": 183.52,
+    "sideWallArea": 38.4,
+    "bankHallArea": 69.44,
+    "openCirculationArea": 0,
+    "commonArea": 137.64,
     "stairArea": 19.98,
     "shellArea": 716.01,
-    "restoredUnassignedArea": 91.53
+    "restoredArea": 91.53,
+    "restoredUnassignedArea": 7.83
   },
   "notes": [
-    "House 55 / EG repeats the completed 1. OG layout at the same campus position, including its twenty single apartments and two shared-apartment envelopes.",
+    "House 55 / EG repeats the completed 1. OG apartment layout at the same campus position, including sixteen single apartments and four shared-apartment envelopes.",
     "The three blue-marked areas removed from 1. OG are retained on EG: two 9.30 x 4.50 m outer strips and the 2.70 x 2.90 m stair-side spur.",
-    "Those 91.53 square metres are restored footprint only. Their use, partitions, entrances and connection details remain unassigned; no additional apartment, corridor, stair flight or doorway is inferred.",
-    "Single apartments retain 2.70 x 6.00 m clear interiors and 3.10 m modules. Shared apartments A and W1 retain their 6.20 x 7.40 m gross envelopes, including the perpendicular hall allowance.",
-    "The existing 1.40 m hall runs, 9.30 x 2.90 m open circulation strips and 2.70 m stair enclosure keep the exact first-floor geometry. The confirmed 8.10 m W return is retained.",
-    "Shared-apartment internal divisions, restored-area uses, real openings and floor heights remain unresolved. The ground-floor footprint is independent of the folded source exterior."
+    "The eastern common strip and its restored outer area form the cinema beside R. The western equivalents form the laundry beside L, as confirmed by the resident. Each 9.30 x 7.40 m enclosure has one hallway entrance near the stairs. The 7.83 square metre stair-side spur remains unassigned.",
+    "Single apartments retain 2.70 x 6.00 m clear interiors and 3.10 m modules. Shared apartments A, W1, N3-N4 and G-H retain their 6.20 x 7.40 m gross envelopes, including the perpendicular hall allowance.",
+    "The 1.40 m hall runs and 2.70 m stair enclosure keep the exact first-floor geometry. The confirmed 8.10 m W return is retained.",
+    "Shared-apartment internal divisions, exact opening positions and floor heights remain unresolved. The ground-floor footprint is independent of the folded source exterior."
   ],
   "restoredAreas": [
     {
@@ -4309,8 +3784,8 @@
       "width": 9.3,
       "depth": 4.5,
       "area": 41.85,
-      "status": "unassigned-footprint",
-      "note": "Retained blue-marked ground-floor area. Use, partitions and access are not yet assigned."
+      "status": "assigned-common-area",
+      "note": "Retained blue-marked outer strip, included in the cinema enclosure."
     },
     {
       "id": "module-55-0-restored-west",
@@ -4340,8 +3815,8 @@
       "width": 9.3,
       "depth": 4.5,
       "area": 41.85,
-      "status": "unassigned-footprint",
-      "note": "Retained blue-marked ground-floor area. Use, partitions and access are not yet assigned."
+      "status": "assigned-common-area",
+      "note": "Retained blue-marked outer strip, included in the laundry enclosure."
     },
     {
       "id": "module-55-0-restored-stair-spur",
@@ -4372,7 +3847,7 @@
       "depth": 2.9,
       "area": 7.83,
       "status": "unassigned-footprint",
-      "note": "Retained blue-marked ground-floor area. Use, partitions and access are not yet assigned."
+      "note": "Retained blue-marked stair-side spur. Use, partitions and access are not yet assigned."
     }
   ]
 }

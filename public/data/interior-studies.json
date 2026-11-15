@@ -8472,15 +8472,15 @@
       ]
     },
     "55": {
-      "source": "House 55 resident studies: 2. OG retains its accepted module plan. 1. OG applies the confirmed shared apartments, added singles and cutouts to that core. EG repeats the completed first-floor layout and retains the three blue-marked footprint areas with their uses unassigned. Folded exterior evidence is retained separately.",
+      "source": "House 55 resident studies: 2. OG retains its accepted module plan. 1. OG has sixteen singles, four shared apartments and two enclosed balconies within the confirmed outline. EG repeats the apartments, with the extended cinema beside R and laundry beside L; all three blue-marked floor areas remain, including the unassigned stair-side spur. Folded exterior evidence is retained separately.",
       "sourceDate": "2026-11-15",
       "levels": [
         {
           "index": 0,
           "label": "EG · module layout",
           "layoutBasis": "resident-module-layout",
-          "source": "Resident-requested ground-floor continuation of the completed 1. OG module layout, 15 November 2026, retaining the three blue-marked footprint areas.",
-          "notes": "House 55 / EG repeats the completed 1. OG layout at the same campus position, including its twenty single apartments and two shared-apartment envelopes. The three blue-marked areas removed from 1. OG are retained on EG: two 9.30 x 4.50 m outer strips and the 2.70 x 2.90 m stair-side spur. Those 91.53 square metres are restored footprint only. Their use, partitions, entrances and connection details remain unassigned; no additional apartment, corridor, stair flight or doorway is inferred. Single apartments retain 2.70 x 6.00 m clear interiors and 3.10 m modules. Shared apartments A and W1 retain their 6.20 x 7.40 m gross envelopes, including the perpendicular hall allowance. The existing 1.40 m hall runs, 9.30 x 2.90 m open circulation strips and 2.70 m stair enclosure keep the exact first-floor geometry. The confirmed 8.10 m W return is retained. Shared-apartment internal divisions, restored-area uses, real openings and floor heights remain unresolved. The ground-floor footprint is independent of the folded source exterior.",
+          "source": "Resident-requested ground-floor continuation, 15 November 2026: sixteen singles, four shared apartments, enclosed cinema beside R and laundry beside L, retaining all three blue-marked footprint areas.",
+          "notes": "House 55 / EG repeats the completed 1. OG apartment layout at the same campus position, including sixteen single apartments and four shared-apartment envelopes. The three blue-marked areas removed from 1. OG are retained on EG: two 9.30 x 4.50 m outer strips and the 2.70 x 2.90 m stair-side spur. The eastern common strip and its restored outer area form the cinema beside R. The western equivalents form the laundry beside L, as confirmed by the resident. Each 9.30 x 7.40 m enclosure has one hallway entrance near the stairs. The 7.83 square metre stair-side spur remains unassigned. Single apartments retain 2.70 x 6.00 m clear interiors and 3.10 m modules. Shared apartments A, W1, N3-N4 and G-H retain their 6.20 x 7.40 m gross envelopes, including the perpendicular hall allowance. The 1.40 m hall runs and 2.70 m stair enclosure keep the exact first-floor geometry. The confirmed 8.10 m W return is retained. Shared-apartment internal divisions, exact opening positions and floor heights remain unresolved. The ground-floor footprint is independent of the folded source exterior.",
           "floorOutline": [
             {
               "outer": [
@@ -8565,36 +8565,6 @@
           ],
           "spaces": [
             {
-              "id": "study-55-0-east-3",
-              "label": "Room G",
-              "shortLabel": "G",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  12.6194784,
-                  29.841463857
-                ],
-                [
-                  8.563772428,
-                  25.419784417
-                ],
-                [
-                  10.553528176,
-                  23.59471673
-                ],
-                [
-                  14.609234148,
-                  28.01639617
-                ],
-                [
-                  12.6194784,
-                  29.841463857
-                ]
-              ]
-            },
-            {
               "id": "study-55-0-east-2",
               "label": "Room F",
               "shortLabel": "F",
@@ -8651,36 +8621,6 @@
                 [
                   17.188547155,
                   25.650567686
-                ]
-              ]
-            },
-            {
-              "id": "study-55-0-upper-right-3",
-              "label": "Room N3",
-              "shortLabel": "N3",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  21.506534112,
-                  23.996787581
-                ],
-                [
-                  19.681466425,
-                  22.007031833
-                ],
-                [
-                  24.103145865,
-                  17.951325861
-                ],
-                [
-                  25.928213552,
-                  19.941081609
-                ],
-                [
-                  21.506534112,
-                  23.996787581
                 ]
               ]
             },
@@ -9105,66 +9045,6 @@
               ]
             },
             {
-              "id": "study-55-0-east-4",
-              "label": "Room H",
-              "shortLabel": "H",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  10.334944023,
-                  31.936911943
-                ],
-                [
-                  6.279238051,
-                  27.515232503
-                ],
-                [
-                  8.268993799,
-                  25.690164815
-                ],
-                [
-                  12.324699771,
-                  30.111844255
-                ],
-                [
-                  10.334944023,
-                  31.936911943
-                ]
-              ]
-            },
-            {
-              "id": "study-55-0-upper-right-4",
-              "label": "Room N4",
-              "shortLabel": "N4",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  23.601982198,
-                  26.281321958
-                ],
-                [
-                  21.77691451,
-                  24.29156621
-                ],
-                [
-                  26.19859395,
-                  20.235860238
-                ],
-                [
-                  28.023661638,
-                  22.225615986
-                ],
-                [
-                  23.601982198,
-                  26.281321958
-                ]
-              ]
-            },
-            {
               "id": "study-55-0-west-1",
               "label": "Shared apartment W1",
               "shortLabel": "W1",
@@ -9225,28 +9105,148 @@
               ]
             },
             {
+              "id": "study-55-0-upper-right-3",
+              "label": "Shared apartment N3–N4",
+              "shortLabel": "N3–N4",
+              "kind": "shared",
+              "confidence": "estimated",
+              "note": "Assumed shared-apartment envelope: two 3.10 m widths by 6.00 m plus 1.40 m perpendicular hallway = 6.20 x 7.40 m, 45.88 square metres gross. Internal partitions and net area are not established.",
+              "polygon": [
+                [
+                  23.967955666,
+                  17.803936546
+                ],
+                [
+                  28.158851837,
+                  22.373005301
+                ],
+                [
+                  22.705447194,
+                  27.375042666
+                ],
+                [
+                  18.514551023,
+                  22.805973912
+                ],
+                [
+                  23.967955666,
+                  17.803936546
+                ]
+              ]
+            },
+            {
+              "id": "study-55-0-east-3",
+              "label": "Shared apartment G–H",
+              "shortLabel": "G–H",
+              "kind": "shared",
+              "confidence": "estimated",
+              "note": "Assumed shared-apartment envelope: two 3.10 m widths by 6.00 m plus 1.40 m perpendicular hallway = 6.20 x 7.40 m, 45.88 square metres gross. Internal partitions and net area are not established.",
+              "polygon": [
+                [
+                  9.754586098,
+                  22.427801328
+                ],
+                [
+                  14.756623463,
+                  27.881205971
+                ],
+                [
+                  10.187554708,
+                  32.072102142
+                ],
+                [
+                  5.185517343,
+                  26.618697499
+                ],
+                [
+                  9.754586098,
+                  22.427801328
+                ]
+              ]
+            },
+            {
+              "id": "study-55-0-common-R",
+              "label": "Cinema",
+              "shortLabel": "Cinema",
+              "kind": "service",
+              "confidence": "estimated",
+              "note": "Resident-confirmed cinema beside the R hallway. The 9.30 x 7.40 m enclosure includes the retained blue-marked outer strip and has one hallway entrance near the stairs. Exact door offset and internal fittings remain illustrative.",
+              "polygon": [
+                [
+                  13.490715238,
+                  6.38126466
+                ],
+                [
+                  19.777059495,
+                  13.234867792
+                ],
+                [
+                  14.323654852,
+                  18.236905157
+                ],
+                [
+                  8.037310595,
+                  11.383302025
+                ],
+                [
+                  13.490715238,
+                  6.38126466
+                ]
+              ]
+            },
+            {
+              "id": "study-55-0-common-L",
+              "label": "Laundry",
+              "shortLabel": "Laundry",
+              "kind": "service",
+              "confidence": "estimated",
+              "note": "Resident-confirmed laundry beside the L hallway. The 9.30 x 7.40 m enclosure includes the retained blue-marked outer strip and has one hallway entrance near the stairs. Exact door offset and internal fittings remain illustrative.",
+              "polygon": [
+                [
+                  -5.527505991,
+                  7.541980511
+                ],
+                [
+                  0.758838266,
+                  14.395583643
+                ],
+                [
+                  -4.694566377,
+                  19.397621008
+                ],
+                [
+                  -10.980910633,
+                  12.544017876
+                ],
+                [
+                  -5.527505991,
+                  7.541980511
+                ]
+              ]
+            },
+            {
               "id": "study-55-0-potential-corridor-east",
               "label": "East hall",
               "shortLabel": "East hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Connected 1.40 m bank hallways with the retained 9.30 x 2.90 m strip open to circulation; no extra dorm is assigned to the strip.",
+              "note": "Connected 1.40 m bank hallways. Shared apartments and common areas are separate enclosures with individual entrances.",
               "polygon": [
                 [
-                  22.705447194,
-                  27.375042666
+                  18.514551023,
+                  22.805973912
                 ],
                 [
                   15.269986246,
                   19.26863036
                 ],
                 [
-                  6.131848736,
-                  27.650422702
+                  10.700917491,
+                  23.459526531
                 ],
                 [
-                  5.185517343,
-                  26.618697499
+                  9.754586098,
+                  22.427801328
                 ],
                 [
                   13.291929649,
@@ -9257,24 +9257,24 @@
                   12.329633419
                 ],
                 [
-                  10.174455658,
-                  9.423044139
+                  8.037310595,
+                  11.383302025
                 ],
                 [
-                  16.460799915,
-                  16.276647271
+                  14.323654852,
+                  18.236905157
                 ],
                 [
                   15.355380055,
                   17.290573764
                 ],
                 [
-                  23.737172397,
-                  26.428711273
+                  19.546276226,
+                  21.859642518
                 ],
                 [
-                  22.705447194,
-                  27.375042666
+                  18.514551023,
+                  22.805973912
                 ]
               ]
             },
@@ -9284,15 +9284,15 @@
               "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Connected 1.40 m bank hallways with the retained 9.30 x 2.90 m strip open to circulation; no extra dorm is assigned to the strip.",
+              "note": "Connected 1.40 m bank hallways. Shared apartments and common areas are separate enclosures with individual entrances.",
               "polygon": [
                 [
-                  -1.378306797,
-                  16.355841529
+                  0.758838266,
+                  14.395583643
                 ],
                 [
-                  -7.664651054,
-                  9.502238397
+                  -5.527505991,
+                  7.541980511
                 ],
                 [
                   -6.559231194,
@@ -9327,8 +9327,8 @@
                   13.449252249
                 ],
                 [
-                  -1.378306797,
-                  16.355841529
+                  0.758838266,
+                  14.395583643
                 ]
               ]
             },
@@ -9387,24 +9387,6 @@
           ],
           "doors": [
             {
-              "id": "module-55-0-door-G",
-              "label": "Room G doorway",
-              "spaceId": "study-55-0-east-3",
-              "toSpaceId": "study-55-0-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  9.227024344,
-                  24.811428521
-                ],
-                [
-                  9.89027626,
-                  24.203072626
-                ]
-              ]
-            },
-            {
               "id": "module-55-0-door-F",
               "label": "Room F doorway",
               "spaceId": "study-55-0-east-2",
@@ -9437,24 +9419,6 @@
                 [
                   14.459345015,
                   20.012176455
-                ]
-              ]
-            },
-            {
-              "id": "module-55-0-door-N3",
-              "label": "Room N3 doorway",
-              "spaceId": "study-55-0-upper-right-3",
-              "toSpaceId": "study-55-0-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  20.898178216,
-                  23.333535665
-                ],
-                [
-                  20.289822321,
-                  22.670283749
                 ]
               ]
             },
@@ -9711,42 +9675,6 @@
               ]
             },
             {
-              "id": "module-55-0-door-H",
-              "label": "Room H doorway",
-              "spaceId": "study-55-0-east-4",
-              "toSpaceId": "study-55-0-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  6.942489967,
-                  26.906876607
-                ],
-                [
-                  7.605741883,
-                  26.298520711
-                ]
-              ]
-            },
-            {
-              "id": "module-55-0-door-N4",
-              "label": "Room N4 doorway",
-              "spaceId": "study-55-0-upper-right-4",
-              "toSpaceId": "study-55-0-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  22.993626302,
-                  25.618070042
-                ],
-                [
-                  22.385270406,
-                  24.954818126
-                ]
-              ]
-            },
-            {
               "id": "module-55-0-door-W1",
               "label": "Shared apartment W1 doorway",
               "spaceId": "study-55-0-west-1",
@@ -9779,6 +9707,78 @@
                 [
                   -12.661338807,
                   1.465721024
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-door-N3-N4",
+              "label": "Shared apartment N3–N4 doorway",
+              "spaceId": "study-55-0-upper-right-3",
+              "toSpaceId": "study-55-0-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
+              "segment": [
+                [
+                  19.362039582,
+                  22.028630267
+                ],
+                [
+                  18.698787666,
+                  22.636986163
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-door-G-H",
+              "label": "Shared apartment G–H doorway",
+              "spaceId": "study-55-0-east-3",
+              "toSpaceId": "study-55-0-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
+              "segment": [
+                [
+                  9.923573846,
+                  22.612037971
+                ],
+                [
+                  10.531929742,
+                  23.275289887
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-common-door-R",
+              "label": "Cinema doorway",
+              "spaceId": "study-55-0-common-R",
+              "toSpaceId": "study-55-0-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "One illustrative 0.90 m entrance near the stair end of the hallway-facing enclosure wall.",
+              "segment": [
+                [
+                  8.206298344,
+                  11.567538669
+                ],
+                [
+                  8.81465424,
+                  12.230790585
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-common-door-L",
+              "label": "Laundry doorway",
+              "spaceId": "study-55-0-common-L",
+              "toSpaceId": "study-55-0-potential-corridor",
+              "confidence": "estimated",
+              "note": "One illustrative 0.90 m entrance near the stair end of the hallway-facing enclosure wall.",
+              "segment": [
+                [
+                  -0.018505379,
+                  13.548095083
+                ],
+                [
+                  0.589850517,
+                  14.211346999
                 ]
               ]
             },
@@ -9821,23 +9821,6 @@
           ],
           "layoutWindows": [
             {
-              "id": "module-55-0-window-G-0",
-              "label": "G window 1",
-              "spaceId": "study-55-0-east-3",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
-              "segment": [
-                [
-                  13.227459323,
-                  29.283804286
-                ],
-                [
-                  14.001253225,
-                  28.574055741
-                ]
-              ]
-            },
-            {
               "id": "module-55-0-window-F-0",
               "label": "F window 1",
               "spaceId": "study-55-0-east-2",
@@ -9868,23 +9851,6 @@
                 [
                   18.57032198,
                   24.38315957
-                ]
-              ]
-            },
-            {
-              "id": "module-55-0-window-N3-0",
-              "label": "N3 window 1",
-              "spaceId": "study-55-0-upper-right-3",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
-              "segment": [
-                [
-                  25.370553981,
-                  19.333100686
-                ],
-                [
-                  24.660805436,
-                  18.559306784
                 ]
               ]
             },
@@ -10127,40 +10093,6 @@
               ]
             },
             {
-              "id": "module-55-0-window-H-0",
-              "label": "H window 1",
-              "spaceId": "study-55-0-east-4",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
-              "segment": [
-                [
-                  10.942924946,
-                  31.379252371
-                ],
-                [
-                  11.716718848,
-                  30.669503826
-                ]
-              ]
-            },
-            {
-              "id": "module-55-0-window-N4-0",
-              "label": "N4 window 1",
-              "spaceId": "study-55-0-upper-right-4",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
-              "segment": [
-                [
-                  27.466002066,
-                  21.617635063
-                ],
-                [
-                  26.756253521,
-                  20.843841161
-                ]
-              ]
-            },
-            {
               "id": "module-55-0-window-W1-0",
               "label": "W1 window 1",
               "spaceId": "study-55-0-west-1",
@@ -10227,65 +10159,77 @@
                   4.935044507
                 ]
               ]
+            },
+            {
+              "id": "module-55-0-window-N3-N4-0",
+              "label": "N3–N4 window 1",
+              "spaceId": "study-55-0-upper-right-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
+              "segment": [
+                [
+                  25.370553981,
+                  19.333100686
+                ],
+                [
+                  24.660805436,
+                  18.559306784
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-window-N3-N4-1",
+              "label": "N3–N4 window 2",
+              "spaceId": "study-55-0-upper-right-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
+              "segment": [
+                [
+                  27.466002066,
+                  21.617635063
+                ],
+                [
+                  26.756253521,
+                  20.843841161
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-window-G-H-0",
+              "label": "G–H window 1",
+              "spaceId": "study-55-0-east-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
+              "segment": [
+                [
+                  13.227459323,
+                  29.283804286
+                ],
+                [
+                  14.001253225,
+                  28.574055741
+                ]
+              ]
+            },
+            {
+              "id": "module-55-0-window-G-H-1",
+              "label": "G–H window 2",
+              "spaceId": "study-55-0-east-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window inherited at the same position from 1. OG; this is not a measured ground-floor façade opening.",
+              "segment": [
+                [
+                  10.942924946,
+                  31.379252371
+                ],
+                [
+                  11.716718848,
+                  30.669503826
+                ]
+              ]
             }
           ],
           "wallBands": [
-            {
-              "id": "module-55-0-wall-G-0",
-              "label": "G side wall 1",
-              "polygon": [
-                [
-                  12.472089086,
-                  29.976654056
-                ],
-                [
-                  8.416383114,
-                  25.554974616
-                ],
-                [
-                  8.563772428,
-                  25.419784417
-                ],
-                [
-                  12.6194784,
-                  29.841463857
-                ],
-                [
-                  12.472089086,
-                  29.976654056
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-G-1",
-              "label": "G side wall 2",
-              "polygon": [
-                [
-                  14.609234148,
-                  28.01639617
-                ],
-                [
-                  10.553528176,
-                  23.59471673
-                ],
-                [
-                  10.700917491,
-                  23.459526531
-                ],
-                [
-                  14.756623463,
-                  27.881205971
-                ],
-                [
-                  14.609234148,
-                  28.01639617
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
             {
               "id": "module-55-0-wall-F-0",
               "label": "F side wall 1",
@@ -10393,62 +10337,6 @@
                 [
                   19.178302903,
                   23.825499999
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-N3-0",
-              "label": "N3 side wall 1",
-              "polygon": [
-                [
-                  21.641724311,
-                  24.144176895
-                ],
-                [
-                  21.506534112,
-                  23.996787581
-                ],
-                [
-                  25.928213552,
-                  19.941081609
-                ],
-                [
-                  26.063403751,
-                  20.088470923
-                ],
-                [
-                  21.641724311,
-                  24.144176895
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-N3-1",
-              "label": "N3 side wall 2",
-              "polygon": [
-                [
-                  19.681466425,
-                  22.007031833
-                ],
-                [
-                  19.546276226,
-                  21.859642518
-                ],
-                [
-                  23.967955666,
-                  17.803936546
-                ],
-                [
-                  24.103145865,
-                  17.951325861
-                ],
-                [
-                  19.681466425,
-                  22.007031833
                 ]
               ],
               "confidence": "estimated",
@@ -11237,118 +11125,6 @@
               ],
               "confidence": "estimated",
               "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-H-0",
-              "label": "H side wall 1",
-              "polygon": [
-                [
-                  10.187554708,
-                  32.072102142
-                ],
-                [
-                  6.131848736,
-                  27.650422702
-                ],
-                [
-                  6.279238051,
-                  27.515232503
-                ],
-                [
-                  10.334944023,
-                  31.936911943
-                ],
-                [
-                  10.187554708,
-                  32.072102142
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-H-1",
-              "label": "H side wall 2",
-              "polygon": [
-                [
-                  12.324699771,
-                  30.111844255
-                ],
-                [
-                  8.268993799,
-                  25.690164815
-                ],
-                [
-                  8.416383114,
-                  25.554974616
-                ],
-                [
-                  12.472089086,
-                  29.976654056
-                ],
-                [
-                  12.324699771,
-                  30.111844255
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-N4-0",
-              "label": "N4 side wall 1",
-              "polygon": [
-                [
-                  23.737172397,
-                  26.428711273
-                ],
-                [
-                  23.601982198,
-                  26.281321958
-                ],
-                [
-                  28.023661638,
-                  22.225615986
-                ],
-                [
-                  28.158851837,
-                  22.373005301
-                ],
-                [
-                  23.737172397,
-                  26.428711273
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-0-wall-N4-1",
-              "label": "N4 side wall 2",
-              "polygon": [
-                [
-                  21.77691451,
-                  24.29156621
-                ],
-                [
-                  21.641724311,
-                  24.144176895
-                ],
-                [
-                  26.063403751,
-                  20.088470923
-                ],
-                [
-                  26.19859395,
-                  20.235860238
-                ],
-                [
-                  21.77691451,
-                  24.29156621
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
             }
           ],
           "dimensionGuides": []
@@ -11357,8 +11133,8 @@
           "index": 1,
           "label": "1. OG · module layout",
           "layoutBasis": "resident-module-layout",
-          "source": "Resident first-floor annotations and the accepted 2. OG module plan, 15 November 2026; 2.70 x 6.00 m singles, 6.20 x 7.40 m assumed shared envelopes, 1.40 m halls.",
-          "notes": "House 55 / 1. OG uses the accepted 2. OG module plan at the same campus position, with the resident first-floor additions and cutouts from 15 November 2026. Twenty single apartments retain 2.70 x 6.00 m clear interiors and two 0.20 m side strips, giving a 3.10 m module. One single is added at N4 and one at H. Shared apartments W1 and A each combine two 3.10 m module widths with the perpendicular 6.00 m room plus 1.40 m hallway depth: a 6.20 x 7.40 m assumed gross envelope. Their internal partitions and net areas are not established. Both 9.30 x 2.90 m strips remain open circulation. The blue 4.50 m deep portions and the earlier stair-side spur are outside the new floor outline. The W wing is 15.50 m long. The resident confirmed an 8.10 m inner return instead of the annotated 5.00 m, preserving the 7.40 m top-floor core and all other final dimensions. Hallways are 1.40 m wide. The unchanged stair block has the requested 1.30 m flight column plus 1.40 m walkway. Door and window symbols and stair treads remain illustrative.",
+          "source": "Resident first-floor annotations and the accepted 2. OG module plan, 15 November 2026; sixteen 2.70 x 6.00 m singles, four 6.20 x 7.40 m assumed shared envelopes, two enclosed balconies and 1.40 m halls.",
+          "notes": "House 55 / 1. OG uses the accepted 2. OG module plan at the same campus position, with the resident first-floor additions and cutouts from 15 November 2026. Sixteen single apartments retain 2.70 x 6.00 m clear interiors and two 0.20 m side strips, giving a 3.10 m module. Shared apartments W1, A, N3-N4 and G-H each combine two 3.10 m module widths with the perpendicular 6.00 m room plus 1.40 m hallway depth: a 6.20 x 7.40 m assumed gross envelope. The joined pairs have one entrance and no intervening room or hallway divider. Their internal partitions and net areas are not established. Both 9.30 x 2.90 m strips are separate balcony enclosures, each reached through one door near the stair end of its hallway-facing wall. The blue 4.50 m deep portions and the earlier stair-side spur remain outside this floor outline. The W wing is 15.50 m long. The resident confirmed an 8.10 m inner return instead of the annotated 5.00 m, preserving the 7.40 m top-floor core and all other final dimensions. Hallways are 1.40 m wide. The unchanged stair block has the requested 1.30 m flight column plus 1.40 m walkway. Door and window symbols and stair treads remain illustrative.",
           "floorOutline": [
             {
               "outer": [
@@ -11451,36 +11227,6 @@
           ],
           "spaces": [
             {
-              "id": "study-55-1-east-3",
-              "label": "Room G",
-              "shortLabel": "G",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  12.6194784,
-                  29.841463857
-                ],
-                [
-                  8.563772428,
-                  25.419784417
-                ],
-                [
-                  10.553528176,
-                  23.59471673
-                ],
-                [
-                  14.609234148,
-                  28.01639617
-                ],
-                [
-                  12.6194784,
-                  29.841463857
-                ]
-              ]
-            },
-            {
               "id": "study-55-1-east-2",
               "label": "Room F",
               "shortLabel": "F",
@@ -11537,36 +11283,6 @@
                 [
                   17.188547155,
                   25.650567686
-                ]
-              ]
-            },
-            {
-              "id": "study-55-1-upper-right-3",
-              "label": "Room N3",
-              "shortLabel": "N3",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  21.506534112,
-                  23.996787581
-                ],
-                [
-                  19.681466425,
-                  22.007031833
-                ],
-                [
-                  24.103145865,
-                  17.951325861
-                ],
-                [
-                  25.928213552,
-                  19.941081609
-                ],
-                [
-                  21.506534112,
-                  23.996787581
                 ]
               ]
             },
@@ -11991,66 +11707,6 @@
               ]
             },
             {
-              "id": "study-55-1-east-4",
-              "label": "Room H",
-              "shortLabel": "H",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  10.334944023,
-                  31.936911943
-                ],
-                [
-                  6.279238051,
-                  27.515232503
-                ],
-                [
-                  8.268993799,
-                  25.690164815
-                ],
-                [
-                  12.324699771,
-                  30.111844255
-                ],
-                [
-                  10.334944023,
-                  31.936911943
-                ]
-              ]
-            },
-            {
-              "id": "study-55-1-upper-right-4",
-              "label": "Room N4",
-              "shortLabel": "N4",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side-wall allocations give a 3.10 m module. Bathroom and kitchen partitions are not drawn.",
-              "polygon": [
-                [
-                  23.601982198,
-                  26.281321958
-                ],
-                [
-                  21.77691451,
-                  24.29156621
-                ],
-                [
-                  26.19859395,
-                  20.235860238
-                ],
-                [
-                  28.023661638,
-                  22.225615986
-                ],
-                [
-                  23.601982198,
-                  26.281321958
-                ]
-              ]
-            },
-            {
               "id": "study-55-1-west-1",
               "label": "Shared apartment W1",
               "shortLabel": "W1",
@@ -12111,28 +11767,148 @@
               ]
             },
             {
+              "id": "study-55-1-upper-right-3",
+              "label": "Shared apartment N3–N4",
+              "shortLabel": "N3–N4",
+              "kind": "shared",
+              "confidence": "estimated",
+              "note": "Assumed shared-apartment envelope: two 3.10 m widths by 6.00 m plus 1.40 m perpendicular hallway = 6.20 x 7.40 m, 45.88 square metres gross. Internal partitions and net area are not established.",
+              "polygon": [
+                [
+                  23.967955666,
+                  17.803936546
+                ],
+                [
+                  28.158851837,
+                  22.373005301
+                ],
+                [
+                  22.705447194,
+                  27.375042666
+                ],
+                [
+                  18.514551023,
+                  22.805973912
+                ],
+                [
+                  23.967955666,
+                  17.803936546
+                ]
+              ]
+            },
+            {
+              "id": "study-55-1-east-3",
+              "label": "Shared apartment G–H",
+              "shortLabel": "G–H",
+              "kind": "shared",
+              "confidence": "estimated",
+              "note": "Assumed shared-apartment envelope: two 3.10 m widths by 6.00 m plus 1.40 m perpendicular hallway = 6.20 x 7.40 m, 45.88 square metres gross. Internal partitions and net area are not established.",
+              "polygon": [
+                [
+                  9.754586098,
+                  22.427801328
+                ],
+                [
+                  14.756623463,
+                  27.881205971
+                ],
+                [
+                  10.187554708,
+                  32.072102142
+                ],
+                [
+                  5.185517343,
+                  26.618697499
+                ],
+                [
+                  9.754586098,
+                  22.427801328
+                ]
+              ]
+            },
+            {
+              "id": "study-55-1-common-R",
+              "label": "East balcony",
+              "shortLabel": "East balcony",
+              "kind": "service",
+              "confidence": "estimated",
+              "note": "Resident-marked 9.30 x 2.90 m balcony, separated from the hallway by a continuous wall with one entrance near the stairs. The 0.90 m doorway width and exact offset are illustrative.",
+              "polygon": [
+                [
+                  10.174455658,
+                  9.423044139
+                ],
+                [
+                  16.460799915,
+                  16.276647271
+                ],
+                [
+                  14.323654852,
+                  18.236905157
+                ],
+                [
+                  8.037310595,
+                  11.383302025
+                ],
+                [
+                  10.174455658,
+                  9.423044139
+                ]
+              ]
+            },
+            {
+              "id": "study-55-1-common-L",
+              "label": "West balcony",
+              "shortLabel": "West balcony",
+              "kind": "service",
+              "confidence": "estimated",
+              "note": "Resident-marked 9.30 x 2.90 m balcony, separated from the hallway by a continuous wall with one entrance near the stairs. The 0.90 m doorway width and exact offset are illustrative.",
+              "polygon": [
+                [
+                  -5.527505991,
+                  7.541980511
+                ],
+                [
+                  0.758838266,
+                  14.395583643
+                ],
+                [
+                  -1.378306797,
+                  16.355841529
+                ],
+                [
+                  -7.664651054,
+                  9.502238397
+                ],
+                [
+                  -5.527505991,
+                  7.541980511
+                ]
+              ]
+            },
+            {
               "id": "study-55-1-potential-corridor-east",
               "label": "East hall",
               "shortLabel": "East hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Connected 1.40 m bank hallways with the retained 9.30 x 2.90 m strip open to circulation; no extra dorm is assigned to the strip.",
+              "note": "Connected 1.40 m bank hallways. Shared apartments and common areas are separate enclosures with individual entrances.",
               "polygon": [
                 [
-                  22.705447194,
-                  27.375042666
+                  18.514551023,
+                  22.805973912
                 ],
                 [
                   15.269986246,
                   19.26863036
                 ],
                 [
-                  6.131848736,
-                  27.650422702
+                  10.700917491,
+                  23.459526531
                 ],
                 [
-                  5.185517343,
-                  26.618697499
+                  9.754586098,
+                  22.427801328
                 ],
                 [
                   13.291929649,
@@ -12143,24 +11919,24 @@
                   12.329633419
                 ],
                 [
-                  10.174455658,
-                  9.423044139
+                  8.037310595,
+                  11.383302025
                 ],
                 [
-                  16.460799915,
-                  16.276647271
+                  14.323654852,
+                  18.236905157
                 ],
                 [
                   15.355380055,
                   17.290573764
                 ],
                 [
-                  23.737172397,
-                  26.428711273
+                  19.546276226,
+                  21.859642518
                 ],
                 [
-                  22.705447194,
-                  27.375042666
+                  18.514551023,
+                  22.805973912
                 ]
               ]
             },
@@ -12170,15 +11946,15 @@
               "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Connected 1.40 m bank hallways with the retained 9.30 x 2.90 m strip open to circulation; no extra dorm is assigned to the strip.",
+              "note": "Connected 1.40 m bank hallways. Shared apartments and common areas are separate enclosures with individual entrances.",
               "polygon": [
                 [
-                  -1.378306797,
-                  16.355841529
+                  0.758838266,
+                  14.395583643
                 ],
                 [
-                  -7.664651054,
-                  9.502238397
+                  -5.527505991,
+                  7.541980511
                 ],
                 [
                   -6.559231194,
@@ -12213,8 +11989,8 @@
                   13.449252249
                 ],
                 [
-                  -1.378306797,
-                  16.355841529
+                  0.758838266,
+                  14.395583643
                 ]
               ]
             },
@@ -12273,24 +12049,6 @@
           ],
           "doors": [
             {
-              "id": "module-55-1-door-G",
-              "label": "Room G doorway",
-              "spaceId": "study-55-1-east-3",
-              "toSpaceId": "study-55-1-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  9.227024344,
-                  24.811428521
-                ],
-                [
-                  9.89027626,
-                  24.203072626
-                ]
-              ]
-            },
-            {
               "id": "module-55-1-door-F",
               "label": "Room F doorway",
               "spaceId": "study-55-1-east-2",
@@ -12323,24 +12081,6 @@
                 [
                   14.459345015,
                   20.012176455
-                ]
-              ]
-            },
-            {
-              "id": "module-55-1-door-N3",
-              "label": "Room N3 doorway",
-              "spaceId": "study-55-1-upper-right-3",
-              "toSpaceId": "study-55-1-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  20.898178216,
-                  23.333535665
-                ],
-                [
-                  20.289822321,
-                  22.670283749
                 ]
               ]
             },
@@ -12597,42 +12337,6 @@
               ]
             },
             {
-              "id": "module-55-1-door-H",
-              "label": "Room H doorway",
-              "spaceId": "study-55-1-east-4",
-              "toSpaceId": "study-55-1-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  6.942489967,
-                  26.906876607
-                ],
-                [
-                  7.605741883,
-                  26.298520711
-                ]
-              ]
-            },
-            {
-              "id": "module-55-1-door-N4",
-              "label": "Room N4 doorway",
-              "spaceId": "study-55-1-upper-right-4",
-              "toSpaceId": "study-55-1-potential-corridor-east",
-              "confidence": "estimated",
-              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
-              "segment": [
-                [
-                  22.993626302,
-                  25.618070042
-                ],
-                [
-                  22.385270406,
-                  24.954818126
-                ]
-              ]
-            },
-            {
               "id": "module-55-1-door-W1",
               "label": "Shared apartment W1 doorway",
               "spaceId": "study-55-1-west-1",
@@ -12665,6 +12369,78 @@
                 [
                   -12.661338807,
                   1.465721024
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-door-N3-N4",
+              "label": "Shared apartment N3–N4 doorway",
+              "spaceId": "study-55-1-upper-right-3",
+              "toSpaceId": "study-55-1-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
+              "segment": [
+                [
+                  19.362039582,
+                  22.028630267
+                ],
+                [
+                  18.698787666,
+                  22.636986163
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-door-G-H",
+              "label": "Shared apartment G–H doorway",
+              "spaceId": "study-55-1-east-3",
+              "toSpaceId": "study-55-1-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m entrance on the apartment-to-hall boundary.",
+              "segment": [
+                [
+                  9.923573846,
+                  22.612037971
+                ],
+                [
+                  10.531929742,
+                  23.275289887
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-common-door-R",
+              "label": "East balcony doorway",
+              "spaceId": "study-55-1-common-R",
+              "toSpaceId": "study-55-1-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "One illustrative 0.90 m entrance near the stair end of the hallway-facing enclosure wall.",
+              "segment": [
+                [
+                  8.206298344,
+                  11.567538669
+                ],
+                [
+                  8.81465424,
+                  12.230790585
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-common-door-L",
+              "label": "West balcony doorway",
+              "spaceId": "study-55-1-common-L",
+              "toSpaceId": "study-55-1-potential-corridor",
+              "confidence": "estimated",
+              "note": "One illustrative 0.90 m entrance near the stair end of the hallway-facing enclosure wall.",
+              "segment": [
+                [
+                  -0.018505379,
+                  13.548095083
+                ],
+                [
+                  0.589850517,
+                  14.211346999
                 ]
               ]
             },
@@ -12707,23 +12483,6 @@
           ],
           "layoutWindows": [
             {
-              "id": "module-55-1-window-G-0",
-              "label": "G window 1",
-              "spaceId": "study-55-1-east-3",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
-              "segment": [
-                [
-                  13.227459323,
-                  29.283804286
-                ],
-                [
-                  14.001253225,
-                  28.574055741
-                ]
-              ]
-            },
-            {
               "id": "module-55-1-window-F-0",
               "label": "F window 1",
               "spaceId": "study-55-1-east-2",
@@ -12754,23 +12513,6 @@
                 [
                   18.57032198,
                   24.38315957
-                ]
-              ]
-            },
-            {
-              "id": "module-55-1-window-N3-0",
-              "label": "N3 window 1",
-              "spaceId": "study-55-1-upper-right-3",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
-              "segment": [
-                [
-                  25.370553981,
-                  19.333100686
-                ],
-                [
-                  24.660805436,
-                  18.559306784
                 ]
               ]
             },
@@ -13013,40 +12755,6 @@
               ]
             },
             {
-              "id": "module-55-1-window-H-0",
-              "label": "H window 1",
-              "spaceId": "study-55-1-east-4",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
-              "segment": [
-                [
-                  10.942924946,
-                  31.379252371
-                ],
-                [
-                  11.716718848,
-                  30.669503826
-                ]
-              ]
-            },
-            {
-              "id": "module-55-1-window-N4-0",
-              "label": "N4 window 1",
-              "spaceId": "study-55-1-upper-right-4",
-              "confidence": "estimated",
-              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
-              "segment": [
-                [
-                  27.466002066,
-                  21.617635063
-                ],
-                [
-                  26.756253521,
-                  20.843841161
-                ]
-              ]
-            },
-            {
               "id": "module-55-1-window-W1-0",
               "label": "W1 window 1",
               "spaceId": "study-55-1-west-1",
@@ -13113,65 +12821,77 @@
                   4.935044507
                 ]
               ]
+            },
+            {
+              "id": "module-55-1-window-N3-N4-0",
+              "label": "N3–N4 window 1",
+              "spaceId": "study-55-1-upper-right-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
+              "segment": [
+                [
+                  25.370553981,
+                  19.333100686
+                ],
+                [
+                  24.660805436,
+                  18.559306784
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-window-N3-N4-1",
+              "label": "N3–N4 window 2",
+              "spaceId": "study-55-1-upper-right-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
+              "segment": [
+                [
+                  27.466002066,
+                  21.617635063
+                ],
+                [
+                  26.756253521,
+                  20.843841161
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-window-G-H-0",
+              "label": "G–H window 1",
+              "spaceId": "study-55-1-east-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
+              "segment": [
+                [
+                  13.227459323,
+                  29.283804286
+                ],
+                [
+                  14.001253225,
+                  28.574055741
+                ]
+              ]
+            },
+            {
+              "id": "module-55-1-window-G-H-1",
+              "label": "G–H window 2",
+              "spaceId": "study-55-1-east-3",
+              "confidence": "estimated",
+              "note": "Illustrative 1.05 m window on the independent first-floor outline; this is not a new measured façade opening.",
+              "segment": [
+                [
+                  10.942924946,
+                  31.379252371
+                ],
+                [
+                  11.716718848,
+                  30.669503826
+                ]
+              ]
             }
           ],
           "wallBands": [
-            {
-              "id": "module-55-1-wall-G-0",
-              "label": "G side wall 1",
-              "polygon": [
-                [
-                  12.472089086,
-                  29.976654056
-                ],
-                [
-                  8.416383114,
-                  25.554974616
-                ],
-                [
-                  8.563772428,
-                  25.419784417
-                ],
-                [
-                  12.6194784,
-                  29.841463857
-                ],
-                [
-                  12.472089086,
-                  29.976654056
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-G-1",
-              "label": "G side wall 2",
-              "polygon": [
-                [
-                  14.609234148,
-                  28.01639617
-                ],
-                [
-                  10.553528176,
-                  23.59471673
-                ],
-                [
-                  10.700917491,
-                  23.459526531
-                ],
-                [
-                  14.756623463,
-                  27.881205971
-                ],
-                [
-                  14.609234148,
-                  28.01639617
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
             {
               "id": "module-55-1-wall-F-0",
               "label": "F side wall 1",
@@ -13279,62 +12999,6 @@
                 [
                   19.178302903,
                   23.825499999
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-N3-0",
-              "label": "N3 side wall 1",
-              "polygon": [
-                [
-                  21.641724311,
-                  24.144176895
-                ],
-                [
-                  21.506534112,
-                  23.996787581
-                ],
-                [
-                  25.928213552,
-                  19.941081609
-                ],
-                [
-                  26.063403751,
-                  20.088470923
-                ],
-                [
-                  21.641724311,
-                  24.144176895
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-N3-1",
-              "label": "N3 side wall 2",
-              "polygon": [
-                [
-                  19.681466425,
-                  22.007031833
-                ],
-                [
-                  19.546276226,
-                  21.859642518
-                ],
-                [
-                  23.967955666,
-                  17.803936546
-                ],
-                [
-                  24.103145865,
-                  17.951325861
-                ],
-                [
-                  19.681466425,
-                  22.007031833
                 ]
               ],
               "confidence": "estimated",
@@ -14119,118 +13783,6 @@
                 [
                   0.232376433,
                   0.359101251
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-H-0",
-              "label": "H side wall 1",
-              "polygon": [
-                [
-                  10.187554708,
-                  32.072102142
-                ],
-                [
-                  6.131848736,
-                  27.650422702
-                ],
-                [
-                  6.279238051,
-                  27.515232503
-                ],
-                [
-                  10.334944023,
-                  31.936911943
-                ],
-                [
-                  10.187554708,
-                  32.072102142
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-H-1",
-              "label": "H side wall 2",
-              "polygon": [
-                [
-                  12.324699771,
-                  30.111844255
-                ],
-                [
-                  8.268993799,
-                  25.690164815
-                ],
-                [
-                  8.416383114,
-                  25.554974616
-                ],
-                [
-                  12.472089086,
-                  29.976654056
-                ],
-                [
-                  12.324699771,
-                  30.111844255
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-N4-0",
-              "label": "N4 side wall 1",
-              "polygon": [
-                [
-                  23.737172397,
-                  26.428711273
-                ],
-                [
-                  23.601982198,
-                  26.281321958
-                ],
-                [
-                  28.023661638,
-                  22.225615986
-                ],
-                [
-                  28.158851837,
-                  22.373005301
-                ],
-                [
-                  23.737172397,
-                  26.428711273
-                ]
-              ],
-              "confidence": "estimated",
-              "note": "One 0.20 m side-wall allocation. Adjacent single apartments retain both allocations, totalling 0.40 m."
-            },
-            {
-              "id": "module-55-1-wall-N4-1",
-              "label": "N4 side wall 2",
-              "polygon": [
-                [
-                  21.77691451,
-                  24.29156621
-                ],
-                [
-                  21.641724311,
-                  24.144176895
-                ],
-                [
-                  26.063403751,
-                  20.088470923
-                ],
-                [
-                  26.19859395,
-                  20.235860238
-                ],
-                [
-                  21.77691451,
-                  24.29156621
                 ]
               ],
               "confidence": "estimated",

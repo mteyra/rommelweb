@@ -538,8 +538,9 @@ test('House 55 retains its independent top-floor module layout while all three l
   for (const floor of [0, 1]) {
     const lower = getDisplayLevel(emptyApproved, published, '55', floor);
     assert.equal(lower.layoutBasis, 'resident-module-layout', `floor ${floor} has its own independent module plan`);
-    assert.equal(lower.spaces.filter(space => space.kind === 'room').length, 20);
-    assert.equal(lower.spaces.filter(space => space.kind === 'shared').length, 2);
+    assert.equal(lower.spaces.filter(space => space.kind === 'room').length, 16);
+    assert.equal(lower.spaces.filter(space => space.kind === 'shared').length, 4);
+    assert.equal(lower.spaces.filter(space => space.kind === 'service').length, 2);
     assert.equal(lower.extrapolatedFrom, undefined, 'the current annotated plan does not inherit historical extrapolation metadata');
   }
   for (const building of campus.buildings) {

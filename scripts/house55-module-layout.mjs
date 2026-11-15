@@ -171,10 +171,10 @@ async function main() {
   const level=createStudyLevel(plan,archive.level);
   const building=studies.buildings['55'];
   const groundFloorSource=building.levels.some(l=>l.index===0&&l.layoutBasis==='resident-module-layout')
-    ? 'EG reuses 1. OG and retains the blue-marked floor areas as unassigned space.'
+    ? 'EG reuses the first-floor apartments and retains the blue-marked floor areas within the cinema and laundry enclosures, with an unassigned stair-side spur.'
     : 'EG retains its earlier, unverified extrapolation.';
   const lowerFloorSource=building.levels.some(l=>l.index===1&&l.layoutBasis==='resident-module-layout')
-    ? `1. OG extends the same modules with two shared apartment envelopes and the resident-annotated additions and cutouts. ${groundFloorSource}`
+    ? `1. OG extends the same modules with four shared apartment envelopes, two enclosed balconies and the resident-annotated additions and cutouts. ${groundFloorSource}`
     : `1. OG retains its earlier, unverified extrapolation. ${groundFloorSource}`;
   building.source=`House 55 resident studies: 2. OG uses the independent 15 November 2026 module layout (2.70 × 6.00 m clear rooms, 3.10 m modules, 1.40 m hallways and 2.70 m stairwell). ${lowerFloorSource} Folded exterior window evidence is retained separately.`;
   building.levels[building.levels.findIndex(l=>l.index===2)]=level;

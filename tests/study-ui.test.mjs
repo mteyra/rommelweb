@@ -158,3 +158,37 @@ test('source modal no longer describes EG as a template when all three House55 f
   assert.match(copy, /Other older houses retain their earlier template studies/);
   assert.doesNotMatch(copy, /House 55’s EG and other older houses retain their earlier template studies/);
 });
+
+test('enclosed balconies, cinema and laundry remain common-space cards with one doorway and no apartment controls', () => {
+  for (const [index, names] of [[1, ['East balcony', 'West balcony']], [0, ['Cinema', 'Laundry']]]) {
+    const records = allModuleLevels(), record = records[index];
+    record.spaces.push({id: `hall-${index}`, kind: 'corridor', label: 'Hall',
+      confidence: 'estimated', polygon: rectangle(0, 0, 9.3, 1.4)});
+    for (const [i, name] of names.entries()) {
+      record.spaces.push({id: `common-${i}`, kind: 'service', label: name, shortLabel: name,
+        confidence: 'estimated', note: 'Enclosed common area with one hallway entrance.',
+        polygon: rectangle(i * 12, 8, 9.3, index === 1 ? 2.9 : 7.4)});
+      record.doors.push({id: `entry-${i}`, label: `${name} entry`,
+        spaceId: `common-${i}`, toSpaceId: `hall-${index}`, confidence: 'estimated',
+        note: 'Single entrance beside the stair end of the hall.', segment: [[1, 8], [1.9, 8]]});
+    }
+    const view = ui(records, index);
+    view.renderFloor();
+    for (const [i, name] of names.entries()) {
+      assert.ok(view.element('#floor-detail-content').innerHTML.includes(name));
+      view.spaceDialog({house: '55', floor: index, spaceId: `common-${i}`});
+      const card = view.element('#modal-body').innerHTML;
+      assert.ok(card.includes(`${name} · study`));
+      assert.match(card, /A common area enclosed from the hallway, with its own marked doorway/);
+      assert.doesNotMatch(card, /Shared apartment envelope|Clear room dimensions|gross polygon area|study-identity-note/);
+      view.spaceDialog({house: '55', floor: index, spaceId: `common-${i}`, openingId: `entry-${i}`});
+      assert.ok(view.element('#modal-body').innerHTML.includes(`${name} entry · study`));
+      assert.match(view.element('#modal-body').innerHTML, /Single entrance beside the stair end/);
+    }
+    assert.equal(view.conceptCalls.length, 0);
+    assert.equal(view.element('#modal-body .modal-actions').children.length, 0);
+    view.spaceDialog({house: '55', floor: index, spaceId: `hall-${index}`});
+    assert.match(view.element('#modal-body').innerHTML, /1\.40 m wide hallway connecting the apartments and enclosed common areas/);
+    assert.doesNotMatch(view.element('#modal-body').innerHTML, /joining the 1\.40 m hall runs and retained common areas/);
+  }
+});
