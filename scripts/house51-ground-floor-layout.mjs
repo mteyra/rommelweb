@@ -26,14 +26,14 @@ const annotation = {
 };
 const notes = [
   'Yellow House 51 EG follows the resident ground-floor sketch, using the accepted 1. OG modules and exact stair registration. Both upper floor records remain unchanged.',
-  'There are twenty-three single apartments and one shared A envelope. The H/G, N4/N3 and W2/W1 splits remain as on 1. OG, and N0 stays beside N1. One new B single is inserted before shared A; shared A moves right by one 3.10 m pitch.',
-  'The A-bank F single becomes part of Sports room. Sports occupies the former F module and its local hall segment plus the west-balcony gap extended to the north facade: one 9.30 x 7.40 m enclosure. The A bank now reads E, D, C, B, shared A.',
+  'There are twenty-three single apartments and one shared A envelope. The H/G, N4/N3 and W2/W1 splits remain as on 1. OG, and N0 stays beside N1. F is removed from the A-bank inventory and B is inserted before shared A. The A bank reads E, D, C, B, shared A.',
+  'The resident text correction narrows Sports room to 6.20 x 7.40 m. Its right edge and the A-wing E left module edge align at U=25.60 m with the L1/L2 module boundary. The complete A bank, its hall, doorways and windows move left by one 3.10 m pitch from the first ground-floor draft; shared A therefore returns to its accepted middle-floor coordinates.',
   'Laundry fills the east-balcony gap beside N0, extended to the southern N-wing facade: one 6.20 x 7.40 m enclosure. Sports room and Laundry each have one entrance from their main hallway; no internal subdivisions or equipment are inferred.',
   'Singles retain 2.70 x 6.00 m clear interiors, two 0.20 m side allocations and 3.10 m pitch. Halls remain 1.40 m and shared A stays a 6.20 x 7.40 m gross envelope. Common-room dimensions follow module alignment; they are not new site measurements.',
   'Clear lime marks place Sports at the bottom-right entrance, A-wing E at bottom-left, D at bottom-right and C at bottom-left. The other room door ends retain the completed middle-floor pattern. B uses a schematic bottom-right entrance; Laundry inherits the east balcony stair-side entrance, and shared A retains its left-bottom entrance after shifting.',
   'Openings remain schematic 0.90 m widths, generally centred 0.60 m from the clear-room or envelope corner with 0.15 m jambs. The general sketch establishes room types and relative placement, not exact jamb dimensions, hinges or door swings.',
   'The independent ground-floor outline is the complete union of modules, halls, stair and both common enclosures. It has no residual gray gaps. The unchanged Yellow frame retains exact stair alignment with both accepted upper floors.',
-  'The former A-bank F window stays in place and is reassociated with Sports room. B receives a schematic room window and shared A keeps its two openings shifted with the envelope. No further common-room openings are invented; folded source facade geometry and window evidence remain unchanged.',
+  'Sports retains one schematic 1.05 m opening based on the former A-bank F template, moved left by 3.10 m with the narrower enclosure so it stays on the Sports facade. B has one schematic room window and shared A keeps its two openings with the corrected envelope. No further common-room openings are invented; folded source facade geometry and window evidence remain unchanged.',
 ];
 
 function assertFrame(frame) {
@@ -80,12 +80,12 @@ function setDoorEnd(room, end, evidence) {
 
 function createLocalPlan(firstFloorPlan) {
   const formerF = firstFloorPlan.rooms.find(room => room.bank === 'A' && room.label === 'F');
-  assert.ok(formerF, 'Expected the first-floor A-bank F module before assigning Sports room.');
+  assert.ok(formerF, 'Expected the first-floor A-bank F window template for Sports room.');
   const rooms = firstFloorPlan.rooms.filter(room => !(room.bank === 'A' && room.label === 'F'))
     .flatMap(source => {
-      const room = shiftedRoom(source, source.label);
+      const room = shiftedRoom(source, source.label, source.bank === 'A' ? -3.1 : 0);
       return source.bank === 'A' && source.label === 'C'
-        ? [room, shiftedRoom(source, 'B', 3.1)] : [room];
+        ? [room, shiftedRoom(source, 'B')] : [room];
     });
   assert.equal(rooms.length, 23, 'Yellow EG must contain twenty-three single modules.');
   rooms.forEach(room => {
@@ -101,20 +101,16 @@ function createLocalPlan(firstFloorPlan) {
   assert.equal(firstFloorPlan.sharedApartments.length, 1, 'Expected only shared A on 1. OG.');
   const sharedA = clone(firstFloorPlan.sharedApartments[0]);
   assert.equal(sharedA.label, 'A');
-  const move = ring => ring.map(([u, v]) => [round(u + 3.1), v]);
   sharedA.id = 'module-51-0-shared-A';
-  sharedA.polygon = move(sharedA.polygon);
-  sharedA.doorSegment = move(sharedA.doorSegment);
-  sharedA.windowSegments = sharedA.windowSegments.map(move);
   sharedA.doorPlacement = {
     ...sharedA.doorPlacement,
-    evidence: 'retained-shared-entrance-after-shift',
-    basis: 'The existing left-bottom entrance moves with shared A after inserting B. Its width and corner offset remain schematic.',
+    evidence: 'resident-corrected-a-bank-alignment',
+    basis: 'The retained left-bottom entrance follows shared A after the resident-corrected bank moves left by one module from the first ground-floor draft. Its width and corner offset remain schematic.',
   };
   const sharedApartments = [sharedA];
   const corridors = firstFloorPlan.corridors.map(hall => ({
     ...clone(hall), id: `module-51-0-hall-${hall.bank}`,
-    polygon: hall.bank === 'A' ? rect(28.7, -1.4, 12.4, 1.4) : clone(hall.polygon),
+    polygon: hall.bank === 'A' ? rect(25.6, -1.4, 12.4, 1.4) : clone(hall.polygon),
   }));
   const commonAreas = [
     {
@@ -127,12 +123,12 @@ function createLocalPlan(firstFloorPlan) {
     },
     {
       id: 'module-51-0-common-L', label: 'Sports room', bank: 'L', kind: 'service', use: 'sports-room',
-      polygon: rect(19.4, -7.4, 9.3, 7.4), width: 9.3, depth: 7.4, area: 68.82,
-      doorSegment: [[27.65, 0], [28.55, 0]],
+      polygon: rect(19.4, -7.4, 6.2, 7.4), width: 6.2, depth: 7.4, area: 45.88,
+      doorSegment: [[24.55, 0], [25.45, 0]],
       doorPlacement: {wall: 'bottom', end: 'right', evidence: 'resident-eg-lime-mark'},
-      windowSegments: [clone(formerF.windowSegment)],
-      replaces: ['module-51-1-room-A-F', 'module-51-1-common-L'],
-      note: 'Resident-marked Sports room absorbs the former A-bank F module and its hall segment plus the west-balcony gap extended to the outer facade. The resulting 9.30 x 7.40 m gross enclosure has one bottom-right entrance to West hall following the lime mark; internal equipment and exact dimensions remain schematic.',
+      windowSegments: [formerF.windowSegment.map(([u, v]) => [round(u - 3.1), v])],
+      replaces: ['module-51-1-common-L'],
+      note: 'Resident-corrected Sports room is 6.20 x 7.40 m, with its right edge at U=25.60 m aligned to the A-wing E left module edge and the L1/L2 module boundary. Its one bottom-right entrance follows the lime mark and moves with the corrected edge. Equipment and exact opening offsets remain schematic.',
     },
   ];
   const stair = clone(firstFloorPlan.stair);
@@ -157,13 +153,20 @@ function createLocalPlan(firstFloorPlan) {
     sourceTemplate: 'public/data/house51-first-floor-layout.json',
     sourceHashes: {'public/data/house51-first-floor-layout.json': hash(firstFloorPlan)},
     sourceAnnotation: clone(annotation),
-    dimensions: {...clone(firstFloorPlan.dimensions), sportsWidth: 9.3, sportsDepth: 7.4, laundryWidth: 6.2, laundryDepth: 7.4},
+    sourceCorrections: [{
+      source: 'resident-text-correction', date: '2026-11-15',
+      summary: 'Narrow Sports room so the A-wing E left module edge aligns with the L1/L2 boundary. Shift the complete A bank left by one module while preserving apartment sizes and counts.',
+      alignmentU: 25.6, aBankShiftFromInitialGround: [-3.1, 0],
+      basis: 'This resident alignment correction supplements the retained general sketch; it is not a new measured dimension.',
+    }],
+    dimensions: {...clone(firstFloorPlan.dimensions), sportsWidth: 6.2, sportsDepth: 7.4, laundryWidth: 6.2, laundryDepth: 7.4},
     coordinateFrame: clone(firstFloorPlan.coordinateFrame),
     retainedCoreTranslation: clone(firstFloorPlan.retainedCoreTranslation),
     groundFloorChanges: {
-      insertedSingle: 'B', sharedAShift: [3.1, 0], sportsReplacesSingle: 'A/F',
-      sportsAbsorbsFormerFHall: true, laundryExtendsFormerEastBalcony: true,
-      commonRoomBasis: 'Ground-floor uses follow the general resident sketch. Complete module alignment establishes the inferred rectangular envelopes.',
+      insertedSingle: 'B', removedSingle: 'A/F', sharedAShift: [0, 0],
+      aSingleBankShiftFromFirstFloor: [-3.1, 0], eLeftModuleEdgeU: 25.6,
+      sportsAbsorbsFormerFHall: false, laundryExtendsFormerEastBalcony: true,
+      commonRoomBasis: 'Ground-floor uses follow the general resident sketch, supplemented by the resident correction aligning the Sports/E boundary with the L1/L2 module boundary. Module alignment establishes the rectangular envelopes.',
     },
     shell: {outline, holes: []}, rooms, sharedApartments, corridors, commonAreas, stair, wallBands,
     outlineDimensions: outline.slice(1).map((b, index) => ({
@@ -197,7 +200,7 @@ function createStudyLevel(plan, previous) {
   for (const apartment of plan.sharedApartments) spaces.push({
     id: apartment.id, label: `Shared apartment ${apartment.label}`, shortLabel: apartment.label,
     kind: 'shared', confidence: 'estimated', polygon: ring(apartment.polygon),
-    note: 'Resident-retained shared A shifts right by one 3.10 m module to make room for single B. Its 6.20 x 7.40 m gross envelope, one entrance and two windows remain intact. Internal divisions, net area and occupancy are not established.',
+    note: 'Shared A follows the resident-corrected A bank, shifted left by one 3.10 m module from the first ground-floor draft and aligned with its accepted middle-floor coordinates. Its 6.20 x 7.40 m gross envelope, one entrance and two windows remain intact. Internal divisions, net area and occupancy are not established.',
   });
   for (const east of [true, false]) {
     const polygons = union(...plan.corridors.filter(hall => eastBanks.has(hall.bank) === east).map(hall => [hall.polygon]));
@@ -250,19 +253,19 @@ function createStudyLevel(plan, previous) {
   for (const common of plan.commonAreas) common.windowSegments.forEach((segment, index) => layoutWindows.push({
     id: `module-51-0-window-common-${common.bank}-${index}`, label: `${common.label} window ${index + 1}`,
     spaceId: common.id, confidence: 'estimated',
-    note: 'The former A-bank F layout opening stays on the same outer boundary and now belongs to Sports room. No additional common-room window pattern is inferred.',
+    note: 'The schematic 1.05 m former A-bank F template opening moves left by 3.10 m to stay on the narrowed Sports facade. This is a layout adjustment, not new facade evidence; no additional common-room window pattern is inferred.',
     segment: ring(segment),
   }));
   const level = {
     ...clone(previous),
     index: 0, label: 'EG · module layout', layoutBasis: 'resident-module-layout',
-    source: 'Resident House 51 / EG general sketch, 15 November 2026: retain the middle-floor single-room splits and N0; insert B before shared A and shift A right; combine former F and the west gap into Sports room; extend the east gap beside N0 as Laundry.',
+    source: 'Resident House 51 / EG general sketch and subsequent alignment correction, 15 November 2026: retain the single-room splits and N0; use Sports and Laundry in the common areas; retain inserted B and shared A; narrow Sports and align the A-wing E left module edge with the L1/L2 boundary.',
     notes: [
       'Resident general sketch fitted to the accepted middle-floor modules: twenty-three singles and one shared A envelope. H/G, N4/N3 and W2/W1 stay split, and N0 remains beside N1.',
-      'The A-bank F single becomes part of Sports room; B is inserted before shared A, which moves right by one 3.10 m pitch. Sports is the 9.30 x 7.40 m west enclosure; Laundry is the 6.20 x 7.40 m east enclosure beside N0. Each common room has one hallway entrance.',
+      'Sports is corrected to 6.20 x 7.40 m: its right edge and A-wing E left module edge align at U=25.60 m with the L1/L2 boundary. E/D/C/B/shared A and their hall move left by one 3.10 m pitch from the first ground-floor draft, preserving apartment sizes. Laundry remains 6.20 x 7.40 m beside N0. Each common room has one hallway entrance.',
       'Singles keep 2.70 x 6.00 m clear interiors, two 0.20 m side allocations and 3.10 m pitch. Halls stay 1.40 m; shared A keeps its 6.20 x 7.40 m gross envelope. Common dimensions are inferred from module alignment.',
       'Clear lime door ends are followed for Sports and A-wing E/D/C; other existing apartments retain the middle-floor pattern. B uses a schematic bottom-right entrance and Laundry inherits the stair-side balcony doorway. Openings are schematic 0.90 m widths; hinges, swings and exact jambs are unresolved.',
-      'The independent outline has no residual gaps. Stair and rigid coordinate frame align exactly with both unchanged upper floors. The former F window belongs to Sports, B receives one schematic window, and A retains two shifted openings. Source facade geometry and window evidence are unchanged.',
+      'The independent outline has no residual gaps. Stair and rigid coordinate frame align exactly with both unchanged upper floors. The schematic former F window template moves left with the narrowed Sports facade; B keeps one window and A keeps two. Source facade geometry and window evidence are unchanged.',
     ].join(' '),
     floorOutline: [{outer: ring(plan.shell.outline)}], spaces, doors, layoutWindows,
     wallBands: plan.wallBands.map(wall => ({
@@ -289,7 +292,7 @@ export function createHouse51GroundFloorLayout({studies, firstFloorPlan}) {
   const plan = createLocalPlan(firstFloorPlan);
   const result = clone(studies);
   result.buildings['51'].levels[index] = createStudyLevel(plan, previous.levels[index]);
-  result.buildings['51'].source = 'Yellow House 51 has independent resident-directed layouts on all three floors. The accepted top floor retains twenty-one singles and its marked doors; 1. OG retains twenty-three singles, shared A and two balconies. EG follows the general sketch with twenty-three singles, inserted B, shifted shared A, Sports room in the former F/west gap, and Laundry beside N0. Folded exterior evidence remains unchanged.';
+  result.buildings['51'].source = 'Yellow House 51 has independent resident-directed layouts on all three floors. The accepted top floor retains twenty-one singles and its marked doors; 1. OG retains twenty-three singles, shared A and two balconies. EG has twenty-three singles, shared A, Sports room and Laundry. The resident-corrected Sports room is 6.20 m wide, with the A-wing E left module edge aligned to the L1/L2 boundary. Folded exterior evidence remains unchanged.';
   return {studies: result, plan};
 }
 

@@ -1,0 +1,168 @@
+{
+  "checkedAt": "2026-11-15T22:09:56.008Z",
+  "browser": "Firefox via WebDriver BiDi",
+  "url": "http://127.0.0.1:4186/rommelweb/?qa=yellow-ground-alignment",
+  "floors": [
+    {
+      "floor": 0,
+      "cards": [
+        {
+          "id": "module-51-0-room-A-E",
+          "label": "Room E \u00b7 A wing",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-shared-A",
+          "label": "Shared apartment A",
+          "kind": "shared",
+          "dimensions": "6.20 \u00d7 7.40 m \u00b7 45.88 m\u00b2 gross"
+        },
+        {
+          "id": "module-51-0-common-L",
+          "label": "Sports room",
+          "kind": "service"
+        }
+      ],
+      "responsive": [
+        {
+          "floor": 0,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 51,
+          "visibleDimensionCount": 16,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 51,
+          "visibleDimensionCount": 16,
+          "selectedYellowOnly": true,
+          "theme": "day"
+        },
+        {
+          "floor": 0,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 19,
+          "visibleDimensionCount": 10,
+          "selectedYellowOnly": true,
+          "theme": "day"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "Served canonical geometry aligns Sports right edge, A-wing E module left edge and L1/L2 boundary at U25.60 m.",
+    "Sports is 6.20 \u00d7 7.40 m (45.88 m\u00b2); room counts remain 23 singles and one shared apartment.",
+    "Desktop Sports, A-wing E and shared A cards open with correct types and dimensions.",
+    "390px day view and Sports/shared A phone cards remain within the viewport.",
+    "Ground drawing key and Model copy reflect the corrected alignment.",
+    "Both untouched upper-floor screenshots are pixel-identical to the preceding completion receipt at 1440 \u00d7 1000."
+  ],
+  "screenshots": [
+    "docs/preview/house51-ground-alignment-night.png",
+    "docs/preview/house51-ground-alignment-e-card.png",
+    "docs/preview/house51-ground-alignment-sports-card.png",
+    "docs/preview/house51-ground-alignment-phone-390-day.png"
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4186/rommelweb/assets/index-DfHSVLab.js"
+  ],
+  "alignment": {
+    "sportsWidth": 6.2,
+    "sportsDepth": 7.4,
+    "sportsArea": 45.88,
+    "sportsRightU": 25.6,
+    "eModuleLeftU": 25.6,
+    "l1ModuleLeftU": 25.6,
+    "l2ModuleRightU": 25.6,
+    "singleCount": 23,
+    "sharedApartmentCount": 1,
+    "shellArea": 685.24
+  },
+  "upperFloorComparisons": [
+    {
+      "floor": 2,
+      "baselineCommit": "f7a4e8c8b03f13e71d7ca0a365bef9610fa36722",
+      "baselineScreenshot": "docs/preview/house51-ground-preserved-top.png",
+      "currentScreenshot": "/tmp/rommel-yellow-ground-alignment-upper-2.png",
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "pixelIdentical": true,
+      "baselineImageSha256": "8e0d1432010b84b6118513f11cfab9ed580cbc88df5da992b8af706ac2917539",
+      "currentImageSha256": "8e0d1432010b84b6118513f11cfab9ed580cbc88df5da992b8af706ac2917539"
+    },
+    {
+      "floor": 1,
+      "baselineCommit": "f7a4e8c8b03f13e71d7ca0a365bef9610fa36722",
+      "baselineScreenshot": "docs/preview/house51-ground-preserved-first.png",
+      "currentScreenshot": "/tmp/rommel-yellow-ground-alignment-upper-1.png",
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "pixelIdentical": true,
+      "baselineImageSha256": "71fb079abe6b362f2ad17f67a4306092f18fdd21ccc70f729f222963846f566e",
+      "currentImageSha256": "71fb079abe6b362f2ad17f67a4306092f18fdd21ccc70f729f222963846f566e"
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "checkedData": [
+    {
+      "sourcePath": "public/data/interior-studies.json",
+      "buildPath": "dist/data/interior-studies.json",
+      "sha256": "4a029dc8d83b8ab749c7e39428595a000183aeff17ae41ae0bc4d1a855dd2233",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/house51-ground-floor-layout.json",
+      "buildPath": "dist/data/house51-ground-floor-layout.json",
+      "sha256": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/house51-first-floor-layout.json",
+      "buildPath": "dist/data/house51-first-floor-layout.json",
+      "sha256": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/house51-top-floor-layout.json",
+      "buildPath": "dist/data/house51-top-floor-layout.json",
+      "sha256": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/old-house-module-layouts.json",
+      "buildPath": "dist/data/old-house-module-layouts.json",
+      "sha256": "50ee0fccf26cd9cf07cfa8aef1a18ffc0abc492ec77d785ee5b340057ae048cd",
+      "buildBytesMatch": true
+    }
+  ],
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "javascript": "assets/index-DfHSVLab.js",
+    "javascriptKilobytes": 816.07,
+    "javascriptGzipKilobytes": 236.1,
+    "stylesheet": "assets/index-BXlEBDGd.css",
+    "note": "Existing Vite advisory for a minified chunk larger than 500 kB."
+  },
+  "uiTests": {
+    "command": "node --test tests/study-ui.test.mjs",
+    "passed": 23,
+    "failed": 0
+  },
+  "visualInspection": [
+    "Desktop night alignment overview",
+    "Sports room card",
+    "390px day overview"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "baseCommit": "f7a4e8c8b03f13e71d7ca0a365bef9610fa36722",
+  "baseCommit": "00df697ef4f8d473d55611a0af128f1f8a1046cb",
   "comparisonMethod": "Complete immutable files compare byte-for-byte to git show at baseCommit. Embedded building and level records compare deeply and use SHA-256 of JSON.stringify(record). Only the three Orange House 53 layouts and their building-level source description change.",
   "immutableFiles": {
     "data/source/dorms-lod2.gml": {
@@ -182,12 +182,20 @@
       "sha256": "69a179d11cd912704106b24e94aeb861a5e7fdacc03c94b0a0197ab37fe4f212",
       "unchanged": true
     },
+    "docs/evidence/house51-ground-alignment-browser.json": {
+      "sha256": "cd7da349b5961e39268b0c5b206e5752365a2c5ed530b2fe46c86e5ace78a8c6",
+      "unchanged": true
+    },
     "docs/evidence/house51-ground-browser.json": {
       "sha256": "a01792b6988ed232b3a9c93034eef62ff65e03705833625a94a2a33afe3b754f",
       "unchanged": true
     },
     "docs/evidence/house51-ground-floor-preservation.json": {
       "sha256": "b9b05e3168c079ef5446f7c6b5a49702293511f8a741a90136dab689f8f7c7ff",
+      "unchanged": true
+    },
+    "docs/evidence/house51-ground-sports-correction-preservation.json": {
+      "sha256": "b2fab7557df42c239b6aafe1d77eb07ab892c0dbd5f1b9fe1f0fe16c6e54588a",
       "unchanged": true
     },
     "docs/evidence/house51-top-browser.json": {
@@ -307,7 +315,7 @@
       "unchanged": true
     },
     "public/data/house51-ground-floor-layout.json": {
-      "sha256": "b6fc7b82dcaed649d4929458054464750d119d82cdc7f3b3bb0a94924f139a84",
+      "sha256": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44",
       "unchanged": true
     },
     "public/data/house51-top-floor-layout.json": {
@@ -401,8 +409,8 @@
   },
   "studyChangeScope": {
     "path": "public/data/interior-studies.json",
-    "beforeSha256": "3bef6a6c4f3fc28547d9ab533fd8775cedd5eb504b58b4c74e788b92ff8bd666",
-    "afterSha256": "6be33453de4334948067ee6cce449ce59d7f67c7e73c705c51afb263719192c0",
+    "beforeSha256": "4a029dc8d83b8ab749c7e39428595a000183aeff17ae41ae0bc4d1a855dd2233",
+    "afterSha256": "679e1ffc5606239995fa662131b64af7175a8db8e3ac70002ffb0dbe52e8d84c",
     "changedBuildingRecords": [
       "53"
     ],
@@ -414,7 +422,7 @@
   },
   "unchangedStudyBuildings": {
     "51": {
-      "sha256": "149a505c96ba44108d7c4750d2d8b5b2d653d4f6319797d5328e5259d4fd8aa9",
+      "sha256": "2e1080f7e1697f611848959a1e58dac214c054ef0fa1ada900d640f4796dc06e",
       "unchanged": true
     },
     "55": {
@@ -431,7 +439,7 @@
     }
   },
   "unchangedCompletedYellow": {
-    "sha256": "149a505c96ba44108d7c4750d2d8b5b2d653d4f6319797d5328e5259d4fd8aa9",
+    "sha256": "2e1080f7e1697f611848959a1e58dac214c054ef0fa1ada900d640f4796dc06e",
     "unchanged": true
   },
   "currentFittedHouses": [],

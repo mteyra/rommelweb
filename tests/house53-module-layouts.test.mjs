@@ -272,7 +272,7 @@ test('generic regeneration keeps all fifteen accepted floors without provisional
 
 test('all three original annotations and protected assets match the saved evidence receipt', async () => {
   const receipt = await read('docs/evidence/house53-layout-preservation.json');
-  assert.equal(receipt.baseCommit, 'f7a4e8c8b03f13e71d7ca0a365bef9610fa36722');
+  assert.equal(receipt.baseCommit, '00df697ef4f8d473d55611a0af128f1f8a1046cb');
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['53']);
   assert.deepEqual(receipt.studyChangeScope.changedLevels, [0, 1, 2]);
   for (const plan of plans) {
