@@ -29,6 +29,14 @@ function fixture(width = 3, depth = 6.3, doorCentre = width / 2) {
   return {level, room};
 }
 
+test('newer single and accessible envelopes never receive the older furnishing concept', () => {
+  const {level, room} = fixture(2.92, 7.20);
+  assert.notEqual(apartmentConcept(level, room), null, 'existing older study remains eligible');
+  for (const typology of ['newer-single', 'newer-accessible']) {
+    assert.equal(apartmentConcept({...level, layoutBasis: 'fitted-newer-module-layout'}, {...room, typology}), null);
+  }
+});
+
 function assertSafe(result, level, room) {
   assert.equal(result.status, 'concept');
   const allowed = [room.polygon, ...(room.holes || [])];

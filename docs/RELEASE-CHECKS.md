@@ -1,8 +1,22 @@
 # Release checks
 
-Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
+Updated on 16 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — Yellow Sports width and E alignment
+## Current revision — estimated apartments in all six newer houses
+
+Houses **49, 51a, 53a, 55a, 57a and 59a** now have provisional apartment blocks on all **34 floors**, fitted inside their original sections. Typical singles use the resident drawing's **2.92 × 7.20 m bounding envelope**; whole three- and four-person WGs use estimated **8.76 × 8.00 m** and **11.68 × 8.00 m** rectangles. Two **5.00 × 6.00 m** accessible-type allowances, connected **1.40 m halls**, consistent core reservations and gray unassigned areas complete the first fitting pass.
+
+The [research and field guide](NEWER-HOUSE-INTERIOR-ESTIMATES.md) distinguishes the source annotations, rental-category areas, proposed WG budgets and unverified floor assignments. The fitted scenario contains **370 single envelopes, including two accessible-type estimates, and ten WGs: 408 places**. Grau 55a / 2. OG and 5. OG each retain thirteen single candidates because the fourteenth conflicts with a photographed loggia. This does not establish either real floor's room count.
+
+- The [preservation fixture](../tests/fixtures/before-newer-house-layout.json) compares against **`00df697`**. All **34 source floor sections**, all **five older-house study objects** and **23 source, canonical and folded-model files** remain unchanged. Newer schematic windows are separate from the folded exterior.
+- Geometry checks verify full apartment dimensions, containment, non-overlap, protected recesses, façade contact, consistent cores, one entrance per apartment and continuous **1.40 m** hall connections. Published records regenerate deterministically. An independent sampled clearance audit also connects every apartment and core approach.
+- **All 321 tests pass**. Dated older-house receipt checks reconstruct their historical datasets without the later Campus II additions; their original receipt hashes remain unchanged. Current preservation checks independently protect every older-house study.
+- The [browser receipt](evidence/newer-house-browser.json) covers all **34 floors**, **136 space cards**, all **ten WG blocks**, **38 visible doorway cards** and **36 responsive ground-floor views** across six houses, two themes and three viewport sizes. Older Red/Yellow controls pass. No application console errors, clipped cards, visible label collisions or horizontal overflow were found. The existing label-collision handling hides 99 door labels across the tested views; every space remains selectable from the drawing key.
+- The production build passes; JavaScript is **237.73 kB gzipped**. The existing bundle-size advisory remains.
+
+Reviewed views: [typical singles](preview/newer-house-49-floor-1.png), [Blue WGs](preview/newer-house-51a-floor-1.png), [single card](preview/newer-single-card.png), [three-person WG](preview/newer-wg3-card.png), [four-person WG](preview/newer-wg4-card.png) and [320 px phone](preview/newer-house-51a-320-day.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — Yellow Sports width and E alignment
 
 The ground-floor Sports enclosure was one **3.10 m module** too wide. Following the resident’s correction, E’s left module edge now aligns with the L1/L2 boundary at **U = 25.60 m**. Sports narrows from **9.30 m to 6.20 m**. The E–D–C–B–shared A bank and its short hall move left by one module while retaining every apartment’s dimensions.
 

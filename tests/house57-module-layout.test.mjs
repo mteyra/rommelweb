@@ -8,6 +8,7 @@ import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mj
 import {generateOldHouseStudies} from '../scripts/generate-old-house-studies.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
+import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
@@ -343,9 +344,9 @@ test('preservation receipt protects Red, all other houses, original source exter
   assert.equal(receipt.house55Unchanged, true);
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['57']);
   // This receipt describes the earlier White release. Reconstruct that dated
-  // record with Green's and Yellow's retained pre-completion data; their
-  // current layouts are protected independently by their dedicated suites.
-  const whiteReleaseStudies = structuredClone(studies);
+  // record with Green's and Yellow's retained pre-completion data and without
+  // the later Campus II layer. Dedicated suites protect their current layouts.
+  const whiteReleaseStudies = withoutNewerStudies(studies);
   whiteReleaseStudies.buildings['59'] = structuredClone(archivedGreen.building);
   whiteReleaseStudies.buildings['51'] = structuredClone(archivedYellow.building);
   assert.equal(sha(JSON.stringify(whiteReleaseStudies, null, 2) + '\n'), receipt.studyChangeScope.afterSha256);

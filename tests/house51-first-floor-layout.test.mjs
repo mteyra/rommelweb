@@ -11,6 +11,7 @@ import {difference, intersection, union} from 'polyclip-ts';
 import {createHouse51FirstFloorLayout} from '../scripts/house51-first-floor-layout.mjs';
 import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
+import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, topPlan, published, before, catalog, campus, lod2, redTop, redFirst, redGround, beforeGround] = await Promise.all([
@@ -314,7 +315,7 @@ test('the first-floor preservation receipt protects the top floor, EG and the ex
     assert.equal(record.unchanged, true, path);
     assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
   }
-  assert.equal(sha(JSON.stringify(firstFloorRelease.studies, null, 2) + '\n'),
+  assert.equal(sha(JSON.stringify(withoutNewerStudies(firstFloorRelease.studies), null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
     assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);

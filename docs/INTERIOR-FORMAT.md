@@ -19,6 +19,27 @@ Use `validateInteriorData(interiors, campus, lod2)` after loading all three data
 
 `src/interior-studies.js` validates `interior-studies.json` independently with `validateInteriorStudies(studies, campus, lod2)`. It is not an alternate way to mark a plan approved. `getDisplayLevel(interiors, studies, house, index)` returns an approved level first, otherwise an available study marked `isStudy: true`. The study format has no `approved` or `elevation` field and cannot influence the approved floor-height anchors.
 
+### Newer-house estimates, added 16 November 2026
+
+The six Campus Süd II houses now have all **34 existing floors** represented by `layoutBasis: "fitted-newer-module-layout"`. This is distinct from the older resident-directed layouts described below. Each `floorOutline` is an exact copy of its original `floorSection` polygons at the unchanged provisional elevation. Photograph-derived recess reservations remain unassigned within that outline; they do not create new holes or trim the exterior.
+
+An optional `space.typology` identifies a newer apartment's dimensional basis:
+
+| Typology | Required space kind | Meaning |
+| --- | --- | --- |
+| `newer-single` | `room` | Full single-apartment bounding interior envelope |
+| `newer-accessible` | `room` | Estimated larger apartment allowance; accessibility is not verified |
+| `newer-wg3` | `shared` | One whole three-person WG apartment |
+| `newer-wg4` | `shared` | One whole four-person WG apartment |
+
+These values require the newer layout basis and estimated confidence. Ordinary corridors, stair/lift reservations and service placeholders omit typology. Every WG has one selectable envelope and one proposed hallway entrance; the model does not create separately numbered bedrooms. Single/WG measurements use `bounding-apartment-envelope`, including any partitions inside the rectangle. They are not clear living area or the operator's rental-category areas. The older-room furniture concept is unavailable for these newer types.
+
+`layoutWindows` contains separate schematic opening cues. Newer studies do not populate the source `windows` inventory used by the folded façade. The existing geometry validator checks containment, overlap, dimensions and door-boundary connections; the generator additionally protects photograph-derived recesses and checks continuous 1.40 m corridor strips. These checks establish consistency of the estimate, not an actual access route.
+
+Run `npm run layout:new-houses` to reproduce both the study entries and `public/data/new-house-module-layouts.json`. The generator reads source sections afresh, preserves every older-house study object and records omitted candidates and gray remainder. Consult [the evidence and fitting guide](NEWER-HOUSE-INTERIOR-ESTIMATES.md) for dimensions, proposed allocation, fitted counts and field checks.
+
+### Earlier resident-study foundation
+
 The current study covers **House 55 / indexes 0, 1 and 2**. The resident confirms **20 upstairs rooms**, split **4 + 3 + 4 + 3 + 3 + 3**, and 24 top-floor windows. All twenty room envelopes remain estimated. The latest correction matches W4/L1's perpendicular overlap and uses the confirmed **one-quarter L3-side / three-quarters R1-side** stair alignment. EG and 1. OG repeat the corrected core with estimated confidence, distinct IDs and `extrapolatedFrom: 2`. Each floor has twenty room references, a stairwell, two halls and twenty-one door targets. The lower floors retain their full source sections and unassigned wings; they inherit no top-floor windows, wall bands or green-marked exclusions. Neither repetition nor relative alignment establishes measured coordinates or complete lower-floor counts.
 
 The study's `schemaVersion: 1` envelope contains `buildings`, with a source and levels for each house. Levels carry their index, label, source/notes, `floorOutline`, spaces and doors, with optional `excludedAreas`, `sketchBoundaries`, `extrapolatedFrom`, `windows`, `windowCoverage` and `wallBands`. `extrapolatedFrom` identifies the integer index of another existing, directly documented study floor in the same house; self-references and chains through another extrapolation are rejected. Extrapolated records must use `estimated` confidence for every space and door. The field records a layout assumption, not a surveyed relationship. The lower House 55 notes explicitly identify repetition from the current corrected 2. OG. They have no `sketchBoundaries`, because an upstairs observation is not a lower-floor observation.

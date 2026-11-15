@@ -13,6 +13,7 @@ import {createHouse51FirstFloorLayout} from '../scripts/house51-first-floor-layo
 import {createHouse51TopFloorLayout} from '../scripts/house51-top-floor-layout.mjs';
 import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
+import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, firstFloorPlan, published, before, catalog, topPlan, campus, lod2, redTop, redFirst, redGround, beforeCorrection] =
@@ -404,7 +405,7 @@ test('the original ground preservation receipt remains valid for its archived re
     assert.equal(record.unchanged, true, path);
     assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
   }
-  assert.equal(sha(JSON.stringify(originalGroundRelease, null, 2) + '\n'),
+  assert.equal(sha(JSON.stringify(withoutNewerStudies(originalGroundRelease), null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
     assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
@@ -429,8 +430,9 @@ test('the Sports correction receipt verifies its narrow scope against the publis
   assert.equal(receipt.baseCommit, beforeCorrection.baseCommit);
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['51']);
   assert.deepEqual(receipt.studyChangeScope.changedLevels, [0]);
-  assert.equal(sha(JSON.stringify(originalGroundRelease, null, 2) + '\n'), receipt.studyChangeScope.beforeSha256);
-  assert.equal(sha(await readFile(new URL('../public/data/interior-studies.json', import.meta.url))),
+  assert.equal(sha(JSON.stringify(withoutNewerStudies(originalGroundRelease), null, 2) + '\n'),
+    receipt.studyChangeScope.beforeSha256);
+  assert.equal(sha(JSON.stringify(withoutNewerStudies(studies), null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   const inherited = receipt.inheritedImmutableEvidence;
   assert.equal(sha(await readFile(new URL(`../${inherited.path}`, import.meta.url))), inherited.sha256);

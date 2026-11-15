@@ -1,0 +1,6203 @@
+{
+  "checkedAt": "2026-11-15T23:17:18.645Z",
+  "browser": "Isolated Firefox headless via WebDriver BiDi",
+  "url": "http://127.0.0.1:4187/rommelweb/?qa=newer-houses",
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "devicePixelRatio": 1
+  },
+  "floors": [
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "2 singles \u00b7 1 WG4",
+      "spaces": 6,
+      "unitCounts": {
+        "newer-single": 2,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 1
+      },
+      "layoutWindows": 3,
+      "doorLabels": [
+        {
+          "title": "WG4-W estimated entry",
+          "aria": "Explore WG4-W estimated entry, estimated layout, House 49, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 49, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 49, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 49, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 49, ground floor",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "S2 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 49, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 49, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 49, floor 1",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 49, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 49, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 49, floor 2",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 49, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 49, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 49, floor 3",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 49, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 49, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 49, floor 4",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 49, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 49, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 49, floor 5",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": [],
+      "inventory": "",
+      "spaces": 5,
+      "unitCounts": {
+        "newer-single": 0,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 2,
+      "doorLabels": [
+        {
+          "title": "Community estimated entry",
+          "aria": "Explore Community estimated entry, estimated layout, House 51a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Service / bikes estimated entry",
+          "aria": "Explore Service / bikes estimated entry, estimated layout, House 51a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 51a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 51a, ground floor",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "Service / bikes estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": [],
+      "inventory": "3 WG4 apartments",
+      "spaces": 6,
+      "unitCounts": {
+        "newer-single": 0,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 3
+      },
+      "layoutWindows": 3,
+      "doorLabels": [
+        {
+          "title": "WG4-W estimated entry",
+          "aria": "Explore WG4-W estimated entry, estimated layout, House 51a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "WG4-E estimated entry",
+          "aria": "Explore WG4-E estimated entry, estimated layout, House 51a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "WG4-S estimated entry",
+          "aria": "Explore WG4-S estimated entry, estimated layout, House 51a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 51a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 51a, floor 1",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "WG4-S estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": [],
+      "inventory": "3 WG4 apartments",
+      "spaces": 6,
+      "unitCounts": {
+        "newer-single": 0,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 3
+      },
+      "layoutWindows": 3,
+      "doorLabels": [
+        {
+          "title": "WG4-W estimated entry",
+          "aria": "Explore WG4-W estimated entry, estimated layout, House 51a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "WG4-E estimated entry",
+          "aria": "Explore WG4-E estimated entry, estimated layout, House 51a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "WG4-S estimated entry",
+          "aria": "Explore WG4-S estimated entry, estimated layout, House 51a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 51a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 51a, floor 2",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "WG4-S estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "2 singles \u00b7 1 WG4",
+      "spaces": 6,
+      "unitCounts": {
+        "newer-single": 2,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 1
+      },
+      "layoutWindows": 3,
+      "doorLabels": [
+        {
+          "title": "WG4-W estimated entry",
+          "aria": "Explore WG4-W estimated entry, estimated layout, House 53a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 53a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 53a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 53a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 53a, ground floor",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 53a, floor 1",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E3 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W4 estimated entry",
+          "aria": "Explore W4 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "W5 estimated entry",
+          "aria": "Explore W5 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W6 estimated entry",
+          "aria": "Explore W6 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W7 estimated entry",
+          "aria": "Explore W7 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 53a, floor 2",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "W4 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W4 estimated entry",
+          "aria": "Explore W4 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "W5 estimated entry",
+          "aria": "Explore W5 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W6 estimated entry",
+          "aria": "Explore W6 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W7 estimated entry",
+          "aria": "Explore W7 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 53a, floor 3",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "W4 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 53a, floor 4",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E3 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "1 single \u00b7 1 accessible single \u00b7 1 WG3",
+      "spaces": 6,
+      "unitCounts": {
+        "newer-single": 1,
+        "newer-accessible": 1,
+        "newer-wg3": 1,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 3,
+      "doorLabels": [
+        {
+          "title": "WG3-W estimated entry",
+          "aria": "Explore WG3-W estimated entry, estimated layout, House 55a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 55a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Accessible estimated entry",
+          "aria": "Explore Accessible estimated entry, estimated layout, House 55a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 55a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 55a, ground floor",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 55a, floor 1",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 28,
+      "visibleSpaceLabels": 16,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "13 singles",
+      "spaces": 16,
+      "unitCounts": {
+        "newer-single": 13,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 13,
+      "doorLabels": [
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W4 estimated entry",
+          "aria": "Explore W4 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W5 estimated entry",
+          "aria": "Explore W5 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "W6 estimated entry",
+          "aria": "Explore W6 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 55a, floor 2",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "W5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W4 estimated entry",
+          "aria": "Explore W4 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W5 estimated entry",
+          "aria": "Explore W5 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "W6 estimated entry",
+          "aria": "Explore W6 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W7 estimated entry",
+          "aria": "Explore W7 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 55a, floor 3",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "W5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W4 estimated entry",
+          "aria": "Explore W4 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W5 estimated entry",
+          "aria": "Explore W5 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "W6 estimated entry",
+          "aria": "Explore W6 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W7 estimated entry",
+          "aria": "Explore W7 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 55a, floor 4",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "W5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 28,
+      "visibleSpaceLabels": 16,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "13 singles",
+      "spaces": 16,
+      "unitCounts": {
+        "newer-single": 13,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 13,
+      "doorLabels": [
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W4 estimated entry",
+          "aria": "Explore W4 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W5 estimated entry",
+          "aria": "Explore W5 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "W6 estimated entry",
+          "aria": "Explore W6 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 55a, floor 5",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "W5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "1 single \u00b7 1 accessible single \u00b7 1 WG3",
+      "spaces": 6,
+      "unitCounts": {
+        "newer-single": 1,
+        "newer-accessible": 1,
+        "newer-wg3": 1,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 3,
+      "doorLabels": [
+        {
+          "title": "WG3-W estimated entry",
+          "aria": "Explore WG3-W estimated entry, estimated layout, House 57a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Accessible estimated entry",
+          "aria": "Explore Accessible estimated entry, estimated layout, House 57a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, ground floor",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 1",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 2",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 3",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 4",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 5",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 6",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 32,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 1,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 57a, floor 7",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "",
+      "spaces": 5,
+      "unitCounts": {
+        "newer-single": 0,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 2,
+      "doorLabels": [
+        {
+          "title": "Community estimated entry",
+          "aria": "Explore Community estimated entry, estimated layout, House 59a, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Service / bikes estimated entry",
+          "aria": "Explore Service / bikes estimated entry, estimated layout, House 59a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 59a, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 59a, ground floor",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "Service / bikes estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 59a, floor 1",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 59a, floor 2",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 59a, floor 3",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 59a, floor 4",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17,
+      "unitCounts": {
+        "newer-single": 14,
+        "newer-accessible": 0,
+        "newer-wg3": 0,
+        "newer-wg4": 0
+      },
+      "layoutWindows": 14,
+      "doorLabels": [
+        {
+          "title": "E1 estimated entry",
+          "aria": "Explore E1 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E2 estimated entry",
+          "aria": "Explore E2 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E3 estimated entry",
+          "aria": "Explore E3 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E4 estimated entry",
+          "aria": "Explore E4 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E5 estimated entry",
+          "aria": "Explore E5 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "E6 estimated entry",
+          "aria": "Explore E6 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "E7 estimated entry",
+          "aria": "Explore E7 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W1 estimated entry",
+          "aria": "Explore W1 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W2 estimated entry",
+          "aria": "Explore W2 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "W3 estimated entry",
+          "aria": "Explore W3 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S1 estimated entry",
+          "aria": "Explore S1 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S2 estimated entry",
+          "aria": "Explore S2 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S3 estimated entry",
+          "aria": "Explore S3 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "S4 estimated entry",
+          "aria": "Explore S4 estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": false
+        },
+        {
+          "title": "Stairs estimated entry",
+          "aria": "Explore Stairs estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": true
+        },
+        {
+          "title": "Lift / risers estimated entry",
+          "aria": "Explore Lift / risers estimated entry, estimated layout, House 59a, floor 5",
+          "hidden": true
+        }
+      ],
+      "occludedDoorIcons": [
+        "E5 estimated entry",
+        "Stairs estimated entry",
+        "Lift / risers estimated entry"
+      ]
+    }
+  ],
+  "responsive": [
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 7,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 3,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 3,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 7,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 3,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 3,
+      "labelOverlaps": []
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": []
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 10,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": []
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 10,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 7,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": []
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 7,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": []
+    }
+  ],
+  "cards": [
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-S1",
+      "label": "Apartment S1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000415172,
+        "longSpan": 7.199999999223834,
+        "area": 21.023999998566016,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "id": "newer-49-1-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000115621,
+        "longSpan": 7.200000000591032,
+        "area": 21.02399999817172,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "id": "newer-49-1-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "id": "newer-49-1-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "id": "newer-49-2-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000115621,
+        "longSpan": 7.200000000591032,
+        "area": 21.02399999817172,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "id": "newer-49-2-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "id": "newer-49-2-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "id": "newer-49-3-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000115621,
+        "longSpan": 7.200000000591032,
+        "area": 21.02399999817172,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "id": "newer-49-3-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "id": "newer-49-3-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "id": "newer-49-4-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000115621,
+        "longSpan": 7.200000000591032,
+        "area": 21.02399999817172,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "id": "newer-49-4-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "id": "newer-49-4-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "id": "newer-49-5-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000115621,
+        "longSpan": 7.200000000591032,
+        "area": 21.02399999817172,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "id": "newer-49-5-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "id": "newer-49-5-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001702,
+        "longSpan": 11.679999999610267,
+        "area": 93.44000000010593,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-E",
+      "label": "Whole apartment WG4-E",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 7.999999999962704,
+        "longSpan": 11.679999999554385,
+        "area": 93.43999999162975,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-S",
+      "label": "Whole apartment WG4-S",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001697,
+        "longSpan": 11.679999999810626,
+        "area": 93.44000000010585,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001702,
+        "longSpan": 11.679999999610267,
+        "area": 93.44000000010593,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-WG4-E",
+      "label": "Whole apartment WG4-E",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 7.999999999962704,
+        "longSpan": 11.679999999554385,
+        "area": 93.43999999162975,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-WG4-S",
+      "label": "Whole apartment WG4-S",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001697,
+        "longSpan": 11.679999999810626,
+        "area": 93.44000000010585,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.00000000073458,
+        "longSpan": 11.680000000612043,
+        "area": 93.4399999999641,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-S1",
+      "label": "Apartment S1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9200000012046416,
+        "longSpan": 7.20000000053596,
+        "area": 21.024000001251334,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "id": "newer-53a-1-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000275742,
+        "longSpan": 7.200000000781415,
+        "area": 21.024000001968094,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "id": "newer-53a-1-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "id": "newer-53a-1-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "id": "newer-53a-2-W1",
+      "label": "Apartment W1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9200000002757456,
+        "longSpan": 7.2000000000596955,
+        "area": 21.024000000719695,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "id": "newer-53a-2-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "id": "newer-53a-2-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "id": "newer-53a-3-W1",
+      "label": "Apartment W1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9200000002757456,
+        "longSpan": 7.2000000000596955,
+        "area": 21.024000000719692,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "id": "newer-53a-3-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "id": "newer-53a-3-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "id": "newer-53a-4-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000275742,
+        "longSpan": 7.200000000781415,
+        "area": 21.024000001968094,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "id": "newer-53a-4-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "id": "newer-53a-4-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000355413,
+        "longSpan": 8.760000001031138,
+        "area": 70.08000000108815,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-Accessible",
+      "label": "Apartment Accessible",
+      "kind": "room",
+      "typology": "newer-accessible",
+      "measurements": {
+        "shortSpan": 5.000000000193133,
+        "longSpan": 6.000000000340658,
+        "area": 29.99999999929479,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-S1",
+      "label": "Apartment S1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000422199,
+        "longSpan": 7.200000000354341,
+        "area": 21.023999998569735,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "id": "newer-55a-1-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9200000002529656,
+        "longSpan": 7.200000000430556,
+        "area": 21.023999998994533,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "id": "newer-55a-1-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "id": "newer-55a-1-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "id": "newer-55a-2-W1",
+      "label": "Apartment W1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000252962,
+        "longSpan": 7.200000000396116,
+        "area": 21.023999998994512,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "id": "newer-55a-2-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "id": "newer-55a-2-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "id": "newer-55a-3-W1",
+      "label": "Apartment W1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000252962,
+        "longSpan": 7.200000000396116,
+        "area": 21.023999998994512,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "id": "newer-55a-3-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "id": "newer-55a-3-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "id": "newer-55a-4-W1",
+      "label": "Apartment W1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000252962,
+        "longSpan": 7.200000000396116,
+        "area": 21.023999998994512,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "id": "newer-55a-4-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "id": "newer-55a-4-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "id": "newer-55a-5-W1",
+      "label": "Apartment W1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000252962,
+        "longSpan": 7.200000000396116,
+        "area": 21.023999998994512,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "id": "newer-55a-5-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "id": "newer-55a-5-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000683265,
+        "longSpan": 8.760000000231834,
+        "area": 70.08000000283978,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-Accessible",
+      "label": "Apartment Accessible",
+      "kind": "room",
+      "typology": "newer-accessible",
+      "measurements": {
+        "shortSpan": 5.000000000555296,
+        "longSpan": 6.0000000003266685,
+        "area": 29.999999998904876,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-S1",
+      "label": "Apartment S1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9200000006415223,
+        "longSpan": 7.200000000539535,
+        "area": 21.024000002345893,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "id": "newer-57a-1-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "id": "newer-57a-1-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "id": "newer-57a-1-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "id": "newer-57a-2-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "id": "newer-57a-2-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "id": "newer-57a-2-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "id": "newer-57a-3-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "id": "newer-57a-3-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "id": "newer-57a-3-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "id": "newer-57a-4-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "id": "newer-57a-4-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "id": "newer-57a-4-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "id": "newer-57a-5-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "id": "newer-57a-5-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "id": "newer-57a-5-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "id": "newer-57a-6-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "id": "newer-57a-6-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "id": "newer-57a-6-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "id": "newer-57a-7-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000887402,
+        "longSpan": 7.200000000293642,
+        "area": 21.0240000018159,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "id": "newer-57a-7-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "id": "newer-57a-7-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "id": "newer-59a-1-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9199999995469597,
+        "longSpan": 7.200000000457123,
+        "area": 21.02399999656264,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "id": "newer-59a-1-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "id": "newer-59a-1-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "id": "newer-59a-2-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9199999995469597,
+        "longSpan": 7.200000000457123,
+        "area": 21.02399999656264,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "id": "newer-59a-2-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "id": "newer-59a-2-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "id": "newer-59a-3-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9199999995469597,
+        "longSpan": 7.200000000457123,
+        "area": 21.02399999656264,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "id": "newer-59a-3-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "id": "newer-59a-3-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "id": "newer-59a-4-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9199999995469597,
+        "longSpan": 7.200000000457123,
+        "area": 21.02399999656264,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "id": "newer-59a-4-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "id": "newer-59a-4-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "id": "newer-59a-5-E1",
+      "label": "Apartment E1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.9199999995469597,
+        "longSpan": 7.200000000457123,
+        "area": 21.02399999656264,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "id": "newer-59a-5-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "id": "newer-59a-5-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.00000000073458,
+        "longSpan": 11.680000000612043,
+        "area": 93.4399999999641,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.00000000073458,
+        "longSpan": 11.680000000612043,
+        "area": 93.4399999999641,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.00000000073458,
+        "longSpan": 11.680000000612043,
+        "area": 93.4399999999641,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.00000000073458,
+        "longSpan": 11.680000000612043,
+        "area": 93.4399999999641,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000355413,
+        "longSpan": 8.760000001031138,
+        "area": 70.08000000108815,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000355413,
+        "longSpan": 8.760000001031138,
+        "area": 70.08000000108815,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000355413,
+        "longSpan": 8.760000001031138,
+        "area": 70.08000000108815,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000355413,
+        "longSpan": 8.760000001031138,
+        "area": 70.08000000108815,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000683265,
+        "longSpan": 8.760000000231834,
+        "area": 70.08000000283978,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000683265,
+        "longSpan": 8.760000000231834,
+        "area": 70.08000000283978,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000683265,
+        "longSpan": 8.760000000231834,
+        "area": 70.08000000283978,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000683265,
+        "longSpan": 8.760000000231834,
+        "area": 70.08000000283978,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "id": "newer-59a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    }
+  ],
+  "directDoorCards": [
+    {
+      "house": "49",
+      "floor": 0,
+      "title": "WG4-W estimated entry"
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "title": "Community estimated entry"
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "title": "WG4-W estimated entry"
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "title": "WG4-E estimated entry"
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "title": "WG4-W estimated entry"
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "title": "WG4-E estimated entry"
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "title": "WG4-W estimated entry"
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "title": "W1 estimated entry"
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "title": "W1 estimated entry"
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "title": "WG3-W estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "title": "Accessible estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "title": "W1 estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "title": "W1 estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "title": "W1 estimated entry"
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "title": "W1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "title": "WG3-W estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "title": "Accessible estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "title": "Community estimated entry"
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "title": "E1 estimated entry"
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "title": "E1 estimated entry"
+    }
+  ],
+  "screenshots": [
+    "docs/preview/newer-wg4-card.png",
+    "docs/preview/newer-single-card.png",
+    "docs/preview/newer-house-49-floor-1.png",
+    "docs/preview/newer-house-51a-floor-1.png",
+    "docs/preview/newer-house-53a-floor-1.png",
+    "docs/preview/newer-wg3-card.png",
+    "docs/preview/newer-accessible-card.png",
+    "docs/preview/newer-house-55a-floor-1.png",
+    "docs/preview/newer-house-57a-floor-1.png",
+    "docs/preview/newer-house-59a-floor-1.png",
+    "docs/preview/newer-house-49-390-night.png",
+    "docs/preview/newer-house-49-390-day.png",
+    "docs/preview/newer-house-51a-320-night.png",
+    "docs/preview/newer-house-51a-320-day.png"
+  ],
+  "floorScreenshots": [
+    {
+      "house": "49",
+      "floor": 0,
+      "path": "/tmp/rommel-newer-floor-49-0.png"
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "path": "/tmp/rommel-newer-floor-49-1.png"
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "path": "/tmp/rommel-newer-floor-49-2.png"
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "path": "/tmp/rommel-newer-floor-49-3.png"
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "path": "/tmp/rommel-newer-floor-49-4.png"
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "path": "/tmp/rommel-newer-floor-49-5.png"
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "path": "/tmp/rommel-newer-floor-51a-0.png"
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "path": "/tmp/rommel-newer-floor-51a-1.png"
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "path": "/tmp/rommel-newer-floor-51a-2.png"
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "path": "/tmp/rommel-newer-floor-53a-0.png"
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "path": "/tmp/rommel-newer-floor-53a-1.png"
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "path": "/tmp/rommel-newer-floor-53a-2.png"
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "path": "/tmp/rommel-newer-floor-53a-3.png"
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "path": "/tmp/rommel-newer-floor-53a-4.png"
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "path": "/tmp/rommel-newer-floor-55a-0.png"
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "path": "/tmp/rommel-newer-floor-55a-1.png"
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "path": "/tmp/rommel-newer-floor-55a-2.png"
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "path": "/tmp/rommel-newer-floor-55a-3.png"
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "path": "/tmp/rommel-newer-floor-55a-4.png"
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "path": "/tmp/rommel-newer-floor-55a-5.png"
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "path": "/tmp/rommel-newer-floor-57a-0.png"
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "path": "/tmp/rommel-newer-floor-57a-1.png"
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "path": "/tmp/rommel-newer-floor-57a-2.png"
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "path": "/tmp/rommel-newer-floor-57a-3.png"
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "path": "/tmp/rommel-newer-floor-57a-4.png"
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "path": "/tmp/rommel-newer-floor-57a-5.png"
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "path": "/tmp/rommel-newer-floor-57a-6.png"
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "path": "/tmp/rommel-newer-floor-57a-7.png"
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "path": "/tmp/rommel-newer-floor-59a-0.png"
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "path": "/tmp/rommel-newer-floor-59a-1.png"
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "path": "/tmp/rommel-newer-floor-59a-2.png"
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "path": "/tmp/rommel-newer-floor-59a-3.png"
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "path": "/tmp/rommel-newer-floor-59a-4.png"
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "path": "/tmp/rommel-newer-floor-59a-5.png"
+    }
+  ],
+  "oldHouseSmoke": [
+    {
+      "house": "55",
+      "floor": 2,
+      "oldClearMeasurements": true,
+      "oldFurnitureControl": true
+    },
+    {
+      "house": "51",
+      "floor": 2,
+      "oldClearMeasurements": true,
+      "oldFurnitureControl": true
+    }
+  ],
+  "checks": [
+    "Served study and canonical data match the workspace files used by this run.",
+    "All 34 newer floors show data-derived single/accessible/WG3/WG4 inventories and the original-outline estimate label.",
+    "Every WG card and representative single, accessible, common-space and circulation cards retain the correct semantics.",
+    "Newer apartment measurements describe bounding polygons, never clear living area; old furnishing controls are absent.",
+    "Visible direct door cards open; collision-hidden door icons are enumerated per floor rather than treated as missing openings.",
+    "All six houses have responsive ground-floor checks in both themes at 1440, 390 and 320 pixels without clipped cards or horizontal overflow.",
+    "House 55 and House 51 top-floor cards retain their old clear-room dimensions and optional furnishing concepts.",
+    "The 34 overview PNGs support visual review of room packing, unassigned gray areas and circulation."
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4187/rommelweb/assets/index-92r8lTGZ.js"
+  ],
+  "checkedWGCount": 10,
+  "errors": [],
+  "passed": true,
+  "visualReview": {
+    "inspectedScreenshots": [
+      "docs/preview/newer-house-49-floor-1.png",
+      "docs/preview/newer-house-51a-floor-1.png",
+      "docs/preview/newer-house-51a-320-day.png",
+      "docs/preview/newer-wg3-card.png",
+      "/tmp/rommel-newer-floor-55a-2.png"
+    ],
+    "observations": [
+      "Single-floor geometry presents perimeter rooms, a connected hall and a distinct stair/lift core, with unused area left gray.",
+      "Blue upper floor shows three whole WG envelopes with independent hall entrances and no invented bedroom partitions.",
+      "The 320px day view keeps controls, labels and the floor within the viewport.",
+      "WG measurements and uncertainty text are readable without old furniture controls.",
+      "Grey 2. OG shows 13 single envelopes with the unmatched corner and loggia allowance left gray; the source perimeter stays intact."
+    ]
+  },
+  "limitations": [
+    "This browser check verifies the displayed estimates and interaction; it does not confirm actual apartment or WG locations.",
+    "Ninety-nine door labels across the 34 desktop floors are hidden by collision handling. Their exact titles are listed per floor; the openings remain in the geometry and all ten WG space cards are accessible."
+  ]
+}

@@ -1,4 +1,5 @@
 import { validateInteriorPolygon } from './interiors.js';
+import { isNewerModuleLayout } from './interior-studies.js';
 
 // Display concepts only. These dimensions never modify the room study or
 // establish the actual position, mirror, service plan, or clear size of a room.
@@ -214,7 +215,7 @@ function policy() {
  * straight-path, potentially partial furniture concept as the fallback.
  */
 export function apartmentConcept(level, space) {
-  if (!level?.isStudy || space?.kind !== 'room') return null;
+  if (!level?.isStudy || space?.kind !== 'room' || isNewerModuleLayout(level)) return null;
   const diagnostics = [];
   const result = {
     status: 'unavailable', items: [], partitions: [], zones: [], basis: null, fit: null,

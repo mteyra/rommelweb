@@ -10,6 +10,7 @@
     "layout:first-floor": "node scripts/house55-first-floor-layout.mjs",
     "layout:ground-floor": "node scripts/house55-ground-floor-layout.mjs",
     "layout:old-houses": "node scripts/old-house-module-layout.mjs",
+    "layout:new-houses": "node scripts/new-house-module-layout.mjs",
     "layout:white-house": "node scripts/house57-module-layout.mjs",
     "layout:green-house": "node scripts/house59-module-layout.mjs",
     "layout:yellow-top": "node scripts/house51-top-floor-layout.mjs",

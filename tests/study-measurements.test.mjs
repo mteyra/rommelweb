@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { studyRoomMeasurements, studyDimensionRuns, exteriorDimensionRuns } from '../src/study-measurements.js';
-import {isFittedModuleLayout, isIndependentLayout, isModuleLayout, getLevelWindows,
+import {isFittedModuleLayout, isNewerModuleLayout, isIndependentLayout, isModuleLayout, getLevelWindows,
   studyFloorSection, studyPlanDirection, validateInteriorStudies} from '../src/interior-studies.js';
 
 const rectangle = (x, z, width, depth) => [[x, z], [x + width, z], [x + width, z + depth], [x, z + depth], [x, z]];
@@ -173,5 +173,76 @@ test('fitted module basis retains source-plate semantics and the normal polygon 
     const invalid = structuredClone(input);
     change(invalid);
     assert.throws(() => validateInteriorStudies(invalid, campus, lod2));
+  }
+});
+
+test('newer apartment measurements use their placed axes and never report clear living area', () => {
+  for (const angle of [0.08, -0.21, Math.PI / 2 + 0.015]) {
+    const level = {isStudy: true, layoutBasis: 'fitted-newer-module-layout',
+      floorOutline: [{outer: transform(rectangle(-10, -10, 40, 25), angle + 0.035)}],
+      dimensionGuides: [{id: 'estimated-span', label: 'Apartment', segment: [[0, 0], [2.92, 0]], outward: [0, -1]}]};
+    for (const [kind, typology, width, depth] of [
+      ['room', 'newer-single', 2.92, 7.20], ['room', 'newer-accessible', 5, 6],
+      ['shared', 'newer-wg3', 8.76, 8], ['shared', 'newer-wg4', 11.68, 8],
+    ]) {
+      const space = {kind, typology, polygon: transform(rectangle(0, 0, width, depth), angle)};
+      const result = studyRoomMeasurements(level, space);
+      close(result.shortSpan, Math.min(width, depth));
+      close(result.longSpan, Math.max(width, depth));
+      close(result.area, width * depth);
+      assert.equal(result.areaBasis, 'bounding-apartment-envelope');
+      const cutout = transform(rectangle(1, 1, 0.5, 0.8), angle);
+      close(studyRoomMeasurements(level, {...space, holes: [cutout]}).area, width * depth - 0.4);
+      for (const kind of ['corridor', 'stairs', 'lift', 'service']) {
+        assert.equal(studyRoomMeasurements(level, {...space, kind, typology: undefined}), null);
+      }
+    }
+    assert.equal(studyDimensionRuns(level)[0].label, 'Apartment ≈ 2.92 m');
+    assert.deepEqual(studyPlanDirection(level), studyPlanDirection({...level, layoutBasis: undefined}));
+  }
+});
+
+test('newer typologies require compatible whole-apartment spaces and retain fixed-outline semantics', () => {
+  const level = {
+    index: 0, label: 'Estimated floor', source: 'Synthetic newer reference', notes: 'Original outline retained.',
+    layoutBasis: 'fitted-newer-module-layout', layoutWindows: [],
+    floorOutline: [{outer: rectangle(-2, -2, 25, 20)}],
+    spaces: [{id: 'single', label: 'Single A', kind: 'room', typology: 'newer-single',
+      confidence: 'estimated', polygon: rectangle(0, 0, 2.92, 7.2)}],
+  };
+  const input = {schemaVersion: 1, buildings: {'49': {source: 'Synthetic source', levels: [level]}}};
+  const campus = {buildings: [{number: '49', levels: 6}]}, lod2 = {buildings: [{number: '49', surfaces: []}]};
+  const validate = input => validateInteriorStudies(input, campus, lod2);
+  assert.equal(validate(input), true);
+  assert.equal(isNewerModuleLayout(level), true);
+  assert.equal(isFittedModuleLayout(level), false, 'old fitted semantics stay separate');
+  assert.equal(isIndependentLayout(level), false);
+  assert.equal(isModuleLayout(level), true);
+  const section = studyFloorSection({polygons: level.floorOutline, sampleElevation: 1.5}, {...level, isStudy: true});
+  assert.equal(section.sourceStatus, 'fixed-source-outline-module-study');
+  assert.deepEqual(section.polygons[0].outer, level.floorOutline[0].outer);
+  assert.deepEqual(getLevelWindows({...level, windows: [{id: 'source-window'}]}), []);
+  for (const [kind, typology] of [
+    ['room', 'newer-accessible'], ['shared', 'newer-wg3'], ['shared', 'newer-wg4'],
+    ['service', undefined], ['corridor', undefined],
+  ]) {
+    const valid = structuredClone(input), space = valid.buildings['49'].levels[0].spaces[0];
+    space.kind = kind;
+    if (typology) space.typology = typology; else delete space.typology;
+    assert.equal(validate(valid), true);
+  }
+  for (const change of [
+    level => { delete level.spaces[0].typology; },
+    level => { level.spaces[0].typology = 'newer-wg3'; },
+    level => { level.spaces[0].kind = 'service'; },
+    level => { level.spaces[0].typology = 'newer-bedroom'; },
+    level => { level.spaces[0].confidence = 'sketch'; },
+    level => { level.layoutBasis = 'fitted-module-layout'; },
+    level => { level.spaces[0].polygon = rectangle(99, 99, 2.92, 7.2); },
+    level => { level.spaces.push({...structuredClone(level.spaces[0]), id: 'overlap'}); },
+  ]) {
+    const invalid = structuredClone(input);
+    change(invalid.buildings['49'].levels[0]);
+    assert.throws(() => validate(invalid));
   }
 });

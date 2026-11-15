@@ -27,12 +27,12 @@ export const roomReferences = {
     plans: [
       {
         title: 'Typical newer single room',
-        description: 'The resident drawing labels an approximately 2.92 × 3.50 m living zone and a 1.10 m window. Rooms can be mirrored; the window may be on the bed or desk side.',
+        description: 'The resident drawing labels a 2.92 m width and 7.20 m full depth, including the entrance, bathroom and internal partitions, with a 3.50 m living-zone depth and 1.10 m window. The 21.02 m² bounding rectangle is not clear living area. Rooms can be mirrored; the window may be on the bed or desk side.',
         url: 'https://rommelwood.de/media/images/grundriss_neue_zimmer.svg',
         label: 'Open the room drawing',
       },
     ],
-    categories: 'Single category: 19.4 m². Accessible single: 30.0 m². Group-share categories: 23.7–25.6 m².',
+    categories: 'Average single category: 19.4 m². Accessible single: 30.0 m². Group-share categories: 23.7–25.6 m² per place, including allocated common space; these are not whole-WG or bedroom areas.',
     operatorUrl: 'https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/766-campus-sued-ii-englisch-2026.pdf',
   },
 };

@@ -546,7 +546,12 @@ test('House 55 retains its independent top-floor module layout while all three l
   for (const building of campus.buildings) {
     for (let floor = 0; floor < building.levels; floor++) {
       if (building.campus === 'I') continue;
-      assert.equal(getDisplayLevel(emptyApproved, published, building.number, floor), null, 'the older-house study must not populate newer houses');
+      const newer = getDisplayLevel(emptyApproved, published, building.number, floor);
+      assert.equal(newer.layoutBasis, 'fitted-newer-module-layout',
+        'newer houses resolve their separately researched estimates, never the older-house module template');
+      assert.ok(newer.spaces.filter(space => space.kind === 'room' || space.kind === 'shared')
+        .every(space => space.typology?.startsWith('newer-')),
+      'every newer apartment identifies its own typology');
     }
   }
   assert.deepEqual(published, before);

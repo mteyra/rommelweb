@@ -13,6 +13,7 @@ import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mj
 import {generateOldHouseStudies} from '../scripts/generate-old-house-studies.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
+import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan,
@@ -384,7 +385,7 @@ test('the Yellow preservation receipt protects lower floors, all other houses, a
     assert.equal(record.unchanged, true, path);
     assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
   }
-  assert.equal(sha(JSON.stringify(topFloorRelease.studies, null, 2) + '\n'),
+  assert.equal(sha(JSON.stringify(withoutNewerStudies(topFloorRelease.studies), null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
     assert.notEqual(house, '51');

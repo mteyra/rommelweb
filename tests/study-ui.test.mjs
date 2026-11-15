@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
-import {getDisplayLevel, getLevelWindows, isIndependentLayout, isFittedModuleLayout, isModuleLayout} from '../src/interior-studies.js';
+import {getDisplayLevel, getLevelWindows, isIndependentLayout, isFittedModuleLayout, isNewerModuleLayout, isModuleLayout} from '../src/interior-studies.js';
 import {studyRoomMeasurements} from '../src/study-measurements.js';
 import {escapeHTML as esc, floorName} from '../src/data.js';
 
@@ -52,7 +52,7 @@ function ui(levelRecords, selectedFloor, selectedHouse = '55') {
     lod2 = {buildings: [], metadata: {url: 'https://example.test/source'}};
     Object.assign(state, {selected: fixture.selectedHouse, floor: fixture.selectedFloor, exploded: true});
     ({renderFloor, spaceDialog, accuracyDialog});
-  `, {document, fixture, console, getDisplayLevel, getLevelWindows, isIndependentLayout, isFittedModuleLayout, isModuleLayout,
+  `, {document, fixture, console, getDisplayLevel, getLevelWindows, isIndependentLayout, isFittedModuleLayout, isNewerModuleLayout, isModuleLayout,
     studyRoomMeasurements, esc, floorName,
     apartmentConcept: (...args) => {conceptCalls.push(args); return null;}});
   return {...controls, element, conceptCalls};
@@ -99,6 +99,86 @@ test('other-house fitted modules show exact room sizes within a provisional, unc
   view.accuracyDialog();
   assert.match(view.element('#modal-body').innerHTML, /Houses 51 use provisional modules fitted within their original outlines/);
   assert.doesNotMatch(view.element('#modal-body').innerHTML, /Other older houses retain their earlier template studies/);
+});
+
+function newerLevels() {
+  return [{
+    index: 0, label: 'EG', source: 'Synthetic newer apartment reference', notes: 'All placements are provisional.',
+    layoutBasis: 'fitted-newer-module-layout', floorOutline: [{outer: rectangle(0, 0, 30, 30)}],
+    spaces: [
+      {id: 'single', label: 'Single A', kind: 'room', typology: 'newer-single', confidence: 'estimated', polygon: rectangle(0, 0, 2.92, 7.20)},
+      {id: 'accessible', label: 'Accessible single', kind: 'room', typology: 'newer-accessible', confidence: 'estimated', polygon: rectangle(4, 0, 5, 6)},
+      {id: 'wg3', label: 'WG 3', kind: 'shared', typology: 'newer-wg3', confidence: 'estimated', polygon: rectangle(0, 10, 8.76, 8)},
+      {id: 'wg4', label: 'WG 4', kind: 'shared', typology: 'newer-wg4', confidence: 'estimated', polygon: rectangle(12, 10, 11.68, 8)},
+      {id: 'service', label: 'Common area', kind: 'service', confidence: 'estimated', polygon: rectangle(0, 20, 8, 4)},
+      {id: 'corridor', label: 'Hall', kind: 'corridor', confidence: 'estimated', polygon: rectangle(0, 7.2, 20, 2)},
+      {id: 'stairs', label: 'Stair core', kind: 'stairs', confidence: 'estimated', polygon: rectangle(23, 0, 4, 6)},
+    ], doors: [{id: 'single-door', label: 'Single A entry', spaceId: 'single', toSpaceId: 'corridor',
+      confidence: 'estimated', segment: [[1, 7.2], [1.9, 7.2]]}], layoutWindows: [],
+  }];
+}
+
+test('newer singles and WGs display estimated apartment boundaries without old clear-room or furniture assumptions', () => {
+  const view = ui(newerLevels(), 0, '49');
+  view.renderFloor();
+  assert.equal(view.element('#floor-stage-note').textContent, 'Estimated · 1 single · 1 accessible single · 1 WG3 · 1 WG4 · original outline');
+  const detail = view.element('#floor-detail-content').innerHTML;
+  assert.match(detail, /original outline retained/);
+  assert.match(detail, /2\.92 × 7\.20 m bounding envelope/);
+  assert.match(detail, /unused gray space remains unassigned/);
+  assert.match(detail, /each with one proposed hallway entrance/);
+  assert.match(detail, /Exterior \/ m/);
+  assert.match(detail, /NEWER-HOUSE-INTERIOR-ESTIMATES\.md/);
+  assert.doesNotMatch(detail, /2\.70|3\.10|Hall 1\.40|OLD-HOUSES|House 55|Independent floor layout/);
+  view.spaceDialog({house: '49', floor: 0, spaceId: 'single'});
+  const single = view.element('#modal-body').innerHTML;
+  assert.match(single, /Estimated newer-house placement/);
+  assert.match(single, /2\.92 × 7\.20 m span · ≈ 21\.02 m² bounding polygon area/);
+  assert.match(single, /includes the bathroom and internal partitions/);
+  assert.match(single, /not measured clear living area/);
+  assert.doesNotMatch(single, /Clear room dimensions|16\.20|3\.10 m module|House 55/);
+  for (const [id, people, area] of [['wg3', 3, '70.08'], ['wg4', 4, '93.44']]) {
+    view.spaceDialog({house: '49', floor: 0, spaceId: id});
+    const card = view.element('#modal-body').innerHTML;
+    assert.ok(card.includes(`whole ${people}-person WG apartment`));
+    assert.match(card, /Whole WG apartment envelope · estimated/);
+    assert.ok(card.includes(`≈ ${area} m² bounding polygon area`));
+    assert.match(card, /whole shared apartment, not one bedroom/);
+    assert.match(card, /allocation to this floor and internal divisions remain unverified/);
+  }
+  view.spaceDialog({house: '49', floor: 0, spaceId: 'accessible'});
+  assert.match(view.element('#modal-body').innerHTML, /30\.0 m² category/);
+  assert.match(view.element('#modal-body').innerHTML, /house, floor, rectangular fit and access have not been verified/);
+  assert.equal(view.conceptCalls.length, 0);
+  assert.equal(view.element('#modal-body .modal-actions').children.length, 0);
+});
+
+test('newer common areas, circulation and doors do not acquire apartment measurements or furniture controls', () => {
+  const view = ui(newerLevels(), 0, '49');
+  for (const spaceId of ['service', 'corridor', 'stairs']) {
+    view.spaceDialog({house: '49', floor: 0, spaceId});
+    const card = view.element('#modal-body').innerHTML;
+    assert.match(card, /Estimated newer-house placement/);
+    assert.doesNotMatch(card, /bounding polygon area|whole shared apartment|Clear room dimensions|study-identity-note|1\.40|House 55/);
+  }
+  view.spaceDialog({house: '49', floor: 0, spaceId: 'single', openingId: 'single-door'});
+  assert.match(view.element('#modal-body').innerHTML, /estimated doorway in the newer-house apartment study/);
+  assert.doesNotMatch(view.element('#modal-body').innerHTML, /bounding polygon area/);
+  assert.equal(view.conceptCalls.length, 0);
+});
+
+test('newer stack and model notes expose provisional whole-apartment placement and its dedicated source', () => {
+  const view = ui(newerLevels(), null, '49');
+  view.renderFloor();
+  const stack = view.element('#floor-detail-content').innerHTML;
+  assert.match(stack, /estimated apartment layouts fit inside the existing exterior sections/);
+  assert.match(stack, /house and floor assignments remain provisional/);
+  view.accuracyDialog();
+  const model = view.element('#modal-body').innerHTML;
+  assert.match(model, /Newer houses 49 show estimated apartment placements/);
+  assert.match(model, /WGs represent whole shared apartments for three or four people/);
+  assert.match(model, /NEWER-HOUSE-INTERIOR-ESTIMATES\.md/);
+  assert.doesNotMatch(model, /Houses 49 use provisional modules|House 55’s top floor now shows/);
 });
 
 test('publishing a mixed first floor does not change top-floor controls, evidence or single-room card output', () => {

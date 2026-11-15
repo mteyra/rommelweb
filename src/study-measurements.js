@@ -1,4 +1,4 @@
-import { isFittedModuleLayout, isModuleLayout, studyPlanDirection } from './interior-studies.js';
+import { isFittedModuleLayout, isNewerModuleLayout, isModuleLayout, studyPlanDirection } from './interior-studies.js';
 
 const ringArea = ring => {
   const [ox, oz] = ring[0];
@@ -14,7 +14,7 @@ export function studyRoomMeasurements(level, space) {
   if (!level?.isStudy || space?.kind !== 'room' && !(moduleLayout && space?.kind === 'shared')) return null;
   // Fitted rooms can be rotated slightly away from their retained source shell.
   // Measure the placed rectangle itself; do not inflate it along shell axes.
-  const direction = studyPlanDirection(isFittedModuleLayout(level)
+  const direction = studyPlanDirection(isFittedModuleLayout(level) || isNewerModuleLayout(level)
     ? {...level, floorOutline: [{outer: space.polygon}]} : level);
   const length = Math.hypot(direction[0], direction[2]);
   const along = [direction[2] / length, -direction[0] / length];
@@ -25,7 +25,8 @@ export function studyRoomMeasurements(level, space) {
   };
   const spans = [span(along), span(across)].sort((a, b) => a - b);
   const area = ringArea(space.polygon) - (space.holes || []).reduce((sum, hole) => sum + ringArea(hole), 0);
-  const areaBasis = !moduleLayout ? 'gross-study-envelope'
+  const areaBasis = isNewerModuleLayout(level) ? 'bounding-apartment-envelope'
+    : !moduleLayout ? 'gross-study-envelope'
     : space.kind === 'shared' ? 'shared-apartment-layout' : 'clear-room-layout';
   return {shortSpan: spans[0], longSpan: spans[1], area, areaBasis};
 }
@@ -81,7 +82,7 @@ export function studyDimensionRuns(level) {
     const [start, end] = guide.segment, length = distance(start, end);
     return {
       id: guide.id, start, end, length, outward: guide.outward,
-      label: `${guide.label}${isModuleLayout(level) ? '' : ' ≈'} ${length.toFixed(2)} m`,
+      label: `${guide.label}${isModuleLayout(level) && !isNewerModuleLayout(level) ? '' : ' ≈'} ${length.toFixed(2)} m`,
       note: guide.note, isStudyGuide: true, priority: 1,
     };
   });

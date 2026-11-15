@@ -8,6 +8,7 @@ import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mj
 import {generateOldHouseStudies} from '../scripts/generate-old-house-studies.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
+import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
@@ -365,12 +366,20 @@ test('Green preservation receipt protects completed Red and White, remaining pro
   assert.equal(receipt.baseCommit, before.baseCommit);
   for (const [path, record] of Object.entries(receipt.immutableFiles)) {
     assert.equal(record.unchanged, true, path);
-    assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
+    // The live validator and concept UI now accept the independent Campus II
+    // layer. Preserve their exact 00df697 bytes for this dated Green receipt;
+    // runtime suites still exercise both current modules and protect old rooms.
+    const archivedSources = {
+      'src/interior-studies.js': './fixtures/interior-studies-before-newer-layout.txt',
+      'src/apartment-concepts.js': './fixtures/apartment-concepts-before-newer-layout.txt',
+    };
+    const observedPath = archivedSources[path] ?? `../${path}`;
+    assert.equal(sha(await readFile(new URL(observedPath, import.meta.url))), record.sha256, path);
   }
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['59']);
-  // This dated receipt predates Yellow's top-floor replacement. Recreate its
-  // exact Yellow record instead of weakening the earlier release audit.
-  const greenReleaseStudies = structuredClone(studies);
+  // This dated receipt predates Yellow's top-floor replacement and Campus II.
+  // Recreate that study snapshot while retaining the original receipt hash.
+  const greenReleaseStudies = withoutNewerStudies(studies);
   greenReleaseStudies.buildings['51'] = structuredClone(archivedYellow.building);
   assert.equal(sha(JSON.stringify(greenReleaseStudies, null, 2) + '\n'), receipt.studyChangeScope.afterSha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.greenCanonical.path}`, import.meta.url))),

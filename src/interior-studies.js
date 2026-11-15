@@ -2,11 +2,16 @@ import { getInteriorLevel, validateInteriorPolygon } from './interiors.js';
 
 const KINDS = new Set(['room', 'corridor', 'stairs', 'lift', 'shared', 'service']);
 const CONFIDENCE = new Set(['sketch', 'estimated']);
+const NEWER_TYPOLOGIES = new Map([
+  ['newer-single', 'room'], ['newer-accessible', 'room'],
+  ['newer-wg3', 'shared'], ['newer-wg4', 'shared'],
+]);
 const fail = (path, message) => { throw new Error(`Interior study ${path}: ${message}`); };
 
 export const isIndependentLayout = level => level?.layoutBasis === 'resident-module-layout';
 export const isFittedModuleLayout = level => level?.layoutBasis === 'fitted-module-layout';
-export const isModuleLayout = level => isIndependentLayout(level) || isFittedModuleLayout(level);
+export const isNewerModuleLayout = level => level?.layoutBasis === 'fitted-newer-module-layout';
+export const isModuleLayout = level => isIndependentLayout(level) || isFittedModuleLayout(level) || isNewerModuleLayout(level);
 
 /** Folded façades retain source windows; module layouts use separate schematic openings. */
 export const getLevelWindows = level => (isModuleLayout(level) ? level.layoutWindows : level?.windows) || [];
@@ -104,7 +109,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
       object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands', 'dimensionGuides', 'layoutBasis', 'layoutWindows']);
-      if (level.layoutBasis !== undefined && !isModuleLayout(level)) fail(`${lp}.layoutBasis`, 'must identify the resident-module-layout or fitted-module-layout basis');
+      if (level.layoutBasis !== undefined && !isModuleLayout(level)) fail(`${lp}.layoutBasis`, 'must identify the resident-module-layout, fitted-module-layout or fitted-newer-module-layout basis');
       if (level.layoutWindows !== undefined && (!isModuleLayout(level) || !Array.isArray(level.layoutWindows))) {
         fail(`${lp}.layoutWindows`, 'requires a module layout and an array');
       }
@@ -143,10 +148,17 @@ export function validateInteriorStudies(studies, campus, lod2) {
       }
       for (const [i, space] of level.spaces.entries()) {
         const sp = `${lp}.spaces[${i}]`;
-        object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes', 'stairFlight']);
+        object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes', 'stairFlight', 'typology']);
         identify(space, sp);
         if (space.shortLabel !== undefined) text(space.shortLabel, `${sp}.shortLabel`, 16);
         if (!KINDS.has(space.kind) || !CONFIDENCE.has(space.confidence)) fail(sp, 'requires a known space kind and sketch/estimated confidence');
+        if (space.typology !== undefined && (!isNewerModuleLayout(level) || NEWER_TYPOLOGIES.get(space.typology) !== space.kind)) {
+          fail(`${sp}.typology`, 'requires a matching newer apartment type on a fitted-newer-module-layout floor');
+        }
+        if (isNewerModuleLayout(level) && ['room', 'shared'].includes(space.kind) && !NEWER_TYPOLOGIES.has(space.typology)) {
+          fail(`${sp}.typology`, 'newer residential envelopes require a single, accessible, 3-person WG or 4-person WG type');
+        }
+        if (isNewerModuleLayout(level) && space.confidence !== 'estimated') fail(sp, 'newer fitted spaces require estimated confidence');
         if (level.extrapolatedFrom !== undefined && space.confidence !== 'estimated') fail(sp, 'extrapolated spaces require estimated confidence');
         if (space.note !== undefined) text(space.note, `${sp}.note`);
         validateInteriorPolygon(space.polygon, `${sp}.polygon`);
@@ -295,7 +307,7 @@ export function studyFloorSection(section, level) {
   const polygons = level.floorOutline.map(polygon => ({...polygon, holes: polygon.holes || []}));
   return {...section, polygons, area: polygons.reduce((sum, polygon) => sum + ringArea(polygon.outer) - (polygon.holes || []).reduce((area, hole) => area + ringArea(hole), 0), 0),
     sourceStatus: isIndependentLayout(level) ? 'independent-module-layout-outline'
-      : isFittedModuleLayout(level) ? 'fixed-source-outline-module-study' : 'resident-sketch-floor-outline', outlineSource: level.source};
+      : isFittedModuleLayout(level) || isNewerModuleLayout(level) ? 'fixed-source-outline-module-study' : 'resident-sketch-floor-outline', outlineSource: level.source};
 }
 
 /** Orient the drawing to the building axes without rotating or rescaling geometry. */
