@@ -492,11 +492,14 @@ def audit(args):
         # This ten-micrometre tolerance compares calculations only; it is
         # not an architectural dimension tolerance or source accuracy claim.
         serialization_tolerance = 0.00001
-        later_corrected_groups = {"L1–L3"} if metadata.get("residentCorrections", {}).get("leftSide") else set()
+        later_corrected_groups = set(GROUPS) if metadata.get("areaStudy") else (
+            {"L1–L3"} if metadata.get("residentCorrections", {}).get("leftSide") else set()
+        )
         checked_errors = [error for name, error in mean_errors.items() if name not in later_corrected_groups]
-        valid = max(abs(recorded_depth - computed_depth), *map(abs, checked_errors)) <= serialization_tolerance
+        valid = max([abs(recorded_depth - computed_depth), *map(abs, checked_errors)]) <= serialization_tolerance
         depth_verification = {
             "valid": valid,
+            "supersededByAreaStudy": bool(metadata.get("areaStudy")),
             "inputMeaning": "Retained width-only modeling priors, not measured apartment depths.",
             "inputDepths": inputs,
             "computedArithmeticMean": computed_depth,
@@ -504,7 +507,11 @@ def audit(args):
             "targetDifference": recorded_depth - computed_depth,
             "actualGroupMeanMinusComputedTarget": mean_errors,
             "laterCorrectedGroups": sorted(later_corrected_groups),
-            "laterCorrectionMeaning": "The later L alignment follows source corners and retains its fitted south boundary. Its small source-skew depth change is reported explicitly rather than hidden by widening the historical fit tolerance.",
+            "laterCorrectionMeaning": (
+                "Historical arithmetic only: the area-based stage supersedes these depth priors. Current room depths are no longer checked against the former 5.395m target."
+                if metadata.get("areaStudy") else
+                "The later L alignment follows source corners and retains its fitted south boundary. Its small source-skew depth change is reported explicitly rather than hidden by widening the historical fit tolerance."
+            ),
             "serializationComparisonTolerance": serialization_tolerance,
             "method": "The arithmetic mean minimizes sum_i (D - priorDepth_i)^2. Unchanged group mean depths are independently checked against D; any later source-alignment correction is identified separately.",
             "corridorFacingWallChanges": depth_fit["corridorFacingWallChanges"],
@@ -579,6 +586,7 @@ def audit(args):
             "wallBandMeaning": "Display hypothesis within gross envelopes, not extra usable floor area; independent spaces remain disjoint.",
         },
         "stairAlignment": alignment,
+        "areaStudy": metadata.get("areaStudy"),
         "topology": {
             "overlapArea": sum(first.intersection(second).area for i, first in enumerate(pairs) for second in pairs[i + 1:]),
             "allSpaceOverlapArea": sum(first.intersection(second).area for i, first in enumerate(all_spaces) for second in all_spaces[i + 1:]),
@@ -655,7 +663,7 @@ def audit(args):
             plot_path, flat, occupied,
             {label: polygon for label, polygon in baseline.items() if label not in baseline_corridors} if baseline and with_baseline else None,
             witnesses, corridors, flight, [record for record in door_records if record["target"] == stair_record["shortLabel"]] if stair_record else [],
-            window_records, band_polygons, alignment,
+            window_records, band_polygons, alignment, metadata.get("areaStudy"),
         )
     print(json.dumps({
         "report": str(args.output),
@@ -667,14 +675,16 @@ def audit(args):
     }, indent=2))
 
 
-def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands, alignment):
+def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands, alignment, area_study=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.patches import Polygon as Patch
 
-    panels = [(baseline, "Previous layout · L offset 0.20 m · independently chosen staircase width")] if baseline else []
-    panels.append((polygons, "House 55 · 2. OG · matching W4 / L1 overlap · confirmed ¼ L3 / ¾ R1 stair split"))
+    panels = [(baseline, "Earlier geometry · depth fitted to prior estimates · before the confirmed stair alignment")] if baseline else []
+    panels.append((polygons, "House 55 · 2. OG · area-based hypothesis · confirmed overlap and stair split retained"
+                   if area_study else
+                   "House 55 · 2. OG · matching W4 / L1 overlap · confirmed ¼ L3 / ¾ R1 stair split"))
     figure, axes = plt.subplots(len(panels), 1, figsize=(16, 8.5 * len(panels)), squeeze=False, layout="constrained")
     for axis, (items, title) in zip(axes[:, 0], panels):
         axis.add_patch(Patch(list(flat.exterior.coords), facecolor="#eeeae3", edgecolor="#41413c", linewidth=2))

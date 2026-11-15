@@ -23,6 +23,7 @@ import { floorSection } from '../src/sections.js';
 import { validateInteriorStudies } from '../src/interior-studies.js';
 import { applyHouse55WindowWallStudy } from './house55-window-wall-study.mjs';
 import { applyHouse55StairAlignment } from './house55-stair-alignment.mjs';
+import { applyHouse55AreaStudy } from './house55-area-study.mjs';
 import { refreshHouse55LowerLevels } from './extrapolate-house55-levels.mjs';
 
 const sourceFile = new URL('../public/data/lod2.json', import.meta.url);
@@ -810,7 +811,10 @@ const stairAlignment = await applyHouse55StairAlignment(study.level, building);
 study.level = stairAlignment.level;
 study.levels = [...lowerLevels, study.level];
 study.metadata.stairAlignment = stairAlignment.metadata;
-study.metadata.currentStage = 'stairAlignment';
+const areaStudy = await applyHouse55AreaStudy(study.level, building);
+study.level = areaStudy.level;
+study.metadata.areaStudy = areaStudy.metadata;
+study.metadata.currentStage = 'areaStudy';
 const refreshedLower = refreshHouse55LowerLevels(lowerLevels, study.level, building);
 study.levels = [...refreshedLower.levels, study.level];
 study.metadata.earlierLowerFloorExtrapolation = lowerMetadata;
@@ -818,7 +822,7 @@ study.metadata.lowerFloorExtrapolation = refreshedLower.metadata.map(item => ({
   ...lowerMetadata.find(earlier => earlier.index === item.index), ...item,
 }));
 study.metadata.lowerFloorRefresh = {
-  sourceStage: 'stairAlignment',
+  sourceStage: 'areaStudy',
   reason: 'Resident previously requested extrapolation to the other two floors; the later correction screenshots exposed their stale L/stair geometry. Refresh the current core with explicitly estimated evidence.',
   copiedObservedWindows: false, copiedWallBands: false,
 };
@@ -827,7 +831,7 @@ study.metadata.residentCorrections.stage = 'earlier-left-side-stage-before-windo
 study.metadata.stairs.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 study.metadata.validation.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 const generatedBuilding = {
-  source: 'House 55 resident-confirmed 2. OG count, exterior windows, matching W4/L1 overlap and quarter/three-quarter stair alignment. Absolute room dimensions remain a study.',
+  source: 'House 55 resident-informed 2. OG arrangement and relative alignment, with a conditional area-based study using assumed wall allowances. Absolute apartment dimensions remain unverified.',
   sourceDate: '2026-11-15', levels: study.levels,
 };
 const campusData = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url)));
@@ -883,14 +887,19 @@ console.log(JSON.stringify({
   wallOffsetHypothesisMetres: study.metadata.windowWallStudy.wallOffsets.assumedOffsetMetres,
   matchingCornerOverlapMetres: study.metadata.stairAlignment.overlap.w4CornerOffsetMetres,
   stairRatio: study.metadata.stairAlignment.observedRatio,
-  commonGrossDepthMetres: commonDepth, commonDepthRoomReferences: depthInputs.length,
+  supersededGrossDepthPriorMetres: commonDepth,
+  conditionalAreaTargetSquareMetres: study.metadata.areaStudy.parameters.targetInternalAreaSquareMetres,
+  roomsMeetingConditionalAreaTarget: study.metadata.areaStudy.rooms.filter(room => room.targetMet).length,
+  unresolvedAreaTargets: study.metadata.areaStudy.rooms.filter(room => !room.targetMet).map(room => ({
+    room: room.label, internalEnvelopeAreaSquareMetres: room.internalArea, shortfallSquareMetres: -room.residual,
+  })),
   lowerFloors: study.metadata.lowerFloorExtrapolation.map(level => ({
     index: level.index, sourceAreaMetresSquared: level.sourceSectionAreaMetresSquared,
     unassignedAreaMetresSquared: level.unassignedAreaMetresSquared, spaces: level.studySpaces, openings: level.estimatedOpenings,
   })),
   validation: {
     currentStudySchemaPassed: true,
-    unchangedNonLRoomCount: study.metadata.stairAlignment.unchangedRoomReferences.length,
+    historicalAlignmentUnchangedNonLRoomCount: study.metadata.stairAlignment.unchangedRoomReferences.length,
     markedWindows: study.level.windows.length,
     separateHallways: study.level.spaces.filter(space => space.kind === 'corridor').length,
     originalExteriorModified: false,

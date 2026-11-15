@@ -12,6 +12,7 @@ import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 import { createBuildingWindowStudies, getWindowProfile, getOldFacadeRowGuides } from './windows.js';
 import { createInteriorWireframe, INTERIOR_CUT_HEIGHT } from './interior-wireframe.js';
+import { exteriorDimensionRuns, layoutExteriorDimensions } from './study-measurements.js';
 
 const PAPER = 0x151715;
 const INK = 0xa8aaa3;
@@ -86,6 +87,12 @@ export class CampusScene {
     this.onSpace = onSpace;
     this.buildings = new Map();
     this.labels = [];
+    this.dimensionLayer = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    this.dimensionLayer.classList.add('exterior-dimensions');
+    this.dimensionLayer.setAttribute('role', 'img');
+    this.dimensionLayer.setAttribute('aria-label', 'Exterior source-section lengths in metres. Zoom in to reveal smaller runs.');
+    this.dimensionLayer.style.display = 'none';
+    this.labelsElement.appendChild(this.dimensionLayer);
     this.raycaster = new THREE.Raycaster();
     this.pointer = new THREE.Vector2();
     this.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -254,6 +261,7 @@ export class CampusScene {
     }
     // Hide DOM targets synchronously so rapid travel cannot activate stale labels.
     for (const label of this.labels) if (!this.labelInCurrentView(label)) label.el.hidden = true;
+    if (this.dimensionLayer) this.dimensionLayer.style.display = 'none';
   }
 
   labelInCurrentView(label) {
@@ -479,7 +487,8 @@ export class CampusScene {
     el.addEventListener('pointerenter', () => this.setHovered(data.number));
     el.addEventListener('pointerleave', () => this.setHovered(null));
     this.labelsElement.appendChild(el);
-    const record = { data, group, floorGroups, floorElevations, floorSections, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, label: el, currentGap: 0, targetGap: 0 };
+    const floorDimensions = floorSections.map(section => exteriorDimensionRuns(section.polygons));
+    const record = { data, group, floorGroups, floorElevations, floorSections, floorDimensions, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
     this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.baseY + Math.max(data.height, record.exterior.visible ? data.height : floorElevations.at(-1) + record.currentGap * (data.levels - 1)) + 3, data.centroid[1]), type: 'house', number: data.number });
   }
@@ -868,7 +877,65 @@ export class CampusScene {
       if (Array.isArray(object.material)) object.material.forEach(m => m.dispose());
       else object.material?.dispose();
     });
+    this.dimensionLayer?.remove();
     this.renderer.dispose();
+  }
+
+  renderExteriorDimensions(occupied, width, height) {
+    const building = this.buildings.get(this.selected);
+    const runs = this.exploded && this.activeFloor != null ? building?.floorDimensions?.[this.activeFloor] : null;
+    if (!runs?.length) {
+      this.dimensionLayer.style.display = 'none';
+      return;
+    }
+    const key = `${this.selected}:${this.activeFloor}`;
+    if (this.dimensionKey !== key) {
+      this.dimensionKey = key;
+      this.dimensionLayer.replaceChildren();
+      this.dimensionNodes = new Map();
+      for (const run of runs) {
+        const make = tag => document.createElementNS('http://www.w3.org/2000/svg', tag);
+        const group = make('g'), extensions = make('path'), line = make('path'), text = make('text'), title = make('title');
+        group.dataset.dimensionLength = run.length.toFixed(6);
+        group.dataset.dimensionEdge = run.id;
+        extensions.classList.add('dimension-extensions');
+        line.classList.add('dimension-line');
+        text.textContent = run.label;
+        title.textContent = `${run.label}, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.`;
+        group.append(title, extensions, line, text);
+        this.dimensionLayer.appendChild(group);
+        this.dimensionNodes.set(run.id, {group, extensions, line, text});
+      }
+    }
+    this.dimensionLayer.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    const y = building.floorGroups[this.activeFloor].position.y + 0.025;
+    const project = point => {
+      const v = new THREE.Vector3(point[0], y, point[1]).project(this.camera);
+      return [(v.x + 1) * width / 2, (1 - v.y) * height / 2, v.z];
+    };
+    const projected = runs.map(run => {
+      const start = project(run.start), end = project(run.end);
+      const midpoint = run.start.map((value, axis) => (value + run.end[axis]) / 2 + run.outward[axis]);
+      return {...run, start: start.slice(0, 2), end: end.slice(0, 2), outwardPoint: project(midpoint).slice(0, 2), visible: [start, end].every(point => point[2] > -1 && point[2] < 1)};
+    });
+    const outlines = building.floorSections[this.activeFloor].polygons.map(polygon => polygon.outer.map(point => project(point).slice(0, 2)));
+    const compact = width <= 700;
+    const viewport = {
+      left: compact ? 10 : 22, right: width - (compact ? 10 : 22),
+      top: compact ? Math.min(148, height * 0.27) : width <= 1100 ? 164 : 140,
+      bottom: height - (compact ? Math.min(196, height * 0.35) : 150),
+    };
+    const placements = layoutExteriorDimensions(projected, {viewport, occupied, outlines, compact});
+    for (const {group} of this.dimensionNodes.values()) group.style.display = 'none';
+    const path = segments => segments.map(([a, b]) => `M${a[0].toFixed(2)},${a[1].toFixed(2)}L${b[0].toFixed(2)},${b[1].toFixed(2)}`).join('');
+    for (const placement of placements) {
+      const {group, extensions, line, text} = this.dimensionNodes.get(placement.id);
+      group.style.display = '';
+      extensions.setAttribute('d', path(placement.extensionLines));
+      line.setAttribute('d', path([placement.dimensionLine, ...placement.ticks]));
+      text.setAttribute('transform', `translate(${placement.labelPoint[0].toFixed(2)} ${placement.labelPoint[1].toFixed(2)}) rotate(${placement.angle.toFixed(2)})`);
+    }
+    this.dimensionLayer.style.display = placements.length ? '' : 'none';
   }
 
   render() {
@@ -942,6 +1009,7 @@ export class CampusScene {
       label.el.hidden = !visible;
       if (visible) label.el.style.transform = `translate(-50%, -100%) translate(${x}px, ${y}px)`;
     }
+    this.renderExteriorDimensions(occupied, width, height);
   }
 }
 

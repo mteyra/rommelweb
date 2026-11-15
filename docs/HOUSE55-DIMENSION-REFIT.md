@@ -1,10 +1,12 @@
-# House 55 · matched overlap and staircase alignment
+# House 55 · historical overlap and staircase fit
+
+> **Historical report — before the area-based refit.** The numerical tables below describe the aligned candidate retained in [the `9738610` baseline](../data/source/house55-2og-area-baseline.json). They are not current apartment dimensions. The subsequent [area study](HOUSE55-AREA-STUDY.md) replaces the depth fit and reports conditional internal areas, wall allowances and the remaining R shortfall.
 
 Updated 15 November 2026 for **2. OG / index 2**. L1 now has the same approximately **0.450 m corner overlap as W4**. The resident-marked exterior edge, extended through the staircase, divides its width into **¼ on the L3 side and ¾ on the R1 side**. The resident explicitly confirmed the R1 side for the three-quarter portion; that clarification determines the orientation.
 
-![House 55 top floor: equal W4/L1 corner offsets and the extended reference edge dividing the stairs into one quarter toward L3 and three quarters toward R1](preview/house55-window-wall-study.png)
+![Historical House 55 top floor: equal W4/L1 corner offsets and the extended reference edge dividing the stairs into one quarter toward L3 and three quarters toward R1](preview/house55-stair-alignment.png)
 
-## The correction
+## The preceding alignment correction
 
 The preceding build used a uniform **0.20 m wall-offset hypothesis**. That did not match the W4 overlap the resident accepted. Its staircase was also sized independently, so the marked reference line crossed at roughly **12% / 88%**, rather than the confirmed **25% / 75%**. Some earlier lower-floor views still showed the older, unenclosed staircase and narrow L bays.
 
@@ -18,13 +20,13 @@ The new stage uses the [accepted W4 overlap](../data/source/house55-2og-overlap-
 
 The corrected core is also repeated on **EG and 1. OG**, following the resident's earlier request to extrapolate it downwards. Each lower floor retains its own complete source plate; extra wings remain unassigned. Their room count, partitions, staircase and doors are explicitly **extrapolated estimates**. Top-floor window observations and wall bands are not copied into lower-floor study records.
 
-## Independent geometric check
+## Historical independent geometric check
 
 The reference is **roof surface 39, vertices 3→4** of the retained House 55 model. It is an existing exterior return, not a moved room divider. The calculation extends that same line north through the staircase.
 
 The W4 overlap is measured **perpendicular to its exterior return at the façade-end corner**. L1 is placed at the same perpendicular offset from its own return. The earlier approximately 0.452 m figure used averaged study-axis coordinates; small source skew explains the difference from the corner-normal result below.
 
-| Constraint | Independently recomputed result |
+| Constraint | Recomputed result before the area refit |
 | --- | ---: |
 | Accepted W4 corner overlap | 0.449712 m |
 | New L1 corner overlap | 0.449712 m |
@@ -48,7 +50,7 @@ A roof or exterior wall edge and an interior partition need not occupy the same 
 
 The room, stair and hall polygons remain disjoint within numerical tolerance. Shaded wall bands are still drawing hypotheses within gross envelopes. The official LoD2 model supplies exterior faces, not paired inside/outside wall faces or verified wall construction.
 
-## What still does not fit
+## Unresolved fit at this historical stage
 
 R1–R3 are retained from the preceding build. Their original façade run is approximately **8.079 m**; the earlier hypothetical 0.20 m east-end extension gives a gross model span of approximately **8.279 m**, or about **2.76 m per bay**. The physical exterior façade is unchanged.
 
@@ -62,11 +64,11 @@ That is another **0.42 m across the R row** beyond the current candidate. This i
 
 The latest alignment change **does not create a new L-room packing problem**: seventeen living-zone witnesses still fit, with only R1–R3 unresolved. No bathroom, kitchen, service section or furniture layout has been invented to fill the remaining area.
 
-## Current room dimensions
+## Historical room dimensions — before the area refit
 
 Comparison: [the immediately preceding window/wall-face study](../data/source/house55-2og-stair-ratio-baseline.json), commit `448569d`. Values below are **study-axis bounding extents before walls**, not measured living dimensions. L's tiny source-parallel alignment changes these projected bounds by millimetres while retaining the nominal perpendicular bay width. Areas subtract holes.
 
-| Reference | Bounding width before → after (m) | Bounding depth after (m) | Gross area after (m²) | Living-zone test |
+| Reference | Width before → after alignment (m) | Pre-area depth (m) | Pre-area gross area (m²) | Historical living-zone test |
 | --- | ---: | ---: | ---: | --- |
 | A | 3.021 → 3.021 | 5.390 | 16.266 | Fits |
 | B | 3.016 → 3.016 | 5.394 | 16.264 | Fits |
@@ -91,14 +93,14 @@ Comparison: [the immediately preceding window/wall-face study](../data/source/ho
 
 Dashed rectangles in the drawing are mathematical packing witnesses, not actual room layouts or window-facing living areas. The audit records each witness and verifies containment. The approximately 5.40 m gross depth remains an earlier fitting prior, not a measurement; its original input vector and independent mean check are preserved.
 
-## Connectivity and consistency
+## Historical connectivity and consistency
 
 The top floor has **23 spaces and 21 door targets**: twenty rooms, two halls, one stairwell, twenty estimated room doors and the resident-marked west stairwell entry. Windows create no new access targets.
 
 - West hall connects to A–D, W1–W4, L1–L3 and the stairwell through their recorded entries.
 - East hall connects to E–G, R1–R3 and N1–N3. Its connection into the stairwell remains unconfirmed.
 
-| Diagnostic | Current result |
+| Diagnostic | Result before the area refit |
 | --- | ---: |
 | Gross separation between W and L | 2.633 m |
 | Gross separation between stairwell and R | 1.241 m |
@@ -110,11 +112,13 @@ The top floor has **23 spaces and 21 door targets**: twenty rooms, two halls, on
 
 The existing containment limits remain **0.2 mm / 0.001 m²**. Shared serialized corners avoid numerical slivers. All twenty room-approach probes and the west stairwell approach pass within their respective halls. These checks do not establish inter-hall connectivity or real clear circulation widths. Browser and interaction checks are recorded in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).
 
-## Sources and reproduction
+## Historical sources and current reproduction
 
 The exterior remains Bavaria LoD2 **`DEBY_LOD2_3166499`**, with an aligned raw-source extent around **49.43 × 24.19 m** and height **9.491 m**. These are enclosing dimensions, not a rectangular floor plan. The retained provisional top-floor plate is **561.339 m²** after the two resident-marked exclusions. Its annotated room region is **510.616 m²**; other section margins remain unassigned.
 
-[Provenance](../data/source/house55-2og-study-provenance.json) retains the latest annotations, the explicit R1-side clarification and the new `stairAlignment` stage. Earlier stages are retained as history. [The machine-readable audit](data/house55-dimension-audit.json) recomputes the overlap and ratio from actual source/study polygons rather than copying the generator's claimed dimensions.
+[Provenance](../data/source/house55-2og-study-provenance.json) retains these annotations, the explicit R1-side clarification and the `stairAlignment` stage. The frozen [pre-area candidate](../data/source/house55-2og-area-baseline.json) preserves the geometry described here. The machine-readable `house55-dimension-audit.json` and its general preview paths are regenerated for the current public data; they are not frozen copies of this historical report.
+
+The commands below now regenerate and audit the **current area-based candidate**, not the historical tables above. Use [HOUSE55-AREA-STUDY.md](HOUSE55-AREA-STUDY.md) for its dedicated audit and interpretation.
 
 ```sh
 node scripts/generate-house55-study.mjs /tmp/house55-study.json --write-study --write-provenance

@@ -1,8 +1,26 @@
 # Release checks
 
-Checked on 15 November 2026. Current results cover House 55's corrected overlap/stair alignment and refreshed lower-floor extrapolations. Earlier checks remain evidence for their named previous baselines.
+Updated on 15 November 2026. The area-based candidate below passed its build and browser checks. Earlier checks remain evidence for their named previous baselines.
 
-## Current release — overlap and stair alignment
+## Current candidate — area-based rooms and exterior measurements
+
+House 55 / 2. OG retains the twenty-room arrangement, 24 resident-located windows, matched W4/L1 overlap and confirmed quarter/three-quarter stair alignment. The new solve uses a conditional **16.4 m²** internal-envelope benchmark with explicit **0.30 m marked-end, 0.20 m ordinary exterior and 0.10 m shared-boundary allocations**. Four room banks receive inferred divider adjustments below 0.15 m; straight hall-facing boundaries expand until their area target or declared connector guard is reached. The previous common-depth fit is not the target.
+
+The saved [area audit](data/house55-area-audit.json) reports seventeen rooms at **16.393–16.407 m²** and R1–R3 at **14.730–14.743 m²**. R's northern connector retains a conditional **1.20 m** gap; forcing the benchmark would reduce it to about **0.551 m**. This guard is a modeling choice, not a legal clearance. The separate stairs-side gap and unknown east stairwell access are not resolved. The audit conserves the annotated region with zero polygon overlap and a rounding residual below **0.00002 m²**.
+
+The [current calculated report and exterior-dimension plan](HOUSE55-AREA-STUDY.md) describe the assumptions. The earlier [dimensional report](HOUSE55-DIMENSION-REFIT.md) and [preserved alignment image](preview/house55-stair-alignment.png) are explicitly historical. EG and 1. OG repeat the updated core as unverified extrapolations, with their own full source outlines and extra wings unassigned.
+
+- `npm test`: **118 passing tests**. Coverage includes conditional area reconstruction, shared-front/divider constraints, the four marked wall hypotheses, the capped R connector, the unchanged overlap/stair ratio, full source containment, door connections, lower-floor extrapolation, exterior dimension runs and label placement.
+- `npm run build`: passed, including the path-cache check. Production JavaScript is approximately **194 kB gzipped**; the existing advisory about a bundle over 500 kB uncompressed remains.
+- The independent Shapely area audit reconstructed offset-boundary intersections, verified seventeen conditional targets and the three retained R deficits, and checked zero polygon overlap and area conservation within **0.00002 m²**. The separate dimensional audit was regenerated against the same saved study and provenance hashes.
+- Isolated Firefox production-preview checks passed at **1440 × 1000**, **390 × 844** and **320 × 568**. Desktop showed nineteen exterior measurements; the 390 px phone showed thirteen. At 320 × 568, two long dimensions fit the complete view and four central runs appear after zooming. Crowded or off-screen runs intentionally hide. Visible dimension labels remain within the viewport and do not intercept door clicks.
+- Browser checks covered day/night views, R1's conditional area/shortfall card, the west stairwell doorway, all three floors' 23-space lists, lower-floor extrapolation notes, stack/collapse and hidden dimensions after leaving a floor. No application console errors, horizontal overflow or audio/video elements were observed.
+- Visually reviewed the [night floor](preview/house55-area-floor-night.png), [day floor](preview/house55-area-floor-day.png), [phone floor](preview/house55-area-phone.png), [R1 evidence card](preview/house55-area-r1-card.png) and [independent area plan](preview/house55-area-study.png). The drawing key links the current report and distinguishes shell-section lengths from apartment spans.
+- Official LoD2 exterior, campus JSON/GeoJSON, path cache, room-marker data and the empty approved-interior dataset match the preceding commit byte for byte. The complete lower-floor source outlines are retained; their shared-core study geometry is deliberately refreshed.
+
+Publication uses the existing public GitHub Pages workflow on `main`. These checks validate the implementation and conditional calculations, not measured apartment dimensions, usable roof area or an approved interior.
+
+## Previous baseline — overlap and stair alignment
 
 House 55 / 2. OG matches L1's overlap to W4's approximately **0.4497 m true perpendicular overlap**, replacing the previous arbitrary 0.20 m L offset while retaining nominal **2.94083 m gross bays**. The resident confirms that the extended `RoofSurface` 39 edge **3–4** divides the stairwell width **one quarter on the L3/west side and three quarters on the R1/east side**. The resulting approximately **1.78071 m gross stair width** remains a model dimension, not a measured clear width.
 

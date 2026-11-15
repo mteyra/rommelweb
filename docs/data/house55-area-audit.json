@@ -1,0 +1,444 @@
+{
+  "status": "Conditional area benchmark; all wall allowances and apartment depths remain unmeasured.",
+  "studySHA256": "25541ffaa3510d4daa4743e455e9c7063ce2d0ba686f9b716276b499507f4afd",
+  "provenanceSHA256": "95a6739294c1364f19b1076e470ba20d7a3200f21bdd79bd5ccf15ec0968c9e9",
+  "baselineSHA256": "868a6f93a7cde1cd09909c3b6e5009cc862c3035e4828d9b8fb578fb0cee4de8",
+  "parameters": {
+    "targetInternalAreaSquareMetres": 16.4,
+    "publishedAreaSource": "https://www.werkswelt.de/index.php?id=wohnanlage-campus-sud-i",
+    "publishedAverageDefinitionSource": "https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/760-campus-sued-i-englisch-2026.pdf",
+    "targetInterpretation": "Conditional internal-envelope benchmark, borrowed from the published 16.4m\u00b2 average. It is not proof of the rental area, clear area or individual room dimensions.",
+    "externalFacadeAllowanceMetres": 0.2,
+    "markedEndWallAllowanceMetres": 0.3,
+    "otherExternalEndAllowanceMetres": 0.2,
+    "allocationBoundaryHalfWallMetres": 0.1,
+    "recessBandMetres": 0.2,
+    "minimumConnectorClearStudyGuardMetres": 1.2,
+    "guardInterpretation": "Geometric study guard only, not a legal or accessibility-compliance claim.",
+    "internalPartitions": "Bathroom, kitchenette and other internal partition footprints are unknown and are not deducted. The internal envelope is not certified usable floor area."
+  },
+  "rooms": [
+    {
+      "room": "A",
+      "bank": "A",
+      "grossArea": 19.732853793343494,
+      "conditionalInternalArea": 16.400000000009765,
+      "removedPerimeterAllocation": 3.3328537933337294,
+      "target": 16.4,
+      "shortfall": -9.766409903022577e-12,
+      "targetMet": true,
+      "grossDepth": 6.276350952857337,
+      "internalStudyAxisExtents": [
+        2.7468455529012816,
+        5.978173607515689
+      ]
+    },
+    {
+      "room": "B",
+      "bank": "A",
+      "grossArea": 18.478556526579997,
+      "conditionalInternalArea": 16.399999999997995,
+      "removedPerimeterAllocation": 2.078556526582002,
+      "target": 16.4,
+      "shortfall": 2.0037305148434825e-12,
+      "targetMet": true,
+      "grossDepth": 6.2801072651248875,
+      "internalStudyAxisExtents": [
+        2.7424236639100332,
+        5.9818037231277685
+      ]
+    },
+    {
+      "room": "C",
+      "bank": "A",
+      "grossArea": 18.478862451351993,
+      "conditionalInternalArea": 16.400000000008774,
+      "removedPerimeterAllocation": 2.0788624513432197,
+      "target": 16.4,
+      "shortfall": -8.775202786637237e-12,
+      "targetMet": true,
+      "grossDepth": 6.283736420082641,
+      "internalStudyAxisExtents": [
+        2.740760492504886,
+        5.985431787172942
+      ]
+    },
+    {
+      "room": "D",
+      "bank": "A",
+      "grossArea": 19.108332409535016,
+      "conditionalInternalArea": 16.39999999999992,
+      "removedPerimeterAllocation": 2.708332409535096,
+      "target": 16.4,
+      "shortfall": 7.815970093361102e-14,
+      "targetMet": true,
+      "grossDepth": 6.2874237159040485,
+      "internalStudyAxisExtents": [
+        2.7414299652123173,
+        5.98906067663626
+      ]
+    },
+    {
+      "room": "W1",
+      "bank": "W",
+      "grossArea": 19.732510642542998,
+      "conditionalInternalArea": 16.40000000001016,
+      "removedPerimeterAllocation": 3.3325106425328386,
+      "target": 16.4,
+      "shortfall": -1.0160761121369433e-11,
+      "targetMet": true,
+      "grossDepth": 6.27096533556219,
+      "internalStudyAxisExtents": [
+        5.972110201314528,
+        2.7566745631675666
+      ]
+    },
+    {
+      "room": "W2",
+      "bank": "W",
+      "grossArea": 18.477983115232497,
+      "conditionalInternalArea": 16.400000000001345,
+      "removedPerimeterAllocation": 2.0779831152311523,
+      "target": 16.4,
+      "shortfall": -1.3464784842653899e-12,
+      "targetMet": true,
+      "grossDepth": 6.268256077480484,
+      "internalStudyAxisExtents": [
+        5.969487802436419,
+        2.755020189213755
+      ]
+    },
+    {
+      "room": "W3",
+      "bank": "W",
+      "grossArea": 18.477900481686,
+      "conditionalInternalArea": 16.399999999989436,
+      "removedPerimeterAllocation": 2.077900481696563,
+      "target": 16.4,
+      "shortfall": 1.056221776707389e-11,
+      "targetMet": true,
+      "grossDepth": 6.265634754836434,
+      "internalStudyAxisExtents": [
+        5.96686433083344,
+        2.7533676201734187
+      ]
+    },
+    {
+      "room": "W4",
+      "bank": "W",
+      "grossArea": 18.478260680381496,
+      "conditionalInternalArea": 16.400000000018025,
+      "removedPerimeterAllocation": 2.0782606803634707,
+      "target": 16.4,
+      "shortfall": -1.8026469206233742e-11,
+      "targetMet": true,
+      "grossDepth": 6.263012169886656,
+      "internalStudyAxisExtents": [
+        5.964239784578795,
+        2.7517166687714676
+      ]
+    },
+    {
+      "room": "E",
+      "bank": "E",
+      "grossArea": 18.473890329092505,
+      "conditionalInternalArea": 16.400000000009904,
+      "removedPerimeterAllocation": 2.0738903290826016,
+      "target": 16.4,
+      "shortfall": -9.904965736495797e-12,
+      "targetMet": true,
+      "grossDepth": 6.199833321723283,
+      "internalStudyAxisExtents": [
+        5.90096807869757,
+        2.779739324749278
+      ]
+    },
+    {
+      "room": "F",
+      "bank": "E",
+      "grossArea": 18.47403118119,
+      "conditionalInternalArea": 16.400000000000006,
+      "removedPerimeterAllocation": 2.0740311811899943,
+      "target": 16.4,
+      "shortfall": -7.105427357601002e-15,
+      "targetMet": true,
+      "grossDepth": 6.202261971853407,
+      "internalStudyAxisExtents": [
+        5.903396277382257,
+        2.7785958920634384
+      ]
+    },
+    {
+      "room": "G",
+      "bank": "E",
+      "grossArea": 19.715737496433483,
+      "conditionalInternalArea": 16.399999999995014,
+      "removedPerimeterAllocation": 3.3157374964384694,
+      "target": 16.4,
+      "shortfall": 4.984457291357103e-12,
+      "targetMet": true,
+      "grossDepth": 6.204769330451654,
+      "internalStudyAxisExtents": [
+        5.905826383244445,
+        2.780933444756414
+      ]
+    },
+    {
+      "room": "N1",
+      "bank": "N",
+      "grossArea": 19.060458063215986,
+      "conditionalInternalArea": 16.40000000000204,
+      "removedPerimeterAllocation": 2.6604580632139445,
+      "target": 16.4,
+      "shortfall": -2.042810365310288e-12,
+      "targetMet": true,
+      "grossDepth": 5.981493188165393,
+      "internalStudyAxisExtents": [
+        2.889068668136364,
+        5.684243043507148
+      ]
+    },
+    {
+      "room": "N2",
+      "bank": "N",
+      "grossArea": 18.461976781366012,
+      "conditionalInternalArea": 16.399999999989934,
+      "removedPerimeterAllocation": 2.061976781376078,
+      "target": 16.4,
+      "shortfall": 1.0064837852041819e-11,
+      "targetMet": true,
+      "grossDepth": 5.975306554455784,
+      "internalStudyAxisExtents": [
+        2.889706066740061,
+        5.678165238329208
+      ]
+    },
+    {
+      "room": "N3",
+      "bank": "N",
+      "grossArea": 19.65465532004796,
+      "conditionalInternalArea": 16.400000000009303,
+      "removedPerimeterAllocation": 3.2546553200386583,
+      "target": 16.4,
+      "shortfall": -9.304557124778512e-12,
+      "targetMet": true,
+      "grossDepth": 5.969015313055726,
+      "internalStudyAxisExtents": [
+        2.8950129877410085,
+        5.672076489214428
+      ]
+    },
+    {
+      "room": "L1",
+      "bank": "L",
+      "grossArea": 18.4868509307885,
+      "conditionalInternalArea": 16.406979245475032,
+      "removedPerimeterAllocation": 2.079871685313467,
+      "target": 16.4,
+      "shortfall": -0.00697924547503348,
+      "targetMet": true,
+      "grossDepth": 6.286129490115239,
+      "internalStudyAxisExtents": [
+        2.7442846457961343,
+        5.987321074561524
+      ]
+    },
+    {
+      "room": "L2",
+      "bank": "L",
+      "grossArea": 18.47876294663901,
+      "conditionalInternalArea": 16.399999833775357,
+      "removedPerimeterAllocation": 2.0787631128636512,
+      "target": 16.4,
+      "shortfall": 1.662246411626711e-07,
+      "targetMet": true,
+      "grossDepth": 6.283583761136917,
+      "internalStudyAxisExtents": [
+        2.7442832322567385,
+        5.98477509235851
+      ]
+    },
+    {
+      "room": "L3",
+      "bank": "L",
+      "grossArea": 18.471124225793005,
+      "conditionalInternalArea": 16.393020920750946,
+      "removedPerimeterAllocation": 2.0781033050420596,
+      "target": 16.4,
+      "shortfall": 0.006979079249052944,
+      "targetMet": true,
+      "grossDepth": 6.281037694502224,
+      "internalStudyAxisExtents": [
+        2.7442813814100333,
+        5.9822291106015175
+      ]
+    },
+    {
+      "room": "R1",
+      "bank": "R",
+      "grossArea": 16.708762436024006,
+      "conditionalInternalArea": 14.730295830715782,
+      "removedPerimeterAllocation": 1.978466605308224,
+      "target": 16.4,
+      "shortfall": 1.6697041692842163,
+      "targetMet": false,
+      "grossDepth": 6.051090277928427,
+      "internalStudyAxisExtents": [
+        2.562694028087755,
+        5.7522346934256605
+      ]
+    },
+    {
+      "room": "R2",
+      "bank": "R",
+      "grossArea": 16.715566831933504,
+      "conditionalInternalArea": 14.736609484949087,
+      "removedPerimeterAllocation": 1.9789573469844175,
+      "target": 16.4,
+      "shortfall": 1.6633905150509118,
+      "targetMet": false,
+      "grossDepth": 6.053556266271972,
+      "internalStudyAxisExtents": [
+        2.5641463419855697,
+        5.754698110334993
+      ]
+    },
+    {
+      "room": "R3",
+      "bank": "R",
+      "grossArea": 16.722371981108996,
+      "conditionalInternalArea": 14.742920907947695,
+      "removedPerimeterAllocation": 1.9794510731613002,
+      "target": 16.4,
+      "shortfall": 1.657079092052303,
+      "targetMet": false,
+      "grossDepth": 6.0560222234871866,
+      "internalStudyAxisExtents": [
+        2.566925092886784,
+        5.757161527091054
+      ]
+    }
+  ],
+  "exteriorMeasurements": [
+    {
+      "roofVertices": [
+        23,
+        0
+      ],
+      "lengthMetres": 12.065928435060437,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        22,
+        23
+      ],
+      "lengthMetres": 8.49355785286708,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        20,
+        21
+      ],
+      "lengthMetres": 11.550292204095964,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        19,
+        20
+      ],
+      "lengthMetres": 8.476915004882377,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        18,
+        17
+      ],
+      "lengthMetres": 10.447011534405425,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        2,
+        3
+      ],
+      "lengthMetres": 8.760782213935007,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        6,
+        7
+      ],
+      "lengthMetres": 8.079456479244135,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        8,
+        9
+      ],
+      "lengthMetres": 8.458232675919952,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        9,
+        10
+      ],
+      "lengthMetres": 9.14047137734154,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        12,
+        13
+      ],
+      "lengthMetres": 9.564158196098596,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        11,
+        12
+      ],
+      "lengthMetres": 8.497856494434346,
+      "meaning": "Model exterior segment, not a clear internal span."
+    },
+    {
+      "roofVertices": [
+        15,
+        16
+      ],
+      "lengthMetres": 8.98948763834736,
+      "meaning": "Model exterior segment, not a clear internal span."
+    }
+  ],
+  "rConnector": {
+    "grossGap": 1.4999996149698163,
+    "conditionalClearGap": 1.1999996149698162,
+    "extraDepthToForceTarget": 0.6490395524489707,
+    "conditionalClearGapIfTargetForced": 0.5509600625208455,
+    "meaning": "1.20m is a declared study guard. No building-code or real clearance finding."
+  },
+  "areaBudget": {
+    "fixedAnnotationRegion": 510.61615899550134,
+    "grossRoomsBefore": 322.72486890955446,
+    "grossRoomsAfter": 370.38944862428644,
+    "conditionalInternalEnvelopeTotal": 323.0098262236555,
+    "hallRemainderBefore": 173.91455112274247,
+    "hallRemainderAfter": 126.249534517503,
+    "stairArea": 13.977191404534498,
+    "allSpaceOverlap": 0.0,
+    "areaConservationResidual": 1.555082263848817e-05
+  },
+  "limits": [
+    "16.4m\u00b2 is a published apartment-category average, used here as a conditional internal-envelope target.",
+    "Bathroom/service partition areas are unknown and are not deducted from the internal envelope.",
+    "Room count and relative placements do not measure bank frontage, wall thickness or clear corridor widths.",
+    "Longer rooms cannot establish whether the narrow R frontages match the approximate 2.70m living-zone example."
+  ]
+}

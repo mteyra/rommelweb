@@ -18,7 +18,7 @@ export const roomReferences = {
         label: 'Open the apartment drawing',
       },
     ],
-    categories: 'Single category: 16.4 m². Double-share category: 20.2 m².',
+    categories: 'Average single-apartment category, with its own bathroom and kitchenette: 16.4 m². Average per-place double-share category: 20.2 m².',
     operatorUrl: 'https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/760-campus-sued-i-englisch-2026.pdf',
   },
   II: {

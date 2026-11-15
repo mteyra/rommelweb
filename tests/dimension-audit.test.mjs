@@ -63,10 +63,35 @@ test('published dimension evidence matches the current model and its living-zone
   assert.equal(report.wallFaceHypothesis.assumedOffset, 0.20);
   assert.ok(report.wallFaceHypothesis.remainingNecessaryExtensionBeyondCandidate > 0.40, 'the trial offset must not be reported as solving R');
   assert.ok(report.wallFaceHypothesis.westW4PastAssumedInnerFace > 0.24, 'the historical 0.20m band was short of the accepted W4 overlap');
-  assert.equal(report.topology.nonLRoomPolygonsUnchanged, true);
-  assert.equal(report.topology.retainedRPolygonsUnchanged, true);
-  assert.equal(report.topology.nonLRRoomPolygonsUnchanged, true);
+  assert.equal(report.shapeSimilarity.commonDepthVerification.supersededByAreaStudy, true,
+    'the area study must not validate new depths against the former fitted depth');
+  assert.equal(report.areaStudy.parameters.targetInternalAreaSquareMetres, 16.4);
+  assert.equal(report.topology.nonLRoomPolygonsUnchanged, false);
+  assert.equal(report.topology.retainedRPolygonsUnchanged, false);
+  assert.equal(report.topology.nonLRRoomPolygonsUnchanged, false);
   assert.ok(report.topology.allSpaceOverlapArea < 1e-6, 'room, stair and hall polygons must share exact serialized edges');
+});
+
+test('area evidence is current and exposes the R shortfall instead of forcing a fit', async () => {
+  const [auditBytes, studyBytes, provenanceBytes] = await Promise.all([
+    read('docs/data/house55-area-audit.json'), read('public/data/interior-studies.json'),
+    read('data/source/house55-2og-study-provenance.json'),
+  ]);
+  const audit = JSON.parse(auditBytes);
+  assert.equal(audit.studySHA256, digest(studyBytes));
+  assert.equal(audit.provenanceSHA256, digest(provenanceBytes));
+  assert.equal(audit.rooms.length, 20);
+  assert.equal(audit.rooms.filter(room => room.targetMet).length, 17);
+  assert.deepEqual(audit.rooms.filter(room => !room.targetMet).map(room => room.room), ['R1', 'R2', 'R3']);
+  for (const room of audit.rooms) {
+    assert.ok(room.removedPerimeterAllocation > 0);
+    assert.ok(Math.abs(room.grossArea - room.conditionalInternalArea - room.removedPerimeterAllocation) < 1e-6);
+  }
+  assert.ok(audit.rConnector.conditionalClearGap >= 1.2 - 1e-5);
+  assert.ok(audit.rConnector.conditionalClearGapIfTargetForced < 0.56);
+  assert.ok(audit.areaBudget.hallRemainderAfter < audit.areaBudget.hallRemainderBefore);
+  assert.ok(audit.areaBudget.allSpaceOverlap < 1e-6);
+  assert.ok(Math.abs(audit.areaBudget.areaConservationResidual) < 0.001);
 });
 
 test('the alignment evidence measures equal W4/L1 overlap and the clarified quarter/three-quarter staircase', async () => {
