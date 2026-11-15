@@ -1,4 +1,6 @@
-# Older houses · fitted interior studies
+# Older houses · historical fitted interior studies
+
+**Historical revision.** The live studies now use [fixed module placements within the preserved outlines](OLD-HOUSES-MODULE-LAYOUT.md). The variable room dimensions and category-average fitting below describe the earlier model; they do not define the current layouts. House 55 has since received its own three resident-approved module floors.
 
 15 November 2026. The live map contains the official exterior models of all eleven houses. This revision adds provisional interiors to all three floors of the five older houses. These are **partial studies**, not measured floor plans or a claim that the complete dormitory has been reconstructed.
 

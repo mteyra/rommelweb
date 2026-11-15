@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
-import {getDisplayLevel, getLevelWindows, isIndependentLayout} from '../src/interior-studies.js';
+import {getDisplayLevel, getLevelWindows, isIndependentLayout, isFittedModuleLayout, isModuleLayout} from '../src/interior-studies.js';
 import {studyRoomMeasurements} from '../src/study-measurements.js';
 import {escapeHTML as esc, floorName} from '../src/data.js';
 
@@ -30,7 +30,7 @@ const floor = (index, {independent = false, shared = false} = {}) => ({
 const levels = mixed => [floor(0), floor(1, {independent: mixed, shared: mixed}), floor(2, {independent: true})];
 const allModuleLevels = () => [floor(0, {independent: true, shared: true}), ...levels(true).slice(1)];
 
-function ui(levelRecords, selectedFloor) {
+function ui(levelRecords, selectedFloor, selectedHouse = '55') {
   const elements = new Map(), conceptCalls = [];
   const element = selector => {
     if (!elements.has(selector)) elements.set(selector, {
@@ -41,18 +41,18 @@ function ui(levelRecords, selectedFloor) {
     });
     return elements.get(selector);
   };
-  const fixture = {levelRecords, selectedFloor};
+  const fixture = {levelRecords, selectedFloor, selectedHouse};
   const document = {
     body: element('body'), activeElement: element('active'),
     querySelector: element, querySelectorAll: () => [], createElement: () => element('created'),
   };
   const controls = runInNewContext(`${source}
-    studies = {schemaVersion: 1, buildings: {'55': {levels: fixture.levelRecords}}};
+    studies = {schemaVersion: 1, buildings: {[fixture.selectedHouse]: {levels: fixture.levelRecords}}};
     interiors = {schemaVersion: 1, buildings: {}};
     lod2 = {buildings: [], metadata: {url: 'https://example.test/source'}};
-    Object.assign(state, {selected: '55', floor: fixture.selectedFloor, exploded: true});
+    Object.assign(state, {selected: fixture.selectedHouse, floor: fixture.selectedFloor, exploded: true});
     ({renderFloor, spaceDialog, accuracyDialog});
-  `, {document, fixture, console, getDisplayLevel, getLevelWindows, isIndependentLayout,
+  `, {document, fixture, console, getDisplayLevel, getLevelWindows, isIndependentLayout, isFittedModuleLayout, isModuleLayout,
     studyRoomMeasurements, esc, floorName,
     apartmentConcept: (...args) => {conceptCalls.push(args); return null;}});
   return {...controls, element, conceptCalls};
@@ -72,6 +72,33 @@ test('shared apartment cards display whole-envelope dimensions and offer no sing
   assert.doesNotMatch(card, /Clear room dimensions|16\.20 m²|3\.10 m module =/);
   assert.equal(view.conceptCalls.length, 0);
   assert.equal(view.element('#modal-body .modal-actions').children.length, 0);
+});
+
+test('other-house fitted modules show exact room sizes within a provisional, unchanged-outline study', () => {
+  const records = allModuleLevels().map(level => ({...level, layoutBasis: 'fitted-module-layout'}));
+  const view = ui(records, 0, '51');
+  view.renderFloor();
+  assert.equal(view.element('#floor-stage-note').textContent, 'Provisional module placement · original outline');
+  const detail = view.element('#floor-detail-content').innerHTML;
+  assert.match(detail, /original outline retained/);
+  assert.match(detail, /unused gray space remains unassigned/);
+  assert.match(detail, /Exterior \/ m/);
+  assert.match(detail, /OLD-HOUSES-MODULE-LAYOUT\.md/);
+  assert.doesNotMatch(detail, /HOUSE55-MODULE-LAYOUT\.md|Layout \/ m|Independent floor layout/);
+  view.spaceDialog({house: '51', floor: 0, spaceId: 'room-0'});
+  const single = view.element('#modal-body').innerHTML;
+  assert.match(single, /Provisional placement/);
+  assert.match(single, /2\.70 × 6\.00 m · 16\.20 m² clear polygon area/);
+  assert.match(single, /this house’s existing outline using the House 55 module/);
+  view.spaceDialog({house: '51', floor: 0, spaceId: 'shared-0'});
+  const shared = view.element('#modal-body').innerHTML;
+  assert.match(shared, /6\.20 × 7\.40 m span · 45\.88 m² gross polygon area/);
+  assert.match(shared, /proposed whole shared-apartment envelope/);
+  assert.doesNotMatch(shared, /Clear room dimensions|Independent layout/);
+  assert.equal(view.conceptCalls.length, 1, 'only the single room offers a furniture concept');
+  view.accuracyDialog();
+  assert.match(view.element('#modal-body').innerHTML, /Houses 51 use provisional modules fitted within their original outlines/);
+  assert.doesNotMatch(view.element('#modal-body').innerHTML, /Other older houses retain their earlier template studies/);
 });
 
 test('publishing a mixed first floor does not change top-floor controls, evidence or single-room card output', () => {

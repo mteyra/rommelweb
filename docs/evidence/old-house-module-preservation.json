@@ -1,0 +1,449 @@
+{
+  "baseCommit": "eb87e1e963f564f7f18751dc6429a35b6ef3fbec",
+  "immutableFiles": {
+    "public/data/campus.json": {
+      "sha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "unchanged": true
+    },
+    "public/data/campus.geojson": {
+      "sha256": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
+      "unchanged": true
+    },
+    "public/data/lod2.json": {
+      "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "unchanged": true
+    },
+    "public/data/path-network.json": {
+      "sha256": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d",
+      "unchanged": true
+    },
+    "public/data/room-markers.json": {
+      "sha256": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826",
+      "unchanged": true
+    },
+    "public/data/interiors.json": {
+      "sha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "unchanged": true
+    },
+    "public/data/house55-module-layout.json": {
+      "sha256": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165",
+      "unchanged": true
+    },
+    "public/data/house55-first-floor-layout.json": {
+      "sha256": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3",
+      "unchanged": true
+    },
+    "public/data/house55-ground-floor-layout.json": {
+      "sha256": "5d75a54fd62c30b55dd1a8ff0665a4ace55a27ecc0e38bc983cbed224e7e43ed",
+      "unchanged": true
+    },
+    "public/house55-layout/shell.json": {
+      "sha256": "fb0765bea42826441098f7bd1b6b05e599320f4f3f91045fe85ff52e91ce480d",
+      "unchanged": true
+    },
+    "public/house55-study/study.js": {
+      "sha256": "6929b1389be4d912f2ea790980d57ac320f14f1d1ec0605b96021f01faf3e3bf",
+      "unchanged": true
+    },
+    "public/house55-layout/layout.js": {
+      "sha256": "d0e4789a73d512138d7b62a0dc93c934519878f0e0f3f9ae1e3d9462bd48a97d",
+      "unchanged": true
+    },
+    "data/source/old-house-study-provenance.json": {
+      "sha256": "c3d6cf5e0258376abbd9d4b5dae15560e571096d1c5df41603825f2aec6e0e6a",
+      "unchanged": true
+    },
+    "docs/evidence/old-house-studies-audit.json": {
+      "sha256": "7c77ecb85897ae20a63e2e925fe56119ca84d27958f8f26626de4b7f2bdee1cc",
+      "unchanged": true
+    }
+  },
+  "house55Unchanged": true,
+  "targetFloorBoundaries": [
+    {
+      "house": "51",
+      "floor": 0,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "e8ab931e8abfc0e30bae49251ad856f9ff3e87657762cd70c6aa5a309d6e86d0"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 14,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "51",
+      "floor": 1,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "1809e5dca87b855a6238860127bc4d305eb8b106ef37e0ecb6cbdc2c3240b411"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 14,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "51",
+      "floor": 2,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "b622ad905c109f77a1dd670dd7c9d2f28c22ae054c9ecda0729e1655fe003787"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 19,
+        "shared": 0,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "53",
+      "floor": 0,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "56e1274afe00e920e1a2ca8be4057441df82f8d871a2f8776d3fc6a8dc0ca8d3"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 14,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "53",
+      "floor": 1,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "c283dc144defc1b709253102348db825f91f2a4d6e994671a30bbd259f694152"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 14,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "53",
+      "floor": 2,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "510164e48abed51da5ea941ddfacdb85232545c389f5e465f8d0f73ba0af5d6e"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 19,
+        "shared": 0,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "57",
+      "floor": 0,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "d1a0d6d0eb199a3f8f78d2a9e39490f30f652df1de793564b0da030074e65da3"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 15,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "57",
+      "floor": 1,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "e44db44f1802c4d0480be9a5c7cfbd7d33eb0a10c6f6cfa922b7a54da1d403a1"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 15,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "57",
+      "floor": 2,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "5f5a07e208c308f5e2e371833fdcdb151469354417fce68f6716538d7a24f2b4"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 20,
+        "shared": 0,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "59",
+      "floor": 0,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "f4197fec60acecb24eb0222b218b643f2f7c37747afec28bb14fc0be3a056785"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 15,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "59",
+      "floor": 1,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "e9d4c734bd9fb14ae73460ce77facf95e1c4e151eaf81e3c237f24b42a6f72ad"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 15,
+        "shared": 4,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    },
+    {
+      "house": "59",
+      "floor": 2,
+      "floorOutline": {
+        "unchanged": true,
+        "sha256": "e5a62cbd84d3dc0c500a88529d5de8520ab64816eaec645053e8cdbf7be0f11d"
+      },
+      "windows": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "windowCoverage": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "excludedAreas": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "sketchBoundaries": {
+        "unchanged": true,
+        "sha256": "f35a0cf0ef896a2236d8419cac8a2d85bfb33d12859af555f9cf7825dc785109"
+      },
+      "layoutBasis": "fitted-module-layout",
+      "counts": {
+        "room": 20,
+        "shared": 0,
+        "corridor": 2,
+        "stairs": 1,
+        "service": 0
+      }
+    }
+  ],
+  "house55RecordSha256": "47ec936230d8131de287b28f091c09a4fb69befcd19c23d9a2feea399e24a09d"
+}

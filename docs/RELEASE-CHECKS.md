@@ -2,7 +2,19 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — House 55 shared pairs and common enclosures
+## Current revision — other old houses inside fixed outlines
+
+Houses **51, 53, 57 and 59** now have provisional module placements across **EG, 1. OG and 2. OG**, using House 55’s fixed room dimensions. Houses 51/53 have **19 singles upstairs** and **14 singles plus four shared envelopes** on each lower floor. Houses 57/59 have **20 singles upstairs** and **15 singles plus four shared envelopes** below. Excess floor remains gray and unassigned; the [placement report](OLD-HOUSES-MODULE-LAYOUT.md) records the per-floor counts and remainder.
+
+- All **twelve existing outlines** are preserved exactly. The [preservation receipt](evidence/old-house-module-preservation.json) also verifies the complete House 55 record, its three canonical plans, standalone study and sandbox, source observations, official exterior/campus geometry and historical evidence against `eb87e1e`.
+- Fixed modules remain **2.70 × 6.00 m clear**, with **3.10 m pitch**, two **0.20 m side allocations**, **1.40 m halls**, and **6.20 × 7.40 m gross shared envelopes**. Whole banks translate rigidly; no apartment is stretched or clipped. Lower-floor layouts repeat with vertically aligned stairs.
+- Independent tests verify reproducible, nonmutating generation, complete containment, non-overlap, exact gray remainder, full-width hallway junctions and one **0.90 m entrance** with a route to the stairs for every apartment.
+- **228 tests pass**: the full existing suite of 221 plus seven new geometry tests. The production build and unchanged path-cache check pass; the existing bundle-size advisory remains.
+- Isolated Firefox checks cover all twelve floors, **44 single/shared cards**, both themes, **1440 × 1000**, **390 × 844** and **320 × 568** views, and the three preserved House 55 floors. Provisional labels, dimensions, evidence links and floor controls pass, without horizontal overflow or application console errors. See the [browser receipt](evidence/old-house-module-browser-checks.json).
+
+Reviewed examples: [House 51 top floor](preview/old-house-module-51-2-night.png), [House 53 ground floor](preview/old-house-module-53-0-night.png), [House 57 first floor](preview/old-house-module-57-1-night.png), [House 59 top floor](preview/old-house-module-59-2-night.png), [phone](preview/old-house-module-59-2-phone-320.png) and [shared envelope](preview/old-house-module-51-eg-shared-card.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — House 55 shared pairs and common enclosures
 
 Both **1. OG and EG** now contain **16 singles and four shared apartments**. The marked N3–N4 and G–H pairs each form one **6.20 × 7.40 m** gross envelope with two retained windows and one entrance. Their former room dividers and the hallway portions inside the new envelopes are removed.
 

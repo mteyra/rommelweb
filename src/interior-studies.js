@@ -5,9 +5,11 @@ const CONFIDENCE = new Set(['sketch', 'estimated']);
 const fail = (path, message) => { throw new Error(`Interior study ${path}: ${message}`); };
 
 export const isIndependentLayout = level => level?.layoutBasis === 'resident-module-layout';
+export const isFittedModuleLayout = level => level?.layoutBasis === 'fitted-module-layout';
+export const isModuleLayout = level => isIndependentLayout(level) || isFittedModuleLayout(level);
 
-/** Folded façades retain source windows; independent floor layouts use their own openings. */
-export const getLevelWindows = level => (isIndependentLayout(level) ? level.layoutWindows : level?.windows) || [];
+/** Folded façades retain source windows; module layouts use separate schematic openings. */
+export const getLevelWindows = level => (isModuleLayout(level) ? level.layoutWindows : level?.windows) || [];
 
 function object(value, path, fields) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) fail(path, 'must be an object');
@@ -102,9 +104,9 @@ export function validateInteriorStudies(studies, campus, lod2) {
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
       object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands', 'dimensionGuides', 'layoutBasis', 'layoutWindows']);
-      if (level.layoutBasis !== undefined && !isIndependentLayout(level)) fail(`${lp}.layoutBasis`, 'must identify the resident-module-layout basis');
-      if (level.layoutWindows !== undefined && (!isIndependentLayout(level) || !Array.isArray(level.layoutWindows))) {
-        fail(`${lp}.layoutWindows`, 'requires an independent module layout and an array');
+      if (level.layoutBasis !== undefined && !isModuleLayout(level)) fail(`${lp}.layoutBasis`, 'must identify the resident-module-layout or fitted-module-layout basis');
+      if (level.layoutWindows !== undefined && (!isModuleLayout(level) || !Array.isArray(level.layoutWindows))) {
+        fail(`${lp}.layoutWindows`, 'requires a module layout and an array');
       }
       if (!Number.isInteger(level.index) || level.index < 0 || level.index >= mapped.levels || indexes.has(level.index)) fail(`${lp}.index`, 'must identify a unique existing floor');
       indexes.add(level.index);
@@ -237,9 +239,9 @@ export function validateInteriorStudies(studies, campus, lod2) {
           if (!wallEdges || !wallEdges.some(([a, b]) => window.segment.every(point => pointOnStudySegment(a, b, point)))) {
             fail(wp, 'window must lie on its referenced source exterior wall in plan');
           }
-          // These records describe the retained folded façade, not the newly
-          // arranged rooms or its independently generated floor outline.
-          if (isIndependentLayout(level)) {
+          // These records describe the retained folded façade, separately from
+          // the newly arranged rooms and their schematic openings.
+          if (isModuleLayout(level)) {
             if (window.spaceId !== undefined && !level.spaces.some(space => space.id === window.spaceId)) fail(wp, 'source window must reference a known study space');
             continue;
           }
@@ -292,7 +294,8 @@ export function studyFloorSection(section, level) {
   if (!level?.isStudy) return section;
   const polygons = level.floorOutline.map(polygon => ({...polygon, holes: polygon.holes || []}));
   return {...section, polygons, area: polygons.reduce((sum, polygon) => sum + ringArea(polygon.outer) - (polygon.holes || []).reduce((area, hole) => area + ringArea(hole), 0), 0),
-    sourceStatus: isIndependentLayout(level) ? 'independent-module-layout-outline' : 'resident-sketch-floor-outline', outlineSource: level.source};
+    sourceStatus: isIndependentLayout(level) ? 'independent-module-layout-outline'
+      : isFittedModuleLayout(level) ? 'fixed-source-outline-module-study' : 'resident-sketch-floor-outline', outlineSource: level.source};
 }
 
 /** Orient the drawing to the building axes without rotating or rescaling geometry. */
