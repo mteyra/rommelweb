@@ -3,19 +3,20 @@
   "units": "metres; areas in square metres",
   "residentWorkingHypothesis": {
     "statement": "All top-floor apartments are single rooms, generally similar in size, with dimensional differences described as about a hand length.",
-    "meaning": "A repeated single-apartment type with small dimensional variation is the working hypothesis. Approximately 0.20m is a modeling tolerance, not a measured hand length or apartment dimension."
+    "meaning": "A repeated single-apartment type with small dimensional variation is a qualitative prior. A hand length is not converted into a measured dimensional tolerance.",
+    "latestCorrection": "L starts at the source exterior elbow. The green door enters the stairwell from the west hallway. A narrower stairwell near half one L bay is a provisional interpretation; the eastern connection remains unconfirmed."
   },
   "input": {
     "path": "public/data/interior-studies.json",
-    "sha256": "10a301c752b34409cb8bd99d45cccf81f18b5b0fd555c9d54530ae6724ce85e9"
+    "sha256": "d58cf2ad2faa8d8ea348485e21b188a89b805f921a2c497fc6dcd6cc164b3993"
   },
   "baseline": {
-    "path": "data/source/house55-2og-sketch-baseline.json",
-    "sha256": "accdfa4f54f719e96f001cc23235f6ee24d32105ea1c15c6838c1161e720cee6"
+    "path": "data/source/house55-2og-dimension-baseline.json",
+    "sha256": "43b7917c18c3734a86992403083e08c212e552fc776c4fea6c5eb21eb2a2a3c1"
   },
   "sourceSHA256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
   "rawSourceSHA256": "b9a84843ec4074d4d505673c3fc78da194737e410c2b7727cc1a236b318bfef2",
-  "provenanceSHA256": "0c5958d12defcc1dfd7fbb3b6769155a9c6a9578131b653abd2e0570bab9c844",
+  "provenanceSHA256": "8103367c5439d4c586639b3bcdf09398c38b986535e7cf8d2b9d5f64246286e1",
   "studyAxes": {
     "right": [
       0.6759509953291936,
@@ -215,21 +216,21 @@
       },
       {
         "label": "L1",
-        "grossWidth": 3.0000007338306025,
-        "grossDepth": 5.3980751577368515,
-        "grossArea": 16.190330704224
+        "grossWidth": 2.9408303245297813,
+        "grossDepth": 5.396680226865675,
+        "grossArea": 15.866976255554
       },
       {
         "label": "L2",
-        "grossWidth": 3.000000304861701,
-        "grossDepth": 5.395477672047738,
-        "grossArea": 16.182537272432995
+        "grossWidth": 2.9408298505641417,
+        "grossDepth": 5.394134828400374,
+        "grossArea": 15.859486515032499
       },
       {
         "label": "L3",
-        "grossWidth": 3.0000002158681545,
-        "grossDepth": 5.39288086230962,
-        "grossArea": 16.174746842658003
+        "grossWidth": 2.9408303245297827,
+        "grossDepth": 5.391484518540874,
+        "grossArea": 15.8516208837375
       },
       {
         "label": "N1",
@@ -251,7 +252,7 @@
       }
     ],
     "grossWidthRange": [
-      2.9999997579013558,
+      2.9408298505641417,
       3.192718363308913
     ],
     "grossDepthRange": [
@@ -259,7 +260,7 @@
       5.4017597716120305
     ],
     "grossAreaRange": [
-      16.163524808600002,
+      15.8516208837375,
       17.223664033039995
     ],
     "commonDepthVerification": {
@@ -478,11 +479,15 @@
         "A\u2013D": 3.808547344164026e-08,
         "E\u2013G": 7.85825378102345e-08,
         "W1\u2013W4": 2.6831878230382245e-07,
-        "L1\u2013L3": 4.458892419734184e-07,
+        "L1\u2013L3": -0.00137759353985345,
         "N1\u2013N3": -7.807277047078287e-08
       },
+      "laterCorrectedGroups": [
+        "L1\u2013L3"
+      ],
+      "laterCorrectionMeaning": "The later L alignment follows source corners and retains its fitted south boundary. Its small source-skew depth change is reported explicitly rather than hidden by widening the historical fit tolerance.",
       "serializationComparisonTolerance": 1e-05,
-      "method": "The arithmetic mean minimizes sum_i (D - priorDepth_i)^2. Five source-clipped group mean depths are independently checked against D.",
+      "method": "The arithmetic mean minimizes sum_i (D - priorDepth_i)^2. Unchanged group mean depths are independently checked against D; any later source-alignment correction is identified separately.",
       "corridorFacingWallChanges": [
         {
           "zone": "sw-known-four",
@@ -530,7 +535,7 @@
       "nominalRun": 12.065919,
       "nominalAverageGrossBay": 3.01648,
       "grossPolygonArea": 65.0808152837965,
-      "baselineGrossPolygonArea": 71.76704826659551,
+      "baselineGrossPolygonArea": 65.0808152837965,
       "packingWitnessCount": 4
     },
     {
@@ -540,7 +545,7 @@
       "nominalRun": 9.139503,
       "nominalAverageGrossBay": 3.046501,
       "grossPolygonArea": 49.28345987126998,
-      "baselineGrossPolygonArea": 51.528231940143506,
+      "baselineGrossPolygonArea": 49.28345987126998,
       "packingWitnessCount": 3
     },
     {
@@ -550,17 +555,17 @@
       "nominalRun": 12,
       "nominalAverageGrossBay": 3,
       "grossPolygonArea": 64.70194191887049,
-      "baselineGrossPolygonArea": 56.541290119341,
+      "baselineGrossPolygonArea": 64.70194191887049,
       "packingWitnessCount": 4
     },
     {
       "name": "L1\u2013L3",
       "count": 3,
       "runAxis": 0,
-      "nominalRun": 9,
-      "nominalAverageGrossBay": 3,
-      "grossPolygonArea": 48.547614819315,
-      "baselineGrossPolygonArea": 34.550715174832504,
+      "nominalRun": 8.822489,
+      "nominalAverageGrossBay": 2.94083,
+      "grossPolygonArea": 47.578083654324,
+      "baselineGrossPolygonArea": 48.547614819315,
       "packingWitnessCount": 3
     },
     {
@@ -580,7 +585,7 @@
       "nominalRun": 9.56414,
       "nominalAverageGrossBay": 3.188047,
       "grossPolygonArea": 51.59693188693798,
-      "baselineGrossPolygonArea": 50.18806534938948,
+      "baselineGrossPolygonArea": 51.59693188693798,
       "packingWitnessCount": 3
     }
   ],
@@ -594,12 +599,12 @@
         -6.369555637955021,
         17.521193522514167
       ],
-      "baselineArea": 17.065583287864506,
+      "baselineArea": 16.266118001972004,
       "baselineBounds": [
-        -9.39151446988122,
-        11.577233216016047,
-        -6.516744753130977,
-        17.521010837758332
+        -9.391004194874816,
+        12.131338540836152,
+        -6.369555637955021,
+        17.521193522514167
       ],
       "packingWitness": [
         [
@@ -639,12 +644,12 @@
         -3.353076074796242,
         17.524941908766014
       ],
-      "baselineArea": 15.987087896059002,
+      "baselineArea": 16.264042427809,
       "baselineBounds": [
-        -6.516745568071895,
-        11.577233216016047,
-        -3.8277821158557606,
-        17.52435161056108
+        -6.369555863938641,
+        12.131337892883128,
+        -3.353076074796242,
+        17.524941908766014
       ],
       "packingWitness": [
         [
@@ -684,12 +689,12 @@
         -0.33659584368588646,
         17.528689558071285
       ],
-      "baselineArea": 19.351505899173493,
+      "baselineArea": 16.27535008589549,
       "baselineBounds": [
-        -3.8277827648087146,
-        11.577233329007857,
-        -0.5749578110696518,
-        17.528393730518008
+        -3.3530760787959517,
+        12.131337892883128,
+        -0.33659584368588646,
+        17.528689558071285
       ],
       "packingWitness": [
         [
@@ -729,10 +734,10 @@
         2.6798837154731867,
         17.532437944323135
       ],
-      "baselineArea": 19.362871183498513,
+      "baselineArea": 16.27530476812001,
       "baselineBounds": [
-        -0.5749581400457995,
-        11.577233133022066,
+        -0.33659622465826633,
+        12.131338648828322,
         2.6798837154731867,
         17.532437944323135
       ],
@@ -774,12 +779,12 @@
         30.541453261899452,
         4.972771248152625
       ],
-      "baselineArea": 16.32000818745649,
+      "baselineArea": 16.425977961891498,
       "baselineBounds": [
-        24.90267216071094,
+        25.148459265791733,
         1.9262697855026616,
-        30.541329965838088,
-        4.821183240884789
+        30.541453261899452,
+        4.972771248152625
       ],
       "packingWitness": [
         [
@@ -819,12 +824,12 @@
         30.54393683284708,
         8.019272192840143
       ],
-      "baselineArea": 14.567154896370003,
+      "baselineArea": 16.433544050801007,
       "baselineBounds": [
-        24.90267225970376,
-        4.821183132892619,
-        30.54343504022573,
-        7.40414504094214
+        25.14845930278905,
+        4.972770387215043,
+        30.54393683284708,
+        8.019272192840143
       ],
       "packingWitness": [
         [
@@ -864,10 +869,10 @@
         30.546420464790295,
         11.065772760554983
       ],
-      "baselineArea": 20.641068856317013,
+      "baselineArea": 16.42393785857748,
       "baselineBounds": [
-        24.90267225970376,
-        7.404144747963379,
+        25.14845940078195,
+        8.019271297905023,
         30.546420464790295,
         11.065772760554983
       ],
@@ -909,12 +914,12 @@
         -0.47127532477743433,
         0.48605555424963903
       ],
-      "baselineArea": 14.128586789101998,
+      "baselineArea": 16.187371120551497,
       "baselineBounds": [
         -5.870680885063598,
         -2.5217032751394233,
-        -0.9263296675334374,
-        0.3412844877715098
+        -0.47127532477743433,
+        0.48605555424963903
       ],
       "packingWitness": [
         [
@@ -954,12 +959,12 @@
         -0.47127532477743433,
         3.4834689116582327
       ],
-      "baselineArea": 14.144788952252997,
+      "baselineArea": 16.179520937244,
       "baselineBounds": [
-        -5.868158705914958,
-        0.341284281786443,
-        -0.9263293875537355,
-        3.2042726216555484
+        -5.868112573259454,
+        0.47829717671162175,
+        -0.47127532477743433,
+        3.4834689116582327
       ],
       "packingWitness": [
         [
@@ -999,12 +1004,12 @@
         -0.47127605972415276,
         6.480882945017822
       ],
-      "baselineArea": 14.137565655621003,
+      "baselineArea": 16.171525052474994,
       "baselineBounds": [
-        -5.865637202717314,
-        3.204272575658882,
-        -0.9263293875537355,
-        6.067260132584749
+        -5.865444499687776,
+        3.4782968606183413,
+        -0.47127605972415276,
+        6.480882945017822
       ],
       "packingWitness": [
         [
@@ -1044,12 +1049,12 @@
         -0.47127605872422507,
         9.478296978377411
       ],
-      "baselineArea": 14.130348722364998,
+      "baselineArea": 16.163524808600002,
       "baselineBounds": [
-        -5.863115023568673,
-        6.067260079588593,
-        -0.9263292525635229,
-        8.93024821347263
+        -5.862775689169525,
+        6.478297220476056,
+        -0.47127605872422507,
+        9.478296978377411
       ],
       "packingWitness": [
         [
@@ -1082,136 +1087,136 @@
     },
     {
       "label": "L1",
-      "grossPolygonArea": 16.190330704224,
+      "grossPolygonArea": 15.866976255554,
       "projectedBounds": [
+        2.6109954366923644,
+        1.2143419633988648,
+        5.551825761222146,
+        6.611022190264539
+      ],
+      "baselineArea": 16.190330704224,
+      "baselineBounds": [
         0.9999996596526088,
         1.2129466905524793,
         4.000000393483211,
         6.611021848289331
       ],
-      "baselineArea": 11.521298059564,
-      "baselineBounds": [
-        2.610995709672574,
-        1.2143419633988648,
-        4.841640223807287,
-        6.380337096327624
-      ],
       "packingWitness": [
         [
-          3.799999865744022,
-          1.315457803900994
+          5.4109957046098955,
+          1.3168008455760585
         ],
         [
-          3.799999865744022,
-          4.615457803900994
+          5.4109957046098955,
+          4.6168008455760585
         ],
         [
-          1.099999865744022,
-          4.615457803900994
+          2.7109957046098954,
+          4.6168008455760585
         ],
         [
-          1.099999865744022,
-          1.315457803900994
+          2.7109957046098954,
+          1.3168008455760585
         ],
         [
-          3.799999865744022,
-          1.315457803900994
+          5.4109957046098955,
+          1.3168008455760585
         ]
       ],
       "packingWitnessMeaning": "Existence witness only; not a measured living-room position.",
       "insetBoundingSpans": [
-        2.8000007203489803,
-        5.197988525478471
+        2.7408303145961694,
+        5.196593627127845
       ],
       "impossibleAtAnyRotationByBoundingWidth": false
     },
     {
       "label": "L2",
-      "grossPolygonArea": 16.182537272432995,
+      "grossPolygonArea": 15.859486515032499,
       "projectedBounds": [
+        5.55182549824121,
+        1.2168873618641651,
+        8.492655348805352,
+        6.611022190264539
+      ],
+      "baselineArea": 16.182537272432995,
+      "baselineBounds": [
         3.9999998755207624,
         1.2155443552286167,
         7.000000180382464,
         6.611022027276355
       ],
-      "baselineArea": 11.516905336512501,
-      "baselineBounds": [
-        4.841639962826207,
-        1.2163127705205277,
-        7.072284676946422,
-        6.380337208319506
-      ],
       "packingWitness": [
         [
-          6.800000383874961,
-          1.3180548151239562
+          8.351825756346832,
+          1.3193476089339373
         ],
         [
-          6.800000383874961,
-          4.618054815123956
+          8.351825756346832,
+          4.619347608933937
         ],
         [
-          4.100000383874961,
-          4.618054815123956
+          5.651825756346832,
+          4.619347608933937
         ],
         [
-          4.100000383874961,
-          1.3180548151239562
+          5.651825756346832,
+          1.3193476089339373
         ],
         [
-          6.800000383874961,
-          1.3180548151239562
+          8.351825756346832,
+          1.3193476089339373
         ]
       ],
       "packingWitnessMeaning": "Existence witness only; not a measured living-room position.",
       "insetBoundingSpans": [
-        2.800000293612988,
-        5.195391062324223
+        2.7408298456660605,
+        5.1940481746536875
       ],
       "impossibleAtAnyRotationByBoundingWidth": false
     },
     {
       "label": "L3",
-      "grossPolygonArea": 16.174746842658003,
+      "grossPolygonArea": 15.8516208837375,
       "projectedBounds": [
+        8.492655348805352,
+        1.2195374977362792,
+        11.433485673335134,
+        6.611022016277153
+      ],
+      "baselineArea": 16.174746842658003,
+      "baselineBounds": [
         7.000000091388915,
         1.218141343953759,
         10.00000030725707,
         6.611022206263379
       ],
-      "baselineArea": 11.512511778756,
-      "baselineBounds": [
-        7.072284344970489,
-        1.2182821647446223,
-        9.302929191081134,
-        6.380337602290943
-      ],
       "packingWitness": [
         [
-          9.80000017873083,
-          1.320651803855981
+          11.292655557836035,
+          1.322046286982839
         ],
         [
-          9.80000017873083,
-          4.6206518038559805
+          11.292655557836035,
+          4.6220462869828385
         ],
         [
-          7.10000017873083,
-          4.6206518038559805
+          8.592655557836034,
+          4.6220462869828385
         ],
         [
-          7.10000017873083,
-          1.320651803855981
+          8.592655557836034,
+          1.322046286982839
         ],
         [
-          9.80000017873083,
-          1.320651803855981
+          11.292655557836035,
+          1.322046286982839
         ]
       ],
       "packingWitnessMeaning": "Existence witness only; not a measured living-room position.",
       "insetBoundingSpans": [
-        2.8000002079107613,
-        5.192794252579216
+        2.7408303165714365,
+        5.191396160545704
       ],
       "impossibleAtAnyRotationByBoundingWidth": false
     },
@@ -1296,12 +1301,12 @@
         25.242774810162622,
         -1.1877065093992805
       ],
-      "baselineArea": 16.753792335758,
+      "baselineArea": 17.223664033039995,
       "baselineBounds": [
-        22.050183225662575,
+        22.05005644685371,
         -6.589466281011311,
-        25.242774652174074,
-        -1.334879217764687
+        25.242774810162622,
+        -1.1877065093992805
       ],
       "packingWitness": [
         [
@@ -1341,12 +1346,12 @@
         28.43082121317638,
         -1.1877063204129836
       ],
-      "baselineArea": 16.721824977892005,
+      "baselineArea": 17.191017809698007,
       "baselineBounds": [
-        25.242774184208002,
+        25.242774652174074,
         -6.583183265513425,
-        28.430821263172756,
-        -1.334879217764687
+        28.43082121317638,
+        -1.1877063204129836
       ],
       "packingWitness": [
         [
@@ -1386,12 +1391,12 @@
         31.62305121189044,
         -1.1877062594174053
       ],
-      "baselineArea": 16.712448035739477,
+      "baselineArea": 17.182250044199975,
       "baselineBounds": [
         28.43082115318073,
         -6.576901662913103,
-        31.62293731014802,
-        -1.334879739726846
+        31.62305121189044,
+        -1.1877062594174053
       ],
       "packingWitness": [
         [
@@ -1424,25 +1429,670 @@
     }
   ],
   "topology": {
-    "overlapArea": 7.095506963538453e-07,
-    "outsideAnnotatedArea": 0.000920262873965706,
-    "maximumOutsideDistance": 0.0001302023853415347,
-    "roomArea": 322.61556215193593,
-    "baselineRoomArea": 307.980149222048,
-    "stairArea": 10.056916919025,
-    "remainderArea": 177.94460089696503,
-    "baselineRemainderArea": 192.5791117912944,
+    "overlapArea": 0.0,
+    "outsideAnnotatedArea": 0.0007439875161274319,
+    "maximumOutsideDistance": 0.00010295203712402902,
+    "roomArea": 321.64603098694494,
+    "baselineRoomArea": 322.61556215193593,
+    "stairArea": 11.541392710110005,
+    "remainderArea": 177.4294792859625,
+    "baselineRemainderArea": 177.94482165480002,
     "remainderComponentAreas": [
-      177.9445966704041,
+      92.20722953112329,
+      85.22224455983478,
       1.125999993462426e-06,
       1.0936235366482833e-06,
       1.0556874037847414e-06,
+      9.684434682074505e-07,
       9.512499986683715e-07
     ],
+    "corridorSpaces": [
+      {
+        "label": "West hall",
+        "area": 92.20725317559348,
+        "bounds": [
+          -9.393870217095735,
+          -2.5113577421633764,
+          11.433485673335134,
+          12.131338912809184
+        ],
+        "declaredDoorConnections": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "L1",
+          "L2",
+          "L3",
+          "Stairs",
+          "W1",
+          "W2",
+          "W3",
+          "W4"
+        ],
+        "erodedComponentsAboveOneSquareMetre": {
+          "0.5": 1,
+          "0.6": 1,
+          "0.65": 1,
+          "0.7": 1
+        }
+      },
+      {
+        "label": "East hall",
+        "area": 85.22224632119749,
+        "bounds": [
+          11.433485102376526,
+          -1.1877067203839875,
+          31.62547223637253,
+          11.059410453805505
+        ],
+        "declaredDoorConnections": [
+          "E",
+          "F",
+          "G",
+          "N1",
+          "N2",
+          "N3",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "erodedComponentsAboveOneSquareMetre": {
+          "0.5": 1,
+          "0.6": 1,
+          "0.65": 1,
+          "0.7": 1
+        }
+      }
+    ],
+    "accessEdges": [
+      {
+        "from": "West hall",
+        "to": "A",
+        "doorId": "study-55-2-opening-sw-1",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "B",
+        "doorId": "study-55-2-opening-sw-2",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "C",
+        "doorId": "study-55-2-opening-sw-3",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "D",
+        "doorId": "study-55-2-opening-sw-4",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "E",
+        "doorId": "study-55-2-opening-east-1",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "F",
+        "doorId": "study-55-2-opening-east-2",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "G",
+        "doorId": "study-55-2-opening-east-3",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "W1",
+        "doorId": "study-55-2-opening-west-1",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "W2",
+        "doorId": "study-55-2-opening-west-2",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "W3",
+        "doorId": "study-55-2-opening-west-3",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "W4",
+        "doorId": "study-55-2-opening-west-4",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "L1",
+        "doorId": "study-55-2-opening-center-left-1",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "L2",
+        "doorId": "study-55-2-opening-center-left-2",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "L3",
+        "doorId": "study-55-2-opening-center-left-3",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "R1",
+        "doorId": "study-55-2-opening-center-right-1",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "R2",
+        "doorId": "study-55-2-opening-center-right-2",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "R3",
+        "doorId": "study-55-2-opening-center-right-3",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "N1",
+        "doorId": "study-55-2-opening-upper-right-1",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "N2",
+        "doorId": "study-55-2-opening-upper-right-2",
+        "confidence": "estimated"
+      },
+      {
+        "from": "East hall",
+        "to": "N3",
+        "doorId": "study-55-2-opening-upper-right-3",
+        "confidence": "estimated"
+      },
+      {
+        "from": "West hall",
+        "to": "Stairs",
+        "doorId": "study-55-2-opening-stairs",
+        "confidence": "sketch"
+      }
+    ],
+    "accessComponents": [
+      [
+        "A",
+        "B",
+        "C",
+        "D",
+        "L1",
+        "L2",
+        "L3",
+        "Stairs",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "West hall"
+      ],
+      [
+        "E",
+        "East hall",
+        "F",
+        "G",
+        "N1",
+        "N2",
+        "N3",
+        "R1",
+        "R2",
+        "R3"
+      ]
+    ],
+    "doorAdjacencyToleranceMetres": 0.002,
+    "doorRecords": [
+      {
+        "id": "study-55-2-opening-sw-1",
+        "target": "A",
+        "segment": [
+          [
+            -8.327795486712114,
+            12.131338519837675
+          ],
+          [
+            -7.42779535435657,
+            12.131338499839124
+          ]
+        ],
+        "width": 0.9000001323555449,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-sw-2",
+        "target": "B",
+        "segment": [
+          [
+            -5.311315697569715,
+            12.131337862885301
+          ],
+          [
+            -4.411316241165167,
+            12.131338579833324
+          ]
+        ],
+        "width": 0.8999994564048337,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-sw-3",
+        "target": "C",
+        "segment": [
+          [
+            -2.29483584743174,
+            12.131338618830497
+          ],
+          [
+            -1.3948357150761943,
+            12.131338598831949
+          ]
+        ],
+        "width": 0.9000001323555458,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-sw-4",
+        "target": "D",
+        "segment": [
+          [
+            0.721643941710659,
+            12.131337961878124
+          ],
+          [
+            1.6216433981152099,
+            12.131338678826147
+          ]
+        ],
+        "width": 0.8999994564048364,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-east-1",
+        "target": "E",
+        "segment": [
+          [
+            25.1484596427644,
+            2.999520462649004
+          ],
+          [
+            25.148459662762953,
+            3.8995205950045495
+          ]
+        ],
+        "width": 0.9000001323555458,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-east-2",
+        "target": "F",
+        "segment": [
+          [
+            25.14845967976172,
+            6.046020855376533
+          ],
+          [
+            25.148459699760274,
+            6.946020987732076
+          ]
+        ],
+        "width": 0.900000132355544,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-east-3",
+        "target": "G",
+        "segment": [
+          [
+            25.148459040808042,
+            9.092521985050638
+          ],
+          [
+            25.148459060806594,
+            9.992522117406182
+          ]
+        ],
+        "width": 0.900000132355544,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-west-1",
+        "target": "W1",
+        "segment": [
+          [
+            -0.4712757497466251,
+            -1.471702768416828
+          ],
+          [
+            -0.47127572974807497,
+            -0.5717026360612826
+          ]
+        ],
+        "width": 0.9000001323555457,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-west-2",
+        "target": "W2",
+        "segment": [
+          [
+            -0.471275928733649,
+            1.5282974474513253
+          ],
+          [
+            -0.47127596973067676,
+            2.428296166909302
+          ]
+        ],
+        "width": 0.8999987194579776,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-west-3",
+        "target": "W3",
+        "segment": [
+          [
+            -0.4712754317696779,
+            4.528296926372906
+          ],
+          [
+            -0.4712761487177013,
+            5.4282963827774555
+          ]
+        ],
+        "width": 0.8999994564048355,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-west-4",
+        "target": "W4",
+        "segment": [
+          [
+            -0.47127561075670155,
+            7.528297142241059
+          ],
+          [
+            -0.47127632770472516,
+            8.428296598645609
+          ]
+        ],
+        "width": 0.8999994564048355,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-center-left-1",
+        "target": "L1",
+        "segment": [
+          [
+            3.631410502281693,
+            6.611021368324128
+          ],
+          [
+            4.531410634637239,
+            6.611021348325577
+          ]
+        ],
+        "width": 0.9000001323555462,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-center-left-2",
+        "target": "L2",
+        "segment": [
+          [
+            6.5722401508604795,
+            6.611022356252506
+          ],
+          [
+            7.472240283216024,
+            6.6110223362539555
+          ]
+        ],
+        "width": 0.9000001323555449,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-center-left-3",
+        "target": "L3",
+        "segment": [
+          [
+            9.513069738443686,
+            6.6110219312833145
+          ],
+          [
+            10.413069870799232,
+            6.611021911284764
+          ]
+        ],
+        "width": 0.9000001323555458,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-center-right-1",
+        "target": "R1",
+        "segment": [
+          [
+            14.906890071644135,
+            4.35818049436717
+          ],
+          [
+            15.806889528048686,
+            4.358181211315195
+          ]
+        ],
+        "width": 0.8999994564048364,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-center-right-2",
+        "target": "R2",
+        "segment": [
+          [
+            17.6000414462469,
+            4.358180972332519
+          ],
+          [
+            18.500041578602445,
+            4.358180952333972
+          ]
+        ],
+        "width": 0.900000132355544,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-center-right-3",
+        "target": "R3",
+        "segment": [
+          [
+            20.293192083903094,
+            4.3581807743468755
+          ],
+          [
+            21.19319221625864,
+            4.358180754348323
+          ]
+        ],
+        "width": 0.9000001323555475,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-upper-right-1",
+        "target": "N1",
+        "segment": [
+          [
+            23.19875120450247,
+            -1.1877062254198698
+          ],
+          [
+            24.098751336858015,
+            -1.1877062454184202
+          ]
+        ],
+        "width": 0.900000132355544,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-upper-right-2",
+        "target": "N2",
+        "segment": [
+          [
+            26.38679760751623,
+            -1.187706036433573
+          ],
+          [
+            27.286797739871773,
+            -1.1877060564321233
+          ]
+        ],
+        "width": 0.900000132355544,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-upper-right-3",
+        "target": "N3",
+        "segment": [
+          [
+            29.574844686480983,
+            -1.187706584393844
+          ],
+          [
+            30.47484481883653,
+            -1.187706604392396
+          ]
+        ],
+        "width": 0.9000001323555475,
+        "adjacentHallways": [
+          "East hall"
+        ],
+        "confidence": "estimated"
+      },
+      {
+        "id": "study-55-2-opening-stairs",
+        "target": "Stairs",
+        "segment": [
+          [
+            11.433485409354272,
+            7.841170651733832
+          ],
+          [
+            11.433484819397043,
+            8.941171154588105
+          ]
+        ],
+        "width": 1.1000005028544306,
+        "adjacentHallways": [
+          "West hall"
+        ],
+        "confidence": "sketch"
+      }
+    ],
+    "accessMeaning": "Edges use saved door segments only. Separate hallways do not imply a verified route through the stairwell; no eastern stairwell door is inferred.",
+    "stairwell": {
+      "label": "Stairs",
+      "area": 11.541392710110005,
+      "bounds": [
+        11.433485102376526,
+        1.222134558456201,
+        12.903900067155735,
+        9.071859470028675
+      ],
+      "declaredHallwayConnections": [
+        "West hall"
+      ],
+      "flight": {
+        "area": 6.329956004381997,
+        "bounds": [
+          11.43348480839784,
+          3.4056050995799882,
+          12.903900258141888,
+          7.710482492281952
+        ],
+        "outsideEnclosureArea": 4.04071397168097e-06,
+        "meaning": "Separate schematic flight footprint; tread geometry, rise and exact landing dimensions are unmeasured."
+      }
+    },
     "erodedComponentsAboveOneSquareMetre": {
-      "0.5": 1,
-      "0.6": 1,
-      "0.65": 1,
+      "0.5": 2,
+      "0.6": 2,
+      "0.65": 2,
       "0.7": 2
     },
     "midpointProbe1300mmSweep": {
@@ -1468,21 +2118,36 @@
       "N3": true,
       "Stairs": true
     },
-    "probeMeaning": "Hypothetical boundary-midpoint access, offset 0.66m into the remainder. Not actual door locations or an egress/accessibility check.",
+    "probeMeaning": "Room boundary-midpoint approaches and the declared stairwell-door approach, offset 0.66m into their respective hallway. These do not establish inter-hallway connectivity, passage through a door, or egress/accessibility compliance.",
     "diagnosticGrossGaps": {
-      "westHall": 1.4712757193767616,
-      "stairsToR": 1.6729372916603458,
+      "westHall": 3.082271496416517,
+      "stairsToR": 1.1052054078125368,
       "RToE": 3.053034550677969,
-      "stairsSouth": 1.3585213364931041
+      "stairsSouth": 0.0
     },
     "baselineSymmetricDifferenceArea": {
+      "A": 0.0,
+      "B": 0.0,
+      "C": 0.0,
+      "D": 0.0,
+      "E": 0.0,
+      "F": 0.0,
+      "G": 0.0,
+      "L1": 17.06695110259841,
+      "L2": 16.42054388079898,
+      "L3": 15.774723746476209,
+      "N1": 0.0,
+      "N2": 0.0,
+      "N3": 0.0,
       "R1": 0.0,
       "R2": 0.0,
       "R3": 0.0,
-      "N1": 0.46987433247450505,
-      "N2": 0.4691963650595286,
-      "N3": 0.4698045146821243
+      "W1": 0.0,
+      "W2": 0.0,
+      "W3": 0.0,
+      "W4": 0.0
     },
+    "nonLRoomPolygonsUnchanged": true,
     "retainedRPolygonsUnchanged": true
   }
 }

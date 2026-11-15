@@ -1,8 +1,24 @@
 # Release checks
 
-Checked on 15 November 2026. Current results cover the House 55 top-floor dimensional audit, similar-size candidate envelopes, computed room cards and preservation of the earlier lower-floor sketch. Earlier release checks remain below as recorded baselines.
+Checked on 15 November 2026. Current results cover the resident's House 55 top-floor left-side correction, stairwell landing and entrance, and the resulting two hallway regions. Earlier release checks remain below as recorded baselines.
 
 ## Current revision
+
+L1–L3 now align between the marked exterior elbow and southern source corner, giving three approximately 2.94 m gross bays. Their previous depth boundary is retained. The other seventeen room polygons and both earlier lower-floor records remain unchanged.
+
+The stairwell uses a provisional width of half one L bay, approximately 1.47 m. Its full enclosure reaches the northern and southern source boundaries, with a separate schematic flight and clear landing areas. The green mark is represented as the resident-located entrance from West hall into the lower landing. The displayed 1.10 m opening is estimated; no hinge or swing is supplied.
+
+The enclosure separates West hall and East hall. The recorded entry connects West hall to the stairwell; eastern access is explicitly unconfirmed. The approximately 1.1 m strip beside R is reported as a geometric result, not a verified route or clearance requirement. The question about a thick western wall remains unresolved. No source wall thickness is invented.
+
+- The top-floor study contains twenty rooms, one stairwell and two halls: **23 selectable spaces and 21 door targets**. Lower floors retain their earlier 22 spaces and 21 targets each.
+- Validation checks the optional study-only `stairFlight` as a convex quadrilateral wholly inside its stairwell and outside any cutouts. Treads remain inside that flight, leaving both landings clear.
+- Tests compare all seventeen unaffected room polygons and their doorway segments against the archived pre-correction baseline. The stairwell and L3 share the same serialized corner, with no room overlap or relaxed tolerance.
+- The [updated independent audit](HOUSE55-DIMENSION-REFIT.md) compares the latest correction with its immediate predecessor, verifies seventeen living-zone packing witnesses and records two hallway/access components. It does not imply an eastern stairwell connection or a verified whole-apartment template.
+- `npm test`: **98 passing tests**. `npm run build`: passed, including the unchanged path-cache check. The saved audit's hashes match the final geometry.
+- Isolated Firefox production checks pass at **1440 × 1000**, **390 × 844** and **320 × 568**. They cover all three floors, room cards, the resident-located stairwell entrance, the East hall uncertainty card, correct floor references in correction forms, day/night mode and return navigation. Visible markers do not overlap, and the drawing key lists all spaces when crowded labels are hidden.
+- Refreshed previews show the corrected [top floor](preview/single-floor.png), [stack](preview/unfolded-levels.png), [day view](preview/house55-day-floor.png), [phone](preview/house55-phone-floor.png) and [stairwell entry card](preview/house55-stairwell-entry.png). No horizontal overflow, console errors, audio/video elements or local browser storage entries were observed during these checks.
+
+## Previous baseline — dimensional refit
 
 The resident confirms twenty top-floor rooms and believes they are generally similar single apartments, with size differences roughly a hand length. The revised study keeps all twenty references and the source exterior. Seventeen non-R envelopes use approximately 3.00–3.19 m gross bays and a fitted common depth of about 5.40 m. The depth comes from minimizing movement from the approximate sketch; it is not a measured apartment dimension. R1–R3 retain their exact source-aligned polygons and remain explicitly unresolved. Their fixed frontage cannot accommodate three literal 2.70 m clear widths plus walls, but the approximate room reference and exterior source do not establish actual R room sizes.
 

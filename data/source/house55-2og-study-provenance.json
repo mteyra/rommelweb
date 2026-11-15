@@ -7,13 +7,14 @@
   "generator": "node scripts/generate-house55-study.mjs",
   "source": "Resident annotated House 55 / 2. OG screenshot supplied in this project on 2026-11-15; registered to Bayerische Vermessungsverwaltung LoD2 exterior.",
   "dimensionRefit": {
-    "status": "common-depth-candidate-with-unresolved-right-block",
+    "status": "prior-common-depth-candidate-followed-by-left-side-correction",
     "basis": "Resident-confirmed twenty-room count, general hallway positions and broadly similar single-apartment types with small dimensional variation; approximate 2.70×3.30m living zone in Rommelwood’s older single-apartment sketch.",
     "sourceUrl": "https://rommelwood.de/wohnen/zimmergrundriss/",
     "candidateGrossModuleMetres": 3,
-    "moduleReason": "The two explicitly counted exterior runs are approximately 12.066/4 and 9.140/3 metres per bay. A rounded 3m gross module is a fit assumption for W/L, not a measured structural grid.",
-    "changes": "Equal SW/east divisions; four 3m W bays and three 3m L bays. Seventeen non-R envelopes share a fitted gross depth, changing only their five corridor-facing walls after the width fit. N frontage is retained. R geometry remains unchanged and unresolved. The attached stairs retain their width-fit position against L3.",
+    "moduleReason": "The two explicitly counted exterior runs are approximately 12.066/4 and 9.140/3 metres per bay. The prior dimensional stage used a rounded 3m gross module for W/L. The later resident left-side correction replaces only L with source-anchored bays of about 2.94m; no module is a measured structural grid.",
+    "changes": "Historical stage: equal SW/east divisions, four 3m W bays, three 3m L bays and a fitted common gross depth for seventeen non-R envelopes. Later left-side stage: L moves between source corners with three roughly 2.94m bays; its prior depth boundary is retained. The stairwell, entry and two hall regions are corrected separately. The other seventeen room polygons, including unresolved R, stay byte-identical to the archived dimensional baseline.",
     "commonDepth": {
+      "stage": "Historical dimensional-fit stage, retained reproducibly; not recalculated after the resident left-side correction.",
       "candidateGrossDepthMetres": 5.395477451475493,
       "method": "Arithmetic mean of the seventeen source-clipped width-only envelope depths in the study axes, minimizing the sum of their squared depth changes with equal per-room weight. Each zone corridor-facing wall is then solved against its source-clipped mean depth; source skew allows small individual differences.",
       "inputStage": "Reproducible width-only stage: equal SW/east divisions, 3m W/L bays, N source frontage, approximate original depths. Source-clipped polygons are serialized to six decimals before measuring the retained input vector, as in the prior public study.",
@@ -304,7 +305,7 @@
           "meanGrossDepthMetres": 5.395477432700268
         }
       ],
-      "scope": "Seventeen rooms A–G, W1–W4, L1–L3 and N1–N3. R1–R3 are excluded from the fit and retain their exact previous geometry; stairs and lower-floor baseline do not move in this stage.",
+      "scope": "Prior seventeen-room fit: A–G, W1–W4, L1–L3 and N1–N3; R excluded. The later left-side correction retains the existing L depth boundary while moving its frontage along the slightly skewed source wall. This historical target is not refitted globally.",
       "interpretation": "A fitted gross model depth before walls, not a measured full-apartment template, clear living dimension or rental-area target. Similar dimensions do not establish identical interiors or usable areas. The resident’s hand-length description is qualitative and has not been converted into a measured tolerance."
     },
     "stairTranslationFromPreviousStudyMetres": [
@@ -371,9 +372,100 @@
     "auditDocument": "docs/HOUSE55-DIMENSION-REFIT.md"
   },
   "residentCorrections": {
-    "source": "Resident follow-ups on 2026-11-15: stairs against the left block, R block flush to the exterior edges, requested lower-floor repetition, and confirmed room counts including three rooms L1–L3.",
+    "source": "Resident follow-ups on 2026-11-15: twenty top-floor rooms; flush R exterior alignment; then a new left-side image, L1–L3 shifted toward the marked source corners, a narrower stairwell, and a confirmed west-hall entrance into it.",
+    "leftSide": {
+      "status": "resident-marked-positions-with-explicit-dimensional-estimates",
+      "image": {
+        "path": "data/source/house55-2og-left-correction.png",
+        "originalFilename": "codex-clipboard-hc2CPv.png",
+        "sha256": "dbad4facac5f354b934020577ee83e4a8b4372dceb43ac3fe660fa44c14191fd",
+        "width": 1120,
+        "height": 660,
+        "interpretation": "Annotated orthographic study-axis plot. Blue brackets and arrow request a rightward L1–L3 shift. Red strokes indicate its left boundary and a narrower stair/partition area; green marks the confirmed hallway-to-stairwell entrance below the flight. Pixel strokes are soft constraints, not calibrated measurements.",
+        "sourceAnchorChoice": "Use existing RoofSurface39 vertex18 as the left elbow and vertex3 X as the shared L3/stairwell wall, instead of treating thick freehand pixels as precise coordinates. No second image homography, source rescale or source-vertex change is introduced."
+      },
+      "comparisonBaseline": {
+        "path": "data/source/house55-2og-dimension-baseline.json",
+        "sha256": "43b7917c18c3734a86992403083e08c212e552fc776c4fea6c5eb21eb2a2a3c1",
+        "sourceCommit": "31e360f9124db6ea114454b6c58688b965ded940",
+        "meaning": "Frozen top-floor common-depth candidate before the resident's left-side and stairwell correction. Only L1–L3, the stairwell, its entry and hallway topology may change in the next correction. This is not a measured floor plan."
+      },
+      "leftSourceAnchor": {
+        "surfaceIndex": 39,
+        "vertexIndex": 18,
+        "campusPoint": [
+          0.87,
+          11.401,
+          2.745
+        ],
+        "localPoint": [
+          2.610996,
+          1.214342
+        ]
+      },
+      "sharedWallSouthSourceAnchor": {
+        "surfaceIndex": 39,
+        "vertexIndex": 3,
+        "campusPoint": [
+          1.043,
+          11.401,
+          14.558
+        ],
+        "localPoint": [
+          11.433485,
+          9.071859
+        ]
+      },
+      "priorLeftLocalBoundsMetres": [
+        1,
+        1.218864,
+        10,
+        6.611022
+      ],
+      "correctedLeftLocalBoundsMetres": [
+        2.610996,
+        1.214342,
+        11.433485,
+        6.611022
+      ],
+      "equalGrossBayWidthMetres": 2.940829797567984,
+      "retainedCorridorFacingDepthCoordinateMetres": 6.611021932563128,
+      "depthInterpretation": "The previous roughly 5.395m gross model depth is retained, not newly measured or globally refitted. The source-wall skew gives small depth variation after the rightward shift.",
+      "stairwellWidthInterpretation": "The resident said the previous stairwell was too wide and described it as roughly half a room size. Because the clarification concerned width, this study provisionally uses half the adjacent gross bay width. The ratio, clear width and enclosure remain unmeasured.",
+      "stairwellWidthFractionOfLeftBay": 0.5,
+      "approximateStairwellWidthMetres": 1.470414898783992,
+      "stairwellToRightBlockMinimumAxisGapMetres": 1.1052052705222941,
+      "corridorSpaceIds": {
+        "west": "study-55-2-potential-corridor",
+        "east": "study-55-2-potential-corridor-east"
+      },
+      "knownConnection": "West hall to stairwell through the green-marked entrance on its left wall, below the flight.",
+      "unknownConnection": "No east-hall connection into the stairwell or west hall was supplied. No second stairwell door or bypass route is invented.",
+      "thickWallQuestion": "The handwritten “Thick wall?” remains an unanswered question. No source exterior, wall thickness, structural role or floor area is changed from it.",
+      "unchangedOtherRoomIds": [
+        "study-55-2-sw-1",
+        "study-55-2-sw-2",
+        "study-55-2-sw-3",
+        "study-55-2-sw-4",
+        "study-55-2-east-1",
+        "study-55-2-east-2",
+        "study-55-2-east-3",
+        "study-55-2-west-1",
+        "study-55-2-west-2",
+        "study-55-2-west-3",
+        "study-55-2-west-4",
+        "study-55-2-center-right-1",
+        "study-55-2-center-right-2",
+        "study-55-2-center-right-3",
+        "study-55-2-upper-right-1",
+        "study-55-2-upper-right-2",
+        "study-55-2-upper-right-3"
+      ],
+      "unchangedOtherRoomGeometryCount": 17,
+      "lowerFloorScope": "The correction applies only to index2; both lower-floor records retain their earlier frozen sketch extrapolations."
+    },
     "stairs": {
-      "instruction": "Keep stairs flush against L3. The width candidate moves its attached stairs plan-right; the common-depth stage keeps that position while extending contact. This position is provisional.",
+      "instruction": "Keep the corrected stairwell flush against L3, narrower than before, with the confirmed west-hall entrance below the flight. Its enclosure reaches the north source wall and the southern source corner Y.",
       "adjacentStudyRoom": "L3",
       "originalLocalBoundsMetres": [
         9.749577,
@@ -381,28 +473,54 @@
         12.085745,
         7.710482
       ],
-      "correctedLocalBoundsMetres": [
+      "priorDimensionLocalBoundsMetres": [
         10,
         3.405605,
         12.336168,
         7.710482
       ],
-      "translationInLocalMetres": [
-        0.250423,
-        0
+      "correctedLocalBoundsMetres": [
+        11.433485,
+        1.22198,
+        12.9039,
+        9.071859
+      ],
+      "leftWallShiftFromPriorDimensionMetres": 1.433485,
+      "schematicFlightLocalBoundsMetres": [
+        11.433485,
+        3.405605,
+        12.9039,
+        7.710482
       ],
       "sharedWallInCampusXZ": [
         [
-          4.249761,
-          9.671488
+          6.827942,
+          9.251866
         ],
         [
-          1.88754,
-          11.838193
+          2.856506,
+          12.894595
         ]
       ],
-      "sharedWallLengthMetres": 3.205416,
-      "unchanged": "Stair width, north/south position, run length and orientation remain the original approximate sketch values."
+      "sharedWallLengthMetres": 5.389042,
+      "intermediateL3JointInCampusXZ": [
+        2.856506,
+        12.894595
+      ],
+      "greenEntranceSegmentInCampusXZ": [
+        [
+          1.949952,
+          13.726115
+        ],
+        [
+          1.13931,
+          14.469661
+        ]
+      ],
+      "entranceWidthMetres": 1.1,
+      "entranceWidthStatus": "Illustrative only; resident confirms the location and west-hall-to-stairwell relationship, not the width, exact center, leaf or swing.",
+      "unchanged": "Only the schematic flight retains its earlier approximate north/south run. The enclosure now includes clear upper/lower landing areas, and its width and left-wall position have changed.",
+      "unknown": "Exact stair flight, number of risers, landing layout, clear widths and any east-hall connection remain unmeasured or unknown."
     },
     "rightBlock": {
       "instruction": "Shift R1–R3 toward the stairs until its ends meet the adjoining exterior edges without small corner projections.",
@@ -1407,47 +1525,47 @@
         "selectedCount": 3,
         "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "Three rooms L1–L3 are resident-confirmed. Candidate 3.00m gross bays and a common fitted depth replace the implausibly narrow earlier L subdivisions. The stairs remain flush to L3 after shifting about 0.70m plan-right. L1 has only partial facade frontage, so its exact shape and window need checking. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
         "rectifiedLocalBoundsMetres": [
-          1,
-          1.218864,
-          10,
+          2.610996,
+          1.214342,
+          11.433485,
           6.611022
         ],
-        "runMetres": 9,
-        "averageGrossBayMetres": 3,
+        "runMetres": 8.822489,
+        "averageGrossBayMetres": 2.94083,
         "rooms": [
           {
             "id": "study-55-2-center-left-1",
-            "grossAreaMetresSquared": 16.190328,
-            "grossBayWidthMetres": 3
+            "grossAreaMetresSquared": 15.866974,
+            "grossBayWidthMetres": 2.94083
           },
           {
             "id": "study-55-2-center-left-2",
-            "grossAreaMetresSquared": 16.182537,
-            "grossBayWidthMetres": 3
+            "grossAreaMetresSquared": 15.859486,
+            "grossBayWidthMetres": 2.94083
           },
           {
             "id": "study-55-2-center-left-3",
-            "grossAreaMetresSquared": 16.174745,
-            "grossBayWidthMetres": 3
+            "grossAreaMetresSquared": 15.851619,
+            "grossBayWidthMetres": 2.94083
           }
         ],
         "correctedLocalCornersMetres": [
           [
-            1,
-            1.212947
+            2.610996,
+            1.214342
           ],
           [
-            10,
-            1.220739
+            11.433485,
+            1.22198
           ],
           [
-            10,
+            11.433485,
             6.611022
           ],
           [
-            1,
+            2.610996,
             6.611022
           ]
         ],
@@ -1730,21 +1848,30 @@
       7.710482
     ],
     "correctedLocalBoundsMetres": [
-      10,
+      11.433485,
+      1.22198,
+      12.9039,
+      9.071859
+    ],
+    "schematicFlightLocalBoundsMetres": [
+      11.433485,
       3.405605,
-      12.336168,
+      12.9039,
       7.710482
     ],
     "approximateRunMetres": 4.304877,
-    "approximateWidthMetres": 2.336168,
+    "approximateEnclosureDepthMetres": 7.849879,
+    "approximateWidthMetres": 1.470415,
+    "approximateUpperLandingAxisDepthMetres": 2.183626,
+    "approximateLowerLandingAxisDepthMetres": 1.361377,
     "runInCampusXZ": [
       [
-        5.039328,
-        10.532304
+        5.715691,
+        11.269699
       ],
       [
-        1.866864,
-        13.442189
+        2.543226,
+        14.179584
       ]
     ],
     "observed": {
@@ -1812,9 +1939,12 @@
   },
   "validation": {
     "roomOverlapMetresSquared": 0,
-    "spaceOutsideFloorMetresSquared": 0.000678,
+    "spaceOutsideFloorMetresSquared": 0.000304,
+    "stairwellRoomOverlapMetresSquared": 0,
     "floorInsideExcludedGreenMetresSquared": 0,
     "doorBoundaryChecksPassed": true,
+    "unchangedOtherRoomGeometryCount": 17,
+    "separateHallwayRegions": 2,
     "sourceVerticesModified": false,
     "approvedInteriorDataModified": false
   },

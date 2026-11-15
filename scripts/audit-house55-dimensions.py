@@ -207,12 +207,27 @@ def raw_source_metrics(building):
 
 def audit(args):
     level, polygons, floor, metadata = load_study(args.study)
-    baseline = load_study(args.baseline)[1] if args.baseline else None
+    baseline_level, baseline = (None, None)
+    if args.baseline:
+        baseline_level, baseline, _, _ = load_study(args.baseline)
+    space_records = {space["shortLabel"]: space for space in level["spaces"]}
+    space_ids = {space["id"]: space for space in level["spaces"]}
+    corridors = {
+        label: polygons[label] for label, space in space_records.items()
+        if space["kind"] == "corridor"
+    }
+    baseline_corridors = {
+        space["shortLabel"]: baseline[space["shortLabel"]]
+        for space in baseline_level["spaces"] if space["kind"] == "corridor"
+    } if baseline_level else {}
     lod2 = read_json(ROOT / "public/data/lod2.json")
     building = next(item for item in lod2["buildings"] if item["number"] == "55")
     flat = Polygon([local([point[0], point[2]]) for point in building["surfaces"][39]["points"]])
     annotated = floor.intersection(flat)
-    occupied = {label: polygon for label, polygon in polygons.items() if label != "Hall"}
+    occupied = {
+        label: polygon for label, polygon in polygons.items()
+        if space_records[label]["kind"] != "corridor"
+    }
     used = unary_union(list(occupied.values()))
     hall = annotated.difference(used)
     outside = used.difference(annotated)
@@ -264,6 +279,8 @@ def audit(args):
     entry_checks = {}
     eroded = hall.buffer(-0.65)
     for label, polygon in occupied.items():
+        if space_records[label]["kind"] != "room":
+            continue
         x0, y0, x1, y1 = polygon.bounds
         if label in list("ABCD") + ["R1", "R2", "R3"]:
             probe = Point((x0 + x1) / 2, y0 - 0.66)
@@ -274,6 +291,55 @@ def audit(args):
         else:
             probe = Point((x0 + x1) / 2, y1 + 0.66)
         entry_checks[label] = eroded.covers(probe)
+    # Door adjacency comes from the saved segments only. It must not be
+    # inferred from a visually tempting passage beside a stairwell.
+    access_edges, door_records = [], []
+    graph = {label: set() for label in polygons}
+    for door in level.get("doors", []):
+        target = space_ids[door["spaceId"]]["shortLabel"]
+        segment = LineString([local(point) for point in door["segment"]])
+        midpoint = segment.interpolate(0.5, normalized=True)
+        adjacent = [
+            label for label, polygon in corridors.items()
+            if polygon.boundary.distance(midpoint) <= 0.002
+        ]
+        for label in adjacent:
+            graph[label].add(target)
+            graph[target].add(label)
+            access_edges.append({
+                "from": label, "to": target, "doorId": door["id"],
+                "confidence": door["confidence"],
+            })
+        door_records.append({
+            "id": door["id"], "target": target,
+            "segment": list(segment.coords), "width": segment.length,
+            "adjacentHallways": adjacent,
+            "confidence": door["confidence"],
+        })
+        if space_records[target]["kind"] == "stairs":
+            first, last = segment.coords[0], segment.coords[-1]
+            normal = [-(last[1] - first[1]) / segment.length, (last[0] - first[0]) / segment.length]
+            entry_checks[target] = any(
+                corridors[label].buffer(-0.65).covers(Point(
+                    midpoint.x + sign * normal[0] * 0.66,
+                    midpoint.y + sign * normal[1] * 0.66,
+                ))
+                for label in adjacent for sign in [-1, 1]
+            )
+    access_components, unseen = [], set(graph)
+    while unseen:
+        pending = [min(unseen)]
+        reached = set()
+        while pending:
+            label = pending.pop()
+            if label in reached:
+                continue
+            reached.add(label)
+            pending.extend(graph[label] - reached)
+        unseen -= reached
+        access_components.append(sorted(reached))
+    stair_record = next((space for space in level["spaces"] if space["kind"] == "stairs"), None)
+    flight = Polygon([local(point) for point in stair_record["stairFlight"]]) if stair_record and stair_record.get("stairFlight") else None
     flat_points = [local([point[0], point[2]]) for point in building["surfaces"][39]["points"]]
     pairs = list(occupied.values())
     similar_rooms = [{
@@ -301,7 +367,9 @@ def audit(args):
         # This ten-micrometre tolerance compares calculations only; it is
         # not an architectural dimension tolerance or source accuracy claim.
         serialization_tolerance = 0.00001
-        valid = max(abs(recorded_depth - computed_depth), *map(abs, mean_errors.values())) <= serialization_tolerance
+        later_corrected_groups = {"L1–L3"} if metadata.get("residentCorrections", {}).get("leftSide") else set()
+        checked_errors = [error for name, error in mean_errors.items() if name not in later_corrected_groups]
+        valid = max(abs(recorded_depth - computed_depth), *map(abs, checked_errors)) <= serialization_tolerance
         depth_verification = {
             "valid": valid,
             "inputMeaning": "Retained width-only modeling priors, not measured apartment depths.",
@@ -310,8 +378,10 @@ def audit(args):
             "recordedTarget": recorded_depth,
             "targetDifference": recorded_depth - computed_depth,
             "actualGroupMeanMinusComputedTarget": mean_errors,
+            "laterCorrectedGroups": sorted(later_corrected_groups),
+            "laterCorrectionMeaning": "The later L alignment follows source corners and retains its fitted south boundary. Its small source-skew depth change is reported explicitly rather than hidden by widening the historical fit tolerance.",
             "serializationComparisonTolerance": serialization_tolerance,
-            "method": "The arithmetic mean minimizes sum_i (D - priorDepth_i)^2. Five source-clipped group mean depths are independently checked against D.",
+            "method": "The arithmetic mean minimizes sum_i (D - priorDepth_i)^2. Unchanged group mean depths are independently checked against D; any later source-alignment correction is identified separately.",
             "corridorFacingWallChanges": depth_fit["corridorFacingWallChanges"],
         }
         if not valid:
@@ -321,7 +391,8 @@ def audit(args):
         "units": "metres; areas in square metres",
         "residentWorkingHypothesis": {
             "statement": "All top-floor apartments are single rooms, generally similar in size, with dimensional differences described as about a hand length.",
-            "meaning": "A repeated single-apartment type with small dimensional variation is the working hypothesis. Approximately 0.20m is a modeling tolerance, not a measured hand length or apartment dimension.",
+            "meaning": "A repeated single-apartment type with small dimensional variation is a qualitative prior. A hand length is not converted into a measured dimensional tolerance.",
+            "latestCorrection": "L starts at the source exterior elbow. The green door enters the stairwell from the west hallway. A narrower stairwell near half one L bay is a provisional interpretation; the eastern connection remains unconfirmed.",
         },
         "input": {"path": report_path(args.study), "sha256": digest(args.study)},
         "baseline": {"path": report_path(args.baseline), "sha256": digest(args.baseline)} if args.baseline else None,
@@ -366,14 +437,40 @@ def audit(args):
             "baselineRoomArea": sum(baseline[label].area for label in EXPECTED_LABELS) if baseline else None,
             "stairArea": polygons["Stairs"].area,
             "remainderArea": hall.area,
-            "baselineRemainderArea": baseline["Hall"].area if baseline else None,
+            "baselineRemainderArea": sum(polygon.area for polygon in baseline_corridors.values()) if baseline else None,
             "remainderComponentAreas": sorted([item.area for item in components(hall)], reverse=True),
+            "corridorSpaces": [{
+                "label": label,
+                "area": polygon.area,
+                "bounds": list(polygon.bounds),
+                "declaredDoorConnections": sorted(graph[label]),
+                "erodedComponentsAboveOneSquareMetre": {
+                    str(radius): len([item for item in components(polygon.buffer(-radius)) if item.area > 1])
+                    for radius in [0.5, 0.6, 0.65, 0.7]
+                },
+            } for label, polygon in corridors.items()],
+            "accessEdges": access_edges,
+            "accessComponents": access_components,
+            "doorAdjacencyToleranceMetres": 0.002,
+            "doorRecords": door_records,
+            "accessMeaning": "Edges use saved door segments only. Separate hallways do not imply a verified route through the stairwell; no eastern stairwell door is inferred.",
+            "stairwell": {
+                "label": stair_record["shortLabel"],
+                "area": polygons[stair_record["shortLabel"]].area,
+                "bounds": list(polygons[stair_record["shortLabel"]].bounds),
+                "declaredHallwayConnections": sorted(graph[stair_record["shortLabel"]]),
+                "flight": {
+                    "area": flight.area, "bounds": list(flight.bounds),
+                    "outsideEnclosureArea": flight.difference(polygons[stair_record["shortLabel"]]).area,
+                    "meaning": "Separate schematic flight footprint; tread geometry, rise and exact landing dimensions are unmeasured.",
+                } if flight else None,
+            } if stair_record else None,
             "erodedComponentsAboveOneSquareMetre": {
                 str(radius): len([item for item in components(hall.buffer(-radius)) if item.area > 1])
                 for radius in [0.5, 0.6, 0.65, 0.7]
             },
             "midpointProbe1300mmSweep": entry_checks,
-            "probeMeaning": "Hypothetical boundary-midpoint access, offset 0.66m into the remainder. Not actual door locations or an egress/accessibility check.",
+            "probeMeaning": "Room boundary-midpoint approaches and the declared stairwell-door approach, offset 0.66m into their respective hallway. These do not establish inter-hallway connectivity, passage through a door, or egress/accessibility compliance.",
             "diagnosticGrossGaps": {
                 "westHall": polygons["L1"].bounds[0] - polygons["W3"].bounds[2],
                 "stairsToR": polygons["Stairs"].distance(polygons["R1"]),
@@ -382,8 +479,12 @@ def audit(args):
             },
             "baselineSymmetricDifferenceArea": {
                 label: polygons[label].symmetric_difference(baseline[label]).area
-                for label in ["R1", "R2", "R3", "N1", "N2", "N3"]
+                for label in sorted(EXPECTED_LABELS)
             } if baseline else None,
+            "nonLRoomPolygonsUnchanged": all(
+                polygons[label].equals_exact(baseline[label], 0)
+                for label in EXPECTED_LABELS - {"L1", "L2", "L3"}
+            ) if baseline else None,
             "retainedRPolygonsUnchanged": all(
                 polygons[label].equals_exact(baseline[label], 0)
                 for label in ["R1", "R2", "R3"]
@@ -393,7 +494,11 @@ def audit(args):
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n")
     if args.plot:
-        draw_plot(args.plot, flat, polygons, baseline, witnesses)
+        draw_plot(
+            args.plot, flat, occupied,
+            {label: polygon for label, polygon in baseline.items() if label not in baseline_corridors} if baseline else None,
+            witnesses, corridors, flight, [record for record in door_records if record["target"] == stair_record["shortLabel"]] if stair_record else [],
+        )
     print(json.dumps({
         "report": str(args.output),
         "packingWitnesses": report["packing"]["count"],
@@ -404,20 +509,18 @@ def audit(args):
     }, indent=2))
 
 
-def draw_plot(path, flat, polygons, baseline, witnesses):
+def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.patches import Polygon as Patch
 
-    panels = [(baseline, "Before dimensional refit")] if baseline else []
-    panels.append((polygons, "Similar-envelope study · R1–R3 retained and dimensionally unresolved"))
+    panels = [(baseline, "Before the left-side and stairwell correction")] if baseline else []
+    panels.append((polygons, "Source-aligned L rooms · west stairwell entry · east access unconfirmed"))
     figure, axes = plt.subplots(len(panels), 1, figsize=(16, 8.5 * len(panels)), squeeze=False, layout="constrained")
     for axis, (items, title) in zip(axes[:, 0], panels):
         axis.add_patch(Patch(list(flat.exterior.coords), facecolor="#eeeae3", edgecolor="#41413c", linewidth=2))
         for label, polygon in items.items():
-            if label == "Hall":
-                continue
             for part in components(polygon):
                 axis.add_patch(Patch(
                     list(part.exterior.coords),
@@ -426,15 +529,43 @@ def draw_plot(path, flat, polygons, baseline, witnesses):
                     hatch="///" if items is polygons and label.startswith("R") else None,
                 ))
             point = polygon.representative_point()
-            axis.text(point.x, point.y, label, ha="center", va="center", fontsize=11)
+            if not (items is polygons and label == "Stairs" and flight is not None):
+                axis.text(point.x, point.y, label, ha="center", va="center", fontsize=11)
             witness = witnesses.get(label)
             if items is polygons and witness is not None:
                 axis.add_patch(Patch(list(witness.exterior.coords), fill=False, edgecolor="#576d7a", linewidth=1.2, linestyle="--"))
+        if items is polygons:
+            for label, corridor in corridors.items():
+                point = corridor.representative_point()
+                axis.text(point.x, point.y, label, ha="center", va="center", fontsize=9, color="#79746b")
+            if flight is not None:
+                axis.add_patch(Patch(
+                    list(flight.exterior.coords), facecolor="#aaa497",
+                    edgecolor="#655f54", hatch="///", linewidth=0.8,
+                ))
+                point = flight.representative_point()
+                axis.text(point.x, point.y, "Flight", ha="center", va="center", rotation=90, fontsize=9)
+                enclosure = polygons["Stairs"].bounds
+                axis.text(
+                    (enclosure[0] + enclosure[2]) / 2,
+                    (enclosure[1] + flight.bounds[1]) / 2,
+                    "Landing", ha="center", va="center", rotation=90, fontsize=8,
+                )
+            for door in stair_doors:
+                segment = LineString(door["segment"])
+                xs, ys = segment.xy
+                axis.plot(xs, ys, color="#3d6678", linewidth=3, solid_capstyle="round")
+                point = segment.interpolate(0.5, normalized=True)
+                axis.annotate(
+                    "West entry\nwidth estimated", xy=(point.x, point.y),
+                    xytext=(point.x - 3.0, point.y), ha="right", va="center", fontsize=8,
+                    arrowprops={"arrowstyle": "->", "color": "#3d6678", "linewidth": 0.8},
+                )
         axis.autoscale_view()
         subtitle = (
-            "Dashed rectangles: 2.70 × 3.30 m packing witnesses only; not actual room positions."
+            "Dashed rectangles: packing witnesses only. Stair flight and landings remain schematic; no east connection is inferred."
             if items is polygons
-            else "Twenty confirmed room references; approximate boundaries before the dimensional check."
+            else "Retained dimensional candidate; twenty room references. Stairwell and L alignment awaiting this correction."
         )
         axis.set_title(title + "\n" + subtitle, fontsize=14)
         axis.set_aspect("equal")
@@ -450,7 +581,7 @@ def draw_plot(path, flat, polygons, baseline, witnesses):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--study", type=Path, default=ROOT / "public/data/interior-studies.json")
-    parser.add_argument("--baseline", type=Path, default=ROOT / "data/source/house55-2og-sketch-baseline.json", help="Earlier study for comparison; defaults to the retained twenty-room sketch baseline.")
+    parser.add_argument("--baseline", type=Path, default=ROOT / "data/source/house55-2og-dimension-baseline.json", help="Earlier study for comparison; defaults to the retained dimensional candidate before the left-side correction.")
     parser.add_argument("--output", type=Path, default=Path("/tmp/house55-dimension-audit.json"))
     parser.add_argument("--plot", type=Path, help="Optional standalone PNG outside published site data.")
     parser.add_argument("--inset", type=float, default=0.1, help="Explicit hypothetical clearance; not a measured wall thickness.")

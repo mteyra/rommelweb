@@ -119,7 +119,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
       if (!Array.isArray(level.spaces) || !level.spaces.length) fail(`${lp}.spaces`, 'requires study space geometry');
       for (const [i, space] of level.spaces.entries()) {
         const sp = `${lp}.spaces[${i}]`;
-        object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes']);
+        object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes', 'stairFlight']);
         identify(space, sp);
         if (space.shortLabel !== undefined) text(space.shortLabel, `${sp}.shortLabel`, 16);
         if (!KINDS.has(space.kind) || !CONFIDENCE.has(space.confidence)) fail(sp, 'requires a known space kind and sketch/estimated confidence');
@@ -136,6 +136,24 @@ export function validateInteriorStudies(studies, campus, lod2) {
         const spacePolygon = {outer: space.polygon, holes: space.holes || []};
         if (level.floorOutline.some(piece => boundariesCross(spacePolygon, piece)
           || (piece.holes || []).some(hole => overlapsArea(spacePolygon, {outer: hole})))) fail(sp, 'space must not cover a floor cutout or cross the floor boundary');
+        if (space.stairFlight !== undefined) {
+          const fp = `${sp}.stairFlight`;
+          if (space.kind !== 'stairs') fail(fp, 'is only allowed inside a stairwell');
+          validateInteriorPolygon(space.stairFlight, fp);
+          if (space.stairFlight.length !== 5) fail(fp, 'requires one closed quadrilateral for the schematic flight');
+          const corners = space.stairFlight.slice(0, -1);
+          const turns = corners.map((a, i) => {
+            const b = corners[(i + 1) % 4], c = corners[(i + 2) % 4];
+            return (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]);
+          });
+          if (!turns.every(turn => turn > 1e-8) && !turns.every(turn => turn < -1e-8)) fail(fp, 'must be convex');
+          const flight = {outer: space.stairFlight};
+          if (![...corners, ...interiorProbes(flight)].every(point => pointInStudyOutline(point, [spacePolygon]))
+            || boundariesCross(flight, spacePolygon)
+            || (space.holes || []).some(hole => overlapsArea(flight, {outer: hole}))) {
+            fail(fp, 'must stay entirely within its stairwell and outside its cutouts');
+          }
+        }
       }
       for (let i = 0; i < level.spaces.length; i++) for (let j = i + 1; j < level.spaces.length; j++) {
         const a = level.spaces[i], b = level.spaces[j];

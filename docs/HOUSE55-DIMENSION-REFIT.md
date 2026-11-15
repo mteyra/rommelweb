@@ -1,10 +1,12 @@
-# House 55 · metric audit and similar-envelope refit
+# House 55 · metric audit, left alignment and stairwell access
 
 Computed 15 November 2026 for **2. OG / index 2**. The resident-confirmed counts remain **A–D: 4, E–G: 3, W: 4, L: 3, R: 3, N: 3 — twenty rooms**. This audit adjusts unmeasured study partitions and tests their dimensions. It does not establish actual apartment outlines or supersede a measured plan.
 
-The resident describes **all top-floor rooms as singles, generally similar in size**, with dimensional variation closer to **“one hand length.”** A repeated single-apartment type with small variations is therefore the working hypothesis. Approximately **0.20 m** is a working interpretation of that description, not a measured hand length or apartment tolerance. A mismatch below questions our inferred boundaries, service zones or use of the reference drawing; it does not establish smaller apartments or a different apartment type in the building.
+The latest [resident annotation](../data/source/house55-2og-left-correction.png) moves the left rooms to the exterior elbow and identifies the green mark as a **west-hallway entrance into the stairwell**. The red flight outline and full stairwell enclosure are treated separately. The narrower enclosure uses a provisional half-room-width interpretation; it is not a measured stair dimension.
 
-Seventeen revised candidate envelopes have widths near **3.00–3.19 m** and a fitted common gross depth near **5.40 m**. Each accommodates a **2.70 × 3.30 m rectangle**, allowing a hypothetical 0.10 m inset from its boundary. The retained **R1–R3** polygons remain unresolved and cannot accommodate that rectangle with the same inset. These are reproducible geometric results, not evidence that the witness rectangles are actual living-room positions or that seventeen complete apartment templates have been verified.
+**Only L1–L3, the stairwell and associated hallway/entry geometry change in this correction. The other seventeen room polygons stay exactly as they were.** There are now two hallway spaces: the recorded west entrance connects West hall to the stairwell; an East hall connection is **unconfirmed and not invented**. This incomplete graph does not describe a verified emergency route or prove that the actual building lacks a connection.
+
+The resident describes all top-floor rooms as singles, generally similar in size, with variation closer to “one hand length.” This remains a working hypothesis, not a measured tolerance. Seventeen candidate envelopes now have gross widths near **2.94–3.19 m** and a fitted common depth near **5.40 m**. Each accommodates a **2.70 × 3.30 m rectangle** with a hypothetical 0.10 m inset. **R1–R3 remain unchanged and unresolved** under that test. A packing witness is not an actual living-room position or a verified whole-apartment template.
 
 ## Sources and scale
 
@@ -24,9 +26,9 @@ Six independently matched GML edges are about **0.134–0.164% shorter in the we
 
 The [dimension evidence review](HOUSE55-DIMENSION-EVIDENCE.md) confirms that the older resident sketch labels an approximately **2.70 × 3.30 m living zone**. Its entrance, bathroom and kitchen extend beyond that rectangle, without a dimensioned overall apartment length. Scaling the full raster by its living zone suggests a depth around 6 m, but that illustration is not uniformly calibrated or dimensioned enough to supply a measured full template for House 55. The operator's **16.4 m² category average** includes allocation rules and is not a clear room or gross apartment measurement.
 
-## Why the former rectangles were inconsistent
+## Historical dimensional check
 
-The old L run was **6.691933 m / 3 = 2.230644 m per gross bay**. A 2.70 m-wide rectangle cannot fit in such a narrow strip, even before allowing wall thickness. Rotating that rectangle does not help: its minimum projection width at any angle is 2.70 m.
+The original [twenty-room sketch baseline](../data/source/house55-2og-sketch-baseline.json) had an L run of **6.691933 m / 3 = 2.230644 m per gross bay**. A 2.70 m-wide rectangle cannot fit in such a narrow strip, even before allowing wall thickness. Rotating that rectangle does not help: its minimum projection width at any angle is 2.70 m.
 
 The former unequal hand-stroke divisions also produced B at about **2.689 m** and F at **2.583 m**, while adjacent bays were much wider. These are approximate drawn boundaries, so equalizing them is a reasonable study revision. It does not require changing the confirmed counts.
 
@@ -34,82 +36,74 @@ The R conflict remains in the current envelopes. Their retained frontage has a n
 
 Partitions also need an unmeasured wall budget. For illustration, two hypothetical 0.10 m separating partitions raise the required run to **8.30 m**, still before end walls. This strengthens the need to measure the R arrangement; it does not validate the illustrative wall thickness or overturn the repeated-single working hypothesis.
 
-## Changes tested
+## Current correction
 
-The width refit changes approximate dividers where hallway geometry has spare space:
+L1 starts at **source corner 18**, study X = **2.610996 m**, instead of X = 1 m. L3 ends at the south-notch alignment, **source corner 3**, X = **11.433485 m**. Three equal bays fill that **8.822489 m run**, giving **2.940830 m gross per bay**. Their north edge follows the actual source facade line; L1 no longer extends behind the west elbow.
 
-- **A–D:** equally divide the existing 12.065919 m run; nominal bays are **3.016480 m**. Preserve the exterior outline.
-- **E–G:** equally divide the existing 9.139503 m run; nominal bays are **3.046501 m**. Preserve the exterior outline.
-- **W1–W4:** use four nominal **3.00 m** bays from study Y = **−2.521703 to 9.478297 m**. Continue the source west-wall line past its elbow without an artificial padding spur.
-- **L1–L3:** use **X = 1, 4, 7, 10 m** as nominal dividers. Extend source edge 18→17 as the top alignment. The stair follows the L3 edge, translating approximately **0.697071 m east** from the original study. Its width, run and north/south position remain unchanged; the later depth fit keeps this stair fixed.
-- **N1–N3:** retain their approximately **3.188 m** nominal bays and source-facing outline.
-- **R1–R3:** preserve the original polygons exactly. The source end alignment remains intact, and the dimensional conflict stays explicit.
+The L group retains its fitted southern boundary and approximately the earlier common gross depth **D = 5.395477 m**. Following the skewed source facade at the corrected X coordinates reduces its mean projected depth by **1.378 mm**. D originally came from the arithmetic mean of seventeen non-R width-only depths, minimizing squared depth changes from those modeling priors. The prior vector is retained; the audit independently recomputes D, checks the four unchanged groups against it and reports the subsequent L correction separately. This verifies the calculation, not construction accuracy. The other seventeen rooms and all source exterior vertices are unchanged.
 
-The 3.00 m trial bay is near the independently available southwest and east averages; it is not a surveyed module. Equal areas alone could produce noticeably different shapes, so the final fit instead regularizes the **depth of seventeen envelopes**. It leaves R untouched.
+The stairwell sits against L3. Its provisional width is **half one L bay, approximately 1.470415 m**. The full enclosure extends from the source north wall to study Y = **9.071859 m**, separating the two hallway spaces. A separate schematic flight retains the approximate Y = **3.405605–7.710483 m** interval. The remaining parts represent upper and lower landings, without a measured stair rise, tread count or landing design.
 
-The common depth is the arithmetic mean of the seventeen non-R projected gross depths in the width-only study: **D = 5.395477 m**. This minimizes the sum of squared depth changes from those modeling priors. Five corridor-facing boundaries move until their source-clipped group mean depths equal D. Exterior vertices and facade lines are not resized, and room counts stay fixed.
+The west entry is on the enclosure's **left boundary below the flight**. Its **1.10 m displayed opening** is estimated; the resident confirmed where it leads, not its exact width or swing. No east-side opening is added.
 
-The seventeen resulting gross widths are **3.000–3.193 m** and depths **5.389–5.402 m**: spreads of **0.193 m** and **0.013 m**. This is consistent with the working interpretation of the resident's description. Their polygon areas range from **16.164 to 17.224 m²** because their widths differ slightly. This is a fitted similarity assumption, not a measured full-apartment depth or an equal-area requirement. Partitions, service layouts and doorway positions remain estimates.
-
-| Corridor-facing boundary | Width-only position → fitted position (m) | Movement (m) |
-| --- | ---: | ---: |
-| A–D top / study Y | 11.577233 → 12.131338 | +0.554105 |
-| E–G left / study X | 24.902672 → 25.148459 | +0.245787 |
-| W1–W4 right / study X | −0.926329 → −0.471276 | +0.455053 |
-| L1–L3 bottom / study Y | 6.380337 → 6.611022 | +0.230685 |
-| N1–N3 bottom / study Y | −1.334879 → −1.187706 | +0.147173 |
-
-The source-clipped mean depth of every group independently matches D within **0.00000045 m** of serialization/computation difference. That numerical agreement verifies the fit calculation; it is not a claim of construction accuracy. The stair stays fixed and shares approximately **3.205 m** of boundary with L3. The R polygons match the retained baseline exactly.
+Current non-R widths span approximately **2.941–3.193 m**, about **0.252 m**, and their depths remain near **5.40 m**. The exterior-corner correction changes the former width spread; “one hand length” has not been converted into a strict acceptance measurement. Actual partitions, services and full apartment dimensions remain unverified.
 
 ### Per-room comparison
 
-Widths and depths below are **projected gross polygon extents**, not clear dimensions. Slight source skew makes an extent differ from a nominal divider interval; the R polygons are tapered. Areas are polygon areas with holes subtracted. Values are rounded to three decimals for review.
+The comparison uses the [dimensional baseline immediately before this correction](../data/source/house55-2og-dimension-baseline.json), not the original hand-stroke sketch. Widths and depths are **projected gross polygon extents**, not clear dimensions. Slight source skew makes an extent differ from a nominal divider interval; the R polygons are tapered. Areas subtract holes. Values are rounded to three decimals.
 
 | Study label | Width before → after (m) | Fitted depth after (m) | Gross area before → after (m²) | 2.70 × 3.30 packing test |
 | --- | ---: | ---: | ---: | --- |
-| A | 2.875 → 3.021 | 5.390 | 17.066 → 16.266 | Fits |
-| B | 2.689 → 3.016 | 5.394 | 15.987 → 16.264 | Fits |
-| C | 3.253 → 3.016 | 5.397 | 19.352 → 16.275 | Fits |
-| D | 3.255 → 3.016 | 5.401 | 19.363 → 16.275 | Fits |
-| E | 2.895 → 3.047 | 5.393 | 16.320 → 16.426 | Fits |
-| F | 2.583 → 3.047 | 5.395 | 14.567 → 16.434 | Fits |
-| G | 3.662 → 3.047 | 5.398 | 20.641 → 16.424 | Fits |
-| W1 | 2.863 → 3.008 | 5.399 | 14.129 → 16.187 | Fits |
-| W2 | 2.863 → 3.005 | 5.397 | 14.145 → 16.180 | Fits |
-| W3 | 2.863 → 3.003 | 5.394 | 14.138 → 16.172 | Fits |
-| W4 | 2.863 → 3.000 | 5.391 | 14.130 → 16.164 | Fits |
-| L1 | 2.231 → 3.000 | 5.398 | 11.521 → 16.190 | Fits |
-| L2 | 2.231 → 3.000 | 5.395 | 11.517 → 16.183 | Fits |
-| L3 | 2.231 → 3.000 | 5.393 | 11.513 → 16.175 | Fits |
+| A | 3.021 → 3.021 | 5.390 | 16.266 → 16.266 | Fits |
+| B | 3.016 → 3.016 | 5.394 | 16.264 → 16.264 | Fits |
+| C | 3.016 → 3.016 | 5.397 | 16.275 → 16.275 | Fits |
+| D | 3.016 → 3.016 | 5.401 | 16.275 → 16.275 | Fits |
+| E | 3.047 → 3.047 | 5.393 | 16.426 → 16.426 | Fits |
+| F | 3.047 → 3.047 | 5.395 | 16.434 → 16.434 | Fits |
+| G | 3.047 → 3.047 | 5.398 | 16.424 → 16.424 | Fits |
+| W1 | 3.008 → 3.008 | 5.399 | 16.187 → 16.187 | Fits |
+| W2 | 3.005 → 3.005 | 5.397 | 16.180 → 16.180 | Fits |
+| W3 | 3.003 → 3.003 | 5.394 | 16.172 → 16.172 | Fits |
+| W4 | 3.000 → 3.000 | 5.391 | 16.164 → 16.164 | Fits |
+| L1 | 3.000 → 2.941 | 5.397 | 16.190 → 15.867 | Fits |
+| L2 | 3.000 → 2.941 | 5.394 | 16.183 → 15.859 | Fits |
+| L3 | 3.000 → 2.941 | 5.391 | 16.175 → 15.852 | Fits |
 | R1 | 2.696 → 2.696 | 5.369 | 14.462 → 14.462 | Unresolved |
 | R2 | 2.697 → 2.697 | 5.371 | 14.468 → 14.468 | Unresolved |
 | R3 | 2.700 → 2.700 | 5.373 | 14.475 → 14.475 | Unresolved |
-| N1 | 3.193 → 3.193 | 5.402 | 16.754 → 17.224 | Fits |
-| N2 | 3.188 → 3.188 | 5.395 | 16.722 → 17.191 | Fits |
-| N3 | 3.192 → 3.192 | 5.389 | 16.712 → 17.182 | Fits |
+| N1 | 3.193 → 3.193 | 5.402 | 17.224 → 17.224 | Fits |
+| N2 | 3.188 → 3.188 | 5.395 | 17.191 → 17.191 | Fits |
+| N3 | 3.192 → 3.192 | 5.389 | 17.182 → 17.182 | Fits |
 
 The test subtracts a **hypothetical 0.10 m inset** from each polygon, then searches for the reference rectangle in either building-axis orientation. This inset is a sensitivity assumption, **not measured wall thickness or a building-code requirement**. Every reported fit includes explicit rectangle coordinates that a geometry engine verifies are contained in the inset polygon. These are *packing witnesses*: they prove a rectangle can be placed somewhere. They do not establish a window-facing living zone, services, furniture placement or measured wall thickness.
 
 For all three R rooms the inset polygon's bounding strip is narrower than 2.70 m. This independently rules out every rectangle rotation, so the negative result does not depend on the placement search's sampling density.
 
-## Corners and circulation
+## Hallways, stairwell and the recorded door
 
-The enlarged L1 extends behind the northwest elbow. It retains about **1.39 m of direct north exterior frontage**, rather than a full 3 m face. The separate typical window reference is approximately 1.05 m wide, leaving about **0.34 m before jamb allowances**. This does not mathematically rule out a window, but it makes L1 a corner hypothesis that needs a photograph or measurement. The W4 extension similarly passes the west-wall elbow by about **0.45 m**; its external window face and actual room shape need checking.
+L1 now starts at the source elbow and has a full candidate facade bay. The west connector marked “Thick wall?” remains governed by the exterior source face; LoD2 does not provide interior wall thickness. No thickness was inferred from the red stroke. The unchanged W4 envelope still extends about 0.45 m beyond its exterior elbow, so its actual window face and shape remain unverified.
 
-The refit leaves one principal connected circulation remainder. Its diagnostic gaps are:
+The two hallway polygons represent distinct spaces. Their current access graph, built only from recorded door segments, is:
+
+- **West hall → stairwell**, through the west entry below the flight. A–D, W1–W4 and L1–L3 have their estimated openings to West hall.
+- **East hall → E–G, R1–R3 and N1–N3**, through their estimated openings. An East hall connection to the stairwell has not been mapped.
+
+The former passage below the small stair box is now part of the stairwell landing/enclosure. There is no artificial gap connecting the hallways. A separate flight footprint inside that enclosure does not restore hallway access around it.
+
+The diagnostic exterior-to-envelope separations are:
 
 | Location | Gross geometric gap |
 | --- | ---: |
-| Between W and L | **1.471 m** |
-| Between stair and R | **1.673 m** |
+| Between W and L | **3.082 m** |
+| Between stairwell and R | **1.105 m** |
 | Between R and E | **3.053 m** |
-| South of stair, to the source boundary | **1.359 m** |
+| Former southern bypass | **Closed by the stairwell enclosure** |
 
-The principal remainder stays connected after a **0.65 m inward buffer**, equivalent to a 1.30 m circular sweep through this open geometry. Hypothetical midpoint access probes for all twenty rooms and the stair reach that component. A 0.70 m buffer splits it. The stair's south gap is the limiting region. These checks use the drawn open remainder, without verified wall thickness, actual doors, landings or obstructions; they are **not egress or accessibility approval**.
+The roughly 1.1 m strip beside R is a geometric separation, **not an asserted circulation route, required clearance or egress finding**. R doors face north, and the actual eastern stairwell connection remains unknown. Making that strip pass a chosen sweep test would not justify altering the resident's stairwell correction.
 
-The room-polygon total changes from **307.980 to 322.616 m²**, while the connected-remainder area changes from approximately **192.579 to 177.945 m²**. The stair remains approximately **10.057 m²**. Much of that broad remainder may have an unrecorded purpose; labeling it as a candidate corridor is not evidence that every square metre is circulation.
+The audit analyzes each hallway separately, including inward-buffer components and approach probes. West hall is approximately **92.207 m²** and East hall **85.222 m²**. Each retains one component larger than 1 m² after a 0.65 m inward buffer, and all twenty room-approach probes plus the west stairwell-door approach pass within their respective hallway. The stairwell approach uses its saved west-door segment rather than the former bottom-edge midpoint. These diagnostics do not establish passage through a doorway, verified wall thickness, obstructions, or emergency/accessibility compliance. The full access graph remains incomplete.
 
-The independent engine detects approximately **0.00000071 m²** of overlap from coordinate rounding, rather than a material room intersection. Source-boundary disagreement is confined to sub-millimetre numerical slivers: approximately **0.000920 m² total**, maximum offset **0.1303 mm**, within the explicit 0.2 mm comparison bound used by the geometry tests. Four disconnected remainder slivers are each below 0.000002 m². The audit retains and reports them rather than silently claiming exact zero.
+Room, enclosure and hallway areas, source-containment residuals and numerical overlap are retained in the machine-readable report. The current room/stairwell overlap is **zero**. The maximum source-containment disagreement is approximately **0.103 mm**, with **0.000744 m²** outside the annotated source region. These fall within the existing **0.2 mm / 0.001 m²** bounds for source-rounding disagreement; they are computational checks, not architectural accuracy claims.
 
 ## What the current envelopes do and do not establish
 
@@ -117,17 +111,17 @@ A uniform full-apartment template containing an exact 2.70 × 3.30 m living rect
 
 Seventeen living-zone fits do not establish seventeen complete apartment templates. The fitted envelope depth is about **5.40 m gross**. Under the 0.10 m inset sensitivity that leaves about **5.20 m** along its depth axis, or about **1.90 m** beyond a 3.30 m living rectangle in a straight arrangement. The entrance, bath, kitchen, walls and shafts have not been fitted or measured. A longer exact whole-apartment template could still fail these envelopes. The public sketch supplies no reliable measured complete depth with which to settle that question.
 
-The highest-value measurements are **one actual R living-zone clear width and the complete depth of a typical single apartment, including its service section**. Comparing that full depth in W and A–D would test the fitted inner boundaries against the repeated-single hypothesis. L1's actual window/outer wall and the stair's real outline would then constrain the corner and circulation. The twenty confirmed counts remain fixed.
+The highest-value confirmations are the **eastern stairwell connection**, actual enclosure/flight/door dimensions, **one R living-zone clear width**, and the **complete depth of a typical single apartment including its service section**. These would test the current access graph and fitted envelopes. The twenty confirmed counts remain fixed.
 
 ## Reproduce the audit
 
 [The machine-readable audit](data/house55-dimension-audit.json) contains the exact inputs and results. The standalone drawing below distinguishes the comparison polygons from the hypothetical packing rectangles.
 
-![Twenty-room study before and after the similar-envelope refit; dashed rectangles are only packing witnesses and the retained R rooms remain unresolved](preview/house55-dimension-audit.png)
+![Before and after the left-side correction, showing source-aligned L rooms, separate flight and stairwell, a west entry and an unconfirmed eastern connection; dashed rectangles are packing witnesses only](preview/house55-dimension-audit.png)
 
-[The audit script](../scripts/audit-house55-dimensions.py) reads the official GML, current web geometry and selected study. Its default comparison is the retained [twenty-room sketch baseline](../data/source/house55-2og-sketch-baseline.json), captured from source commit `3eac42c1bbbc908c458f7c18241edef26f41ac95`. All required model inputs are in the repository.
+[The audit script](../scripts/audit-house55-dimensions.py) reads the official GML, current web geometry and selected study. Its default comparison is the retained [dimensional baseline](../data/source/house55-2og-dimension-baseline.json), captured from source commit `31e360f9124db6ea114454b6c58688b965ded940`. The earlier [hand-stroke baseline](../data/source/house55-2og-sketch-baseline.json) remains available for the historical comparison. All required model inputs are in the repository.
 
-The [retained provenance](../data/source/house55-2og-study-provenance.json) also contains the seventeen width-only input depths and the five fitted boundary positions. The audit independently recomputes their mean, verifies the output group means and checks the unchanged R polygons. It matches the annotated web roof to the raw GML by its exact polygon ID.
+The [retained provenance](../data/source/house55-2og-study-provenance.json) contains the seventeen width-only input depths, subsequent fit and left-correction evidence. The audit independently recomputes the depth mean, verifies the four unchanged group means, reports the later L adjustment, checks all seventeen non-L room polygons against the dimensional baseline and analyzes the two hallway components and recorded door graph. It matches the annotated web roof to the raw GML by its exact polygon ID.
 
 The script does not change model or approval records and rejects output paths that would overwrite source data or its inputs. Its Python dependencies are declared for an isolated `uv` environment; they are not website dependencies. Regenerate the published audit artifacts with:
 

@@ -355,6 +355,38 @@ test('corridor holes leave the stair area visible and independently clickable, i
   assert.ok(treads && treads.geometry.attributes.position.count > 0);
 });
 
+test('a separate stair flight stays inside its enclosure and leaves the entrance landing free of treads', () => {
+  const data = fixture();
+  level(data).floorOutline = [{outer: rectangle(0, 0, 8, 10)}];
+  level(data).spaces = [{
+    id: 'landing-stair', label: 'Stairwell', kind: 'stairs', confidence: 'estimated',
+    polygon: rectangle(2, 0, 4, 10), stairFlight: rectangle(2, 2, 4, 7),
+  }];
+  level(data).doors = [{id: 'landing-entry', label: 'Entry from hall', confidence: 'sketch',
+    spaceId: 'landing-stair', segment: [[2, 8], [2, 9]]}];
+  assert.equal(validate(data), true);
+  const result = createInteriorWireframe(display(data), {house: '55', floor: 2});
+  const treads = result.group.children.find(child => child.userData.role === 'schematic-stair-treads');
+  const positions = treads.geometry.attributes.position.array;
+  for (let i = 0; i < positions.length; i += 3) {
+    assert.ok(positions[i] >= 2 && positions[i] <= 4);
+    assert.ok(positions[i + 2] > 2 && positions[i + 2] < 7, 'neither landing may be filled by schematic steps');
+  }
+  const bad = flight => {
+    const copy = structuredClone(data);
+    copy.buildings['55'].levels[0].spaces[0].stairFlight = flight;
+    return copy;
+  };
+  assert.throws(() => validate(bad(rectangle(1, 2, 4, 7))), /stairFlight.*within/);
+  assert.throws(() => validate(bad([[2, 2], [4, 2], [3, 3], [4, 7], [2, 2]])), /stairFlight.*convex/);
+  const withHole = structuredClone(data);
+  withHole.buildings['55'].levels[0].spaces[0].holes = [rectangle(2.5, 4, 3.5, 5)];
+  assert.throws(() => validate(withHole), /stairFlight.*within/);
+  const notStairs = structuredClone(data);
+  notStairs.buildings['55'].levels[0].spaces[0].kind = 'room';
+  assert.throws(() => validate(notStairs), /stairFlight.*stairwell/);
+});
+
 test('estimated partitions remain dashed while sketch boundaries remain solid and doors have no invented swing', () => {
   const data = fixture(), result = createInteriorWireframe(display(data), {house: '55', floor: 2});
   assert.equal(result.group.userData.role, 'resident-interior-study');
@@ -433,8 +465,8 @@ test('House 55 studies cover its three floors while retaining the directly annot
   assert.equal(Object.hasOwn(resolved, 'reviewedAt'), false);
   assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'estimated'));
   assert.equal(resolved.spaces.filter(space => space.kind === 'room').length, 20, 'the resident-confirmed count includes three L rooms');
-  assert.equal(resolved.spaces.length, 22, 'twenty rooms plus the stair and corridor areas');
-  assert.equal(resolved.doors.length, 21, 'twenty estimated room openings and one estimated stair opening');
+  assert.equal(resolved.spaces.length, 23, 'twenty rooms plus the stairwell and two distinct hallways');
+  assert.equal(resolved.doors.length, 21, 'twenty estimated room openings and the resident-located stairwell entrance');
   assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'sketch').length, 0);
   assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'estimated').length, 20, 'fitted envelopes remain estimates even where counts and approximate positions were sketched');
   for (const [prefix, count] of [['W', 4], ['L', 3], ['R', 3], ['N', 3]]) {
@@ -442,7 +474,8 @@ test('House 55 studies cover its three floors while retaining the directly annot
       Array.from({length: count}, (_, i) => `${prefix}${i + 1}`), `${prefix} run matches the confirmed room count`);
   }
   assert.ok(resolved.spaces.filter(space => space.kind === 'room').every(space => /sketch|estimate/i.test(space.label)), 'labels must identify the evidence rather than imply physical room numbers');
-  assert.ok(resolved.doors.every(door => door.confidence === 'estimated' && !Object.hasOwn(door, 'hinge') && !Object.hasOwn(door, 'swing')));
+  assert.ok(resolved.doors.every(door => !Object.hasOwn(door, 'hinge') && !Object.hasOwn(door, 'swing')));
+  assert.equal(resolved.doors.filter(door => door.confidence === 'sketch').length, 1, 'the green stairwell entrance is resident-located; its width remains an estimate');
   assert.equal(resolved.excludedAreas.length, 2, 'both resident-marked missing wings are retained');
   assert.match(resolved.notes, /confirm/i, 'the source note records the resident’s count confirmation');
   assert.doesNotMatch(resolved.notes, /not a confirmed room count/i);
@@ -498,14 +531,14 @@ test('the top-floor dimensional fit equalizes repeated bays without forcing the 
   };
   for (const [labels, axis, target] of [
     [['A', 'B', 'C', 'D'], 0, 3.0165], [['E', 'F', 'G'], 1, 3.0465],
-    [['W1', 'W2', 'W3', 'W4'], 1, 3], [['L1', 'L2', 'L3'], 0, 3],
+    [['W1', 'W2', 'W3', 'W4'], 1, 3], [['L1', 'L2', 'L3'], 0, 2.94083],
   ]) {
     for (const label of labels) assert.ok(Math.abs(span(label, axis) - target) < 0.015, `${label} uses the candidate repeated bay within source skew`);
   }
   const similar = [...'ABCDEFG', 'W1', 'W2', 'W3', 'W4', 'L1', 'L2', 'L3', 'N1', 'N2', 'N3'];
   const widths = similar.map(label => span(label, /^W|^[EFG]$/.test(label) ? 1 : 0));
   const depths = similar.map(label => span(label, /^W|^[EFG]$/.test(label) ? 0 : 1));
-  assert.ok(Math.max(...widths) - Math.min(...widths) < 0.21, 'the seventeen fitted bays vary by approximately a hand length, not by whole metres');
+  assert.ok(Math.max(...widths) - Math.min(...widths) < 0.26, 'the new source-corner alignment narrows L slightly; the resulting range must remain explicit');
   assert.ok(Math.max(...depths) - Math.min(...depths) < 0.03, 'a common candidate depth keeps the seventeen full envelopes comparable within source skew');
   const roof = lod2.buildings.find(building => building.number === '55').surfaces[39];
   const facade = Math.hypot(roof.points[7][0] - roof.points[6][0], roof.points[7][2] - roof.points[6][2]);
@@ -531,13 +564,59 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
     assert.ok(stair && l3);
     const [sx0, sy0, sx1, sy1] = bounds(stair.polygon), [, ly0, lx1, ly1] = bounds(l3.polygon);
     assert.ok(Math.abs(sx0 - lx1) < 0.00001, `floor ${floor}: no gap may remain between stairs and L3`);
-    assert.ok(Math.abs(sx1 - sx0 - 2.336168) < 0.001, 'attaching the stairs preserves the previously registered width');
-    assert.ok(Math.abs(sy1 - sy0 - 4.304877) < 0.001, 'attaching the stairs preserves the previously registered run');
+    if (floor < 2) {
+      assert.ok(Math.abs(sx1 - sx0 - 2.336168) < 0.001, 'lower floors retain the earlier study enclosure');
+      assert.ok(Math.abs(sy1 - sy0 - 4.304877) < 0.001);
+    } else {
+      const [lx0] = bounds(l3.polygon);
+      assert.ok(Math.abs(sx1 - sx0 - (lx1 - lx0) / 2) < 0.001, 'about half a room width is an explicit trial proportion');
+      const [, fy0, , fy1] = bounds(stair.stairFlight);
+      assert.ok(Math.abs(fy1 - fy0 - 4.304877) < 0.001, 'the existing schematic flight run is retained inside the extended enclosure');
+      assert.ok(fy0 > sy0 + 1 && sy1 > fy1 + 1, 'upper and entrance landings are distinct from the flight');
+    }
     const expectedContact = Math.min(sy1, ly1) - Math.max(sy0, ly0);
     const contact = sharedBoundaryLength(stair.polygon, l3.polygon);
     assert.ok(expectedContact > 2.9 && expectedContact < sy1 - sy0, 'retain substantial contact and the stair access below it');
     assert.ok(Math.abs(contact - expectedContact) < 0.00002, 'the whole adjoining span must be a shared edge rather than one touching corner');
     assert.ok(multiArea(intersection([stair.polygon], [l3.polygon])) < 0.000001, 'flush rooms must not overlap');
+  }
+});
+
+test('the left correction preserves other rooms and represents only the confirmed west entry into the stairwell', async () => {
+  const published = await read('interior-studies'), plan = display(published);
+  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-dimension-baseline.json', import.meta.url)));
+  const magnitude = Math.hypot(0.676, 0.737);
+  const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
+  const stair = plan.spaces.find(space => space.kind === 'stairs');
+  const halls = plan.spaces.filter(space => space.kind === 'corridor');
+  assert.equal(halls.length, 2);
+  assert.ok(multiArea(intersection(...halls.map(hall => [hall.polygon, ...(hall.holes || [])]))) < 1e-8);
+  const roomEntries = plan.doors.filter(door => plan.spaces.find(space => space.id === door.spaceId)?.kind === 'room');
+  const westHall = roomEntries.find(door => door.spaceId.endsWith('-sw-1')).toSpaceId;
+  const eastHall = roomEntries.find(door => door.spaceId.endsWith('-east-1')).toSpaceId;
+  assert.notEqual(westHall, eastHall);
+  for (const entry of roomEntries) {
+    const space = plan.spaces.find(space => space.id === entry.spaceId);
+    assert.equal(entry.toSpaceId, /^(?:[ABCD]|W\d|L\d)$/.test(space.shortLabel) ? westHall : eastHall);
+    if (/^L\d$/.test(space.shortLabel)) continue;
+    const prior = baseline.level.spaces.find(item => item.id === space.id);
+    assert.deepEqual(space.polygon, prior.polygon, `${space.shortLabel}: only the left rooms may move`);
+    assert.deepEqual(space.holes, prior.holes);
+    assert.deepEqual(entry.segment, baseline.level.doors.find(item => item.id === entry.id).segment, `${space.shortLabel}: retain its door position`);
+  }
+  const entries = plan.doors.filter(door => door.spaceId === stair.id || door.toSpaceId === stair.id);
+  assert.equal(entries.length, 1, 'do not invent an eastern connection to join the hall graph');
+  assert.equal(entries[0].toSpaceId, westHall);
+  assert.equal(entries[0].confidence, 'sketch');
+  const source = lod2.buildings.find(building => building.number === '55').surfaces[39];
+  const corner = index => local([source.points[index][0], source.points[index][2]]);
+  const l1 = plan.spaces.find(space => space.shortLabel === 'L1');
+  assert.ok(Math.abs(Math.min(...l1.polygon.map(local).map(p => p[0])) - corner(18)[0]) < 1e-5);
+  assert.ok(Math.abs(Math.min(...stair.polygon.map(local).map(p => p[0])) - corner(3)[0]) < 1e-5);
+  const flightBottom = Math.max(...stair.stairFlight.map(local).map(p => p[1]));
+  for (const point of entries[0].segment.map(local)) {
+    assert.ok(Math.abs(point[0] - corner(3)[0]) < 1e-5, 'entrance lies on the west wall');
+    assert.ok(point[1] > flightBottom && point[1] < corner(3)[1], 'entrance reaches the landing below the flight');
   }
 });
 

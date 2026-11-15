@@ -108,8 +108,11 @@ export function createInteriorWireframe(level, { house, floor }) {
       }
     }
     labels.push({ text: space.label, shortText: space.shortLabel, position: labelPosition(space), spaceId: space.id, kind: 'space', confidence: space.confidence });
-    if (space.kind === 'stairs' && space.polygon.length === 5 && !space.holes?.length) {
-      const p = space.polygon;
+    // A marked flight is only part of a stairwell; its landings remain clear.
+    // Older studies keep their schematic full-enclosure treads.
+    const flight = level.isStudy && space.stairFlight ? space.stairFlight : space.polygon;
+    if (space.kind === 'stairs' && flight.length === 5 && (space.stairFlight || !space.holes?.length)) {
+      const p = flight;
       const lengths = p.slice(1).map((b, i) => Math.hypot(b[0] - p[i][0], b[1] - p[i][1]));
       const start = lengths.indexOf(Math.max(...lengths)), a = p[start], b = p[(start + 1) % 4], c = p[(start + 2) % 4], d = p[(start + 3) % 4];
       const treads = Array.from({length: 8}, (_, index) => {

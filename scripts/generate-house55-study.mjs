@@ -30,6 +30,19 @@ const annotationSha256 = createHash('sha256').update(annotationBytes).digest('he
 if (annotationSha256 !== '46e8288900b26170fa83ee93ae8bbaa68a0385e55280ade3d01583cd94a757ba') {
   throw new Error('The resident annotation changed: re-register its control points before regenerating');
 }
+const leftCorrectionFile = new URL('../data/source/house55-2og-left-correction.png', import.meta.url);
+const leftCorrectionBytes = await readFile(leftCorrectionFile);
+const leftCorrectionSha256 = createHash('sha256').update(leftCorrectionBytes).digest('hex');
+if (leftCorrectionSha256 !== 'dbad4facac5f354b934020577ee83e4a8b4372dceb43ac3fe660fa44c14191fd') {
+  throw new Error('The left-side correction image changed: review its interpretation before regenerating');
+}
+const dimensionBaselineFile = new URL('../data/source/house55-2og-dimension-baseline.json', import.meta.url);
+const dimensionBaselineBytes = await readFile(dimensionBaselineFile);
+const dimensionBaseline = JSON.parse(dimensionBaselineBytes);
+const dimensionBaselineSha256 = createHash('sha256').update(dimensionBaselineBytes).digest('hex');
+if (dimensionBaselineSha256 !== '43b7917c18c3734a86992403083e08c212e552fc776c4fea6c5eb21eb2a2a3c1') {
+  throw new Error('The frozen dimensional baseline changed: do not silently replace the comparison source');
+}
 const lod2 = JSON.parse(sourceBytes);
 const building = lod2.buildings.find(item => item.number === '55');
 if (building?.id !== 'DEBY_LOD2_3166499') throw new Error('Expected House 55 source model is missing');
@@ -355,6 +368,25 @@ for (const zone of depthFitZones) {
   zone.note += ` The shared fitted gross depth is approximately ${commonDepth.toFixed(2)}m before walls; it is not a measured clear apartment depth.`;
 }
 
+// Later resident correction: align L1's left wall to the source's northern
+// elbow, then the L3/stairwell wall to the southern corner. The three rooms
+// remain equal bays, retaining their previous corridor-facing depth. The
+// other seventeen rooms and the prior common-depth calculation stay frozen.
+const priorDimensionBounds = structuredClone(bounds);
+const leftBox = bounds['center-left-question'];
+leftBox[0] = sourceLocal(18)[0];
+leftBox[2] = sourceLocal(3)[0];
+leftBox[1] = continueEdgeAtX(sourceLocal(18), sourceLocal(17), leftBox[0])[1];
+const correctedLeftBayWidth = (leftBox[2] - leftBox[0]) / 3;
+const stairwellWidth = correctedLeftBayWidth / 2;
+const stairFlightBounds = [leftBox[2], bounds.stairs[1], leftBox[2] + stairwellWidth, bounds.stairs[3]];
+bounds.stairs = [
+  leftBox[2], continueEdgeAtX(sourceLocal(18), sourceLocal(17), leftBox[2])[1],
+  leftBox[2] + stairwellWidth, sourceLocal(3)[1],
+];
+const correctedLeftZone = chosenZones.find(zone => zone.code === 'center-left');
+correctedLeftZone.note = `Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about ${correctedLeftBayWidth.toFixed(2)}m wide; the previous approximately ${commonDepth.toFixed(2)}m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.`;
+
 const spaces = [], roomMultis = [], doorCandidates = [], zoneResults = [], sketchBoundaries = [];
 for (const zone of chosenZones) {
   const { box, cuts, quad, cells } = cellsForZone(zone);
@@ -389,36 +421,85 @@ for (const zone of chosenZones) {
   });
 }
 
-const stairMulti = intersection(annotationPlan, [rect(bounds.stairs)]);
-if (stairMulti.length !== 1) throw new Error('Expected one registered stair zone');
+const stairQuad = [
+  continueEdgeAtX(sourceLocal(18), sourceLocal(17), bounds.stairs[0]),
+  continueEdgeAtX(sourceLocal(18), sourceLocal(17), bounds.stairs[2]),
+  [bounds.stairs[2], bounds.stairs[3]], [bounds.stairs[0], bounds.stairs[3]],
+];
+const stairMulti = clean(intersection(annotationPlan, [close(stairQuad.map(campus))]));
+if (stairMulti.length !== 1) throw new Error('Expected one source-clipped stairwell enclosure');
+// Preserve the existing L3 bottom corner as an intermediate stairwell vertex.
+// Otherwise rounding one long stair edge and the shorter L3 edge separately
+// can create a sub-micrometre triangle along their supposedly shared wall.
+const l3Index = spaces.findIndex(space => space.shortLabel === 'L3');
+const expectedL3Joint = campus([leftBox[2], leftBox[3]]);
+const l3Joint = roomMultis[l3Index][0][0].find(point => pointDistance(point, expectedL3Joint) < 0.000001);
+if (!l3Joint) throw new Error('L3 bottom corner is missing from its clipped boundary');
+const stairOuter = stairMulti[0][0];
+const jointEdges = stairOuter.slice(0, -1).flatMap((point, index) => (
+  distanceToSegment(l3Joint, point, stairOuter[index + 1]) < 0.000001
+    && pointDistance(l3Joint, point) > 0.000001
+    && pointDistance(l3Joint, stairOuter[index + 1]) > 0.000001 ? [index] : []
+));
+if (jointEdges.length !== 1) throw new Error('L3 bottom corner must lie on exactly one stairwell boundary edge');
+stairOuter.splice(jointEdges[0] + 1, 0, [...l3Joint]);
+const stairFlight = roundRing(rect(stairFlightBounds));
 const stairId = 'study-55-2-stairs';
 spaces.push({
-  id: stairId, label: 'Stairs — estimated position', shortLabel: 'Stairs', kind: 'stairs', confidence: 'estimated',
-  note: 'The resident places the stairs flush to the left block, adjoining L3. The dimensional fit moves the attached enclosure about 0.70m plan-right from the earlier study, retaining its approximate width and run. The later common-depth fit keeps this position. This translation and the enclosure, riser count and landing arrangement are unmeasured.',
+  id: stairId, label: 'Stairwell — resident correction', shortLabel: 'Stairs', kind: 'stairs', confidence: 'estimated',
+  note: `The resident confirms that the earlier stairwell was too wide and the green mark is an entrance into it from the west hall. The width is provisionally interpreted as half a neighboring room bay, about ${stairwellWidth.toFixed(2)}m; it is not a measurement. The enclosure follows L3's right wall from the north facade to the southern source corner. A separate schematic flight keeps the earlier approximate run, leaving upper and lower landing areas clear. The east-hall connection, exact enclosure, steps and landing dimensions remain unknown.`,
   ...schemaPolygon(stairMulti[0]),
+  stairFlight,
 });
 const circulation = clean(difference(annotationPlan, ...roomMultis, stairMulti));
-const mainCirculation = circulation.filter(polygon => polygonArea(polygon) > 1);
-if (mainCirculation.length !== 1) throw new Error(`Expected one potential corridor, found ${mainCirculation.length}; inspect sketch boundaries`);
+const mainCirculation = circulation.filter(polygon => polygonArea(polygon) > 1)
+  .sort((a, b) => grossBounds(a)[0] - grossBounds(b)[0]);
+if (mainCirculation.length !== 2) throw new Error(`Expected separate west/east halls, found ${mainCirculation.length}; inspect stairwell contact with the source boundary`);
 const corridorId = 'study-55-2-potential-corridor';
-spaces.push({
-  id: corridorId, label: 'Potential corridor', shortLabel: 'Hall', kind: 'corridor', confidence: 'estimated',
-  note: 'Connected remainder between the fitted room envelopes and estimated stair zone, limited to the annotated flat-roof plan. It is a circulation hypothesis, not an approved route, egress plan or proof of usable floor area.',
-  ...schemaPolygon(mainCirculation[0]),
+const corridors = mainCirculation.map((polygon, index) => ({
+  id: index ? `${corridorId}-east` : corridorId,
+  label: index ? 'East hall — connection unconfirmed' : 'West hall — study',
+  shortLabel: index ? 'East hall' : 'West hall', kind: 'corridor', confidence: 'estimated',
+  note: index
+    ? 'Eastern remainder between the unchanged room envelopes and corrected stairwell. Its connection into the stairwell or western hall was not supplied; no opening or route is invented. The narrow gap beside R is an unresolved geometric result, not an approved circulation width.'
+    : 'Western remainder between the room envelopes and corrected stairwell. The resident marks a door into the stairwell below the flight. Hall dimensions remain estimates and do not establish an approved route or usable floor area.',
+  ...schemaPolygon(polygon),
+}));
+spaces.push(...corridors);
+const doors = doorCandidates.map(door => {
+  const samples = [...door.segment, door.segment[0].map((value, index) => (value + door.segment[1][index]) / 2)];
+  const adjacent = corridors.filter(corridor => samples.every(point => onBoundary(point, corridor)));
+  if (adjacent.length !== 1) throw new Error(`${door.id} does not identify exactly one adjacent hallway`);
+  return { ...door, toSpaceId: adjacent[0].id };
 });
-const doors = doorCandidates.map(door => ({ ...door, toSpaceId: corridorId }));
 const stairBox = bounds.stairs;
 const stairCenter = (stairBox[0] + stairBox[2]) / 2;
+const stairEntryCenter = (stairFlightBounds[3] + stairBox[3]) / 2;
 doors.push({
-  id: 'study-55-2-opening-stairs', label: 'Estimated stair access', spaceId: stairId, toSpaceId: corridorId,
-  confidence: 'estimated', note: 'Illustrative 1.10m access gap at the open end of the blue stair mark; this is not evidence of a door leaf or an actual measured landing.',
-  segment: [[stairCenter - 0.55, stairBox[3]], [stairCenter + 0.55, stairBox[3]]].map(campus).map(point => point.map(rounded)),
+  id: 'study-55-2-opening-stairs', label: 'Stairwell entrance — resident mark', spaceId: stairId, toSpaceId: corridorId,
+  confidence: 'sketch',
+  note: 'The resident confirms the green mark as a door from the west hallway INTO the stairwell, on its left wall below the flight. The 1.10m gap and centered landing position are illustrative, not measured. No hinge, swing, exterior-exit status or east-side stairwell opening is inferred.',
+  segment: [[stairBox[0], stairEntryCenter - 0.55], [stairBox[0], stairEntryCenter + 0.55]].map(campus).map(point => point.map(rounded)),
 });
+
+// The correction must not alter any of the other seventeen room polygons.
+const unchangedRoomIds = [];
+for (const prior of dimensionBaseline.level.spaces.filter(space => space.kind === 'room' && !space.shortLabel.startsWith('L'))) {
+  const current = spaces.find(space => space.id === prior.id);
+  const geometry = space => ({ polygon: space.polygon, holes: space.holes || [] });
+  if (JSON.stringify(geometry(current)) !== JSON.stringify(geometry(prior))) {
+    throw new Error(`Left-side correction changed frozen room geometry ${prior.shortLabel}`);
+  }
+  unchangedRoomIds.push(prior.id);
+}
+if (unchangedRoomIds.length !== 17) throw new Error('Expected seventeen unchanged room envelopes');
 
 // Check topology before handing the study to the application schema.
 let overlapArea = 0;
 for (let a = 0; a < roomMultis.length; a++) for (let b = a + 1; b < roomMultis.length; b++) overlapArea += multiArea(intersection(roomMultis[a], roomMultis[b]));
 if (overlapArea > 0.001) throw new Error(`Candidate rooms overlap by ${overlapArea}m²`);
+const stairRoomOverlap = roomMultis.reduce((sum, room) => sum + multiArea(intersection(room, stairMulti)), 0);
+if (stairRoomOverlap > 0.001) throw new Error(`Corrected stairwell overlaps rooms by ${stairRoomOverlap}m²`);
 const uncontainedArea = multiArea(difference(union(...roomMultis, stairMulti, mainCirculation), floorMulti));
 if (uncontainedArea > 0.001) throw new Error(`Study spaces escape the proposed floor outline by ${uncontainedArea}m²`);
 const greenOverlap = multiArea(intersection(floorMulti, union(...exclusions.map(exclusion => [exclusion.polygon]))));
@@ -449,23 +530,24 @@ const study = {
     generatedForDate: '2026-11-15', generator: 'node scripts/generate-house55-study.mjs',
     source: 'Resident annotated House 55 / 2. OG screenshot supplied in this project on 2026-11-15; registered to Bayerische Vermessungsverwaltung LoD2 exterior.',
     dimensionRefit: {
-      status: 'common-depth-candidate-with-unresolved-right-block',
+      status: 'prior-common-depth-candidate-followed-by-left-side-correction',
       basis: 'Resident-confirmed twenty-room count, general hallway positions and broadly similar single-apartment types with small dimensional variation; approximate 2.70×3.30m living zone in Rommelwood’s older single-apartment sketch.',
       sourceUrl: 'https://rommelwood.de/wohnen/zimmergrundriss/',
       candidateGrossModuleMetres: candidateBay,
-      moduleReason: 'The two explicitly counted exterior runs are approximately 12.066/4 and 9.140/3 metres per bay. A rounded 3m gross module is a fit assumption for W/L, not a measured structural grid.',
-      changes: 'Equal SW/east divisions; four 3m W bays and three 3m L bays. Seventeen non-R envelopes share a fitted gross depth, changing only their five corridor-facing walls after the width fit. N frontage is retained. R geometry remains unchanged and unresolved. The attached stairs retain their width-fit position against L3.',
+      moduleReason: 'The two explicitly counted exterior runs are approximately 12.066/4 and 9.140/3 metres per bay. The prior dimensional stage used a rounded 3m gross module for W/L. The later resident left-side correction replaces only L with source-anchored bays of about 2.94m; no module is a measured structural grid.',
+      changes: 'Historical stage: equal SW/east divisions, four 3m W bays, three 3m L bays and a fitted common gross depth for seventeen non-R envelopes. Later left-side stage: L moves between source corners with three roughly 2.94m bays; its prior depth boundary is retained. The stairwell, entry and two hall regions are corrected separately. The other seventeen room polygons, including unresolved R, stay byte-identical to the archived dimensional baseline.',
       commonDepth: {
+        stage: 'Historical dimensional-fit stage, retained reproducibly; not recalculated after the resident left-side correction.',
         candidateGrossDepthMetres: commonDepth,
         method: 'Arithmetic mean of the seventeen source-clipped width-only envelope depths in the study axes, minimizing the sum of their squared depth changes with equal per-room weight. Each zone corridor-facing wall is then solved against its source-clipped mean depth; source skew allows small individual differences.',
         inputStage: 'Reproducible width-only stage: equal SW/east divisions, 3m W/L bays, N source frontage, approximate original depths. Source-clipped polygons are serialized to six decimals before measuring the retained input vector, as in the prior public study.',
         inputDepths: depthInputs,
         widthOnlyLocalBoundsMetres: widthOnlyBounds,
         corridorFacingWallChanges: depthWallChanges,
-        scope: 'Seventeen rooms A–G, W1–W4, L1–L3 and N1–N3. R1–R3 are excluded from the fit and retain their exact previous geometry; stairs and lower-floor baseline do not move in this stage.',
+        scope: 'Prior seventeen-room fit: A–G, W1–W4, L1–L3 and N1–N3; R excluded. The later left-side correction retains the existing L depth boundary while moving its frontage along the slightly skewed source wall. This historical target is not refitted globally.',
         interpretation: 'A fitted gross model depth before walls, not a measured full-apartment template, clear living dimension or rental-area target. Similar dimensions do not establish identical interiors or usable areas. The resident’s hand-length description is qualitative and has not been converted into a measured tolerance.',
       },
-      stairTranslationFromPreviousStudyMetres: [rounded(bounds['center-left-question'][2] - preRefitBounds['center-left-question'][2]), 0],
+      stairTranslationFromPreviousStudyMetres: [rounded(priorDimensionBounds['center-left-question'][2] - preRefitBounds['center-left-question'][2]), 0],
       unresolved: 'R remains about 2.69m gross per bay. Three literal 2.70m clear-width living zones plus walls cannot fit this fixed facade span. Exact full apartment dimensions and equal usable areas remain unproved everywhere.',
       scope: 'Only index2 is refitted. Lower floors retain the frozen earlier sketch; this candidate is not automatically repeated downwards.',
       originalLocalBoundsMetres: Object.fromEntries(Object.entries(preRefitBounds).map(([key, box]) => [key, box.map(rounded)])),
@@ -473,19 +555,60 @@ const study = {
       auditDocument: 'docs/HOUSE55-DIMENSION-REFIT.md',
     },
     residentCorrections: {
-      source: 'Resident follow-ups on 2026-11-15: stairs against the left block, R block flush to the exterior edges, requested lower-floor repetition, and confirmed room counts including three rooms L1–L3.',
+      source: 'Resident follow-ups on 2026-11-15: twenty top-floor rooms; flush R exterior alignment; then a new left-side image, L1–L3 shifted toward the marked source corners, a narrower stairwell, and a confirmed west-hall entrance into it.',
+      leftSide: {
+        status: 'resident-marked-positions-with-explicit-dimensional-estimates',
+        image: {
+          path: 'data/source/house55-2og-left-correction.png',
+          originalFilename: 'codex-clipboard-hc2CPv.png',
+          sha256: leftCorrectionSha256,
+          width: leftCorrectionBytes.readUInt32BE(16), height: leftCorrectionBytes.readUInt32BE(20),
+          interpretation: 'Annotated orthographic study-axis plot. Blue brackets and arrow request a rightward L1–L3 shift. Red strokes indicate its left boundary and a narrower stair/partition area; green marks the confirmed hallway-to-stairwell entrance below the flight. Pixel strokes are soft constraints, not calibrated measurements.',
+          sourceAnchorChoice: 'Use existing RoofSurface39 vertex18 as the left elbow and vertex3 X as the shared L3/stairwell wall, instead of treating thick freehand pixels as precise coordinates. No second image homography, source rescale or source-vertex change is introduced.',
+        },
+        comparisonBaseline: {
+          path: 'data/source/house55-2og-dimension-baseline.json',
+          sha256: dimensionBaselineSha256, sourceCommit: dimensionBaseline.sourceCommit,
+          meaning: dimensionBaseline.meaning,
+        },
+        leftSourceAnchor: { surfaceIndex: 39, vertexIndex: 18, campusPoint: flat.points[18], localPoint: sourceLocal(18).map(rounded) },
+        sharedWallSouthSourceAnchor: { surfaceIndex: 39, vertexIndex: 3, campusPoint: flat.points[3], localPoint: sourceLocal(3).map(rounded) },
+        priorLeftLocalBoundsMetres: priorDimensionBounds['center-left-question'].map(rounded),
+        correctedLeftLocalBoundsMetres: leftBox.map(rounded),
+        equalGrossBayWidthMetres: correctedLeftBayWidth,
+        retainedCorridorFacingDepthCoordinateMetres: leftBox[3],
+        depthInterpretation: 'The previous roughly 5.395m gross model depth is retained, not newly measured or globally refitted. The source-wall skew gives small depth variation after the rightward shift.',
+        stairwellWidthInterpretation: 'The resident said the previous stairwell was too wide and described it as roughly half a room size. Because the clarification concerned width, this study provisionally uses half the adjacent gross bay width. The ratio, clear width and enclosure remain unmeasured.',
+        stairwellWidthFractionOfLeftBay: 0.5,
+        approximateStairwellWidthMetres: stairwellWidth,
+        stairwellToRightBlockMinimumAxisGapMetres: Math.min(...spaces.filter(space => space.shortLabel?.startsWith('R')).flatMap(space => space.polygon.map(point => local(point)[0]))) - bounds.stairs[2],
+        corridorSpaceIds: { west: corridorId, east: `${corridorId}-east` },
+        knownConnection: 'West hall to stairwell through the green-marked entrance on its left wall, below the flight.',
+        unknownConnection: 'No east-hall connection into the stairwell or west hall was supplied. No second stairwell door or bypass route is invented.',
+        thickWallQuestion: 'The handwritten “Thick wall?” remains an unanswered question. No source exterior, wall thickness, structural role or floor area is changed from it.',
+        unchangedOtherRoomIds: unchangedRoomIds,
+        unchangedOtherRoomGeometryCount: unchangedRoomIds.length,
+        lowerFloorScope: 'The correction applies only to index2; both lower-floor records retain their earlier frozen sketch extrapolations.',
+      },
       stairs: {
-        instruction: 'Keep stairs flush against L3. The width candidate moves its attached stairs plan-right; the common-depth stage keeps that position while extending contact. This position is provisional.',
+        instruction: 'Keep the corrected stairwell flush against L3, narrower than before, with the confirmed west-hall entrance below the flight. Its enclosure reaches the north source wall and the southern source corner Y.',
         adjacentStudyRoom: 'L3',
         originalLocalBoundsMetres: originalStairBounds.map(rounded),
+        priorDimensionLocalBoundsMetres: priorDimensionBounds.stairs.map(rounded),
         correctedLocalBoundsMetres: bounds.stairs.map(rounded),
-        translationInLocalMetres: [rounded(stairShift), 0],
+        leftWallShiftFromPriorDimensionMetres: rounded(bounds.stairs[0] - priorDimensionBounds.stairs[0]),
+        schematicFlightLocalBoundsMetres: stairFlightBounds.map(rounded),
         sharedWallInCampusXZ: [
           [bounds.stairs[0], Math.max(bounds.stairs[1], bounds['center-left-question'][1])],
           [bounds.stairs[0], Math.min(bounds.stairs[3], bounds['center-left-question'][3])],
         ].map(campus).map(point => point.map(rounded)),
         sharedWallLengthMetres: rounded(Math.min(bounds.stairs[3], bounds['center-left-question'][3]) - Math.max(bounds.stairs[1], bounds['center-left-question'][1])),
-        unchanged: 'Stair width, north/south position, run length and orientation remain the original approximate sketch values.',
+        intermediateL3JointInCampusXZ: l3Joint.map(rounded),
+        greenEntranceSegmentInCampusXZ: doors.at(-1).segment,
+        entranceWidthMetres: 1.10,
+        entranceWidthStatus: 'Illustrative only; resident confirms the location and west-hall-to-stairwell relationship, not the width, exact center, leaf or swing.',
+        unchanged: 'Only the schematic flight retains its earlier approximate north/south run. The enclosure now includes clear upper/lower landing areas, and its width and left-wall position have changed.',
+        unknown: 'Exact stair flight, number of risers, landing layout, clear widths and any east-hall connection remain unmeasured or unknown.',
       },
       rightBlock: {
         instruction: 'Shift R1–R3 toward the stairs until its ends meet the adjoining exterior edges without small corner projections.',
@@ -558,21 +681,27 @@ const study = {
     stairs: {
       registeredLocalBoundsMetres: originalStairBounds.map(rounded),
       correctedLocalBoundsMetres: bounds.stairs.map(rounded),
-      approximateRunMetres: rounded(bounds.stairs[3] - bounds.stairs[1]),
+      schematicFlightLocalBoundsMetres: stairFlightBounds.map(rounded),
+      approximateRunMetres: rounded(stairFlightBounds[3] - stairFlightBounds[1]),
+      approximateEnclosureDepthMetres: rounded(bounds.stairs[3] - bounds.stairs[1]),
       approximateWidthMetres: rounded(bounds.stairs[2] - bounds.stairs[0]),
-      runInCampusXZ: [[stairCenter, stairBox[1]], [stairCenter, stairBox[3]]].map(campus).map(point => point.map(rounded)),
+      approximateUpperLandingAxisDepthMetres: rounded(stairFlightBounds[1] - bounds.stairs[1]),
+      approximateLowerLandingAxisDepthMetres: rounded(bounds.stairs[3] - stairFlightBounds[3]),
+      runInCampusXZ: [[stairCenter, stairFlightBounds[1]], [stairCenter, stairFlightBounds[3]]].map(campus).map(point => point.map(rounded)),
       observed: regionMeasurements.stairs,
     },
     validation: {
       roomOverlapMetresSquared: rounded(overlapArea), spaceOutsideFloorMetresSquared: rounded(uncontainedArea),
+      stairwellRoomOverlapMetresSquared: rounded(stairRoomOverlap),
       floorInsideExcludedGreenMetresSquared: rounded(greenOverlap), doorBoundaryChecksPassed: true,
+      unchangedOtherRoomGeometryCount: unchangedRoomIds.length, separateHallwayRegions: corridors.length,
       sourceVerticesModified: false, approvedInteriorDataModified: false,
     },
   },
   level: {
-    index: 2, label: '2. OG — dimensional fit study',
-    source: 'Resident-confirmed twenty-room count and general layout, fitted to Bavaria’s exterior model and checked against Rommelwood’s approximate older single-room living-zone dimensions on 15 November 2026.',
-    notes: `The resident confirms 20 rooms with broadly similar single-apartment types: A–D, E–G, W1–W4, L1–L3, R1–R3 and N1–N3. These are temporary study labels. Seventeen non-R candidates retain gross widths around 3.00–3.19m and share a fitted depth of about ${commonDepth.toFixed(2)}m before walls; only their corridor-facing walls move in this stage. The stairs remain against L3. R1–R3 stay unchanged and unresolved at about 2.69m gross width per bay. The published 2.70×3.30m dimension covers a living zone, not an entire apartment. No exact typical apartment, equal usable area, services, doors or floor height have been measured. Lower floors retain the earlier sketch.`,
+    index: 2, label: '2. OG — left-side correction study',
+    source: 'Resident-confirmed twenty-room count, left-side correction image and stairwell-entrance clarification supplied on 15 November 2026, aligned to Bavaria’s unchanged exterior model.',
+    notes: `Twenty rooms and their general groups remain resident-confirmed. L1–L3 now shift between the marked source corners as three approximately ${correctedLeftBayWidth.toFixed(2)}m gross bays, retaining the previous roughly ${commonDepth.toFixed(2)}m model depth. The narrower stairwell is provisionally half a neighboring bay wide; its schematic flight leaves landing areas clear. The green-marked west-hall entrance into the stairwell is confirmed in location, with an illustrative 1.10m opening. The east hall's stairwell connection is unknown and is not invented. The other seventeen room polygons stay unchanged, including unresolved R1–R3 at about 2.69m gross width. Full apartment dimensions, service layouts, wall thickness, openings and floor height remain unmeasured. Study labels are not room numbers. Both lower floors retain the earlier frozen sketch.`,
     floorOutline: roundPolygons(floorMulti),
     excludedAreas: exclusions.map(({ id, label, polygon }) => ({ id, label, polygon: roundRing(polygon) })),
     sketchBoundaries, spaces, doors,
@@ -668,7 +797,7 @@ study.metadata.outputContract = {
   approvalStatus: 'All are unmeasured study records; none creates an approved interior or a measured elevation anchor.',
 };
 const generatedBuilding = {
-  source: 'House 55 resident-confirmed 2. OG counts and a provisional dimensional refit; EG and 1. OG retain the earlier sketch extrapolation.',
+  source: 'House 55 resident-confirmed 2. OG count with a corrected left block, stairwell and marked west-hall entrance; remaining room envelopes and lower-floor extrapolations retain their preceding study geometry.',
   sourceDate: '2026-11-15', levels: study.levels,
 };
 const campusData = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url)));
@@ -698,6 +827,7 @@ for (const polygon of floorMulti) svg.push(`<polygon points="${svgRing(polygon[0
 for (const space of spaces.filter(space => space.kind !== 'corridor')) {
   const color = space.kind === 'stairs' ? '#6da2f2' : space.confidence === 'sketch' ? '#ecad78' : '#d6c678';
   svg.push(`<polygon points="${svgRing(space.polygon)}" fill="${color}" fill-opacity=".09" stroke="${color}" stroke-width="2" ${space.confidence === 'estimated' ? 'stroke-dasharray="6 4"' : ''}/>`);
+  if (space.stairFlight) svg.push(`<polygon points="${svgRing(space.stairFlight)}" fill="${color}" fill-opacity=".13" stroke="${color}" stroke-width="1" stroke-dasharray="3 3"/>`);
   const corners = withoutClosingPoint(space.polygon).map(local), center = [mean(corners.map(point => point[0])), mean(corners.map(point => point[1]))], [x, y] = imagePixel(project(center));
   const label = space.shortLabel || space.label;
   svg.push(`<text x="${x}" y="${y}" fill="${color}" text-anchor="middle" font-size="15" font-family="sans-serif">${label}</text>`);
@@ -713,7 +843,8 @@ console.log(JSON.stringify({
   outputPath, svgPath, registrationRmsPixels: rounded(rms), confirmedUpstairsRoomCount: 20, sketchPositionRooms: 0, estimatedPartitionRooms: 20,
   floorAreaMetresSquared: rounded(multiArea(floorMulti)), removedGreenAreaMetresSquared: rounded(sourceSection.area - multiArea(floorMulti)),
   approximateStairDimensionsMetres: [study.metadata.stairs.approximateWidthMetres, study.metadata.stairs.approximateRunMetres],
-  stairShiftMetres: rounded(stairShift),
+  stairLeftWallShiftFromPreviousDimensionMetres: rounded(bounds.stairs[0] - priorDimensionBounds.stairs[0]),
+  correctedLeftBayWidthMetres: correctedLeftBayWidth, approximateStairwellWidthMetres: stairwellWidth,
   commonGrossDepthMetres: commonDepth, commonDepthRoomReferences: depthInputs.length,
   lowerFloors: lowerMetadata.map(level => ({
     index: level.index, sourceAreaMetresSquared: level.sourceSectionAreaMetresSquared,

@@ -17,7 +17,7 @@ const distance = (p, a, b) => {
 test('published dimension evidence matches the current model and its living-zone witnesses really fit', async () => {
   const [reportBytes, studyBytes, baselineBytes, sourceBytes] = await Promise.all([
     read('docs/data/house55-dimension-audit.json'), read('public/data/interior-studies.json'),
-    read('data/source/house55-2og-sketch-baseline.json'), read('public/data/lod2.json'),
+    read('data/source/house55-2og-dimension-baseline.json'), read('public/data/lod2.json'),
   ]);
   const report = JSON.parse(reportBytes);
   assert.equal(report.input.sha256, digest(studyBytes), 'regenerate the dated evidence after study changes');

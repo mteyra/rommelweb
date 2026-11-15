@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "buildings": {
     "55": {
-      "source": "House 55 resident-confirmed 2. OG counts and a provisional dimensional refit; EG and 1. OG retain the earlier sketch extrapolation.",
+      "source": "House 55 resident-confirmed 2. OG count with a corrected left block, stairwell and marked west-hall entrance; remaining room envelopes and lower-floor extrapolations retain their preceding study geometry.",
       "sourceDate": "2026-11-15",
       "levels": [
         {
@@ -2595,9 +2595,9 @@
         },
         {
           "index": 2,
-          "label": "2. OG — dimensional fit study",
-          "source": "Resident-confirmed twenty-room count and general layout, fitted to Bavaria’s exterior model and checked against Rommelwood’s approximate older single-room living-zone dimensions on 15 November 2026.",
-          "notes": "The resident confirms 20 rooms with broadly similar single-apartment types: A–D, E–G, W1–W4, L1–L3, R1–R3 and N1–N3. These are temporary study labels. Seventeen non-R candidates retain gross widths around 3.00–3.19m and share a fitted depth of about 5.40m before walls; only their corridor-facing walls move in this stage. The stairs remain against L3. R1–R3 stay unchanged and unresolved at about 2.69m gross width per bay. The published 2.70×3.30m dimension covers a living zone, not an entire apartment. No exact typical apartment, equal usable area, services, doors or floor height have been measured. Lower floors retain the earlier sketch.",
+          "label": "2. OG — left-side correction study",
+          "source": "Resident-confirmed twenty-room count, left-side correction image and stairwell-entrance clarification supplied on 15 November 2026, aligned to Bavaria’s unchanged exterior model.",
+          "notes": "Twenty rooms and their general groups remain resident-confirmed. L1–L3 now shift between the marked source corners as three approximately 2.94m gross bays, retaining the previous roughly 5.40m model depth. The narrower stairwell is provisionally half a neighboring bay wide; its schematic flight leaves landing areas clear. The green-marked west-hall entrance into the stairwell is confirmed in location, with an illustrative 1.10m opening. The east hall's stairwell connection is unknown and is not invented. The other seventeen room polygons stay unchanged, including unresolved R1–R3 at about 2.69m gross width. Full apartment dimensions, service layouts, wall thickness, openings and floor height remain unmeasured. Study labels are not room numbers. Both lower floors retain the earlier frozen sketch.",
           "floorOutline": [
             {
               "outer": [
@@ -3184,27 +3184,27 @@
               "shortLabel": "L1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms L1–L3 are resident-confirmed. Candidate 3.00m gross bays and a common fitted depth replace the implausibly narrow earlier L subdivisions. The stairs remain flush to L3 after shifting about 0.70m plan-right. L1 has only partial facade frontage, so its exact shape and window need checking. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+              "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
               "polygon": [
                 [
-                  -4.196019,
-                  5.205673
+                  -3.107065,
+                  6.392891
                 ],
                 [
-                  -0.217926,
-                  1.556839
+                  0.87,
+                  2.745
                 ],
                 [
-                  1.808013,
-                  3.769435
+                  2.855981,
+                  4.913955
                 ],
                 [
-                  -2.168166,
-                  7.416513
+                  -1.119208,
+                  8.560126
                 ],
                 [
-                  -4.196019,
-                  5.205673
+                  -3.107065,
+                  6.392891
                 ]
               ]
             },
@@ -3214,27 +3214,27 @@
               "shortLabel": "L2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms L1–L3 are resident-confirmed. Candidate 3.00m gross bays and a common fitted depth replace the implausibly narrow earlier L subdivisions. The stairs remain flush to L3 after shifting about 0.70m plan-right. L1 has only partial facade frontage, so its exact shape and window need checking. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+              "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
               "polygon": [
                 [
-                  -2.168166,
-                  7.416513
+                  -1.119208,
+                  8.560126
                 ],
                 [
-                  1.808013,
-                  3.769435
+                  2.855981,
+                  4.913955
                 ],
                 [
-                  3.833952,
-                  5.98203
+                  4.841961,
+                  7.082911
                 ],
                 [
-                  -0.140313,
-                  9.627353
+                  0.868649,
+                  10.72736
                 ],
                 [
-                  -2.168166,
-                  7.416513
+                  -1.119208,
+                  8.560126
                 ]
               ]
             },
@@ -3244,27 +3244,27 @@
               "shortLabel": "L3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms L1–L3 are resident-confirmed. Candidate 3.00m gross bays and a common fitted depth replace the implausibly narrow earlier L subdivisions. The stairs remain flush to L3 after shifting about 0.70m plan-right. L1 has only partial facade frontage, so its exact shape and window need checking. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+              "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
               "polygon": [
                 [
-                  -0.140313,
-                  9.627353
+                  0.868649,
+                  10.72736
                 ],
                 [
-                  3.833952,
-                  5.98203
+                  4.841885,
+                  7.082981
                 ],
                 [
-                  5.859891,
-                  8.194625
+                  6.827828,
+                  9.251971
                 ],
                 [
-                  1.88754,
-                  11.838193
+                  2.856506,
+                  12.894595
                 ],
                 [
-                  -0.140313,
-                  9.627353
+                  0.868649,
+                  10.72736
                 ]
               ]
             },
@@ -3450,41 +3450,67 @@
             },
             {
               "id": "study-55-2-stairs",
-              "label": "Stairs — estimated position",
+              "label": "Stairwell — resident correction",
               "shortLabel": "Stairs",
               "kind": "stairs",
               "confidence": "estimated",
-              "note": "The resident places the stairs flush to the left block, adjoining L3. The dimensional fit moves the attached enclosure about 0.70m plan-right from the earlier study, retaining its approximate width and run. The later common-depth fit keeps this position. This translation and the enclosure, riser count and landing arrangement are unmeasured.",
+              "note": "The resident confirms that the earlier stairwell was too wide and the green mark is an entrance into it from the west hall. The width is provisionally interpreted as half a neighboring room bay, about 1.47m; it is not a measurement. The enclosure follows L3's right wall from the north facade to the southern source corner. A separate schematic flight keeps the earlier approximate run, leaving upper and lower landing areas clear. The east-hall connection, exact enclosure, steps and landing dimensions remain unknown.",
               "polygon": [
                 [
-                  1.077296,
-                  12.581374
+                  1.043,
+                  14.558
                 ],
                 [
-                  4.249761,
-                  9.671488
+                  2.856506,
+                  12.894595
                 ],
                 [
-                  5.828896,
-                  11.393119
+                  6.827828,
+                  9.251971
                 ],
                 [
-                  2.656431,
-                  14.303005
+                  7.820799,
+                  10.336466
                 ],
                 [
-                  1.077296,
-                  12.581374
+                  2.036928,
+                  15.641617
+                ],
+                [
+                  1.043,
+                  14.558
+                ]
+              ],
+              "stairFlight": [
+                [
+                  5.218726,
+                  10.72789
+                ],
+                [
+                  6.212655,
+                  11.811507
+                ],
+                [
+                  3.040191,
+                  14.721393
+                ],
+                [
+                  2.046262,
+                  13.637776
+                ],
+                [
+                  5.218726,
+                  10.72789
                 ]
               ]
             },
             {
               "id": "study-55-2-potential-corridor",
-              "label": "Potential corridor",
-              "shortLabel": "Hall",
+              "label": "West hall — study",
+              "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Connected remainder between the fitted room envelopes and estimated stair zone, limited to the annotated flat-roof plan. It is a circulation hypothesis, not an approved route, egress plan or proof of usable floor area.",
+              "note": "Western remainder between the room envelopes and corrected stairwell. The resident marks a door into the stairwell below the flight. Hall dimensions remain estimates and do not establish an approved route or usable floor area.",
               "polygon": [
                 [
                   -15.288007,
@@ -3519,36 +3545,58 @@
                   2.745
                 ],
                 [
-                  -0.217926,
-                  1.556839
+                  -3.107065,
+                  6.392891
                 ],
                 [
-                  -4.196019,
-                  5.205673
+                  2.856506,
+                  12.894595
                 ],
                 [
-                  1.88754,
-                  11.838193
+                  1.043,
+                  14.558
                 ],
                 [
-                  1.077296,
-                  12.581374
+                  -4.866,
+                  8.09
                 ],
                 [
-                  2.656431,
-                  14.303005
+                  -5.773,
+                  8.924
                 ],
                 [
-                  5.828896,
-                  11.393119
+                  -7.131519,
+                  10.172025
                 ],
                 [
-                  4.249761,
-                  9.671488
+                  -15.288007,
+                  1.279522
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-potential-corridor-east",
+              "label": "East hall — connection unconfirmed",
+              "shortLabel": "East hall",
+              "kind": "corridor",
+              "confidence": "estimated",
+              "note": "Eastern remainder between the unchanged room envelopes and corrected stairwell. Its connection into the stairwell or western hall was not supplied; no opening or route is invented. The narrow gap beside R is an unresolved geometric result, not an approved circulation width.",
+              "polygon": [
+                [
+                  0.48,
+                  15.075
                 ],
                 [
-                  5.859891,
-                  8.194625
+                  1.043,
+                  14.558
+                ],
+                [
+                  2.036928,
+                  15.641617
+                ],
+                [
+                  7.820799,
+                  10.336466
                 ],
                 [
                   7.924865,
@@ -3617,26 +3665,6 @@
                 [
                   0.48,
                   15.075
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  -4.866,
-                  8.09
-                ],
-                [
-                  -5.773,
-                  8.924
-                ],
-                [
-                  -7.131519,
-                  10.172025
-                ],
-                [
-                  -15.288007,
-                  1.279522
                 ]
               ]
             }
@@ -3730,7 +3758,7 @@
                   21.168956
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-east-2",
@@ -3748,7 +3776,7 @@
                   23.228241
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-east-3",
@@ -3766,7 +3794,7 @@
                   25.287526
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-west-1",
@@ -3848,12 +3876,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  -3.48627,
-                  5.979467
+                  -2.417314,
+                  7.144882
                 ],
                 [
-                  -2.877915,
-                  6.642719
+                  -1.808958,
+                  7.808134
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3866,12 +3894,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  -1.458417,
-                  8.190307
+                  -0.429458,
+                  9.312117
                 ],
                 [
-                  -0.850062,
-                  8.853559
+                  0.178898,
+                  9.975369
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3884,12 +3912,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  0.569436,
-                  10.401147
+                  1.558399,
+                  11.479351
                 ],
                 [
-                  1.177791,
-                  11.064399
+                  2.166755,
+                  12.142603
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3910,7 +3938,7 @@
                   14.59475
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-center-right-2",
@@ -3928,7 +3956,7 @@
                   16.579459
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-center-right-3",
@@ -3946,7 +3974,7 @@
                   18.564167
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-upper-right-1",
@@ -3964,7 +3992,7 @@
                   16.956661
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-upper-right-2",
@@ -3982,7 +4010,7 @@
                   19.306081
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-upper-right-3",
@@ -4000,23 +4028,23 @@
                   21.655501
                 ]
               ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              "toSpaceId": "study-55-2-potential-corridor-east"
             },
             {
               "id": "study-55-2-opening-stairs",
-              "label": "Estimated stair access",
+              "label": "Stairwell entrance — resident mark",
               "spaceId": "study-55-2-stairs",
               "toSpaceId": "study-55-2-potential-corridor",
-              "confidence": "estimated",
-              "note": "Illustrative 1.10m access gap at the open end of the blue stair mark; this is not evidence of a door leaf or an actual measured landing.",
+              "confidence": "sketch",
+              "note": "The resident confirms the green mark as a door from the west hallway INTO the stairwell, on its left wall below the flight. The 1.10m gap and centered landing position are illustrative, not measured. No hinge, swing, exterior-exit status or east-side stairwell opening is inferred.",
               "segment": [
                 [
-                  1.495091,
-                  13.036869
+                  1.949952,
+                  13.726115
                 ],
                 [
-                  2.238637,
-                  13.84751
+                  1.13931,
+                  14.469661
                 ]
               ]
             }
