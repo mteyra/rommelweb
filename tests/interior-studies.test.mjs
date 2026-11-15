@@ -551,8 +551,10 @@ test('the top-floor dimensional fit equalizes repeated bays without forcing the 
 
 test('the corrected stair enclosure is flush to L3 with a continuous shared wall on every displayed floor', async () => {
   const published = await read('interior-studies');
-  const magnitude = Math.hypot(0.676, 0.737);
-  const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
+  const source = lod2.buildings.find(building => building.number === '55').surfaces[39].points;
+  const origin = [source[3][0], source[3][2]], delta = [source[4][0] - origin[0], source[4][2] - origin[1]];
+  const length = Math.hypot(...delta), along = delta.map(value => value / length), towardR = [along[1], -along[0]];
+  const local = point => [towardR, along].map(axis => point.reduce((sum, value, i) => sum + (value - origin[i]) * axis[i], 0));
   const bounds = polygon => {
     const points = polygon.map(local);
     return [Math.min(...points.map(p => p[0])), Math.min(...points.map(p => p[1])), Math.max(...points.map(p => p[0])), Math.max(...points.map(p => p[1]))];
@@ -564,17 +566,14 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
     assert.ok(stair && l3);
     const [sx0, sy0, sx1, sy1] = bounds(stair.polygon), [, ly0, lx1, ly1] = bounds(l3.polygon);
     assert.ok(Math.abs(sx0 - lx1) < 0.00001, `floor ${floor}: no gap may remain between stairs and L3`);
-    if (floor < 2) {
-      assert.ok(Math.abs(sx1 - sx0 - 2.336168) < 0.001, 'lower floors retain the earlier study enclosure');
-      assert.ok(Math.abs(sy1 - sy0 - 4.304877) < 0.001);
-    } else {
-      const [lx0] = bounds(l3.polygon);
-      assert.ok(Math.abs(sx1 - sx0 - (lx1 - lx0) / 2 - 0.20) < 0.001, 'the later wall-face hypothesis gives the former half-bay stairwell 0.20m more width');
-      const [, fy0, , fy1] = bounds(stair.stairFlight);
-      assert.ok(Math.abs(fy1 - fy0 - 4.304877) < 0.001, 'the existing schematic flight run is retained inside the extended enclosure');
-      assert.ok(fy0 > sy0 + 1 && sy1 > fy1 + 1, 'upper and entrance landings are distinct from the flight');
-    }
-    const expectedContact = Math.min(sy1, ly1) - Math.max(sy0, ly0);
+    assert.ok(Math.abs(-sx0 / (sx1 - sx0) - 0.25) < 1e-5, `floor ${floor}: one quarter of the stair width is toward L3`);
+    assert.ok(Math.abs(sx1 / (sx1 - sx0) - 0.75) < 1e-5, `floor ${floor}: three quarters is toward R1`);
+    const [, fy0, , fy1] = bounds(stair.stairFlight);
+    const run = Math.hypot(stair.stairFlight[3][0] - stair.stairFlight[0][0], stair.stairFlight[3][1] - stair.stairFlight[0][1]);
+    assert.ok(Math.abs(run - 4.304877) < 0.001, 'the schematic flight run is retained inside the enclosure');
+    assert.ok(fy0 > sy0 + 1 && sy1 > fy1 + 1, 'upper and entrance landings are distinct from the flight');
+    const joint = l3.polygon.map(local).filter(point => Math.abs(point[0] - sx0) < 1e-5).map(point => point[1]);
+    const expectedContact = Math.max(...joint) - Math.min(...joint);
     const contact = sharedBoundaryLength(stair.polygon, l3.polygon);
     assert.ok(expectedContact > 2.9 && expectedContact < sy1 - sy0, 'retain substantial contact and the stair access below it');
     assert.ok(Math.abs(contact - expectedContact) < 0.00002, 'the whole adjoining span must be a shared edge rather than one touching corner');
@@ -582,9 +581,9 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
   }
 });
 
-test('the wall-face hypothesis preserves rooms outside L/R and only the confirmed west stairwell entry', async () => {
+test('the alignment preserves seventeen other rooms and only the confirmed west stairwell entry', async () => {
   const published = await read('interior-studies'), plan = display(published);
-  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-wall-offset-baseline.json', import.meta.url)));
+  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-stair-ratio-baseline.json', import.meta.url)));
   const magnitude = Math.hypot(0.676, 0.737);
   const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
   const stair = plan.spaces.find(space => space.kind === 'stairs');
@@ -598,9 +597,9 @@ test('the wall-face hypothesis preserves rooms outside L/R and only the confirme
   for (const entry of roomEntries) {
     const space = plan.spaces.find(space => space.id === entry.spaceId);
     assert.equal(entry.toSpaceId, /^(?:[ABCD]|W\d|L\d)$/.test(space.shortLabel) ? westHall : eastHall);
-    if (/^[LR]\d$/.test(space.shortLabel)) continue;
+    if (/^L\d$/.test(space.shortLabel)) continue;
     const prior = baseline.level.spaces.find(item => item.id === space.id);
-    assert.deepEqual(space.polygon, prior.polygon, `${space.shortLabel}: only L and R room envelopes may change`);
+    assert.deepEqual(space.polygon, prior.polygon, `${space.shortLabel}: only L room envelopes may change`);
     assert.deepEqual(space.holes, prior.holes);
     assert.deepEqual(entry.segment, baseline.level.doors.find(item => item.id === entry.id).segment, `${space.shortLabel}: retain its door position`);
   }
@@ -610,12 +609,13 @@ test('the wall-face hypothesis preserves rooms outside L/R and only the confirme
   assert.equal(entries[0].confidence, 'sketch');
   const source = lod2.buildings.find(building => building.number === '55').surfaces[39];
   const corner = index => local([source.points[index][0], source.points[index][2]]);
-  const l1 = plan.spaces.find(space => space.shortLabel === 'L1');
-  assert.ok(Math.abs(Math.min(...l1.polygon.map(local).map(p => p[0])) - corner(18)[0] + 0.20) < 1e-5);
-  assert.ok(Math.abs(Math.min(...stair.polygon.map(local).map(p => p[0])) - corner(3)[0] + 0.20) < 1e-5);
+  const edge = [3, 4].map(index => corner(index)), d = edge[1].map((value, i) => value - edge[0][i]);
+  const n = [d[1], -d[0]].map(value => value / Math.hypot(...d));
+  const offset = point => point.reduce((sum, value, i) => sum + (value - edge[0][i]) * n[i], 0);
+  const westOffset = Math.min(...stair.polygon.map(local).map(offset));
   const flightBottom = Math.max(...stair.stairFlight.map(local).map(p => p[1]));
   for (const point of entries[0].segment.map(local)) {
-    assert.ok(Math.abs(point[0] - corner(3)[0] + 0.20) < 1e-5, 'entrance follows the west wall’s explicit 0.20m shift');
+    assert.ok(Math.abs(offset(point) - westOffset) < 1e-5, 'entrance follows the aligned west stair wall');
     assert.ok(point[1] > flightBottom && point[1] < corner(3)[1], 'entrance reaches the landing below the flight');
   }
 });
@@ -644,25 +644,22 @@ test('R1–R3 remain one continuous block and the corrected upper outline has no
   }
 });
 
-test('lower-floor extrapolations retain the earlier sketch and their own exterior sections while the top-floor fit changes', async () => {
+test('lower-floor extrapolations use the corrected core while retaining their own full exterior sections', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
-  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-sketch-baseline.json', import.meta.url)));
-  const upper = baseline.level, official = lod2.buildings.find(building => building.number === '55');
-  assert.notDeepEqual(upper.spaces.find(space => space.shortLabel === 'L1').polygon,
-    display(published).spaces.find(space => space.shortLabel === 'L1').polygon, 'the previous 2.23m-wide L room must not be mistaken for the new top-floor fit');
+  const upper = display(published), official = lod2.buildings.find(building => building.number === '55');
   const elevations = getLevelElevations(emptyApproved, '55', 3, official.height);
   const allIds = published.buildings['55'].levels.flatMap(plan => [...plan.spaces, ...(plan.doors || []), ...(plan.excludedAreas || [])].map(item => item.id));
   assert.equal(new Set(allIds).size, allIds.length, 'same-looking floor plans still need globally unique interaction IDs');
   for (const floor of [0, 1]) {
     const plan = getDisplayLevel(emptyApproved, published, '55', floor);
     assert.equal(plan.extrapolatedFrom, 2);
-    assert.match(plan.notes, /earlier.*before its dimensional refit/);
+    assert.match(plan.notes, /extrapolat/i);
     assert.equal(Object.hasOwn(plan, 'elevation'), false);
     assert.equal(Object.hasOwn(plan, 'reviewedAt'), false);
     assert.ok(plan.spaces.every(space => space.confidence === 'estimated'));
     assert.ok(plan.doors.every(door => door.confidence === 'estimated'));
     assert.equal(plan.spaces.filter(space => space.kind === 'room').length, 20);
-    assert.equal(plan.spaces.length, 22);
+    assert.equal(plan.spaces.length, 23);
     assert.equal(plan.doors.length, 21);
     assert.equal(plan.excludedAreas?.length || 0, 0, 'the upper-floor missing wings are not evidence for missing lower-floor area');
     assert.equal(plan.sketchBoundaries?.length || 0, 0, 'copied walls cannot retain the directly sketched wall style');
@@ -677,7 +674,7 @@ test('lower-floor extrapolations retain the earlier sketch and their own exterio
       assert.notEqual(space.id, original.id);
       const clippedOriginal = intersection([original.polygon, ...(original.holes || [])], sourceOutline);
       const copied = [space.polygon, ...(space.holes || [])];
-      const message = `floor ${floor}, ${space.shortLabel}: preserve the frozen earlier sketch, clipping only its exterior to this source section`;
+      const message = `floor ${floor}, ${space.shortLabel}: repeat the corrected core, clipping only its exterior to this source section`;
       const addedArea = assertSourceBoundaryFit([copied], clippedOriginal, message);
       const missingArea = assertSourceBoundaryFit(clippedOriginal, [copied], message);
       assert.ok(addedArea + missingArea < sourceBoundaryAreaTolerance, `${message}: total difference is ${addedArea + missingArea} m²`);

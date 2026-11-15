@@ -144,6 +144,107 @@ def packing_witness(polygon, width, depth, inset, front):
     return None
 
 
+def stair_alignment_audit(polygons, flight, flat_points):
+    """Measure the two resident constraints independently of generator metadata."""
+    origin = flat_points[3]
+    edge = [flat_points[4][i] - origin[i] for i in range(2)]
+    length = math.hypot(*edge)
+    down = [value / length for value in edge]
+    east = [down[1], -down[0]]
+
+    def projected(point, axis):
+        return sum((point[i] - origin[i]) * axis[i] for i in range(2))
+
+    def point_at(u, v):
+        return [origin[i] + u * east[i] + v * down[i] for i in range(2)]
+
+    def cross(a, b):
+        return a[0] * b[1] - a[1] * b[0]
+
+    # Match the visible corner offset, not an average Y separation. The
+    # quantized source return is slightly skew to the study axes.
+    west_edge = [flat_points[21][i] - flat_points[22][i] for i in range(2)]
+    west_length = math.hypot(*west_edge)
+    west_south = [-west_edge[1] / west_length, west_edge[0] / west_length]
+    facade_delta = [flat_points[21][i] - flat_points[20][i] for i in range(2)]
+    facade_length = math.hypot(*facade_delta)
+    w4_corner = max(
+        [point for point in polygons["W4"].exterior.coords
+         if abs(cross([point[i] - flat_points[20][i] for i in range(2)], facade_delta)) / facade_length < 0.002],
+        key=lambda point: point[1],
+    )
+    w4_offset = sum((w4_corner[i] - flat_points[21][i]) * west_south[i] for i in range(2))
+
+    l_return = [flat_points[18][i] - flat_points[19][i] for i in range(2)]
+    l_return_length = math.hypot(*l_return)
+    l_west = [-l_return[1] / l_return_length, l_return[0] / l_return_length]
+    l_ring = list(polygons["L1"].exterior.coords)
+    long_sides = [
+        (a, b) for a, b in zip(l_ring, l_ring[1:])
+        if math.dist(a, b) > 2
+        and abs(sum((b[i] - a[i]) * down[i] for i in range(2))) / math.dist(a, b) > 0.999
+    ]
+    a, b = min(long_sides, key=lambda pair: sum(projected(point, east) for point in pair))
+    direction = [b[i] - a[i] for i in range(2)]
+    delta = [a[i] - flat_points[18][i] for i in range(2)]
+    l_offset = cross(delta, direction) / cross(l_west, direction)
+    l_corner = [flat_points[18][i] + l_west[i] * l_offset for i in range(2)]
+
+    if flight is None:
+        raise ValueError("The stair alignment requires a separately identified flight")
+    flight_values = [projected(point, down) for point in flight.exterior.coords]
+    flight_min, flight_max = min(flight_values), max(flight_values)
+    sections = []
+    for fraction in [0.05, 0.25, 0.5, 0.75, 0.95]:
+        v = flight_min + fraction * (flight_max - flight_min)
+        section = polygons["Stairs"].intersection(LineString([point_at(-100, v), point_at(100, v)]))
+        lines = [part for part in components(section) if isinstance(part, LineString)]
+        if len(lines) != 1:
+            raise ValueError("The reference cross-section must span one connected stair enclosure")
+        coordinates = [projected(point, east) for point in lines[0].coords]
+        west, east_edge = min(coordinates), max(coordinates)
+        if not west < 0 < east_edge:
+            raise ValueError("The extended reference line must cross the staircase")
+        width = east_edge - west
+        sections.append({
+            "flightFraction": fraction,
+            "referenceIntersection": point_at(0, v),
+            "lSideWidth": -west, "rSideWidth": east_edge,
+            "grossWidth": width,
+            "lSideRatio": -west / width, "rSideRatio": east_edge / width,
+        })
+    center = sections[2]
+    return {
+        "reference": {
+            "sourceRoofSurfaceIndex": 39,
+            "sourceRoofVertexIndexes": [3, 4],
+            "sourceEdge": [flat_points[3], flat_points[4]],
+            "towardNorth": [-value for value in down],
+            "towardR1": east,
+            "meaning": "The resident-marked exterior return is extended as a line; its geometry is not moved.",
+        },
+        "confirmedRatios": {"l3Side": 0.25, "r1Side": 0.75},
+        "orientationClarification": "The resident explicitly clarified that three quarters lies on the R1 side. Side names override ambiguous screen-left/right wording.",
+        "overlap": {
+            "w4SourceReturn": [flat_points[22], flat_points[21]],
+            "w4FacadeEndCorner": list(w4_corner),
+            "w4PerpendicularOffset": w4_offset,
+            "l1SourceReturn": [flat_points[19], flat_points[18]],
+            "l1DividerAtSourceCornerNormal": l_corner,
+            "l1PerpendicularOffset": l_offset,
+            "equalityResidual": l_offset - w4_offset,
+            "meaning": "Equal projected offsets of room dividers past source returns. This confirms relative alignment, not measured masonry thickness or overlapping room interiors.",
+        },
+        "crossSections": sections,
+        "grossWidthAtFlightCenter": center["grossWidth"],
+        "lSideWidthAtFlightCenter": center["lSideWidth"],
+        "rSideWidthAtFlightCenter": center["rSideWidth"],
+        "maximumRatioError": max(abs(section["lSideRatio"] - 0.25) for section in sections),
+        "widthVariationAcrossFlight": max(section["grossWidth"] for section in sections) - min(section["grossWidth"] for section in sections),
+        "meaning": "Ratios are recomputed from actual enclosure cross-sections normal to the unchanged source edge. Gross width is derived after retaining the estimated L bays; it is not a surveyed or clear stair dimension.",
+    }
+
+
 def raw_source_metrics(building):
     ns = {
         "gml": "http://www.opengis.net/gml",
@@ -360,6 +461,7 @@ def audit(args):
         for band in level.get("wallBands", [])
     ]
     wall_stage = metadata.get("windowWallStudy", {})
+    alignment = stair_alignment_audit(polygons, flight, flat_points) if metadata.get("stairAlignment") else None
     r_run = flat_points[7][0] - flat_points[6][0]
     offset = wall_stage.get("wallOffsets", {}).get("assumedOffsetMetres", 0)
     # A necessary bounding-width condition, not a fitted design solution.
@@ -415,7 +517,7 @@ def audit(args):
         "residentWorkingHypothesis": {
             "statement": "All top-floor apartments are single rooms, generally similar in size, with dimensional differences described as about a hand length.",
             "meaning": "A repeated single-apartment type with small dimensional variation is a qualitative prior. A hand length is not converted into a measured dimensional tolerance.",
-            "latestCorrection": "Resident marks identify exterior windows, including a later explicit confirmation for L1–L3. The latest wall-face hypothesis moves L 0.20m left, gives that width to the stairs, and extends R 0.20m toward the east hall. These offsets and finite wall bands are unmeasured. The observed west stairwell entry is retained; east access remains unconfirmed.",
+            "latestCorrection": "The resident confirmed that L1 should match the visible W4 corner overlap and clarified that the extended marked edge divides the stair width into one quarter on the L3 side and three quarters on the R1 side. The latest model retains the estimated L bay widths and derives the staircase from those relationships. Windows, the west stairwell entry and the unresolved R envelopes remain. Absolute dimensions and wall construction are unmeasured.",
         },
         "input": {"path": report_path(args.study), "sha256": digest(args.study)},
         "baseline": {"path": report_path(args.baseline), "sha256": digest(args.baseline)} if args.baseline else None,
@@ -471,11 +573,12 @@ def audit(args):
             "requirementMeaning": "Necessary width bound under the declared 0.10m-per-side sensitivity; not sufficient to prove a full apartment fit or a measured wall arrangement.",
             "westW4PastExteriorReturn": polygons["W4"].bounds[3] - west_return_y,
             "westW4PastAssumedInnerFace": polygons["W4"].bounds[3] - west_return_y - offset,
-            "westReturnMeaning": "Aligning the current W4 south divider with this return's inner face would require about 0.45m, not the illustrative 0.20m band. W4 has not been stretched or shortened to conceal the difference.",
+            "westReturnMeaning": "Historical comparison against the preceding 0.20m wall-band hypothesis, using a plan-axis average. The current stairAlignment section measures the actual corner-normal overlap and whether L1 matches it; no verified wall assembly is inferred.",
             "wallBandArea": sum(polygon.area for polygon in band_polygons),
             "wallBandOutsideFloorArea": sum(polygon.difference(floor).area for polygon in band_polygons),
             "wallBandMeaning": "Display hypothesis within gross envelopes, not extra usable floor area; independent spaces remain disjoint.",
         },
+        "stairAlignment": alignment,
         "topology": {
             "overlapArea": sum(first.intersection(second).area for i, first in enumerate(pairs) for second in pairs[i + 1:]),
             "allSpaceOverlapArea": sum(first.intersection(second).area for i, first in enumerate(all_spaces) for second in all_spaces[i + 1:]),
@@ -552,7 +655,7 @@ def audit(args):
             plot_path, flat, occupied,
             {label: polygon for label, polygon in baseline.items() if label not in baseline_corridors} if baseline and with_baseline else None,
             witnesses, corridors, flight, [record for record in door_records if record["target"] == stair_record["shortLabel"]] if stair_record else [],
-            window_records, band_polygons,
+            window_records, band_polygons, alignment,
         )
     print(json.dumps({
         "report": str(args.output),
@@ -564,14 +667,14 @@ def audit(args):
     }, indent=2))
 
 
-def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands):
+def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands, alignment):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.patches import Polygon as Patch
 
-    panels = [(baseline, "Previous layout · before the window marks and wall-face hypothesis")] if baseline else []
-    panels.append((polygons, "House 55 · 2. OG · 24 resident-located windows · 0.20 m wall-face hypothesis"))
+    panels = [(baseline, "Previous layout · L offset 0.20 m · independently chosen staircase width")] if baseline else []
+    panels.append((polygons, "House 55 · 2. OG · matching W4 / L1 overlap · confirmed ¼ L3 / ¾ R1 stair split"))
     figure, axes = plt.subplots(len(panels), 1, figsize=(16, 8.5 * len(panels)), squeeze=False, layout="constrained")
     for axis, (items, title) in zip(axes[:, 0], panels):
         axis.add_patch(Patch(list(flat.exterior.coords), facecolor="#eeeae3", edgecolor="#41413c", linewidth=2))
@@ -623,11 +726,47 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
                     xytext=(point.x - 3.0, point.y), ha="right", va="center", fontsize=8,
                     arrowprops={"arrowstyle": "->", "color": "#3d6678", "linewidth": 0.8},
                 )
+            if alignment:
+                overlap = alignment["overlap"]
+                for name, corner, label_position, measured in [
+                    ("W4", overlap["w4FacadeEndCorner"], (-8.0, 8.1), overlap["w4PerpendicularOffset"]),
+                    ("L1", overlap["l1DividerAtSourceCornerNormal"], (4.4, -0.45), overlap["l1PerpendicularOffset"]),
+                ]:
+                    axis.annotate(
+                        f"{name}: {measured:.3f} m overlap",
+                        xy=corner, xytext=label_position, ha="center", va="center", fontsize=8,
+                        arrowprops={"arrowstyle": "->", "color": "#786553", "linewidth": 0.8},
+                        color="#655345", zorder=8,
+                    )
+                start = alignment["reference"]["sourceEdge"][1]
+                north = alignment["reference"]["towardNorth"]
+                end = [start[i] + north[i] * 8.9 for i in range(2)]
+                axis.annotate(
+                    "", xy=end, xytext=start,
+                    arrowprops={"arrowstyle": "->", "color": "#a24438", "linewidth": 1.6, "linestyle": "--"},
+                    zorder=7,
+                )
+                inset = axis.inset_axes([0.355, 0.745, 0.265, 0.19])
+                inset.set_xlim(-0.02, 1.02)
+                inset.set_ylim(-0.55, 1.15)
+                inset.add_patch(Patch([(0, 0), (1, 0), (1, 0.45), (0, 0.45)], facecolor="#bab5a8", edgecolor="#655f54"))
+                inset.plot([0.25, 0.25], [-0.1, 0.6], color="#a24438", linewidth=1.8)
+                inset.text(0.125, 0.22, "¼", ha="center", va="center", fontsize=14)
+                inset.text(0.625, 0.22, "¾", ha="center", va="center", fontsize=14)
+                inset.text(0.125, -0.17, "L3 side", ha="center", va="center", fontsize=8)
+                inset.text(0.625, -0.17, "R1 side", ha="center", va="center", fontsize=8)
+                inset.text(0.5, 0.85, "Stair width across the extended red edge", ha="center", fontsize=9)
+                inset.text(
+                    0.5, -0.48,
+                    f'{alignment["lSideWidthAtFlightCenter"]:.3f} m + {alignment["rSideWidthAtFlightCenter"]:.3f} m = {alignment["grossWidthAtFlightCenter"]:.3f} m gross',
+                    ha="center", fontsize=8,
+                )
+                inset.axis("off")
         axis.autoscale_view()
         subtitle = (
-            "Blue: windows · dark bands: unmeasured wall hypothesis · dashed rectangles: packing witnesses · R remains unresolved"
+            "Red: unchanged exterior edge extended · blue: windows · dashed rectangles: packing witnesses · R remains unresolved"
             if items is polygons
-            else "Frozen preceding study: 20 rooms, two halls and the marked west stairwell entrance. Exterior and lower floors retained."
+            else "Frozen preceding top-floor study: 20 rooms, two halls and the marked west stairwell entrance. Lower floors not shown."
         )
         axis.set_title(title + "\n" + subtitle, fontsize=14)
         axis.set_aspect("equal")
@@ -643,7 +782,7 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--study", type=Path, default=ROOT / "public/data/interior-studies.json")
-    parser.add_argument("--baseline", type=Path, default=ROOT / "data/source/house55-2og-wall-offset-baseline.json", help="Earlier study for comparison; defaults to the retained layout before window marks and wall-face offsets.")
+    parser.add_argument("--baseline", type=Path, default=ROOT / "data/source/house55-2og-stair-ratio-baseline.json", help="Earlier study for comparison; defaults to the retained window/wall-face stage before the resident-confirmed stair ratio.")
     parser.add_argument("--output", type=Path, default=Path("/tmp/house55-dimension-audit.json"))
     parser.add_argument("--plot", type=Path, help="Optional standalone PNG outside published site data.")
     parser.add_argument("--plan-plot", type=Path, help="Optional single-panel PNG of the current plan.")

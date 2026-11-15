@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "buildings": {
     "55": {
-      "source": "House 55 resident-confirmed 2. OG count and exterior windows, with an explicitly unmeasured wall-face hypothesis for L, R and the staircase. Both lower floors retain their earlier study geometry.",
+      "source": "House 55 resident-confirmed 2. OG count, exterior windows, matching W4/L1 overlap and quarter/three-quarter stair alignment. Absolute room dimensions remain a study.",
       "sourceDate": "2026-11-15",
       "levels": [
         {
           "index": 0,
           "label": "EG — extrapolated study",
           "extrapolatedFrom": 2,
-          "source": "Repeated from the earlier House 55 2. OG sketch at the resident’s request on 15 November 2026; this floor was not separately mapped or updated by the subsequent dimensional refit.",
-          "notes": "All rooms, stairs, circulation and openings here repeat the earlier 2. OG sketch, before its dimensional refit. The new top-floor candidate has not been copied here. The full source floor plate is retained; additional lower-floor wings remain unassigned. The 20 displayed study references are not a confirmed or complete count for this lower floor.",
+          "source": "Repeated from the current corrected House 55 2. OG study at the resident’s request; this lower floor has not been separately mapped.",
+          "notes": "Rooms, stairs, landings, circulation and doorways repeat the current corrected 2. OG core as an unverified extrapolation. The L-block overlap and staircase alignment therefore no longer show the earlier sketch. The complete source floor plate is retained, and additional lower-floor wings remain unassigned. The 20 displayed study references are not a confirmed or complete count for this lower floor. Top-floor window observations and wall-material hypotheses have not been copied.",
           "floorOutline": [
             {
               "outer": [
@@ -109,27 +109,27 @@
               "shortLabel": "A",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
                   -19.253579,
-                  4.923612
+                  4.923613
                 ],
                 [
-                  -14.880006,
-                  0.904598
+                  -15.288007,
+                  1.279522
                 ],
                 [
-                  -12.936803,
-                  3.023149
+                  -13.245656,
+                  3.506168
                 ],
                 [
-                  -17.316928,
-                  7.040741
+                  -17.217582,
+                  7.149346
                 ],
                 [
                   -19.253579,
-                  4.923612
+                  4.923613
                 ]
               ]
             },
@@ -139,31 +139,31 @@
               "shortLabel": "B",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -17.316928,
-                  7.040741
+                  -17.217582,
+                  7.149346
                 ],
                 [
-                  -12.936803,
-                  3.023149
+                  -13.245656,
+                  3.506168
                 ],
                 [
-                  -11.119196,
-                  5.004771
+                  -11.206663,
+                  5.729152
                 ],
                 [
-                  -15.501904,
-                  9.024732
+                  -15.181461,
+                  9.374964
                 ],
                 [
-                  -16.263738,
-                  8.192079
+                  -16.264542,
+                  8.1912
                 ],
                 [
-                  -17.316928,
-                  7.040741
+                  -17.217582,
+                  7.149346
                 ]
               ]
             },
@@ -173,27 +173,27 @@
               "shortLabel": "C",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -15.501904,
-                  9.024732
+                  -15.181461,
+                  9.374964
                 ],
                 [
-                  -11.119196,
-                  5.004771
+                  -11.206663,
+                  5.729152
                 ],
                 [
-                  -8.920446,
-                  7.401929
+                  -9.167671,
+                  7.952137
                 ],
                 [
-                  -13.306133,
-                  11.424622
+                  -13.14523,
+                  11.600482
                 ],
                 [
-                  -15.501904,
-                  9.024732
+                  -15.181461,
+                  9.374964
                 ]
               ]
             },
@@ -203,27 +203,27 @@
               "shortLabel": "D",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -13.306133,
-                  11.424622
+                  -13.14523,
+                  11.600482
                 ],
                 [
-                  -8.920446,
-                  7.401929
+                  -9.167671,
+                  7.952137
                 ],
                 [
-                  -6.723464,
-                  9.797159
+                  -7.131519,
+                  10.172025
                 ],
                 [
                   -11.109,
                   13.826
                 ],
                 [
-                  -13.306133,
-                  11.424622
+                  -13.14523,
+                  11.600482
                 ]
               ]
             },
@@ -233,27 +233,27 @@
               "shortLabel": "E",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  13.280032,
-                  21.610823
+                  13.33446,
+                  21.89442
                 ],
                 [
-                  15.413428,
-                  19.654003
+                  15.579568,
+                  19.835135
                 ],
                 [
                   19.223289,
                   23.807653
                 ],
                 [
-                  17.091488,
-                  25.766212
+                  16.979859,
+                  25.868769
                 ],
                 [
-                  13.280032,
-                  21.610823
+                  13.33446,
+                  21.89442
                 ]
               ]
             },
@@ -263,27 +263,27 @@
               "shortLabel": "F",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  11.376527,
-                  23.356778
+                  11.089351,
+                  23.953706
                 ],
                 [
-                  13.280032,
-                  21.610823
+                  13.33446,
+                  21.89442
                 ],
                 [
-                  17.091488,
-                  25.766212
+                  16.979859,
+                  25.868769
                 ],
                 [
-                  15.189406,
-                  27.513719
+                  14.73643,
+                  27.929884
                 ],
                 [
-                  11.376527,
-                  23.356778
+                  11.089351,
+                  23.953706
                 ]
               ]
             },
@@ -293,27 +293,27 @@
               "shortLabel": "G",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  8.683005,
-                  25.827363
+                  8.848932,
+                  26.008691
                 ],
                 [
-                  11.376527,
-                  23.356778
+                  11.089351,
+                  23.953706
                 ],
                 [
-                  15.189406,
-                  27.513719
+                  14.73643,
+                  27.929884
                 ],
                 [
                   12.493,
                   29.991
                 ],
                 [
-                  8.683005,
-                  25.827363
+                  8.848932,
+                  26.008691
                 ]
               ]
             },
@@ -323,27 +323,27 @@
               "shortLabel": "W1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -4.218096,
-                  -4.093828
+                  -4.319036,
+                  -4.00118
                 ],
                 [
                   -2.109932,
                   -6.030926
                 ],
                 [
-                  1.225226,
-                  -2.3808
+                  1.532177,
+                  -2.04486
                 ],
                 [
-                  -0.877662,
-                  -0.451964
+                  -0.676756,
+                  -0.018755
                 ],
                 [
-                  -4.218096,
-                  -4.093828
+                  -4.319036,
+                  -4.00118
                 ]
               ]
             },
@@ -353,27 +353,27 @@
               "shortLabel": "W2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -6.326261,
-                  -2.15673
+                  -6.528072,
+                  -1.971361
                 ],
                 [
-                  -4.218096,
-                  -4.093828
+                  -4.319036,
+                  -4.00118
                 ],
                 [
-                  -0.877662,
-                  -0.451964
+                  -0.676756,
+                  -0.018755
                 ],
                 [
-                  -2.987531,
-                  1.483276
+                  -2.88569,
+                  2.007349
                 ],
                 [
-                  -6.326261,
-                  -2.15673
+                  -6.528072,
+                  -1.971361
                 ]
               ]
             },
@@ -383,27 +383,27 @@
               "shortLabel": "W3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -8.434425,
-                  -0.219632
+                  -8.737108,
+                  0.058459
                 ],
                 [
-                  -6.326261,
-                  -2.15673
+                  -6.528072,
+                  -1.971361
                 ],
                 [
-                  -2.987531,
-                  1.483276
+                  -2.88569,
+                  2.007349
                 ],
                 [
-                  -5.0974,
-                  3.418515
+                  -5.094624,
+                  4.033454
                 ],
                 [
-                  -8.434425,
-                  -0.219632
+                  -8.737108,
+                  0.058459
                 ]
               ]
             },
@@ -413,27 +413,27 @@
               "shortLabel": "W4",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -10.54259,
-                  1.717465
+                  -10.946144,
+                  2.088278
                 ],
                 [
-                  -8.434425,
-                  -0.219632
+                  -8.737108,
+                  0.058459
                 ],
                 [
-                  -5.0974,
-                  3.418515
+                  -5.094624,
+                  4.033454
                 ],
                 [
-                  -7.207269,
-                  5.353755
+                  -7.303558,
+                  6.059559
                 ],
                 [
-                  -10.54259,
-                  1.717465
+                  -10.946144,
+                  2.088278
                 ]
               ]
             },
@@ -443,27 +443,35 @@
               "shortLabel": "L1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -2.937062,
-                  6.23696
+                  -3.408943,
+                  6.063772
+                ],
+                [
+                  0.56704,
+                  2.412647
+                ],
+                [
+                  0.870736,
+                  2.744323
                 ],
                 [
                   0.87,
                   2.745
                 ],
                 [
-                  2.376276,
-                  4.390269
+                  2.552166,
+                  4.58239
                 ],
                 [
-                  -1.429256,
-                  7.880825
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  -2.937062,
-                  6.23696
+                  -3.408943,
+                  6.063772
                 ]
               ]
             },
@@ -473,27 +481,27 @@
               "shortLabel": "L2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -1.429256,
-                  7.880825
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  2.376276,
-                  4.390269
+                  2.552166,
+                  4.58239
                 ],
                 [
-                  3.882552,
-                  6.035539
+                  4.538007,
+                  6.751476
                 ],
                 [
-                  0.07855,
-                  9.524691
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  -1.429256,
-                  7.880825
+                  -1.421086,
+                  8.231007
                 ]
               ]
             },
@@ -503,27 +511,27 @@
               "shortLabel": "L3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  0.07855,
-                  9.524691
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  3.882552,
-                  6.035539
+                  4.538007,
+                  6.751476
                 ],
                 [
-                  5.388828,
-                  7.680808
+                  6.523847,
+                  8.920563
                 ],
                 [
-                  1.586356,
-                  11.168557
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  0.07855,
-                  9.524691
+                  0.566771,
+                  10.398242
                 ]
               ]
             },
@@ -533,23 +541,23 @@
               "shortLabel": "R1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
                   2.304,
                   16.898
                 ],
                 [
-                  6.257722,
-                  13.269879
+                  6.257702,
+                  13.269857
                 ],
                 [
-                  8.079871,
-                  15.256453
+                  8.124957,
+                  15.305607
                 ],
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ],
                 [
                   2.304,
@@ -563,27 +571,27 @@
               "shortLabel": "R2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ],
                 [
-                  8.079871,
-                  15.256453
+                  8.124957,
+                  15.305607
                 ],
                 [
-                  9.902021,
-                  17.243027
+                  9.992212,
+                  17.341357
                 ],
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ],
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ]
               ]
             },
@@ -593,27 +601,27 @@
               "shortLabel": "R3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ],
                 [
-                  9.902021,
-                  17.243027
+                  9.992212,
+                  17.341357
                 ],
                 [
-                  11.72417,
-                  19.229601
+                  11.859467,
+                  19.377107
                 ],
                 [
-                  7.76,
-                  22.857
+                  7.895059,
+                  23.00451
                 ],
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ]
               ]
             },
@@ -623,11 +631,11 @@
               "shortLabel": "N1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  15.888578,
-                  15.347494
+                  15.780034,
+                  15.446882
                 ],
                 [
                   19.763703,
@@ -638,12 +646,12 @@
                   14.152815
                 ],
                 [
-                  18.046613,
-                  17.700263
+                  17.938155,
+                  17.799745
                 ],
                 [
-                  15.888578,
-                  15.347494
+                  15.780034,
+                  15.446882
                 ]
               ]
             },
@@ -653,11 +661,11 @@
               "shortLabel": "N2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  18.046613,
-                  17.700263
+                  17.938155,
+                  17.799745
                 ],
                 [
                   21.914172,
@@ -668,12 +676,12 @@
                   16.506333
                 ],
                 [
-                  20.201577,
-                  20.049683
+                  20.093118,
+                  20.149165
                 ],
                 [
-                  18.046613,
-                  17.700263
+                  17.938155,
+                  17.799745
                 ]
               ]
             },
@@ -683,11 +691,11 @@
               "shortLabel": "N3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  20.201577,
-                  20.049683
+                  20.093118,
+                  20.149165
                 ],
                 [
                   24.064667,
@@ -698,56 +706,82 @@
                   18.86
                 ],
                 [
-                  22.359291,
-                  22.402102
+                  22.250909,
+                  22.501668
                 ],
                 [
-                  20.201577,
-                  20.049683
+                  20.093118,
+                  20.149165
                 ]
               ]
             },
             {
               "id": "study-55-0-stairs",
-              "label": "Stairs — assumed position",
+              "label": "Stairwell — assumed position",
               "shortLabel": "Stairs",
               "kind": "stairs",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: Resident corrections place these stairs flush to the center-left block’s right wall, now adjoining L3. Their marked run and dimensions remain unchanged; the enclosure, riser count, width and landing arrangement are unmeasured.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established. Flight, landings and the west entrance repeat the top-floor interpretation; the east stairwell connection remains unknown.",
               "polygon": [
                 [
-                  0.606111,
-                  12.06767
+                  0.742734,
+                  14.229329
                 ],
                 [
-                  3.778575,
-                  9.157784
+                  6.523847,
+                  8.920563
                 ],
                 [
-                  5.35771,
-                  10.879415
+                  7.726299,
+                  10.233972
                 ],
                 [
-                  2.185246,
-                  13.789301
+                  1.945754,
+                  15.542216
                 ],
                 [
-                  0.606111,
-                  12.06767
+                  1.043,
+                  14.558
+                ],
+                [
+                  0.742734,
+                  14.229329
+                ]
+              ],
+              "stairFlight": [
+                [
+                  4.9156,
+                  10.39741
+                ],
+                [
+                  6.11927,
+                  11.709696
+                ],
+                [
+                  2.948484,
+                  14.621412
+                ],
+                [
+                  1.744814,
+                  13.309127
+                ],
+                [
+                  4.9156,
+                  10.39741
                 ]
               ]
             },
             {
               "id": "study-55-0-potential-corridor",
-              "label": "Potential corridor — assumed layout",
-              "shortLabel": "Hall",
+              "label": "West hall — assumed layout",
+              "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "EG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: Connected remainder between sketch bays and the marked stair zone, limited to the annotated flat-roof plan. It is a circulation hypothesis, not an approved route, egress plan or proof of usable floor area.",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established. Only the top-floor corridor footprint is repeated; additional lower-floor wings remain unassigned.",
               "polygon": [
                 [
-                  -14.880006,
-                  0.904598
+                  -15.288007,
+                  1.279522
                 ],
                 [
                   -13.000153,
@@ -758,52 +792,114 @@
                   1.784
                 ],
                 [
-                  -10.54259,
-                  1.717465
+                  -10.946144,
+                  2.088278
                 ],
                 [
-                  -7.207269,
-                  5.353755
+                  -7.303558,
+                  6.059559
                 ],
                 [
-                  1.225226,
-                  -2.3808
+                  -5.094624,
+                  4.033454
+                ],
+                [
+                  -2.88569,
+                  2.007349
+                ],
+                [
+                  -0.676756,
+                  -0.018755
+                ],
+                [
+                  1.532177,
+                  -2.04486
                 ],
                 [
                   3.607704,
                   0.226676
                 ],
                 [
-                  0.87,
-                  2.745
+                  0.870736,
+                  2.744323
                 ],
                 [
-                  -2.937062,
-                  6.23696
+                  0.56704,
+                  2.412647
                 ],
                 [
-                  1.586356,
-                  11.168557
+                  -3.408943,
+                  6.063772
                 ],
                 [
-                  0.606111,
-                  12.06767
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  2.185246,
-                  13.789301
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  5.35771,
-                  10.879415
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  3.778575,
-                  9.157784
+                  0.742734,
+                  14.229329
                 ],
                 [
-                  5.388828,
-                  7.680808
+                  -4.866,
+                  8.09
+                ],
+                [
+                  -5.773,
+                  8.924
+                ],
+                [
+                  -7.131519,
+                  10.172025
+                ],
+                [
+                  -9.167671,
+                  7.952137
+                ],
+                [
+                  -11.206663,
+                  5.729152
+                ],
+                [
+                  -13.245656,
+                  3.506168
+                ],
+                [
+                  -15.288007,
+                  1.279522
+                ]
+              ]
+            },
+            {
+              "id": "study-55-0-potential-corridor-east",
+              "label": "East hall — assumed layout",
+              "shortLabel": "East hall",
+              "kind": "corridor",
+              "confidence": "estimated",
+              "note": "EG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established. Only the top-floor corridor footprint is repeated; additional lower-floor wings remain unassigned.",
+              "polygon": [
+                [
+                  0.48,
+                  15.075
+                ],
+                [
+                  1.043,
+                  14.558
+                ],
+                [
+                  1.945754,
+                  15.542216
+                ],
+                [
+                  7.726299,
+                  10.233972
                 ],
                 [
                   7.924498,
@@ -822,12 +918,20 @@
                   16.857
                 ],
                 [
-                  15.888578,
-                  15.347494
+                  15.780034,
+                  15.446882
                 ],
                 [
-                  22.359291,
-                  22.402102
+                  17.938155,
+                  17.799745
+                ],
+                [
+                  20.093118,
+                  20.149165
+                ],
+                [
+                  22.250909,
+                  22.501668
                 ],
                 [
                   19.957,
@@ -842,28 +946,52 @@
                   23.807653
                 ],
                 [
-                  15.413428,
-                  19.654003
+                  15.579568,
+                  19.835135
                 ],
                 [
-                  8.683005,
-                  25.827363
+                  13.33446,
+                  21.89442
+                ],
+                [
+                  11.089351,
+                  23.953706
+                ],
+                [
+                  8.848932,
+                  26.008691
                 ],
                 [
                   6.783263,
-                  23.751288
+                  23.751287
                 ],
                 [
                   7.76,
                   22.857
                 ],
                 [
-                  11.72417,
-                  19.229601
+                  7.895059,
+                  23.00451
                 ],
                 [
-                  6.257722,
-                  13.269879
+                  11.859467,
+                  19.377107
+                ],
+                [
+                  9.992212,
+                  17.341357
+                ],
+                [
+                  8.124957,
+                  15.305607
+                ],
+                [
+                  6.257702,
+                  13.269857
+                ],
+                [
+                  2.304,
+                  16.898
                 ],
                 [
                   2.219,
@@ -872,26 +1000,6 @@
                 [
                   0.48,
                   15.075
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  -4.866,
-                  8.09
-                ],
-                [
-                  -5.773,
-                  8.924
-                ],
-                [
-                  -6.723464,
-                  9.797159
-                ],
-                [
-                  -14.880006,
-                  0.904598
                 ]
               ]
             }
@@ -901,361 +1009,361 @@
               "id": "study-55-0-opening-sw-1",
               "label": "Assumed opening — A",
               "spaceId": "study-55-0-sw-1",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -14.21073,
-                  1.634266
+                  -14.56933,
+                  2.06305
                 ],
                 [
-                  -13.602375,
-                  2.297518
+                  -13.960974,
+                  2.726302
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-sw-2",
               "label": "Assumed opening — B",
               "spaceId": "study-55-0-sw-2",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -12.332177,
-                  3.682334
+                  -12.530337,
+                  4.286034
                 ],
                 [
-                  -11.723821,
-                  4.345586
+                  -11.921982,
+                  4.949286
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-sw-3",
               "label": "Assumed opening — C",
               "spaceId": "study-55-0-sw-3",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -10.323999,
-                  5.871724
+                  -10.491345,
+                  6.509019
                 ],
                 [
-                  -9.715643,
-                  6.534976
+                  -9.882989,
+                  7.172271
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-sw-4",
               "label": "Assumed opening — D",
               "spaceId": "study-55-0-sw-4",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -8.124567,
-                  8.269625
+                  -8.452352,
+                  8.732003
                 ],
                 [
-                  -7.516211,
-                  8.932877
+                  -7.843997,
+                  9.395255
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-east-1",
               "label": "Assumed opening — E",
               "spaceId": "study-55-0-east-1",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  14.678356,
-                  20.328235
+                  14.78864,
+                  20.5606
                 ],
                 [
-                  14.015104,
-                  20.936591
+                  14.125388,
+                  21.168956
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-east-2",
               "label": "Assumed opening — F",
               "spaceId": "study-55-0-east-2",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  12.659905,
-                  22.179623
+                  12.543532,
+                  22.619885
                 ],
                 [
-                  11.996653,
-                  22.787979
+                  11.88028,
+                  23.228241
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-east-3",
               "label": "Assumed opening — G",
               "spaceId": "study-55-0-east-3",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  10.358941,
-                  24.290141
+                  10.298423,
+                  24.67917
                 ],
                 [
-                  9.695689,
-                  24.898497
+                  9.635171,
+                  25.287526
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-west-1",
               "label": "Assumed opening — W1",
               "spaceId": "study-55-0-west-1",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  0.508899,
-                  -1.723761
+                  0.766007,
+                  -1.342104
                 ],
                 [
-                  -0.154353,
-                  -1.115405
+                  0.102755,
+                  -0.733748
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-west-2",
               "label": "Assumed opening — W2",
               "spaceId": "study-55-0-west-2",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -1.60097,
-                  0.211478
+                  -1.444833,
+                  0.685749
                 ],
                 [
-                  -2.264222,
-                  0.819834
+                  -2.108084,
+                  1.294104
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-west-3",
               "label": "Assumed opening — W3",
               "spaceId": "study-55-0-west-3",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -3.710839,
-                  2.146718
+                  -3.655672,
+                  2.713602
                 ],
                 [
-                  -4.374091,
-                  2.755074
+                  -4.318924,
+                  3.321957
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-west-4",
               "label": "Assumed opening — W4",
               "spaceId": "study-55-0-west-4",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -5.820708,
-                  4.081957
+                  -5.866512,
+                  4.741455
                 ],
                 [
-                  -6.48396,
-                  4.690313
+                  -6.529764,
+                  5.34981
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-center-left-1",
               "label": "Assumed opening — L1",
               "spaceId": "study-55-0-center-left-1",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -2.487337,
-                  6.727267
+                  -2.719193,
+                  6.815764
                 ],
                 [
-                  -1.878981,
-                  7.390518
+                  -2.110837,
+                  7.479016
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-center-left-2",
               "label": "Assumed opening — L2",
               "spaceId": "study-55-0-center-left-2",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -0.979531,
-                  8.371132
+                  -0.731336,
+                  8.982998
                 ],
                 [
-                  -0.371175,
-                  9.034384
+                  -0.12298,
+                  9.64625
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-center-left-3",
               "label": "Assumed opening — L3",
               "spaceId": "study-55-0-center-left-3",
+              "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  0.528275,
-                  10.014998
+                  1.256521,
+                  11.150233
                 ],
                 [
-                  1.136631,
-                  10.67825
+                  1.864877,
+                  11.813485
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-center-right-1",
               "label": "Assumed opening — R1",
               "spaceId": "study-55-0-center-right-1",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  6.864581,
-                  13.931498
+                  6.887152,
+                  13.956106
                 ],
                 [
-                  7.472936,
-                  14.59475
+                  7.495507,
+                  14.619358
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-center-right-2",
               "label": "Assumed opening — R2",
               "spaceId": "study-55-0-center-right-2",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  8.685019,
-                  15.916207
+                  8.753948,
+                  15.991356
                 ],
                 [
-                  9.293375,
-                  16.579459
+                  9.362304,
+                  16.654608
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-center-right-3",
               "label": "Assumed opening — R3",
               "spaceId": "study-55-0-center-right-3",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  10.505457,
-                  17.900915
+                  10.620327,
+                  18.026151
                 ],
                 [
-                  11.113813,
-                  18.564167
+                  11.228683,
+                  18.689403
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-upper-right-1",
               "label": "Assumed opening — N1",
               "spaceId": "study-55-0-upper-right-1",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  16.664954,
-                  16.193927
+                  16.556495,
+                  16.293409
                 ],
                 [
-                  17.27331,
-                  16.857179
+                  17.164851,
+                  16.956661
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-upper-right-2",
               "label": "Assumed opening — N2",
               "spaceId": "study-55-0-upper-right-2",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  18.819917,
-                  18.543347
+                  18.711458,
+                  18.642829
                 ],
                 [
-                  19.428273,
-                  19.206599
+                  19.319814,
+                  19.306081
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-upper-right-3",
               "label": "Assumed opening — N3",
               "spaceId": "study-55-0-upper-right-3",
+              "toSpaceId": "study-55-0-potential-corridor-east",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  20.97488,
-                  20.892767
+                  20.866422,
+                  20.992249
                 ],
                 [
-                  21.583236,
-                  21.556019
+                  21.474778,
+                  21.655501
                 ]
-              ],
-              "toSpaceId": "study-55-0-potential-corridor"
+              ]
             },
             {
               "id": "study-55-0-opening-stairs",
@@ -1263,15 +1371,15 @@
               "spaceId": "study-55-0-stairs",
               "toSpaceId": "study-55-0-potential-corridor",
               "confidence": "estimated",
-              "note": "EG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 1.10m access gap at the open end of the blue stair mark; this is not evidence of a door leaf or an actual measured landing.",
+              "note": "EG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  1.023905,
-                  12.523165
+                  1.648554,
+                  13.39752
                 ],
                 [
-                  1.767451,
-                  13.333806
+                  0.838341,
+                  14.141534
                 ]
               ]
             }
@@ -1281,8 +1389,8 @@
           "index": 1,
           "label": "1. OG — extrapolated study",
           "extrapolatedFrom": 2,
-          "source": "Repeated from the earlier House 55 2. OG sketch at the resident’s request on 15 November 2026; this floor was not separately mapped or updated by the subsequent dimensional refit.",
-          "notes": "All rooms, stairs, circulation and openings here repeat the earlier 2. OG sketch, before its dimensional refit. The new top-floor candidate has not been copied here. The full source floor plate is retained; additional lower-floor wings remain unassigned. The 20 displayed study references are not a confirmed or complete count for this lower floor.",
+          "source": "Repeated from the current corrected House 55 2. OG study at the resident’s request; this lower floor has not been separately mapped.",
+          "notes": "Rooms, stairs, landings, circulation and doorways repeat the current corrected 2. OG core as an unverified extrapolation. The L-block overlap and staircase alignment therefore no longer show the earlier sketch. The complete source floor plate is retained, and additional lower-floor wings remain unassigned. The 20 displayed study references are not a confirmed or complete count for this lower floor. Top-floor window observations and wall-material hypotheses have not been copied.",
           "floorOutline": [
             {
               "outer": [
@@ -1425,23 +1533,23 @@
               "shortLabel": "A",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
                   -19.253669,
                   4.923695
                 ],
                 [
-                  -14.880006,
-                  0.904598
+                  -15.288007,
+                  1.279522
                 ],
                 [
-                  -12.936803,
-                  3.023149
+                  -13.245656,
+                  3.506168
                 ],
                 [
-                  -17.316855,
-                  7.040674
+                  -17.2175,
+                  7.149271
                 ],
                 [
                   -19.253669,
@@ -1455,27 +1563,27 @@
               "shortLabel": "B",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -17.316855,
-                  7.040674
+                  -17.2175,
+                  7.149271
                 ],
                 [
-                  -12.936803,
-                  3.023149
+                  -13.245656,
+                  3.506168
                 ],
                 [
-                  -11.119196,
-                  5.004771
+                  -11.206663,
+                  5.729152
                 ],
                 [
-                  -15.501765,
-                  9.024605
+                  -15.181332,
+                  9.374845
                 ],
                 [
-                  -17.316855,
-                  7.040674
+                  -17.2175,
+                  7.149271
                 ]
               ]
             },
@@ -1485,27 +1593,27 @@
               "shortLabel": "C",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -15.501765,
-                  9.024605
+                  -15.181332,
+                  9.374845
                 ],
                 [
-                  -11.119196,
-                  5.004771
+                  -11.206663,
+                  5.729152
                 ],
                 [
-                  -8.920446,
-                  7.401929
+                  -9.167671,
+                  7.952137
                 ],
                 [
-                  -13.306133,
-                  11.424622
+                  -13.14523,
+                  11.600482
                 ],
                 [
-                  -15.501765,
-                  9.024605
+                  -15.181332,
+                  9.374845
                 ]
               ]
             },
@@ -1515,27 +1623,27 @@
               "shortLabel": "D",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -13.306133,
-                  11.424622
+                  -13.14523,
+                  11.600482
                 ],
                 [
-                  -8.920446,
-                  7.401929
+                  -9.167671,
+                  7.952137
                 ],
                 [
-                  -6.723464,
-                  9.797159
+                  -7.131519,
+                  10.172025
                 ],
                 [
                   -11.109,
                   13.826
                 ],
                 [
-                  -13.306133,
-                  11.424622
+                  -13.14523,
+                  11.600482
                 ]
               ]
             },
@@ -1545,27 +1653,27 @@
               "shortLabel": "E",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  13.280032,
-                  21.610823
+                  13.33446,
+                  21.89442
                 ],
                 [
-                  15.413428,
-                  19.654003
+                  15.579568,
+                  19.835135
                 ],
                 [
                   19.223289,
                   23.807653
                 ],
                 [
-                  17.091488,
-                  25.766212
+                  16.979859,
+                  25.868769
                 ],
                 [
-                  13.280032,
-                  21.610823
+                  13.33446,
+                  21.89442
                 ]
               ]
             },
@@ -1575,27 +1683,27 @@
               "shortLabel": "F",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  11.376527,
-                  23.356778
+                  11.089351,
+                  23.953706
                 ],
                 [
-                  13.280032,
-                  21.610823
+                  13.33446,
+                  21.89442
                 ],
                 [
-                  17.091488,
-                  25.766212
+                  16.979859,
+                  25.868769
                 ],
                 [
-                  15.189406,
-                  27.513719
+                  14.73643,
+                  27.929884
                 ],
                 [
-                  11.376527,
-                  23.356778
+                  11.089351,
+                  23.953706
                 ]
               ]
             },
@@ -1605,19 +1713,19 @@
               "shortLabel": "G",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  8.683005,
-                  25.827363
+                  8.848932,
+                  26.008691
                 ],
                 [
-                  11.376527,
-                  23.356778
+                  11.089351,
+                  23.953706
                 ],
                 [
-                  15.189406,
-                  27.513719
+                  14.73643,
+                  27.929884
                 ],
                 [
                   12.582327,
@@ -1628,8 +1736,8 @@
                   29.991
                 ],
                 [
-                  8.683005,
-                  25.827363
+                  8.848932,
+                  26.008691
                 ]
               ]
             },
@@ -1639,27 +1747,27 @@
               "shortLabel": "W1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -4.218096,
-                  -4.093828
+                  -4.319036,
+                  -4.00118
                 ],
                 [
                   -2.109932,
                   -6.030926
                 ],
                 [
-                  1.225226,
-                  -2.3808
+                  1.532177,
+                  -2.04486
                 ],
                 [
-                  -0.877662,
-                  -0.451964
+                  -0.676756,
+                  -0.018755
                 ],
                 [
-                  -4.218096,
-                  -4.093828
+                  -4.319036,
+                  -4.00118
                 ]
               ]
             },
@@ -1669,27 +1777,27 @@
               "shortLabel": "W2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -6.326261,
-                  -2.15673
+                  -6.528072,
+                  -1.971361
                 ],
                 [
-                  -4.218096,
-                  -4.093828
+                  -4.319036,
+                  -4.00118
                 ],
                 [
-                  -0.877662,
-                  -0.451964
+                  -0.676756,
+                  -0.018755
                 ],
                 [
-                  -2.987531,
-                  1.483276
+                  -2.88569,
+                  2.007349
                 ],
                 [
-                  -6.326261,
-                  -2.15673
+                  -6.528072,
+                  -1.971361
                 ]
               ]
             },
@@ -1699,27 +1807,27 @@
               "shortLabel": "W3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -8.434425,
-                  -0.219632
+                  -8.737108,
+                  0.058459
                 ],
                 [
-                  -6.326261,
-                  -2.15673
+                  -6.528072,
+                  -1.971361
                 ],
                 [
-                  -2.987531,
-                  1.483276
+                  -2.88569,
+                  2.007349
                 ],
                 [
-                  -5.0974,
-                  3.418515
+                  -5.094624,
+                  4.033454
                 ],
                 [
-                  -8.434425,
-                  -0.219632
+                  -8.737108,
+                  0.058459
                 ]
               ]
             },
@@ -1729,27 +1837,27 @@
               "shortLabel": "W4",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -10.54259,
-                  1.717465
+                  -10.946144,
+                  2.088278
                 ],
                 [
-                  -8.434425,
-                  -0.219632
+                  -8.737108,
+                  0.058459
                 ],
                 [
-                  -5.0974,
-                  3.418515
+                  -5.094624,
+                  4.033454
                 ],
                 [
-                  -7.207269,
-                  5.353755
+                  -7.303558,
+                  6.059559
                 ],
                 [
-                  -10.54259,
-                  1.717465
+                  -10.946144,
+                  2.088278
                 ]
               ]
             },
@@ -1759,27 +1867,35 @@
               "shortLabel": "L1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -2.937062,
-                  6.23696
+                  -3.408943,
+                  6.063772
+                ],
+                [
+                  0.56704,
+                  2.412647
+                ],
+                [
+                  0.870736,
+                  2.744323
                 ],
                 [
                   0.87,
                   2.745
                 ],
                 [
-                  2.376354,
-                  4.390198
+                  2.552253,
+                  4.58231
                 ],
                 [
-                  -1.429256,
-                  7.880825
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  -2.937062,
-                  6.23696
+                  -3.408943,
+                  6.063772
                 ]
               ]
             },
@@ -1789,27 +1905,27 @@
               "shortLabel": "L2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  -1.429256,
-                  7.880825
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  2.376354,
-                  4.390198
+                  2.552253,
+                  4.58231
                 ],
                 [
-                  3.882709,
-                  6.035395
+                  4.538197,
+                  6.751301
                 ],
                 [
-                  0.07855,
-                  9.524691
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  -1.429256,
-                  7.880825
+                  -1.421086,
+                  8.231007
                 ]
               ]
             },
@@ -1819,27 +1935,27 @@
               "shortLabel": "L3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  0.07855,
-                  9.524691
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  3.882629,
-                  6.035468
+                  4.5381,
+                  6.75139
                 ],
                 [
-                  5.388944,
-                  7.680702
+                  6.523992,
+                  8.92043
                 ],
                 [
-                  1.586356,
-                  11.168557
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  0.07855,
-                  9.524691
+                  0.566771,
+                  10.398242
                 ]
               ]
             },
@@ -1849,23 +1965,23 @@
               "shortLabel": "R1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
                   2.304,
                   16.898
                 ],
                 [
-                  6.257722,
-                  13.269879
+                  6.257702,
+                  13.269857
                 ],
                 [
-                  8.079871,
-                  15.256453
+                  8.124957,
+                  15.305607
                 ],
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ],
                 [
                   2.304,
@@ -1879,27 +1995,27 @@
               "shortLabel": "R2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ],
                 [
-                  8.079871,
-                  15.256453
+                  8.124957,
+                  15.305607
                 ],
                 [
-                  9.902021,
-                  17.243027
+                  9.992212,
+                  17.341357
                 ],
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ],
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ]
               ]
             },
@@ -1909,27 +2025,27 @@
               "shortLabel": "R3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ],
                 [
-                  9.902021,
-                  17.243027
+                  9.992212,
+                  17.341357
                 ],
                 [
-                  11.72417,
-                  19.229601
+                  11.859467,
+                  19.377107
                 ],
                 [
-                  7.76,
-                  22.857
+                  7.895059,
+                  23.00451
                 ],
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ]
               ]
             },
@@ -1939,11 +2055,11 @@
               "shortLabel": "N1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  15.888578,
-                  15.347494
+                  15.780034,
+                  15.446882
                 ],
                 [
                   19.764,
@@ -1954,12 +2070,12 @@
                   14.152667
                 ],
                 [
-                  18.046613,
-                  17.700263
+                  17.938155,
+                  17.799745
                 ],
                 [
-                  15.888578,
-                  15.347494
+                  15.780034,
+                  15.446882
                 ]
               ]
             },
@@ -1969,11 +2085,11 @@
               "shortLabel": "N2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  18.046613,
-                  17.700263
+                  17.938155,
+                  17.799745
                 ],
                 [
                   21.914333,
@@ -1984,12 +2100,12 @@
                   16.506333
                 ],
                 [
-                  20.201577,
-                  20.049683
+                  20.093118,
+                  20.149165
                 ],
                 [
-                  18.046613,
-                  17.700263
+                  17.938155,
+                  17.799745
                 ]
               ]
             },
@@ -1999,11 +2115,11 @@
               "shortLabel": "N3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established.",
               "polygon": [
                 [
-                  20.201577,
-                  20.049683
+                  20.093118,
+                  20.149165
                 ],
                 [
                   24.064667,
@@ -2014,56 +2130,82 @@
                   18.86
                 ],
                 [
-                  22.359291,
-                  22.402102
+                  22.250909,
+                  22.501668
                 ],
                 [
-                  20.201577,
-                  20.049683
+                  20.093118,
+                  20.149165
                 ]
               ]
             },
             {
               "id": "study-55-1-stairs",
-              "label": "Stairs — assumed position",
+              "label": "Stairwell — assumed position",
               "shortLabel": "Stairs",
               "kind": "stairs",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: Resident corrections place these stairs flush to the center-left block’s right wall, now adjoining L3. Their marked run and dimensions remain unchanged; the enclosure, riser count, width and landing arrangement are unmeasured.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established. Flight, landings and the west entrance repeat the top-floor interpretation; the east stairwell connection remains unknown.",
               "polygon": [
                 [
-                  0.606111,
-                  12.06767
+                  0.742734,
+                  14.229329
                 ],
                 [
-                  3.778575,
-                  9.157784
+                  6.523992,
+                  8.92043
                 ],
                 [
-                  5.35771,
-                  10.879415
+                  7.726475,
+                  10.233811
                 ],
                 [
-                  2.185246,
-                  13.789301
+                  1.945754,
+                  15.542216
                 ],
                 [
-                  0.606111,
-                  12.06767
+                  1.043,
+                  14.558
+                ],
+                [
+                  0.742734,
+                  14.229329
+                ]
+              ],
+              "stairFlight": [
+                [
+                  4.9156,
+                  10.39741
+                ],
+                [
+                  6.11927,
+                  11.709696
+                ],
+                [
+                  2.948484,
+                  14.621412
+                ],
+                [
+                  1.744814,
+                  13.309127
+                ],
+                [
+                  4.9156,
+                  10.39741
                 ]
               ]
             },
             {
               "id": "study-55-1-potential-corridor",
-              "label": "Potential corridor — assumed layout",
-              "shortLabel": "Hall",
+              "label": "West hall — assumed layout",
+              "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "1. OG: assumed continuation of the earlier 2. OG sketch, before its dimensional refit; this lower-floor space was not observed. Earlier reference: Connected remainder between sketch bays and the marked stair zone, limited to the annotated flat-roof plan. It is a circulation hypothesis, not an approved route, egress plan or proof of usable floor area.",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established. Only the top-floor corridor footprint is repeated; additional lower-floor wings remain unassigned.",
               "polygon": [
                 [
-                  -14.880006,
-                  0.904598
+                  -15.288007,
+                  1.279522
                 ],
                 [
                   -13.000153,
@@ -2074,52 +2216,114 @@
                   1.784
                 ],
                 [
-                  -10.54259,
-                  1.717465
+                  -10.946144,
+                  2.088278
                 ],
                 [
-                  -7.207269,
-                  5.353755
+                  -7.303558,
+                  6.059559
                 ],
                 [
-                  1.225226,
-                  -2.3808
+                  -5.094624,
+                  4.033454
+                ],
+                [
+                  -2.88569,
+                  2.007349
+                ],
+                [
+                  -0.676756,
+                  -0.018755
+                ],
+                [
+                  1.532177,
+                  -2.04486
                 ],
                 [
                   3.607704,
                   0.226676
                 ],
                 [
-                  0.87,
-                  2.745
+                  0.870736,
+                  2.744323
                 ],
                 [
-                  -2.937062,
-                  6.23696
+                  0.56704,
+                  2.412647
                 ],
                 [
-                  1.586356,
-                  11.168557
+                  -3.408943,
+                  6.063772
                 ],
                 [
-                  0.606111,
-                  12.06767
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  2.185246,
-                  13.789301
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  5.35771,
-                  10.879415
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  3.778575,
-                  9.157784
+                  0.742734,
+                  14.229329
                 ],
                 [
-                  5.388944,
-                  7.680702
+                  -4.866,
+                  8.09
+                ],
+                [
+                  -5.773,
+                  8.924
+                ],
+                [
+                  -7.131519,
+                  10.172025
+                ],
+                [
+                  -9.167671,
+                  7.952137
+                ],
+                [
+                  -11.206663,
+                  5.729152
+                ],
+                [
+                  -13.245656,
+                  3.506168
+                ],
+                [
+                  -15.288007,
+                  1.279522
+                ]
+              ]
+            },
+            {
+              "id": "study-55-1-potential-corridor-east",
+              "label": "East hall — assumed layout",
+              "shortLabel": "East hall",
+              "kind": "corridor",
+              "confidence": "estimated",
+              "note": "1. OG: assumed continuation of the current corrected 2. OG study, including its matched L-block overlap and staircase alignment. This lower-floor space was not separately observed. All dimensions and room references remain unmeasured; no physical room number or occupancy is established. Only the top-floor corridor footprint is repeated; additional lower-floor wings remain unassigned.",
+              "polygon": [
+                [
+                  0.48,
+                  15.075
+                ],
+                [
+                  1.043,
+                  14.558
+                ],
+                [
+                  1.945754,
+                  15.542216
+                ],
+                [
+                  7.726475,
+                  10.233811
                 ],
                 [
                   7.924679,
@@ -2138,12 +2342,20 @@
                   16.857
                 ],
                 [
-                  15.888578,
-                  15.347494
+                  15.780034,
+                  15.446882
                 ],
                 [
-                  22.359291,
-                  22.402102
+                  17.938155,
+                  17.799745
+                ],
+                [
+                  20.093118,
+                  20.149165
+                ],
+                [
+                  22.250909,
+                  22.501668
                 ],
                 [
                   19.957,
@@ -2158,28 +2370,52 @@
                   23.807653
                 ],
                 [
-                  15.413428,
-                  19.654003
+                  15.579568,
+                  19.835135
                 ],
                 [
-                  8.683005,
-                  25.827363
+                  13.33446,
+                  21.89442
+                ],
+                [
+                  11.089351,
+                  23.953706
+                ],
+                [
+                  8.848932,
+                  26.008691
                 ],
                 [
                   6.783263,
-                  23.751288
+                  23.751287
                 ],
                 [
                   7.76,
                   22.857
                 ],
                 [
-                  11.72417,
-                  19.229601
+                  7.895059,
+                  23.00451
                 ],
                 [
-                  6.257722,
-                  13.269879
+                  11.859467,
+                  19.377107
+                ],
+                [
+                  9.992212,
+                  17.341357
+                ],
+                [
+                  8.124957,
+                  15.305607
+                ],
+                [
+                  6.257702,
+                  13.269857
+                ],
+                [
+                  2.304,
+                  16.898
                 ],
                 [
                   2.219,
@@ -2188,26 +2424,6 @@
                 [
                   0.48,
                   15.075
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  -4.866,
-                  8.09
-                ],
-                [
-                  -5.773,
-                  8.924
-                ],
-                [
-                  -6.723464,
-                  9.797159
-                ],
-                [
-                  -14.880006,
-                  0.904598
                 ]
               ]
             }
@@ -2217,361 +2433,361 @@
               "id": "study-55-1-opening-sw-1",
               "label": "Assumed opening — A",
               "spaceId": "study-55-1-sw-1",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -14.21073,
-                  1.634266
+                  -14.56933,
+                  2.06305
                 ],
                 [
-                  -13.602375,
-                  2.297518
+                  -13.960974,
+                  2.726302
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-sw-2",
               "label": "Assumed opening — B",
               "spaceId": "study-55-1-sw-2",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -12.332177,
-                  3.682334
+                  -12.530337,
+                  4.286034
                 ],
                 [
-                  -11.723821,
-                  4.345586
+                  -11.921982,
+                  4.949286
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-sw-3",
               "label": "Assumed opening — C",
               "spaceId": "study-55-1-sw-3",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -10.323999,
-                  5.871724
+                  -10.491345,
+                  6.509019
                 ],
                 [
-                  -9.715643,
-                  6.534976
+                  -9.882989,
+                  7.172271
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-sw-4",
               "label": "Assumed opening — D",
               "spaceId": "study-55-1-sw-4",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -8.124567,
-                  8.269625
+                  -8.452352,
+                  8.732003
                 ],
                 [
-                  -7.516211,
-                  8.932877
+                  -7.843997,
+                  9.395255
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-east-1",
               "label": "Assumed opening — E",
               "spaceId": "study-55-1-east-1",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  14.678356,
-                  20.328235
+                  14.78864,
+                  20.5606
                 ],
                 [
-                  14.015104,
-                  20.936591
+                  14.125388,
+                  21.168956
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-east-2",
               "label": "Assumed opening — F",
               "spaceId": "study-55-1-east-2",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  12.659905,
-                  22.179623
+                  12.543532,
+                  22.619885
                 ],
                 [
-                  11.996653,
-                  22.787979
+                  11.88028,
+                  23.228241
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-east-3",
               "label": "Assumed opening — G",
               "spaceId": "study-55-1-east-3",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  10.358941,
-                  24.290141
+                  10.298423,
+                  24.67917
                 ],
                 [
-                  9.695689,
-                  24.898497
+                  9.635171,
+                  25.287526
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-west-1",
               "label": "Assumed opening — W1",
               "spaceId": "study-55-1-west-1",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  0.508899,
-                  -1.723761
+                  0.766007,
+                  -1.342104
                 ],
                 [
-                  -0.154353,
-                  -1.115405
+                  0.102755,
+                  -0.733748
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-west-2",
               "label": "Assumed opening — W2",
               "spaceId": "study-55-1-west-2",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -1.60097,
-                  0.211478
+                  -1.444833,
+                  0.685749
                 ],
                 [
-                  -2.264222,
-                  0.819834
+                  -2.108084,
+                  1.294104
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-west-3",
               "label": "Assumed opening — W3",
               "spaceId": "study-55-1-west-3",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -3.710839,
-                  2.146718
+                  -3.655672,
+                  2.713602
                 ],
                 [
-                  -4.374091,
-                  2.755074
+                  -4.318924,
+                  3.321957
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-west-4",
               "label": "Assumed opening — W4",
               "spaceId": "study-55-1-west-4",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -5.820708,
-                  4.081957
+                  -5.866512,
+                  4.741455
                 ],
                 [
-                  -6.48396,
-                  4.690313
+                  -6.529764,
+                  5.34981
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-center-left-1",
               "label": "Assumed opening — L1",
               "spaceId": "study-55-1-center-left-1",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -2.487337,
-                  6.727267
+                  -2.719193,
+                  6.815764
                 ],
                 [
-                  -1.878981,
-                  7.390518
+                  -2.110837,
+                  7.479016
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-center-left-2",
               "label": "Assumed opening — L2",
               "spaceId": "study-55-1-center-left-2",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  -0.979531,
-                  8.371132
+                  -0.731336,
+                  8.982998
                 ],
                 [
-                  -0.371175,
-                  9.034384
+                  -0.12298,
+                  9.64625
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-center-left-3",
               "label": "Assumed opening — L3",
               "spaceId": "study-55-1-center-left-3",
+              "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  0.528275,
-                  10.014998
+                  1.256521,
+                  11.150233
                 ],
                 [
-                  1.136631,
-                  10.67825
+                  1.864877,
+                  11.813485
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-center-right-1",
               "label": "Assumed opening — R1",
               "spaceId": "study-55-1-center-right-1",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  6.864581,
-                  13.931498
+                  6.887152,
+                  13.956106
                 ],
                 [
-                  7.472936,
-                  14.59475
+                  7.495507,
+                  14.619358
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-center-right-2",
               "label": "Assumed opening — R2",
               "spaceId": "study-55-1-center-right-2",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  8.685019,
-                  15.916207
+                  8.753948,
+                  15.991356
                 ],
                 [
-                  9.293375,
-                  16.579459
+                  9.362304,
+                  16.654608
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-center-right-3",
               "label": "Assumed opening — R3",
               "spaceId": "study-55-1-center-right-3",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  10.505457,
-                  17.900915
+                  10.620327,
+                  18.026151
                 ],
                 [
-                  11.113813,
-                  18.564167
+                  11.228683,
+                  18.689403
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-upper-right-1",
               "label": "Assumed opening — N1",
               "spaceId": "study-55-1-upper-right-1",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  16.664954,
-                  16.193927
+                  16.556495,
+                  16.293409
                 ],
                 [
-                  17.27331,
-                  16.857179
+                  17.164851,
+                  16.956661
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-upper-right-2",
               "label": "Assumed opening — N2",
               "spaceId": "study-55-1-upper-right-2",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  18.819917,
-                  18.543347
+                  18.711458,
+                  18.642829
                 ],
                 [
-                  19.428273,
-                  19.206599
+                  19.319814,
+                  19.306081
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-upper-right-3",
               "label": "Assumed opening — N3",
               "spaceId": "study-55-1-upper-right-3",
+              "toSpaceId": "study-55-1-potential-corridor-east",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  20.97488,
-                  20.892767
+                  20.866422,
+                  20.992249
                 ],
                 [
-                  21.583236,
-                  21.556019
+                  21.474778,
+                  21.655501
                 ]
-              ],
-              "toSpaceId": "study-55-1-potential-corridor"
+              ]
             },
             {
               "id": "study-55-1-opening-stairs",
@@ -2579,15 +2795,15 @@
               "spaceId": "study-55-1-stairs",
               "toSpaceId": "study-55-1-potential-corridor",
               "confidence": "estimated",
-              "note": "1. OG: hypothetical continuation of a schematic 2. OG opening; no lower-floor door position was supplied. Illustrative 1.10m access gap at the open end of the blue stair mark; this is not evidence of a door leaf or an actual measured landing.",
+              "note": "1. OG: hypothetical repetition of the current 2. OG doorway, including its current adjacent spaces. No lower-floor doorway position, width, hinge or swing was supplied; the top-floor resident mark is not evidence for this floor.",
               "segment": [
                 [
-                  1.023905,
-                  12.523165
+                  1.648554,
+                  13.39752
                 ],
                 [
-                  1.767451,
-                  13.333806
+                  0.838341,
+                  14.141534
                 ]
               ]
             }
@@ -2595,9 +2811,9 @@
         },
         {
           "index": 2,
-          "label": "2. OG — windows and wall-face study",
-          "source": "Resident window marks, confirmation of one window per L room, and proposed wall-face offsets supplied on 15 November 2026; unchanged Bavarian exterior model.",
-          "notes": "The twenty-room count and all 24 exterior window locations are resident-confirmed. Exact window centers, widths and all room dimensions remain estimates. A separate 0.20m wall-face hypothesis shifts L left, widens the stairwell to about 1.67m, and gives R about 2.76m gross bays. R still does not fit the published living rectangle with the audit’s hypothetical wall inset. Shaded bands show possible wall material within gross envelopes; room areas never overlap. Four shared-area windows are unassigned to rooms or routes. The east-hall stairwell connection remains unknown. The exterior, no-floor roof wings and both lower floors are unchanged.",
+          "label": "2. OG — resident-aligned study",
+          "source": "Resident-confirmed matching W4/L1 corner overlap and 1/4 L3-side : 3/4 R1-side stair alignment, clarified 15 November 2026; prior window marks and unchanged Bavarian exterior.",
+          "notes": "The L block now matches W4’s confirmed corner overlap. The marked exterior edge extends through the staircase with 1/4 toward L3 and 3/4 toward R1. L bay widths are retained; the stair enclosure is derived at about 1.78m gross. These relative observations do not measure room sizes, clear stair width, masonry or landing depths. Twenty rooms and 24 windows remain; exact openings and dimensions are estimates. R’s dimensional fit and the east stairwell entrance remain unresolved.",
           "floorOutline": [
             {
               "outer": [
@@ -3164,15 +3380,15 @@
               "shortLabel": "L1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "The three L rooms move 0.20m left as an explicit wall-face hypothesis. Their existing equal gross widths and corridor-facing depth are retained; the staircase stays flush to L3 and gains that width. Each room has one north-facing window, confirmed by the resident. The offset, wall thickness and exact window centers remain unmeasured.",
+              "note": "The L block matches the resident-selected W4 corner overlap (0.450m in this source model). Equal approximately 2.941m gross bays and corridor-facing depth are retained. Dividers align with the marked stair reference; source skew causes only millimetre differences. One outside window per room is resident-confirmed. Absolute room dimensions and wall construction remain estimates.",
               "polygon": [
                 [
-                  -3.242255,
-                  6.245502
+                  -3.408943,
+                  6.063772
                 ],
                 [
-                  0.735674,
-                  2.596818
+                  0.56704,
+                  2.412647
                 ],
                 [
                   0.870736,
@@ -3183,16 +3399,16 @@
                   2.745
                 ],
                 [
-                  2.720883,
-                  4.766482
+                  2.552253,
+                  4.58231
                 ],
                 [
-                  -1.254398,
-                  8.412737
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  -3.242255,
-                  6.245502
+                  -3.408943,
+                  6.063772
                 ]
               ]
             },
@@ -3202,27 +3418,27 @@
               "shortLabel": "L2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "The three L rooms move 0.20m left as an explicit wall-face hypothesis. Their existing equal gross widths and corridor-facing depth are retained; the staircase stays flush to L3 and gains that width. Each room has one north-facing window, confirmed by the resident. The offset, wall thickness and exact window centers remain unmeasured.",
+              "note": "The L block matches the resident-selected W4 corner overlap (0.450m in this source model). Equal approximately 2.941m gross bays and corridor-facing depth are retained. Dividers align with the marked stair reference; source skew causes only millimetre differences. One outside window per room is resident-confirmed. Absolute room dimensions and wall construction remain estimates.",
               "polygon": [
                 [
-                  -1.254398,
-                  8.412737
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  2.720883,
-                  4.766482
+                  2.552253,
+                  4.58231
                 ],
                 [
-                  4.706825,
-                  6.935472
+                  4.538197,
+                  6.751301
                 ],
                 [
-                  0.733459,
-                  10.579971
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  -1.254398,
-                  8.412737
+                  -1.421086,
+                  8.231007
                 ]
               ]
             },
@@ -3232,27 +3448,27 @@
               "shortLabel": "L3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "The three L rooms move 0.20m left as an explicit wall-face hypothesis. Their existing equal gross widths and corridor-facing depth are retained; the staircase stays flush to L3 and gains that width. Each room has one north-facing window, confirmed by the resident. The offset, wall thickness and exact window centers remain unmeasured.",
+              "note": "The L block matches the resident-selected W4 corner overlap (0.450m in this source model). Equal approximately 2.941m gross bays and corridor-facing depth are retained. Dividers align with the marked stair reference; source skew causes only millimetre differences. One outside window per room is resident-confirmed. Absolute room dimensions and wall construction remain estimates.",
               "polygon": [
                 [
-                  0.733459,
-                  10.579971
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  4.706825,
-                  6.935472
+                  4.538197,
+                  6.751301
                 ],
                 [
-                  6.692768,
-                  9.104462
+                  6.524141,
+                  8.920293
                 ],
                 [
-                  2.721316,
-                  12.747206
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  0.733459,
-                  10.579971
+                  0.566771,
+                  10.398242
                 ]
               ]
             },
@@ -3442,57 +3658,57 @@
               "shortLabel": "Stairs",
               "kind": "stairs",
               "confidence": "estimated",
-              "note": "The stairwell gains 0.20m on its west side as the L block shifts left in the wall-face hypothesis. Its gross width is about 1.67m; flight length and the east side are retained. This is an unmeasured enclosure, not a clear stair width. The resident-confirmed west-hall entrance remains below the flight. The east-hall connection and the shared-area window south of this enclosure remain unassigned to a stair route.",
+              "note": "The resident confirms that the extended marked outside edge splits the staircase: 1/4 toward L3 and 3/4 toward R1. Both sides run parallel to that source edge, so the ratio holds throughout the flight. Matching L1 to W4's corner overlap while retaining the estimated L bays derives a 1.781m gross enclosure. This is not a measured clear stair width. Flight length and landing depths remain schematic. The west-hall entrance is retained; the east-hall connection remains unknown.",
               "polygon": [
                 [
-                  0.908103,
-                  14.410342
+                  0.742734,
+                  14.229329
                 ],
                 [
-                  2.721316,
-                  12.747206
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  6.692768,
-                  9.104462
+                  6.524141,
+                  8.920293
                 ],
                 [
-                  7.820799,
-                  10.336466
+                  7.726655,
+                  10.233645
                 ],
                 [
-                  2.036928,
-                  15.641617
+                  1.945754,
+                  15.542216
                 ],
                 [
                   1.043,
                   14.558
                 ],
                 [
-                  0.908103,
-                  14.410342
+                  0.742734,
+                  14.229329
                 ]
               ],
               "stairFlight": [
                 [
-                  5.083537,
-                  10.580502
+                  4.9156,
+                  10.39741
                 ],
                 [
-                  6.212654,
-                  11.811506
+                  6.11927,
+                  11.709696
                 ],
                 [
-                  3.04019,
-                  14.721391
+                  2.948484,
+                  14.621412
                 ],
                 [
-                  1.911073,
-                  13.490388
+                  1.744814,
+                  13.309127
                 ],
                 [
-                  5.083537,
-                  10.580502
+                  4.9156,
+                  10.39741
                 ]
               ]
             },
@@ -3502,7 +3718,7 @@
               "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "West hall after the L block and stairwell west wall move 0.20m left as a wall-face hypothesis. The observed stairwell entrance is retained. Wall bands show a possible finite thickness without changing the source exterior or proving clear circulation widths.",
+              "note": "West hall recalculated after the L block is moved to match W4’s confirmed corner overlap. The west-hall stairwell entrance stays below the flight. Gross boundaries do not establish clear hallway or masonry dimensions.",
               "polygon": [
                 [
                   -15.288007,
@@ -3549,28 +3765,28 @@
                   2.744323
                 ],
                 [
-                  0.735674,
-                  2.596818
+                  0.56704,
+                  2.412647
                 ],
                 [
-                  -3.242255,
-                  6.245502
+                  -3.408943,
+                  6.063772
                 ],
                 [
-                  -1.254398,
-                  8.412737
+                  -1.421086,
+                  8.231007
                 ],
                 [
-                  0.733459,
-                  10.579971
+                  0.566771,
+                  10.398242
                 ],
                 [
-                  2.721316,
-                  12.747206
+                  2.554628,
+                  12.565476
                 ],
                 [
-                  0.908103,
-                  14.410342
+                  0.742734,
+                  14.229329
                 ],
                 [
                   -4.866,
@@ -3608,7 +3824,7 @@
               "shortLabel": "East hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "East hall after a hypothetical 0.20m extension of R toward this hall. Room and hall areas are disjoint. Its stairwell connection remains unknown; a window does not imply a door or an accessible route.",
+              "note": "East hall recalculated around the staircase aligned to the resident-confirmed 1/4 L3 : 3/4 R1 reference. The earlier R study is unchanged. Connection into the stairwell remains unconfirmed.",
               "polygon": [
                 [
                   0.48,
@@ -3619,12 +3835,12 @@
                   14.558
                 ],
                 [
-                  2.036928,
-                  15.641617
+                  1.945754,
+                  15.542216
                 ],
                 [
-                  7.820799,
-                  10.336466
+                  7.726655,
+                  10.233645
                 ],
                 [
                   7.924865,
@@ -3936,12 +4152,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  -2.552504,
-                  6.997493
+                  -2.719193,
+                  6.815764
                 ],
                 [
-                  -1.944148,
-                  7.660745
+                  -2.110837,
+                  7.479016
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3954,12 +4170,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  -0.564648,
-                  9.164728
+                  -0.731336,
+                  8.982998
                 ],
                 [
-                  0.043708,
-                  9.82798
+                  -0.12298,
+                  9.64625
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3972,12 +4188,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  1.423209,
-                  11.331962
+                  1.256521,
+                  11.150233
                 ],
                 [
-                  2.031565,
-                  11.995214
+                  1.864877,
+                  11.813485
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -4096,15 +4312,15 @@
               "spaceId": "study-55-2-stairs",
               "toSpaceId": "study-55-2-potential-corridor",
               "confidence": "sketch",
-              "note": "The resident confirms the green mark as a door from the west hallway INTO the stairwell, on its left wall below the flight. The 1.10m gap and centered landing position are illustrative, not measured. No hinge, swing, exterior-exit status or east-side stairwell opening is inferred.",
+              "note": "Resident-confirmed west-hall entrance INTO the stairwell, below the flight. Its position follows the aligned west stair wall; displayed width and landing position remain estimates. The opposite stairwell entrance is unconfirmed.",
               "segment": [
                 [
-                  1.814762,
-                  13.578726
+                  1.648554,
+                  13.39752
                 ],
                 [
-                  1.00412,
-                  14.322272
+                  0.838341,
+                  14.141534
                 ]
               ]
             }
@@ -4425,12 +4641,12 @@
               "note": "One exterior window in L1, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
               "segment": [
                 [
-                  1.373389,
-                  3.294768
+                  1.204756,
+                  3.110598
                 ],
                 [
-                  2.082467,
-                  4.069176
+                  1.913834,
+                  3.885006
                 ]
               ]
             },
@@ -4443,12 +4659,12 @@
               "note": "One exterior window in L2, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
               "segment": [
                 [
-                  3.359369,
-                  5.463723
+                  3.190737,
+                  5.279554
                 ],
                 [
-                  4.068448,
-                  6.238131
+                  3.899816,
+                  6.053963
                 ]
               ]
             },
@@ -4461,12 +4677,12 @@
               "note": "One exterior window in L3, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
               "segment": [
                 [
-                  5.34535,
-                  7.632678
+                  5.176719,
+                  7.448511
                 ],
                 [
-                  6.054428,
-                  8.407087
+                  5.885798,
+                  8.222919
                 ]
               ]
             },
@@ -4541,90 +4757,6 @@
           ],
           "windowCoverage": "complete-floor",
           "wallBands": [
-            {
-              "id": "study-55-2-wall-band-west-elbow-1",
-              "label": "Possible wall band — west elbow",
-              "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
-                [
-                  0.734617,
-                  2.597788
-                ],
-                [
-                  3.472617,
-                  0.079788
-                ],
-                [
-                  3.608,
-                  0.227
-                ],
-                [
-                  0.87,
-                  2.745
-                ],
-                [
-                  0.734617,
-                  2.597788
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-wall-band-west-connector-1",
-              "label": "Possible wall band — west connector",
-              "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
-                [
-                  -13.147265,
-                  -0.687674
-                ],
-                [
-                  -13.000153,
-                  -0.82286
-                ],
-                [
-                  -12.009346,
-                  0.260046
-                ],
-                [
-                  -12.156821,
-                  0.394963
-                ],
-                [
-                  -13.147265,
-                  -0.687674
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-wall-band-west-connector-2",
-              "label": "Possible wall band — west connector",
-              "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
-                [
-                  -11.448078,
-                  1.169677
-                ],
-                [
-                  -11.300557,
-                  1.034718
-                ],
-                [
-                  -10.615,
-                  1.784
-                ],
-                [
-                  -10.762565,
-                  1.918999
-                ],
-                [
-                  -11.448078,
-                  1.169677
-                ]
-              ]
-            },
             {
               "id": "study-55-2-wall-band-east-return-1",
               "label": "Possible wall band — east return",
@@ -4734,6 +4866,90 @@
                 [
                   -4.866,
                   8.09
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-west-elbow-1",
+              "label": "Possible wall band — west elbow",
+              "confidence": "estimated",
+              "note": "The 0.450m band illustrates the resident-confirmed gross corner overlap. Actual wall thickness, assembly and usable area remain unmeasured.",
+              "polygon": [
+                [
+                  0.565583,
+                  2.413985
+                ],
+                [
+                  3.303583,
+                  -0.104015
+                ],
+                [
+                  3.608,
+                  0.227
+                ],
+                [
+                  0.87,
+                  2.745
+                ],
+                [
+                  0.565583,
+                  2.413985
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-west-connector-1",
+              "label": "Possible wall band — west connector",
+              "confidence": "estimated",
+              "note": "The 0.450m band illustrates the resident-confirmed gross corner overlap. Actual wall thickness, assembly and usable area remain unmeasured.",
+              "polygon": [
+                [
+                  -13.331134,
+                  -0.518711
+                ],
+                [
+                  -13.000153,
+                  -0.82286
+                ],
+                [
+                  -12.009346,
+                  0.260046
+                ],
+                [
+                  -12.341064,
+                  0.563517
+                ],
+                [
+                  -13.331134,
+                  -0.518711
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-west-connector-2",
+              "label": "Possible wall band — west connector",
+              "confidence": "estimated",
+              "note": "The 0.450m band illustrates the resident-confirmed gross corner overlap. Actual wall thickness, assembly and usable area remain unmeasured.",
+              "polygon": [
+                [
+                  -11.632321,
+                  1.338231
+                ],
+                [
+                  -11.300557,
+                  1.034718
+                ],
+                [
+                  -10.615,
+                  1.784
+                ],
+                [
+                  -10.946808,
+                  2.087553
+                ],
+                [
+                  -11.632321,
+                  1.338231
                 ]
               ]
             }

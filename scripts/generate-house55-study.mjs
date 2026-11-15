@@ -22,6 +22,8 @@ import { difference, intersection, setPrecision, union } from 'polyclip-ts';
 import { floorSection } from '../src/sections.js';
 import { validateInteriorStudies } from '../src/interior-studies.js';
 import { applyHouse55WindowWallStudy } from './house55-window-wall-study.mjs';
+import { applyHouse55StairAlignment } from './house55-stair-alignment.mjs';
+import { refreshHouse55LowerLevels } from './extrapolate-house55-levels.mjs';
 
 const sourceFile = new URL('../public/data/lod2.json', import.meta.url);
 const sourceBytes = await readFile(sourceFile);
@@ -803,13 +805,29 @@ const windowWallStudy = await applyHouse55WindowWallStudy(study.level, building)
 study.level = windowWallStudy.level;
 study.levels = [...lowerLevels, study.level];
 study.metadata.windowWallStudy = windowWallStudy.metadata;
-study.metadata.currentStage = 'windowWallStudy';
+study.metadata.windowWallStudy.stage = 'earlier-window-and-wall-face-stage-before-confirmed-stair-alignment';
+const stairAlignment = await applyHouse55StairAlignment(study.level, building);
+study.level = stairAlignment.level;
+study.levels = [...lowerLevels, study.level];
+study.metadata.stairAlignment = stairAlignment.metadata;
+study.metadata.currentStage = 'stairAlignment';
+const refreshedLower = refreshHouse55LowerLevels(lowerLevels, study.level, building);
+study.levels = [...refreshedLower.levels, study.level];
+study.metadata.earlierLowerFloorExtrapolation = lowerMetadata;
+study.metadata.lowerFloorExtrapolation = refreshedLower.metadata.map(item => ({
+  ...lowerMetadata.find(earlier => earlier.index === item.index), ...item,
+}));
+study.metadata.lowerFloorRefresh = {
+  sourceStage: 'stairAlignment',
+  reason: 'Resident previously requested extrapolation to the other two floors; the later correction screenshots exposed their stale L/stair geometry. Refresh the current core with explicitly estimated evidence.',
+  copiedObservedWindows: false, copiedWallBands: false,
+};
 study.metadata.roomInterpretation.zoneMeasurementsStage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 study.metadata.residentCorrections.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 study.metadata.stairs.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 study.metadata.validation.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 const generatedBuilding = {
-  source: 'House 55 resident-confirmed 2. OG count and exterior windows, with an explicitly unmeasured wall-face hypothesis for L, R and the staircase. Both lower floors retain their earlier study geometry.',
+  source: 'House 55 resident-confirmed 2. OG count, exterior windows, matching W4/L1 overlap and quarter/three-quarter stair alignment. Absolute room dimensions remain a study.',
   sourceDate: '2026-11-15', levels: study.levels,
 };
 const campusData = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url)));
@@ -858,19 +876,21 @@ await writeFile(svgPath, svg.join('\n'));
 console.log(JSON.stringify({
   outputPath, svgPath, registrationRmsPixels: rounded(rms), confirmedUpstairsRoomCount: 20, sketchPositionRooms: 0, estimatedPartitionRooms: 20,
   floorAreaMetresSquared: rounded(multiArea(floorMulti)), removedGreenAreaMetresSquared: rounded(sourceSection.area - multiArea(floorMulti)),
-  approximateStairDimensionsMetres: [study.metadata.windowWallStudy.wallOffsets.candidateStairwellGrossWidthMetres, study.metadata.stairs.approximateRunMetres],
+  approximateStairDimensionsMetres: [study.metadata.stairAlignment.stairGeometry.grossWidthMetres, study.metadata.stairs.approximateRunMetres],
   stairLeftWallShiftFromPreviousDimensionMetres: rounded(bounds.stairs[0] - priorDimensionBounds.stairs[0]),
   correctedLeftBayWidthMetres: correctedLeftBayWidth,
   markedWindows: study.level.windows.length,
   wallOffsetHypothesisMetres: study.metadata.windowWallStudy.wallOffsets.assumedOffsetMetres,
+  matchingCornerOverlapMetres: study.metadata.stairAlignment.overlap.w4CornerOffsetMetres,
+  stairRatio: study.metadata.stairAlignment.observedRatio,
   commonGrossDepthMetres: commonDepth, commonDepthRoomReferences: depthInputs.length,
-  lowerFloors: lowerMetadata.map(level => ({
+  lowerFloors: study.metadata.lowerFloorExtrapolation.map(level => ({
     index: level.index, sourceAreaMetresSquared: level.sourceSectionAreaMetresSquared,
     unassignedAreaMetresSquared: level.unassignedAreaMetresSquared, spaces: level.studySpaces, openings: level.estimatedOpenings,
   })),
   validation: {
     currentStudySchemaPassed: true,
-    unchangedNonLRRoomCount: study.metadata.windowWallStudy.unchangedRoomReferences.length,
+    unchangedNonLRoomCount: study.metadata.stairAlignment.unchangedRoomReferences.length,
     markedWindows: study.level.windows.length,
     separateHallways: study.level.spaces.filter(space => space.kind === 'corridor').length,
     originalExteriorModified: false,

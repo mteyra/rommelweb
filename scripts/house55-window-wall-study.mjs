@@ -27,6 +27,8 @@ const distance = (p, a, b) => {
 const onBoundary = (segment, space) => asMulti(space).some(ring => ring.slice(1).some((b, i) =>
   segment.every(point => distance(point, ring[i], b) < 0.002)));
 
+export {local, campus, close, rounded, clean, asMulti, geometry, extent, distance, onBoundary, polygonArea, nodeSharedRing, evidence};
+
 // Polygon union/difference can merge nearly collinear room edges. Retain
 // their serialized intermediate corners so the hall shares the exact same
 // edges, rather than crossing them by fractions of a micrometre.

@@ -1,9 +1,24 @@
 # Release checks
 
-Checked on 15 November 2026. Current results cover House 55's resident-located top-floor windows and explicit wall-face hypothesis. Earlier release checks remain below as recorded baselines.
+Checked on 15 November 2026. Current results cover House 55's corrected overlap/stair alignment and refreshed lower-floor extrapolations. Earlier checks remain evidence for their named previous baselines.
 
+## Current release — overlap and stair alignment
 
-## Current release — windows and wall-face hypothesis
+House 55 / 2. OG matches L1's overlap to W4's approximately **0.4497 m true perpendicular overlap**, replacing the previous arbitrary 0.20 m L offset while retaining nominal **2.94083 m gross bays**. The resident confirms that the extended `RoofSurface` 39 edge **3–4** divides the stairwell width **one quarter on the L3/west side and three quarters on the R1/east side**. The resulting approximately **1.78071 m gross stair width** remains a model dimension, not a measured clear width.
+
+The other seventeen upstairs room polygons, including R's separate earlier 0.20 m extension, remain unchanged. Twenty rooms and 24 exterior windows remain upstairs. EG and 1. OG intentionally refresh their twenty-room shared core and twenty-one doorway references from the corrected candidate, as unverified extrapolations. Each retains its complete source floor outline and unassigned additional wings. Top-floor window observations, possible wall bands and upper exclusions are not copied down.
+
+The confirmed west stairwell entry and unknown east connection remain explicit. Relative overlap equality does not establish wall material or physical thickness. New resident images and the `448569d` comparison baseline are archived.
+
+- `npm test`: **105 passing tests**. `npm run build`: passed, including the path-cache source check.
+- The [independent audit](HOUSE55-DIMENSION-REFIT.md) recomputes signed W4/L1 overlap and the quarter/three-quarter ratio across five stair cross-sections from the saved polygons. It confirms the seventeen unchanged non-L room polygons, seventeen living-zone packing witnesses and unresolved R cases. These are computational checks, not measured room or stair dimensions.
+- The official exterior, campus data, path cache and empty approved-interior dataset match the preceding commit byte for byte. Both complete lower-floor `floorOutline` records are also unchanged; their shared-core interiors are deliberately refreshed.
+- Isolated Firefox checks of the **production preview** pass at **1440 × 1000**, **390 × 844** and **320 × 568**. All three floors expose **23 spaces, 20 room references and 21 door targets**; the stack contains **69 space markers**. Checks cover L/R cards, explicit lower-floor extrapolation notes, the current stairwell entry, correction-form targets, day/night views, stack/collapse and empty-space return.
+- Updated [top floor](preview/single-floor.png), [1. OG](preview/house55-first-floor.png), [EG](preview/house55-ground-floor.png), [phone view](preview/house55-phone-floor.png) and [independent plan](preview/house55-dimension-audit.png) were visually reviewed. No overlapping visible labels, horizontal overflow, application console errors, audio or browser-storage entries were observed.
+
+These results verify the current study data and interface behavior. They do not approve the interiors or turn lower-floor repetitions into observations. Publication continues through the existing public GitHub Pages workflow after the final commit.
+
+## Previous baseline — windows and wall-face hypothesis
 
 House 55 / 2. OG has **24 resident-located windows**: twenty room windows, including the verbally confirmed L windows, and four unassigned shared-area windows. The exterior and floor cutaway share these records. Whole openings fit their referenced source walls, short returns use explicit narrower width estimates, and windows retain sills without creating door targets. The earlier generic top-floor pattern is replaced; lower rows and other houses are unchanged.
 
@@ -18,7 +33,7 @@ The **0.20 m wall-face case** moves L left, widens the stairwell from about 1.47
 
 The repository remains public and publishes through its existing GitHub Pages workflow on `main`. These release checks describe tested geometry and interface behavior, not a measured or approved interior plan.
 
-## Current revision
+## Previous baseline — left hallway and stair enclosure
 
 L1–L3 now align between the marked exterior elbow and southern source corner, giving three approximately 2.94 m gross bays. Their previous depth boundary is retained. The other seventeen room polygons and both earlier lower-floor records remain unchanged.
 
