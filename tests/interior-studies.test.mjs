@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { Raycaster, Vector3 } from 'three';
-import { difference, intersection } from 'polyclip-ts';
+import { difference, intersection, union } from 'polyclip-ts';
 import { validateInteriorData, getLevelElevations } from '../src/interiors.js';
 import { validateInteriorStudies, getDisplayLevel, studyFloorSection, studyPlanDirection } from '../src/interior-studies.js';
 import { createInteriorWireframe } from '../src/interior-wireframe.js';
@@ -47,6 +47,21 @@ function approvedFixture() {
   } } };
 }
 
+function copyFloor(source, index) {
+  const copy = structuredClone(source);
+  copy.index = index;
+  const items = [...copy.spaces, ...(copy.doors || []), ...(copy.excludedAreas || [])];
+  const ids = new Map(items.map(item => [item.id, `${item.id}-floor${index}`]));
+  items.forEach(item => { item.id = ids.get(item.id); });
+  copy.spaces.forEach(space => { space.confidence = 'estimated'; });
+  (copy.doors || []).forEach(door => {
+    door.confidence = 'estimated';
+    door.spaceId = ids.get(door.spaceId);
+    if (door.toSpaceId !== undefined) door.toSpaceId = ids.get(door.toSpaceId);
+  });
+  return copy;
+}
+
 function freeze(value) {
   if (value && typeof value === 'object') {
     Object.values(value).forEach(freeze);
@@ -68,6 +83,61 @@ function meshArea(mesh) {
 const ringArea = ring => Math.abs(ring.slice(1).reduce((sum, b, i) => sum + ring[i][0] * b[1] - b[0] * ring[i][1], 0)) / 2;
 const polygonArea = ([outer, ...holes]) => ringArea(outer) - holes.reduce((sum, hole) => sum + ringArea(hole), 0);
 const multiArea = polygons => polygons.reduce((sum, polygon) => sum + polygonArea(polygon), 0);
+
+// Published LoD2 vertices are millimetre-quantized. Independently clipped source
+// edges, six-decimal study serialization and Float32 meshes can leave thin
+// sub-millimetre slivers. Bound both their thickness (0.2 mm) and total area;
+// an area-only tolerance could conceal a narrow but materially displaced edge.
+// Synthetic overlap and hole-filling tests retain their stricter exact checks.
+const sourceBoundaryAreaTolerance = 0.001;
+function assertSourceBoundaryFit(subject, target, message) {
+  const outside = difference(subject, target);
+  const outsideArea = multiArea(outside);
+  assert.ok(outsideArea < sourceBoundaryAreaTolerance, `${message}: exterior difference is ${outsideArea} m²`);
+  const boundary = target.flatMap(polygon => polygon.flatMap(ring => ring.slice(1).map((b, i) => [ring[i], b])));
+  for (const point of outside.flat(2)) {
+    const nearest = Math.min(...boundary.map(([a, b]) => {
+      const dx = b[0] - a[0], dz = b[1] - a[1], squaredLength = dx * dx + dz * dz;
+      const t = squaredLength ? Math.max(0, Math.min(1, ((point[0] - a[0]) * dx + (point[1] - a[1]) * dz) / squaredLength)) : 0;
+      return Math.hypot(point[0] - a[0] - t * dx, point[1] - a[1] - t * dz);
+    }));
+    assert.ok(nearest < 0.0002, `${message}: exterior offset is ${nearest * 1000} mm`);
+  }
+  return outsideArea;
+}
+
+function sharedBoundaryLength(first, second) {
+  let total = 0;
+  for (let i = 1; i < first.length; i++) {
+    const a = first[i - 1], b = first[i], dx = b[0] - a[0], dz = b[1] - a[1], length = Math.hypot(dx, dz);
+    for (let j = 1; j < second.length; j++) {
+      const c = second[j - 1], d = second[j];
+      if ([c, d].some(point => Math.abs(dx * (point[1] - a[1]) - dz * (point[0] - a[0])) / length > 0.00001)) continue;
+      const positions = [c, d].map(point => ((point[0] - a[0]) * dx + (point[1] - a[1]) * dz) / length).sort((x, y) => x - y);
+      total += Math.max(0, Math.min(length, positions[1]) - Math.max(0, positions[0]));
+    }
+  }
+  return total;
+}
+
+function cornersOnly(ring) {
+  const points = ring.slice(0, -1).map(point => [...point]);
+  let changed = true;
+  while (changed && points.length > 3) {
+    changed = false;
+    for (let i = 0; i < points.length; i++) {
+      const a = points[(i + points.length - 1) % points.length], b = points[i], c = points[(i + 1) % points.length];
+      const dx = c[0] - a[0], dz = c[1] - a[1], length = Math.hypot(dx, dz);
+      const along = ((b[0] - a[0]) * dx + (b[1] - a[1]) * dz) / length;
+      if (length && Math.abs(dx * (b[1] - a[1]) - dz * (b[0] - a[0])) / length < 0.00001 && along > 0 && along < length) {
+        points.splice(i, 1);
+        changed = true;
+        break;
+      }
+    }
+  }
+  return points;
+}
 
 function wallSegments(result) {
   return result.group.children.filter(child => ['interior-walls', 'estimated-interior-walls'].includes(child.userData.role))
@@ -143,6 +213,46 @@ test('unmapped houses, duplicate floors and reused interaction IDs cannot create
   const duplicateId = fixture();
   level(duplicateId).doors[0].id = room(duplicateId).id;
   assert.throws(() => validate(duplicateId), /unique stable geometry ID/);
+});
+
+test('copied floor studies require globally unique targets and strictly same-floor doorway references', () => {
+  const data = fixture(), upper = level(data), lower = copyFloor(upper, 0);
+  entry(data).levels.push(lower);
+  assert.equal(validate(data), true, 'vertically stacked studies may share coordinates while retaining different targets');
+  assert.notEqual(getDisplayLevel(emptyApproved, data, '55', 0).spaces[0].id, getDisplayLevel(emptyApproved, data, '55', 2).spaces[0].id);
+  const duplicate = structuredClone(data);
+  entry(duplicate).levels[1].spaces[0].id = upper.spaces[0].id;
+  assert.throws(() => validate(duplicate), /unique stable geometry ID/);
+  for (const key of ['spaceId', 'toSpaceId']) {
+    const crossFloor = structuredClone(data);
+    entry(crossFloor).levels[1].doors[0][key] = upper.doors[0][key];
+    assert.throws(() => validate(crossFloor), /source space boundary|destination boundary/, `${key} must not link a matching polygon on another floor`);
+  }
+});
+
+test('extrapolation records its direct source floor and cannot imply evidence from missing, circular or assumed plans', () => {
+  const data = fixture(), upper = level(data), lower = copyFloor(upper, 0);
+  lower.extrapolatedFrom = 2;
+  entry(data).levels.push(lower);
+  assert.equal(validate(data), true);
+  assert.equal(getDisplayLevel(emptyApproved, data, '55', 0).extrapolatedFrom, 2);
+  for (const source of [0, 1, 3, '2', 1.5, null]) {
+    const invalid = structuredClone(data);
+    entry(invalid).levels[1].extrapolatedFrom = source;
+    assert.throws(() => validate(invalid), /extrapolat|source|floor/, `source ${source} must be an existing different integer floor`);
+  }
+  const chained = structuredClone(data), middle = copyFloor(upper, 1);
+  middle.extrapolatedFrom = 0;
+  entry(chained).levels.push(middle);
+  assert.throws(() => validate(chained), /extrapolat|direct|source/, 'a copied plan cannot become evidence for another copied floor');
+  const cycle = structuredClone(data);
+  level(cycle).extrapolatedFrom = 0;
+  assert.throws(() => validate(cycle), /extrapolat|direct|source/, 'circular provenance cannot invent a direct observation');
+  for (const kind of ['spaces', 'doors']) {
+    const overstated = structuredClone(data);
+    entry(overstated).levels[1][kind][0].confidence = 'sketch';
+    assert.throws(() => validate(overstated), /estimated|extrapolat/, `copied ${kind} must remain estimates`);
+  }
 });
 
 test('distinct study IDs cannot hide coincident rooms or crossing room overlaps', () => {
@@ -312,57 +422,169 @@ test('approved geometry retains strict door collinearity instead of inheriting s
   assert.throws(() => validateInteriorData(approved, campus, lod2), /boundary edge/);
 });
 
-test('the published first study is confined to House 55 / 2. OG and keeps estimates separate from approval', async () => {
+test('House 55 studies cover its three floors while retaining the directly annotated upper-floor evidence', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
   assert.equal(validate(published), true);
   assert.deepEqual(Object.keys(published.buildings), ['55']);
-  assert.deepEqual(published.buildings['55'].levels.map(level => level.index), [2]);
+  assert.deepEqual(published.buildings['55'].levels.map(level => level.index).sort(), [0, 1, 2]);
   const resolved = display(published);
   assert.equal(resolved.isStudy, true);
   assert.equal(Object.hasOwn(resolved, 'elevation'), false);
   assert.equal(Object.hasOwn(resolved, 'reviewedAt'), false);
   assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'estimated'));
   assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'sketch'));
+  assert.equal(resolved.spaces.filter(space => space.kind === 'room').length, 20, 'the resident-confirmed count includes three L rooms');
+  assert.equal(resolved.spaces.length, 22, 'twenty rooms plus the stair and corridor areas');
+  assert.equal(resolved.doors.length, 21, 'twenty estimated room openings and one estimated stair opening');
+  assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'sketch').length, 7);
+  assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'estimated').length, 13, 'confirmed counts do not upgrade estimated partition positions to observed geometry');
+  for (const [prefix, count] of [['W', 4], ['L', 3], ['R', 3], ['N', 3]]) {
+    assert.deepEqual(resolved.spaces.filter(space => new RegExp(`^${prefix}\\d+$`).test(space.shortLabel)).map(space => space.shortLabel).sort(),
+      Array.from({length: count}, (_, i) => `${prefix}${i + 1}`), `${prefix} run matches the confirmed room count`);
+  }
   assert.ok(resolved.spaces.filter(space => space.kind === 'room').every(space => /sketch|estimate/i.test(space.label)), 'labels must identify the evidence rather than imply physical room numbers');
   assert.ok(resolved.doors.every(door => door.confidence === 'estimated' && !Object.hasOwn(door, 'hinge') && !Object.hasOwn(door, 'swing')));
   assert.equal(resolved.excludedAreas.length, 2, 'both resident-marked missing wings are retained');
-  assert.ok(/not a confirmed room count/i.test(resolved.notes));
+  assert.match(resolved.notes, /confirm/i, 'the source note records the resident’s count confirmation');
+  assert.doesNotMatch(resolved.notes, /not a confirmed room count/i);
   for (const building of campus.buildings) {
     for (let floor = 0; floor < building.levels; floor++) {
-      if (building.number === '55' && floor === 2) continue;
-      assert.equal(getDisplayLevel(emptyApproved, published, building.number, floor), null, 'the local drawing cannot populate other floors');
+      if (building.number === '55') continue;
+      assert.equal(getDisplayLevel(emptyApproved, published, building.number, floor), null, 'the House 55 layout must not populate other houses');
     }
   }
   assert.deepEqual(published, before);
 });
 
-test('published study triangulation preserves its usable area, stair cutout and both excluded wings', async () => {
-  const published = freeze(await read('interior-studies')), resolved = display(published);
-  const result = createInteriorWireframe(resolved, {house: '55', floor: 2});
-  result.group.updateMatrixWorld(true);
-  const outline = resolved.floorOutline.map(piece => [piece.outer, ...(piece.holes || [])]);
-  for (const area of resolved.excludedAreas) {
-    assert.ok(multiArea(intersection(outline, [area.polygon])) < 1e-5, `${area.label} must contain no study floor plate`);
-  }
-  for (const space of resolved.spaces) {
-    const mesh = result.pickables.find(mesh => mesh.userData.role === 'interior-space' && mesh.userData.spaceId === space.id);
-    assert.ok(mesh && Number.isFinite(meshArea(mesh)) && meshArea(mesh) > 0);
-    assert.ok(Math.abs(meshArea(mesh) - polygonArea([space.polygon, ...(space.holes || [])])) < 0.001, `${space.label}: triangulation must retain holes and area`);
-    const values = mesh.geometry.attributes.position.array;
-    for (let i = 0; i < values.length; i += 9) {
-      const triangle = [[values[i], values[i + 2]], [values[i + 3], values[i + 5]], [values[i + 6], values[i + 8]], [values[i], values[i + 2]]];
-      assert.ok(multiArea(difference([triangle], outline)) < 0.0001, `${space.label}: rendered triangle must fit the corrected floor`);
-      for (const area of resolved.excludedAreas) {
-        assert.ok(multiArea(intersection([triangle], [area.polygon])) < 0.0001, `${space.label}: no rendered triangle may fill ${area.label}`);
+test('every published floor preserves usable area and leaves the stairs independently clickable', async () => {
+  const published = freeze(await read('interior-studies'));
+  for (const floor of [0, 1, 2]) {
+    const resolved = getDisplayLevel(emptyApproved, published, '55', floor);
+    const result = createInteriorWireframe(resolved, {house: '55', floor});
+    result.group.updateMatrixWorld(true);
+    const outline = resolved.floorOutline.map(piece => [piece.outer, ...(piece.holes || [])]);
+    for (const area of resolved.excludedAreas || []) {
+      assert.ok(multiArea(intersection(outline, [area.polygon])) < 1e-5, `${area.label} must contain no study floor plate`);
+    }
+    for (const space of resolved.spaces) {
+      const mesh = result.pickables.find(mesh => mesh.userData.role === 'interior-space' && mesh.userData.spaceId === space.id);
+      assert.ok(mesh && Number.isFinite(meshArea(mesh)) && meshArea(mesh) > 0);
+      assert.equal(mesh.userData.floor, floor);
+      assert.ok(Math.abs(meshArea(mesh) - polygonArea([space.polygon, ...(space.holes || [])])) < 0.001, `${space.label}: triangulation must retain holes and area`);
+      const values = mesh.geometry.attributes.position.array;
+      for (let i = 0; i < values.length; i += 9) {
+        const triangle = [[values[i], values[i + 2]], [values[i + 3], values[i + 5]], [values[i + 6], values[i + 8]], [values[i], values[i + 2]]];
+        assertSourceBoundaryFit([triangle], outline, `${space.label}: rendered triangle must fit floor ${floor}`);
+        for (const area of resolved.excludedAreas || []) {
+          assert.ok(multiArea(intersection([triangle], [area.polygon])) < 0.0001, `${space.label}: no rendered triangle may fill ${area.label}`);
+        }
       }
     }
+    const stair = resolved.spaces.find(space => space.kind === 'stairs');
+    assert.ok(stair);
+    const stairLabel = result.labels.find(label => label.spaceId === stair.id && label.kind === 'space');
+    const ray = new Raycaster(new Vector3(stairLabel.position[0], 10, stairLabel.position[2]), new Vector3(0, -1, 0));
+    const hits = ray.intersectObjects(result.pickables.filter(mesh => mesh.userData.role === 'interior-space'));
+    assert.ok(hits.length > 0 && hits.every(hit => hit.object.userData.spaceId === stair.id), 'the hallway must leave the stairs as the sole space beneath their label');
   }
-  const stair = resolved.spaces.find(space => space.kind === 'stairs');
-  assert.ok(stair);
-  const stairLabel = result.labels.find(label => label.spaceId === stair.id && label.kind === 'space');
-  const ray = new Raycaster(new Vector3(stairLabel.position[0], 10, stairLabel.position[2]), new Vector3(0, -1, 0));
-  const hits = ray.intersectObjects(result.pickables.filter(mesh => mesh.userData.role === 'interior-space'));
-  assert.ok(hits.length > 0 && hits.every(hit => hit.object.userData.spaceId === stair.id), 'the hallway hole must leave the stairs as the sole space beneath their label');
+});
+
+test('the corrected stair enclosure is flush to L3 with a continuous shared wall on every displayed floor', async () => {
+  const published = await read('interior-studies');
+  const magnitude = Math.hypot(0.676, 0.737);
+  const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
+  const bounds = polygon => {
+    const points = polygon.map(local);
+    return [Math.min(...points.map(p => p[0])), Math.min(...points.map(p => p[1])), Math.max(...points.map(p => p[0])), Math.max(...points.map(p => p[1]))];
+  };
+  for (const floor of [0, 1, 2]) {
+    const plan = getDisplayLevel(emptyApproved, published, '55', floor);
+    const stair = plan.spaces.find(space => space.kind === 'stairs');
+    const l3 = plan.spaces.find(space => space.shortLabel === 'L3');
+    assert.ok(stair && l3);
+    const [sx0, sy0, sx1, sy1] = bounds(stair.polygon), [, ly0, lx1, ly1] = bounds(l3.polygon);
+    assert.ok(Math.abs(sx0 - lx1) < 0.00001, `floor ${floor}: no gap may remain between stairs and L3`);
+    assert.ok(Math.abs(sx1 - sx0 - 2.336168) < 0.001, 'attaching the stairs preserves the previously registered width');
+    assert.ok(Math.abs(sy1 - sy0 - 4.304877) < 0.001, 'attaching the stairs preserves the previously registered run');
+    const expectedContact = Math.min(sy1, ly1) - Math.max(sy0, ly0);
+    const contact = sharedBoundaryLength(stair.polygon, l3.polygon);
+    assert.ok(expectedContact > 2.95 && expectedContact < 3);
+    assert.ok(Math.abs(contact - expectedContact) < 0.00002, 'the whole adjoining span must be a shared edge rather than one touching corner');
+    assert.ok(multiArea(intersection([stair.polygon], [l3.polygon])) < 0.000001, 'flush rooms must not overlap');
+  }
+});
+
+test('R1–R3 remain one continuous block and the corrected upper outline has no corner spur', async () => {
+  const published = await read('interior-studies');
+  const roof = lod2.buildings.find(building => building.number === '55').surfaces[39];
+  const sourceCorners = [6, 7].map(index => [roof.points[index][0], roof.points[index][2]]);
+  for (const floor of [0, 1, 2]) {
+    const plan = getDisplayLevel(emptyApproved, published, '55', floor);
+    const rooms = ['R1', 'R2', 'R3'].map(label => plan.spaces.find(space => space.shortLabel === label));
+    assert.ok(rooms.every(Boolean));
+    const block = union(...rooms.map(room => [room.polygon, ...(room.holes || [])]));
+    assert.equal(block.length, 1);
+    assert.equal(block[0].length, 1, 'the block must contain no gap or internal hole');
+    const corners = cornersOnly(block[0][0]);
+    if (floor === 2) {
+      assert.equal(corners.length, 4, 'an otherwise straight block must not acquire a fifth corner from source quantization');
+      assert.ok(sourceCorners.every(point => corners.some(corner => Math.hypot(corner[0] - point[0], corner[1] - point[1]) < 0.00001)), 'both outer wall corners land exactly on the adjoining official edges');
+      assert.ok(Math.abs(sharedBoundaryLength(block[0][0], [sourceCorners[0], sourceCorners[1]]) - Math.hypot(sourceCorners[1][0] - sourceCorners[0][0], sourceCorners[1][1] - sourceCorners[0][1])) < 0.00002, 'the complete source wall span is one flush block edge');
+      assert.ok(corners.every((point, i) => Math.hypot(point[0] - corners[(i + 1) % corners.length][0], point[1] - corners[(i + 1) % corners.length][1]) > 1), 'no tiny connecting edge remains');
+    }
+    assert.ok(sharedBoundaryLength(rooms[0].polygon, rooms[1].polygon) > 4);
+    assert.ok(sharedBoundaryLength(rooms[1].polygon, rooms[2].polygon) > 4);
+  }
+});
+
+test('lower-floor extrapolations retain their own exterior sections and use distinct same-floor identities', async () => {
+  const published = freeze(await read('interior-studies')), before = structuredClone(published);
+  const upper = display(published), official = lod2.buildings.find(building => building.number === '55');
+  const elevations = getLevelElevations(emptyApproved, '55', 3, official.height);
+  const allIds = published.buildings['55'].levels.flatMap(plan => [...plan.spaces, ...(plan.doors || []), ...(plan.excludedAreas || [])].map(item => item.id));
+  assert.equal(new Set(allIds).size, allIds.length, 'same-looking floor plans still need globally unique interaction IDs');
+  for (const floor of [0, 1]) {
+    const plan = getDisplayLevel(emptyApproved, published, '55', floor);
+    assert.equal(plan.extrapolatedFrom, 2);
+    assert.equal(Object.hasOwn(plan, 'elevation'), false);
+    assert.equal(Object.hasOwn(plan, 'reviewedAt'), false);
+    assert.ok(plan.spaces.every(space => space.confidence === 'estimated'));
+    assert.ok(plan.doors.every(door => door.confidence === 'estimated'));
+    assert.equal(plan.spaces.filter(space => space.kind === 'room').length, 20);
+    assert.equal(plan.spaces.length, 22);
+    assert.equal(plan.doors.length, 21);
+    assert.equal(plan.excludedAreas?.length || 0, 0, 'the upper-floor missing wings are not evidence for missing lower-floor area');
+    assert.equal(plan.sketchBoundaries?.length || 0, 0, 'copied walls cannot retain the directly sketched wall style');
+    const source = floorSection(official, elevations[floor]);
+    const sourceOutline = source.polygons.map(piece => [piece.outer, ...(piece.holes || [])]);
+    const drawnOutline = plan.floorOutline.map(piece => [piece.outer, ...(piece.holes || [])]);
+    assert.ok(multiArea(difference(drawnOutline, sourceOutline)) + multiArea(difference(sourceOutline, drawnOutline)) < 0.0001, `floor ${floor} retains its own complete official section`);
+    assert.equal(plan.spaces.length, upper.spaces.length);
+    for (const space of plan.spaces) {
+      const original = upper.spaces.find(item => item.shortLabel === space.shortLabel);
+      assert.ok(original);
+      assert.notEqual(space.id, original.id);
+      const clippedOriginal = intersection([original.polygon, ...(original.holes || [])], sourceOutline);
+      const copied = [space.polygon, ...(space.holes || [])];
+      const message = `floor ${floor}, ${space.shortLabel}: repeat the corrected space, clipping only its exterior to this source section`;
+      const addedArea = assertSourceBoundaryFit([copied], clippedOriginal, message);
+      const missingArea = assertSourceBoundaryFit(clippedOriginal, [copied], message);
+      assert.ok(addedArea + missingArea < sourceBoundaryAreaTolerance, `${message}: total difference is ${addedArea + missingArea} m²`);
+    }
+    const spaceIds = new Set(plan.spaces.map(space => space.id));
+    for (const door of plan.doors) {
+      assert.ok(spaceIds.has(door.spaceId) && spaceIds.has(door.toSpaceId), 'door adjacency must resolve within its own floor');
+      const from = plan.spaces.find(space => space.id === door.spaceId);
+      const original = upper.doors.find(item => upper.spaces.find(space => space.id === item.spaceId)?.shortLabel === from.shortLabel);
+      assert.ok(original);
+      assert.notEqual(door.id, original.id);
+      assert.deepEqual(door.segment, original.segment);
+    }
+    const assignedArea = plan.spaces.reduce((sum, space) => sum + polygonArea([space.polygon, ...(space.holes || [])]), 0);
+    assert.ok(multiArea(drawnOutline) - assignedArea > 1, 'additional lower-floor area remains unassigned');
+  }
+  assert.equal(validate(published), true);
+  assert.deepEqual(published, before);
 });
 
 test('the House 55 study reads along its building axes in either aspect without changing source geometry', async () => {

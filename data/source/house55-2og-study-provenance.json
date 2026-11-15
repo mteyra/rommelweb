@@ -6,6 +6,89 @@
   "generatedForDate": "2026-11-15",
   "generator": "node scripts/generate-house55-study.mjs",
   "source": "Resident annotated House 55 / 2. OG screenshot supplied in this project on 2026-11-15; registered to Bayerische Vermessungsverwaltung LoD2 exterior.",
+  "residentCorrections": {
+    "source": "Resident follow-ups on 2026-11-15: stairs against the left block, R block flush to the exterior edges, requested lower-floor repetition, and confirmed room counts including three rooms L1–L3.",
+    "stairs": {
+      "instruction": "Move stairs flush against the right/east wall of the left block; the later three-room correction keeps this outer position unchanged.",
+      "adjacentStudyRoom": "L3",
+      "originalLocalBoundsMetres": [
+        9.749577,
+        3.405605,
+        12.085745,
+        7.710482
+      ],
+      "correctedLocalBoundsMetres": [
+        9.302929,
+        3.405605,
+        11.639097,
+        7.710482
+      ],
+      "translationInLocalMetres": [
+        -0.446648,
+        0
+      ],
+      "sharedWallInCampusXZ": [
+        [
+          3.778575,
+          9.157784
+        ],
+        [
+          1.586356,
+          11.168557
+        ]
+      ],
+      "sharedWallLengthMetres": 2.974732,
+      "unchanged": "Stair width, north/south position, run length and orientation remain the original approximate sketch values."
+    },
+    "rightBlock": {
+      "instruction": "Shift R1–R3 toward the stairs until its ends meet the adjoining exterior edges without small corner projections.",
+      "originalLocalBoundsMetres": [
+        14.214969,
+        4.358181,
+        22.313433,
+        9.727901
+      ],
+      "correctedLocalCornersMetres": [
+        [
+          14.009105,
+          4.358181
+        ],
+        [
+          22.096154,
+          4.358181
+        ],
+        [
+          22.089768,
+          9.731506
+        ],
+        [
+          14.010314,
+          9.724295
+        ]
+      ],
+      "exteriorWallSource": {
+        "surfaceIndex": 39,
+        "vertexIndexes": [
+          6,
+          7
+        ],
+        "adjacentEdgeVertexIndexes": [
+          [
+            5,
+            6
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      "leftEndShiftMetres": -0.204655,
+      "rightEndShiftMetres": -0.223666,
+      "bottomWallLengthMetres": 8.079456,
+      "correctionMeaning": "Outer alignment and three-room count follow the resident correction. Internal divider coordinates and all doorway positions remain estimates."
+    }
+  },
   "annotation": {
     "filename": "house55-2og-resident-markup.png",
     "originalFilename": "codex-clipboard-iLXgxr.png",
@@ -623,34 +706,34 @@
       }
     ],
     "unassignedMeaning": "Source section beyond the annotated flat-roof footprint. Retained in the plate but given no room or circulation function; the screenshot does not resolve these edges.",
-    "numericalCleanup": "Polygon clipping uses 0.00000001m precision; isolated remnants below 0.000001m² are discarded. Candidate outer edges extend 0.05m before exact source clipping to avoid numerical circulation gaps along nearly orthogonal source walls; final source exterior vertices are unchanged.",
+    "numericalCleanup": "Polygon clipping uses a 0.00000001 numerical comparison tolerance; isolated remnants below 0.000001m² are discarded. Candidate outer edges extend 0.05m before exact source clipping to avoid numerical circulation gaps along nearly orthogonal source walls; final source exterior vertices are unchanged.",
     "noOccupancyClaim": "Neither shell intersection nor a candidate room polygon proves occupied, rentable, habitable or safe space."
   },
   "roomInterpretation": {
     "explicitlyDividedSketchBays": 7,
-    "estimatedBays": 12,
-    "candidateTotal": 19,
-    "knownCounts": {
-      "southwest": 4,
-      "east": 3
-    },
-    "selectedUnknownCounts": {
+    "estimatedPartitionBays": 13,
+    "candidateTotal": 20,
+    "confirmedRoomCount": 20,
+    "confirmedCounts": {
+      "sw": 4,
+      "east": 3,
       "west": 4,
-      "centerLeft": 2,
-      "centerRight": 3,
-      "upperRight": 3
+      "left": 3,
+      "right": 3,
+      "north": 3
     },
-    "alternateCenterRightCount": 2,
-    "alternateCandidateTotal": 18,
+    "confirmationSource": "Resident double-check on 2026-11-15: all existing zone counts are correct except the left block, which contains three rooms L1–L3.",
+    "confirmationLimit": "Room counts are resident-confirmed. The registered outer strokes, divider coordinates, doorways, floor elevations and study labels remain unmeasured; study labels are not physical room numbers.",
     "publicMapFloor2MarkerCount": 20,
-    "countDiscrepancy": "The public resident-map aggregate reports 20 floor-2 markers. This does not establish 20 physical rooms. The 19-bay sketch interpretation remains provisional; an omitted bay, a different typology, a marker issue or changed layout is unresolved. No extra room is forced to match the aggregate.",
+    "markerCountRole": "Secondary aggregate crosscheck only; the current count is confirmed directly by the resident rather than inferred from map markers.",
     "noRoomNumbers": "All identifiers and alphabetic labels are study references; none represent actual physical room numbers or residents.",
     "zoneMeasurements": [
       {
         "id": "sw-known-four",
         "selectedCount": 4,
+        "countBasis": "resident-confirmed",
         "confidence": "sketch",
-        "note": "Four bays are explicitly divided in red. The gross boundaries follow rectified hand strokes; these are not physical room numbers or measured partitions.",
+        "note": "The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
         "rectifiedLocalBoundsMetres": [
           -9.386036,
           11.577233,
@@ -747,8 +830,9 @@
       {
         "id": "east-known-three",
         "selectedCount": 3,
+        "countBasis": "resident-confirmed",
         "confidence": "sketch",
-        "note": "Three bays are explicitly divided in red. The separate upper question-mark block is not counted here; marks on lower exterior walls are not plan divisions.",
+        "note": "The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
         "rectifiedLocalBoundsMetres": [
           24.902672,
           1.92627,
@@ -840,8 +924,9 @@
       {
         "id": "west-question",
         "selectedCount": 4,
+        "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "Question-mark zone: four equal candidate bays estimated from its facade run and the approximately 3m gross pitch of the marked bays. Count and dividers need resident confirmation.",
+        "note": "The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
         "rectifiedLocalBoundsMetres": [
           -5.870781,
           -2.521703,
@@ -937,9 +1022,10 @@
       },
       {
         "id": "center-left-question",
-        "selectedCount": 2,
+        "selectedCount": 3,
+        "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "Question-mark zone: two equal candidate bays. Its roughly 6.7m run does not establish a room count; this is a provisional study choice.",
+        "note": "The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
         "rectifiedLocalBoundsMetres": [
           2.610996,
           1.218864,
@@ -947,17 +1033,22 @@
           6.380337
         ],
         "runMetres": 6.691933,
-        "averageGrossBayMetres": 3.345967,
+        "averageGrossBayMetres": 2.230644,
         "rooms": [
           {
             "id": "study-55-2-center-left-1",
-            "grossAreaMetresSquared": 17.280303,
-            "grossBayWidthMetres": 3.345967
+            "grossAreaMetresSquared": 11.521301,
+            "grossBayWidthMetres": 2.230644
           },
           {
             "id": "study-55-2-center-left-2",
-            "grossAreaMetresSquared": 17.270414,
-            "grossBayWidthMetres": 3.345967
+            "grossAreaMetresSquared": 11.516906,
+            "grossBayWidthMetres": 2.230644
+          },
+          {
+            "id": "study-55-2-center-left-3",
+            "grossAreaMetresSquared": 11.51251,
+            "grossBayWidthMetres": 2.230644
           }
         ],
         "observed": {
@@ -1026,32 +1117,51 @@
       {
         "id": "center-right-question",
         "selectedCount": 3,
+        "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "Weakest count estimate: three candidate bays in roughly 8.1m imply about 2.7m gross per bay before walls. Two bays remain plausible; do not interpret three as confirmed.",
+        "note": "The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
         "rectifiedLocalBoundsMetres": [
-          14.214969,
+          14.010314,
           4.358181,
-          22.313433,
+          22.089768,
           9.727901
         ],
-        "runMetres": 8.098464,
-        "averageGrossBayMetres": 2.699488,
+        "runMetres": 8.079453,
+        "averageGrossBayMetres": 2.693151,
         "rooms": [
           {
             "id": "study-55-2-center-right-1",
-            "grossAreaMetresSquared": 14.489506,
-            "grossBayWidthMetres": 2.699488
+            "grossAreaMetresSquared": 14.461787,
+            "grossBayWidthMetres": 2.693151
           },
           {
             "id": "study-55-2-center-right-2",
-            "grossAreaMetresSquared": 14.496011,
-            "grossBayWidthMetres": 2.699488
+            "grossAreaMetresSquared": 14.468267,
+            "grossBayWidthMetres": 2.693151
           },
           {
             "id": "study-55-2-center-right-3",
-            "grossAreaMetresSquared": 14.51287,
-            "grossBayWidthMetres": 2.699488
+            "grossAreaMetresSquared": 14.474747,
+            "grossBayWidthMetres": 2.693151
           }
+        ],
+        "correctedLocalCornersMetres": [
+          [
+            14.009105,
+            4.358181
+          ],
+          [
+            22.096154,
+            4.358181
+          ],
+          [
+            22.089768,
+            9.731506
+          ],
+          [
+            14.010314,
+            9.724295
+          ]
         ],
         "observed": {
           "pixels": [
@@ -1119,8 +1229,9 @@
       {
         "id": "upper-right-question",
         "selectedCount": 3,
+        "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "Question-mark zone: three equal candidate bays estimated from its roughly 9.4m facade run. Count and divider locations are unconfirmed.",
+        "note": "The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
         "rectifiedLocalBoundsMetres": [
           22.054728,
           -6.589466,
@@ -1218,16 +1329,22 @@
       12.085745,
       7.710482
     ],
+    "correctedLocalBoundsMetres": [
+      9.302929,
+      3.405605,
+      11.639097,
+      7.710482
+    ],
     "approximateRunMetres": 4.304877,
     "approximateWidthMetres": 2.336168,
     "runInCampusXZ": [
       [
-        4.870055,
-        10.347755
+        4.568142,
+        10.018599
       ],
       [
-        1.69759,
-        13.257641
+        1.395678,
+        12.928485
       ]
     ],
     "observed": {
@@ -1299,6 +1416,489 @@
     "floorInsideExcludedGreenMetresSquared": 0,
     "doorBoundaryChecksPassed": true,
     "sourceVerticesModified": false,
-    "publicInteriorDataModified": false
+    "approvedInteriorDataModified": false
+  },
+  "lowerFloorExtrapolation": [
+    {
+      "index": 0,
+      "extrapolatedFrom": 2,
+      "method": "Resident-requested repetition of the corrected shared 2. OG study geometry. Every lower-floor space and opening is an estimate, including rooms whose upstairs counts are resident-confirmed.",
+      "floorPlateSource": "Complete unmodified LoD2 horizontal section at this floor’s provisional guide; holes and disconnected components are retained.",
+      "provisionalElevationAboveBuildingBase": 0,
+      "provisionalPlaneCampusY": 2.822,
+      "sourceSectionAreaMetresSquared": 804.925018,
+      "studySpaces": 22,
+      "candidateRoomReferences": 20,
+      "estimatedOpenings": 21,
+      "unassignedAreaMetresSquared": 294.314104,
+      "unassignedPolygons": [
+        {
+          "outer": [
+            [
+              -23.123,
+              0.686
+            ],
+            [
+              -20.137,
+              -2.064
+            ],
+            [
+              -16.874,
+              -5.057
+            ],
+            [
+              -13.000153,
+              -0.82286
+            ],
+            [
+              -19.253579,
+              4.923612
+            ],
+            [
+              -21.272995,
+              2.716006
+            ],
+            [
+              -23.123,
+              0.686
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              -16.261534,
+              8.194487
+            ],
+            [
+              -11.109,
+              13.826
+            ],
+            [
+              -5.773,
+              8.924
+            ],
+            [
+              -4.866,
+              8.09
+            ],
+            [
+              1.043,
+              14.558
+            ],
+            [
+              0.48,
+              15.075
+            ],
+            [
+              2.219,
+              16.976
+            ],
+            [
+              2.303973,
+              16.898025
+            ],
+            [
+              0.3,
+              18.744
+            ],
+            [
+              -1.530973,
+              16.72403
+            ],
+            [
+              -5.295,
+              20.183
+            ],
+            [
+              -16.261534,
+              8.194487
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              -2.109932,
+              -6.030926
+            ],
+            [
+              -0.03,
+              -7.942
+            ],
+            [
+              5.687,
+              -1.686
+            ],
+            [
+              3.607704,
+              0.226676
+            ],
+            [
+              -2.109932,
+              -6.030926
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              2.974,
+              27.239
+            ],
+            [
+              6.783263,
+              23.751288
+            ],
+            [
+              12.493,
+              29.991
+            ],
+            [
+              8.701,
+              33.475
+            ],
+            [
+              2.974,
+              27.239
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              7.238,
+              11.079
+            ],
+            [
+              7.924498,
+              10.45046
+            ],
+            [
+              8.18497,
+              10.734967
+            ],
+            [
+              13.944,
+              5.43
+            ],
+            [
+              19.763703,
+              11.799272
+            ],
+            [
+              14.24,
+              16.857
+            ],
+            [
+              13.3,
+              17.717
+            ],
+            [
+              7.238,
+              11.079
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              19.224,
+              23.807
+            ],
+            [
+              19.957,
+              24.609
+            ],
+            [
+              26.215,
+              18.86
+            ],
+            [
+              24.489201,
+              16.971011
+            ],
+            [
+              27.954,
+              20.763
+            ],
+            [
+              21.695,
+              26.515
+            ],
+            [
+              19.224,
+              23.807
+            ]
+          ],
+          "holes": []
+        }
+      ],
+      "unassignedMeaning": "Additional lower-floor wings and edge areas are visible in the source plate but receive no invented room, corridor, stair, count or use classification.",
+      "copiedTopFloorExclusions": false,
+      "copiedSolidSketchBoundaries": false,
+      "exteriorTrimAreaMetresSquared": 0.00586,
+      "maximumExteriorTrimMetres": 0.000497,
+      "exteriorTrimMeaning": "Shared interior dividers and opening coordinates are retained. Outer space edges are clipped to this floor’s own source outline; sub-millimetre roof/ground quantization differences are not resolved by changing official vertices.",
+      "spaceOutsideFloorMetresSquared": 0,
+      "maximumSerializedExteriorOffsetMetres": 0,
+      "noOccupancyClaim": "The repeated twenty study references are not a complete or confirmed lower-floor room count, room-number inventory, measured layout or occupancy statement."
+    },
+    {
+      "index": 1,
+      "extrapolatedFrom": 2,
+      "method": "Resident-requested repetition of the corrected shared 2. OG study geometry. Every lower-floor space and opening is an estimate, including rooms whose upstairs counts are resident-confirmed.",
+      "floorPlateSource": "Complete unmodified LoD2 horizontal section at this floor’s provisional guide; holes and disconnected components are retained.",
+      "provisionalElevationAboveBuildingBase": 3.1636666666666664,
+      "provisionalPlaneCampusY": 5.985666666666667,
+      "sourceSectionAreaMetresSquared": 796.519195,
+      "studySpaces": 22,
+      "candidateRoomReferences": 20,
+      "estimatedOpenings": 21,
+      "unassignedAreaMetresSquared": 285.906792,
+      "unassignedPolygons": [
+        {
+          "outer": [
+            [
+              -22.80791,
+              1.031691
+            ],
+            [
+              -16.557178,
+              -4.710655
+            ],
+            [
+              -13.000153,
+              -0.82286
+            ],
+            [
+              -19.253669,
+              4.923695
+            ],
+            [
+              -20.38434,
+              3.687848
+            ],
+            [
+              -21.255699,
+              2.734743
+            ],
+            [
+              -22.80791,
+              1.031691
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              -11.109,
+              13.826
+            ],
+            [
+              -5.773,
+              8.924
+            ],
+            [
+              -4.866,
+              8.09
+            ],
+            [
+              1.043,
+              14.558
+            ],
+            [
+              0.48,
+              15.075
+            ],
+            [
+              2.020564,
+              16.759079
+            ],
+            [
+              0.09978,
+              18.523088
+            ],
+            [
+              -1.531,
+              16.724
+            ],
+            [
+              -5.295,
+              20.183
+            ],
+            [
+              -11.109,
+              13.826
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              -2.109932,
+              -6.030926
+            ],
+            [
+              -0.03,
+              -7.942
+            ],
+            [
+              5.687,
+              -1.686
+            ],
+            [
+              3.607704,
+              0.226676
+            ],
+            [
+              -2.109932,
+              -6.030926
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              3.296034,
+              26.944039
+            ],
+            [
+              4.46503,
+              25.873319
+            ],
+            [
+              7.76,
+              22.857
+            ],
+            [
+              6.783263,
+              23.751288
+            ],
+            [
+              12.493,
+              29.991
+            ],
+            [
+              10.181971,
+              32.114735
+            ],
+            [
+              9.012205,
+              33.189159
+            ],
+            [
+              3.296034,
+              26.944039
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              7.238,
+              11.079
+            ],
+            [
+              7.924679,
+              10.450294
+            ],
+            [
+              8.089101,
+              10.62988
+            ],
+            [
+              8.185,
+              10.735
+            ],
+            [
+              13.944,
+              5.43
+            ],
+            [
+              19.764,
+              11.799
+            ],
+            [
+              14.24,
+              16.857
+            ],
+            [
+              13.3,
+              17.717
+            ],
+            [
+              7.238,
+              11.079
+            ]
+          ],
+          "holes": []
+        },
+        {
+          "outer": [
+            [
+              19.224,
+              23.807
+            ],
+            [
+              19.957,
+              24.609
+            ],
+            [
+              26.215,
+              18.86
+            ],
+            [
+              19.91971,
+              11.969425
+            ],
+            [
+              27.954,
+              20.763
+            ],
+            [
+              21.695,
+              26.515
+            ],
+            [
+              20.924665,
+              25.670202
+            ],
+            [
+              20.783591,
+              25.516175
+            ],
+            [
+              19.224,
+              23.807
+            ]
+          ],
+          "holes": []
+        }
+      ],
+      "unassignedMeaning": "Additional lower-floor wings and edge areas are visible in the source plate but receive no invented room, corridor, stair, count or use classification.",
+      "copiedTopFloorExclusions": false,
+      "copiedSolidSketchBoundaries": false,
+      "exteriorTrimAreaMetresSquared": 0.004157,
+      "maximumExteriorTrimMetres": 0.000439,
+      "exteriorTrimMeaning": "Shared interior dividers and opening coordinates are retained. Outer space edges are clipped to this floor’s own source outline; sub-millimetre roof/ground quantization differences are not resolved by changing official vertices.",
+      "spaceOutsideFloorMetresSquared": 0,
+      "maximumSerializedExteriorOffsetMetres": 0,
+      "noOccupancyClaim": "The repeated twenty study references are not a complete or confirmed lower-floor room count, room-number inventory, measured layout or occupancy statement."
+    }
+  ],
+  "outputContract": {
+    "level": "The corrected directly annotated index-2 study.",
+    "levels": "All three study levels, in order EG/index0, 1. OG/index1, 2. OG/index2.",
+    "approvalStatus": "All are unmeasured study records; none creates an approved interior or a measured elevation anchor."
   }
 }

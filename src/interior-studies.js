@@ -96,9 +96,15 @@ export function validateInteriorStudies(studies, campus, lod2) {
     const indexes = new Set();
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
-      object(level, lp, ['index', 'label', 'source', 'notes', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors']);
+      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors']);
       if (!Number.isInteger(level.index) || level.index < 0 || level.index >= mapped.levels || indexes.has(level.index)) fail(`${lp}.index`, 'must identify a unique existing floor');
       indexes.add(level.index);
+      if (level.extrapolatedFrom !== undefined) {
+        const original = building.levels.find(item => item?.index === level.extrapolatedFrom);
+        if (!Number.isInteger(level.extrapolatedFrom) || level.extrapolatedFrom === level.index || !original || original.extrapolatedFrom !== undefined) {
+          fail(`${lp}.extrapolatedFrom`, 'must reference another existing, directly documented study floor in this house');
+        }
+      }
       for (const field of ['label', 'source', 'notes']) text(level[field], `${lp}.${field}`);
       if (!Array.isArray(level.floorOutline) || !level.floorOutline.length) fail(`${lp}.floorOutline`, 'requires a nonempty floor outline');
       for (const [i, piece] of level.floorOutline.entries()) {
@@ -117,6 +123,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
         identify(space, sp);
         if (space.shortLabel !== undefined) text(space.shortLabel, `${sp}.shortLabel`, 16);
         if (!KINDS.has(space.kind) || !CONFIDENCE.has(space.confidence)) fail(sp, 'requires a known space kind and sketch/estimated confidence');
+        if (level.extrapolatedFrom !== undefined && space.confidence !== 'estimated') fail(sp, 'extrapolated spaces require estimated confidence');
         if (space.note !== undefined) text(space.note, `${sp}.note`);
         validateInteriorPolygon(space.polygon, `${sp}.polygon`);
         if (space.holes !== undefined && !Array.isArray(space.holes)) fail(sp, 'holes must be an array');
@@ -152,6 +159,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
         object(door, dp, ['id', 'label', 'spaceId', 'toSpaceId', 'confidence', 'note', 'segment']);
         identify(door, dp);
         if (!CONFIDENCE.has(door.confidence)) fail(dp, 'door confidence is required');
+        if (level.extrapolatedFrom !== undefined && door.confidence !== 'estimated') fail(dp, 'extrapolated doorways require estimated confidence');
         if (door.note !== undefined) text(door.note, `${dp}.note`);
         if (!Array.isArray(door.segment) || door.segment.length !== 2 || !door.segment.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))) fail(dp, 'requires two finite door endpoints');
         const width = Math.hypot(door.segment[1][0] - door.segment[0][0], door.segment[1][1] - door.segment[0][1]);
