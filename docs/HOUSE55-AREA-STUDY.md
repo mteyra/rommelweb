@@ -1,10 +1,12 @@
-# House 55 · area-based apartment study
+# House 55 · historical area-based apartment study
+
+**Historical stage, before the R-bank alignment.** The R areas, widths, residual circulation and allocation totals below belong to the earlier area candidate. The [current R-bank and stair-flight report](HOUSE55-R-ALIGNMENT.md) records the later alignment, its approximately 16.07–16.08 m² conditional R areas and explicitly unassigned stair-side strip. The original source exterior and the seventeen non-R area-stage room polygons remain in force.
 
 Updated **15 November 2026**, **2. OG / index 2**. Seventeen room envelopes approach a conditional **16.4 m²** benchmark after assumed perimeter-wall allowances. R1–R3 remain approximately **1.66 m² short each**: reaching the benchmark would constrict their northern hall connector beyond the chosen study guard.
 
 This is a calculated reconstruction scenario, not a measured floor plan. Room order, the source exterior, twenty room references, 24 window observations, the W4/L1 overlap and the confirmed staircase alignment are retained.
 
-![House 55 area study showing conditional internal areas, the three unresolved R rooms, assumed perimeter walls and model exterior-edge lengths](preview/house55-area-study.png)
+![House 55 area study showing conditional internal areas, the three unresolved R rooms, assumed perimeter walls and model exterior-edge lengths](preview/house55-area-stage-historical.png)
 
 ## What the area target means
 
@@ -27,9 +29,9 @@ The calculation clips each gross room polygon by its offset boundary planes, the
 
 **The previous 5.395 m depth is not a target in this solve.** No preferred apartment width or depth is fitted. Existing frontage and the confirmed relative arrangement remain constraints; area and the explicit wall allowances determine the new hall-facing boundaries. The halls are recomputed from the remaining annotated region, preserving the recorded door connections.
 
-## Calculated result
+## Prior-stage calculated result
 
-Values below come from the [independent area audit](data/house55-area-audit.json), reconstructed from the saved polygons and `areaStudy` parameters in [provenance](../data/source/house55-2og-study-provenance.json).
+Values below come from the [area-stage audit](data/house55-area-stage-historical-audit.json) and the retained `areaStudy` parameters in [provenance](../data/source/house55-2og-study-provenance.json). They must not be read as the later `rAlignment` results.
 
 | Room bank | Rooms | Hall-facing growth from preceding candidate | Conditional internal area per room |
 | --- | ---: | ---: | ---: |
@@ -52,7 +54,7 @@ Forcing the R bank's mean to the target requires another **0.649 m** of depth. I
 
 Longer R rooms also do not establish whether their narrow frontages match the published living-zone example. The remaining mismatch needs an actual R apartment outline, the surrounding hall geometry, and wall measurements.
 
-## Area conservation and exterior dimensions
+## Prior-stage area conservation and exterior dimensions
 
 The study redistributes the same **510.616 m² annotated region**; it does not enlarge the building.
 
@@ -89,4 +91,4 @@ node scripts/generate-house55-study.mjs /tmp/house55-study.json --write-study --
 uv run scripts/audit-house55-area.py
 ```
 
-The first command regenerates the estimated studies and provenance. The independent Python audit writes `docs/data/house55-area-audit.json` and the plan shown above. Neither command changes the official exterior or approves an interior. Build and browser validation are recorded separately in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).
+The generator now continues through the later R-alignment step; its current output is not a reproduction of this historical final state alone. The archived audit and diagram above describe the retained area-stage calculation; the audit command now checks the current R-aligned study. Inspect `metadata.areaStudy` and the [frozen area-stage baseline](../data/source/house55-2og-r-alignment-baseline.json) when comparing that stage. Neither generation nor an audit approves an interior. Build and browser validation are recorded separately in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).

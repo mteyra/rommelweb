@@ -1,0 +1,214 @@
+{
+  "checks": [
+    "All five older houses × three floors; exterior dimensions; R evidence and guide; unassigned bank has no apartment action; room concepts and doorway modal; Timeline Escape retains apartment; phone/day/night/panel exclusivity; return controls; newer house stays unmapped; no storage/audio/runtime errors."
+  ],
+  "floors": [
+    {
+      "house": "51",
+      "floor": 2,
+      "spaces": 21,
+      "rooms": 15,
+      "doors": 16,
+      "visibleDimensions": 20
+    },
+    {
+      "house": "51",
+      "floor": 1,
+      "spaces": 21,
+      "rooms": 15,
+      "doors": 16,
+      "visibleDimensions": 19
+    },
+    {
+      "house": "51",
+      "floor": 0,
+      "spaces": 21,
+      "rooms": 15,
+      "doors": 16,
+      "visibleDimensions": 19
+    },
+    {
+      "house": "53",
+      "floor": 2,
+      "spaces": 20,
+      "rooms": 14,
+      "doors": 15,
+      "visibleDimensions": 18
+    },
+    {
+      "house": "53",
+      "floor": 1,
+      "spaces": 20,
+      "rooms": 14,
+      "doors": 15,
+      "visibleDimensions": 21
+    },
+    {
+      "house": "53",
+      "floor": 0,
+      "spaces": 20,
+      "rooms": 14,
+      "doors": 15,
+      "visibleDimensions": 21
+    },
+    {
+      "house": "55",
+      "floor": 2,
+      "spaces": 24,
+      "rooms": 20,
+      "doors": 21,
+      "visibleDimensions": 19
+    },
+    {
+      "house": "55",
+      "floor": 1,
+      "spaces": 24,
+      "rooms": 20,
+      "doors": 21,
+      "visibleDimensions": 18
+    },
+    {
+      "house": "55",
+      "floor": 0,
+      "spaces": 24,
+      "rooms": 20,
+      "doors": 21,
+      "visibleDimensions": 19
+    },
+    {
+      "house": "57",
+      "floor": 2,
+      "spaces": 24,
+      "rooms": 20,
+      "doors": 20,
+      "visibleDimensions": 20
+    },
+    {
+      "house": "57",
+      "floor": 1,
+      "spaces": 24,
+      "rooms": 20,
+      "doors": 20,
+      "visibleDimensions": 18
+    },
+    {
+      "house": "57",
+      "floor": 0,
+      "spaces": 24,
+      "rooms": 20,
+      "doors": 20,
+      "visibleDimensions": 18
+    },
+    {
+      "house": "59",
+      "floor": 2,
+      "spaces": 22,
+      "rooms": 17,
+      "doors": 18,
+      "visibleDimensions": 20
+    },
+    {
+      "house": "59",
+      "floor": 1,
+      "spaces": 22,
+      "rooms": 17,
+      "doors": 18,
+      "visibleDimensions": 17
+    },
+    {
+      "house": "59",
+      "floor": 0,
+      "spaces": 22,
+      "rooms": 17,
+      "doors": 18,
+      "visibleDimensions": 18
+    }
+  ],
+  "dimensions": {
+    "hidden": false,
+    "visible": [
+      {
+        "length": "8.492746",
+        "text": "8.49 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.49 m"
+      },
+      {
+        "length": "5.231699",
+        "text": "5.23 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.5.23 m"
+      },
+      {
+        "length": "13.315180",
+        "text": "13.32 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.13.32 m"
+      },
+      {
+        "length": "8.475571",
+        "text": "8.48 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.48 m"
+      },
+      {
+        "length": "5.485081",
+        "text": "5.49 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.5.49 m"
+      },
+      {
+        "length": "10.447012",
+        "text": "10.45 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.10.45 m"
+      },
+      {
+        "length": "8.989488",
+        "text": "8.99 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.99 m"
+      },
+      {
+        "length": "8.763904",
+        "text": "8.76 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.76 m"
+      },
+      {
+        "length": "10.874358",
+        "text": "10.87 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.10.87 m"
+      },
+      {
+        "length": "8.499259",
+        "text": "8.50 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.50 m"
+      },
+      {
+        "length": "2.396667",
+        "text": "2.40 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.2.40 m"
+      },
+      {
+        "length": "10.345971",
+        "text": "10.35 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.10.35 m"
+      },
+      {
+        "length": "8.460554",
+        "text": "8.46 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.46 m"
+      },
+      {
+        "length": "2.530232",
+        "text": "2.53 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.2.53 m"
+      },
+      {
+        "length": "2.576417",
+        "text": "2.58 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.2.58 m"
+      },
+      {
+        "length": "8.760782",
+        "text": "8.76 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.76 m"
+      },
+      {
+        "length": "8.478015",
+        "text": "8.48 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.8.48 m"
+      },
+      {
+        "length": "13.764299",
+        "text": "13.76 m, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.13.76 m"
+      },
+      {
+        "length": "8.978521",
+        "text": "Estimated R-bank span aligned to the opposite recess endpoints. Distinct from the unchanged 8.08m source shell edge; side-wall slopes make this approximately 8.98m versus the opposite 8.99m recess.R bank ≈ 8.98 m"
+      }
+    ]
+  },
+  "storage": {
+    "cookies": "",
+    "local": 0,
+    "session": 0
+  },
+  "errors": []
+}

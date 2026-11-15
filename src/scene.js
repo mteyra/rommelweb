@@ -12,7 +12,9 @@ import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 import { createBuildingWindowStudies, getWindowProfile, getOldFacadeRowGuides } from './windows.js';
 import { createInteriorWireframe, INTERIOR_CUT_HEIGHT } from './interior-wireframe.js';
-import { exteriorDimensionRuns, layoutExteriorDimensions } from './study-measurements.js';
+import { exteriorDimensionRuns, studyDimensionRuns, layoutExteriorDimensions } from './study-measurements.js';
+import { apartmentConcept } from './apartment-concepts.js';
+import { createApartmentWireframe } from './apartment-wireframe.js';
 
 const PAPER = 0x151715;
 const INK = 0xa8aaa3;
@@ -253,7 +255,7 @@ export class CampusScene {
       const isolated = this.exploded && number === this.selected;
       building.group.visible = !this.exploded || isolated;
       building.floorGroups.forEach((group, floor) => {
-        group.visible = building.group.visible && !building.exterior.visible && (!isolated || this.activeFloor == null || this.activeFloor === floor);
+        group.visible = !this.apartment && building.group.visible && !building.exterior.visible && (!isolated || this.activeFloor == null || this.activeFloor === floor);
       });
       building.interiorGroups.forEach((group, floor) => {
         group.visible = isolated && (this.activeFloor == null || this.activeFloor === floor);
@@ -265,6 +267,8 @@ export class CampusScene {
   }
 
   labelInCurrentView(label) {
+    if (this.apartment) return label.type === 'concept';
+    if (label.type === 'concept') return false;
     if (label.type === 'context') return !this.selected && !this.exploded;
     if (label.type === 'floor') return this.exploded && label.number === this.selected && this.activeFloor == null;
     if (label.type === 'room' || label.type === 'door') return this.exploded && label.number === this.selected && label.floor === this.activeFloor;
@@ -487,7 +491,10 @@ export class CampusScene {
     el.addEventListener('pointerenter', () => this.setHovered(data.number));
     el.addEventListener('pointerleave', () => this.setHovered(null));
     this.labelsElement.appendChild(el);
-    const floorDimensions = floorSections.map(section => exteriorDimensionRuns(section.polygons));
+    const floorDimensions = floorSections.map((section, floor) => [
+      ...exteriorDimensionRuns(section.polygons),
+      ...studyDimensionRuns(getDisplayLevel(this.interiors, this.studies, data.number, floor)),
+    ]);
     const record = { data, group, floorGroups, floorElevations, floorSections, floorDimensions, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
     this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.baseY + Math.max(data.height, record.exterior.visible ? data.height : floorElevations.at(-1) + record.currentGap * (data.levels - 1)) + 3, data.centroid[1]), type: 'house', number: data.number });
@@ -509,6 +516,9 @@ export class CampusScene {
   }
 
   focusPoints() {
+    if (this.apartment) {
+      return this.apartment.space.polygon.flatMap(([x, z]) => [new THREE.Vector3(x, this.apartment.y, z), new THREE.Vector3(x, this.apartment.y + INTERIOR_CUT_HEIGHT, z)]);
+    }
     if (this.selected && this.exploded) {
       const building = this.buildings.get(this.selected);
       return building.floorSections.flatMap((section, floor) => {
@@ -529,7 +539,7 @@ export class CampusScene {
       .flatMap(building => building.surfaces.flatMap(surface => surface.points.map(point => new THREE.Vector3(...point))));
   }
 
-  fittedCamera(direction = HOME_DIRECTION, padding = this.selected ? this.exploded ? 1.16 : 1.38 : 1.2) {
+  fittedCamera(direction = HOME_DIRECTION, padding = this.apartment ? 1.18 : this.selected ? this.exploded ? 1.16 : 1.38 : 1.2) {
     const bounds = this.focusBounds();
     const target = bounds.getCenter(new THREE.Vector3());
     const outward = direction.clone().normalize();
@@ -543,12 +553,12 @@ export class CampusScene {
     // Fit within those screen bounds without changing the metre-scale model.
     const floorView = this.exploded && viewport;
     const phoneFloor = this.exploded && viewport?.width <= 700;
-    const top = phoneFloor ? Math.min(148, viewport.height * 0.27) : floorView ? viewport.width <= 1100 ? 164 : 140 : 0;
-    const bottom = phoneFloor ? Math.min(196, viewport.height * 0.35) : floorView ? this.activeFloor !== null ? 150 : 70 : 0;
+    const top = phoneFloor ? Math.min(this.apartment ? 138 : 148, viewport.height * 0.27) : floorView ? viewport.width <= 1100 ? 164 : 140 : 0;
+    const bottom = phoneFloor ? Math.min(this.apartment ? 154 : 196, viewport.height * 0.35) : floorView ? this.activeFloor !== null ? 150 : 70 : 0;
     const upper = floorView ? 1 - 2 * top / viewport.height : 1;
     const lower = floorView ? -1 + 2 * bottom / viewport.height : -1;
     const center = (upper + lower) / 2;
-    let distance = 24;
+    let distance = this.apartment ? 4 : 24;
     const points = this.focusPoints?.() || [bounds.min.x, bounds.max.x].flatMap(x => [bounds.min.y, bounds.max.y].flatMap(y => [bounds.min.z, bounds.max.z].map(z => new THREE.Vector3(x, y, z))));
     for (const point of points) {
       const corner = point.clone().sub(target);
@@ -644,6 +654,7 @@ export class CampusScene {
 
   select(number, focus = true) {
     if (number && !this.buildings.has(number)) return;
+    this.clearApartment();
     const fromInterior = this.exploded;
     const previousDirection = fromInterior ? this.buildingViewDirection || HOME_DIRECTION : this.camera.position.clone().sub(this.controls.target).normalize();
     this.dirty = true;
@@ -676,6 +687,7 @@ export class CampusScene {
   }
 
   explode(enabled) {
+    this.clearApartment();
     if (!this.selected) return;
     this.dirty = true;
     if (enabled && !this.exploded) {
@@ -705,6 +717,7 @@ export class CampusScene {
   setFloor(floor) {
     const b = this.buildings.get(this.selected);
     if (!b || floor !== null && (!Number.isInteger(floor) || floor < 0 || floor >= b.floorGroups.length)) return;
+    this.clearApartment();
     this.dirty = true;
     if (floor !== null && !this.exploded) this.explode(true);
     this.activeFloor = floor;
@@ -729,6 +742,47 @@ export class CampusScene {
     this.onSpace(details);
   }
 
+  clearApartment() {
+    if (!this.apartment) return;
+    this.apartment.group.removeFromParent();
+    this.apartment.group.traverse(object => { object.geometry?.dispose(); for (const material of [object.material].flat().filter(Boolean)) material.dispose(); });
+    for (const label of this.labels.filter(label => label.type === 'concept')) label.el.remove();
+    this.labels = this.labels.filter(label => label.type !== 'concept');
+    this.apartment = null;
+    this.controls.minDistance = 20;
+    this.dirty = true;
+  }
+
+  focusApartment(spaceId) {
+    const level = getDisplayLevel(this.interiors, this.studies, this.selected, this.activeFloor);
+    const space = level?.spaces.find(space => space.id === spaceId && space.kind === 'room');
+    const concept = space && apartmentConcept(level, space);
+    if (!concept || concept.status !== 'concept') return null;
+    this.clearApartment();
+    const b = this.buildings.get(this.selected), floor = this.activeFloor;
+    const wireframe = createApartmentWireframe(level, space, concept, {house: this.selected, floor});
+    const y = b.data.baseY + b.floorElevations[floor] + b.targetGap * floor;
+    wireframe.group.position.y = y;
+    this.apartment = {space, level, concept, ...wireframe, y};
+    this.scene.add(wireframe.group);
+    this.controls.minDistance = 2;
+    for (const label of wireframe.labels) {
+      const el = document.createElement('span');
+      el.className = 'room-label apartment-concept-label';
+      el.textContent = label.text;
+      this.labelsElement.appendChild(el);
+      this.labels.push({el, type: 'concept', number: this.selected, floor, getPosition: () => new THREE.Vector3(label.position[0], y + label.position[1], label.position[2])});
+    }
+    this.updateViewVisibility();
+    this.applyTheme(this.themeMix);
+    const direction = new THREE.Vector3(-concept.basis.inward[0] * 0.025, 1, -concept.basis.inward[1] * 0.025);
+    const frame = this.fittedCamera(direction);
+    this.animateCamera(frame.position, frame.target);
+    this.topView = true;
+    this.dirty = true;
+    return concept;
+  }
+
   setTop(enabled) {
     this.topView = enabled;
     const frame = this.fittedCamera(enabled ? new THREE.Vector3(0, 1, 0.0001) : HOME_DIRECTION);
@@ -738,7 +792,7 @@ export class CampusScene {
   zoom(amount) {
     const target = this.controls.target.clone();
     const displacement = this.camera.position.clone().sub(target).multiplyScalar(amount);
-    displacement.clampLength(20, 840);
+    displacement.clampLength(this.controls.minDistance ?? 20, this.controls.maxDistance ?? 840);
     this.animateCamera(target.clone().add(displacement), target);
   }
 
@@ -759,6 +813,7 @@ export class CampusScene {
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.pointer.set(((clientX - rect.left) / rect.width) * 2 - 1, -((clientY - rect.top) / rect.height) * 2 + 1);
     this.raycaster.setFromCamera(this.pointer, this.camera);
+    if (this.apartment) return this.raycaster.intersectObjects(this.apartment.pickables)[0];
     const candidates = [...this.buildings.values()].flatMap(building => {
       if (!building.group.visible) return [];
       if (building.exterior.visible) return building.exteriorPickables;
@@ -794,7 +849,8 @@ export class CampusScene {
     let direction = this.tween ? this.tween.endPosition.clone().sub(this.tween.endTarget).normalize() :
       this.hasFitted ? this.camera.position.clone().sub(this.controls.target).normalize() : HOME_DIRECTION;
     const level = this.exploded && this.activeFloor !== null && getDisplayLevel(this.interiors, this.studies, this.selected, this.activeFloor);
-    if (level?.isStudy && this.topView) direction = new THREE.Vector3(...studyPlanDirection(level, width < 700 && height > width));
+    if (this.apartment && this.topView) direction = new THREE.Vector3(-this.apartment.concept.basis.inward[0] * 0.025, 1, -this.apartment.concept.basis.inward[1] * 0.025);
+    else if (level?.isStudy && this.topView) direction = new THREE.Vector3(...studyPlanDirection(level, width < 700 && height > width));
     const frame = this.fittedCamera(direction);
     this.tween = null;
     this.camera.position.copy(frame.position);
@@ -837,7 +893,8 @@ export class CampusScene {
         if (spaceId) { this.openSpace({house, floor, spaceId, ...(openingId ? {openingId} : {})}); return; }
         if (house === this.selected && this.exploded) this.onFloor(floor);
         else this.onSelect(house);
-      } else if (this.selected) this.onSelect(null);
+      } else if (this.apartment) this.onFloor(this.activeFloor);
+      else if (this.selected) this.onSelect(null);
     });
     this.container.addEventListener('keydown', e => {
       if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '-', 'Home'].includes(e.key)) return;
@@ -868,6 +925,7 @@ export class CampusScene {
 
   dispose() {
     this.disposed = true;
+    this.clearApartment();
     this.renderer.setAnimationLoop(null);
     document.removeEventListener('visibilitychange', this.visibilityHandler);
     this.resizeObserver.disconnect();
@@ -883,7 +941,7 @@ export class CampusScene {
 
   renderExteriorDimensions(occupied, width, height) {
     const building = this.buildings.get(this.selected);
-    const runs = this.exploded && this.activeFloor != null ? building?.floorDimensions?.[this.activeFloor] : null;
+    const runs = !this.apartment && this.exploded && this.activeFloor != null ? building?.floorDimensions?.[this.activeFloor] : null;
     if (!runs?.length) {
       this.dimensionLayer.style.display = 'none';
       return;
@@ -901,7 +959,8 @@ export class CampusScene {
         extensions.classList.add('dimension-extensions');
         line.classList.add('dimension-line');
         text.textContent = run.label;
-        title.textContent = `${run.label}, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.`;
+        title.textContent = run.note || `${run.label}, building-shell edge at an estimated floor height. Low-roof margins are unassigned; this is not a clear-room dimension.`;
+        if (run.isStudyGuide) group.classList.add('dimension-study-guide');
         group.append(title, extensions, line, text);
         this.dimensionLayer.appendChild(group);
         this.dimensionNodes.set(run.id, {group, extensions, line, text});

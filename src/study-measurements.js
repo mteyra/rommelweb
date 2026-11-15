@@ -70,6 +70,17 @@ export function exteriorDimensionRuns(polygons = []) {
   });
 }
 
+export function studyDimensionRuns(level) {
+  return (level?.dimensionGuides || []).map(guide => {
+    const [start, end] = guide.segment, length = distance(start, end);
+    return {
+      id: guide.id, start, end, length, outward: guide.outward,
+      label: `${guide.label} ≈ ${length.toFixed(2)} m`,
+      note: guide.note, isStudyGuide: true, priority: 1,
+    };
+  });
+}
+
 const boundsOverlap = (a, b, gap = 3) => a.left < b.right + gap && a.right > b.left - gap && a.top < b.bottom + gap && a.bottom > b.top - gap;
 
 const pointInRing = (point, ring) => {
@@ -112,7 +123,7 @@ export function layoutExteriorDimensions(projected, {viewport, occupied = [], ou
   const fontSize = compact ? 10 : 10.5;
   const candidates = projected.filter(run => run.visible !== false)
     .map(run => ({...run, screenLength: distance(run.start, run.end)}))
-    .sort((a, b) => b.screenLength - a.screenLength || a.id.localeCompare(b.id));
+    .sort((a, b) => (b.priority || 0) - (a.priority || 0) || b.screenLength - a.screenLength || a.id.localeCompare(b.id));
   for (const run of candidates) {
     const {start, end, screenLength} = run;
     const textWidth = run.label.length * fontSize * 0.62 + 6, textHeight = fontSize + 5;
@@ -134,7 +145,7 @@ export function layoutExteriorDimensions(projected, {viewport, occupied = [], ou
       if (bounds.left < viewport.left || bounds.right > viewport.right || bounds.top < viewport.top || bounds.bottom > viewport.bottom) continue;
       if (obstacles.some(obstacle => boundsOverlap(bounds, obstacle))) continue;
       // Concave recesses can face another wing. Do not place text over that wing.
-      if (outlines.some(ring => ringIntersectsBounds(ring, bounds))) continue;
+      if (!run.isStudyGuide && outlines.some(ring => ringIntersectsBounds(ring, bounds))) continue;
       const at = (point, amount) => point.map((value, axis) => value + normal[axis] * amount);
       const lineStart = at(start, offset), lineEnd = at(end, offset);
       const tick = point => [

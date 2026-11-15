@@ -1,14 +1,15 @@
 {
   "status": "Read-only metric feasibility audit; no as-built, occupancy or approval claim.",
+  "currentStage": "rAlignment",
   "units": "metres; areas in square metres",
   "residentWorkingHypothesis": {
     "statement": "All top-floor apartments are single rooms, generally similar in size, with dimensional differences described as about a hand length.",
     "meaning": "A repeated single-apartment type with small dimensional variation is a qualitative prior. A hand length is not converted into a measured dimensional tolerance.",
-    "latestCorrection": "The resident confirmed that L1 should match the visible W4 corner overlap and clarified that the extended marked edge divides the stair width into one quarter on the L3 side and three quarters on the R1 side. The latest model retains the estimated L bay widths and derives the staircase from those relationships. Windows, the west stairwell entry and the unresolved R envelopes remain. Absolute dimensions and wall construction are unmeasured."
+    "latestCorrection": "The estimated R bank is aligned to both opposite recess endpoints while source exterior, windows and the 1.20m connector study guard remain. The gross stair enclosure retains \u00bc L3 / \u00be R1; the flight receives explicit 0.10m insets on both sides. Its neighboring narrow strip is unassigned with no assumed passage. R internal areas remain below the conditional benchmark."
   },
   "input": {
     "path": "public/data/interior-studies.json",
-    "sha256": "25541ffaa3510d4daa4743e455e9c7063ce2d0ba686f9b716276b499507f4afd"
+    "sha256": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334"
   },
   "baseline": {
     "path": "data/source/house55-2og-stair-ratio-baseline.json",
@@ -16,7 +17,7 @@
   },
   "sourceSHA256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
   "rawSourceSHA256": "b9a84843ec4074d4d505673c3fc78da194737e410c2b7727cc1a236b318bfef2",
-  "provenanceSHA256": "95a6739294c1364f19b1076e470ba20d7a3200f21bdd79bd5ccf15ec0968c9e9",
+  "provenanceSHA256": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
   "studyAxes": {
     "right": [
       0.6759509953291936,
@@ -134,18 +135,14 @@
     "insetAssumption": 0.1,
     "insetMeaning": "Sensitivity clearance, not measured wall thickness or a building-code requirement.",
     "allowedWitnessOrientations": "Aligned to either study axis. Negative results with a narrow bounding strip also exclude every rotation.",
-    "count": 17,
-    "unresolved": [
-      "R1",
-      "R2",
-      "R3"
-    ],
+    "count": 20,
+    "unresolved": [],
     "fullApartmentDimensions": null,
     "fullApartmentMeaning": "No complete apartment dimensions were supplied; living-zone fit cannot establish a repeated whole-apartment layout.",
     "negativeResultMeaning": "A conditional conflict in the current inferred envelopes, not proof that the physical apartments cannot share one type. Approximate reference dimensions and LoD2 uncertainty prevent interpreting a centimetre-scale raw-frontage difference as an interior survey."
   },
   "shapeSimilarity": {
-    "scope": "Seventeen non-R candidate envelopes; R remains an unresolved width constraint.",
+    "scope": "All twenty current candidate envelopes; their extents do not establish equal internal areas.",
     "meaning": "Projected gross polygon extents, not clear interior dimensions or a measured whole-apartment template.",
     "rooms": [
       {
@@ -233,6 +230,24 @@
         "grossArea": 18.471124225793005
       },
       {
+        "label": "R1",
+        "grossWidth": 2.9957628080690846,
+        "grossDepth": 6.0516828868941275,
+        "grossArea": 18.116568847487503
+      },
+      {
+        "label": "R2",
+        "grossWidth": 2.9972881164882317,
+        "grossDepth": 6.054354234228466,
+        "grossArea": 18.1245628981475
+      },
+      {
+        "label": "R3",
+        "grossWidth": 3.0002112615678946,
+        "grossDepth": 6.057025502568532,
+        "grossArea": 18.132554101101505
+      },
+      {
         "label": "N1",
         "grossWidth": 3.1891549996434136,
         "grossDepth": 5.984637201530121,
@@ -260,7 +275,7 @@
       6.289307818711034
     ],
     "grossAreaRange": [
-      18.461976781366012,
+      18.116568847487503,
       19.732853793343494
     ],
     "commonDepthVerification": {
@@ -586,13 +601,13 @@
       "name": "R1\u2013R3",
       "count": 3,
       "runAxis": 0,
-      "nominalRun": 8.28822644536363,
-      "nominalAverageGrossBay": 2.7627421484545436,
+      "nominalRun": 8.987287748256254,
+      "nominalAverageGrossBay": 2.9957625827520844,
       "runMeaning": "Current projected envelope extent; slight source skew differs from the nominal division interval.",
       "earlierStageNominalRun": 8.079453,
-      "grossPolygonArea": 50.14670124906651,
+      "grossPolygonArea": 54.37368584673651,
       "baselineGrossPolygonArea": 44.4799881843795,
-      "packingWitnessCount": 0
+      "packingWitnessCount": 3
     },
     {
       "name": "N1\u2013N3",
@@ -1240,12 +1255,12 @@
     },
     {
       "label": "R1",
-      "grossPolygonArea": 16.708762436024006,
+      "grossPolygonArea": 18.116568847487503,
       "projectedBounds": [
-        14.008917327308286,
-        3.674434010190434,
-        16.77166041769454,
-        9.72675828158587
+        13.057515741423042,
+        3.6744340931844164,
+        16.053278549492127,
+        9.726116980078544
       ],
       "baselineArea": 14.819856490467004,
       "baselineBounds": [
@@ -1254,22 +1269,43 @@
         16.771487402237707,
         9.72675828158587
       ],
-      "packingWitness": null,
+      "packingWitness": [
+        [
+          15.85888837850544,
+          6.3235351381179745
+        ],
+        [
+          15.85888837850544,
+          9.623535138117974
+        ],
+        [
+          13.15888837850544,
+          9.623535138117974
+        ],
+        [
+          13.15888837850544,
+          6.3235351381179745
+        ],
+        [
+          15.85888837850544,
+          6.3235351381179745
+        ]
+      ],
       "packingWitnessMeaning": "Existence witness only; not a measured living-room position.",
       "insetBoundingSpans": [
-        2.5626947346472377,
-        5.852234996539977
+        2.795714524559541,
+        5.851593613767651
       ],
-      "impossibleAtAnyRotationByBoundingWidth": true
+      "impossibleAtAnyRotationByBoundingWidth": false
     },
     {
       "label": "R2",
-      "grossPolygonArea": 16.715566831933504,
+      "grossPolygonArea": 18.1245628981475,
       "projectedBounds": [
-        16.77013165652571,
-        3.674433992191738,
-        19.53440209518323,
-        9.729222224956448
+        16.051753241072976,
+        3.674433892198987,
+        19.049041357561208,
+        9.728788126427453
       ],
       "baselineArea": 14.826663782495007,
       "baselineBounds": [
@@ -1278,22 +1314,43 @@
         19.53389926463712,
         9.729222224956448
       ],
-      "packingWitness": null,
+      "packingWitness": [
+        [
+          18.853253347971812,
+          6.326206213982652
+        ],
+        [
+          18.853253347971812,
+          9.626206213982652
+        ],
+        [
+          16.153253347971813,
+          9.626206213982652
+        ],
+        [
+          16.153253347971813,
+          6.326206213982652
+        ],
+        [
+          18.853253347971812,
+          6.326206213982652
+        ]
+      ],
       "packingWitnessMeaning": "Existence witness only; not a measured living-room position.",
       "insetBoundingSpans": [
-        2.5641716377986157,
-        5.854698978749598
+        2.797189417657421,
+        5.854265002052852
       ],
-      "impossibleAtAnyRotationByBoundingWidth": true
+      "impossibleAtAnyRotationByBoundingWidth": false
     },
     {
       "label": "R3",
-      "grossPolygonArea": 16.722371981108996,
+      "grossPolygonArea": 18.132554101101505,
       "projectedBounds": [
-        19.52994976096576,
-        3.674433974193043,
-        22.297143772671916,
-        9.731684755429463
+        19.0445922281114,
+        3.674433892198987,
+        22.044803489679296,
+        9.73145939476752
       ],
       "baselineArea": 14.833467911417488,
       "baselineBounds": [
@@ -1302,13 +1359,34 @@
         22.29631112703653,
         9.731684755429463
       ],
-      "packingWitness": null,
+      "packingWitness": [
+        [
+          21.847791175273066,
+          6.328877407566119
+        ],
+        [
+          21.847791175273066,
+          9.628877407566119
+        ],
+        [
+          19.147791175273067,
+          9.628877407566119
+        ],
+        [
+          19.147791175273067,
+          6.328877407566119
+        ],
+        [
+          21.847791175273066,
+          6.328877407566119
+        ]
+      ],
       "packingWitnessMeaning": "Existence witness only; not a measured living-room position.",
       "insetBoundingSpans": [
-        2.5669986711659973,
-        5.857161621459368
+        2.8000159785265772,
+        5.856936298152393
       ],
-      "impossibleAtAnyRotationByBoundingWidth": true
+      "impossibleAtAnyRotationByBoundingWidth": false
     },
     {
       "label": "N1",
@@ -1864,6 +1942,8 @@
     "meaning": "Resident-informed locations; exact centers and widths are estimates. Four shared-area windows do not establish room ownership, doorways or access."
   },
   "wallFaceHypothesis": {
+    "stageMeaning": "Historical 0.20m window/wall-face trial, retained for comparison rather than used as the current R-bank dimensions.",
+    "supersededByRAlignment": true,
     "assumedOffset": 0.2,
     "sourceExteriorUnchanged": true,
     "sourceRFacadeAxisRun": 8.079453260870862,
@@ -1871,7 +1951,7 @@
     "necessaryGrossRunForThreeReferenceWidthsWithInset": 8.700000000000001,
     "necessaryExtensionBeyondSourceAlignedR": 0.6205467391291393,
     "remainingNecessaryExtensionBeyondCandidate": 0.42054673912913926,
-    "requirementMeaning": "Necessary width bound under the declared 0.10m-per-side sensitivity; not sufficient to prove a full apartment fit or a measured wall arrangement.",
+    "requirementMeaning": "Historical candidate's necessary width bound under the declared 0.10m-per-side sensitivity. Current witness results are in packing; neither proves a complete apartment layout.",
     "westW4PastExteriorReturn": 0.45200578676830183,
     "westW4PastAssumedInnerFace": 0.2520057867683018,
     "westReturnMeaning": "Historical comparison against the preceding 0.20m wall-band hypothesis, using a plan-axis average. The current stairAlignment section measures the actual corner-normal overlap and whether L1 matches it; no verified wall assembly is inferred.",
@@ -1949,26 +2029,28 @@
       {
         "flightFraction": 0.05,
         "referenceIntersection": [
-          11.43034026479567,
-          3.620643490737594
+          11.430340294587944,
+          3.620695132235242
         ],
-        "lSideWidth": 0.4451773981069334,
-        "rSideWidth": 1.3355321636283644,
-        "grossWidth": 1.7807095617352977,
-        "lSideRatio": 0.2500000043090177,
-        "rSideRatio": 0.7499999956909823
+        "lSideWidth": 0.4451773981093403,
+        "rSideWidth": 1.3355321756908367,
+        "grossWidth": 1.780709573800177,
+        "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+        "lSideRatio": 0.250000002616539,
+        "rSideRatio": 0.749999997383461
       },
       {
         "flightFraction": 0.25,
         "referenceIntersection": [
-          11.430837085045052,
-          4.481824500930729
+          11.430837101596317,
+          4.481853190651645
         ],
-        "lSideWidth": 0.4451774382455349,
-        "rSideWidth": 1.3355321142472187,
-        "grossWidth": 1.7807095524927536,
-        "lSideRatio": 0.25000002814740135,
-        "rSideRatio": 0.7499999718525986
+        "lSideWidth": 0.44517743824687306,
+        "rSideWidth": 1.3355321247412344,
+        "grossWidth": 1.7807095629881076,
+        "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+        "lSideRatio": 0.25000002667467347,
+        "rSideRatio": 0.7499999733253264
       },
       {
         "flightFraction": 0.5,
@@ -1977,41 +2059,134 @@
           5.558300763672148
         ],
         "lSideWidth": 0.44517748841878896,
-        "rSideWidth": 1.3355320525207866,
-        "grossWidth": 1.7807095409395755,
-        "lSideRatio": 0.25000005794538227,
-        "rSideRatio": 0.7499999420546177
+        "rSideWidth": 1.3355320605554204,
+        "grossWidth": 1.7807095489742093,
+        "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+        "lSideRatio": 0.25000005681737186,
+        "rSideRatio": 0.7499999431826282
       },
       {
         "flightFraction": 0.75,
         "referenceIntersection": [
-          11.432079135668511,
-          6.634777026413566
+          11.432079119117248,
+          6.634748336692651
         ],
-        "lSideWidth": 0.445177537225877,
-        "rSideWidth": 1.3355319907943526,
-        "grossWidth": 1.7807095280202296,
-        "lSideRatio": 0.2500000871679615,
-        "rSideRatio": 0.7499999128320385
+        "lSideWidth": 0.44517753722617126,
+        "rSideWidth": 1.3355319963696044,
+        "grossWidth": 1.7807095335957757,
+        "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+        "lSideRatio": 0.2500000863853562,
+        "rSideRatio": 0.7499999136146438
       },
       {
         "flightFraction": 0.95,
         "referenceIntersection": [
-          11.432575955917894,
-          7.495958036606702
+          11.432575926125619,
+          7.495906395109054
         ],
-        "lSideWidth": 0.44517752836789287,
-        "rSideWidth": 1.3355319414132067,
-        "grossWidth": 1.7807094697810997,
-        "lSideRatio": 0.25000009036994564,
-        "rSideRatio": 0.7499999096300544
+        "lSideWidth": 0.44517752836842406,
+        "rSideWidth": 1.3355319450209526,
+        "grossWidth": 1.7807094733893767,
+        "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+        "lSideRatio": 0.2500000898636652,
+        "rSideRatio": 0.7499999101363348
       }
     ],
-    "grossWidthAtFlightCenter": 1.7807095409395755,
+    "crossSectionsMeaning": "Gross enclosure measured at five positions along the separately drawn flight.",
+    "grossWidthAtFlightCenter": 1.7807095489742093,
     "lSideWidthAtFlightCenter": 0.44517748841878896,
-    "rSideWidthAtFlightCenter": 1.3355320525207866,
-    "maximumRatioError": 9.036994563782486e-08,
-    "widthVariationAcrossFlight": 9.195419803376126e-08,
+    "rSideWidthAtFlightCenter": 1.3355320605554204,
+    "maximumRatioError": 8.986366517582667e-08,
+    "widthVariationAcrossFlight": 1.0041080034106642e-07,
+    "schematicFlight": {
+      "crossSections": [
+        {
+          "flightFraction": 0.05,
+          "referenceIntersection": [
+            11.430340294587944,
+            3.620695132235242
+          ],
+          "lSideWidth": 0.34517771121444274,
+          "rSideWidth": 1.2355318230648664,
+          "grossWidth": 1.5807095342793092,
+          "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+          "lSideRatio": 0.2183688424273465,
+          "rSideRatio": 0.7816311575726534
+        },
+        {
+          "flightFraction": 0.25,
+          "referenceIntersection": [
+            11.430837101596317,
+            4.481853190651645
+          ],
+          "lSideWidth": 0.3451776303461669,
+          "rSideWidth": 1.2355319039331423,
+          "grossWidth": 1.5807095342793092,
+          "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+          "lSideRatio": 0.21836879126786773,
+          "rSideRatio": 0.7816312087321322
+        },
+        {
+          "flightFraction": 0.5,
+          "referenceIntersection": [
+            11.431458110356782,
+            5.558300763672148
+          ],
+          "lSideWidth": 0.34517752926082157,
+          "rSideWidth": 1.2355320050184877,
+          "grossWidth": 1.5807095342793094,
+          "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+          "lSideRatio": 0.21836872731851895,
+          "rSideRatio": 0.781631272681481
+        },
+        {
+          "flightFraction": 0.75,
+          "referenceIntersection": [
+            11.432079119117248,
+            6.634748336692651
+          ],
+          "lSideWidth": 0.3451774281754762,
+          "rSideWidth": 1.235532106103833,
+          "grossWidth": 1.5807095342793092,
+          "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+          "lSideRatio": 0.21836866336917016,
+          "rSideRatio": 0.7816313366308298
+        },
+        {
+          "flightFraction": 0.95,
+          "referenceIntersection": [
+            11.432575926125619,
+            7.495906395109054
+          ],
+          "lSideWidth": 0.34517734730720034,
+          "rSideWidth": 1.2355321869721088,
+          "grossWidth": 1.5807095342793092,
+          "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+          "lSideRatio": 0.2183686122096914,
+          "rSideRatio": 0.7816313877903086
+        }
+      ],
+      "widthAtCenter": 1.5807095342793094,
+      "lSideWidthAtCenter": 0.34517752926082157,
+      "rSideWidthAtCenter": 1.2355320050184877,
+      "l3ShareAtCenter": 0.21836872731851895,
+      "r1ShareAtCenter": 0.781631272681481,
+      "sideInsetsFromEnclosure": {
+        "l3Side": 0.09999995915796739,
+        "r1Side": 0.1000000555369327
+      },
+      "widthVariation": 2.220446049250313e-16,
+      "lShareRange": [
+        0.2183686122096914,
+        0.2183688424273465
+      ],
+      "meaning": "Independent sections of the schematic flight. Its side insets change the split while the gross enclosure and west door remain fixed."
+    },
+    "fixedWestEdgeWidthForL3Range20To25Percent": {
+      "minimum": 1.7807099536751558,
+      "maximum": 2.2258874420939447,
+      "meaning": "A right-edge-only enclosure shrink below the current quarter-split width would increase the L3 share above 25%."
+    },
     "meaning": "Ratios are recomputed from actual enclosure cross-sections normal to the unchanged source edge. Gross width is derived after retaining the estimated L bays; it is not a surveyed or clear stair dimension."
   },
   "areaStudy": {
@@ -3654,23 +3829,458 @@
     },
     "limitations": "Area and masonry inputs remain unverified. Existing service partitions are unknown. The R target does not fit under these fixed-frontage/connector assumptions; more depth cannot resolve its separate clear-width concern. Gross model envelopes, conditional internal envelopes and rental/usable floor area must not be conflated."
   },
+  "rAlignment": {
+    "status": "resident-requested-r-alignment-with-explicit-area-and-access-limits",
+    "baseline": {
+      "path": "data/source/house55-2og-r-alignment-baseline.json",
+      "sha256": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2",
+      "sourceCommit": "00643998683c01e590c6d9a38b448d212b563cff"
+    },
+    "parameters": {
+      "targetInternalAreaSquareMetres": 16.4,
+      "publishedAreaSource": "https://www.werkswelt.de/index.php?id=wohnanlage-campus-sud-i",
+      "publishedAverageDefinitionSource": "https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/760-campus-sued-i-englisch-2026.pdf",
+      "targetInterpretation": "Conditional internal-envelope benchmark, borrowed from the published 16.4m\u00b2 average. It is not proof of the rental area, clear area or individual room dimensions.",
+      "externalFacadeAllowanceMetres": 0.2,
+      "markedEndWallAllowanceMetres": 0.3,
+      "otherExternalEndAllowanceMetres": 0.2,
+      "allocationBoundaryHalfWallMetres": 0.1,
+      "recessBandMetres": 0.2,
+      "minimumConnectorClearStudyGuardMetres": 1.2,
+      "guardInterpretation": "Geometric study guard only, not a legal or accessibility-compliance claim.",
+      "internalPartitions": "Bathroom, kitchenette and other internal partition footprints are unknown and are not deducted. The internal envelope is not certified usable floor area."
+    },
+    "rooms": [
+      {
+        "label": "R1",
+        "bank": "R",
+        "grossArea": 18.116568908786494,
+        "internalArea": 16.068346637560985,
+        "targetArea": 16.4,
+        "residual": -0.3316533624390132,
+        "targetMet": false,
+        "internalPolygon": [
+          [
+            8.002061,
+            14.308028
+          ],
+          [
+            3.762464,
+            18.194755
+          ],
+          [
+            1.876412,
+            16.134824
+          ],
+          [
+            6.112295,
+            12.247735
+          ],
+          [
+            8.002061,
+            14.308028
+          ]
+        ],
+        "edgeOffsets": [
+          {
+            "normal": [
+              0.9999999733549239,
+              -0.00023084659736415713
+            ],
+            "constant": 13.05666660409328,
+            "kind": "bank-end",
+            "allowance": 0.1
+          },
+          {
+            "normal": [
+              -0.9999999682473161,
+              -0.000252002711789163
+            ],
+            "constant": -16.0542036211965,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "kind": "external-facade",
+            "normal": [
+              0.0008925695936826042,
+              -0.999999601659681
+            ],
+            "constant": -9.71178596005518,
+            "allowance": 0.2
+          },
+          {
+            "kind": "hall-allocation",
+            "normal": [
+              0,
+              1
+            ],
+            "constant": 3.6744343592232274,
+            "allowance": 0.1
+          }
+        ],
+        "grossDepth": 6.050344934969347,
+        "feasibility": "recess-aligned-bank-retains-connector-guard-area-target-unmet"
+      },
+      {
+        "label": "R2",
+        "bank": "R",
+        "grossArea": 18.12456289814751,
+        "internalArea": 16.07580756602964,
+        "targetArea": 16.4,
+        "residual": -0.3241924339703601,
+        "targetMet": false,
+        "internalPolygon": [
+          [
+            10.027017,
+            16.515709
+          ],
+          [
+            5.783573,
+            20.402194
+          ],
+          [
+            3.897523,
+            18.342265
+          ],
+          [
+            8.137251,
+            14.455417
+          ],
+          [
+            10.027017,
+            16.515709
+          ]
+        ],
+        "edgeOffsets": [
+          {
+            "normal": [
+              0.9999999682473161,
+              0.000252002711789163
+            ],
+            "constant": 16.0542036211965,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "normal": [
+              -0.9999997299963469,
+              -0.0007348518446841977
+            ],
+            "constant": -19.051736165892223,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "kind": "external-facade",
+            "normal": [
+              0.0008925695936826042,
+              -0.999999601659681
+            ],
+            "constant": -9.71178596005518,
+            "allowance": 0.2
+          },
+          {
+            "kind": "hall-allocation",
+            "normal": [
+              0,
+              1
+            ],
+            "constant": 3.6744343592232274,
+            "allowance": 0.1
+          }
+        ],
+        "grossDepth": 6.0530190627470635,
+        "feasibility": "recess-aligned-bank-retains-connector-guard-area-target-unmet"
+      },
+      {
+        "label": "R3",
+        "bank": "R",
+        "grossArea": 18.13255410110149,
+        "internalArea": 16.083268216111264,
+        "targetArea": 16.4,
+        "residual": -0.31673178388873424,
+        "targetMet": false,
+        "internalPolygon": [
+          [
+            12.051973,
+            18.723391
+          ],
+          [
+            7.80468,
+            22.609632
+          ],
+          [
+            5.918632,
+            20.549704
+          ],
+          [
+            10.162207,
+            16.663099
+          ],
+          [
+            12.051973,
+            18.723391
+          ]
+        ],
+        "edgeOffsets": [
+          {
+            "normal": [
+              0.9999997299963469,
+              0.0007348518446841977
+            ],
+            "constant": 19.051736165892223,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "normal": [
+              -0.9999992586025156,
+              -0.0012177004636022126
+            ],
+            "constant": -22.049262141623778,
+            "kind": "bank-end",
+            "allowance": 0.1
+          },
+          {
+            "kind": "external-facade",
+            "normal": [
+              0.0008925695936826042,
+              -0.999999601659681
+            ],
+            "constant": -9.71178596005518,
+            "allowance": 0.2
+          },
+          {
+            "kind": "hall-allocation",
+            "normal": [
+              0,
+              1
+            ],
+            "constant": 3.6744343592232274,
+            "allowance": 0.1
+          }
+        ],
+        "grossDepth": 6.0556928217499735,
+        "feasibility": "recess-aligned-bank-retains-connector-guard-area-target-unmet"
+      }
+    ],
+    "alignment": {
+      "interpretation": "Align the two existing estimated side-wall lines to the two endpoints of the opposite recess. Retain their small prior slopes, use equal interpolated bays, and keep the source-facing R plane unchanged.",
+      "northRecessSourceVertexIndexes": [
+        16,
+        15
+      ],
+      "northRecessSegment": [
+        [
+          7.238,
+          11.079
+        ],
+        [
+          13.3,
+          17.717
+        ]
+      ],
+      "northRecessLength": 8.98948763834736,
+      "alignedSidePlanes": {
+        "left": {
+          "kind": "bank-end",
+          "normal": [
+            0.999999973354924,
+            -0.00023084659736415713
+          ],
+          "constant": 13.05666660409328,
+          "allowance": 0.1
+        },
+        "right": {
+          "kind": "bank-end",
+          "normal": [
+            -0.9999992586025156,
+            -0.0012177004636022123
+          ],
+          "constant": -22.049262141623778,
+          "allowance": 0.1
+        }
+      },
+      "facadeSegment": [
+        [
+          1.661524,
+          16.196293
+        ],
+        [
+          7.724656,
+          22.818397
+        ]
+      ],
+      "facadeLength": 8.978520537162012,
+      "sourceFacadeSegment": [
+        [
+          2.304,
+          16.898
+        ],
+        [
+          7.76,
+          22.857
+        ]
+      ],
+      "sourceFacadeLength": 8.079456479244131,
+      "markerMeaning": "Estimated R-bank extent. It is distinct from the unchanged shorter source shell edge and from clear apartment widths."
+    },
+    "rConnector": {
+      "northRecessSourceVertexIndexes": [
+        15,
+        16
+      ],
+      "maximumRecessY": 2.174434359223227,
+      "roomFrontY": 3.6744343592232274,
+      "grossGap": 1.5000000000000004,
+      "assumedClearGap": 1.2,
+      "studyGuard": 1.2,
+      "targetForced": false
+    },
+    "staircase": {
+      "referenceSourceVertexIndexes": [
+        3,
+        4
+      ],
+      "referenceLine": [
+        [
+          1.043,
+          14.558
+        ],
+        [
+          0.48,
+          15.075
+        ]
+      ],
+      "grossWidth": 1.7807098385229754,
+      "grossL3Share": 0.250000043714095,
+      "grossR1Share": 0.749999956285905,
+      "sideInset": 0.1,
+      "schematicFlightWidth": 1.5807098385229752,
+      "schematicL3Share": 0.21836869048363666,
+      "schematicR1Share": 0.7816313095163634,
+      "allowedGrossWidthWithFixedWestEdge": {
+        "minimum": 1.7807101498914515,
+        "maximum": 2.225887687364314
+      },
+      "rightOnlyShrinkConflict": "With the west edge fixed, the L3-side reference distance is fixed. Reducing total width increases its fraction above the existing 25%, so it cannot yield 20\u201325%. The gross enclosure therefore stays fixed; the flight receives equal explicit side insets.",
+      "enclosureUnchanged": true,
+      "westDoorUnchanged": true,
+      "flightLengthUnchanged": true
+    },
+    "unassigned": {
+      "spaceId": "study-55-2-unassigned-stair-side",
+      "area": 2.922437689947497,
+      "polygon": [
+        [
+          0.48,
+          15.075
+        ],
+        [
+          1.043,
+          14.558
+        ],
+        [
+          1.945754,
+          15.542216
+        ],
+        [
+          5.921263,
+          11.891527
+        ],
+        [
+          6.118379,
+          12.106429
+        ],
+        [
+          1.661524,
+          16.196293
+        ],
+        [
+          2.304,
+          16.898
+        ],
+        [
+          2.219,
+          16.976
+        ],
+        [
+          0.48,
+          15.075
+        ]
+      ],
+      "stripCrossSections": [
+        {
+          "studyY": 3.6744343592232274,
+          "width": 0.29161131380230443
+        },
+        {
+          "studyY": 9.071859632016933,
+          "width": 0.2897434859004109
+        }
+      ],
+      "minimumStripWidth": 0.2897434859004109,
+      "maximumStripWidth": 0.29161131380230443,
+      "doorwayCount": 0,
+      "assumedPassage": false,
+      "confirmedFunction": null,
+      "meaning": "Narrow residual strip and connected blind end pocket removed from circulation; service is a schema category, not an assertion of installed services."
+    },
+    "preserved": {
+      "sourceExterior": true,
+      "floorOutline": true,
+      "windowSegments": true,
+      "roomCount": 20,
+      "doorCount": 21,
+      "unchangedOtherRoomReferences": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "L1",
+        "L2",
+        "L3",
+        "N1",
+        "N2",
+        "N3"
+      ]
+    }
+  },
   "topology": {
     "overlapArea": 0.0,
-    "allSpaceOverlapArea": 0.0,
-    "outsideAnnotatedArea": 7.0192080729404625e-06,
+    "allSpaceOverlapArea": 7.375495523131645e-08,
+    "outsideAnnotatedArea": 5.8160608505884534e-06,
     "maximumOutsideDistance": 6.347509761476201e-07,
-    "roomArea": 370.38944862428644,
+    "roomArea": 374.61643322195647,
     "baselineRoomArea": 322.72267519819144,
-    "stairArea": 13.977191404534498,
-    "remainderArea": 126.24952598588844,
+    "stairArea": 13.977191452959499,
+    "unassigned": [
+      {
+        "label": "Unassigned",
+        "id": "study-55-2-unassigned-stair-side",
+        "area": 2.922437689947495,
+        "doorwayCount": 0,
+        "declaredConnections": [],
+        "assumedPassage": false
+      }
+    ],
+    "areaConservationResidual": 1.2412560124630545e-05,
+    "remainderArea": 119.10010244669867,
     "baselineRemainderArea": 174.782623657332,
     "remainderComponentAreas": [
-      66.59637707157063,
       59.653145910145795,
+      59.44695362763592,
       1.5673547615517938e-06,
       1.2250733202202185e-06,
       1.0641317767581815e-07,
-      9.525506260789395e-08,
       1.0075696367585246e-08
     ],
     "corridorSpaces": [
@@ -3706,9 +4316,9 @@
       },
       {
         "label": "East hall",
-        "area": 66.5963735108725,
+        "area": 59.44694803656753,
         "bounds": [
-          11.433485102376526,
+          12.764489753037147,
           -0.6048295474472614,
           31.62547223637253,
           11.058457911862295
@@ -3887,6 +4497,9 @@
         "R1",
         "R2",
         "R3"
+      ],
+      [
+        "Unassigned"
       ]
     ],
     "doorAdjacencyToleranceMetres": 0.002,
@@ -4162,15 +4775,15 @@
         "target": "R1",
         "segment": [
           [
-            14.940289144299136,
-            3.674433691213557
+            14.105397785728595,
+            3.674434173178617
           ],
           [
-            15.84028860070369,
-            3.6744344081615825
+            15.005396505186571,
+            3.674434214175645
           ]
         ],
-        "width": 0.8999994564048399,
+        "width": 0.8999987194579768,
         "adjacentHallways": [
           "East hall"
         ],
@@ -4181,15 +4794,15 @@
         "target": "R2",
         "segment": [
           [
-            17.703030821787827,
-            3.674433673214862
+            17.101159180900112,
+            3.6744340331887644
           ],
           [
-            18.603031691089942,
-            3.674434329167309
+            18.001160726153223,
+            3.674433952194639
           ]
         ],
-        "width": 0.9000008693023541,
+        "width": 0.9000015452531153,
         "adjacentHallways": [
           "East hall"
         ],
@@ -4200,12 +4813,12 @@
         "target": "R3",
         "segment": [
           [
-            20.46577249927651,
-            3.674433655216168
+            20.096921988969193,
+            3.674433832203336
           ],
           [
-            21.36577336857863,
-            3.674434311168614
+            20.99692285827131,
+            3.6744344881557804
           ]
         ],
         "width": 0.9000008693023577,
@@ -4294,7 +4907,7 @@
     "accessMeaning": "Edges use saved door segments only. Separate hallways do not imply a verified route through the stairwell; no eastern stairwell door is inferred.",
     "stairwell": {
       "label": "Stairs",
-      "area": 13.977191404534498,
+      "area": 13.977191452959499,
       "bounds": [
         10.983778961889914,
         1.2217375782362243,
@@ -4305,12 +4918,12 @@
         "West hall"
       ],
       "flight": {
-        "area": 7.665722290957993,
+        "area": 6.804762644208005,
         "bounds": [
-          10.985040383440168,
-          3.40560506258267,
-          12.768230164867118,
-          7.710482944249185
+          11.085038418845388,
+          3.4056047526051416,
+          12.668232129461899,
+          7.710483124236138
         ],
         "outsideEnclosureArea": 0.0,
         "meaning": "Separate schematic flight footprint; tread geometry, rise and exact landing dimensions are unmeasured."
@@ -4348,10 +4961,11 @@
     "probeMeaning": "Room boundary-midpoint approaches and the declared stairwell-door approach, offset 0.66m into their respective hallway. These do not establish inter-hallway connectivity, passage through a door, or egress/accessibility compliance.",
     "diagnosticGrossGaps": {
       "westHall": 1.7596868893248658,
-      "stairsToR": 1.241146427536881,
-      "RToE": 2.0447033372003087,
+      "stairsToR": 0.2897439043807397,
+      "RToE": 2.2970433122606786,
       "stairsSouth": 0.0
     },
+    "diagnosticGrossGapMeaning": "Distances between gross polygons only. The stairs-to-R gap is an explicitly unassigned strip after R alignment, not an established corridor or door connection.",
     "baselineSymmetricDifferenceArea": {
       "A": 3.466735791371491,
       "B": 3.558438975721071,
@@ -4366,9 +4980,9 @@
       "N1": 1.8806853638704921,
       "N2": 2.3747707834993133,
       "N3": 2.4724069493784326,
-      "R1": 1.8889059455570028,
-      "R2": 1.8889046990432803,
-      "R3": 1.888904301829727,
+      "R1": 11.009607733407691,
+      "R2": 8.511458337793703,
+      "R3": 6.010931165574356,
       "W1": 3.5453719416354863,
       "W2": 3.8982971002136453,
       "W3": 3.359342551206127,

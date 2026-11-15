@@ -24,6 +24,7 @@ import { validateInteriorStudies } from '../src/interior-studies.js';
 import { applyHouse55WindowWallStudy } from './house55-window-wall-study.mjs';
 import { applyHouse55StairAlignment } from './house55-stair-alignment.mjs';
 import { applyHouse55AreaStudy } from './house55-area-study.mjs';
+import { applyStage as applyHouse55RAlignment } from './house55-r-alignment.mjs';
 import { refreshHouse55LowerLevels } from './extrapolate-house55-levels.mjs';
 
 const sourceFile = new URL('../public/data/lod2.json', import.meta.url);
@@ -814,7 +815,23 @@ study.metadata.stairAlignment = stairAlignment.metadata;
 const areaStudy = await applyHouse55AreaStudy(study.level, building);
 study.level = areaStudy.level;
 study.metadata.areaStudy = areaStudy.metadata;
-study.metadata.currentStage = 'areaStudy';
+const rAlignment = await applyHouse55RAlignment(study.level, building);
+study.level = rAlignment.level;
+study.metadata.rAlignment = rAlignment.metadata;
+study.metadata.currentStage = 'rAlignment';
+const [guideStart, guideEnd] = rAlignment.metadata.alignment.facadeSegment;
+const guideLength = rAlignment.metadata.alignment.facadeLength;
+let guideOutward = [(guideEnd[1] - guideStart[1]) / guideLength, (guideStart[0] - guideEnd[0]) / guideLength];
+const rCenter = study.level.spaces.find(space => space.shortLabel === 'R2').polygon.slice(0, -1)
+  .reduce((sum, point, _, points) => sum.map((value, axis) => value + point[axis] / points.length), [0, 0]);
+if (guideOutward.reduce((sum, value, axis) => sum + value * (rCenter[axis] - (guideStart[axis] + guideEnd[axis]) / 2), 0) > 0) {
+  guideOutward = guideOutward.map(value => -value);
+}
+study.level.dimensionGuides = [{
+  id: 'study-55-2-dimension-r-bank', label: 'R bank', confidence: 'estimated',
+  segment: structuredClone([guideStart, guideEnd]), outward: guideOutward,
+  note: 'Estimated R-bank span aligned to the opposite recess endpoints. Distinct from the unchanged 8.08m source shell edge; side-wall slopes make this approximately 8.98m versus the opposite 8.99m recess.',
+}];
 const refreshedLower = refreshHouse55LowerLevels(lowerLevels, study.level, building);
 study.levels = [...refreshedLower.levels, study.level];
 study.metadata.earlierLowerFloorExtrapolation = lowerMetadata;
@@ -822,8 +839,8 @@ study.metadata.lowerFloorExtrapolation = refreshedLower.metadata.map(item => ({
   ...lowerMetadata.find(earlier => earlier.index === item.index), ...item,
 }));
 study.metadata.lowerFloorRefresh = {
-  sourceStage: 'areaStudy',
-  reason: 'Resident previously requested extrapolation to the other two floors; the later correction screenshots exposed their stale L/stair geometry. Refresh the current core with explicitly estimated evidence.',
+  sourceStage: 'rAlignment',
+  reason: 'Resident requested extrapolation of the corrected top-floor core. Repeat the current R alignment, schematic flight and unassigned strip as estimates, retaining each lower floor’s own source outline.',
   copiedObservedWindows: false, copiedWallBands: false,
 };
 study.metadata.roomInterpretation.zoneMeasurementsStage = 'earlier-left-side-stage-before-window-and-wall-face-study';
@@ -831,7 +848,7 @@ study.metadata.residentCorrections.stage = 'earlier-left-side-stage-before-windo
 study.metadata.stairs.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 study.metadata.validation.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 const generatedBuilding = {
-  source: 'House 55 resident-informed 2. OG arrangement and relative alignment, with a conditional area-based study using assumed wall allowances. Absolute apartment dimensions remain unverified.',
+  source: 'House 55 resident-informed 2. OG arrangement and relative alignment, including the aligned R bank and conditional wall/flight allowances. Lower-floor interiors repeat that core as estimates. Absolute apartment dimensions and east stair access remain unverified.',
   sourceDate: '2026-11-15', levels: study.levels,
 };
 const campusData = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url)));
@@ -889,8 +906,10 @@ console.log(JSON.stringify({
   stairRatio: study.metadata.stairAlignment.observedRatio,
   supersededGrossDepthPriorMetres: commonDepth,
   conditionalAreaTargetSquareMetres: study.metadata.areaStudy.parameters.targetInternalAreaSquareMetres,
-  roomsMeetingConditionalAreaTarget: study.metadata.areaStudy.rooms.filter(room => room.targetMet).length,
-  unresolvedAreaTargets: study.metadata.areaStudy.rooms.filter(room => !room.targetMet).map(room => ({
+  alignedRBankSpanMetres: rAlignment.metadata.alignment.facadeLength,
+  schematicFlight: rAlignment.metadata.staircase,
+  roomsMeetingConditionalAreaTarget: study.metadata.areaStudy.rooms.filter(room => room.bank !== 'R' && room.targetMet).length + rAlignment.metadata.rooms.filter(room => room.targetMet).length,
+  unresolvedAreaTargets: rAlignment.metadata.rooms.filter(room => !room.targetMet).map(room => ({
     room: room.label, internalEnvelopeAreaSquareMetres: room.internalArea, shortfallSquareMetres: -room.residual,
   })),
   lowerFloors: study.metadata.lowerFloorExtrapolation.map(level => ({

@@ -31,7 +31,7 @@ test('lower studies repeat the current core with explicit estimated provenance a
     const prior = lower.find(item => item.index === level.index);
     assert.deepEqual(level.floorOutline, prior.floorOutline, 'lower plates are not replaced with the smaller top plate');
     assert.equal(level.extrapolatedFrom, 2);
-    assert.equal(level.spaces.length, 23);
+    assert.equal(level.spaces.length, 24);
     assert.equal(level.spaces.filter(space => space.kind === 'room').length, 20);
     assert.equal(level.doors.length, 21);
     assert.ok(level.spaces.every(space => space.confidence === 'estimated'));

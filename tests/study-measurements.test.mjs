@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { studyRoomMeasurements } from '../src/study-measurements.js';
+import { studyRoomMeasurements, studyDimensionRuns, exteriorDimensionRuns } from '../src/study-measurements.js';
 
 const rectangle = (x, z, width, depth) => [[x, z], [x + width, z], [x + width, z + depth], [x, z + depth], [x, z]];
 const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} should equal ${expected}`);
@@ -48,4 +48,19 @@ test('only study rooms receive envelope measurements', () => {
   for (const kind of ['corridor', 'stairs', 'lift', 'shared', 'service']) {
     assert.equal(studyRoomMeasurements(level, {...room, kind}), null);
   }
+});
+
+test('estimated bank dimensions remain separate from immutable source exterior runs', () => {
+  const source = [{outer: rectangle(0, 0, 8.08, 6)}];
+  const before = structuredClone(source);
+  const level = {dimensionGuides: [{
+    id: 'estimated-bank', label: 'R bank', confidence: 'estimated',
+    segment: [[-0.90, 0], [8.08, 0]], outward: [0, -1], note: 'Estimated allocation, not a clear-room or source-shell span.',
+  }]};
+  const sourceRuns = exteriorDimensionRuns(source), guides = studyDimensionRuns(level);
+  assert.ok(sourceRuns.some(run => run.label === '8.08 m'));
+  assert.equal(guides[0].label, 'R bank ≈ 8.98 m');
+  assert.equal(guides[0].isStudyGuide, true);
+  assert.deepEqual(source, before);
+  assert.deepEqual(studyDimensionRuns(null), []);
 });

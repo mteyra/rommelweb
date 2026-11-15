@@ -96,7 +96,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
     const indexes = new Set();
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
-      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands']);
+      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands', 'dimensionGuides']);
       if (!Number.isInteger(level.index) || level.index < 0 || level.index >= mapped.levels || indexes.has(level.index)) fail(`${lp}.index`, 'must identify a unique existing floor');
       indexes.add(level.index);
       if (level.extrapolatedFrom !== undefined) {
@@ -117,6 +117,19 @@ export function validateInteriorStudies(studies, campus, lod2) {
         }
       }
       if (!Array.isArray(level.spaces) || !level.spaces.length) fail(`${lp}.spaces`, 'requires study space geometry');
+      if (level.dimensionGuides !== undefined && !Array.isArray(level.dimensionGuides)) fail(lp, 'dimensionGuides must be an array');
+      for (const guide of level.dimensionGuides || []) {
+        const gp = `${lp}.dimensionGuides`;
+        object(guide, gp, ['id', 'label', 'confidence', 'note', 'segment', 'outward']);
+        identify(guide, gp);
+        if (guide.confidence !== 'estimated') fail(gp, 'dimension guides are explicitly estimated');
+        text(guide.note, `${gp}.note`);
+        if (!Array.isArray(guide.segment) || guide.segment.length !== 2 || !guide.segment.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))) fail(gp, 'requires two finite endpoints');
+        if (Math.hypot(...guide.segment[0].map((v, i) => v - guide.segment[1][i])) < 0.1) fail(gp, 'must have a nonzero length');
+        const samples = Array.from({length: 21}, (_, i) => guide.segment[0].map((v, axis) => v + (guide.segment[1][axis] - v) * i / 20));
+        if (!samples.every(point => pointInStudyOutline(point, level.floorOutline))) fail(gp, 'must stay within the displayed floor');
+        if (!Array.isArray(guide.outward) || guide.outward.length !== 2 || !guide.outward.every(Number.isFinite) || Math.abs(Math.hypot(...guide.outward) - 1) > 0.00001) fail(gp, 'requires a unit outward vector');
+      }
       for (const [i, space] of level.spaces.entries()) {
         const sp = `${lp}.spaces[${i}]`;
         object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes', 'stairFlight']);

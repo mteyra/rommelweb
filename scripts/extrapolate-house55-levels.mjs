@@ -77,7 +77,9 @@ export function refreshHouse55LowerLevels(lowerLevels, topLevel, building) {
   if (topLevel.spaces.filter(space => space.kind === 'room').length !== 20
     || topLevel.spaces.filter(space => space.kind === 'stairs').length !== 1
     || topLevel.spaces.filter(space => space.kind === 'corridor').length !== 2
-    || topLevel.spaces.length !== 23 || topLevel.doors.length !== 21) {
+    || topLevel.spaces.filter(space => space.kind === 'service').length > 1
+    || topLevel.spaces.length !== 23 + topLevel.spaces.filter(space => space.kind === 'service').length
+    || topLevel.doors.length !== 21) {
     throw new Error('Review a changed top-floor count before extrapolating House 55');
   }
   const sourcePrefix = 'study-55-2-';
@@ -131,6 +133,9 @@ export function refreshHouse55LowerLevels(lowerLevels, topLevel, building) {
       }
       if (original.kind === 'corridor') {
         space.note += ' Only the top-floor corridor footprint is repeated; additional lower-floor wings remain unassigned.';
+      }
+      if (original.kind === 'service') {
+        space.note += ' This narrow residual strip is unassigned, has no door, and must not be interpreted as a hallway or confirmed service area.';
       }
       return space;
     });

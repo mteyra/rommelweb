@@ -1,7 +1,8 @@
 {
   "status": "Conditional area benchmark; all wall allowances and apartment depths remain unmeasured.",
-  "studySHA256": "25541ffaa3510d4daa4743e455e9c7063ce2d0ba686f9b716276b499507f4afd",
-  "provenanceSHA256": "95a6739294c1364f19b1076e470ba20d7a3200f21bdd79bd5ccf15ec0968c9e9",
+  "currentStage": "rAlignment",
+  "studySHA256": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+  "provenanceSHA256": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
   "baselineSHA256": "868a6f93a7cde1cd09909c3b6e5009cc862c3035e4828d9b8fb578fb0cee4de8",
   "parameters": {
     "targetInternalAreaSquareMetres": 16.4,
@@ -21,6 +22,7 @@
     {
       "room": "A",
       "bank": "A",
+      "recordStage": "areaStudy",
       "grossArea": 19.732853793343494,
       "conditionalInternalArea": 16.400000000009765,
       "removedPerimeterAllocation": 3.3328537933337294,
@@ -36,6 +38,7 @@
     {
       "room": "B",
       "bank": "A",
+      "recordStage": "areaStudy",
       "grossArea": 18.478556526579997,
       "conditionalInternalArea": 16.399999999997995,
       "removedPerimeterAllocation": 2.078556526582002,
@@ -51,6 +54,7 @@
     {
       "room": "C",
       "bank": "A",
+      "recordStage": "areaStudy",
       "grossArea": 18.478862451351993,
       "conditionalInternalArea": 16.400000000008774,
       "removedPerimeterAllocation": 2.0788624513432197,
@@ -66,6 +70,7 @@
     {
       "room": "D",
       "bank": "A",
+      "recordStage": "areaStudy",
       "grossArea": 19.108332409535016,
       "conditionalInternalArea": 16.39999999999992,
       "removedPerimeterAllocation": 2.708332409535096,
@@ -81,6 +86,7 @@
     {
       "room": "W1",
       "bank": "W",
+      "recordStage": "areaStudy",
       "grossArea": 19.732510642542998,
       "conditionalInternalArea": 16.40000000001016,
       "removedPerimeterAllocation": 3.3325106425328386,
@@ -96,6 +102,7 @@
     {
       "room": "W2",
       "bank": "W",
+      "recordStage": "areaStudy",
       "grossArea": 18.477983115232497,
       "conditionalInternalArea": 16.400000000001345,
       "removedPerimeterAllocation": 2.0779831152311523,
@@ -111,6 +118,7 @@
     {
       "room": "W3",
       "bank": "W",
+      "recordStage": "areaStudy",
       "grossArea": 18.477900481686,
       "conditionalInternalArea": 16.399999999989436,
       "removedPerimeterAllocation": 2.077900481696563,
@@ -126,6 +134,7 @@
     {
       "room": "W4",
       "bank": "W",
+      "recordStage": "areaStudy",
       "grossArea": 18.478260680381496,
       "conditionalInternalArea": 16.400000000018025,
       "removedPerimeterAllocation": 2.0782606803634707,
@@ -141,6 +150,7 @@
     {
       "room": "E",
       "bank": "E",
+      "recordStage": "areaStudy",
       "grossArea": 18.473890329092505,
       "conditionalInternalArea": 16.400000000009904,
       "removedPerimeterAllocation": 2.0738903290826016,
@@ -156,6 +166,7 @@
     {
       "room": "F",
       "bank": "E",
+      "recordStage": "areaStudy",
       "grossArea": 18.47403118119,
       "conditionalInternalArea": 16.400000000000006,
       "removedPerimeterAllocation": 2.0740311811899943,
@@ -171,6 +182,7 @@
     {
       "room": "G",
       "bank": "E",
+      "recordStage": "areaStudy",
       "grossArea": 19.715737496433483,
       "conditionalInternalArea": 16.399999999995014,
       "removedPerimeterAllocation": 3.3157374964384694,
@@ -186,6 +198,7 @@
     {
       "room": "N1",
       "bank": "N",
+      "recordStage": "areaStudy",
       "grossArea": 19.060458063215986,
       "conditionalInternalArea": 16.40000000000204,
       "removedPerimeterAllocation": 2.6604580632139445,
@@ -201,6 +214,7 @@
     {
       "room": "N2",
       "bank": "N",
+      "recordStage": "areaStudy",
       "grossArea": 18.461976781366012,
       "conditionalInternalArea": 16.399999999989934,
       "removedPerimeterAllocation": 2.061976781376078,
@@ -216,6 +230,7 @@
     {
       "room": "N3",
       "bank": "N",
+      "recordStage": "areaStudy",
       "grossArea": 19.65465532004796,
       "conditionalInternalArea": 16.400000000009303,
       "removedPerimeterAllocation": 3.2546553200386583,
@@ -231,6 +246,7 @@
     {
       "room": "L1",
       "bank": "L",
+      "recordStage": "areaStudy",
       "grossArea": 18.4868509307885,
       "conditionalInternalArea": 16.406979245475032,
       "removedPerimeterAllocation": 2.079871685313467,
@@ -246,6 +262,7 @@
     {
       "room": "L2",
       "bank": "L",
+      "recordStage": "areaStudy",
       "grossArea": 18.47876294663901,
       "conditionalInternalArea": 16.399999833775357,
       "removedPerimeterAllocation": 2.0787631128636512,
@@ -261,6 +278,7 @@
     {
       "room": "L3",
       "bank": "L",
+      "recordStage": "areaStudy",
       "grossArea": 18.471124225793005,
       "conditionalInternalArea": 16.393020920750946,
       "removedPerimeterAllocation": 2.0781033050420596,
@@ -276,46 +294,49 @@
     {
       "room": "R1",
       "bank": "R",
-      "grossArea": 16.708762436024006,
-      "conditionalInternalArea": 14.730295830715782,
-      "removedPerimeterAllocation": 1.978466605308224,
+      "recordStage": "rAlignment",
+      "grossArea": 18.116568847487503,
+      "conditionalInternalArea": 16.068346637561007,
+      "removedPerimeterAllocation": 2.0482222099264966,
       "target": 16.4,
-      "shortfall": 1.6697041692842163,
+      "shortfall": 0.3316533624389919,
       "targetMet": false,
-      "grossDepth": 6.051090277928427,
+      "grossDepth": 6.050344934969347,
       "internalStudyAxisExtents": [
-        2.562694028087755,
-        5.7522346934256605
+        2.795714690055414,
+        5.751593490239682
       ]
     },
     {
       "room": "R2",
       "bank": "R",
-      "grossArea": 16.715566831933504,
-      "conditionalInternalArea": 14.736609484949087,
-      "removedPerimeterAllocation": 1.9789573469844175,
+      "recordStage": "rAlignment",
+      "grossArea": 18.1245628981475,
+      "conditionalInternalArea": 16.075807566029717,
+      "removedPerimeterAllocation": 2.048755332117782,
       "target": 16.4,
-      "shortfall": 1.6633905150509118,
+      "shortfall": 0.32419243397028197,
       "targetMet": false,
-      "grossDepth": 6.053556266271972,
+      "grossDepth": 6.0530190627470635,
       "internalStudyAxisExtents": [
-        2.5641463419855697,
-        5.754698110334993
+        2.797164127908232,
+        5.75426489457691
       ]
     },
     {
       "room": "R3",
       "bank": "R",
-      "grossArea": 16.722371981108996,
-      "conditionalInternalArea": 14.742920907947695,
-      "removedPerimeterAllocation": 1.9794510731613002,
+      "recordStage": "rAlignment",
+      "grossArea": 18.132554101101505,
+      "conditionalInternalArea": 16.08326821611122,
+      "removedPerimeterAllocation": 2.049285884990283,
       "target": 16.4,
-      "shortfall": 1.657079092052303,
+      "shortfall": 0.3167317838887769,
       "targetMet": false,
-      "grossDepth": 6.0560222234871866,
+      "grossDepth": 6.0556928217499735,
       "internalStudyAxisExtents": [
-        2.566925092886784,
-        5.757161527091054
+        2.799943259250629,
+        5.7569362965907045
       ]
     }
   ],
@@ -417,28 +438,77 @@
       "meaning": "Model exterior segment, not a clear internal span."
     }
   ],
+  "historicalAreaStudyMeaning": "The retained areaStudy baseline measures the change from the preceding depth study. R plane records are superseded only when currentStage is rAlignment.",
+  "rAlignment": {
+    "baselineSHA256": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2",
+    "unchangedNonRRoomCount": 17,
+    "recessEndpointPlaneResiduals": {
+      "left": -1.7763568394002505e-15,
+      "right": 0.0
+    },
+    "oppositeRecessLength": 8.98948763834736,
+    "alignedEstimatedBankFacadeLength": 8.978520537162009,
+    "unchangedSourceFacadeLength": 8.079456479244135,
+    "meaning": "Estimated bank side lines align to both opposite recess endpoints. Slight retained side slopes explain the bank/recess length difference. The source shell edge is unchanged."
+  },
+  "staircase": {
+    "grossEnclosure": {
+      "width": 1.7807095489742093,
+      "l3Width": 0.44517748841878896,
+      "r1Width": 1.3355320605554204,
+      "l3Share": 0.25000005681737186,
+      "r1Share": 0.7499999431826282
+    },
+    "schematicFlight": {
+      "width": 1.5807095342793094,
+      "l3Width": 0.34517752926082157,
+      "r1Width": 1.2355320050184877,
+      "l3Share": 0.21836872731851895,
+      "r1Share": 0.781631272681481
+    },
+    "measuredSideInsets": {
+      "l3Side": 0.09999995915796739,
+      "r1Side": 0.1000000555369327
+    },
+    "flightOutsideEnclosureArea": 0.0,
+    "rightOnlyShrinkMeaning": "With the west enclosure edge fixed, reducing only the R1-side width increases the L3 fraction above its current 25%. The displayed flight instead has two explicit schematic side insets; no measured stair width is inferred."
+  },
   "rConnector": {
-    "grossGap": 1.4999996149698163,
-    "conditionalClearGap": 1.1999996149698162,
-    "extraDepthToForceTarget": 0.6490395524489707,
-    "conditionalClearGapIfTargetForced": 0.5509600625208455,
+    "grossGap": 1.4999995329757603,
+    "conditionalClearGap": 1.1999995329757602,
+    "extraDepthToForceTarget": 0.1159593595902828,
+    "conditionalClearGapIfTargetForced": 1.0840401733854774,
+    "extraDepthToForceEachRoomTarget": {
+      "R1": 0.11862797235605327,
+      "R2": 0.1159593257541458,
+      "R3": 0.11329077933976683
+    },
+    "targetGrowthMeaning": "Independent half-plane solve for the three-room mean to equal 16.4m\u00b2, translating only the north-facing hall plane. Individual depths are also shown; none is applied.",
     "meaning": "1.20m is a declared study guard. No building-code or real clearance finding."
   },
   "areaBudget": {
     "fixedAnnotationRegion": 510.61615899550134,
     "grossRoomsBefore": 322.72486890955446,
-    "grossRoomsAfter": 370.38944862428644,
-    "conditionalInternalEnvelopeTotal": 323.0098262236555,
+    "grossRoomsAfter": 374.61643322195647,
+    "conditionalInternalEnvelopeTotal": 327.0274224197449,
     "hallRemainderBefore": 173.91455112274247,
-    "hallRemainderAfter": 126.249534517503,
-    "stairArea": 13.977191404534498,
-    "allSpaceOverlap": 0.0,
-    "areaConservationResidual": 1.555082263848817e-05
+    "hallRemainderAfter": 119.10010904319802,
+    "stairArea": 13.977191452959499,
+    "unassignedServiceArea": 2.922437689947495,
+    "allSpaceOverlap": 7.375495523131645e-08,
+    "areaConservationResidual": 1.2412560124630545e-05
+  },
+  "unassigned": {
+    "spaceCount": 1,
+    "area": 2.922437689947495,
+    "doorwayCount": 0,
+    "assumedPassage": false,
+    "meaning": "Explicit unassigned stair-side strip and connected pocket; no service function, occupancy, or passage is established."
   },
   "limits": [
     "16.4m\u00b2 is a published apartment-category average, used here as a conditional internal-envelope target.",
     "Bathroom/service partition areas are unknown and are not deducted from the internal envelope.",
     "Room count and relative placements do not measure bank frontage, wall thickness or clear corridor widths.",
-    "Longer rooms cannot establish whether the narrow R frontages match the approximate 2.70m living-zone example."
+    "A living-zone packing witness cannot establish a complete apartment layout or remove the remaining R internal-area shortfall."
   ]
 }

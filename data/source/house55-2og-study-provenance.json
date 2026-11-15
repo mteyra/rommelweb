@@ -1966,7 +1966,7 @@
       "provisionalElevationAboveBuildingBase": 0,
       "provisionalPlaneCampusY": 2.822,
       "sourceSectionAreaMetresSquared": 804.9250223145001,
-      "studySpaces": 23,
+      "studySpaces": 24,
       "candidateRoomReferences": 20,
       "estimatedOpenings": 21,
       "unassignedAreaMetresSquared": 294.31422415346515,
@@ -2181,13 +2181,13 @@
       "unassignedMeaning": "Additional lower-floor wings and unused edge areas have no invented rooms, corridor routes, staircase connections or use classification.",
       "copiedTopFloorExclusions": false,
       "copiedSolidSketchBoundaries": false,
-      "exteriorTrimAreaMetresSquared": 0.005775511398448202,
+      "exteriorTrimAreaMetresSquared": 0.005775532542464518,
       "maximumExteriorTrimMetres": 0.0004973470067490197,
       "exteriorTrimMeaning": "Only sub-millimetre source-edge differences are clipped. Shared interior geometry, the schematic flight and doorway segments repeat the current top-floor study.",
       "spaceOutsideFloorMetresSquared": 0,
       "maximumSerializedExteriorOffsetMetres": 0,
       "noOccupancyClaim": "Twenty repeated study references are not a complete or confirmed lower-floor room count, room-number inventory, measured layout or occupancy statement.",
-      "topGeometrySha256": "32f3903a1f46999749c199515ae5fbb5e553306d9b166508fb37cb56c37273c8",
+      "topGeometrySha256": "5627e31cba4bdca71dd61e2ba3e880575ba226210967f01a1b5fd975fd3a940f",
       "floorOutlineSha256": "9c20b6b219d936dd38798c852156c593d5fed9b74e910fa92e179a0a4ef0b309",
       "copiedObservedWindows": false,
       "copiedWallBands": false,
@@ -2254,12 +2254,12 @@
         },
         {
           "reference": "L2",
-          "areaMetresSquared": 0.0005537762161953452,
-          "maximumDistanceMetres": 0.00025859698191536395
+          "areaMetresSquared": 0.000553781432810041,
+          "maximumDistanceMetres": 0.0002586005296279991
         },
         {
           "reference": "L3",
-          "areaMetresSquared": 0.0009662224411286502,
+          "areaMetresSquared": 0.0009662276577522277,
           "maximumDistanceMetres": 0.0003985109256863222
         },
         {
@@ -2279,13 +2279,13 @@
         },
         {
           "reference": "N1",
-          "areaMetresSquared": 0.0009914456668980165,
+          "areaMetresSquared": 0.0009914511033741746,
           "maximumDistanceMetres": 0.00040299063806401286
         },
         {
           "reference": "N2",
-          "areaMetresSquared": 0.0003395278041580241,
-          "maximumDistanceMetres": 0.00021977959099146423
+          "areaMetresSquared": 0.0003395330784599082,
+          "maximumDistanceMetres": 0.00021978300530035082
         },
         {
           "reference": "N3",
@@ -2306,6 +2306,11 @@
           "reference": "East hall",
           "areaMetresSquared": 0.0001438921548384542,
           "maximumDistanceMetres": 0.0004973470067490197
+        },
+        {
+          "reference": "Unassigned",
+          "areaMetresSquared": 0,
+          "maximumDistanceMetres": 0
         }
       ]
     },
@@ -2322,7 +2327,7 @@
       "provisionalElevationAboveBuildingBase": 3.1636666666666664,
       "provisionalPlaneCampusY": 5.985666666666667,
       "sourceSectionAreaMetresSquared": 796.5191972750061,
-      "studySpaces": 23,
+      "studySpaces": 24,
       "candidateRoomReferences": 20,
       "estimatedOpenings": 21,
       "unassignedAreaMetresSquared": 285.90679360706054,
@@ -2553,13 +2558,13 @@
       "unassignedMeaning": "Additional lower-floor wings and unused edge areas have no invented rooms, corridor routes, staircase connections or use classification.",
       "copiedTopFloorExclusions": false,
       "copiedSolidSketchBoundaries": false,
-      "exteriorTrimAreaMetresSquared": 0.0036075946645351686,
+      "exteriorTrimAreaMetresSquared": 0.0036075998811445353,
       "maximumExteriorTrimMetres": 0.00043880709816465597,
       "exteriorTrimMeaning": "Only sub-millimetre source-edge differences are clipped. Shared interior geometry, the schematic flight and doorway segments repeat the current top-floor study.",
       "spaceOutsideFloorMetresSquared": 0,
       "maximumSerializedExteriorOffsetMetres": 0,
       "noOccupancyClaim": "Twenty repeated study references are not a complete or confirmed lower-floor room count, room-number inventory, measured layout or occupancy statement.",
-      "topGeometrySha256": "32f3903a1f46999749c199515ae5fbb5e553306d9b166508fb37cb56c37273c8",
+      "topGeometrySha256": "5627e31cba4bdca71dd61e2ba3e880575ba226210967f01a1b5fd975fd3a940f",
       "floorOutlineSha256": "36487a366f473f30c747630c6b23bfd29b3e5eb7903860d6652fafca5edd86b1",
       "copiedObservedWindows": false,
       "copiedWallBands": false,
@@ -2631,7 +2636,7 @@
         },
         {
           "reference": "L3",
-          "areaMetresSquared": 0.0004897929752125663,
+          "areaMetresSquared": 0.0004897981918290384,
           "maximumDistanceMetres": 0.00020199399931433045
         },
         {
@@ -2676,8 +2681,13 @@
         },
         {
           "reference": "East hall",
-          "areaMetresSquared": 0.00007293344908987365,
+          "areaMetresSquared": 0.00007293344908276822,
           "maximumDistanceMetres": 0.0002521461230718183
+        },
+        {
+          "reference": "Unassigned",
+          "areaMetresSquared": 0,
+          "maximumDistanceMetres": 0
         }
       ]
     }
@@ -4986,7 +4996,432 @@
     },
     "limitations": "Area and masonry inputs remain unverified. Existing service partitions are unknown. The R target does not fit under these fixed-frontage/connector assumptions; more depth cannot resolve its separate clear-width concern. Gross model envelopes, conditional internal envelopes and rental/usable floor area must not be conflated."
   },
-  "currentStage": "areaStudy",
+  "rAlignment": {
+    "status": "resident-requested-r-alignment-with-explicit-area-and-access-limits",
+    "baseline": {
+      "path": "data/source/house55-2og-r-alignment-baseline.json",
+      "sha256": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2",
+      "sourceCommit": "00643998683c01e590c6d9a38b448d212b563cff"
+    },
+    "parameters": {
+      "targetInternalAreaSquareMetres": 16.4,
+      "publishedAreaSource": "https://www.werkswelt.de/index.php?id=wohnanlage-campus-sud-i",
+      "publishedAverageDefinitionSource": "https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/760-campus-sued-i-englisch-2026.pdf",
+      "targetInterpretation": "Conditional internal-envelope benchmark, borrowed from the published 16.4m² average. It is not proof of the rental area, clear area or individual room dimensions.",
+      "externalFacadeAllowanceMetres": 0.2,
+      "markedEndWallAllowanceMetres": 0.3,
+      "otherExternalEndAllowanceMetres": 0.2,
+      "allocationBoundaryHalfWallMetres": 0.1,
+      "recessBandMetres": 0.2,
+      "minimumConnectorClearStudyGuardMetres": 1.2,
+      "guardInterpretation": "Geometric study guard only, not a legal or accessibility-compliance claim.",
+      "internalPartitions": "Bathroom, kitchenette and other internal partition footprints are unknown and are not deducted. The internal envelope is not certified usable floor area."
+    },
+    "rooms": [
+      {
+        "label": "R1",
+        "bank": "R",
+        "grossArea": 18.116568908786494,
+        "internalArea": 16.068346637560985,
+        "targetArea": 16.4,
+        "residual": -0.3316533624390132,
+        "targetMet": false,
+        "internalPolygon": [
+          [
+            8.002061,
+            14.308028
+          ],
+          [
+            3.762464,
+            18.194755
+          ],
+          [
+            1.876412,
+            16.134824
+          ],
+          [
+            6.112295,
+            12.247735
+          ],
+          [
+            8.002061,
+            14.308028
+          ]
+        ],
+        "edgeOffsets": [
+          {
+            "normal": [
+              0.9999999733549239,
+              -0.00023084659736415713
+            ],
+            "constant": 13.05666660409328,
+            "kind": "bank-end",
+            "allowance": 0.1
+          },
+          {
+            "normal": [
+              -0.9999999682473161,
+              -0.000252002711789163
+            ],
+            "constant": -16.0542036211965,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "kind": "external-facade",
+            "normal": [
+              0.0008925695936826042,
+              -0.999999601659681
+            ],
+            "constant": -9.71178596005518,
+            "allowance": 0.2
+          },
+          {
+            "kind": "hall-allocation",
+            "normal": [
+              0,
+              1
+            ],
+            "constant": 3.6744343592232274,
+            "allowance": 0.1
+          }
+        ],
+        "grossDepth": 6.050344934969347,
+        "feasibility": "recess-aligned-bank-retains-connector-guard-area-target-unmet"
+      },
+      {
+        "label": "R2",
+        "bank": "R",
+        "grossArea": 18.12456289814751,
+        "internalArea": 16.07580756602964,
+        "targetArea": 16.4,
+        "residual": -0.3241924339703601,
+        "targetMet": false,
+        "internalPolygon": [
+          [
+            10.027017,
+            16.515709
+          ],
+          [
+            5.783573,
+            20.402194
+          ],
+          [
+            3.897523,
+            18.342265
+          ],
+          [
+            8.137251,
+            14.455417
+          ],
+          [
+            10.027017,
+            16.515709
+          ]
+        ],
+        "edgeOffsets": [
+          {
+            "normal": [
+              0.9999999682473161,
+              0.000252002711789163
+            ],
+            "constant": 16.0542036211965,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "normal": [
+              -0.9999997299963469,
+              -0.0007348518446841977
+            ],
+            "constant": -19.051736165892223,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "kind": "external-facade",
+            "normal": [
+              0.0008925695936826042,
+              -0.999999601659681
+            ],
+            "constant": -9.71178596005518,
+            "allowance": 0.2
+          },
+          {
+            "kind": "hall-allocation",
+            "normal": [
+              0,
+              1
+            ],
+            "constant": 3.6744343592232274,
+            "allowance": 0.1
+          }
+        ],
+        "grossDepth": 6.0530190627470635,
+        "feasibility": "recess-aligned-bank-retains-connector-guard-area-target-unmet"
+      },
+      {
+        "label": "R3",
+        "bank": "R",
+        "grossArea": 18.13255410110149,
+        "internalArea": 16.083268216111264,
+        "targetArea": 16.4,
+        "residual": -0.31673178388873424,
+        "targetMet": false,
+        "internalPolygon": [
+          [
+            12.051973,
+            18.723391
+          ],
+          [
+            7.80468,
+            22.609632
+          ],
+          [
+            5.918632,
+            20.549704
+          ],
+          [
+            10.162207,
+            16.663099
+          ],
+          [
+            12.051973,
+            18.723391
+          ]
+        ],
+        "edgeOffsets": [
+          {
+            "normal": [
+              0.9999997299963469,
+              0.0007348518446841977
+            ],
+            "constant": 19.051736165892223,
+            "kind": "shared-divider",
+            "allowance": 0.1
+          },
+          {
+            "normal": [
+              -0.9999992586025156,
+              -0.0012177004636022126
+            ],
+            "constant": -22.049262141623778,
+            "kind": "bank-end",
+            "allowance": 0.1
+          },
+          {
+            "kind": "external-facade",
+            "normal": [
+              0.0008925695936826042,
+              -0.999999601659681
+            ],
+            "constant": -9.71178596005518,
+            "allowance": 0.2
+          },
+          {
+            "kind": "hall-allocation",
+            "normal": [
+              0,
+              1
+            ],
+            "constant": 3.6744343592232274,
+            "allowance": 0.1
+          }
+        ],
+        "grossDepth": 6.0556928217499735,
+        "feasibility": "recess-aligned-bank-retains-connector-guard-area-target-unmet"
+      }
+    ],
+    "alignment": {
+      "interpretation": "Align the two existing estimated side-wall lines to the two endpoints of the opposite recess. Retain their small prior slopes, use equal interpolated bays, and keep the source-facing R plane unchanged.",
+      "northRecessSourceVertexIndexes": [
+        16,
+        15
+      ],
+      "northRecessSegment": [
+        [
+          7.238,
+          11.079
+        ],
+        [
+          13.3,
+          17.717
+        ]
+      ],
+      "northRecessLength": 8.98948763834736,
+      "alignedSidePlanes": {
+        "left": {
+          "kind": "bank-end",
+          "normal": [
+            0.999999973354924,
+            -0.00023084659736415713
+          ],
+          "constant": 13.05666660409328,
+          "allowance": 0.1
+        },
+        "right": {
+          "kind": "bank-end",
+          "normal": [
+            -0.9999992586025156,
+            -0.0012177004636022123
+          ],
+          "constant": -22.049262141623778,
+          "allowance": 0.1
+        }
+      },
+      "facadeSegment": [
+        [
+          1.661524,
+          16.196293
+        ],
+        [
+          7.724656,
+          22.818397
+        ]
+      ],
+      "facadeLength": 8.978520537162012,
+      "sourceFacadeSegment": [
+        [
+          2.304,
+          16.898
+        ],
+        [
+          7.76,
+          22.857
+        ]
+      ],
+      "sourceFacadeLength": 8.079456479244131,
+      "markerMeaning": "Estimated R-bank extent. It is distinct from the unchanged shorter source shell edge and from clear apartment widths."
+    },
+    "rConnector": {
+      "northRecessSourceVertexIndexes": [
+        15,
+        16
+      ],
+      "maximumRecessY": 2.174434359223227,
+      "roomFrontY": 3.6744343592232274,
+      "grossGap": 1.5000000000000004,
+      "assumedClearGap": 1.2,
+      "studyGuard": 1.2,
+      "targetForced": false
+    },
+    "staircase": {
+      "referenceSourceVertexIndexes": [
+        3,
+        4
+      ],
+      "referenceLine": [
+        [
+          1.043,
+          14.558
+        ],
+        [
+          0.48,
+          15.075
+        ]
+      ],
+      "grossWidth": 1.7807098385229754,
+      "grossL3Share": 0.250000043714095,
+      "grossR1Share": 0.749999956285905,
+      "sideInset": 0.1,
+      "schematicFlightWidth": 1.5807098385229752,
+      "schematicL3Share": 0.21836869048363666,
+      "schematicR1Share": 0.7816313095163634,
+      "allowedGrossWidthWithFixedWestEdge": {
+        "minimum": 1.7807101498914515,
+        "maximum": 2.225887687364314
+      },
+      "rightOnlyShrinkConflict": "With the west edge fixed, the L3-side reference distance is fixed. Reducing total width increases its fraction above the existing 25%, so it cannot yield 20–25%. The gross enclosure therefore stays fixed; the flight receives equal explicit side insets.",
+      "enclosureUnchanged": true,
+      "westDoorUnchanged": true,
+      "flightLengthUnchanged": true
+    },
+    "unassigned": {
+      "spaceId": "study-55-2-unassigned-stair-side",
+      "area": 2.922437689947497,
+      "polygon": [
+        [
+          0.48,
+          15.075
+        ],
+        [
+          1.043,
+          14.558
+        ],
+        [
+          1.945754,
+          15.542216
+        ],
+        [
+          5.921263,
+          11.891527
+        ],
+        [
+          6.118379,
+          12.106429
+        ],
+        [
+          1.661524,
+          16.196293
+        ],
+        [
+          2.304,
+          16.898
+        ],
+        [
+          2.219,
+          16.976
+        ],
+        [
+          0.48,
+          15.075
+        ]
+      ],
+      "stripCrossSections": [
+        {
+          "studyY": 3.6744343592232274,
+          "width": 0.29161131380230443
+        },
+        {
+          "studyY": 9.071859632016933,
+          "width": 0.2897434859004109
+        }
+      ],
+      "minimumStripWidth": 0.2897434859004109,
+      "maximumStripWidth": 0.29161131380230443,
+      "doorwayCount": 0,
+      "assumedPassage": false,
+      "confirmedFunction": null,
+      "meaning": "Narrow residual strip and connected blind end pocket removed from circulation; service is a schema category, not an assertion of installed services."
+    },
+    "preserved": {
+      "sourceExterior": true,
+      "floorOutline": true,
+      "windowSegments": true,
+      "roomCount": 20,
+      "doorCount": 21,
+      "unchangedOtherRoomReferences": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "L1",
+        "L2",
+        "L3",
+        "N1",
+        "N2",
+        "N3"
+      ]
+    }
+  },
+  "currentStage": "rAlignment",
   "earlierLowerFloorExtrapolation": [
     {
       "index": 0,
@@ -5476,8 +5911,8 @@
     }
   ],
   "lowerFloorRefresh": {
-    "sourceStage": "areaStudy",
-    "reason": "Resident previously requested extrapolation to the other two floors; the later correction screenshots exposed their stale L/stair geometry. Refresh the current core with explicitly estimated evidence.",
+    "sourceStage": "rAlignment",
+    "reason": "Resident requested extrapolation of the corrected top-floor core. Repeat the current R alignment, schematic flight and unassigned strip as estimates, retaining each lower floor’s own source outline.",
     "copiedObservedWindows": false,
     "copiedWallBands": false
   }

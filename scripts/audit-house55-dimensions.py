@@ -194,26 +194,37 @@ def stair_alignment_audit(polygons, flight, flat_points):
         raise ValueError("The stair alignment requires a separately identified flight")
     flight_values = [projected(point, down) for point in flight.exterior.coords]
     flight_min, flight_max = min(flight_values), max(flight_values)
-    sections = []
-    for fraction in [0.05, 0.25, 0.5, 0.75, 0.95]:
-        v = flight_min + fraction * (flight_max - flight_min)
-        section = polygons["Stairs"].intersection(LineString([point_at(-100, v), point_at(100, v)]))
-        lines = [part for part in components(section) if isinstance(part, LineString)]
-        if len(lines) != 1:
-            raise ValueError("The reference cross-section must span one connected stair enclosure")
-        coordinates = [projected(point, east) for point in lines[0].coords]
-        west, east_edge = min(coordinates), max(coordinates)
-        if not west < 0 < east_edge:
-            raise ValueError("The extended reference line must cross the staircase")
-        width = east_edge - west
-        sections.append({
-            "flightFraction": fraction,
-            "referenceIntersection": point_at(0, v),
-            "lSideWidth": -west, "rSideWidth": east_edge,
-            "grossWidth": width,
-            "lSideRatio": -west / width, "rSideRatio": east_edge / width,
-        })
+    def cross_sections(shape):
+        sections = []
+        for fraction in [0.05, 0.25, 0.5, 0.75, 0.95]:
+            v = flight_min + fraction * (flight_max - flight_min)
+            section = shape.intersection(LineString([point_at(-100, v), point_at(100, v)]))
+            lines = [part for part in components(section) if isinstance(part, LineString)]
+            if len(lines) != 1:
+                raise ValueError("Each stair cross-section must span one connected polygon")
+            coordinates = [projected(point, east) for point in lines[0].coords]
+            west, east_edge = min(coordinates), max(coordinates)
+            if not west < 0 < east_edge:
+                raise ValueError("The extended reference line must cross the staircase")
+            width = east_edge - west
+            sections.append({
+                "flightFraction": fraction,
+                "referenceIntersection": point_at(0, v),
+                "lSideWidth": -west, "rSideWidth": east_edge,
+                "grossWidth": width,
+                "widthMeaning": "Width of the polygon being sectioned, not a surveyed clear dimension.",
+                "lSideRatio": -west / width, "rSideRatio": east_edge / width,
+            })
+        return sections
+
+    sections = cross_sections(polygons["Stairs"])
+    flight_sections = cross_sections(flight)
     center = sections[2]
+    flight_center = flight_sections[2]
+    side_insets = {
+        "l3Side": center["lSideWidth"] - flight_center["lSideWidth"],
+        "r1Side": center["rSideWidth"] - flight_center["rSideWidth"],
+    }
     return {
         "reference": {
             "sourceRoofSurfaceIndex": 39,
@@ -236,11 +247,29 @@ def stair_alignment_audit(polygons, flight, flat_points):
             "meaning": "Equal projected offsets of room dividers past source returns. This confirms relative alignment, not measured masonry thickness or overlapping room interiors.",
         },
         "crossSections": sections,
+        "crossSectionsMeaning": "Gross enclosure measured at five positions along the separately drawn flight.",
         "grossWidthAtFlightCenter": center["grossWidth"],
         "lSideWidthAtFlightCenter": center["lSideWidth"],
         "rSideWidthAtFlightCenter": center["rSideWidth"],
         "maximumRatioError": max(abs(section["lSideRatio"] - 0.25) for section in sections),
         "widthVariationAcrossFlight": max(section["grossWidth"] for section in sections) - min(section["grossWidth"] for section in sections),
+        "schematicFlight": {
+            "crossSections": flight_sections,
+            "widthAtCenter": flight_center["grossWidth"],
+            "lSideWidthAtCenter": flight_center["lSideWidth"],
+            "rSideWidthAtCenter": flight_center["rSideWidth"],
+            "l3ShareAtCenter": flight_center["lSideRatio"],
+            "r1ShareAtCenter": flight_center["rSideRatio"],
+            "sideInsetsFromEnclosure": side_insets,
+            "widthVariation": max(section["grossWidth"] for section in flight_sections) - min(section["grossWidth"] for section in flight_sections),
+            "lShareRange": [min(section["lSideRatio"] for section in flight_sections), max(section["lSideRatio"] for section in flight_sections)],
+            "meaning": "Independent sections of the schematic flight. Its side insets change the split while the gross enclosure and west door remain fixed.",
+        },
+        "fixedWestEdgeWidthForL3Range20To25Percent": {
+            "minimum": center["lSideWidth"] / .25,
+            "maximum": center["lSideWidth"] / .20,
+            "meaning": "A right-edge-only enclosure shrink below the current quarter-split width would increase the L3 share above 25%.",
+        },
         "meaning": "Ratios are recomputed from actual enclosure cross-sections normal to the unchanged source edge. Gross width is derived after retaining the estimated L bays; it is not a surveyed or clear stair dimension.",
     }
 
@@ -308,6 +337,7 @@ def raw_source_metrics(building):
 
 def audit(args):
     level, polygons, floor, metadata = load_study(args.study)
+    r_alignment = metadata.get("rAlignment")
     baseline_level, baseline = (None, None)
     if args.baseline:
         baseline_level, baseline, _, _ = load_study(args.baseline)
@@ -472,7 +502,7 @@ def audit(args):
         "grossWidth": polygons[label].bounds[axis + 2] - polygons[label].bounds[axis],
         "grossDepth": polygons[label].bounds[3 - axis] - polygons[label].bounds[1 - axis],
         "grossArea": polygons[label].area,
-    } for labels, axis, _ in GROUPS.values() for label in labels if not label.startswith("R")]
+    } for labels, axis, _ in GROUPS.values() for label in labels]
     depth_fit = metadata.get("dimensionRefit", {}).get("commonDepth")
     depth_verification = None
     if depth_fit:
@@ -520,11 +550,16 @@ def audit(args):
             raise ValueError(f"Common-depth fit does not reproduce its retained inputs: {depth_verification}")
     report = {
         "status": "Read-only metric feasibility audit; no as-built, occupancy or approval claim.",
+        "currentStage": metadata.get("currentStage"),
         "units": "metres; areas in square metres",
         "residentWorkingHypothesis": {
             "statement": "All top-floor apartments are single rooms, generally similar in size, with dimensional differences described as about a hand length.",
             "meaning": "A repeated single-apartment type with small dimensional variation is a qualitative prior. A hand length is not converted into a measured dimensional tolerance.",
-            "latestCorrection": "The resident confirmed that L1 should match the visible W4 corner overlap and clarified that the extended marked edge divides the stair width into one quarter on the L3 side and three quarters on the R1 side. The latest model retains the estimated L bay widths and derives the staircase from those relationships. Windows, the west stairwell entry and the unresolved R envelopes remain. Absolute dimensions and wall construction are unmeasured.",
+            "latestCorrection": (
+                "The estimated R bank is aligned to both opposite recess endpoints while source exterior, windows and the 1.20m connector study guard remain. The gross stair enclosure retains ¼ L3 / ¾ R1; the flight receives explicit 0.10m insets on both sides. Its neighboring narrow strip is unassigned with no assumed passage. R internal areas remain below the conditional benchmark."
+                if r_alignment else
+                "L1 matches the visible W4 corner overlap; the fixed source-edge extension divides the stair enclosure into one quarter on the L3 side and three quarters on the R1 side. Absolute dimensions and wall construction are unmeasured."
+            ),
         },
         "input": {"path": report_path(args.study), "sha256": digest(args.study)},
         "baseline": {"path": report_path(args.baseline), "sha256": digest(args.baseline)} if args.baseline else None,
@@ -552,7 +587,7 @@ def audit(args):
             "negativeResultMeaning": "A conditional conflict in the current inferred envelopes, not proof that the physical apartments cannot share one type. Approximate reference dimensions and LoD2 uncertainty prevent interpreting a centimetre-scale raw-frontage difference as an interior survey.",
         },
         "shapeSimilarity": {
-            "scope": "Seventeen non-R candidate envelopes; R remains an unresolved width constraint.",
+            "scope": "All twenty current candidate envelopes; their extents do not establish equal internal areas.",
             "meaning": "Projected gross polygon extents, not clear interior dimensions or a measured whole-apartment template.",
             "rooms": similar_rooms,
             "grossWidthRange": [min(row["grossWidth"] for row in similar_rooms), max(row["grossWidth"] for row in similar_rooms)],
@@ -570,6 +605,8 @@ def audit(args):
             "meaning": "Resident-informed locations; exact centers and widths are estimates. Four shared-area windows do not establish room ownership, doorways or access.",
         },
         "wallFaceHypothesis": {
+            "stageMeaning": "Historical 0.20m window/wall-face trial, retained for comparison rather than used as the current R-bank dimensions.",
+            "supersededByRAlignment": bool(r_alignment),
             "assumedOffset": offset,
             "sourceExteriorUnchanged": wall_stage.get("unchangedSourceExterior"),
             "sourceRFacadeAxisRun": r_run,
@@ -577,7 +614,7 @@ def audit(args):
             "necessaryGrossRunForThreeReferenceWidthsWithInset": required_run,
             "necessaryExtensionBeyondSourceAlignedR": max(0, required_run - r_run),
             "remainingNecessaryExtensionBeyondCandidate": max(0, required_run - r_run - offset),
-            "requirementMeaning": "Necessary width bound under the declared 0.10m-per-side sensitivity; not sufficient to prove a full apartment fit or a measured wall arrangement.",
+            "requirementMeaning": "Historical candidate's necessary width bound under the declared 0.10m-per-side sensitivity. Current witness results are in packing; neither proves a complete apartment layout.",
             "westW4PastExteriorReturn": polygons["W4"].bounds[3] - west_return_y,
             "westW4PastAssumedInnerFace": polygons["W4"].bounds[3] - west_return_y - offset,
             "westReturnMeaning": "Historical comparison against the preceding 0.20m wall-band hypothesis, using a plan-axis average. The current stairAlignment section measures the actual corner-normal overlap and whether L1 matches it; no verified wall assembly is inferred.",
@@ -587,6 +624,7 @@ def audit(args):
         },
         "stairAlignment": alignment,
         "areaStudy": metadata.get("areaStudy"),
+        "rAlignment": r_alignment,
         "topology": {
             "overlapArea": sum(first.intersection(second).area for i, first in enumerate(pairs) for second in pairs[i + 1:]),
             "allSpaceOverlapArea": sum(first.intersection(second).area for i, first in enumerate(all_spaces) for second in all_spaces[i + 1:]),
@@ -595,6 +633,12 @@ def audit(args):
             "roomArea": sum(polygons[label].area for label in EXPECTED_LABELS),
             "baselineRoomArea": sum(baseline[label].area for label in EXPECTED_LABELS) if baseline else None,
             "stairArea": polygons["Stairs"].area,
+            "unassigned": [{
+                "label": label, "id": space_records[label]["id"], "area": polygon.area,
+                "doorwayCount": sum(door["spaceId"] == space_records[label]["id"] for door in level.get("doors", [])),
+                "declaredConnections": sorted(graph[label]), "assumedPassage": False,
+            } for label, polygon in polygons.items() if space_records[label]["kind"] == "service"],
+            "areaConservationResidual": sum(polygon.area for polygon in polygons.values()) - annotated.area,
             "remainderArea": hall.area,
             "baselineRemainderArea": sum(polygon.area for polygon in baseline_corridors.values()) if baseline else None,
             "remainderComponentAreas": sorted([item.area for item in components(hall)], reverse=True),
@@ -636,6 +680,7 @@ def audit(args):
                 "RToE": polygons["R3"].distance(polygons["F"]),
                 "stairsSouth": polygons["Stairs"].distance(LineString(flat_points[2:4])),
             },
+            "diagnosticGrossGapMeaning": "Distances between gross polygons only. The stairs-to-R gap is an explicitly unassigned strip after R alignment, not an established corridor or door connection.",
             "baselineSymmetricDifferenceArea": {
                 label: polygons[label].symmetric_difference(baseline[label]).area
                 for label in sorted(EXPECTED_LABELS)
@@ -663,7 +708,7 @@ def audit(args):
             plot_path, flat, occupied,
             {label: polygon for label, polygon in baseline.items() if label not in baseline_corridors} if baseline and with_baseline else None,
             witnesses, corridors, flight, [record for record in door_records if record["target"] == stair_record["shortLabel"]] if stair_record else [],
-            window_records, band_polygons, alignment, metadata.get("areaStudy"),
+            window_records, band_polygons, alignment, metadata.get("areaStudy"), r_alignment,
         )
     print(json.dumps({
         "report": str(args.output),
@@ -675,14 +720,16 @@ def audit(args):
     }, indent=2))
 
 
-def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands, alignment, area_study=None):
+def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands, alignment, area_study=None, r_alignment=None):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.patches import Polygon as Patch
 
     panels = [(baseline, "Earlier geometry · depth fitted to prior estimates · before the confirmed stair alignment")] if baseline else []
-    panels.append((polygons, "House 55 · 2. OG · area-based hypothesis · confirmed overlap and stair split retained"
+    panels.append((polygons, "House 55 · 2. OG · aligned R-bank study · source shell and confirmed overlap retained"
+                   if r_alignment else
+                   "House 55 · 2. OG · area-based hypothesis · confirmed overlap and stair split retained"
                    if area_study else
                    "House 55 · 2. OG · matching W4 / L1 overlap · confirmed ¼ L3 / ¾ R1 stair split"))
     figure, axes = plt.subplots(len(panels), 1, figsize=(16, 8.5 * len(panels)), squeeze=False, layout="constrained")
@@ -692,12 +739,19 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
             for part in components(polygon):
                 axis.add_patch(Patch(
                     list(part.exterior.coords),
-                    facecolor="#bab5a8" if label == "Stairs" else "#c9ccc3",
+                    facecolor="#dbd3df" if label == "Unassigned" else "#bab5a8" if label == "Stairs" else "#c9ccc3",
                     edgecolor="#555a50", linewidth=0.8,
-                    hatch="///" if items is polygons and label.startswith("R") else None,
+                    hatch="xx" if label == "Unassigned" else "///" if items is polygons and label.startswith("R") else None,
                 ))
             point = polygon.representative_point()
-            if not (items is polygons and label == "Stairs" and flight is not None):
+            if items is polygons and label == "Unassigned":
+                axis.annotate(
+                    "Unassigned strip + pocket\nNo assumed passage",
+                    xy=(point.x, point.y), xytext=(17, 14.5), ha="center", fontsize=9,
+                    arrowprops={"arrowstyle": "->", "color": "#85708d", "linewidth": .8},
+                    color="#716078",
+                )
+            elif not (items is polygons and label == "Stairs" and flight is not None):
                 axis.text(point.x, point.y, label, ha="center", va="center", fontsize=11)
             witness = witnesses.get(label)
             if items is polygons and witness is not None:
@@ -758,23 +812,29 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
                 )
                 inset = axis.inset_axes([0.355, 0.745, 0.265, 0.19])
                 inset.set_xlim(-0.02, 1.02)
-                inset.set_ylim(-0.55, 1.15)
+                inset.set_ylim(-0.9, 1.15)
                 inset.add_patch(Patch([(0, 0), (1, 0), (1, 0.45), (0, 0.45)], facecolor="#bab5a8", edgecolor="#655f54"))
                 inset.plot([0.25, 0.25], [-0.1, 0.6], color="#a24438", linewidth=1.8)
                 inset.text(0.125, 0.22, "¼", ha="center", va="center", fontsize=14)
                 inset.text(0.625, 0.22, "¾", ha="center", va="center", fontsize=14)
                 inset.text(0.125, -0.17, "L3 side", ha="center", va="center", fontsize=8)
                 inset.text(0.625, -0.17, "R1 side", ha="center", va="center", fontsize=8)
-                inset.text(0.5, 0.85, "Stair width across the extended red edge", ha="center", fontsize=9)
+                inset.text(0.5, 0.85, "Gross enclosure across the fixed source edge", ha="center", fontsize=9)
                 inset.text(
                     0.5, -0.48,
                     f'{alignment["lSideWidthAtFlightCenter"]:.3f} m + {alignment["rSideWidthAtFlightCenter"]:.3f} m = {alignment["grossWidthAtFlightCenter"]:.3f} m gross',
                     ha="center", fontsize=8,
                 )
+                schematic = alignment["schematicFlight"]
+                inset.text(
+                    0.5, -0.8,
+                    f'Schematic flight: {schematic["l3ShareAtCenter"]:.2%} L3 / {schematic["r1ShareAtCenter"]:.2%} R1 · {schematic["widthAtCenter"]:.2f} m',
+                    ha="center", fontsize=8, color="#665d4d",
+                )
                 inset.axis("off")
         axis.autoscale_view()
         subtitle = (
-            "Red: unchanged exterior edge extended · blue: windows · dashed rectangles: packing witnesses · R remains unresolved"
+            "Red: unchanged source edge extended · blue: windows · dashed rectangles: living-zone witnesses only · R internal area remains short"
             if items is polygons
             else "Frozen preceding top-floor study: 20 rooms, two halls and the marked west stairwell entrance. Lower floors not shown."
         )

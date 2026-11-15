@@ -426,6 +426,14 @@ body[data-theme='day'] .waybar .theme-moon {
   opacity: .65;
 }
 
+.exterior-dimensions .dimension-study-guide {
+  color: #8bb7c8;
+}
+
+.exterior-dimensions .dimension-study-guide .dimension-line {
+  stroke-dasharray: 4 3;
+}
+
 .exterior-dimensions text {
   fill: currentColor;
   stroke: #151715;
@@ -443,6 +451,10 @@ body[data-theme='day'] .waybar .theme-moon {
 
 body[data-theme='day'] .exterior-dimensions {
   color: #4f5e50;
+}
+
+body[data-theme='day'] .exterior-dimensions .dimension-study-guide {
+  color: #386b82;
 }
 
 body[data-theme='day'] .exterior-dimensions text {
@@ -3614,6 +3626,36 @@ body[data-theme='day'] .floor-label:focus-visible {
   font-size: 9px;
   line-height: 1.7;
   color: var(--muted);
+}
+
+.apartment-controls {
+  position: absolute;
+  z-index: 15;
+  bottom: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel, #242621ed);
+  backdrop-filter: blur(18px);
+  white-space: nowrap;
+}
+.apartment-controls > span { font-size: 11px; color: var(--muted); }
+.apartment-controls .outline-button { width: auto; }
+.apartment-concept-label {
+  pointer-events: none;
+  font-size: 10px;
+  opacity: .9;
+  border-style: dashed;
+}
+body[data-theme='day'] .apartment-controls { background: #f4f1e9eb; }
+@media (max-width: 700px) {
+  .apartment-controls { bottom: 78px; gap: 14px; padding: 12px; max-width: calc(100vw - 28px); }
+  .apartment-controls > span { display: none; }
 }
 
 .room-label.door-label {

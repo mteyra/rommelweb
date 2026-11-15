@@ -8,11 +8,12 @@ import { calendarDraft, orderedDrafts } from './events.js';
 import { icon } from './icons.js';
 import { roomReferences, roomReferenceSource } from './room-references.js';
 import { studyRoomMeasurements } from './study-measurements.js';
+import { apartmentConcept } from './apartment-concepts.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const base = import.meta.env.BASE_URL;
-const state = { selected: null, floor: null, exploded: false, groupsOpen: false, groupDetails: false, timelineOpen: false, groupIndex: 0, drafts: [], theme: 'night' };
+const state = { selected: null, floor: null, exploded: false, apartment: null, groupsOpen: false, groupDetails: false, timelineOpen: false, groupIndex: 0, drafts: [], theme: 'night' };
 let campus, lod2, interiors, studies, scene, groups, toastTimer, lastFocus, qrRevision = 0;
 let renderedGroupId = null, groupSizeAnimation;
 const groupBackgroundState = new Map();
@@ -57,6 +58,7 @@ function travel(number, { fromGroup = false, focus = true } = {}) {
   state.selected = number;
   state.floor = null;
   state.exploded = false;
+  state.apartment = null;
   if (!fromGroup) setGroups(false);
   document.body.classList.toggle('house-open', Boolean(number));
   $('#floor-detail').open = false;
@@ -85,6 +87,7 @@ function selectFloor(floor) {
   if (!state.selected || (floor !== null && (!Number.isInteger(floor) || floor < 0 || floor >= house(state.selected).levels))) return;
   const focusedFloorLabel = document.activeElement.classList.contains('floor-label');
   state.floor = floor;
+  state.apartment = null;
   if (!state.exploded) { state.exploded = true; scene?.explode(true); renderHouse(); }
   scene?.setFloor(floor);
   $$('#floor-buttons [data-floor]').forEach(button => { const active = Number(button.dataset.floor) === floor; button.classList.toggle('active', active); button.setAttribute('aria-pressed', active); });
@@ -97,16 +100,20 @@ function selectFloor(floor) {
 function renderFloor() {
   const level = getDisplayLevel(interiors, studies, state.selected, state.floor);
   const extrapolated = level?.isStudy && level.extrapolatedFrom !== undefined;
+  const transferred = level?.isStudy && state.selected !== '55';
   const inFloors = Boolean(state.selected && state.exploded);
+  document.body.classList.toggle('apartment-open', Boolean(state.apartment));
+  $('#apartment-controls').hidden = !state.apartment;
+  $('#house-controls').hidden = !state.selected || Boolean(state.apartment);
   document.body.classList.toggle('floors-open', inFloors);
   document.body.classList.toggle('floor-plan-open', inFloors && state.floor !== null);
-  document.body.dataset.view = !state.selected ? 'campus' : !inFloors ? 'house' : state.floor === null ? 'floors' : 'floor';
+  document.body.dataset.view = state.apartment ? 'apartment' : !state.selected ? 'campus' : !inFloors ? 'house' : state.floor === null ? 'floors' : 'floor';
   $('#floor-stage').hidden = !inFloors;
   $('#floor-stage-title').textContent = inFloors ? `House ${state.selected} / ${state.floor === null ? 'Floor study' : level?.isStudy ? floorNotation(state.floor) : level?.label || floorName(state.floor)}` : '';
   $('#floor-stage-note').textContent = state.floor === null ? 'Choose a level to look inside.'
     : extrapolated ? 'Extrapolated study · exterior in model metres.'
       : level?.windows?.length ? 'Blue windows · exterior in model metres.'
-      : level?.isStudy ? 'Resident sketch · exterior in model metres.'
+      : level?.isStudy ? `${transferred ? 'Template study' : 'Resident sketch'} · exterior in model metres.`
       : level?.spaces.length ? 'Explore a room or a marked doorway.' : 'Interior plan awaiting a verified layout.';
   $('#floor-stage').classList.toggle('is-study', Boolean(level?.isStudy));
   $('#all-floors').setAttribute('aria-pressed', state.floor === null);
@@ -116,14 +123,25 @@ function renderFloor() {
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : level?.isStudy ? 'Rooms & drawing key' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
   const spaceButtons = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip${level.isStudy && space.confidence === 'estimated' ? ' is-estimated' : ''}" data-space="${esc(space.id)}"${level.isStudy ? ` aria-label="${esc(`${space.label}, ${space.confidence === 'estimated' ? 'estimated area' : 'resident sketch'}, temporary study label`)}"` : ''}>${esc(space.label)}</button>`).join('')}</div>` : '';
   const dimensionEvidence = level?.isStudy && state.selected === '55' && state.floor === 2
-    ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-AREA-STUDY.md" target="_blank" rel="noopener">Area study & measurements ↗</a>' : '';
+    ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-R-ALIGNMENT.md" target="_blank" rel="noopener">Area study & measurements ↗</a>'
+    : level?.isStudy ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-STUDY.md" target="_blank" rel="noopener">Assumptions & fit checks ↗</a>' : '';
   $('#floor-detail-content').innerHTML = level?.isStudy
-    ? `<p class="study-evidence">${extrapolated ? 'Extrapolated study · see source notes' : 'A resident-sketch study'}</p><div class="study-legend" aria-label="Drawing key">${extrapolated ? '' : '<span data-evidence="sketch">Sketch</span>'}<span data-evidence="estimated">Estimate</span>${level.windows?.length ? `<span data-evidence="window">${level.windows.length} windows</span>` : ''}${level.wallBands?.length ? '<span data-evidence="wall-band">Possible wall</span>' : ''}${level.excludedAreas?.length ? '<span data-evidence="excluded">Excluded</span>' : ''}<span data-evidence="dimension">Exterior / m</span></div>${spaceButtons}<p>Lettered labels are temporary, not physical room numbers. Divisions and doorway positions still need verification.</p><p>Exterior lengths follow the building-shell section at an estimated floor height. Its low-roof margins remain unassigned; these lengths are not apartment spans. Zoom in to reveal smaller runs.</p>${studyNotes(level)}<small>Source: ${esc(level.source)}</small><div class="floor-reference-actions"><button class="text-button" id="contribute-floor">Correct this study ↗</button>${dimensionEvidence}</div>`
+    ? `<p class="study-evidence">${transferred ? 'Template study · this house is not internally surveyed' : extrapolated ? 'Extrapolated study · see source notes' : 'A resident-informed study'}</p><div class="study-legend" aria-label="Drawing key">${extrapolated || transferred ? '' : '<span data-evidence="sketch">Sketch</span>'}<span data-evidence="estimated">Estimate</span>${level.windows?.length ? `<span data-evidence="window">${level.windows.length} windows</span>` : ''}${level.wallBands?.length ? '<span data-evidence="wall-band">Possible wall</span>' : ''}${level.excludedAreas?.length ? '<span data-evidence="excluded">Excluded</span>' : ''}<span data-evidence="dimension">Exterior / m</span></div>${spaceButtons}<p>Lettered labels are temporary, not physical room numbers. Divisions and doorway positions still need verification.</p><p>Exterior lengths follow the building-shell section at an estimated floor height. Its low-roof margins remain unassigned; these lengths are not apartment spans. Zoom in to reveal smaller runs.${level.dimensionGuides?.length ? ' The blue R-bank guide measures the estimated room allocation separately.' : ''}</p>${studyNotes(level)}<small>Source: ${esc(level.source)}</small><div class="floor-reference-actions"><button class="text-button" id="contribute-floor">Correct this study ↗</button>${dimensionEvidence}</div>`
     : level ? `${spaceButtons}<p>${level.elevation} m above building base. Approved room and doorway geometry; walls shown as a low cutaway.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>`
       : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This is the exterior section at a provisional floor height. A house-and-floor plan is needed to place its rooms, corridors and doors accurately.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
   $$('#floor-detail-content [data-space]').forEach(button => button.onclick = () => spaceDialog({house: state.selected, floor: state.floor, spaceId: button.dataset.space}));
   if ($('#contribute-floor')) $('#contribute-floor').onclick = () => correctionDialog(state.selected, state.floor);
   if ($('#room-references')) $('#room-references').onclick = () => roomReferencesDialog();
+  if (state.apartment) {
+    const room = level.spaces.find(space => space.id === state.apartment.spaceId);
+    const partial = state.apartment.concept.diagnostics.some(item => item.code.endsWith('-omitted'));
+    $('#floor-stage-title').textContent = `House ${state.selected} / ${floorNotation(state.floor)} / ${room?.shortLabel || room?.label}`;
+    $('#floor-stage-note').textContent = partial
+      ? 'Partial concept · some items do not fit this envelope.'
+      : 'Layout concept · services and mirror unverified.';
+    $('#apartment-arrangement-label').textContent = partial ? 'Partial arrangement' : 'One possible arrangement';
+    $('#scene-caption').textContent = 'Drag to orbit. Click empty space to return to the floor.';
+  }
 }
 
 function studyNotes(level) {
@@ -135,14 +153,16 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
   if (number !== state.selected || floor !== state.floor || !state.exploded) return;
   const level = getDisplayLevel(interiors, studies, number, floor);
   const space = level?.spaces.find(space => space.id === spaceId);
-  const door = openingId ? level?.doors?.find(door => door.id === openingId && door.spaceId === spaceId) : null;
+  const door = openingId ? level?.doors?.find(door => door.id === openingId && [door.spaceId, door.toSpaceId].includes(spaceId)) : null;
   if (!space || openingId && !door) return;
   if (level.isStudy) {
     const item = door || space;
     const estimated = item.confidence === 'estimated';
     const extrapolated = level.extrapolatedFrom !== undefined;
     const title = `${door ? door.label : space.label} · study`;
-    const description = extrapolated
+    const description = number !== '55'
+      ? 'An estimated layout transferred from House 55 and adapted to this house’s exterior. Its rooms, corridors, openings and apartment types have not been verified in this house.'
+      : extrapolated
       ? `This ${door ? 'doorway' : space.kind === 'stairs' ? 'stair area' : space.kind} is extrapolated from a study of ${floorNotation(level.extrapolatedFrom)}. The source notes identify the version used; its position on this floor still needs verification.`
       : door
       ? estimated ? 'Estimated doorway position. The opening, hinge and direction still need verification.' : 'Doorway marked in the resident sketch. Its position and dimensions still need verification.'
@@ -152,6 +172,7 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
           ? estimated ? 'Estimated stair area. Its shape and connections between floors are unverified.' : 'Stair area marked in the resident sketch. Its exact shape and connections between floors are unverified.'
           : estimated ? 'An estimated space within the resident sketch.' : 'A space marked in the resident sketch; its boundaries are approximate.';
     const measurement = !door ? studyRoomMeasurements(level, space) : null;
+    const concept = space.kind === 'room' ? apartmentConcept(level, space) : null;
     const dimensions = measurement
       ? `<div class="source-item"><strong>Study envelope · before walls</strong><p>≈ ${measurement.shortSpan.toFixed(1)} × ${measurement.longSpan.toFixed(1)} m span · ≈ ${measurement.area.toFixed(1)} m² gross polygon area</p><p>Not measured living area. Spans follow the building axes; polygon area excludes recesses and cutouts.</p></div>` : '';
     modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${dimensions}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
@@ -161,10 +182,37 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
       observation.value = `House ${number}, ${level.label}, study label “${item.label}”: `;
       observation.focus({ preventScroll: true });
     };
+    if (concept?.status === 'concept') {
+      const button = document.createElement('button');
+      button.id = 'explore-apartment';
+      button.className = 'outline-button';
+      button.textContent = 'Explore a layout concept ↗';
+      button.onclick = () => {
+        const active = scene?.focusApartment(space.id);
+        if (!active) return;
+        state.apartment = {spaceId: space.id, concept: active};
+        $('#modal').close();
+        $('#floor-detail').open = false;
+        renderFloor();
+        $('#back-to-floor').focus({preventScroll: true});
+      };
+      $('#modal-body .modal-actions').prepend(button);
+    } else if (concept?.diagnostics?.length) {
+      const note = document.createElement('p');
+      note.className = 'field-note';
+      note.textContent = `No furniture fit is asserted here. ${concept.diagnostics.map(item => item.message).join(' ')}`;
+      $('#modal-body .modal-actions').before(note);
+    }
     return;
   }
   const residentPreview = space.kind === 'room' ? `<div class="space-person-placeholder">${icon('lock')}<strong>Resident card · coming later</strong><p>A resident can choose what to share here once verified access is connected.</p></div><button class="full-button" disabled>Knocking · not connected</button>` : '';
   modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(space.label)}</h2><p class="modal-lead">${esc(door ? door.label : space.kind === 'room' ? 'A room in the house.' : space.kind.replace('-', ' '))}</p>${residentPreview}<p class="source-note">Physical space from ${esc(level.source)} · reviewed ${esc(level.reviewedAt)}. No resident information or occupancy is published.</p>`);
+}
+
+function apartmentNotesDialog() {
+  const concept = state.apartment?.concept;
+  if (!concept) return;
+  modal(`<div class="modal-eyebrow">APARTMENT / ARRANGEMENT STUDY</div><h2 class="modal-title">One possible way to live here.</h2><p class="modal-lead">Fixed-size furniture from the older single-room sketch, fitted inside this estimated envelope. This does not establish the apartment type, mirror or actual internal layout.</p><div class="source-list">${(concept.notes || []).map(note => `<div class="source-item"><p>${esc(note)}</p></div>`).join('')}</div>${concept.diagnostics?.length ? `<p class="field-note">${esc(concept.diagnostics.map(item => item.message).join(' '))}</p>` : ''}<p class="source-note"><a href="https://rommelwood.de/wohnen/zimmergrundriss/" target="_blank" rel="noopener">Original resident-association sketches ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-INTERIOR-EVIDENCE.md" target="_blank" rel="noopener">What the evidence establishes ↗</a></p>`);
 }
 
 function setGroups(open, focus = false) {
@@ -438,7 +486,7 @@ function roomReferencesDialog(campusId = house(state.selected)?.campus || 'I') {
 
 function accuracyDialog() {
   const model = lod2.buildings.find(building => building.number === state.selected);
-  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and tall windows on the newer houses; horizontal plates and smaller, aligned windows on the older ones. Blue House’s aligned rows follow a resident correction. Window spacing and older façade row heights are schematic, separate from the floor sections. Openings fit within the official walls; exact placement still needs a façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interiors, built from resident knowledge</strong><p>Floor counts come from OSM; floor heights remain provisional until approved plans arrive. Resident-sketch studies use temporary labels and distinguish marked areas from estimated room divisions and doorway positions. They are separate from approved geometry and still need measurements. No resident information or occupancy is published.</p></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
+  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Vertical timber seams and tall windows on the newer houses; horizontal plates and smaller, aligned windows on the older ones. Blue House’s aligned rows follow a resident correction. Window spacing and older façade row heights are schematic, separate from the floor sections. Openings fit within the official walls; exact placement still needs a façade survey.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interior studies, with visible limits</strong><p>All five older houses have provisional floor studies. House 55’s top floor uses resident-confirmed relationships; other floors and houses use explicit template assumptions. Unresolved banks and extra wings remain unassigned. Floor heights, partitions and actual access still need measured plans. Optional furniture arrangements are concepts, and temporary labels identify no resident or physical room number.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-STUDY.md" target="_blank" rel="noopener">Fit checks and unresolved areas ↗</a></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
 }
 
 function correctionDialog(number = state.selected || '', floor = state.floor) {
@@ -462,6 +510,7 @@ function correctionDialog(number = state.selected || '', floor = state.floor) {
 function activateFallback() {
   scene?.dispose();
   scene = null;
+  state.apartment = null;
   state.exploded = false;
   state.floor = null;
   $('#map-labels').replaceChildren();
@@ -519,6 +568,7 @@ async function init() {
     $('#accuracy-button').onclick = accuracyDialog;
     $('#explode-building').onclick = () => {
       state.exploded = !state.exploded;
+      state.apartment = null;
       state.floor = null;
       scene?.explode(state.exploded);
       scene?.setFloor(null);
@@ -526,6 +576,8 @@ async function init() {
       if (!state.exploded) $('#scene-caption').textContent = 'Photo-informed linework on the official exterior.';
     };
     $('#all-floors').onclick = () => selectFloor(null);
+    $('#back-to-floor').onclick = () => selectFloor(state.floor);
+    $('#apartment-notes').onclick = apartmentNotesDialog;
     document.addEventListener('rommel:webgl-lost', activateFallback);
     document.addEventListener('keydown', event => {
       if ($('#modal').open) return;
@@ -533,6 +585,7 @@ async function init() {
         if (state.groupDetails && state.groupsOpen) { setGroupDetails(false); }
         else if (state.timelineOpen) { setTimeline(false); $('#open-timeline').focus(); }
         else if (state.groupsOpen) { setGroups(false); $('#open-groups').focus(); }
+        else if (state.apartment) { selectFloor(state.floor); }
       }
     });
     const followLocation = () => {

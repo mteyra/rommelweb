@@ -51,7 +51,7 @@ test('plan windows retain sills and do not become clickable doors or additional 
   assert.equal(symbols.userData.count, 24);
   assert.equal(new Set(symbols.userData.windowIds).size, 24);
   assert.equal(result.pickables.filter(mesh => mesh.userData.openingId).length, 21);
-  assert.equal(result.labels.filter(label => label.kind === 'space').length, 23);
+  assert.equal(result.labels.filter(label => label.kind === 'space').length, plan.spaces.length);
   assert.equal(result.labels.filter(label => label.kind === 'door').length, 21);
   assert.ok(result.group.children.some(child => child.userData.role === 'estimated-wall-band'));
   const wallSegments = result.group.children.filter(child => /interior-walls$/.test(child.userData.role || ''))

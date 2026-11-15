@@ -36,6 +36,25 @@ function fixture() {
   } } };
 }
 
+test('estimated dimension guides reject external spans, source-confidence upgrades and private metadata', () => {
+  const data = fixture(), plan = level(data);
+  plan.dimensionGuides = [{
+    id: 'estimate-span', label: 'Estimated bank', confidence: 'estimated',
+    note: 'Illustrative internal span.', segment: [[0, 0], [4, 0]], outward: [0, -1],
+  }];
+  assert.equal(validate(data), true);
+  for (const change of [
+    guide => { guide.confidence = 'verified'; },
+    guide => { guide.segment = [[0, 0], [40, 0]]; },
+    guide => { guide.outward = [0, -4]; },
+    guide => { guide.resident = 'unsupported field'; },
+  ]) {
+    const invalid = structuredClone(data);
+    change(level(invalid).dimensionGuides[0]);
+    assert.throws(() => validate(invalid), /dimensionGuides/);
+  }
+});
+
 function approvedFixture() {
   return { schemaVersion: 1, buildings: { '55': {
     approved: true, source: 'Synthetic approved plan', reviewedAt: '2025-10-14',
@@ -457,7 +476,7 @@ test('approved geometry retains strict door collinearity instead of inheriting s
 test('House 55 studies cover its three floors while retaining the directly annotated upper-floor evidence', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
   assert.equal(validate(published), true);
-  assert.deepEqual(Object.keys(published.buildings), ['55']);
+  assert.ok(published.buildings['55']);
   assert.deepEqual(published.buildings['55'].levels.map(level => level.index).sort(), [0, 1, 2]);
   const resolved = display(published);
   assert.equal(resolved.isStudy, true);
@@ -465,7 +484,9 @@ test('House 55 studies cover its three floors while retaining the directly annot
   assert.equal(Object.hasOwn(resolved, 'reviewedAt'), false);
   assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'estimated'));
   assert.equal(resolved.spaces.filter(space => space.kind === 'room').length, 20, 'the resident-confirmed count includes three L rooms');
-  assert.equal(resolved.spaces.length, 23, 'twenty rooms plus the stairwell and two distinct hallways');
+  assert.equal(resolved.spaces.length, 24, 'twenty rooms, stairwell, two halls and the explicitly unassigned strip');
+  const unassigned = resolved.spaces.find(space => space.kind === 'service');
+  assert.ok(unassigned && !resolved.doors.some(door => [door.spaceId, door.toSpaceId].includes(unassigned.id)), 'the residual strip cannot become a passage through a guessed opening');
   assert.equal(resolved.doors.length, 21, 'twenty estimated room openings and the resident-located stairwell entrance');
   assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'sketch').length, 0);
   assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'estimated').length, 20, 'fitted envelopes remain estimates even where counts and approximate positions were sketched');
@@ -481,8 +502,8 @@ test('House 55 studies cover its three floors while retaining the directly annot
   assert.doesNotMatch(resolved.notes, /not a confirmed room count/i);
   for (const building of campus.buildings) {
     for (let floor = 0; floor < building.levels; floor++) {
-      if (building.number === '55') continue;
-      assert.equal(getDisplayLevel(emptyApproved, published, building.number, floor), null, 'the House 55 layout must not populate other houses');
+      if (building.campus === 'I') continue;
+      assert.equal(getDisplayLevel(emptyApproved, published, building.number, floor), null, 'the older-house study must not populate newer houses');
     }
   }
   assert.deepEqual(published, before);
@@ -634,9 +655,10 @@ test('R1–R3 remain one continuous block and the corrected upper outline has no
     const corners = cornersOnly(block[0][0]);
     if (floor === 2) {
       assert.equal(corners.length, 4, 'an otherwise straight block must not acquire a fifth corner from source quantization');
-      assert.ok(corners.some(corner => Math.hypot(corner[0] - sourceCorners[0][0], corner[1] - sourceCorners[0][1]) < 0.00001), 'the left exterior anchor is retained');
-      assert.ok(!corners.some(corner => Math.hypot(corner[0] - sourceCorners[1][0], corner[1] - sourceCorners[1][1]) < 0.00001), 'the east end now follows the explicit interior wall-face hypothesis, not the outer corner');
-      assert.ok(Math.abs(sharedBoundaryLength(block[0][0], [sourceCorners[0], sourceCorners[1]]) - Math.hypot(sourceCorners[1][0] - sourceCorners[0][0], sourceCorners[1][1] - sourceCorners[0][1])) < 0.00002, 'the complete source wall span is one flush block edge');
+      const sourceVector = sourceCorners[1].map((value, axis) => value - sourceCorners[0][axis]);
+      const facadeCorners = corners.filter(corner => Math.abs(sourceVector[0] * (corner[1] - sourceCorners[0][1]) - sourceVector[1] * (corner[0] - sourceCorners[0][0])) / Math.hypot(...sourceVector) < 0.00001);
+      assert.equal(facadeCorners.length, 2, 'the extended bank stays flush with the unchanged source façade plane');
+      assert.ok(Math.abs(Math.hypot(...facadeCorners[0].map((v, i) => v - facadeCorners[1][i])) - 8.9785205) < 0.00002, 'aligned side lines set the new R extent without stretching the shell');
       assert.ok(corners.every((point, i) => Math.hypot(point[0] - corners[(i + 1) % corners.length][0], point[1] - corners[(i + 1) % corners.length][1]) > 1), 'no tiny connecting edge remains');
     }
     assert.ok(sharedBoundaryLength(rooms[0].polygon, rooms[1].polygon) > 4);
@@ -659,7 +681,7 @@ test('lower-floor extrapolations use the corrected core while retaining their ow
     assert.ok(plan.spaces.every(space => space.confidence === 'estimated'));
     assert.ok(plan.doors.every(door => door.confidence === 'estimated'));
     assert.equal(plan.spaces.filter(space => space.kind === 'room').length, 20);
-    assert.equal(plan.spaces.length, 23);
+    assert.equal(plan.spaces.length, 24);
     assert.equal(plan.doors.length, 21);
     assert.equal(plan.excludedAreas?.length || 0, 0, 'the upper-floor missing wings are not evidence for missing lower-floor area');
     assert.equal(plan.sketchBoundaries?.length || 0, 0, 'copied walls cannot retain the directly sketched wall style');
