@@ -2,7 +2,22 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — White House 57 independent layout
+## Current revision — Green House 59 completed floors
+
+Green House **59** uses Red’s exact **2. OG and 1. OG** layouts, including both first-floor balconies. EG restores the missing single dorm, merges the entire N wing and its short bank hall into one **Hausmeister** enclosure, and assigns **Garden room** beside the east hall and **Storage** beside the west hall. The [Green layout note](HOUSE59-MODULE-LAYOUT.md) records the supplied annotation and its interpretation.
+
+- Geometry checks verify **20 singles on 2. OG**, **16 singles and four shared apartments on 1. OG**, and **14 singles, three shared apartments and three service enclosures on EG**. Floor areas are **478.78**, **624.48** and **716.01 m²**, respectively.
+- Hausmeister occupies **91.76 m²**, with all former N apartment dividers and entrances removed and one hallway entrance. Garden room and Storage each occupy **68.82 m²**. The Garden doorway follows the green mark about one third of the way along its hallway wall from the stair end.
+- All assigned geometry is contained and disjoint. Doors lie on their connected spaces’ boundaries, every space has a route to the stair, and stairs align across all three floors. The inherited **7.83 m² EG spur** remains unassigned.
+- The [preservation receipt](evidence/house59-layout-preservation.json) verifies **76 protected files** against `b4af250`, unchanged Red and White study records, every other house, and all source façade/campus geometry. The four N-wing layout windows now reference Hausmeister; folded window evidence remains separate.
+- Current provisional fits remain only in Houses **51 and 53**. Historical Green geometry is retained in its [fixture](../tests/fixtures/house59-before-resident-layout.json), preserving earlier numeric and reproduction checks.
+- **All 260 tests pass**, including the new Green geometry and source checks and all retained historical fitting tests.
+- `npm run build` and the path-cache check pass. Production JavaScript is **234.31 kB gzipped**; the existing bundle-size advisory remains.
+- The Firefox [browser receipt](evidence/house59-layout-browser.json) covers all **71 Green space cards**, direct selection of all three common-area doors, fold/unfold camera restoration, both themes, and **1440 × 1000**, **390 × 844** and **320 × 568** views. Red, White and the remaining provisional houses pass their checks. No application console errors or horizontal overflow were observed.
+
+Reviewed views among the **28 screenshots**: [ground floor](preview/house59-layout-0-day.png), [first floor](preview/house59-layout-1-night.png), [Hausmeister](preview/house59-layout-hausmeister-card.png), [Garden doorway](preview/house59-layout-garden-door-card.png), [Storage](preview/house59-layout-storage-card.png) and [320 px phone](preview/house59-layout-garden-phone-320.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — White House 57 independent layout
 
 White House **57** now follows the resident-confirmed Red 55 internal layout on all three floors, in its own rigid coordinate frame. The top floor has **20 singles**; each lower floor has **16 singles and four shared apartments**. On **1. OG**, the **26.97 m² east balcony footprint and its doorway are removed**, while the west balcony remains. On **EG**, the east common area is **Gym** and the west is **Study**. The [White layout note](HOUSE57-MODULE-LAYOUT.md) records the canonical geometry and reproduction command.
 

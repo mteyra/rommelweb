@@ -219,3 +219,31 @@ test('enclosed balconies, cinema and laundry remain common-space cards with one 
     assert.doesNotMatch(view.element('#modal-body').innerHTML, /joining the 1\.40 m hall runs and retained common areas/);
   }
 });
+
+test('Green common spaces are separate from apartment cards and link to their own floor evidence', () => {
+  const records = allModuleLevels(), record = records[0];
+  for (const [index, name] of ['Hausmeister', 'Garden room', 'Storage'].entries()) {
+    record.spaces.push({id: `green-common-${index}`, kind: 'service', label: name,
+      confidence: 'estimated', polygon: rectangle(index * 10, 8, 9.3, 7.4)});
+    record.doors.push({id: `green-door-${index}`, label: `${name} doorway`, spaceId: `green-common-${index}`,
+      confidence: 'estimated', segment: [[index * 10 + 1, 8], [index * 10 + 1.9, 8]]});
+  }
+  const view = ui(records, 0, '59');
+  view.renderFloor();
+  const details = view.element('#floor-detail-content').innerHTML;
+  assert.match(details, /HOUSE59-MODULE-LAYOUT\.md/);
+  assert.doesNotMatch(details, /HOUSE57-MODULE-LAYOUT\.md|Provisional module placement|original outline retained/);
+  for (const [index, name] of ['Hausmeister', 'Garden room', 'Storage'].entries()) {
+    view.spaceDialog({house: '59', floor: 0, spaceId: `green-common-${index}`});
+    const card = view.element('#modal-body').innerHTML;
+    assert.ok(card.includes(`${name} · study`));
+    assert.match(card, /Resident-confirmed arrangement/);
+    assert.doesNotMatch(card, /Shared apartment envelope|Clear room dimensions|study-identity-note|White’s/);
+    view.spaceDialog({house: '59', floor: 0, spaceId: `green-common-${index}`, openingId: `green-door-${index}`});
+    assert.ok(view.element('#modal-body').innerHTML.includes(`${name} doorway · study`));
+  }
+  assert.equal(view.conceptCalls.length, 0);
+  assert.equal(view.element('#modal-body .modal-actions').children.length, 0);
+  view.accuracyDialog();
+  assert.match(view.element('#modal-body').innerHTML, /Green follows Red on both upper floors, including both first-floor balconies/);
+});

@@ -1,0 +1,661 @@
+{
+  "checkedAt": "2026-11-15T19:34:26.095Z",
+  "browser": "Firefox via WebDriver BiDi",
+  "url": "http://127.0.0.1:4186/rommelweb/?qa=green-layout",
+  "floors": [
+    {
+      "floor": 2,
+      "title": "House 59 / 2. OG",
+      "spaceCount": 23,
+      "singles": 20,
+      "shared": 0,
+      "commonAreas": [],
+      "cards": [
+        {
+          "id": "study-59-2-east-3",
+          "label": "Room G",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-east-2",
+          "label": "Room F",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-east-1",
+          "label": "Room E",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-upper-right-3",
+          "label": "Room N3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-upper-right-2",
+          "label": "Room N2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-upper-right-1",
+          "label": "Room N1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-center-right-3",
+          "label": "Room R3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-center-right-2",
+          "label": "Room R2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-center-right-1",
+          "label": "Room R1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-center-left-3",
+          "label": "Room L3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-center-left-2",
+          "label": "Room L2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-center-left-1",
+          "label": "Room L1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-sw-4",
+          "label": "Room D",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-sw-3",
+          "label": "Room C",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-sw-2",
+          "label": "Room B",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-sw-1",
+          "label": "Room A",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-west-4",
+          "label": "Room W4",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-west-3",
+          "label": "Room W3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-west-2",
+          "label": "Room W2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-west-1",
+          "label": "Room W1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-2-potential-corridor-east",
+          "label": "East hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "study-59-2-potential-corridor",
+          "label": "West hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "study-59-2-stairs",
+          "label": "Stairwell",
+          "kind": "stairs"
+        }
+      ],
+      "commonDoorCards": [],
+      "responsive": [
+        {
+          "floor": 2,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 42,
+          "visibleDimensionCount": 14,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 37,
+          "visibleDimensionCount": 14,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 37,
+          "visibleDimensionCount": 14,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        },
+        {
+          "floor": 2,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 8,
+          "visibleDimensionCount": 4,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 8,
+          "visibleDimensionCount": 4,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        }
+      ],
+      "directSceneLabel": "Room G",
+      "directDoor": "Room G doorway",
+      "foldUnfoldCameraRestored": true
+    },
+    {
+      "floor": 1,
+      "title": "House 59 / 1. OG",
+      "spaceCount": 25,
+      "singles": 16,
+      "shared": 4,
+      "commonAreas": [
+        "East balcony",
+        "West balcony"
+      ],
+      "cards": [
+        {
+          "id": "study-59-1-east-2",
+          "label": "Room F",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-east-1",
+          "label": "Room E",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-upper-right-2",
+          "label": "Room N2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-upper-right-1",
+          "label": "Room N1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-center-right-3",
+          "label": "Room R3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-center-right-2",
+          "label": "Room R2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-center-right-1",
+          "label": "Room R1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-center-left-3",
+          "label": "Room L3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-center-left-2",
+          "label": "Room L2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-center-left-1",
+          "label": "Room L1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-sw-4",
+          "label": "Room D",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-sw-3",
+          "label": "Room C",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-sw-2",
+          "label": "Room B",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-west-4",
+          "label": "Room W4",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-west-3",
+          "label": "Room W3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-west-2",
+          "label": "Room W2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-1-west-1",
+          "label": "Shared apartment W1",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-1-sw-1",
+          "label": "Shared apartment A",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-1-upper-right-3",
+          "label": "Shared apartment N3–N4",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-1-east-3",
+          "label": "Shared apartment G–H",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-1-common-R",
+          "label": "East balcony",
+          "kind": "service"
+        },
+        {
+          "id": "study-59-1-common-L",
+          "label": "West balcony",
+          "kind": "service"
+        },
+        {
+          "id": "study-59-1-potential-corridor-east",
+          "label": "East hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "study-59-1-potential-corridor",
+          "label": "West hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "study-59-1-stairs",
+          "label": "Stairwell",
+          "kind": "stairs"
+        }
+      ],
+      "commonDoorCards": [],
+      "responsive": [
+        {
+          "floor": 1,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 43,
+          "visibleDimensionCount": 20,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 1,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 18,
+          "visibleDimensionCount": 13,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 1,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 18,
+          "visibleDimensionCount": 13,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        },
+        {
+          "floor": 1,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 8,
+          "visibleDimensionCount": 2,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 1,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 8,
+          "visibleDimensionCount": 2,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        }
+      ],
+      "directSceneLabel": "Room F",
+      "directDoor": "Room F doorway",
+      "foldUnfoldCameraRestored": true
+    },
+    {
+      "floor": 0,
+      "title": "House 59 / EG",
+      "spaceCount": 23,
+      "singles": 14,
+      "shared": 3,
+      "commonAreas": [
+        "Garden room",
+        "Storage",
+        "Hausmeister"
+      ],
+      "cards": [
+        {
+          "id": "study-59-0-east-2",
+          "label": "Room F",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-east-1",
+          "label": "Room E",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-center-right-3",
+          "label": "Room R3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-center-right-2",
+          "label": "Room R2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-center-right-1",
+          "label": "Room R1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-center-left-3",
+          "label": "Room L3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-center-left-2",
+          "label": "Room L2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-center-left-1",
+          "label": "Room L1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-sw-4",
+          "label": "Room D",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-sw-3",
+          "label": "Room C",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-sw-2",
+          "label": "Room B",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-west-4",
+          "label": "Room W4",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-west-3",
+          "label": "Room W3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-west-2",
+          "label": "Room W2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "study-59-0-west-1",
+          "label": "Shared apartment W1",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-0-sw-1",
+          "label": "Shared apartment A",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-0-east-3",
+          "label": "Shared apartment G–H",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "study-59-0-common-R",
+          "label": "Garden room",
+          "kind": "service"
+        },
+        {
+          "id": "study-59-0-common-L",
+          "label": "Storage",
+          "kind": "service"
+        },
+        {
+          "id": "study-59-0-common-N",
+          "label": "Hausmeister",
+          "kind": "service"
+        },
+        {
+          "id": "study-59-0-potential-corridor-east",
+          "label": "East hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "study-59-0-potential-corridor",
+          "label": "West hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "study-59-0-stairs",
+          "label": "Stairwell",
+          "kind": "stairs"
+        }
+      ],
+      "commonDoorCards": [
+        "Hausmeister doorway",
+        "Garden room doorway",
+        "Storage doorway"
+      ],
+      "responsive": [
+        {
+          "floor": 0,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 40,
+          "visibleDimensionCount": 17,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 18,
+          "visibleDimensionCount": 11,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 18,
+          "visibleDimensionCount": 11,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        },
+        {
+          "floor": 0,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 7,
+          "visibleDimensionCount": 3,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 7,
+          "visibleDimensionCount": 3,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        }
+      ],
+      "directSceneLabel": "Room F",
+      "directDoor": "Room F doorway",
+      "foldUnfoldCameraRestored": true
+    }
+  ],
+  "checks": [
+    "Model dialog distinguishes completed House 55/57/59 layouts from provisional 51/53.",
+    "Red55 retains its three floor summaries and23/25/25cards.",
+    "White57 retains its floor counts, Gym/Study and west-only balcony.",
+    "51/53 retain provisional original-outline copy.",
+    "Generated study data exactly matches the built preview. No browser console errors."
+  ],
+  "screenshots": [
+    "docs/preview/house59-layout-folded-night.png",
+    "docs/preview/house59-layout-folded-day.png",
+    "docs/preview/house59-layout-stack-night.png",
+    "docs/preview/house59-layout-2-night.png",
+    "docs/preview/house59-layout-2-day.png",
+    "docs/preview/house59-layout-single-card.png",
+    "docs/preview/house59-layout-2-phone-390.png",
+    "docs/preview/house59-layout-2-phone-390-day.png",
+    "docs/preview/house59-layout-2-phone-320.png",
+    "docs/preview/house59-layout-1-night.png",
+    "docs/preview/house59-layout-1-day.png",
+    "docs/preview/house59-layout-east-balcony-card.png",
+    "docs/preview/house59-layout-west-balcony-card.png",
+    "docs/preview/house59-layout-1-phone-390.png",
+    "docs/preview/house59-layout-1-phone-390-day.png",
+    "docs/preview/house59-layout-1-phone-320.png",
+    "docs/preview/house59-layout-0-night.png",
+    "docs/preview/house59-layout-0-day.png",
+    "docs/preview/house59-layout-shared-card.png",
+    "docs/preview/house59-layout-garden-card.png",
+    "docs/preview/house59-layout-storage-card.png",
+    "docs/preview/house59-layout-hausmeister-card.png",
+    "docs/preview/house59-layout-garden-door-card.png",
+    "docs/preview/house59-layout-0-phone-390.png",
+    "docs/preview/house59-layout-0-phone-390-day.png",
+    "docs/preview/house59-layout-0-phone-320.png",
+    "docs/preview/house59-layout-garden-phone-320.png",
+    "docs/preview/house59-layout-model-evidence.png"
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4186/rommelweb/assets/index-CAViQyaT.js"
+  ],
+  "errors": [],
+  "passed": true
+}

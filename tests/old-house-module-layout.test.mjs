@@ -7,13 +7,14 @@ import {validateInteriorStudies} from '../src/interior-studies.js';
 import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, published, historical, archivedWhite] = await Promise.all([
+const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, published, historical, archivedWhite, archivedGreen] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/old-house-module-layouts.json'),
   readHistoricalStudies(), read('tests/fixtures/house57-before-resident-layout.json'),
+  read('tests/fixtures/house59-before-resident-layout.json'),
 ]);
-const houses = ['51', '53', '59'];
+const houses = ['51', '53'];
 const historicalHouses = ['51', '53', '57', '59'];
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan};
 const snapshot = structuredClone(input);
@@ -75,10 +76,11 @@ const visit = (graph, start) => {
   }
   return seen;
 };
-// Keep the earlier White fit under all the same numeric regression checks,
-// while its live study is now protected by house57-module-layout.test.mjs.
-const fitting = house => house === '57' ? archivedWhite.layout : generated.metadata.houses[house];
-const fittingStudy = house => house === '57' ? archivedWhite.building : generated.studies.buildings[house];
+// Keep both completed houses' earlier fits under every numeric regression
+// check; their dedicated suites protect the current independent layouts.
+const archived = {'57': archivedWhite, '59': archivedGreen};
+const fitting = house => archived[house]?.layout ?? generated.metadata.houses[house];
+const fittingStudy = house => archived[house]?.building ?? generated.studies.buildings[house];
 const floors = () => historicalHouses.flatMap(house => fitting(house).levels.map(plan => ({
   house, plan, frame: fitting(house).coordinateFrame,
   level: fittingStudy(house).levels.find(level => level.index === plan.levelIndex),
@@ -116,14 +118,16 @@ test('all twelve historical source outlines and facade observations remain exact
   }
 });
 
-test('the archived White fit remains exactly reproducible from an isolated historical input', () => {
-  const historicalInput = structuredClone(input);
-  historicalInput.studies.buildings['57'] = structuredClone(archivedWhite.building);
-  const result = createOldHouseModuleLayouts(historicalInput);
-  assert.deepEqual(result.studies.buildings['57'], archivedWhite.building);
-  assert.deepEqual(result.metadata.houses['57'], archivedWhite.layout);
-  assert.deepEqual(generated.studies.buildings['57'], studies.buildings['57'],
-    'Historical reproduction never replaces the current resident-confirmed study');
+test('archived White and Green fits remain exactly reproducible from isolated historical inputs', () => {
+  for (const [house, fixture] of Object.entries(archived)) {
+    const historicalInput = structuredClone(input);
+    historicalInput.studies.buildings[house] = structuredClone(fixture.building);
+    const result = createOldHouseModuleLayouts(historicalInput);
+    assert.deepEqual(result.studies.buildings[house], fixture.building);
+    assert.deepEqual(result.metadata.houses[house], fixture.layout);
+    assert.deepEqual(generated.studies.buildings[house], studies.buildings[house],
+      'Historical reproduction never replaces the current resident-confirmed study');
+  }
 });
 
 test('fitted records remain provisional, contain only requested houses and pass site validation', () => {

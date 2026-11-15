@@ -24,11 +24,10 @@ export function assertUnchangedOtherFloors(current, historical) {
     // may replace only provisional interiors, retaining every original outline.
     if (number === '55') continue;
     const next = current.buildings[number];
-    // White's later resident-confirmed completion explicitly replaces its
-    // provisional outlines. Its original source/fitted geometry is still
-    // exercised by the historical old-house suites; the separate House 57
-    // suite protects its exact Red-derived replacement and balcony cutout.
-    if (number === '57' && next?.levels.every(level => level.layoutBasis === 'resident-module-layout')) {
+    // Completed White/Green layouts explicitly replace their provisional
+    // outlines. Original source/fitted geometry remains under the historical
+    // old-house suites; each house's dedicated suite protects its replacement.
+    if (['57', '59'].includes(number) && next?.levels.every(level => level.layoutBasis === 'resident-module-layout')) {
       assert.deepEqual(without(next, ['source', 'sourceDate', 'levels']),
         without(building, ['source', 'sourceDate', 'levels']));
       assert.deepEqual(next.levels.map(level => level.index), building.levels.map(level => level.index));
@@ -37,7 +36,7 @@ export function assertUnchangedOtherFloors(current, historical) {
       for (const original of building.levels) {
         const level = next.levels.find(item => item.index === original.index);
         assert.deepEqual(without(level, changes), without(original, changes),
-          `57/${level.index}: folded windows and every other original source field remain exact`);
+          `${number}/${level.index}: folded windows and every other original source field remain exact`);
         assert.ok(level.spaces.every(space => space.confidence === 'estimated'));
         assert.ok(level.doors.every(door => door.confidence === 'estimated'));
       }

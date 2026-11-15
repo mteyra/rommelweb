@@ -11,13 +11,13 @@ import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
-  oldHouseLayouts, before, historical] = await Promise.all([
+  oldHouseLayouts, before, historical, archivedGreen] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
   read('public/data/interiors.json'), read('public/data/room-markers.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/house57-module-layouts.json'),
   read('public/data/old-house-module-layouts.json'), read('tests/fixtures/house57-before-resident-layout.json'),
-  readHistoricalStudies(),
+  readHistoricalStudies(), read('tests/fixtures/house59-before-resident-layout.json'),
 ]);
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts};
 const snapshot = structuredClone(input), generated = createHouse57ModuleLayouts(input);
@@ -322,7 +322,7 @@ test('White study identifiers are unique, stable, floor-specific and reference e
 test('legacy fitting and source-study generation cannot overwrite the independently accepted White layout', () => {
   const fitted = createOldHouseModuleLayouts(input);
   assert.deepEqual(fitted.studies.buildings['57'], studies.buildings['57']);
-  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['51', '53', '59']);
+  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['51', '53']);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
   const mixed = structuredClone(historical);
   mixed.buildings['57'] = structuredClone(studies.buildings['57']);
@@ -341,8 +341,12 @@ test('preservation receipt protects Red, all other houses, original source exter
   assert.equal(receipt.baseCommit, before.baseCommit);
   assert.equal(receipt.house55Unchanged, true);
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['57']);
-  assert.equal(sha(await readFile(new URL(`../${receipt.studyChangeScope.path}`, import.meta.url))),
-    receipt.studyChangeScope.afterSha256);
+  // This receipt describes the earlier White release. Reconstruct that dated
+  // record with Green's exact retained pre-completion data; current Green is
+  // protected independently by house59-module-layout.test.mjs.
+  const whiteReleaseStudies = structuredClone(studies);
+  whiteReleaseStudies.buildings['59'] = structuredClone(archivedGreen.building);
+  assert.equal(sha(JSON.stringify(whiteReleaseStudies, null, 2) + '\n'), receipt.studyChangeScope.afterSha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.whiteCanonical.path}`, import.meta.url))),
     receipt.whiteCanonical.sha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.historicalWhiteFit.path}`, import.meta.url))),
@@ -350,12 +354,13 @@ test('preservation receipt protects Red, all other houses, original source exter
   assert.equal(sha(JSON.stringify(studies.buildings['55'])), receipt.house55RecordSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
     assert.notEqual(house, '57');
-    assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
+    assert.equal(sha(JSON.stringify(whiteReleaseStudies.buildings[house])), record.sha256, house);
   }
   assert.equal(receipt.otherBuildings.length, 9);
   assert.ok(receipt.otherBuildings.every(record => record.exteriorUnchanged && record.campusUnchanged));
   for (const house of ['51', '53', '59']) {
-    assert.equal(sha(JSON.stringify(oldHouseLayouts.houses[house])), receipt.retainedFittedHouses[house].sha256);
+    const layout = house === '59' ? archivedGreen.layout : oldHouseLayouts.houses[house];
+    assert.equal(sha(JSON.stringify(layout)), receipt.retainedFittedHouses[house].sha256);
   }
   assert.equal(receipt.currentFittedCatalogExcludes57, true);
   assert.equal(oldHouseLayouts.houses['57'], undefined);
