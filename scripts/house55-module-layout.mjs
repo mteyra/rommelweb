@@ -170,7 +170,10 @@ async function main() {
   const plan=createModulePlan(archive.level,provenance.registration);
   const level=createStudyLevel(plan,archive.level);
   const building=studies.buildings['55'];
-  building.source='House 55 resident studies: 2. OG uses the independent 15 November 2026 module layout (2.70 × 6.00 m clear rooms, 3.10 m modules, 1.40 m hallways and 2.70 m stairwell). EG and 1. OG retain their earlier, unverified extrapolations. Folded exterior window evidence is retained separately.';
+  const lowerFloorSource=building.levels.some(l=>l.index===1&&l.layoutBasis==='resident-module-layout')
+    ? '1. OG extends the same modules with two shared apartment envelopes and the resident-annotated additions and cutouts. EG retains its earlier, unverified extrapolation.'
+    : 'EG and 1. OG retain their earlier, unverified extrapolations.';
+  building.source=`House 55 resident studies: 2. OG uses the independent 15 November 2026 module layout (2.70 × 6.00 m clear rooms, 3.10 m modules, 1.40 m hallways and 2.70 m stairwell). ${lowerFloorSource} Folded exterior window evidence is retained separately.`;
   building.levels[building.levels.findIndex(l=>l.index===2)]=level;
   validateInteriorStudies(studies,campus,lod2);
   for(const [path,data] of [

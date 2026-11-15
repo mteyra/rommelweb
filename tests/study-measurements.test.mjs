@@ -81,3 +81,41 @@ test('independent layout measures clear rooms and exact design guides separately
   assert.equal(studyDimensionRuns(level)[0].label, 'Module 3.10 m');
   assert.equal(studyRoomMeasurements({...level, layoutBasis: undefined}, room).areaBasis, 'gross-study-envelope');
 });
+
+test('independent shared apartments measure whole gross envelopes in the rotated layout axes', () => {
+  for (const angle of [0, Math.PI / 7, Math.PI / 2, -Math.PI / 5]) {
+    const outer = transform(rectangle(0, 0, 30, 10), angle);
+    const polygon = transform(rectangle(1, 1, 6.2, 7.4), angle);
+    for (const reverse of [false, true]) {
+      const level = {isStudy: true, layoutBasis: 'resident-module-layout',
+        floorOutline: [{outer: reverse ? [...outer].reverse() : outer}]};
+      const space = {kind: 'shared', polygon: reverse ? [...polygon].reverse() : polygon};
+      const before = structuredClone({level, space});
+      const result = studyRoomMeasurements(level, space);
+      close(result.shortSpan, 6.2);
+      close(result.longSpan, 7.4);
+      close(result.area, 45.88);
+      assert.equal(result.areaBasis, 'shared-apartment-layout');
+      assert.deepEqual({level, space}, before);
+      for (const kind of ['corridor', 'stairs', 'lift', 'service']) {
+        assert.equal(studyRoomMeasurements(level, {...space, kind}), null);
+      }
+      assert.equal(studyRoomMeasurements({...level, isStudy: false}, space), null);
+    }
+  }
+});
+
+test('shared apartment polygon area excludes a recess and hole without changing its envelope spans', () => {
+  const angle = Math.PI / 3;
+  const level = {isStudy: true, layoutBasis: 'resident-module-layout',
+    floorOutline: [{outer: transform(rectangle(0, 0, 30, 10), angle)}]};
+  const space = {kind: 'shared',
+    polygon: transform([[0, 0], [6.2, 0], [6.2, 7.4], [2, 7.4], [2, 6.4], [0, 6.4], [0, 0]], angle),
+    holes: [transform(rectangle(3, 2, 0.5, 0.8), angle)]};
+  const result = studyRoomMeasurements(level, space);
+  close(result.shortSpan, 6.2);
+  close(result.longSpan, 7.4);
+  close(result.area, 43.48);
+  assert.notEqual(result.area, result.shortSpan * result.longSpan);
+  assert.equal(result.areaBasis, 'shared-apartment-layout');
+});

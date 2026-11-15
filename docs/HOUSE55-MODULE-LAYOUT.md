@@ -50,7 +50,7 @@ The stair block is currently **2.70 × 7.40 m**. The width split is prescribed; 
 
 The 24 relocated layout-window symbols preserve the familiar count of twenty room references plus four shared openings. Their **1.05 m symbol width** and new positions are schematic. They do not move the original source façade windows or establish measured openings in the new outline.
 
-Floor heights remain provisional. Bathroom/kitchen partitions, actual net usable area after those partitions, and the physical relationship between this independent layout and the exterior need further evidence. Lower floors and other houses have not inherited the new modules.
+Floor heights remain provisional. Bathroom/kitchen partitions, actual net usable area after those partitions, and the physical relationship between this independent layout and the exterior need further evidence. A subsequent [1. OG revision](HOUSE55-FIRST-FLOOR-LAYOUT.md) reuses this exact core with floor-specific additions; EG and other houses retain their prior studies.
 
 ## One plan, three views
 

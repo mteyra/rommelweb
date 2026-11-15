@@ -22,7 +22,9 @@ export function assertUnchangedOtherFloors(current, historical) {
         `House ${number} must retain its historical study instead of inheriting the new module plan`);
       continue;
     }
-    for (const level of building.levels.filter(item => item.index !== 2)) {
+    // House 55's first and top floors now have independent module studies.
+    // Its ground floor and every other house retain the archived geometry.
+    for (const level of building.levels.filter(item => item.index === 0)) {
       assert.deepEqual(current.buildings[number].levels.find(item => item.index === level.index), level,
         `House 55 floor ${level.index} must retain its historical study`);
     }

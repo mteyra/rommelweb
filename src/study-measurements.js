@@ -8,9 +8,10 @@ const ringArea = ring => {
   }, 0) / 2);
 };
 
-/** Computed design extents; the layout basis distinguishes clear rooms from gross study envelopes. */
+/** Computed design extents, with separate bases for clear rooms and whole apartment envelopes. */
 export function studyRoomMeasurements(level, space) {
-  if (!level?.isStudy || space?.kind !== 'room') return null;
+  const independent = isIndependentLayout(level);
+  if (!level?.isStudy || space?.kind !== 'room' && !(independent && space?.kind === 'shared')) return null;
   const direction = studyPlanDirection(level);
   const length = Math.hypot(direction[0], direction[2]);
   const along = [direction[2] / length, -direction[0] / length];
@@ -21,7 +22,9 @@ export function studyRoomMeasurements(level, space) {
   };
   const spans = [span(along), span(across)].sort((a, b) => a - b);
   const area = ringArea(space.polygon) - (space.holes || []).reduce((sum, hole) => sum + ringArea(hole), 0);
-  return {shortSpan: spans[0], longSpan: spans[1], area, areaBasis: isIndependentLayout(level) ? 'clear-room-layout' : 'gross-study-envelope'};
+  const areaBasis = !independent ? 'gross-study-envelope'
+    : space.kind === 'shared' ? 'shared-apartment-layout' : 'clear-room-layout';
+  return {shortSpan: spans[0], longSpan: spans[1], area, areaBasis};
 }
 
 const distance = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);

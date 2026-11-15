@@ -102,6 +102,7 @@ function renderFloor() {
   const extrapolated = level?.isStudy && level.extrapolatedFrom !== undefined;
   const transferred = level?.isStudy && state.selected !== '55';
   const independent = isIndependentLayout(level);
+  const sharedApartments = independent && level.spaces.some(space => space.kind === 'shared');
   const windows = getLevelWindows(level);
   const inFloors = Boolean(state.selected && state.exploded);
   document.body.classList.toggle('apartment-open', Boolean(state.apartment));
@@ -113,6 +114,7 @@ function renderFloor() {
   $('#floor-stage').hidden = !inFloors;
   $('#floor-stage-title').textContent = inFloors ? `House ${state.selected} / ${state.floor === null ? 'Floor study' : level?.isStudy ? floorNotation(state.floor) : level?.label || floorName(state.floor)}` : '';
   $('#floor-stage-note').textContent = state.floor === null ? 'Choose a level to look inside.'
+    : sharedApartments ? 'Single rooms & shared envelopes · Hall 1.40 m'
     : independent ? 'Room 2.70 × 6.00 m · Module 3.10 m · Hall 1.40 m'
     : extrapolated ? 'Extrapolated study · exterior in model metres.'
       : windows.length ? 'Blue windows · exterior in model metres.'
@@ -125,14 +127,18 @@ function renderFloor() {
     : 'Almost overhead. Drag to adjust; All levels returns to the stack.';
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : level?.isStudy ? 'Rooms & drawing key' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
   const spaceButtons = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip${level.isStudy && space.confidence === 'estimated' ? ' is-estimated' : ''}" data-space="${esc(space.id)}"${level.isStudy ? ` aria-label="${esc(`${space.label}, ${space.confidence === 'estimated' ? 'estimated area' : 'resident sketch'}, temporary study label`)}"` : ''}>${esc(space.label)}</button>`).join('')}</div>` : '';
-  const dimensionEvidence = independent ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MODULE-LAYOUT.md" target="_blank" rel="noopener">Layout dimensions & assumptions ↗</a>'
+  const dimensionEvidence = independent && state.selected === '55' && state.floor === 1 ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-FIRST-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Layout dimensions & assumptions ↗</a>'
+    : independent ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MODULE-LAYOUT.md" target="_blank" rel="noopener">Layout dimensions & assumptions ↗</a>'
     : level?.isStudy && state.selected === '55' && state.floor === 2
     ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-R-ALIGNMENT.md" target="_blank" rel="noopener">Area study & measurements ↗</a>'
     : level?.isStudy ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-STUDY.md" target="_blank" rel="noopener">Assumptions & fit checks ↗</a>' : '';
-  const drawingEvidence = independent ? 'Independent room layout'
+  const drawingEvidence = sharedApartments ? 'Independent floor layout'
+    : independent ? 'Independent room layout'
     : transferred ? 'Template study · this house is not internally surveyed'
       : extrapolated ? 'Extrapolated study · see source notes' : 'A resident-informed study';
-  const dimensionNote = independent
+  const dimensionNote = sharedApartments
+    ? 'Single rooms have 2.70 × 6.00 m clear rectangles (16.20 m²), with a 0.20 m side wall on each side of every 3.10 m module. Shared apartments are shown as whole gross envelopes; their internal rooms, services and wall positions remain unresolved. Main hall runs are 1.40 m wide. Outline dimensions describe this independent layout. Window and doorway positions remain schematic.'
+    : independent
     ? 'Rooms have 2.70 × 6.00 m clear rectangles (16.20 m²), with a 0.20 m side wall on each side of every 3.10 m module. Halls are 1.40 m wide. Outline dimensions describe this independent layout. Window and doorway positions remain schematic.'
     : `Exterior lengths follow the building-shell section at an estimated floor height. Its low-roof margins remain unassigned; these lengths are not apartment spans. Zoom in to reveal smaller runs.${level?.dimensionGuides?.length ? ' The blue R-bank guide measures the estimated room allocation separately.' : ''}`;
   $('#floor-detail-content').innerHTML = level?.isStudy
@@ -170,11 +176,15 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
     const estimated = item.confidence === 'estimated';
     const extrapolated = level.extrapolatedFrom !== undefined;
     const independent = isIndependentLayout(level);
+    const sharedApartments = independent && level.spaces.some(space => space.kind === 'shared');
     const title = `${door ? door.label : space.label} · study`;
     const description = independent
       ? door ? 'A schematic doorway in the independent room layout. Its position and opening details remain adjustable.'
         : space.kind === 'room' ? 'A clear room rectangle using the chosen 2.70 × 6.00 m dimensions, arranged within a 3.10 m module.'
-          : space.kind === 'corridor' ? 'A 1.40 m wide hallway in the independent room layout.'
+          : space.kind === 'shared' ? 'A whole shared-apartment envelope. Its internal rooms, services and wall positions remain unresolved.'
+          : space.kind === 'corridor' ? sharedApartments
+            ? 'Circulation joining the 1.40 m hall runs and retained common areas.'
+            : 'A 1.40 m wide hallway in the independent room layout.'
             : 'A proposed space in the independent room layout. Its arrangement still needs verification.'
       : number !== '55'
       ? 'An estimated layout transferred from House 55 and adapted to this house’s exterior. Its rooms, corridors, openings and apartment types have not been verified in this house.'
@@ -191,8 +201,10 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
     const concept = space.kind === 'room' ? apartmentConcept(level, space) : null;
     const dimensions = !measurement ? '' : measurement.areaBasis === 'clear-room-layout'
       ? `<div class="source-item"><strong>Clear room dimensions</strong><p>${measurement.shortSpan.toFixed(2)} × ${measurement.longSpan.toFixed(2)} m · ${measurement.area.toFixed(2)} m² clear polygon area</p><p>3.10 m module = 0.20 m side wall + 2.70 m clear width + 0.20 m side wall. These are the chosen layout dimensions.</p></div>`
+      : measurement.areaBasis === 'shared-apartment-layout'
+      ? `<div class="source-item"><strong>Shared apartment envelope · before walls</strong><p>${measurement.shortSpan.toFixed(2)} × ${measurement.longSpan.toFixed(2)} m span · ${measurement.area.toFixed(2)} m² gross polygon area</p><p>Whole apartment envelope, including wall allowances. Internal rooms and services have not yet been divided. Spans follow the layout axes; polygon area excludes recesses and cutouts.</p></div>`
       : `<div class="source-item"><strong>Study envelope · before walls</strong><p>≈ ${measurement.shortSpan.toFixed(1)} × ${measurement.longSpan.toFixed(1)} m span · ≈ ${measurement.area.toFixed(1)} m² gross polygon area</p><p>Not measured living area. Spans follow the building axes; polygon area excludes recesses and cutouts.</p></div>`;
-    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${independent ? 'Independent layout' : extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${dimensions}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
+    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${independent ? 'Independent layout' : extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' || independent && space.kind === 'shared' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${dimensions}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
     $('#correct-space-study').onclick = () => {
       correctionDialog(number, floor);
       const observation = $('#correction-form').elements.observation;
@@ -503,7 +515,13 @@ function roomReferencesDialog(campusId = house(state.selected)?.campus || 'I') {
 
 function accuracyDialog() {
   const model = lod2.buildings.find(building => building.number === state.selected);
-  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Timber grooves, weathering and staggered older-house plates follow photographic references. Lila and Grey include identified recessed balconies and stair fronts; mapped window rows retain their blank timber spans. Blue’s upper rows align, and Red has separately identified rear and roof glazing. Recess depths, equipment positions and unseen openings remain estimated. Source exterior dimensions remain unchanged.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/PHOTO-FACADE-UPGRADE.md" target="_blank" rel="noopener">Photo study and limits ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interior studies, with visible limits</strong><p>House 55’s top floor now shows an independent layout with 2.70 × 6.00 m clear rooms, 3.10 m modules and 1.40 m halls. Its outline is generated from these chosen dimensions. The folded exterior retains its source model. Other floors and older houses retain their earlier template studies. Floor heights and actual access still need measured plans. Optional furniture arrangements are concepts, and temporary labels identify no resident or physical room number.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-STUDY.md" target="_blank" rel="noopener">Fit checks and unresolved areas ↗</a></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
+  const otherLevels = (studies?.buildings?.['55']?.levels || []).filter(level => level.index !== 2);
+  const independentLevels = otherLevels.filter(level => isIndependentLayout(getDisplayLevel(interiors, studies, '55', level.index)));
+  const remainingFloors = otherLevels.filter(level => !independentLevels.includes(level)).map(level => floorNotation(level.index));
+  const otherFloorSources = independentLevels.length
+    ? `House 55’s ${independentLevels.map(level => floorNotation(level.index)).join(' and ')} ${independentLevels.length === 1 ? 'also uses' : 'also use'} an independent layout${independentLevels.some(level => level.spaces.some(space => space.kind === 'shared')) ? ', including shared apartment envelopes whose internal divisions remain unresolved' : ''}. ${remainingFloors.length ? `House 55’s ${remainingFloors.join(' and ')} and other older houses` : 'Other older houses'} retain their earlier template studies.`
+    : 'Other floors and older houses retain their earlier template studies.';
+  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Timber grooves, weathering and staggered older-house plates follow photographic references. Lila and Grey include identified recessed balconies and stair fronts; mapped window rows retain their blank timber spans. Blue’s upper rows align, and Red has separately identified rear and roof glazing. Recess depths, equipment positions and unseen openings remain estimated. Source exterior dimensions remain unchanged.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/PHOTO-FACADE-UPGRADE.md" target="_blank" rel="noopener">Photo study and limits ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interior studies, with visible limits</strong><p>House 55’s top floor now shows an independent layout with 2.70 × 6.00 m clear rooms, 3.10 m modules and 1.40 m halls. Its outline is generated from these chosen dimensions. The folded exterior retains its source model. ${esc(otherFloorSources)} Floor heights and actual access still need measured plans. Optional furniture arrangements are concepts, and temporary labels identify no resident or physical room number.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-STUDY.md" target="_blank" rel="noopener">Fit checks and unresolved areas ↗</a></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
 }
 
 function correctionDialog(number = state.selected || '', floor = state.floor) {

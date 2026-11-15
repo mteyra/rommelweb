@@ -1,0 +1,107 @@
+{
+  "baseCommit": "6895e930f4083b4f2206aa3ca179f43218388970",
+  "immutableFiles": {
+    "public/data/lod2.json": {
+      "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "unchanged": true
+    },
+    "public/data/campus.json": {
+      "sha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "unchanged": true
+    },
+    "public/data/interiors.json": {
+      "sha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "unchanged": true
+    },
+    "public/data/house55-module-layout.json": {
+      "sha256": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165",
+      "unchanged": true
+    },
+    "public/house55-layout/shell.json": {
+      "sha256": "fb0765bea42826441098f7bd1b6b05e599320f4f3f91045fe85ff52e91ce480d",
+      "unchanged": true
+    },
+    "public/house55-study/study.js": {
+      "sha256": "6929b1389be4d912f2ea790980d57ac320f14f1d1ec0605b96021f01faf3e3bf",
+      "unchanged": true
+    },
+    "public/house55-layout/layout.js": {
+      "sha256": "d0e4789a73d512138d7b62a0dc93c934519878f0e0f3f9ae1e3d9462bd48a97d",
+      "unchanged": true
+    }
+  },
+  "preservedFloorRecords": [
+    {
+      "house": "51",
+      "floor": 0,
+      "unchanged": true
+    },
+    {
+      "house": "51",
+      "floor": 1,
+      "unchanged": true
+    },
+    {
+      "house": "51",
+      "floor": 2,
+      "unchanged": true
+    },
+    {
+      "house": "53",
+      "floor": 0,
+      "unchanged": true
+    },
+    {
+      "house": "53",
+      "floor": 1,
+      "unchanged": true
+    },
+    {
+      "house": "53",
+      "floor": 2,
+      "unchanged": true
+    },
+    {
+      "house": "55",
+      "floor": 0,
+      "unchanged": true
+    },
+    {
+      "house": "55",
+      "floor": 2,
+      "unchanged": true
+    },
+    {
+      "house": "57",
+      "floor": 0,
+      "unchanged": true
+    },
+    {
+      "house": "57",
+      "floor": 1,
+      "unchanged": true
+    },
+    {
+      "house": "57",
+      "floor": 2,
+      "unchanged": true
+    },
+    {
+      "house": "59",
+      "floor": 0,
+      "unchanged": true
+    },
+    {
+      "house": "59",
+      "floor": 1,
+      "unchanged": true
+    },
+    {
+      "house": "59",
+      "floor": 2,
+      "unchanged": true
+    }
+  ],
+  "firstFloorSourceWindowsUnchanged": true,
+  "firstFloorSourceWindowCoverageUnchanged": true
+}

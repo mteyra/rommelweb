@@ -6,10 +6,11 @@ import {applyHouse55AreaStudy} from '../scripts/house55-area-study.mjs';
 import {refreshHouse55LowerLevels} from '../scripts/extrapolate-house55-levels.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {asMulti, polygonArea, local, onBoundary} from '../scripts/house55-window-wall-study.mjs';
+import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [baseline, published, campus, lod2] = await Promise.all([
-  read('data/source/house55-2og-area-baseline.json'), read('public/data/interior-studies.json'),
+const [baseline, historical, campus, lod2] = await Promise.all([
+  read('data/source/house55-2og-area-baseline.json'), readHistoricalStudies(),
   read('public/data/campus.json'), read('public/data/lod2.json'),
 ]);
 const building = lod2.buildings.find(b => b.number === '55');
@@ -19,7 +20,7 @@ const {level, metadata} = result;
 const totalArea = polygons => polygons.reduce((sum, p) => sum + polygonArea(p), 0);
 const shapeDelta = (a, b) => totalArea(difference(asMulti(a), asMulti(b))) + totalArea(difference(asMulti(b), asMulti(a)));
 
-test('conditional area fit retains the observed shell, counts, windows, staircase geometry and valid door graph on all three study floors', () => {
+test('historical conditional area fit retains the observed shell, counts, windows, staircase geometry and valid door graph on all three archived study floors', () => {
   assert.equal(JSON.stringify(original), before);
   assert.equal(JSON.stringify(building), buildingBefore);
   assert.deepEqual(level.floorOutline, original.floorOutline);
@@ -40,10 +41,10 @@ test('conditional area fit retains the observed shell, counts, windows, staircas
     assert.equal(hall.kind, 'corridor');
     assert.ok(onBoundary(door.segment, room) && onBoundary(door.segment, hall));
   }
-  const lower = published.buildings['55'].levels.filter(l => l.index < 2);
+  const lower = historical.buildings['55'].levels.filter(l => l.index < 2);
   const repeated = refreshHouse55LowerLevels(lower, level, building).levels;
   assert.equal(validateInteriorStudies({
-    schemaVersion: 1, buildings: {'55': {...published.buildings['55'], levels: [...repeated, level]}},
+    schemaVersion: 1, buildings: {'55': {...historical.buildings['55'], levels: [...repeated, level]}},
   }, campus, lod2), true, 'the serialized geometry passes the production validator, including repeated floors');
   const floor = level.floorOutline.map(p => [p.outer, ...(p.holes || [])]);
   for (let i = 0; i < level.spaces.length; i++) {

@@ -2,7 +2,19 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — independent House 55 top-floor layout
+## Current revision — House 55 first-floor extension
+
+House 55 / **1. OG** extends the approved top-floor core with **20 single apartments and two 6.20 × 7.40 m shared-apartment envelopes**. The four end additions and annotated cutouts give the requested 15.50 m and 12.40 m wings. The resident confirmed the **8.10 m W inner return** so the top-floor core and all other final dimensions remain fixed.
+
+- Polygon checks establish **624.48 m²** of complete, disjoint coverage. Eighteen retained singles and the staircase keep their exact top-floor positions. All 22 apartment entrances connect to the stair through the two halls and 24 illustrative door segments. The retained **9.30 × 2.90 m** strips are open circulation.
+- The [preservation receipt](evidence/house55-first-floor-preservation.json) confirms unchanged top-floor canonical and sandbox files, all **14 other floor records**, the official exterior/campus/approved-interior files, and the first floor's source façade evidence.
+- The new geometry tests verify exact outline runs, room sizes, shared-envelope bounds, full-width hallway junctions, containment, non-overlap, door connectivity, exterior layout windows and deterministic published data. UI checks distinguish the shared envelopes' **45.88 m² gross area** from each single's **16.20 m² clear area** and preserve top-floor output.
+- **All 202 tests pass**, as do the production build and path-cache check, with the existing bundle-size advisory. Historical area and source-window tests use their dated evidence and retain the top-floor assertions.
+- Isolated Firefox production-preview checks pass at **1440 × 1000**, **390 × 844** and **320 × 568**. All twenty outline dimensions appear on desktop, including the confirmed **8.10 m** return. Single/shared cards, day/night views, return to the unchanged top floor, folding, and horizontal overflow checks pass with no application console errors. See the [browser receipt](evidence/house55-first-floor-browser-checks.json).
+
+Reviewed images: [first floor](preview/house55-first-floor-floor.png), [day view](preview/house55-first-floor-day-floor.png), [phone](preview/house55-first-floor-phone.png) and [shared apartment](preview/house55-first-floor-shared-apartment.png). The [first-floor note](HOUSE55-FIRST-FLOOR-LAYOUT.md) records the final annotation, confirmed dimension reconciliation, gross shared-envelope assumptions and reproduction command. Publication continues through the existing GitHub Pages workflow on `main`.
+
+## Previous revision — independent House 55 top-floor layout
 
 House 55 / 2. OG now uses the resident's requested module solution: twenty **2.70 × 6.00 m** clear rooms, a **0.20 m side strip on each side**, **3.10 m modules**, **1.40 m hallways** and a **2.70 m stair block split 1.30 + 1.40 m**. The outline matches the annotated **7.40, 9.30, 12.40, 21.30, 1.90 and 5.00 m** runs. The main unfolded view, standalone study and sandbox starting layout share the same generated plan.
 

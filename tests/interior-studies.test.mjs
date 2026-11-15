@@ -7,6 +7,7 @@ import { validateInteriorData, getLevelElevations } from '../src/interiors.js';
 import { validateInteriorStudies, getDisplayLevel, getLevelWindows, studyFloorSection, studyPlanDirection } from '../src/interior-studies.js';
 import { createInteriorWireframe } from '../src/interior-wireframe.js';
 import { floorSection } from '../src/sections.js';
+import { readHistoricalStudies, assertUnchangedOtherFloors } from './fixtures/pre-module-studies.mjs';
 
 const read = async name => JSON.parse(await readFile(new URL(`../public/data/${name}.json`, import.meta.url), 'utf8'));
 const [campus, lod2] = await Promise.all(['campus', 'lod2'].map(read));
@@ -18,12 +19,6 @@ const room = studies => level(studies).spaces[0];
 const validate = studies => validateInteriorStudies(studies, campus, lod2);
 const display = studies => getDisplayLevel(emptyApproved, studies, '55', 2);
 const priorUpper = async () => JSON.parse(await readFile(new URL('../data/source/house55-2og-before-module-layout.json', import.meta.url), 'utf8')).level;
-const priorStudyData = async () => {
-  const data = await read('interior-studies');
-  data.buildings['55'].levels = data.buildings['55'].levels.map(level => level.index === 2 ? null : level);
-  data.buildings['55'].levels[data.buildings['55'].levels.indexOf(null)] = await priorUpper();
-  return data;
-};
 
 // Synthetic plans exercise the data contract; none is loaded by the website.
 function fixture() {
@@ -517,8 +512,9 @@ test('approved geometry retains strict door collinearity instead of inheriting s
   assert.throws(() => validateInteriorData(approved, campus, lod2), /boundary edge/);
 });
 
-test('House 55 exposes the independent module layout only on its top floor', async () => {
+test('House 55 retains its independent top-floor module layout while the ground floor and other houses stay unchanged', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
+  assertUnchangedOtherFloors(published, await readHistoricalStudies());
   assert.equal(validate(published), true);
   assert.ok(published.buildings['55']);
   assert.deepEqual(published.buildings['55'].levels.map(level => level.index).sort(), [0, 1, 2]);
@@ -539,9 +535,7 @@ test('House 55 exposes the independent module layout only on its top floor', asy
   }
   assert.ok(resolved.doors.every(door => !Object.hasOwn(door, 'hinge') && !Object.hasOwn(door, 'swing')));
   assert.equal(resolved.excludedAreas?.length || 0, 0, 'old source-shell exclusions do not constrain the independent outline');
-  for (const floor of [0, 1]) {
-    assert.equal(getDisplayLevel(emptyApproved, published, '55', floor).layoutBasis, undefined, 'lower floors retain their prior studies');
-  }
+  assert.equal(getDisplayLevel(emptyApproved, published, '55', 0).layoutBasis, undefined, 'the ground floor retains its prior study');
   for (const building of campus.buildings) {
     for (let floor = 0; floor < building.levels; floor++) {
       if (building.campus === 'I') continue;
@@ -613,7 +607,7 @@ test('the frozen pre-area stage retains its historical bay and depth assumptions
 });
 
 test('the saved prior stair correction retains its historical L3 alignment and ratio', async () => {
-  const published = await priorStudyData();
+  const published = await readHistoricalStudies();
   const source = lod2.buildings.find(building => building.number === '55').surfaces[39].points;
   const origin = [source[3][0], source[3][2]], delta = [source[4][0] - origin[0], source[4][2] - origin[1]];
   const length = Math.hypot(...delta), along = delta.map(value => value / length), towardR = [along[1], -along[0]];
@@ -645,7 +639,7 @@ test('the saved prior stair correction retains its historical L3 alignment and r
 });
 
 test('the saved prior area refit retains its hall assignments and historical west-only stair entry', async () => {
-  const published = await priorStudyData(), plan = display(published);
+  const published = await readHistoricalStudies(), plan = display(published);
   const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-area-baseline.json', import.meta.url)));
   const magnitude = Math.hypot(0.676, 0.737);
   const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
@@ -684,7 +678,7 @@ test('the saved prior area refit retains its hall assignments and historical wes
 });
 
 test('the saved prior R1–R3 allocation remains one continuous block without a corner spur', async () => {
-  const published = await priorStudyData();
+  const published = await readHistoricalStudies();
   const roof = lod2.buildings.find(building => building.number === '55').surfaces[39];
   const sourceCorners = [6, 7].map(index => [roof.points[index][0], roof.points[index][2]]);
   for (const floor of [0, 1, 2]) {
@@ -708,13 +702,13 @@ test('the saved prior R1–R3 allocation remains one continuous block without a 
   }
 });
 
-test('lower floors retain the saved prior core and their own exterior sections independently of the new top floor', async () => {
+test('the ground floor retains its saved prior core and exterior section independently of the module floors', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
   const upper = await priorUpper(), official = lod2.buildings.find(building => building.number === '55');
   const elevations = getLevelElevations(emptyApproved, '55', 3, official.height);
   const allIds = published.buildings['55'].levels.flatMap(plan => [...plan.spaces, ...(plan.doors || []), ...(plan.excludedAreas || [])].map(item => item.id));
   assert.equal(new Set(allIds).size, allIds.length, 'same-looking floor plans still need globally unique interaction IDs');
-  for (const floor of [0, 1]) {
+  for (const floor of [0]) {
     const plan = getDisplayLevel(emptyApproved, published, '55', floor);
     assert.equal(plan.extrapolatedFrom, 2);
     assert.match(plan.notes, /extrapolat/i);

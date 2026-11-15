@@ -7,6 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "paths:build": "node scripts/build-path-network.mjs",
     "layout:build": "node scripts/house55-module-layout.mjs",
+    "layout:first-floor": "node scripts/house55-first-floor-layout.mjs",
     "prebuild": "node scripts/build-path-network.mjs --check",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
