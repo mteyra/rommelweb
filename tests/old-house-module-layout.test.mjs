@@ -7,13 +7,14 @@ import {validateInteriorStudies} from '../src/interior-studies.js';
 import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, published, historical] = await Promise.all([
+const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, published, historical, archivedWhite] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/old-house-module-layouts.json'),
-  readHistoricalStudies(),
+  readHistoricalStudies(), read('tests/fixtures/house57-before-resident-layout.json'),
 ]);
-const houses = ['51', '53', '57', '59'];
+const houses = ['51', '53', '59'];
+const historicalHouses = ['51', '53', '57', '59'];
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan};
 const snapshot = structuredClone(input);
 const generated = createOldHouseModuleLayouts(input);
@@ -74,9 +75,13 @@ const visit = (graph, start) => {
   }
   return seen;
 };
-const floors = () => houses.flatMap(house => generated.metadata.houses[house].levels.map(plan => ({
-  house, plan, frame: generated.metadata.houses[house].coordinateFrame,
-  level: generated.studies.buildings[house].levels.find(level => level.index === plan.levelIndex),
+// Keep the earlier White fit under all the same numeric regression checks,
+// while its live study is now protected by house57-module-layout.test.mjs.
+const fitting = house => house === '57' ? archivedWhite.layout : generated.metadata.houses[house];
+const fittingStudy = house => house === '57' ? archivedWhite.building : generated.studies.buildings[house];
+const floors = () => historicalHouses.flatMap(house => fitting(house).levels.map(plan => ({
+  house, plan, frame: fitting(house).coordinateFrame,
+  level: fittingStudy(house).levels.find(level => level.index === plan.levelIndex),
   name: `${house}/${plan.levelIndex}`,
 })));
 
@@ -97,8 +102,8 @@ test('all twelve historical source outlines and facade observations remain exact
   for (const house of houses) historicalInput.studies.buildings[house] = structuredClone(historical.buildings[house]);
   const fromHistorical = createOldHouseModuleLayouts(historicalInput);
   assert.deepEqual(fromHistorical, generated, 'Replacing provisional interiors is reproducible from the retained source');
-  for (const house of houses) {
-    const next = generated.studies.buildings[house];
+  for (const house of historicalHouses) {
+    const next = fittingStudy(house);
     assert.deepEqual(next.levels.map(level => level.index), [0, 1, 2]);
     for (const previous of historical.buildings[house].levels) {
       const level = next.levels.find(item => item.index === previous.index);
@@ -109,6 +114,16 @@ test('all twelve historical source outlines and facade observations remain exact
       assert.deepEqual(level.layoutWindows, [], 'House 55 windows do not become evidence for another house');
     }
   }
+});
+
+test('the archived White fit remains exactly reproducible from an isolated historical input', () => {
+  const historicalInput = structuredClone(input);
+  historicalInput.studies.buildings['57'] = structuredClone(archivedWhite.building);
+  const result = createOldHouseModuleLayouts(historicalInput);
+  assert.deepEqual(result.studies.buildings['57'], archivedWhite.building);
+  assert.deepEqual(result.metadata.houses['57'], archivedWhite.layout);
+  assert.deepEqual(generated.studies.buildings['57'], studies.buildings['57'],
+    'Historical reproduction never replaces the current resident-confirmed study');
 });
 
 test('fitted records remain provisional, contain only requested houses and pass site validation', () => {
@@ -216,8 +231,8 @@ test('every hallway stays 1.40 m wide, has full-width junctions and reaches the 
     }
     assert.equal(visit(graph, plan.stair.id).size, circulation.length, `${name} all hallway pieces reach the stair`);
   }
-  for (const house of houses) {
-    const plans = generated.metadata.houses[house].levels;
+  for (const house of historicalHouses) {
+    const plans = fitting(house).levels;
     for (const plan of plans.slice(1)) {
       assert.deepEqual(plan.stair.polygon, plans[0].stair.polygon, `${house} staircase remains vertically aligned`);
     }

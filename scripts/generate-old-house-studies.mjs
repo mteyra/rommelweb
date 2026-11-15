@@ -4,7 +4,7 @@ import {pathToFileURL} from 'node:url';
 import {difference, intersection, union, setPrecision} from 'polyclip-ts';
 import {floorSection} from '../src/sections.js';
 import {getLevelElevations} from '../src/interiors.js';
-import {pointInStudyOutline, validateInteriorStudies} from '../src/interior-studies.js';
+import {isIndependentLayout, pointInStudyOutline, validateInteriorStudies} from '../src/interior-studies.js';
 
 const cross = (a, b) => a[0] * b[1] - a[1] * b[0];
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -467,6 +467,11 @@ export function generateOldHouseStudies({studies, lod2, campus, interiors, roomM
     houses: {},
   };
   for (const number of Object.keys(BANK_COUNTS)) {
+    const retained = studies.buildings[number];
+    if (retained?.levels.some(isIndependentLayout)) {
+      result.buildings[number] = structuredClone(retained);
+      continue;
+    }
     const target = lod2.buildings.find(b => b.number === number), mapped = campus.buildings.find(b => b.number === number);
     if (mapped.levels !== 3) throw new Error(`House ${number} floor count changed`);
     const mapping = createRegistration(source, target), [a, b, d, e] = mapping.manifest.rigid;

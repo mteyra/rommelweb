@@ -2,7 +2,20 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — House 55 exterior refinement
+## Current revision — White House 57 independent layout
+
+White House **57** now follows the resident-confirmed Red 55 internal layout on all three floors, in its own rigid coordinate frame. The top floor has **20 singles**; each lower floor has **16 singles and four shared apartments**. On **1. OG**, the **26.97 m² east balcony footprint and its doorway are removed**, while the west balcony remains. On **EG**, the east common area is **Gym** and the west is **Study**. The [White layout note](HOUSE57-MODULE-LAYOUT.md) records the canonical geometry and reproduction command.
+
+- Independent geometry checks verify exact Red-derived local plans apart from these changes, **2.70 × 6.00 m clear singles**, **6.20 × 7.40 m gross shared envelopes**, aligned stairs, connected **1.40 m halls** and **0.90 m doorways** on actual shared boundaries. All assigned areas are contained and disjoint. Footprints are **478.78 m² upstairs**, **597.51 m² on 1. OG** and **716.01 m² on EG**, with only the retained **7.83 m² EG spur** unassigned.
+- The [preservation receipt](evidence/house57-layout-preservation.json) verifies **64 unchanged files** against `1159989`, the complete Red 55 study, canonical plans, standalone study and sandbox, the other nine houses and all source exterior/campus geometry. Only White’s study record changes. Its original façade evidence remains separate from the **24 independent layout windows per floor**.
+- Both legacy generators preserve White’s independent floors. The current provisional catalog contains only **51, 53 and 59**, across **nine floors**. The original fitted House 57 data remains in an [isolated historical fixture](../tests/fixtures/house57-before-resident-layout.json), with its geometry and reproduction assertions retained.
+- **All 247 tests pass** on the final implementation, including exact generation, nonmutation, stable IDs, complete coverage, door routes, source isolation and regeneration without legacy overwrites.
+- `npm run build` and the path-cache check pass. The final production JavaScript is **233.83 kB gzipped**; Vite’s existing bundle-size advisory remains.
+- The final Firefox [browser receipt](evidence/house57-layout-browser.json) records **25 screenshots** and **72 space cards** across White’s three floors, including apartment, hall, stair and common-area cards. Both themes, scene labels, door selection, folding and camera restoration pass at **1440 × 1000**, **390 × 844** and **320 × 568**, with no horizontal overflow or application console errors. The final built preview matches the generated data, and its evidence dialog distinguishes completed 55/57 layouts from provisional 51/53/59.
+
+Reviewed views: [top floor](preview/house57-layout-2-day.png), [first floor with west balcony](preview/house57-layout-1-day.png), [ground floor](preview/house57-layout-0-day.png), [Gym card](preview/house57-layout-gym-card.png), [320 px phone](preview/house57-layout-gym-phone-320.png) and [model evidence](preview/house57-layout-model-evidence.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — House 55 exterior refinement
 
 House **55** now has photo-aligned window stacks, three separated red glazing groups with opaque piers, a glazed corner return, and a distinct recessed entrance beneath its retained canopy. The entrance adds the red three-pane door, address sign and thin metalwork. A small upright dormer and maintenance rungs refine the existing sloped roof. The [exterior note](HOUSE55-EXTERIOR-REFINEMENT.md) records photo registration and estimated details.
 
@@ -15,7 +28,7 @@ Reviewed views: [entrance](preview/house55-exterior-refinement-entrance-day.png)
 
 ## Previous revision — other old houses inside fixed outlines
 
-Houses **51, 53, 57 and 59** now have provisional module placements across **EG, 1. OG and 2. OG**, using House 55’s fixed room dimensions. Houses 51/53 have **19 singles upstairs** and **14 singles plus four shared envelopes** on each lower floor. Houses 57/59 have **20 singles upstairs** and **15 singles plus four shared envelopes** below. Excess floor remains gray and unassigned; the [placement report](OLD-HOUSES-MODULE-LAYOUT.md) records the per-floor counts and remainder.
+This earlier revision gave houses **51, 53, 57 and 59** provisional module placements across **EG, 1. OG and 2. OG**, using House 55’s fixed room dimensions. Houses 51/53 had **19 singles upstairs** and **14 singles plus four shared envelopes** on each lower floor. Houses 57/59 had **20 singles upstairs** and **15 singles plus four shared envelopes** below. Excess floor remained gray and unassigned. The current [placement report](OLD-HOUSES-MODULE-LAYOUT.md) covers the unchanged 51/53/59 placements; White 57’s completed layout supersedes its former fit.
 
 - All **twelve existing outlines** are preserved exactly. The [preservation receipt](evidence/old-house-module-preservation.json) also verifies the complete House 55 record, its three canonical plans, standalone study and sandbox, source observations, official exterior/campus geometry and historical evidence against `eb87e1e`.
 - Fixed modules remain **2.70 × 6.00 m clear**, with **3.10 m pitch**, two **0.20 m side allocations**, **1.40 m halls**, and **6.20 × 7.40 m gross shared envelopes**. Whole banks translate rigidly; no apartment is stretched or clipped. Lower-floor layouts repeat with vertically aligned stairs.

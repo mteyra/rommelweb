@@ -10,6 +10,7 @@
     "layout:first-floor": "node scripts/house55-first-floor-layout.mjs",
     "layout:ground-floor": "node scripts/house55-ground-floor-layout.mjs",
     "layout:old-houses": "node scripts/old-house-module-layout.mjs",
+    "layout:white-house": "node scripts/house57-module-layout.mjs",
     "prebuild": "node scripts/build-path-network.mjs --check",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",

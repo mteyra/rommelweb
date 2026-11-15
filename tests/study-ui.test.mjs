@@ -181,7 +181,7 @@ test('source modal no longer describes EG as a template when all three House55 f
   const view = ui(allModuleLevels(), 0);
   view.accuracyDialog();
   const copy = view.element('#modal-body').innerHTML;
-  assert.match(copy, /House 55’s EG and 1\. OG also use an independent layout/);
+  assert.match(copy, /House 55 uses independent layouts on all three levels/);
   assert.match(copy, /Other older houses retain their earlier template studies/);
   assert.doesNotMatch(copy, /House 55’s EG and other older houses retain their earlier template studies/);
 });

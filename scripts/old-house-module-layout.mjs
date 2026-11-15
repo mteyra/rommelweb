@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {difference, intersection, union} from 'polyclip-ts';
 import {createRegistration} from './generate-old-house-studies.mjs';
-import {validateInteriorStudies} from '../src/interior-studies.js';
+import {isIndependentLayout, validateInteriorStudies} from '../src/interior-studies.js';
 
 export const TARGET_HOUSES = ['51', '53', '57', '59'];
 const BANKS = ['E', 'N', 'R', 'L', 'A', 'W'];
@@ -214,18 +214,22 @@ export function createOldHouseModuleLayouts({studies,lod2,topPlan,firstFloorPlan
   if(topPlan.levelIndex!==2||firstFloorPlan.levelIndex!==1||groundFloorPlan.levelIndex!==0)
     throw Error('Expected the accepted House 55 templates for all three floors.');
   const result=clone(studies),source=lod2.buildings.find(building=>building.number==='55');
+  // A resident-confirmed independent plan supersedes its earlier shell fit.
+  // Keep it intact when regenerating the remaining provisional houses.
+  const activeHouses=TARGET_HOUSES.filter(house=>
+    !studies.buildings[house]?.levels.some(isIndependentLayout));
   const metadata={
     schemaVersion:1,status:'provisional-fit-for-site-check',units:'metres',
     sourceHashes:{topPlan:hash(topPlan),firstFloorPlan:hash(firstFloorPlan),groundFloorPlan:hash(groundFloorPlan)},
     dimensions:{singleWidth:2.7,singleDepth:6,sideWallAllocation:0.2,modulePitch:3.1,hallWidth:1.4,sharedWidth:6.2,sharedDepth:7.4},
     notes:[
-      'Only the existing interior studies for Houses 51, 53, 57 and 59 are replaced. House 55 is retained verbatim.',
+      `Only the existing provisional interior studies for Houses ${activeHouses.join(', ')} are replaced. Resident-confirmed independent houses are retained verbatim.`,
       'All previous floor outlines and folded LoD2 exterior surfaces remain unchanged. No room or shared envelope is stretched, warped or cropped.',
       'Gray residual floor is deliberately unassigned. House 55 cinema, laundry, balcony and window placements do not establish uses or openings in another house.',
       'The layout is a provisional fit to support an in-person check, not a survey, confirmed room inventory or internal furnishing plan.',
     ],houses:{},
   };
-  for(const house of TARGET_HOUSES){
+  for(const house of activeHouses){
     const previous=studies.buildings[house];
     if(!previous)throw Error(`Missing House ${house} study.`);
     const target=lod2.buildings.find(building=>building.number===house),frame=coordinateFrame(topPlan,source,target);
@@ -250,7 +254,7 @@ async function main() {
   validateInteriorStudies(result.studies,campus,lod2);
   await writeFile(new URL('../public/data/old-house-module-layouts.json',import.meta.url),JSON.stringify(result.metadata,null,2)+'\n');
   await writeFile(new URL('../public/data/interior-studies.json',import.meta.url),JSON.stringify(result.studies,null,2)+'\n');
-  console.log(JSON.stringify(Object.fromEntries(TARGET_HOUSES.map(house=>[house,result.metadata.houses[house].levels.map(plan=>({
+  console.log(JSON.stringify(Object.fromEntries(Object.keys(result.metadata.houses).map(house=>[house,result.metadata.houses[house].levels.map(plan=>({
     floor:plan.levelIndex,singles:plan.totals.singleCount,shared:plan.totals.sharedApartmentCount,unassignedArea:plan.totals.unassignedArea,
   }))])),null,2));
 }
