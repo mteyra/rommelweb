@@ -1,5 +1,6 @@
 import {ShapeUtils, Vector2} from 'three';
 import {surfaceFrame} from './facade.js';
+import {addHouse55Entrance} from './house55-entrance.js';
 
 /**
  * Replaceable photographic façade details, in the unmodified campus metre frame.
@@ -303,20 +304,9 @@ export function createExteriorDetails(building, {house = building.number, levels
     output.features.push({id: '55-rear-common-glazing', kind: 'shared-ground-glazing', sourceSurfaceIndices: [43], divisions,
       evidence: 'Resident rear photo locates a broad red framed communal opening below roof33. Nine divisions are an estimate, not a confirmed count; no apartments are assigned.'});
 
-    const courtyard = face([4], [-11.109, 0, 13.826], [-5.295, 0, 20.183]);
-    const courtyardBottom = base + 0.12, courtyardTop = 5.79, courtyardLeft = 0.18, courtyardRight = courtyard.span - 0.18;
-    faceMask(courtyard, courtyardLeft, courtyardRight, courtyardBottom, courtyardTop);
-    const entryA = facePoint(courtyard, courtyardLeft, 0.09), entryB = facePoint(courtyard, courtyardRight, 0.09), entryDivisions = 8;
-    wire('oldWindowFrame', closed([atY(entryA, courtyardBottom), atY(entryB, courtyardBottom), atY(entryB, courtyardTop), atY(entryA, courtyardTop)]));
-    for (let i = 0; i < entryDivisions; i++) {
-      const start = lerp(entryA, entryB, i / entryDivisions), end = lerp(entryA, entryB, (i + 1) / entryDivisions);
-      if (i !== 4 && i !== 5) wall('oldWindowFrame', start, end, courtyardBottom, courtyardBottom + 0.56);
-      wall('detailGlazing', start, end, i === 4 || i === 5 ? courtyardBottom : courtyardBottom + 0.56, courtyardTop);
-      line('oldWindowFrame', atY(start, courtyardBottom), atY(start, courtyardTop));
-    }
-    line('oldWindowFrame', atY(entryA, courtyardTop - 0.58), atY(entryB, courtyardTop - 0.58));
-    output.features.push({id: '55-courtyard-entry-glazing', kind: 'shared-ground-glazing', sourceSurfaceIndices: [4], divisions: entryDivisions,
-      evidence: 'Resident courtyard photo identifies the red entrance under the opposite low roof3, facing Blue House. Its source low-edge registration is fixed; glazing subdivisions and entry leaves remain estimated visual cues, not surveyed doors.'});
+    addHouse55Entrance({building, base, output, helpers: {
+      face, facePoint, faceMask, wall, quad, line, wire, mask, closed, atY, add, sub, mul, unit, dot, lerp,
+    }});
 
     const roof = building.surfaces[33], points = roof.points.slice(0, -1);
     let normal = unit(points.reduce((sum, a, i) => {

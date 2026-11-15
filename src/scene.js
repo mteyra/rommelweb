@@ -24,6 +24,7 @@ const ACTIVE_INK = 0xdfdfd5;
 export const HOME_DIRECTION = new THREE.Vector3(-0.46, 0.447, 1).normalize();
 const HOME_TARGET = new THREE.Vector3(-3, 11, -7);
 const TRANSITION_MS = 650;
+const RED_CLADDING = Object.freeze({night: 0x44302e, day: 0x705452});
 export const SCENE_THEMES = Object.freeze({
   night: Object.freeze({
     background: PAPER, ink: INK, activeInk: ACTIVE_INK, compass: 0x676963,
@@ -31,6 +32,7 @@ export const SCENE_THEMES = Object.freeze({
     roof: 0x363837, timber: 0x504638, plates: 0x382f29, timberHatch: 0x968575, plateHatch: 0x9b8e7f, joints: 0xa49783, floor: 0x777a75,
     room: ACTIVE_INK, sharedSpace: 0xb6a886, interiorWindow: 0x91b9c8, windowGlass: 0x202b2c, windowFrame: 0x111715, windowSill: 0x7f8179, oldWindowFrame: 0xad8454,
     detailMetal: 0x92958b, detailRecess: 0x202422, detailSoffit: 0x555a4c, detailLime: 0x8eaa56, detailRoofBed: 0x41443a, detailRoofHardware: 0x5c615a, detailRoofTexture: 0x686e52, detailGlazing: 0x243235,
+    detailCladding: RED_CLADDING.night, detailThreshold: 0x555a51, detailSign: 0xe9e8df,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
@@ -38,6 +40,7 @@ export const SCENE_THEMES = Object.freeze({
     roof: 0x74776f, timber: 0xa18a6d, plates: 0x695044, timberHatch: 0x705b47, plateHatch: 0xa98a73, joints: 0x544f42, floor: 0x899a89,
     room: 0x354a3b, sharedSpace: 0x82653b, interiorWindow: 0x376879, windowGlass: 0x667979, windowFrame: 0x303d38, windowSill: 0xa5afa4, oldWindowFrame: 0xa67e49,
     detailMetal: 0x626c68, detailRecess: 0x454d47, detailSoffit: 0x858b77, detailLime: 0x9db667, detailRoofBed: 0x868873, detailRoofHardware: 0x69716c, detailRoofTexture: 0x626c4b, detailGlazing: 0x566f70,
+    detailCladding: RED_CLADDING.day, detailThreshold: 0x9c9e90, detailSign: 0xf1eee5,
   }),
 });
 
@@ -354,6 +357,7 @@ export class CampusScene {
       });
       fill.userData.role = type;
       fill.userData.themeRole = roof ? 'roof' : family;
+      if (!roof && data.number === '55' && family === 'plates') fill.userData.themeOverride = RED_CLADDING;
       const mesh = new THREE.Mesh(geometry, fill);
       mesh.userData = { house: data.number, floor: null, source: 'LoD2-BY' };
       exterior.add(mesh);
@@ -463,6 +467,34 @@ export class CampusScene {
       if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
       const mesh = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3)), material);
       mesh.renderOrder = 3;
+      detailGroup.add(mesh);
+      detailMaterials.push(material);
+    }
+    for (const sign of architecturalDetails.signs || []) {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext?.('2d');
+      if (!context) continue;
+      canvas.width = 1024; canvas.height = 512;
+      context.fillStyle = '#ffffff';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.font = '600 74px Arial, sans-serif';
+      context.fillText(sign.lines[0], 512, 105, 980);
+      context.font = '500 285px Arial, sans-serif';
+      context.fillText(sign.lines[1], 512, 335);
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute([0, 1, 2, 0, 2, 3].flatMap(index => sign.corners[index]), 3));
+      geometry.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1], 2));
+      const material = new THREE.MeshBasicMaterial({
+        map: texture, color: SCENE_THEMES.night.detailSign, side: THREE.DoubleSide,
+        transparent: true, alphaTest: 0.08, depthWrite: false,
+      });
+      material.userData = {themeRole: 'detailSign', detailType: 'address-sign'};
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.renderOrder = 4;
+      mesh.userData = {house: data.number, role: 'exterior-address-sign', signId: sign.id};
       detailGroup.add(mesh);
       detailMaterials.push(material);
     }
@@ -1005,8 +1037,10 @@ export class CampusScene {
     this.controls.dispose();
     this.scene.traverse(object => {
       object.geometry?.dispose();
-      if (Array.isArray(object.material)) object.material.forEach(m => m.dispose());
-      else object.material?.dispose();
+      for (const material of [object.material].flat().filter(Boolean)) {
+        material.map?.dispose();
+        material.dispose();
+      }
     });
     this.dimensionLayer?.remove();
     this.renderer.dispose();

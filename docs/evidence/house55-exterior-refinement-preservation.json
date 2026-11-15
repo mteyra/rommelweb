@@ -1,0 +1,22 @@
+{
+  "baseCommit": "4cd4a6dcfcba400e130cf9126631671962682a5d",
+  "passed": true,
+  "checkedFileCount": 89,
+  "unchangedOtherExteriorCount": 10,
+  "failures": [],
+  "currentRedExterior": {
+    "sourceHash": "944e958c8d1594fa171dea9bcf18cfde0b4ed29fcddee5ad3151b097c678cbc6",
+    "rowGuidesHash": "1196e0f7e05830c0940e83954025558335871eb6088da8fb2c7f8c5689eae09e",
+    "windowProfileHash": "2abec4f978032eca1f909e2c1bfffb5609f4942dd6fbccf3d4c9403bba9d765a",
+    "frameColorHash": "43dd419933f8927349c685a0452cab333e0d33145aa2d301b43e5f2b410889fc",
+    "detailsHash": "5b965b42e93e8885a945bab13e949a3f5d8e2ced6e9468cccff84fece6456caf",
+    "windowsHash": "2bd1aca75a729236a6380fb2ed3fd190394315803b2330402578e9bee8c70731",
+    "presentedSurfacesHash": "8aceea63819ca9ca88242c5ca3d2d7f564d9ae534aaadc922c92a200a8043c88",
+    "facadesHash": "54ccb0619a1550bbb63ee95fe17d42510196b57e2452277ca572b540de77025d",
+    "counts": {
+      "features": 8,
+      "windows": 84,
+      "located": 23
+    }
+  }
+}

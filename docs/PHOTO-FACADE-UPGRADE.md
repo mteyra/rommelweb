@@ -1,5 +1,7 @@
 # Photograph-to-façade upgrade
 
+**House 55 update:** the [later exterior refinement](HOUSE55-EXTERIOR-REFINEMENT.md) supersedes this report’s earlier eight-bay courtyard glazing and window-display treatment. It adds the photographed separate entrance, grouped glazing and upright roof-3 dormer, while preserving all internal layouts and source geometry. The other-house work below remains current.
+
 Reviewed 15 November 2026. The resident's six photographs and the architect's gallery support a more recognizable exterior appearance on the existing campus model. This is an **unmeasured appearance study**, not a façade survey. No accuracy percentage is justified.
 
 The official LoD2 coordinates, building placement, roof heights, exterior envelope and source surface segmentation remain unchanged. Existing floor elevations, section data, interior dimensions, room records and the resident-located House 55 top-floor window inventory also remain unchanged. New recesses, frames, rails, glazing and roof details are separate presentation geometry in the existing metre frame.

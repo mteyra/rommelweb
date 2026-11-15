@@ -1,6 +1,7 @@
 import { ShapeUtils, Vector2 } from 'three';
 import { surfaceFrame } from './facade.js';
 import { getLevelElevations, getInteriorLevel } from './interiors.js';
+import { createHouse55WindowAlignment } from './house55-window-alignment.js';
 
 /**
  * A separate appearance study. These are not surveyed openings, room locations,
@@ -333,8 +334,24 @@ export function createBuildingWindowStudies(surfaces, elevations, roofElevation,
   const profile = getWindowProfile(options.house, options.family);
   const locatedLevels = options.locatedLevels || [];
   const exclusionsBySurface = options.exclusionsBySurface || new Map();
-  const layoutsBySurface = options.layoutsBySurface || new Map();
+  const layoutsBySurface = new Map(options.layoutsBySurface || []);
+  if(String(options.house)==='55'&&profile.family==='plates'){
+    for(const [surface,alignment] of createHouse55WindowAlignment(surfaces,locatedLevels)){
+      const existing=layoutsBySurface.get(surface);
+      layoutsBySurface.set(surface,existing?{
+        ...alignment,...existing,
+        rows:[...alignment.rows.filter(row=>!existing.rows.some(other=>other.floor===row.floor)),...existing.rows],
+        replaceLocatedFloors:[...new Set([...(alignment.replaceLocatedFloors||[]),...(existing.replaceLocatedFloors||[])])],
+      }:alignment);
+    }
+  }
   const skipFloors = locatedLevels.filter(level => level.windowCoverage === 'complete-floor').map(level => level.index);
+  // An explicitly replaced appearance row may suppress a located opening
+  // without deleting or relabeling its original evidence record.
+  const renderLocatedLevels=locatedLevels.map(level=>({
+    ...level,windows:(level.windows||[]).filter(window=>
+      !layoutsBySurface.get(surfaces[window.sourceSurfaceIndex])?.replaceLocatedFloors?.includes(level.index)),
+  }));
   const walls = surfaces.map(surface => ({surface, frame: surfaceFrame(surface)})).filter(item => item.frame &&
     (!profile.groundedOnly || Math.min(...item.surface.points.map(point => point[1])) <= elevations[0] + 0.05) &&
     item.frame.maxV - item.frame.minV >= profile.minimumWallHeight);
@@ -363,12 +380,13 @@ export function createBuildingWindowStudies(surfaces, elevations, roofElevation,
     const us = group.flatMap(item => item.surface.points.map(point => point.reduce((sum, value, i) => sum + (value - anchor.frame.origin[i]) * anchor.frame.u[i], 0)));
     const layout = {frame: anchor.frame, minU: Math.min(...us), maxU: Math.max(...us), coverageTriangles: group.flatMap(item => triangulatedWall(item.surface, anchor.frame))};
     const exclusions = group.flatMap(item => exclusionsBySurface.get(item.surface) || []);
-    for (const item of group) studies.set(item.surface, createWindowStudy(item.surface, elevations, roofElevation, layout, profile, skipFloors, {
+    for (const item of group) studies.set(item.surface, createWindowStudy(item.surface, elevations, roofElevation, layout, profile,
+      skipFloors.filter(floor=>!layoutsBySurface.get(item.surface)?.replaceLocatedFloors?.includes(floor)), {
       exclusions, explicitLayout: layoutsBySurface.get(item.surface),
     }));
   }
   for (const [index, surface] of surfaces.entries()) {
-    const located = createLocatedWindowStudy(surface, index, elevations, locatedLevels, profile, exclusionsBySurface.get(surface) || []);
+    const located = createLocatedWindowStudy(surface, index, elevations, renderLocatedLevels, profile, exclusionsBySurface.get(surface) || []);
     if (!located.count && !located.rejectedLocated.length) continue;
     const existing = studies.get(surface);
     if (!existing) studies.set(surface, located);

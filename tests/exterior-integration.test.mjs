@@ -63,7 +63,7 @@ test('photographic exteriors integrate with all eleven fixed buildings, colored 
     view.scene.traverse(object => {if (object.geometry) afterGeometry.push([...object.geometry.attributes.position.array]);});
     assert.deepEqual(afterGeometry, geometry, 'appearance changes cannot rescale or reposition model geometry');
     const red = view.buildings.get('55');
-    assert.equal(red.windowGroup.userData.locatedWindowCount, 24);
+    assert.equal(red.windowGroup.userData.locatedWindowCount, 23, 'the photographed blank upper return suppresses one folded opening while all 24 saved records remain intact');
     assert.deepEqual(red.windowGroup.userData.rejectedLocatedWindows, []);
     assert.equal(view.labels.filter(label => label.number === '55' && label.type === 'room' && label.floor === 2).length, 23);
     assert.equal(view.labels.filter(label => label.number === '55' && label.type === 'door' && label.floor === 2).length, 22);

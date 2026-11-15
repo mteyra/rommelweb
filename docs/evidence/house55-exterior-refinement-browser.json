@@ -1,0 +1,357 @@
+{
+  "revision": "House55 folded exterior refinement",
+  "browser": "Isolated Firefox via WebDriver BiDi; separate test profile",
+  "url": "http://127.0.0.1:4186/rommelweb/?qa=final-exterior-20261115",
+  "checkedAt": "2026-11-15T18:31:05.800819+00:00",
+  "bundle": {
+    "name": "index-jPGPhGVh.js",
+    "loadedUrls": [
+      "http://127.0.0.1:4186/rommelweb/assets/index-jPGPhGVh.js"
+    ],
+    "sha256": "31bcd7507e43612e35423fdeeadd4f4c14d836ea387f274239544b933de08636"
+  },
+  "success": true,
+  "checks": [
+    {
+      "label": "Desktop folded front",
+      "width": 1600,
+      "height": 1000,
+      "documentWidth": 1600,
+      "bodyWidth": 1600,
+      "view": "house",
+      "unfoldExpanded": "false",
+      "floorControlsHidden": true,
+      "canvasCount": 1,
+      "noHorizontalOverflow": true,
+      "captureBundle": "index-Cb1-XF3t.js"
+    },
+    {
+      "label": "Phone 390px front day",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "view": "house",
+      "unfoldExpanded": "false",
+      "floorControlsHidden": true,
+      "canvasCount": 1,
+      "noHorizontalOverflow": true,
+      "captureBundle": "index-Cb1-XF3t.js"
+    },
+    {
+      "label": "Phone 390px front night",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "view": "house",
+      "unfoldExpanded": "false",
+      "floorControlsHidden": true,
+      "canvasCount": 1,
+      "noHorizontalOverflow": true,
+      "captureBundle": "index-Cb1-XF3t.js"
+    },
+    {
+      "label": "Phone 320px front day",
+      "width": 320,
+      "height": 568,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "view": "house",
+      "unfoldExpanded": "false",
+      "floorControlsHidden": true,
+      "canvasCount": 1,
+      "noHorizontalOverflow": true,
+      "captureBundle": "index-Cb1-XF3t.js"
+    },
+    {
+      "label": "Desktop elevated rear after targeted column alignment",
+      "width": 1600,
+      "height": 1000,
+      "documentWidth": 1600,
+      "bodyWidth": 1600,
+      "view": "house",
+      "unfoldExpanded": "false",
+      "floorControlsHidden": true,
+      "canvasCount": 1,
+      "noHorizontalOverflow": true,
+      "captureBundle": "index-jPGPhGVh.js"
+    }
+  ],
+  "errors": [],
+  "entryCheck": {
+    "result": "Close-entry capture passed in day and night before the final rear-row alignment, with zero browser error logs.",
+    "notes": "Recessed entry and canopy sign remain visible; room glazing and red grouped common glazing have coherent spacing.",
+    "captureBundle": "index-Cb1-XF3t.js"
+  },
+  "visualReview": {
+    "reviewed": [
+      "Final rear folded exterior in day and night",
+      "Front and close-entry captures in day and night from the preceding build",
+      "390 × 844 phone in day and night and 320 × 568 phone in day from the preceding build",
+      "Final all-three-floor decoded pixel comparison against the original published baseline"
+    ],
+    "findings": [
+      "Grouped red common-area glazing is separated by opaque piers in the front and entry captures.",
+      "Recessed doorway, canopy, House 55 sign, and small upright dormer read coherently in the entry captures.",
+      "Final rear captures show continuous projected window columns in both principal three-column banks; the earlier offset between upper and lower rows has been corrected.",
+      "Phone controls remain visible with no horizontal overflow at either checked width in the preceding build.",
+      "All three final floor captures are pixel-identical to their original baseline images."
+    ],
+    "blockers": [],
+    "independentReview": "A second reviewer inspected front and entry captures in both themes, then re-reviewed the final corrected rear in both themes and confirmed that the previous row offset is gone.",
+    "limits": [
+      "Faded neighboring buildings partly overlap some overview angles, consistent with the selected-house scene.",
+      "The far-right return has a visible aligned opening, but parts of its lower bank are occluded by the nearer roof and wall, so this screenshot does not verify every opening.",
+      "Entry detail captures intentionally crop the outer building edges.",
+      "Front, entry, and phone previews retain their explicitly marked prior capture stage; they were not recaptured after the final rear-row correction.",
+      "This is visual and runtime QA, not a claim of photographic or survey accuracy."
+    ]
+  },
+  "floorPreservation": {
+    "provenance": "Fresh final-build floor captures compared with the original published baseline PNGs; results from /tmp/rommel-55-polish-final-floor-comparison.json.",
+    "baselineUrl": "https://mteyra.github.io/rommelweb/?revision=4cd4a6d",
+    "afterUrl": "http://127.0.0.1:4186/rommelweb/?qa=final-exterior-20261115",
+    "captureStage": "Final replacement build after rear-row alignment",
+    "captureBundle": "index-jPGPhGVh.js",
+    "comparisonMethod": "Decode PNGs to RGBA at 1600 × 1000; compare every channel of every pixel without tolerance, cropping, or normalization. Count pixels with any unequal channel and report channel differences and bounds.",
+    "viewports": [
+      {
+        "width": 1600,
+        "height": 1000
+      }
+    ],
+    "results": [
+      {
+        "floor": 2,
+        "pixelIdentical": true,
+        "changedPixelCount": 0,
+        "totalPixels": 1600000,
+        "meanChannelDifference": 0,
+        "maximumChannelDifference": 0,
+        "differenceBounds": null,
+        "beforeFile": "/tmp/rommel-55-polish-before-preserved-2.png",
+        "afterFile": "/tmp/rommel-55-polish-final-preserved-2.png",
+        "beforeSha256": "1e9cf9425e51e190133f3bd5d5ae06ad252ee7b1cf83668b93b7d484f9689d97",
+        "afterSha256": "1e9cf9425e51e190133f3bd5d5ae06ad252ee7b1cf83668b93b7d484f9689d97",
+        "spaceCount": 23,
+        "dimensionSummary": "Room 2.70 × 6.00 m · Module 3.10 m · Hall 1.40 m",
+        "afterPath": "docs/preview/house55-exterior-refinement-preserved-floor-2.png"
+      },
+      {
+        "floor": 1,
+        "pixelIdentical": true,
+        "changedPixelCount": 0,
+        "totalPixels": 1600000,
+        "meanChannelDifference": 0,
+        "maximumChannelDifference": 0,
+        "differenceBounds": null,
+        "beforeFile": "/tmp/rommel-55-polish-before-preserved-1.png",
+        "afterFile": "/tmp/rommel-55-polish-final-preserved-1.png",
+        "beforeSha256": "040f311881b4ebbec2606b2ebf3203ceeeeb6626f9025e6a7758c72530c36318",
+        "afterSha256": "040f311881b4ebbec2606b2ebf3203ceeeeb6626f9025e6a7758c72530c36318",
+        "spaceCount": 25,
+        "dimensionSummary": "Single rooms & shared envelopes · Hall 1.40 m",
+        "afterPath": "docs/preview/house55-exterior-refinement-preserved-floor-1.png"
+      },
+      {
+        "floor": 0,
+        "pixelIdentical": true,
+        "changedPixelCount": 0,
+        "totalPixels": 1600000,
+        "meanChannelDifference": 0,
+        "maximumChannelDifference": 0,
+        "differenceBounds": null,
+        "beforeFile": "/tmp/rommel-55-polish-before-preserved-0.png",
+        "afterFile": "/tmp/rommel-55-polish-final-preserved-0.png",
+        "beforeSha256": "249593ba243921611083d48ddfc72b7b7d7290db36a82c63d7c47356ced03a35",
+        "afterSha256": "249593ba243921611083d48ddfc72b7b7d7290db36a82c63d7c47356ced03a35",
+        "spaceCount": 25,
+        "dimensionSummary": "Single rooms & shared envelopes · Hall 1.40 m",
+        "afterPath": "docs/preview/house55-exterior-refinement-preserved-floor-0.png"
+      }
+    ],
+    "browserAssertions": "Final browser run checked all three floor space counts and displayed dimension summaries and reported zero browser error logs."
+  },
+  "artifacts": [
+    {
+      "view": "front-day",
+      "path": "docs/preview/house55-exterior-refinement-front-day.png",
+      "theme": "day",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:17:04.543107+00:00",
+      "sha256": "1c47aff249e408ad420f01f3dbb0d8c9cc8673cbd65edaae37ba53ad6b1be197",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "front-night",
+      "path": "docs/preview/house55-exterior-refinement-front-night.png",
+      "theme": "night",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:17:02.599092+00:00",
+      "sha256": "d3e8d41c2696c17b2dedef00f1bc57a53fceff111d5b1c6160d9d817938c300a",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "rear-day",
+      "path": "docs/preview/house55-exterior-refinement-rear-day.png",
+      "theme": "day",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:29:10.186722+00:00",
+      "sha256": "ec9c6e430bad23b87036bb7f883a35c29d891b11f3987734064408745c74ecf7",
+      "visuallyReviewed": true,
+      "captureBundle": "index-jPGPhGVh.js",
+      "captureStage": "Final after rear-row alignment"
+    },
+    {
+      "view": "rear-night",
+      "path": "docs/preview/house55-exterior-refinement-rear-night.png",
+      "theme": "night",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:29:11.940735+00:00",
+      "sha256": "18b99b0c95c3307e8c5c1f75466670540f2bbd01eca5b861f5391a44b4769598",
+      "visuallyReviewed": true,
+      "captureBundle": "index-jPGPhGVh.js",
+      "captureStage": "Final after rear-row alignment"
+    },
+    {
+      "view": "entrance-day",
+      "path": "docs/preview/house55-exterior-refinement-entrance-day.png",
+      "theme": "day",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:15:47.386483+00:00",
+      "sha256": "4268d867f5bd488bf7f2e1d3192dfe3057cd7e9c7ac8c3b1b680e144b9dd7105",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "entrance-night",
+      "path": "docs/preview/house55-exterior-refinement-entrance-night.png",
+      "theme": "night",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:15:45.478467+00:00",
+      "sha256": "f4e5f4eb4ace46811c84ddb265d5ff9b6b0b92189bfccaadcdcdd30505969f83",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "phone-day",
+      "path": "docs/preview/house55-exterior-refinement-phone-day.png",
+      "theme": "day",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "capturedAt": "2026-11-15T18:19:13.063131+00:00",
+      "sha256": "97168bd5de313bd304eaf80fbfd4b8d8996a9bd1640137da364b28c41035b9e8",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "phone-night",
+      "path": "docs/preview/house55-exterior-refinement-phone-night.png",
+      "theme": "night",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "capturedAt": "2026-11-15T18:19:14.793144+00:00",
+      "sha256": "3d24e032ec8f9dca21b1b64f74580536de20667f2b70cca5777532eb30b8f021",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "phone-small-day",
+      "path": "docs/preview/house55-exterior-refinement-phone-small-day.png",
+      "theme": "day",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "capturedAt": "2026-11-15T18:19:18.850177+00:00",
+      "sha256": "245c2c8fb35861103429e642193f2da28888868e70a3178f7ade97acc6ff1a3c",
+      "visuallyReviewed": true,
+      "captureBundle": "index-Cb1-XF3t.js",
+      "captureStage": "Before final rear-row alignment"
+    },
+    {
+      "view": "preserved-floor-2",
+      "path": "docs/preview/house55-exterior-refinement-preserved-floor-2.png",
+      "theme": "night",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:29:15.282760+00:00",
+      "sha256": "1e9cf9425e51e190133f3bd5d5ae06ad252ee7b1cf83668b93b7d484f9689d97",
+      "captureBundle": "index-jPGPhGVh.js",
+      "captureStage": "Final after rear-row alignment",
+      "verification": "Exact decoded RGBA pixel equality with original published baseline"
+    },
+    {
+      "view": "preserved-floor-1",
+      "path": "docs/preview/house55-exterior-refinement-preserved-floor-1.png",
+      "theme": "night",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:29:17.199775+00:00",
+      "sha256": "040f311881b4ebbec2606b2ebf3203ceeeeb6626f9025e6a7758c72530c36318",
+      "captureBundle": "index-jPGPhGVh.js",
+      "captureStage": "Final after rear-row alignment",
+      "verification": "Exact decoded RGBA pixel equality with original published baseline"
+    },
+    {
+      "view": "preserved-floor-0",
+      "path": "docs/preview/house55-exterior-refinement-preserved-floor-0.png",
+      "theme": "night",
+      "viewport": {
+        "width": 1600,
+        "height": 1000
+      },
+      "capturedAt": "2026-11-15T18:29:19.114789+00:00",
+      "sha256": "249593ba243921611083d48ddfc72b7b7d7290db36a82c63d7c47356ced03a35",
+      "captureBundle": "index-jPGPhGVh.js",
+      "captureStage": "Final after rear-row alignment",
+      "verification": "Exact decoded RGBA pixel equality with original published baseline"
+    }
+  ],
+  "previousCaptureBundle": {
+    "name": "index-Cb1-XF3t.js",
+    "loadedUrls": [
+      "http://127.0.0.1:4186/rommelweb/assets/index-Cb1-XF3t.js"
+    ],
+    "sha256": "90b2924013b38b2d08eb05d420655b278183e27a7110dd5b043fd64fe630310a"
+  },
+  "captureStages": {
+    "final": "Rear day/night and all three floors captured after the final targeted rear-row alignment in index-jPGPhGVh.js.",
+    "prior": "Front, entry, and phone previews were captured with index-Cb1-XF3t.js before the final rear-row alignment and are retained as earlier-stage feature and layout checks."
+  }
+}

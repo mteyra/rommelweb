@@ -96,7 +96,7 @@ test('independent layout windows retain sills without displaying or moving sourc
   assert.equal(JSON.stringify(studies), before);
 });
 
-test('the module layout preserves every folded exterior window and original source surface', () => {
+test('module layouts retain source windows while the photograph may suppress a folded appearance opening', () => {
   const building = lod2.buildings.find(building => building.number === '55');
   const before = JSON.stringify(building), guide = getOldFacadeRowGuides(building, 3);
   const baseOptions = {house: '55', family: 'plates'};
@@ -108,8 +108,10 @@ test('the module layout preserves every folded exterior window and original sour
   assert.deepEqual(patches(current).filter(patch => patch.floor < 2), patches(previous).filter(patch => patch.floor < 2));
   assert.deepEqual([...current.values()].flatMap(study => study.rejectedLocated || []), []);
   const top = patches(current).filter(patch => patch.floor === 2);
-  assert.equal(top.length, 24, 'the old repeated pattern must not remain underneath marked top-floor windows');
-  assert.deepEqual(top.map(patch => patch.windowId).sort(), upper(studies).windows.map(window => window.id).sort());
+  assert.equal(top.length, 23, 'the photographed blank upper return suppresses one display opening without restoring the repeated pattern');
+  assert.equal(upper(studies).windows.length, 24, 'the original located inventory remains complete and unchanged');
+  assert.deepEqual(top.map(patch => patch.windowId).sort(), upper(studies).windows
+    .filter(window=>window.id!=='study-55-2-window-west-hall').map(window => window.id).sort());
   assert.equal(JSON.stringify(building), before);
 
   const broken = structuredClone(upper(studies));

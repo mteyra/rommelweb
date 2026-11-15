@@ -143,16 +143,17 @@ test('roof beds are below the retained source cap and observed hardware is not c
 
 test('Red shared glazing and roof-light stay localized and create no extra occupied floor', () => {
   const building = buildings.get('55'), detail = detailFor(building);
-  assert.deepEqual([...detail.exclusionsBySurface.keys()].map(surface => building.surfaces.indexOf(surface)).sort((a, b) => a - b), [4, 33, 43]);
+  assert.deepEqual([...detail.exclusionsBySurface.keys()].map(surface => building.surfaces.indexOf(surface)).sort((a, b) => a - b), [3, 4, 15, 33, 43, 45]);
   const roofMasks = detail.exclusionsBySurface.get(building.surfaces[33]);
   assert.equal(roofMasks.length, 1);
   const ys = roofMasks[0].map(point => point[1]);
   assert.ok(Math.max(...ys) - Math.min(...ys) > 0.5, 'roof-light must follow the sloped plane');
   const common = detail.exclusionsBySurface.get(building.surfaces[43])[0];
   assert.ok(Math.max(...common.map(point => point[1])) < 6.0, 'shared glazing cannot spread into the occupied room wing above the eave');
-  const entrance = detail.exclusionsBySurface.get(building.surfaces[4])[0];
-  assert.ok(Math.max(...entrance.map(point => point[1])) < 6.0, 'courtyard entrance remains beneath the opposite low roof3');
-  assert.ok(detail.features.every(feature => !['corner-loggia', 'recessed-stair-elevation', 'photographic-window-rows'].includes(feature.kind)));
+  for (const index of [4, 15, 45]) for (const entrance of detail.exclusionsBySurface.get(building.surfaces[index])) {
+    assert.ok(Math.max(...entrance.map(point => point[1])) < 6.0, 'courtyard glazing and entry remain beneath the existing low roofs');
+  }
+  assert.ok(detail.features.every(feature => !['corner-loggia', 'recessed-stair-elevation'].includes(feature.kind)));
   assert.equal(detail.features.find(feature => feature.kind === 'sloped-roof-window').divisions, 3);
   for (const number of ['51', '53', '57', '59']) assert.equal(detailFor(buildings.get(number)).exclusionsBySurface.size, 0,
     'Red-only detailed openings must not be copied onto unrelated old houses');

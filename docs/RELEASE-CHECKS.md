@@ -2,7 +2,18 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — other old houses inside fixed outlines
+## Current revision — House 55 exterior refinement
+
+House **55** now has photo-aligned window stacks, three separated red glazing groups with opaque piers, a glazed corner return, and a distinct recessed entrance beneath its retained canopy. The entrance adds the red three-pane door, address sign and thin metalwork. A small upright dormer and maintenance rungs refine the existing sloped roof. The [exterior note](HOUSE55-EXTERIOR-REFINEMENT.md) records photo registration and estimated details.
+
+- The [preservation receipt](evidence/house55-exterior-refinement-preservation.json) verifies **89 source, interior, canonical-plan and sandbox files** against `4cd4a6d`, and unchanged generated exterior/window/panel geometry for the **other ten houses**. No source outline, roof plane, floor elevation or internal layout changes.
+- All **24 saved top-floor window observations** remain unchanged. The folded view renders **23 located openings**, suppressing the historical west-hall opening on the photographed blank upper return. The independent floor-layout windows remain unchanged.
+- **235 tests pass** on the final implementation. Checks cover source preservation, opening masks, opaque piers, single entrance, local upright dormer, retained maximum height and aligned window rows on all ordinary room banks. The production build and path-cache check pass; the existing bundle-size advisory remains.
+- Isolated Firefox comparison confirms all three House 55 floor screenshots are **pixel-identical** before and after, with zero changed pixels across each **1600 × 1000** capture. Exterior checks cover both sides, both themes, a closer entrance view and phone rendering. See the [browser receipt](evidence/house55-exterior-refinement-browser.json).
+
+Reviewed views: [entrance](preview/house55-exterior-refinement-entrance-day.png), [aligned rear](preview/house55-exterior-refinement-rear-day.png), [front at night](preview/house55-exterior-refinement-front-night.png) and [phone](preview/house55-exterior-refinement-phone-day.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — other old houses inside fixed outlines
 
 Houses **51, 53, 57 and 59** now have provisional module placements across **EG, 1. OG and 2. OG**, using House 55’s fixed room dimensions. Houses 51/53 have **19 singles upstairs** and **14 singles plus four shared envelopes** on each lower floor. Houses 57/59 have **20 singles upstairs** and **15 singles plus four shared envelopes** below. Excess floor remains gray and unassigned; the [placement report](OLD-HOUSES-MODULE-LAYOUT.md) records the per-floor counts and remainder.
 
