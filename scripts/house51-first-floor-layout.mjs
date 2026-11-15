@@ -287,7 +287,11 @@ export function createHouse51FirstFloorLayout({studies, topPlan}) {
   const plan = createLocalPlan(topPlan);
   const result = clone(studies);
   result.buildings['51'].levels[index] = createStudyLevel(plan, previous.levels[index]);
-  result.buildings['51'].source = 'Yellow House 51: 1. OG follows the resident drawing with twenty-three singles, shared A, two balconies and the enlarged A-bank left edge aligned with L1. The accepted 2. OG retains its twenty-one singles and annotated doors. EG keeps its previous provisional fit for separate review. Folded exterior evidence remains unchanged.';
+  // A completed ground floor owns the newer whole-building summary. Keep its
+  // description when repeating this otherwise unchanged middle-floor build.
+  if (!previous.levels.some(level => level.index === 0 && level.layoutBasis === 'resident-module-layout')) {
+    result.buildings['51'].source = 'Yellow House 51: 1. OG follows the resident drawing with twenty-three singles, shared A, two balconies and the enlarged A-bank left edge aligned with L1. The accepted 2. OG retains its twenty-one singles and annotated doors. EG keeps its previous provisional fit for separate review. Folded exterior evidence remains unchanged.';
+  }
   return {studies: result, plan};
 }
 

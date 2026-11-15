@@ -14,16 +14,23 @@ import {validateInteriorStudies} from '../src/interior-studies.js';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, topPlan, published, before, catalog, campus, lod2, redTop, redFirst, redGround,
-  archivedOrange] = await Promise.all([
+  archivedOrange, beforeGround] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/house51-top-floor-layout.json'),
   read('public/data/house51-first-floor-layout.json'), read('tests/fixtures/house51-before-first-floor-layout.json'),
   read('public/data/old-house-module-layouts.json'), read('public/data/campus.json'), read('public/data/lod2.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'),
   read('tests/fixtures/house53-before-resident-layout.json'),
+  read('tests/fixtures/house51-before-ground-floor-layout.json'),
 ]);
 const input = {studies, topPlan}, snapshot = structuredClone(input);
 const result = createHouse51FirstFloorLayout(input), plan = result.plan;
+const firstFloorInput = structuredClone(input);
+firstFloorInput.studies.buildings['51'] = structuredClone(before.building);
+const firstFloorRelease = createHouse51FirstFloorLayout(firstFloorInput);
+const firstFloorReleaseFits = createOldHouseModuleLayouts({
+  studies: firstFloorRelease.studies, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
+});
 const level = result.studies.buildings['51'].levels.find(item => item.index === 1);
 const close = (actual, expected, label = '') =>
   assert.ok(Math.abs(actual - expected) < 1e-6, `${label}: ${actual} vs ${expected}`);
@@ -63,12 +70,14 @@ test('Yellow 1. OG is reproducible and changes only the requested middle floor',
   assert.deepEqual(createHouse51FirstFloorLayout({...input, studies: result.studies}), result);
   assert.deepEqual(plan, published);
   assert.deepEqual(result.studies, studies);
-  const original = structuredClone(studies);
-  original.buildings['51'] = structuredClone(before.building);
-  assert.deepEqual(createHouse51FirstFloorLayout({...input, studies: original}), result);
+  assert.deepEqual(firstFloorRelease.plan, plan);
+  assert.deepEqual(firstFloorRelease.studies.buildings['51'], beforeGround.building,
+    'The archived middle-floor release remains exactly reproducible, including its source summary');
   for (const index of [0, 2]) {
-    assert.deepEqual(studies.buildings['51'].levels.find(item => item.index === index),
-      before.building.levels.find(item => item.index === index), `Yellow/${index} exact previous record`);
+    assert.deepEqual(firstFloorRelease.studies.buildings['51'].levels.find(item => item.index === index),
+      before.building.levels.find(item => item.index === index), `Yellow/${index} exact historical previous record`);
+    assert.deepEqual(result.studies.buildings['51'].levels.find(item => item.index === index),
+      studies.buildings['51'].levels.find(item => item.index === index), `Yellow/${index} current record preserved`);
   }
   for (const [house, building] of Object.entries(studies.buildings)) {
     if (house !== '51') assert.deepEqual(result.studies.buildings[house], building);
@@ -239,16 +248,16 @@ test('selection identities stay unique and schematic windows remain on the exter
   }
 });
 
-test('only Yellow EG remains provisional and generic regeneration preserves the completed levels', () => {
+test('the historical middle-floor release retains its EG fit and current regeneration protects every completed floor', () => {
   const fitted = createOldHouseModuleLayouts({
     studies, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
   });
   assert.deepEqual(fitted.studies, studies);
   assert.deepEqual(fitted.metadata, catalog);
-  assert.deepEqual(catalog.houses['51'].levels.map(item => item.levelIndex), [0]);
-  assert.deepEqual(catalog.houses['51'].levels[0], before.layout.levels.find(item => item.levelIndex === 0));
-  assert.deepEqual(Object.keys(catalog.houses), ['51']);
-  assert.equal(catalog.houses['53'], undefined, 'Completed Orange has no provisional fitting records');
+  assert.deepEqual(firstFloorReleaseFits.metadata.houses['51'].levels.map(item => item.levelIndex), [0]);
+  assert.deepEqual(firstFloorReleaseFits.metadata.houses['51'].levels[0],
+    before.layout.levels.find(item => item.levelIndex === 0));
+  assert.deepEqual(Object.keys(catalog.houses), [], 'Completed houses have no current provisional fitting records');
 });
 
 test('both Yellow CLIs and generic regeneration keep current outputs unchanged in an isolated workspace', async t => {
@@ -275,8 +284,18 @@ test('both Yellow CLIs and generic regeneration keep current outputs unchanged i
     writeFile(join(temporary, 'public/data/old-house-module-layouts.json'), JSON.stringify(originalCatalog, null, 2) + '\n'),
   ]);
   const run = promisify(execFile);
-  for (const command of ['house51-first-floor-layout', 'house51-first-floor-layout', 'house51-top-floor-layout',
-    'old-house-module-layout']) {
+  const historicalOutputs = {
+    'public/data/interior-studies.json': JSON.stringify(firstFloorRelease.studies, null, 2) + '\n',
+    'public/data/old-house-module-layouts.json': JSON.stringify(firstFloorReleaseFits.metadata, null, 2) + '\n',
+    'public/data/house51-first-floor-layout.json': JSON.stringify(published, null, 2) + '\n',
+    'public/data/house51-top-floor-layout.json': JSON.stringify(topPlan, null, 2) + '\n',
+  };
+  await run(process.execPath, [join(temporary, 'scripts/house51-first-floor-layout.mjs')], {cwd: temporary});
+  for (const [path, expected] of Object.entries(historicalOutputs)) {
+    assert.equal(await readFile(join(temporary, path), 'utf8'), expected, `${path}: exact historical release`);
+    await copyFile(new URL(`../${path}`, import.meta.url), join(temporary, path));
+  }
+  for (const command of ['house51-first-floor-layout', 'house51-top-floor-layout', 'old-house-module-layout']) {
     await run(process.execPath, [join(temporary, `scripts/${command}.mjs`)], {cwd: temporary});
     for (const path of ['public/data/interior-studies.json', 'public/data/old-house-module-layouts.json',
       'public/data/house51-first-floor-layout.json', 'public/data/house51-top-floor-layout.json']) {
@@ -297,7 +316,7 @@ test('the first-floor preservation receipt protects the top floor, EG and the ex
   }
   // This release predates Orange's independent layouts. Restore its exact
   // provisional record when checking the dated receipt, not current geometry.
-  const firstFloorReleaseStudies = structuredClone(studies);
+  const firstFloorReleaseStudies = structuredClone(firstFloorRelease.studies);
   firstFloorReleaseStudies.buildings['53'] = structuredClone(archivedOrange.building);
   assert.equal(sha(JSON.stringify(firstFloorReleaseStudies, null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
@@ -305,7 +324,7 @@ test('the first-floor preservation receipt protects the top floor, EG and the ex
     assert.equal(sha(JSON.stringify(firstFloorReleaseStudies.buildings[house])), record.sha256, house);
   }
   assert.equal(sha(JSON.stringify(archivedOrange.layout)), receipt.unchangedHouse53Fit.sha256);
-  for (const index of [0, 2]) assert.equal(sha(JSON.stringify(studies.buildings['51'].levels.find(item =>
+  for (const index of [0, 2]) assert.equal(sha(JSON.stringify(firstFloorRelease.studies.buildings['51'].levels.find(item =>
     item.index === index))), receipt.unchangedYellowLevels[index].sha256);
   assert.deepEqual(plan.sourceAnnotation, receipt.annotation);
   assert.equal(sha(await readFile(new URL(`../${receipt.annotation.path}`, import.meta.url))), receipt.annotation.sha256);

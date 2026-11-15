@@ -348,16 +348,16 @@ test('Green identifiers are unique, floor-specific and reference only existing G
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test('legacy generators preserve all completed Orange, Red, White and Green floors', () => {
+test('legacy generators preserve all completed Yellow, Orange, Red, White and Green floors', () => {
   const fitted = createOldHouseModuleLayouts(input);
-  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['51']);
+  assert.deepEqual(Object.keys(fitted.metadata.houses), []);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
   assert.deepEqual(fitted.studies, studies);
   const mixed = structuredClone(historical);
-  for (const house of ['53', '57', '59']) mixed.buildings[house] = structuredClone(studies.buildings[house]);
+  for (const house of ['51', '53', '57', '59']) mixed.buildings[house] = structuredClone(studies.buildings[house]);
   const previous = structuredClone(mixed);
   const result = generateOldHouseStudies({studies: mixed, lod2, campus, interiors, roomMarkers});
-  for (const house of ['53', '57', '59']) assert.deepEqual(result.studies.buildings[house], previous.buildings[house]);
+  for (const house of ['51', '53', '57', '59']) assert.deepEqual(result.studies.buildings[house], previous.buildings[house]);
 });
 
 test('Green preservation receipt protects completed Red and White, remaining provisional houses and all exterior evidence', async () => {

@@ -17,7 +17,7 @@ const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, publishe
   read('tests/fixtures/house51-before-top-floor-layout.json'),
   read('tests/fixtures/house53-before-resident-layout.json'),
 ]);
-const houses = ['51'];
+const houses = [];
 const historicalHouses = ['51', '53', '57', '59'];
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan};
 const snapshot = structuredClone(input);

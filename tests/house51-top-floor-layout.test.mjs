@@ -314,20 +314,17 @@ test('duplicate E labels have distinct space, door and window identities and eve
   assert.notEqual(regenerated.windows, prior.windows);
 });
 
-test('legacy regenerators preserve completed Yellow floors and retain only their remaining provisional fitting records', () => {
+test('legacy regenerators preserve completed floors and the historical top-floor release retains its earlier fits', () => {
   const fitted = createOldHouseModuleLayouts({studies, lod2, topPlan, firstFloorPlan, groundFloorPlan});
   assert.deepEqual(fitted.studies, studies);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
-  assert.deepEqual(Object.keys(oldHouseLayouts.houses).sort(), ['51']);
+  assert.deepEqual(Object.keys(oldHouseLayouts.houses), [],
+    'Today’s catalog contains no provisional fitting entries for completed houses');
   assert.deepEqual(topFloorReleaseFits.metadata.houses['51'].levels.map(item => item.levelIndex), [0, 1],
     'The historical top-floor release retained exactly its two lower-floor fits');
-  assert.deepEqual(oldHouseLayouts.houses['51'].levels.map(item => item.levelIndex),
-    studies.buildings['51'].levels.filter(item => item.layoutBasis === 'fitted-module-layout').map(item => item.index),
-    'Today’s catalog includes every remaining provisional floor and no completed floor');
   assert.deepEqual(topFloorReleaseFits.metadata.houses['53'].levels.map(item => item.levelIndex), [0, 1, 2]);
-  assert.equal(oldHouseLayouts.houses['53'], undefined, 'Completed Orange has no current provisional fit');
-  assert.deepEqual(without(oldHouseLayouts.houses['51'], ['levels']), without(before.layout, ['levels']),
-    'Retiring completed floors does not alter the Yellow fitting frame');
+  assert.deepEqual(without(topFloorReleaseFits.metadata.houses['51'], ['levels']), without(before.layout, ['levels']),
+    'The historical release retains the exact Yellow fitting frame');
   const mixed = structuredClone(historical);
   for (const house of ['51', '53', '57', '59']) mixed.buildings[house] = structuredClone(studies.buildings[house]);
   const source = structuredClone(mixed);

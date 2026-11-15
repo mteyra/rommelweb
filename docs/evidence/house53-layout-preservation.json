@@ -1,5 +1,5 @@
 {
-  "baseCommit": "155d32cb51fe3834c7bc61deb946c3e4e4d6c0e8",
+  "baseCommit": "f7a4e8c8b03f13e71d7ca0a365bef9610fa36722",
   "comparisonMethod": "Complete immutable files compare byte-for-byte to git show at baseCommit. Embedded building and level records compare deeply and use SHA-256 of JSON.stringify(record). Only the three Orange House 53 layouts and their building-level source description change.",
   "immutableFiles": {
     "data/source/dorms-lod2.gml": {
@@ -20,6 +20,10 @@
     },
     "data/source/house51-2og-resident-annotation.png": {
       "sha256": "1f898a8bcfc9a1030232d294554a3328c3b4001ca6dcc0d85e38abc4a80072d9",
+      "unchanged": true
+    },
+    "data/source/house51-eg-resident-annotation.png": {
+      "sha256": "5b5ea5454f08a61209a917af39994ece6756be42de5333469f3e335c0b742b61",
       "unchanged": true
     },
     "data/source/house55-1og-before-module-layout.json": {
@@ -178,6 +182,14 @@
       "sha256": "69a179d11cd912704106b24e94aeb861a5e7fdacc03c94b0a0197ab37fe4f212",
       "unchanged": true
     },
+    "docs/evidence/house51-ground-browser.json": {
+      "sha256": "a01792b6988ed232b3a9c93034eef62ff65e03705833625a94a2a33afe3b754f",
+      "unchanged": true
+    },
+    "docs/evidence/house51-ground-floor-preservation.json": {
+      "sha256": "b9b05e3168c079ef5446f7c6b5a49702293511f8a741a90136dab689f8f7c7ff",
+      "unchanged": true
+    },
     "docs/evidence/house51-top-browser.json": {
       "sha256": "297559d0d583201d937c4e462d6873d91be08d93842c5d5bf7066417044b5c73",
       "unchanged": true
@@ -294,6 +306,10 @@
       "sha256": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
       "unchanged": true
     },
+    "public/data/house51-ground-floor-layout.json": {
+      "sha256": "b6fc7b82dcaed649d4929458054464750d119d82cdc7f3b3bb0a94924f139a84",
+      "unchanged": true
+    },
     "public/data/house51-top-floor-layout.json": {
       "sha256": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
       "unchanged": true
@@ -385,8 +401,8 @@
   },
   "studyChangeScope": {
     "path": "public/data/interior-studies.json",
-    "beforeSha256": "676348bd2b38f2d35523e74fe529208b118aa625cc526f24afc04ef724eb6eb8",
-    "afterSha256": "cfe845a50df6490c5ff1fdcf3a1bae06aee6499bb56943f04f60c956f7212da6",
+    "beforeSha256": "3bef6a6c4f3fc28547d9ab533fd8775cedd5eb504b58b4c74e788b92ff8bd666",
+    "afterSha256": "6be33453de4334948067ee6cce449ce59d7f67c7e73c705c51afb263719192c0",
     "changedBuildingRecords": [
       "53"
     ],
@@ -398,7 +414,7 @@
   },
   "unchangedStudyBuildings": {
     "51": {
-      "sha256": "72f5ab7bee18cf8609ee5555fbf0b1fc2ba53c73a4495ea639d5df99c707de41",
+      "sha256": "149a505c96ba44108d7c4750d2d8b5b2d653d4f6319797d5328e5259d4fd8aa9",
       "unchanged": true
     },
     "55": {
@@ -414,13 +430,11 @@
       "unchanged": true
     }
   },
-  "unchangedYellowFit": {
-    "sha256": "a149b1641b28daa632114430ec9347126fd990165269c42c6683debe3daea785",
+  "unchangedCompletedYellow": {
+    "sha256": "149a505c96ba44108d7c4750d2d8b5b2d653d4f6319797d5328e5259d4fd8aa9",
     "unchanged": true
   },
-  "currentFittedHouses": [
-    "51"
-  ],
+  "currentFittedHouses": [],
   "orangeCanonical": {
     "path": "public/data/house53-module-layouts.json",
     "sha256": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f"

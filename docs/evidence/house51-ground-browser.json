@@ -1,0 +1,556 @@
+{
+  "checkedAt": "2026-11-15T21:43:35.383Z",
+  "browser": "Firefox via WebDriver BiDi",
+  "url": "http://127.0.0.1:4186/rommelweb/?qa=yellow-ground",
+  "floors": [
+    {
+      "floor": 0,
+      "singles": 23,
+      "shared": 1,
+      "services": [
+        "Sports room",
+        "Laundry"
+      ],
+      "spaces": 29,
+      "doors": 28,
+      "windows": 26,
+      "cards": [
+        {
+          "id": "module-51-0-room-E-H",
+          "label": "Room H",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-E-G",
+          "label": "Room G",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-E-F",
+          "label": "Room F",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-E-E",
+          "label": "Room E \u00b7 East wing",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-N-N4",
+          "label": "Room N4",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-N-N3",
+          "label": "Room N3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-N-N2",
+          "label": "Room N2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-N-N1",
+          "label": "Room N1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-N-N0",
+          "label": "Room N0",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-R-R3",
+          "label": "Room R3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-R-R2",
+          "label": "Room R2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-R-R1",
+          "label": "Room R1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-L-L3",
+          "label": "Room L3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-L-L2",
+          "label": "Room L2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-L-L1",
+          "label": "Room L1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-A-E",
+          "label": "Room E \u00b7 A wing",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-A-D",
+          "label": "Room D",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-A-C",
+          "label": "Room C",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-A-B",
+          "label": "Room B",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-W-W4",
+          "label": "Room W4",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-W-W3",
+          "label": "Room W3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-W-W2",
+          "label": "Room W2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-room-W-W1",
+          "label": "Room W1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-0-shared-A",
+          "label": "Shared apartment A",
+          "kind": "shared",
+          "dimensions": "6.20 \u00d7 7.40 m \u00b7 45.88 m\u00b2 gross"
+        },
+        {
+          "id": "module-51-0-hall-east",
+          "label": "East hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "module-51-0-hall-west",
+          "label": "West hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "module-51-0-stairs",
+          "label": "Stairwell",
+          "kind": "stairs"
+        },
+        {
+          "id": "module-51-0-common-R",
+          "label": "Laundry",
+          "kind": "service"
+        },
+        {
+          "id": "module-51-0-common-L",
+          "label": "Sports room",
+          "kind": "service"
+        }
+      ],
+      "directDoorCards": [
+        "Room H doorway",
+        "Room G doorway",
+        "Room F doorway",
+        "Room N4 doorway",
+        "Room N3 doorway",
+        "Room N2 doorway",
+        "Room N1 doorway",
+        "Room N0 doorway",
+        "Room R2 doorway",
+        "Room R1 doorway",
+        "Room L3 doorway",
+        "Room L2 doorway",
+        "Room E \u00b7 A wing doorway",
+        "Room D doorway",
+        "Room C doorway",
+        "Room B doorway",
+        "Room W3 doorway",
+        "Room W2 doorway",
+        "Room W1 doorway",
+        "East hall stair entry",
+        "Sports room doorway"
+      ],
+      "occludedDoorIcons": [
+        "Room E \u00b7 East wing doorway",
+        "Room R3 doorway",
+        "Room L1 doorway",
+        "Room W4 doorway",
+        "Shared apartment A doorway",
+        "West hall stair entry",
+        "Laundry doorway"
+      ],
+      "doorLabels": [
+        {
+          "title": "Room H doorway",
+          "aria": "Explore Room H doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room G doorway",
+          "aria": "Explore Room G doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room F doorway",
+          "aria": "Explore Room F doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room E \u00b7 East wing doorway",
+          "aria": "Explore Room E \u00b7 East wing doorway, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Room N4 doorway",
+          "aria": "Explore Room N4 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room N3 doorway",
+          "aria": "Explore Room N3 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room N2 doorway",
+          "aria": "Explore Room N2 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room N1 doorway",
+          "aria": "Explore Room N1 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room N0 doorway",
+          "aria": "Explore Room N0 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room R3 doorway",
+          "aria": "Explore Room R3 doorway, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Room R2 doorway",
+          "aria": "Explore Room R2 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room R1 doorway",
+          "aria": "Explore Room R1 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room L3 doorway",
+          "aria": "Explore Room L3 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room L2 doorway",
+          "aria": "Explore Room L2 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room L1 doorway",
+          "aria": "Explore Room L1 doorway, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Room E \u00b7 A wing doorway",
+          "aria": "Explore Room E \u00b7 A wing doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room D doorway",
+          "aria": "Explore Room D doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room C doorway",
+          "aria": "Explore Room C doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room B doorway",
+          "aria": "Explore Room B doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room W4 doorway",
+          "aria": "Explore Room W4 doorway, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Room W3 doorway",
+          "aria": "Explore Room W3 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room W2 doorway",
+          "aria": "Explore Room W2 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Room W1 doorway",
+          "aria": "Explore Room W1 doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "Shared apartment A doorway",
+          "aria": "Explore Shared apartment A doorway, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "East hall stair entry",
+          "aria": "Explore East hall stair entry, estimated layout, House 51, ground floor",
+          "hidden": false
+        },
+        {
+          "title": "West hall stair entry",
+          "aria": "Explore West hall stair entry, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Laundry doorway",
+          "aria": "Explore Laundry doorway, estimated layout, House 51, ground floor",
+          "hidden": true
+        },
+        {
+          "title": "Sports room doorway",
+          "aria": "Explore Sports room doorway, estimated layout, House 51, ground floor",
+          "hidden": false
+        }
+      ],
+      "responsive": [
+        {
+          "floor": 0,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 50,
+          "visibleDimensionCount": 16,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 20,
+          "visibleDimensionCount": 10,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 20,
+          "visibleDimensionCount": 10,
+          "selectedYellowOnly": true,
+          "theme": "day"
+        },
+        {
+          "floor": 0,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 7,
+          "visibleDimensionCount": 2,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 0,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 7,
+          "visibleDimensionCount": 2,
+          "selectedYellowOnly": true,
+          "theme": "day"
+        }
+      ],
+      "doorVisibilityNote": "7 doorway icons were hidden by label-collision handling at the default desktop view; all 21 visible doorway icons opened their cards."
+    }
+  ],
+  "checks": [
+    "All ground-floor space cards open with their correct types, measurements and evidence.",
+    "Sports and Laundry have service cards and separately tested physical hallway apertures.",
+    "Both themes and three viewport sizes render without horizontal overflow.",
+    "Fold/unfold navigation restores EG.",
+    "Both upper-floor screenshots are pixel-identical to the prior published build at 1440 \u00d7 1000.",
+    "The stack and Model copy include all three Yellow floors.",
+    "Red, White, Green and Brown ground-floor controls retain their expected data."
+  ],
+  "screenshots": [
+    "docs/preview/house51-ground-stack-night.png",
+    "docs/preview/house51-ground-preserved-top.png",
+    "docs/preview/house51-ground-preserved-first.png",
+    "docs/preview/house51-ground-night.png",
+    "docs/preview/house51-ground-day.png",
+    "docs/preview/house51-ground-inserted-b-card.png",
+    "docs/preview/house51-ground-shared-a-card.png",
+    "docs/preview/house51-ground-laundry-card.png",
+    "docs/preview/house51-ground-sports-card.png",
+    "docs/preview/house51-ground-sports-door.png",
+    "docs/preview/house51-ground-phone-390-night.png",
+    "docs/preview/house51-ground-phone-390-day.png",
+    "docs/preview/house51-ground-phone-320-night.png",
+    "docs/preview/house51-ground-phone-320-day.png"
+  ],
+  "upperFloorComparisons": [
+    {
+      "floor": 2,
+      "baselineCommit": "155d32cb51fe3834c7bc61deb946c3e4e4d6c0e8",
+      "baselineScreenshot": "/tmp/rommel-yellow-ground-before-2.png",
+      "currentScreenshot": "docs/preview/house51-ground-preserved-top.png",
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "pixelIdentical": true,
+      "baselineImageSha256": "8e0d1432010b84b6118513f11cfab9ed580cbc88df5da992b8af706ac2917539",
+      "currentImageSha256": "8e0d1432010b84b6118513f11cfab9ed580cbc88df5da992b8af706ac2917539"
+    },
+    {
+      "floor": 1,
+      "baselineCommit": "155d32cb51fe3834c7bc61deb946c3e4e4d6c0e8",
+      "baselineScreenshot": "/tmp/rommel-yellow-ground-before-1.png",
+      "currentScreenshot": "docs/preview/house51-ground-preserved-first.png",
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "pixelIdentical": true,
+      "baselineImageSha256": "71fb079abe6b362f2ad17f67a4306092f18fdd21ccc70f729f222963846f566e",
+      "currentImageSha256": "71fb079abe6b362f2ad17f67a4306092f18fdd21ccc70f729f222963846f566e"
+    }
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4186/rommelweb/assets/index-ClJAQBH4.js"
+  ],
+  "otherHouses": [
+    {
+      "house": "55",
+      "title": "House 55 / EG",
+      "note": "Single rooms & shared envelopes \u00b7 Hall 1.40 m",
+      "spaces": 25,
+      "documentWidth": 1440,
+      "width": 1440
+    },
+    {
+      "house": "57",
+      "title": "House 57 / EG",
+      "note": "Single rooms & shared envelopes \u00b7 Hall 1.40 m",
+      "spaces": 25,
+      "documentWidth": 1440,
+      "width": 1440
+    },
+    {
+      "house": "59",
+      "title": "House 59 / EG",
+      "note": "Single rooms & shared envelopes \u00b7 Hall 1.40 m",
+      "spaces": 23,
+      "documentWidth": 1440,
+      "width": 1440
+    },
+    {
+      "house": "53",
+      "title": "House 53 / EG",
+      "note": "Provisional module placement \u00b7 original outline",
+      "spaces": 21,
+      "documentWidth": 1440,
+      "width": 1440
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "checkedData": [
+    {
+      "sourcePath": "public/data/interior-studies.json",
+      "buildPath": "dist/data/interior-studies.json",
+      "sha256": "3bef6a6c4f3fc28547d9ab533fd8775cedd5eb504b58b4c74e788b92ff8bd666",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/house51-ground-floor-layout.json",
+      "buildPath": "dist/data/house51-ground-floor-layout.json",
+      "sha256": "b6fc7b82dcaed649d4929458054464750d119d82cdc7f3b3bb0a94924f139a84",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/house51-first-floor-layout.json",
+      "buildPath": "dist/data/house51-first-floor-layout.json",
+      "sha256": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/house51-top-floor-layout.json",
+      "buildPath": "dist/data/house51-top-floor-layout.json",
+      "sha256": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
+      "buildBytesMatch": true
+    },
+    {
+      "sourcePath": "public/data/old-house-module-layouts.json",
+      "buildPath": "dist/data/old-house-module-layouts.json",
+      "sha256": "50ee0fccf26cd9cf07cfa8aef1a18ffc0abc492ec77d785ee5b340057ae048cd",
+      "buildBytesMatch": true
+    }
+  ],
+  "build": {
+    "command": "npm run build",
+    "passed": true,
+    "javascript": "assets/index-ClJAQBH4.js",
+    "javascriptKilobytes": 815.94,
+    "javascriptGzipKilobytes": 236.12,
+    "stylesheet": "assets/index-BXlEBDGd.css",
+    "note": "Existing Vite advisory for a minified chunk larger than 500 kB."
+  },
+  "uiTests": {
+    "command": "node --test tests/study-ui.test.mjs",
+    "passed": 23,
+    "failed": 0
+  },
+  "visualInspection": [
+    "Desktop night overview",
+    "Sports room card",
+    "320px day overview",
+    "390px night overview"
+  ]
+}

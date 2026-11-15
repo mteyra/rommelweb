@@ -263,17 +263,16 @@ test('selection IDs distinguish both E rooms and windows touch only their own ex
   }
 });
 
-test('generic regeneration keeps accepted Orange floors and only fits Yellow EG', () => {
+test('generic regeneration keeps all fifteen accepted floors without provisional fits', () => {
   const rebuilt = createOldHouseModuleLayouts({studies, lod2, topPlan, firstFloorPlan, groundFloorPlan});
   assert.deepEqual(rebuilt.studies, studies);
   assert.deepEqual(rebuilt.metadata, catalog);
-  assert.deepEqual(Object.keys(catalog.houses), ['51']);
-  assert.deepEqual(catalog.houses['51'].levels.map(level => level.levelIndex), [0]);
+  assert.deepEqual(Object.keys(catalog.houses), []);
 });
 
 test('all three original annotations and protected assets match the saved evidence receipt', async () => {
   const receipt = await read('docs/evidence/house53-layout-preservation.json');
-  assert.equal(receipt.baseCommit, before.baseCommit);
+  assert.equal(receipt.baseCommit, 'f7a4e8c8b03f13e71d7ca0a365bef9610fa36722');
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['53']);
   assert.deepEqual(receipt.studyChangeScope.changedLevels, [0, 1, 2]);
   for (const plan of plans) {
