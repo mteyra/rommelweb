@@ -1,0 +1,471 @@
+{
+  "schemaVersion": 1,
+  "house": "55",
+  "levelIndex": 2,
+  "candidatePath": "docs/data/house55-measured-plan-candidate.json",
+  "candidateSha256": "935ce9458391dcb6218b96614b76f1f34eb345ef0e5d1f465197488d74dd922c",
+  "method": "Independent stdlib ear-triangulation, signed polygon intersections, canonical source polygons, segment distances and connectivity graph. Does not trust the solver's reported feasibility residuals.",
+  "numericTolerance": 1e-08,
+  "toleranceNote": "Numerical length/area tolerance only; not a surveying tolerance. Residuals near 1e-13 are floating-point roundoff.",
+  "allChecksPassed": true,
+  "checks": {
+    "currentSourceHashes": true,
+    "twentyEstablishedRoomIdentities": true,
+    "sourceOutlineVoidAndAreaChecks": true,
+    "positiveWallSeparations": true,
+    "roomGeometryMatchesDimensionRecords": true,
+    "everyRoomHasPossibleHallFrontage": true,
+    "allSixStraightCorridorsHaveMeasuredWidth": true,
+    "stairCrossSectionMatchesMeasurements": true,
+    "bothWingsHaveConnectedLandingRoute": true,
+    "twoIndicativeHallConnectionsLieOnBothBoundaries": true,
+    "livingRectangleFitsEveryUnpartitionedEnvelope": true
+  },
+  "sourceHashChecks": {
+    "data/source/house55-2og-measured-fit-constraints.json": true,
+    "data/source/house55-2og-stair-measurements.json": true,
+    "data/source/house55-2og-hallway-measurements.json": true,
+    "data/source/house55-2og-study-provenance.json": true,
+    "public/data/interior-studies.json": true,
+    "public/data/lod2.json": true
+  },
+  "roomCount": 20,
+  "roomPairsChecked": 190,
+  "identities": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "L1",
+    "L2",
+    "L3",
+    "R1",
+    "R2",
+    "R3",
+    "N1",
+    "N2",
+    "N3",
+    "E",
+    "F",
+    "G"
+  ],
+  "residuals": {
+    "sourcePlateSymmetricDifferenceArea": -2.2737367544323206e-13,
+    "sourceFlatRoofSymmetricDifferenceArea": -9.094947017729282e-13,
+    "roomPairOverlapArea": 0.0,
+    "roomHallOverlapArea": 0.0,
+    "roomStairOverlapArea": 0.0,
+    "hallStairOverlapArea": 0.0,
+    "clearOutsideCanonicalFloorArea": 2.8421709430404007e-13,
+    "clearOutsideSourceFlatRoofArea": 2.2737367544323206e-13,
+    "clearInResidentNoFloorRegionsArea": 0.0,
+    "wallsOutsideCanonicalFloorArea": -5.400124791776761e-13,
+    "wallsOutsideSourceFlatRoofArea": -4.050093593832571e-13,
+    "wallsInResidentNoFloorRegionsArea": 0.0,
+    "wallClearOverlapArea": 3.375077994860476e-14,
+    "unassignedClearOverlapArea": 0.0,
+    "unassignedWallOverlapArea": 3.673133589935336e-29,
+    "floorAreaClosureError": 2.842170943040401e-14,
+    "meanAreaTargetError": -1.0658141036401503e-14
+  },
+  "faceGaps": {
+    "minimumRoomRoomFaceGap": 0.1999999999999993,
+    "minimumRoomHallFaceGap": 0.1999999999999993,
+    "minimumRoomStairFaceGap": 0.1999999999999975,
+    "minimumClearExteriorFaceGap": 0.1999999999999993
+  },
+  "areas": {
+    "sum": 327.9999999999997,
+    "min": 15.418894126733427,
+    "max": 17.474748523902072,
+    "mean": 16.399999999999988,
+    "populationStd": 0.7528924324723781,
+    "coefficientOfVariation": 0.0459080751507548
+  },
+  "corridorTrueWidths": {
+    "A–D": 1.3000000000000007,
+    "W": 1.2999999999999998,
+    "L": 1.3000000000000007,
+    "R": 1.2999999999999998,
+    "E": 1.2999999999999972,
+    "N": 1.3
+  },
+  "stairWidths": {
+    "insideWidth": 2.7200000000000006,
+    "flightAndGuardWidth": 1.4299999999999997,
+    "walkwayWidth": 1.290000000000001
+  },
+  "circulationEdges": [
+    {
+      "a": "A–D",
+      "b": "W",
+      "overlapArea": 1.6899999999999995,
+      "sharedBoundaryLength": 2.6000000000000005
+    },
+    {
+      "a": "W",
+      "b": "L",
+      "overlapArea": 1.690000000000003,
+      "sharedBoundaryLength": 1.3000000000000007
+    },
+    {
+      "a": "L",
+      "b": "south landing",
+      "overlapArea": 0.0,
+      "sharedBoundaryLength": 1.2999999999999998
+    },
+    {
+      "a": "R",
+      "b": "E",
+      "overlapArea": 1.6899999999999915,
+      "sharedBoundaryLength": 1.2999999999999998
+    },
+    {
+      "a": "R",
+      "b": "north landing",
+      "overlapArea": 0.0,
+      "sharedBoundaryLength": 1.2999999999999998
+    },
+    {
+      "a": "R",
+      "b": "walkway",
+      "overlapArea": 0.0,
+      "sharedBoundaryLength": 1.2999999999999998
+    },
+    {
+      "a": "E",
+      "b": "N",
+      "overlapArea": 1.6899999999999962,
+      "sharedBoundaryLength": 1.2999999999999972
+    },
+    {
+      "a": "north landing",
+      "b": "walkway",
+      "overlapArea": 1.6770000000000032,
+      "sharedBoundaryLength": 2.5900000000000007
+    },
+    {
+      "a": "south landing",
+      "b": "walkway",
+      "overlapArea": 1.6770000000000036,
+      "sharedBoundaryLength": 2.5900000000000007
+    }
+  ],
+  "hallConnections": [
+    {
+      "label": "L hall → south landing",
+      "indicativeSegmentLength": 0.9000000000000004,
+      "maximumEndpointAndMidpointBoundaryDistances": [
+        0.0,
+        0.0
+      ],
+      "openingJambsModelled": false,
+      "geometricHallMouthWidth": 1.3
+    },
+    {
+      "label": "R hall → north landing",
+      "indicativeSegmentLength": 0.8999999999999995,
+      "maximumEndpointAndMidpointBoundaryDistances": [
+        0.0,
+        0.0
+      ],
+      "openingJambsModelled": false,
+      "geometricHallMouthWidth": 1.3
+    }
+  ],
+  "roomDetails": [
+    {
+      "label": "A",
+      "bank": "A",
+      "computedWidth": 2.765070415318297,
+      "computedDepth": 5.576311562018034,
+      "computedArea": 15.418894126733427,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "A–D",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 2.765070415318297,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "B",
+      "bank": "A",
+      "computedWidth": 2.7650704153182972,
+      "computedDepth": 5.576311562018034,
+      "computedArea": 15.418894126733429,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "A–D",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 2.7650704153182972,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "C",
+      "bank": "A",
+      "computedWidth": 2.7650704153182972,
+      "computedDepth": 5.576311562018034,
+      "computedArea": 15.418894126733429,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "A–D",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 2.7650704153182972,
+      "livingRectangleOutsideRoomArea": -1.7763568394002505e-15
+    },
+    {
+      "label": "D",
+      "bank": "A",
+      "computedWidth": 2.7650704153182972,
+      "computedDepth": 5.576311562018034,
+      "computedArea": 15.418894126733429,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "A–D",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 1.614267113825187,
+      "livingRectangleOutsideRoomArea": -5.329070518200751e-15
+    },
+    {
+      "label": "W1",
+      "bank": "W",
+      "computedWidth": 2.936675705514573,
+      "computedDepth": 5.483949951324833,
+      "computedArea": 16.104582592313463,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "W",
+      "hallFaceGap": 0.19999999999999962,
+      "potentialHallFrontage": 2.936675705514573,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "W2",
+      "bank": "W",
+      "computedWidth": 2.936675705514573,
+      "computedDepth": 5.483949951324833,
+      "computedArea": 16.104582592313463,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "W",
+      "hallFaceGap": 0.20000000000000007,
+      "potentialHallFrontage": 2.936675705514573,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "W3",
+      "bank": "W",
+      "computedWidth": 2.936675705514573,
+      "computedDepth": 5.483949951324833,
+      "computedArea": 16.104582592313463,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "W",
+      "hallFaceGap": 0.20000000000000007,
+      "potentialHallFrontage": 2.936675705514573,
+      "livingRectangleOutsideRoomArea": -1.7763568394002505e-15
+    },
+    {
+      "label": "W4",
+      "bank": "W",
+      "computedWidth": 2.9366757055145722,
+      "computedDepth": 5.483949951324833,
+      "computedArea": 16.10458259231346,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 8.881784197001252e-16,
+      "assignedHall": "W",
+      "hallFaceGap": 0.20000000000000007,
+      "potentialHallFrontage": 2.9366757055145722,
+      "livingRectangleOutsideRoomArea": -5.329070518200751e-15
+    },
+    {
+      "label": "L1",
+      "bank": "L",
+      "computedWidth": 2.9316510007517365,
+      "computedDepth": 5.931039270232367,
+      "computedArea": 17.38773721207457,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "L",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 2.9316510007517365,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "L2",
+      "bank": "L",
+      "computedWidth": 2.931651000751736,
+      "computedDepth": 5.931039270232367,
+      "computedArea": 17.387737212074565,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "L",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 2.931651000751736,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "L3",
+      "bank": "L",
+      "computedWidth": 2.931651000751737,
+      "computedDepth": 5.931039270232367,
+      "computedArea": 17.387737212074573,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "L",
+      "hallFaceGap": 0.1999999999999993,
+      "potentialHallFrontage": 2.931651000751737,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "R1",
+      "bank": "R",
+      "computedWidth": 3.0929521259278197,
+      "computedDepth": 5.6498606549430574,
+      "computedArea": 17.474748523902072,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "R",
+      "hallFaceGap": 0.20000000000000018,
+      "potentialHallFrontage": 3.0929521259278197,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "R2",
+      "bank": "R",
+      "computedWidth": 3.0929521259278197,
+      "computedDepth": 5.6498606549430574,
+      "computedArea": 17.474748523902072,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "R",
+      "hallFaceGap": 0.20000000000000018,
+      "potentialHallFrontage": 3.0929521259278197,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "R3",
+      "bank": "R",
+      "computedWidth": 3.0929521259278197,
+      "computedDepth": 5.6498606549430574,
+      "computedArea": 17.474748523902072,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "R",
+      "hallFaceGap": 0.20000000000000018,
+      "potentialHallFrontage": 3.0929521259278197,
+      "livingRectangleOutsideRoomArea": 7.105427357601002e-15
+    },
+    {
+      "label": "N1",
+      "bank": "N",
+      "computedWidth": 2.921379875003705,
+      "computedDepth": 5.448402477284557,
+      "computedArea": 15.916853348059437,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "N",
+      "hallFaceGap": 0.20000000000000007,
+      "potentialHallFrontage": 2.921379875003705,
+      "livingRectangleOutsideRoomArea": -1.7763568394002505e-15
+    },
+    {
+      "label": "N2",
+      "bank": "N",
+      "computedWidth": 2.921379875003705,
+      "computedDepth": 5.448402477284557,
+      "computedArea": 15.916853348059437,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "N",
+      "hallFaceGap": 0.20000000000000007,
+      "potentialHallFrontage": 2.921379875003705,
+      "livingRectangleOutsideRoomArea": 2.1316282072803006e-14
+    },
+    {
+      "label": "N3",
+      "bank": "N",
+      "computedWidth": 2.921379875003705,
+      "computedDepth": 5.448402477284557,
+      "computedArea": 15.916853348059437,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "N",
+      "hallFaceGap": 0.19999999999999973,
+      "potentialHallFrontage": 2.921379875003705,
+      "livingRectangleOutsideRoomArea": 1.5987211554602254e-14
+    },
+    {
+      "label": "E",
+      "bank": "E",
+      "computedWidth": 3.226006551144016,
+      "computedDepth": 5.121716802272246,
+      "computedArea": 16.52269195723465,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 4.440892098500626e-16,
+      "assignedHall": "E",
+      "hallFaceGap": 0.20000000000000284,
+      "potentialHallFrontage": 3.226006551144016,
+      "livingRectangleOutsideRoomArea": -1.2434497875801753e-14
+    },
+    {
+      "label": "F",
+      "bank": "E",
+      "computedWidth": 3.2260065511440157,
+      "computedDepth": 5.121716802272246,
+      "computedArea": 16.522691957234645,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 0.0,
+      "assignedHall": "E",
+      "hallFaceGap": 0.20000000000000284,
+      "potentialHallFrontage": 3.2260065511440157,
+      "livingRectangleOutsideRoomArea": 0.0
+    },
+    {
+      "label": "G",
+      "bank": "E",
+      "computedWidth": 3.226006551144015,
+      "computedDepth": 5.121716802272246,
+      "computedArea": 16.522691957234642,
+      "rectangularEnvelopeAreaError": 0.0,
+      "storedDimensionMaxError": 8.881784197001252e-16,
+      "assignedHall": "E",
+      "hallFaceGap": 0.20000000000000284,
+      "potentialHallFrontage": 3.226006551144015,
+      "livingRectangleOutsideRoomArea": 5.329070518200751e-15
+    }
+  ],
+  "conditionalIdenticalRoomBound": {
+    "family": "Six retained rectilinear banks with the same width/depth orientation as this candidate, four A–D bays, three R bays, and fixed source reference/cutout lines. Does not cover arbitrary rotated, notched or topologically different layouts.",
+    "partitionThicknessAssumption": 0.2,
+    "sourceInwardAllowanceAssumption": 0.2,
+    "hallClearWidth": 1.3,
+    "aUsableOuterReferenceSpan": 12.060281661273187,
+    "aWidthFormula": "(A span − 2×source offset − 3×partition) / 4",
+    "maximumCommonWidthFromFourABays": 2.765070415318297,
+    "rAvailableOuterReferenceDepth": 7.549860654943057,
+    "rDepthFormula": "R span − 2×source offset − hall width − partition",
+    "maximumCommonDepthFromRBank": 5.649860654943057,
+    "maximumIdenticalRectangleArea": 15.622262547653902,
+    "requestedMeanAreaTarget": 16.4,
+    "areaShortfallFromTarget": 0.7777374523460967,
+    "widthRequiredAtRDepthCap": 2.9027264567404254,
+    "depthRequiredAtAWidthCap": 5.931132859816207,
+    "identicalTargetAreaRectanglesImpossibleWithinFamily": true,
+    "interpretation": "Size variation is necessary to average 16.4 m² within this family. This upper bound does not prove that an all-identical 15.622 m² arrangement itself fits, nor that the candidate's particular variation is real."
+  },
+  "limitations": [
+    "This proves a feasible candidate, not a unique reconstruction of the real floor.",
+    "The 16.4 m² mean is imposed from a category benchmark; it is not independent evidence.",
+    "The 0.20 m walls/reference offsets are assumptions. Wall bands are not construction details.",
+    "Straight corridors are 1.30 m; open intersections are wider. Corridor-end walls are candidate placements.",
+    "The two 0.90 m door lines are indicative. The geometry has open 1.30 m mouths; jambs/leaves are not modeled.",
+    "The 6.48 m stair length, offset entrances, landing lengths, orientation and vertical construction remain unmeasured.",
+    "The 2.70 × 3.30 living rectangle fits before unknown bathroom/kitchen/entry partitions are inserted.",
+    "Apartment-to-hall frontage exists, but actual apartment doors and service partitions remain unresolved."
+  ]
+}

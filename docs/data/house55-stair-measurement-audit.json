@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Historical diagnostic: falsify simultaneous saved wall placement and resident-measured stair width. Superseded by the joint measured-plan candidate.",
+  "ratioHypothesesRetired": true,
+  "retirementNote": "The resident withdrew the guessed reference percentages. Ratio-based scenarios here explain earlier failed fits and impose no constraint on the new candidate.",
+  "units": {
+    "length": "metres",
+    "area": "square metres"
+  },
+  "inputHashes": {
+    "data/source/house55-2og-study-provenance.json": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
+    "public/data/interior-studies.json": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+    "public/data/lod2.json": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+    "data/source/house55-2og-stair-measurements.json": "9a2e150adb92f716f42245b5d31a5ab731733ab41f940e3c2494517ee3348de4"
+  },
+  "sourceStage": "rAlignment",
+  "measurement": {
+    "totalWallToWall": 2.72,
+    "stairSideIncludingCentralRailingAndGap": 1.43,
+    "levelWalkwaySide": 1.29,
+    "arithmeticCheck": 2.7199999999999998,
+    "sourceRecord": "data/source/house55-2og-stair-measurements.json",
+    "limitation": "The stair-side zone includes the central guard/gap and is not clear flight width. No measured exterior/partition wall thickness, exact rail faces, longitudinal anchor or floor elevation is introduced by this audit."
+  },
+  "currentEnclosure": {
+    "width": 1.7807098385229754,
+    "l3SideDistance": 0.44517753747286287,
+    "r1SideDistance": 1.3355323010501126,
+    "area": 13.977191452959499,
+    "widthShortfall": 0.9392901614770248,
+    "requiredWidthIncreaseFraction": 0.5274807501800107,
+    "symbolicFlightWidth": 1.5807099386206906,
+    "symbolicFlightExcessOverMeasuredStairAndGuardZone": 0.1507099386206907
+  },
+  "crossSectionDirection": {
+    "referenceNormalInStudyUV": [
+      0.9999998335899376,
+      -0.0005769056224265507
+    ],
+    "angleDegreesFromStudyU": -0.033054259175929634,
+    "qualification": "Study-U gap and reference-normal gap are calculated separately. Their directions differ by approximately 0.03 degrees in this saved stage, far too little to explain the roughly 0.65 m deficit. The deficit uses the reference-normal calculation."
+  },
+  "sharedL3R1GapSections": [
+    {
+      "studyV": 3.6744340931844164,
+      "grossGapAlongStudyU": 2.0723213604016877,
+      "grossGapAlongReferenceNormal": 2.0723214292718892,
+      "axisVsNormalGapDifference": 6.88702015416709e-08,
+      "minimumGapDeficitAgainstMeasuredWidth": 0.647678570728111
+    },
+    {
+      "studyV": 7.5013609850416705,
+      "grossGapAlongStudyU": 2.0709971958371014,
+      "grossGapAlongReferenceNormal": 2.0709972646632964,
+      "axisVsNormalGapDifference": 6.882619496551001e-08,
+      "minimumGapDeficitAgainstMeasuredWidth": 0.6490027353367038
+    }
+  ],
+  "assumptions": [
+    "Tests compare measured inside width directly with old gross allocation: zero wall allowance is added. These are optimistic width-conflict probes.",
+    "Original longitudinal coordinates and reference line stay fixed; only transverse coordinates change.",
+    "25/75 and 20/80 are historical placement assumptions, independent of the measured stair/guard versus walkway split.",
+    "Inside-width measurement overrides older inferred width, but does not itself locate either wall in campus coordinates.",
+    "Printed floating-point precision is calculation precision, not measurement accuracy."
+  ],
+  "scenarios": [
+    {
+      "name": "keep current L3-side wall",
+      "interpretation": "Width-only conflict probe; not a refitted physical plan.",
+      "newWidth": 2.72,
+      "newL3SideDistance": 0.44517753747286287,
+      "newR1SideDistance": 2.2748224625271374,
+      "newL3ReferenceShare": 0.16366821230619957,
+      "L3SideOutwardMotion": 0.0,
+      "R1SideOutwardMotion": 0.9392901614770248,
+      "oldArea": 13.977191452959499,
+      "candidateArea": 21.349890885976208,
+      "addedArea": 7.3726994330167095,
+      "areaScalingResidual": 0.0,
+      "candidatePolygonStudyCoordinates": [
+        [
+          10.988307061910204,
+          9.070973824219344
+        ],
+        [
+          10.987401475098192,
+          7.501360560069693
+        ],
+        [
+          10.986887819505908,
+          6.6110216583031045
+        ],
+        [
+          10.983779094386724,
+          1.2217375781597861
+        ],
+        [
+          13.703779758206837,
+          1.2227687164211642
+        ],
+        [
+          13.70519363007136,
+          3.6738931523799705
+        ],
+        [
+          13.708306943590465,
+          9.071317750378638
+        ],
+        [
+          11.668307644729161,
+          9.071723843572485
+        ],
+        [
+          10.988307061910204,
+          9.070973824219344
+        ]
+      ],
+      "intersectionWithSavedSpaces": {
+        "R1": 3.5005258699702795,
+        "Stairs": 13.976771125388678,
+        "East hall": 1.6996202029600187,
+        "Unassigned": 1.5688014038193532
+      },
+      "outsideSavedFloorPlateArea": 0.6041718233080715,
+      "outsideSourceFlatRoofProjectionArea": 0.6038516905372262,
+      "sumIntersectionWithSavedSpaces": 20.74571860213833,
+      "notAllocatedToSavedSpaces": 0.6041722838378796
+    },
+    {
+      "name": "retain historical 25/75 reference split",
+      "interpretation": "Width-only conflict probe; not a refitted physical plan.",
+      "newWidth": 2.72,
+      "newL3SideDistance": 0.68,
+      "newR1SideDistance": 2.04,
+      "newL3ReferenceShare": 0.25,
+      "L3SideOutwardMotion": 0.23482246252713718,
+      "R1SideOutwardMotion": 0.7044676989498875,
+      "oldArea": 13.977191452959499,
+      "candidateArea": 21.349890885976208,
+      "addedArea": 7.3726994330167095,
+      "areaScalingResidual": 0.0,
+      "candidatePolygonStudyCoordinates": [
+        [
+          10.753484638459888,
+          9.071109294618248
+        ],
+        [
+          10.752579051647876,
+          7.501496030468597
+        ],
+        [
+          10.752065396055592,
+          6.611157128702009
+        ],
+        [
+          10.748956670936408,
+          1.2218730485586902
+        ],
+        [
+          13.46895733475652,
+          1.2229041868200683
+        ],
+        [
+          13.470371206621044,
+          3.6740286227788745
+        ],
+        [
+          13.473484520140149,
+          9.071453220777542
+        ],
+        [
+          11.433485221278845,
+          9.07185931397139
+        ],
+        [
+          10.753484638459888,
+          9.071109294618248
+        ]
+      ],
+      "intersectionWithSavedSpaces": {
+        "L3": 1.4745541590741786,
+        "R1": 2.2332474957426536,
+        "Stairs": 13.97696374055462,
+        "West hall": 0.36852561656367977,
+        "East hall": 1.3430568160374807,
+        "Unassigned": 1.5688271114689578
+      },
+      "outsideSavedFloorPlateArea": 0.3847157179825267,
+      "outsideSourceFlatRoofProjectionArea": 0.38446515949554083,
+      "sumIntersectionWithSavedSpaces": 20.96517493944157,
+      "notAllocatedToSavedSpaces": 0.38471594653463725
+    },
+    {
+      "name": "retain historical 20/80 reference split",
+      "interpretation": "Width-only conflict probe; not a refitted physical plan.",
+      "newWidth": 2.72,
+      "newL3SideDistance": 0.544,
+      "newR1SideDistance": 2.176,
+      "newL3ReferenceShare": 0.2,
+      "L3SideOutwardMotion": 0.09882246252713717,
+      "R1SideOutwardMotion": 0.8404676989498876,
+      "oldArea": 13.977191452959499,
+      "candidateArea": 21.34989088597621,
+      "addedArea": 7.372699433016713,
+      "areaScalingResidual": 3.552713678800501e-15,
+      "candidatePolygonStudyCoordinates": [
+        [
+          10.889484615828119,
+          9.071030835453598
+        ],
+        [
+          10.888579029016107,
+          7.501417571303947
+        ],
+        [
+          10.888065373423823,
+          6.611078669537358
+        ],
+        [
+          10.88495664830464,
+          1.22179458939404
+        ],
+        [
+          13.604957312124752,
+          1.2228257276554182
+        ],
+        [
+          13.606371183989275,
+          3.6739501636142244
+        ],
+        [
+          13.60948449750838,
+          9.071374761612892
+        ],
+        [
+          11.569485198647076,
+          9.07178085480674
+        ],
+        [
+          10.889484615828119,
+          9.071030835453598
+        ]
+      ],
+      "intersectionWithSavedSpaces": {
+        "L3": 0.6205600665086004,
+        "R1": 2.9672120556650374,
+        "Stairs": 13.976894738212067,
+        "West hall": 0.15510332990164738,
+        "East hall": 1.5495790518003723,
+        "Unassigned": 1.568812222602564
+      },
+      "outsideSavedFloorPlateArea": 0.5117290786178117,
+      "outsideSourceFlatRoofProjectionArea": 0.5114377862201103,
+      "sumIntersectionWithSavedSpaces": 20.838161464690288,
+      "notAllocatedToSavedSpaces": 0.5117294212859242
+    }
+  ]
+}

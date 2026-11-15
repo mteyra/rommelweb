@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1040" viewBox="0 0 1400 1040">
+<title>House 55 top floor: recovered stair measurement conflicts with saved candidate</title>
+<desc>All twenty saved study rooms with an uncorrected 2.72 metre stair-width probe. The measured 1.43 and 1.29 metre components are shown separately without confirmed plan orientation.</desc>
+<style>text{font-family:"DejaVu Sans",sans-serif;fill:#172b36}.small{font-size:13px;fill:#536671}.body{font-size:15px}.label{font-size:16px;font-weight:700;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}.kicker{font-size:13px;letter-spacing:1.1px;font-weight:700}.number{font-size:23px;font-weight:700}.red{fill:#b32d37}.blue{fill:#235777}.muted{fill:#536671}</style>
+<defs>
+<pattern id="conflict" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="7" height="7" fill="#f8c9c7"/><path d="M-2,2 L2,-2 M0,7 L7,0 M5,9 L9,5" stroke="#bf4350" stroke-width="1.4"/></pattern>
+<mask id="outside-floor"><rect width="1400" height="1040" fill="white"/><path d="M48.152,717.197 L48.000,551.693 L149.954,551.820 L149.725,292.338 L314.894,292.647 L314.959,334.835 L315.043,399.538 L518.631,399.718 L518.615,417.866 L693.799,418.248 L693.830,393.420 L693.957,247.460 L905.872,247.875 L906.000,413.506 L886.182,413.448 L878.043,413.442 L859.295,413.393 L859.463,615.012 L781.516,614.929 L694.587,614.826 L694.598,602.671 L694.610,598.704 L694.639,565.518 L537.190,565.377 L537.190,567.626 L486.982,567.559 L486.973,552.663 L316.246,552.323 L316.276,576.335 L316.386,717.540 L74.262,717.239 L48.152,717.197 Z" fill="black" fill-rule="evenodd"/></mask>
+<clipPath id="clip-L3"><path d="M420.970,522.058 L420.900,399.632 L478.210,399.682 L478.270,504.707 L478.280,522.058 L420.970,522.058 Z" clip-rule="evenodd"/></clipPath>
+<clipPath id="clip-R1"><path d="M518.649,565.361 L518.622,447.480 L577.002,447.480 L576.973,565.413 L537.190,565.377 L518.649,565.361 Z" clip-rule="evenodd"/></clipPath>
+</defs>
+<rect width="1400" height="1040" fill="#fafbf9"/>
+<text x="48.000" y="39.000" class="kicker" >ROMMELWEB  /  HOUSE RED · 55  /  2. OG</text>
+<text x="48.000" y="87.000" class="body" style="font-size:30px;font-weight:700">The measured stairwell does not fit the saved candidate.</text>
+<text x="48.000" y="117.000" class="body" >Recovered resident measurement: 2.72 m inside wall to inside wall. Analysis dated 15 November 2026.</text>
+<line x1="48.000" y1="139.000" x2="1352.000" y2="139.000" stroke="#d7dfe1" stroke-width="1"/>
+<text x="48.000" y="174.000" class="kicker red" >SAVED CANDIDATE — NOT A CORRECTED PLAN</text>
+<text x="48.000" y="195.000" class="small" >Twenty room references; every room dimension remains estimated.</text>
+<line x1="931.000" y1="164.000" x2="931.000" y2="835.000" stroke="#d7dfe1" stroke-width="1"/>
+<text x="967.000" y="174.000" class="kicker" >ONE MEASURED CROSS-SECTION</text>
+<text x="967.000" y="202.000" class="number" >1.43 m + 1.29 m = 2.72 m</text>
+<text x="967.000" y="225.000" class="small" >Width sum only; orientation to L / R unregistered.</text>
+<path d="M48.152,717.197 L48.000,551.693 L149.954,551.820 L149.725,292.338 L314.894,292.647 L314.959,334.835 L315.043,399.538 L518.631,399.718 L518.615,417.866 L693.799,418.248 L693.830,393.420 L693.957,247.460 L905.872,247.875 L906.000,413.506 L886.182,413.448 L878.043,413.442 L859.295,413.393 L859.463,615.012 L781.516,614.929 L694.587,614.826 L694.598,602.671 L694.610,598.704 L694.639,565.518 L537.190,565.377 L537.190,567.626 L486.982,567.559 L486.973,552.663 L316.246,552.323 L316.276,576.335 L316.386,717.540 L74.262,717.239 L48.152,717.197 Z" fill="#ecefe9" stroke="#697b80" stroke-width="1.6" fill-rule="evenodd"/>
+<path d="M81.249,717.248 L81.136,594.976 L142.463,594.976 L142.463,717.324 L81.249,717.248 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M142.463,717.324 L142.463,594.976 L199.804,594.976 L199.804,717.395 L142.463,717.324 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M199.804,717.395 L199.804,594.976 L257.112,594.976 L257.112,717.466 L199.804,717.395 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M257.112,717.466 L257.112,594.976 L316.291,594.976 L316.386,717.540 L257.112,717.466 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M738.498,471.480 L738.498,413.412 L859.295,413.412 L859.342,471.480 L738.498,471.480 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M738.498,529.526 L738.498,471.480 L859.342,471.480 L859.389,529.526 L738.498,529.526 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M738.498,591.377 L738.498,529.526 L859.389,529.526 L859.440,591.520 L738.498,591.377 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M149.809,388.082 L149.755,326.731 L271.987,326.966 L271.987,388.258 L149.809,388.082 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M149.860,445.559 L149.809,388.082 L271.987,388.258 L271.987,445.676 L149.860,445.559 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M149.911,503.059 L149.860,445.559 L271.987,445.676 L271.987,503.118 L149.911,503.059 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M149.942,560.583 L149.934,551.820 L149.954,551.820 L149.911,503.059 L271.987,503.118 L271.987,560.583 L149.942,560.583 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M306.350,522.058 L306.280,399.511 L315.043,399.519 L315.043,399.538 L363.590,399.581 L363.660,522.058 L306.350,522.058 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M363.660,522.058 L363.590,399.581 L420.900,399.632 L420.970,522.058 L363.660,522.058 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M420.970,522.058 L420.900,399.632 L478.210,399.682 L478.270,504.707 L478.280,522.058 L420.970,522.058 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M518.649,565.361 L518.622,447.480 L577.002,447.480 L576.973,565.413 L537.190,565.377 L518.649,565.361 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M576.973,565.413 L577.002,447.480 L635.383,447.480 L635.296,565.465 L576.973,565.413 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M635.296,565.465 L635.383,447.480 L693.763,447.480 L693.619,565.517 L635.296,565.465 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M693.856,364.087 L693.957,247.460 L756.005,247.582 L756.005,364.087 L693.856,364.087 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M756.005,364.087 L756.005,247.582 L816.216,247.701 L816.216,364.087 L756.005,364.087 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M816.216,364.087 L816.216,247.701 L880.339,247.827 L880.430,364.087 L816.216,364.087 Z" fill="#f6f0e2" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M478.298,552.646 L478.280,522.058 L478.270,504.707 L478.210,399.682 L512.911,399.713 L512.939,447.480 L513.000,552.663 L486.973,552.663 L478.298,552.646 Z" fill="#b9d4dd" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M81.136,594.976 L81.097,551.734 L149.934,551.820 L149.942,560.583 L271.987,560.583 L271.987,503.118 L271.987,445.676 L271.987,388.258 L271.987,326.966 L314.948,327.048 L315.043,399.519 L306.280,399.511 L306.350,522.058 L363.660,522.058 L420.970,522.058 L478.280,522.058 L478.298,552.646 L316.246,552.323 L316.276,576.335 L316.291,594.976 L257.112,594.976 L199.804,594.976 L142.463,594.976 L81.136,594.976 Z" fill="#e0edf0" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M512.939,447.480 L512.911,399.713 L518.631,399.718 L518.615,417.866 L693.799,418.248 L693.830,393.420 L693.856,364.087 L756.005,364.087 L816.216,364.087 L880.430,364.087 L880.468,413.431 L859.295,413.393 L859.295,413.412 L738.498,413.412 L738.498,471.480 L738.498,529.526 L738.498,591.377 L694.616,591.325 L694.639,565.518 L693.619,565.517 L693.763,447.480 L635.383,447.480 L577.002,447.480 L518.622,447.480 L512.939,447.480 Z" fill="#e0edf0" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M486.982,567.559 L486.973,552.663 L513.000,552.663 L512.939,447.480 L518.622,447.480 L518.649,565.361 L537.190,565.377 L537.190,567.626 L486.982,567.559 Z" fill="#e5e5e0" stroke="#778789" stroke-width="1.0" fill-rule="evenodd"/>
+<path d="M473.722,552.648 L473.704,522.060 L473.694,504.710 L473.633,399.685 L526.640,399.705 L526.667,447.472 L526.728,552.655 L486.973,552.663 L473.722,552.648 Z" fill="#d2555c" fill-opacity=".10" stroke="none"/>
+<path d="M473.722,552.648 L473.704,522.060 L473.694,504.710 L473.633,399.685 L526.640,399.705 L526.667,447.472 L526.728,552.655 L486.973,552.663 L473.722,552.648 Z" fill="url(#conflict)" clip-path="url(#clip-L3)"/>
+<path d="M473.722,552.648 L473.704,522.060 L473.694,504.710 L473.633,399.685 L526.640,399.705 L526.667,447.472 L526.728,552.655 L486.973,552.663 L473.722,552.648 Z" fill="url(#conflict)" clip-path="url(#clip-R1)"/>
+<path d="M473.722,552.648 L473.704,522.060 L473.694,504.710 L473.633,399.685 L526.640,399.705 L526.667,447.472 L526.728,552.655 L486.973,552.663 L473.722,552.648 Z" fill="#d42642" mask="url(#outside-floor)"/>
+<line x1="103.030" y1="594.976" x2="120.569" y2="594.976" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="162.364" y1="594.976" x2="179.903" y2="594.976" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="219.689" y1="594.976" x2="237.228" y2="594.976" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="277.932" y1="594.976" x2="295.471" y2="594.976" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="738.498" y1="451.216" x2="738.498" y2="433.677" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="738.498" y1="509.273" x2="738.498" y2="491.734" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="738.498" y1="569.221" x2="738.498" y2="551.682" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="271.987" y1="348.842" x2="271.987" y2="366.381" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="271.987" y1="408.198" x2="271.987" y2="425.736" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="271.987" y1="465.628" x2="271.987" y2="483.167" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="271.987" y1="523.081" x2="271.987" y2="540.620" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="343.775" y1="522.058" x2="326.236" y2="522.058" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="401.085" y1="522.058" x2="383.546" y2="522.058" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="458.395" y1="522.058" x2="440.856" y2="522.058" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="539.043" y1="447.480" x2="556.581" y2="447.480" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="597.423" y1="447.480" x2="614.962" y2="447.480" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="655.803" y1="447.480" x2="673.342" y2="447.480" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="733.700" y1="364.087" x2="716.161" y2="364.087" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="794.880" y1="364.087" x2="777.341" y2="364.087" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="857.092" y1="364.087" x2="839.553" y2="364.087" stroke="#fafbf9" stroke-width="3.5"/>
+<line x1="478.284" y1="528.680" x2="478.296" y2="550.116" stroke="#fafbf9" stroke-width="3.5"/>
+<path d="M473.722,552.648 L473.704,522.060 L473.694,504.710 L473.633,399.685 L526.640,399.705 L526.667,447.472 L526.728,552.655 L486.973,552.663 L473.722,552.648 Z" fill="none" stroke="#b32d37" stroke-width="2.6" stroke-dasharray="7 4"/>
+<text x="111.831" y="661.112" class="label" text-anchor="middle">A</text>
+<text x="171.136" y="661.168" class="label" text-anchor="middle">B</text>
+<text x="228.461" y="661.203" class="label" text-anchor="middle">C</text>
+<text x="286.728" y="661.256" class="label" text-anchor="middle">D</text>
+<text x="798.908" y="447.448" class="label" text-anchor="middle">E</text>
+<text x="798.932" y="505.505" class="label" text-anchor="middle">F</text>
+<text x="798.979" y="565.489" class="label" text-anchor="middle">G</text>
+<text x="210.875" y="362.507" class="label" text-anchor="middle">W1</text>
+<text x="210.901" y="421.892" class="label" text-anchor="middle">W2</text>
+<text x="210.926" y="479.351" class="label" text-anchor="middle">W3</text>
+<text x="210.950" y="536.835" class="label" text-anchor="middle">W4</text>
+<text x="334.967" y="465.805" class="label" text-anchor="middle">L1</text>
+<text x="392.278" y="465.832" class="label" text-anchor="middle">L2</text>
+<text x="449.588" y="465.857" class="label" text-anchor="middle">L3</text>
+<text x="547.814" y="511.424" class="label" text-anchor="middle">R1</text>
+<text x="606.166" y="511.450" class="label" text-anchor="middle">R2</text>
+<text x="664.517" y="511.476" class="label" text-anchor="middle">R3</text>
+<text x="724.950" y="310.820" class="label" text-anchor="middle">N1</text>
+<text x="786.105" y="310.864" class="label" text-anchor="middle">N2</text>
+<text x="848.295" y="310.939" class="label" text-anchor="middle">N3</text>
+<text x="495.604" y="476.179" class="small" text-anchor="middle" font-size="10">saved</text>
+<text x="495.604" y="490.179" class="small" text-anchor="middle" font-size="10">stairs</text>
+<text x="501.722" y="594.648" class="small red" font-weight="700">2.72 m probe</text>
+<line x1="485.722" y1="585.648" x2="475.722" y2="557.648" stroke="#b32d37" stroke-width="1.4"/>
+<line x1="54.000" y1="793.000" x2="151.438" y2="793.000" stroke="#334e5c" stroke-width="2"/>
+<line x1="54.000" y1="788.000" x2="54.000" y2="798.000" stroke="#334e5c" stroke-width="1.4"/>
+<line x1="151.438" y1="788.000" x2="151.438" y2="798.000" stroke="#334e5c" stroke-width="1.4"/>
+<text x="54.000" y="816.000" class="small" >0</text>
+<text x="151.438" y="816.000" class="small" text-anchor="end">5 m</text>
+<text x="195.000" y="797.000" class="small" >Saved floor plate · stored study axes</text>
+<text x="195.000" y="817.000" class="small" >Source exterior is unchanged.</text>
+<rect x="967.000" y="265.000" width="187.162" height="48.000" fill="#235777" stroke="none" rx="0"/>
+<rect x="1154.162" y="265.000" width="168.838" height="48.000" fill="#95c2d4" stroke="none" rx="0"/>
+<text x="1060.581" y="296.000" class="body" text-anchor="middle" style="fill:white;font-weight:700">1.43 m</text>
+<text x="1238.581" y="296.000" class="body" text-anchor="middle" font-weight="700">1.29 m</text>
+<text x="967.000" y="339.000" class="small" >Flight + central railing / gap</text>
+<text x="1164.000" y="339.000" class="small" >Level walkway</text>
+<text x="967.000" y="361.000" class="small" >Clear flight width and central gap are not separated.</text>
+<text x="967.000" y="408.000" class="kicker muted" >SAVED ENCLOSURE</text>
+<rect x="967.000" y="427.000" width="233.063" height="31.000" fill="#adbcc1" stroke="none" rx="0"/>
+<text x="1212.063" y="450.000" class="body" >1.781 m</text>
+<text x="967.000" y="481.000" class="small" >Old inferred allocation; no longer a viable width.</text>
+<text x="967.000" y="526.000" class="kicker muted" >ENTIRE SAVED L3–R1 GAP</text>
+<rect x="967.000" y="545.000" width="271.144" height="31.000" fill="#c5cec8" stroke="none" rx="0"/>
+<text x="967.000" y="601.000" class="body" >2.071–2.072 m at the checked sections</text>
+<text x="967.000" y="624.000" class="small red" font-weight="700">Even the whole gap is too narrow.</text>
+<line x1="967.000" y1="649.000" x2="1352.000" y2="649.000" stroke="#d7dfe1" stroke-width="1"/>
+<text x="967.000" y="687.000" class="number red" >+0.939 m</text>
+<text x="967.000" y="713.000" class="body" >required beyond the old stair enclosure</text>
+<text x="967.000" y="753.000" class="number red" >≥ 0.648–0.649 m</text>
+<text x="967.000" y="779.000" class="body" >missing from the entire saved inter-room gap</text>
+<text x="967.000" y="808.000" class="small" >Measured inside width versus saved gross spans:</text>
+<text x="967.000" y="829.000" class="small" >no wall thickness added; an optimistic comparison.</text>
+<line x1="48.000" y1="850.000" x2="1352.000" y2="850.000" stroke="#d7dfe1" stroke-width="1"/>
+<rect x="49.000" y="877.000" width="19.000" height="15.000" fill="url(#conflict)" stroke="none" rx="0"/>
+<text x="82.000" y="890.000" class="body" >Red hatch = probe overlaps saved L3 / R1</text>
+<line x1="498.000" y1="883.000" x2="528.000" y2="883.000" stroke="#b32d37" stroke-width="2.6" stroke-dasharray="7 4"/>
+<text x="541.000" y="890.000" class="body" >Dashed red = width-only conflict test</text>
+<text x="49.000" y="926.000" class="body" >Probe holds the old length and historical 25 / 75 reference split: 0.68 m + 2.04 m.</text>
+<text x="49.000" y="954.000" class="body red" >Saved-room intersections: L3 1.475 m² · R1 2.233 m². Outside the saved floor plate: 0.385 m².</text>
+<text x="49.000" y="985.000" class="small" >The historical reference split is independent of the measured 1.43 / 1.29 split. This probe supplies no replacement wall coordinates.</text>
+<text x="49.000" y="1008.000" class="small" >Inputs: saved interior-study JSON · retained rAlignment provenance · resident stair measurements · independently calculated width-conflict audit.</text>
+</svg>

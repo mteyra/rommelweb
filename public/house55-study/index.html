@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f4ef">
+  <meta name="description" content="A measured-circulation floor-plan study for House Red at Rommelwood: twenty rooms, 130 cm hallways and a 272 cm stairwell.">
+  <title>House Red · Floor plan study · Rommelweb</title>
+  <style>
+    :root{color-scheme:light;--paper:#f6f4ef;--ink:#203b3e;--muted:#607272;--line:#d9dfd9;--accent:#b74737;--blue:#d7e7e9;--green:#e1e9d6}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit;text-underline-offset:4px}button,select{font:inherit;color:inherit}button,a,select{-webkit-tap-highlight-color:transparent}
+    button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #b74737;outline-offset:4px}
+    .wrap{max-width:1500px;margin:auto;padding:0 40px}header{display:flex;justify-content:space-between;align-items:center;padding:25px 0;border-bottom:1px solid var(--line);gap:20px}
+    .brand{font-size:16px;font-weight:750;letter-spacing:-.5px;text-decoration:none}.brand i{display:inline-block;width:12px;height:12px;background:var(--accent);border-radius:3px;margin-right:10px}
+    nav{display:flex;gap:24px;font-size:13px}.intro{display:grid;grid-template-columns:1.7fr 1fr;gap:60px;align-items:end;padding:46px 0 35px}
+    .eyebrow{font-size:11px;font-weight:750;letter-spacing:1.7px;text-transform:uppercase;color:var(--accent);margin:0 0 13px}
+    h1{font-size:clamp(30px,3.6vw,51px);line-height:1.1;letter-spacing:-2px;font-weight:650;margin:0;max-width:760px}
+    .intro p:last-child{color:var(--muted);font-size:15px;margin:0 0 3px;max-width:470px}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:28px}
+    .stat{padding:19px 23px;border-right:1px solid var(--line)}.stat:first-child{padding-left:0}.stat:last-child{border:0}.stat span{display:block;font-size:11px;color:var(--muted);letter-spacing:.7px;text-transform:uppercase}
+    .stat strong{display:block;font-size:25px;font-weight:650;letter-spacing:-.7px;margin-top:3px}.stat small{font-size:12px;color:var(--muted)}
+    .workspace{display:grid;grid-template-columns:minmax(0,1fr) 286px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fffefa}
+    .drawing{min-width:0}.toolbar{padding:17px 21px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.segmented{display:flex;background:#ecefea;padding:3px;border-radius:7px}
+    .segmented button{font-size:12px;border:0;border-radius:5px;padding:7px 12px;background:transparent}.segmented button[aria-pressed=true]{background:#fffefa;box-shadow:0 1px 4px #223b3c17;font-weight:650}
+    .toggle{border:1px solid var(--line);background:#fffefa;border-radius:6px;padding:7px 10px;font-size:12px}.toggle[aria-pressed=true]{background:var(--ink);color:white}
+    .canvas{height:620px;position:relative;background:radial-gradient(#23454415 .6px,transparent .7px) 0 0/15px 15px}.canvas svg{width:100%;height:100%;display:block}
+    .plan-room{cursor:pointer;transition:fill .15s,stroke .15s}.plan-room:hover{fill:#b5d1d4!important;stroke:#2a575b;stroke-width:.07}.plan-room.selected{fill:#a8c9cd!important;stroke:#1d555b;stroke-width:.09}
+    svg text{font-family:system-ui,sans-serif;pointer-events:none}svg .room-label{font-size:.56px;font-weight:700;fill:#27494c;text-anchor:middle;dominant-baseline:middle}svg .room-dims{font-size:.34px;fill:#466768;text-anchor:middle}
+    .caption{display:flex;gap:18px;flex-wrap:wrap;padding:13px 21px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.key{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+    aside{border-left:1px solid var(--line);padding:23px;background:#fbfaf6}.small-title{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;font-weight:750;color:var(--muted)}
+    #room-title{font-size:36px;font-weight:550;letter-spacing:-1px;margin:12px 0 0}#room-bank{font-size:12px;color:var(--muted);margin:0 0 20px}
+    .detail{display:flex;justify-content:space-between;font-size:13px;border-top:1px solid var(--line);padding:10px 0;gap:12px}.detail strong{font-weight:650;white-space:nowrap}
+    .note{font-size:12px;color:var(--muted);line-height:1.65}.rule{height:1px;background:var(--line);margin:22px 0}.measured{display:inline-block;background:#e6eee4;color:#3e6541;padding:3px 7px;border-radius:4px;font-size:10px;font-weight:650}
+    aside h3{font-size:13px;margin:10px 0 6px}select{width:100%;border:1px solid #c7d0ca;border-radius:6px;background:white;padding:9px;margin-top:15px;font-size:12px}
+    .below{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin:36px 0 45px}.below h2{font-size:21px;letter-spacing:-.4px;font-weight:650;margin:0 0 10px}.below p{font-size:14px;color:var(--muted);margin:0 0 10px}
+    .below ol{font-size:14px;padding-left:20px;color:var(--muted)}.below li{padding:4px 0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:var(--muted);font-size:10px;letter-spacing:.7px;text-transform:uppercase}th,td{padding:9px 12px;border-bottom:1px solid var(--line)}th:first-child,td:first-child{padding-left:0}
+    .checks{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.check{font-size:11px;padding:5px 8px;border:1px solid var(--line);border-radius:5px}.check.good{background:#eef3e9;color:#466444}.check.bad{background:#fff0e9;color:#984330}
+    footer{border-top:1px solid var(--line);padding:23px 0 32px;display:flex;justify-content:space-between;gap:20px;font-size:11px;color:var(--muted)}footer a{margin-left:12px}#error{padding:30px;color:#9b3f31;display:none}
+    @media(min-width:1500px){.canvas{height:690px}}@media(max-width:1050px){.wrap{padding:0 24px}.workspace{grid-template-columns:minmax(0,1fr) 245px}.canvas{height:530px}.intro{gap:30px}h1{letter-spacing:-1.4px}.stat strong{font-size:21px}.stat{padding:17px}}
+    @media(max-width:760px){.wrap{padding:0 17px}header{padding:18px 0}nav{gap:14px;font-size:11px}.intro{display:block;padding:30px 0 25px}.intro p:last-child{margin-top:18px;font-size:14px}h1{font-size:36px}.stats{grid-template-columns:1fr 1fr}.stat,.stat:first-child{padding:13px 14px}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.workspace{display:block}.canvas{height:490px}.toolbar{padding:12px}.segmented button{padding:7px 9px}aside{border-left:0;border-top:1px solid var(--line);padding:20px}.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 23px}#room-title{font-size:30px}.below{grid-template-columns:1fr;gap:26px;margin-top:27px}footer{display:block}footer div:last-child{margin-top:12px}footer a{margin:0 12px 0 0}}
+    @media(max-width:430px){.canvas{height:430px}.stat strong{font-size:20px}.stat:first-child strong{font-size:16px;white-space:nowrap}.stat small{font-size:10px}nav a:first-child{display:none}.caption{gap:10px;padding:12px}.toolbar{gap:9px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header><a class="brand" href="../"><i></i>rommelweb</a><nav><a href="../">Campus explorer ↗</a><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MEASURED-PLAN.md">Read the study ↗</a></nav></header>
+  <section class="intro">
+    <div><p class="eyebrow">House Red · 55 · Top floor / 2. OG</p><h1>House Red, refitted.</h1></div>
+    <p>Twenty rooms fitted around 130 cm hallways and a 272 cm stairwell. Select a room to inspect the candidate. The earlier percentage guess is no longer a constraint.</p>
+  </section>
+  <section class="stats" aria-label="Plan summary">
+    <div class="stat"><span>Typical room interior</span><strong id="nominal">Calculating…</strong><small>Full apartment envelope</small></div>
+    <div class="stat"><span>Average room area</span><strong id="mean">—</strong><small>16.4 m² category target</small></div>
+    <div class="stat"><span>Both hallway wings</span><strong>1.30 m</strong><small>Resident measured</small></div>
+    <div class="stat"><span>Stairwell inside width</span><strong>2.72 m</strong><small>1.43 m + 1.29 m</small></div>
+  </section>
+  <main>
+    <div id="error" role="alert"></div>
+    <section class="workspace" aria-label="Interactive floor-plan comparison">
+      <div class="drawing">
+        <div class="toolbar">
+          <div class="segmented" aria-label="Plan version"><button id="candidate-button" aria-pressed="true">New candidate</button><button id="previous-button" aria-pressed="false">Earlier layout</button></div>
+          <button class="toggle" id="focus-button" aria-pressed="false">Focus selected room</button>
+          <button class="toggle" id="dimension-button" aria-pressed="false">Show dimensions</button>
+        </div>
+        <div class="canvas"><svg id="plan" role="img" aria-label="House Red top floor, twenty labelled selectable rooms"></svg></div>
+        <div class="caption"><span><i class="key" style="background:#d7e7e9"></i>Room interiors</span><span><i class="key" style="background:#e1e9d6"></i>Clear hallways</span><span><i class="key" style="background:#efd2c6"></i>Stairwell</span><span><i class="key" style="background:#aab4ab"></i>Assumed walls</span><span><i class="key" style="background:#efeee7"></i>Unassigned / roof margin</span><span id="version-caption">Candidate placement · measured circulation</span></div>
+      </div>
+      <aside>
+        <span class="small-title">Room inspection</span><h2 id="room-title">W3</h2><p id="room-bank">West bank · candidate</p>
+        <div class="details-grid">
+          <div class="detail"><span>Interior width</span><strong id="room-width">—</strong></div>
+          <div class="detail"><span>Full depth</span><strong id="room-depth">—</strong></div>
+          <div class="detail"><span>Envelope area</span><strong id="room-area">—</strong></div>
+          <div class="detail"><span>Hallway</span><strong id="room-hall">1.30 m</strong></div>
+        </div>
+        <select id="room-select" aria-label="Select a room"></select>
+        <p class="note">Room labels identify the drawing. The envelope includes space for the entrance and bathroom/kitchen; their internal partitions are still to be placed.</p>
+        <div class="rule"></div><span class="measured">CONFIRMED CROSS-SECTION</span>
+        <h3>143 cm + 129 cm = 272 cm</h3><p class="note">The first span includes the stair flight and central railing/gap. The second is the parallel level walkway.</p>
+        <p class="note" id="stair-note">Stair length, landings and exact wall positions remain candidate geometry.</p>
+      </aside>
+    </section>
+    <section class="below">
+      <div>
+        <p class="eyebrow">How to read this plan</p><h2>Measured widths. A fitted arrangement.</h2>
+        <p id="fit-description">The twenty-room arrangement is fitted inside the retained building outline. Similar room dimensions and the operator's average area guide the fit.</p>
+        <p id="assumptions">Wall thicknesses, the exact stair position and its length are explicit assumptions. The plan is a candidate for checking against the real building.</p>
+        <div class="checks" id="checks"></div>
+        <p style="margin-top:18px"><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MEASURED-PLAN.md">Open the calculations and assumptions ↗</a></p>
+      </div>
+      <div><p class="eyebrow">Across the six room banks</p><h2>Similar dimensions, small differences.</h2><div class="table-wrap"><table><thead><tr><th>Bank</th><th>Rooms</th><th>Width × depth</th><th>Mean area</th></tr></thead><tbody id="bank-table"></tbody></table></div></div>
+    </section>
+  </main>
+  <footer><div>Rommelwood · House 55 · Candidate study, 15 November 2026</div><div><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MEASURED-PLAN.md">Design notes</a><a href="https://github.com/mteyra/rommelweb/blob/main/docs/CONTEXT-RECOVERY-2026-11-15.md">Recovered context</a><a href="plan.json">Plan data</a></div></footer>
+</div>
+<script type="module" src="./study.js"></script>
+</body>
+</html>

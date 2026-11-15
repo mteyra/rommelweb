@@ -1,0 +1,968 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Historical fixed-boundary western hallway diagnostic, superseded by the joint measured-plan candidate.",
+  "units": {
+    "length": "metres",
+    "area": "square metres"
+  },
+  "sourceStage": "rAlignment",
+  "measurement": {
+    "clearWidth": 1.3,
+    "sourceRecord": "data/source/house55-2og-hallway-measurements.json",
+    "userStatement": "I can also tell you with fact that EVERY hallway in the \"L\", \"W\", and \"A-B-C-D\" side of the dorm measure 130cm wide.",
+    "scope": "This diagnostic evaluates western L, W and A-D branches. The current resident record also confirms 1.30 m in the eastern wing.",
+    "faceConvention": "Treat 130cm as clear finished-face width, explicitly an interpretation of the conventional meaning pending wall-face confirmation."
+  },
+  "inputHashes": {
+    "data/source/house55-2og-study-provenance.json": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
+    "public/data/interior-studies.json": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+    "public/data/lod2.json": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+    "data/source/house55-2og-hallway-measurements.json": "a7beb308beef1be4266c380634aad8cd0d409674918a661ce6bee8acb04b189b",
+    "data/source/house55-2og-stair-measurements.json": "9a2e150adb92f716f42245b5d31a5ab731733ab41f940e3c2494517ee3348de4"
+  },
+  "assumptions": [
+    "Opposing gross source or room end faces remain fixed independently for each diagnostic run.",
+    "0.10m corridor-side allocation for an internal room boundary, and 0.20m for a source boundary. These offsets are assumptions, not new measurements.",
+    "New room fronts are parallel to their opposing boundary, leaving 1.30m after those hypothetical allowances.",
+    "Examples are limited to rooms whose complete front opposes the sampled run. Junctions and partially opposed rooms are not assigned fabricated front continuations.",
+    "For corner pockets, imposing 1.30m throughout is a conditional interpretation, not proof that every landing, turn, recess or pocket is also 1.30m across.",
+    "Stepped fronts are required only if all current opposing planes AND their .20/.10m offsets are fixed. A different effective source-to-finished-face offset can instead support a straight front; neither solution is established as physical construction.",
+    "Source roof boundary 2-3 may correspond to overlook glazing. Its assumed 0.20m allowance requires verification against actual finished faces.",
+    "Stair measurements are independent constraints and are not yet simultaneously applied. No final fitted apartment areas are claimed."
+  ],
+  "runs": [
+    {
+      "name": "W hall beside L1 end wall",
+      "bank": "W",
+      "referenceRoom": "W3",
+      "oppositeRoom": "L1",
+      "opposingPlane": {
+        "normal": [
+          -0.9999998335670065,
+          0.0005769453693010555
+        ],
+        "constant": -2.1605830243482833
+      },
+      "opposingAllowance": 0.1,
+      "fixedAxis": 1,
+      "range": [
+        1.212952956098244,
+        7.501360734059865
+      ],
+      "fullyOpposedRooms": [
+        "W3"
+      ],
+      "partlyOpposedRooms": [
+        "W2",
+        "W4"
+      ],
+      "classification": "Regular corridor between room banks.",
+      "currentHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -1,
+          0
+        ],
+        "constant": -0.40159609535314134,
+        "allowance": 0.1
+      },
+      "conditionalHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -0.9999998335670065,
+          0.0005769453693010555
+        ],
+        "constant": -0.6605830243482831,
+        "allowance": 0.1
+      },
+      "targetGrossNormalGap": 1.5000000000000002,
+      "samples": [
+        {
+          "fixedStudyCoordinate": 1.212952956098244,
+          "opposingGrossPoint": [
+            2.1612831916483155,
+            1.212952956098244
+          ],
+          "currentHallFrontPoint": [
+            0.40159609535314145,
+            1.2139681995888403
+          ],
+          "conditionalHallFrontPoint": [
+            0.6612834412978055,
+            1.2138183741521955
+          ],
+          "currentGrossNormalGap": 1.7596873891652138,
+          "currentConditionalClearWidth": 1.5596873891652137,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.2596873891652136
+        },
+        {
+          "fixedStudyCoordinate": 7.501360734059865,
+          "opposingGrossPoint": [
+            2.164911259999917,
+            7.501360734059865
+          ],
+          "currentHallFrontPoint": [
+            0.40159609535314145,
+            7.502378070748045
+          ],
+          "conditionalHallFrontPoint": [
+            0.6649115096494072,
+            7.502226152113817
+          ],
+          "currentGrossNormalGap": 1.7633154581206458,
+          "currentConditionalClearWidth": 1.5633154581206457,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.2633154581206456
+        }
+      ],
+      "fullyOpposedRoomExamples": [
+        {
+          "room": "W3",
+          "oldConditionalInternalArea": 16.399999999989525,
+          "conditionalInternalArea": 17.119603014136047,
+          "areaIncrease": 0.7196030141465215,
+          "conditionalInternalStudyAxisWidth": 2.7534936075453307,
+          "conditionalInternalStudyAxisDepth": 6.229560862474585,
+          "oldInternalStudyAxisDepth": 5.966864330833445,
+          "conditionalInternalPolygon": [
+            [
+              0.5642926269942876,
+              6.429566691200439
+            ],
+            [
+              -5.662821594071545,
+              6.4265802118955255
+            ],
+            [
+              -5.665268235480298,
+              3.6760730836551088
+            ],
+            [
+              0.562707456587515,
+              3.68204460800016
+            ]
+          ],
+          "conditionalGrossPolygon": [
+            [
+              0.6643503658766292,
+              6.5296146896746246
+            ],
+            [
+              -5.8627328060957495,
+              6.526484347412938
+            ],
+            [
+              -5.86535743767638,
+              3.5758811876229584
+            ],
+            [
+              0.6626498339447275,
+              3.5821403890512507
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "W outer end beside source recess 18-19",
+      "bank": "W",
+      "referenceRoom": "W1",
+      "sourceVertices": [
+        18,
+        19
+      ],
+      "opposingPlane": {
+        "normal": [
+          -0.9999991402941574,
+          0.0013112631109903582
+        ],
+        "constant": -2.609401143163575
+      },
+      "opposingAllowance": 0.2,
+      "fixedAxis": 1,
+      "range": [
+        -2.50546236056305,
+        1.2143419633988648
+      ],
+      "fullyOpposedRooms": [
+        "W1"
+      ],
+      "partlyOpposedRooms": [
+        "W2"
+      ],
+      "classification": "Widened end segment/pocket in the current model; whether resident's uniform-width statement includes this full endpoint geometry needs registration.",
+      "currentHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -1,
+          0
+        ],
+        "constant": -0.40159609535314134,
+        "allowance": 0.1
+      },
+      "conditionalHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -0.9999991402941574,
+          0.0013112631109903582
+        ],
+        "constant": -1.0094011431635748,
+        "allowance": 0.1
+      },
+      "targetGrossNormalGap": 1.6,
+      "samples": [
+        {
+          "fixedStudyCoordinate": -2.50546236056305,
+          "opposingGrossPoint": [
+            2.606118063289119,
+            -2.50546236056305
+          ],
+          "currentHallFrontPoint": [
+            0.40159609535314145,
+            -2.5025716497439667
+          ],
+          "conditionalHallFrontPoint": [
+            1.0061194388184673,
+            -2.5033643395854654
+          ],
+          "currentGrossNormalGap": 2.2045238631780233,
+          "currentConditionalClearWidth": 1.9045238631780232,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.6045238631780232
+        },
+        {
+          "fixedStudyCoordinate": 1.2143419633988648,
+          "opposingGrossPoint": [
+            2.610995709672574,
+            1.2143419633988648
+          ],
+          "currentHallFrontPoint": [
+            0.40159609535314145,
+            1.2172390701012177
+          ],
+          "conditionalHallFrontPoint": [
+            1.010997085201922,
+            1.2164399843764493
+          ],
+          "currentGrossNormalGap": 2.2094015137548224,
+          "currentConditionalClearWidth": 1.9094015137548224,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.6094015137548223
+        }
+      ],
+      "fullyOpposedRoomExamples": [
+        {
+          "room": "W1",
+          "oldConditionalInternalArea": 16.40000000001018,
+          "conditionalInternalArea": 18.06546952235832,
+          "areaIncrease": 1.6654695223481397,
+          "conditionalInternalStudyAxisWidth": 2.7575493426170423,
+          "conditionalInternalStudyAxisDepth": 6.580619170359441,
+          "oldInternalStudyAxisDepth": 5.972110201314521,
+          "conditionalInternalPolygon": [
+            [
+              0.910105064398067,
+              0.5362301478421587
+            ],
+            [
+              -5.668069612244153,
+              0.5267735049413989
+            ],
+            [
+              -5.670514105961374,
+              -2.2213191947748836
+            ],
+            [
+              0.9065057129842353,
+              -2.208717291992778
+            ]
+          ],
+          "conditionalGrossPolygon": [
+            [
+              1.0102364656803076,
+              0.6363741979297073
+            ],
+            [
+              -5.867980994541426,
+              0.6264862199552017
+            ],
+            [
+              -5.870781384030806,
+              -2.5217034677005223
+            ],
+            [
+              1.0061126692186706,
+              -2.5085269907113164
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A-D hall opposite W4 end wall",
+      "bank": "A",
+      "referenceRoom": "C",
+      "oppositeRoom": "W4",
+      "opposingPlane": {
+        "normal": [
+          -1.3731109502147914e-08,
+          1
+        ],
+        "constant": 9.478296984848555
+      },
+      "opposingAllowance": 0.1,
+      "fixedAxis": 0,
+      "range": [
+        -5.862711121850487,
+        0.4015961243363533
+      ],
+      "fullyOpposedRooms": [
+        "C"
+      ],
+      "partlyOpposedRooms": [
+        "B",
+        "D"
+      ],
+      "classification": "Regular corridor between room banks; the W-bank turn is a junction rather than another corridor-width sample.",
+      "currentHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          0,
+          1
+        ],
+        "constant": 11.243130179947949,
+        "allowance": 0.1
+      },
+      "conditionalHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -1.3731109502147914e-08,
+          1
+        ],
+        "constant": 10.978296984848555,
+        "allowance": 0.1
+      },
+      "targetGrossNormalGap": 1.5000000000000002,
+      "samples": [
+        {
+          "fixedStudyCoordinate": -5.862711121850487,
+          "opposingGrossPoint": [
+            -5.862711121850487,
+            9.478296904347026
+          ],
+          "currentHallFrontPoint": [
+            -5.862711146083606,
+            11.243130179947949
+          ],
+          "conditionalHallFrontPoint": [
+            -5.862711142447151,
+            10.978296904347026
+          ],
+          "currentGrossNormalGap": 1.7648332756009228,
+          "currentConditionalClearWidth": 1.5648332756009227,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.2648332756009226
+        },
+        {
+          "fixedStudyCoordinate": 0.4015961243363533,
+          "opposingGrossPoint": [
+            0.4015961243363533,
+            9.478296990362916
+          ],
+          "currentHallFrontPoint": [
+            0.4015961001032355,
+            11.243130179947949
+          ],
+          "conditionalHallFrontPoint": [
+            0.401596103739689,
+            10.978296990362916
+          ],
+          "currentGrossNormalGap": 1.7648331895850333,
+          "currentConditionalClearWidth": 1.5648331895850331,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.2648331895850331
+        }
+      ],
+      "fullyOpposedRoomExamples": [
+        {
+          "room": "C",
+          "oldConditionalInternalArea": 16.400000000008752,
+          "conditionalInternalArea": 17.125844311625585,
+          "areaIncrease": 0.7258443116168323,
+          "conditionalInternalStudyAxisWidth": 2.7407604925048847,
+          "conditionalInternalStudyAxisDepth": 6.250265026245694,
+          "oldInternalStudyAxisDepth": 5.985431787172942,
+          "conditionalInternalPolygon": [
+            [
+              -0.46170212339573785,
+              11.078296978508874
+            ],
+            [
+              -0.46170168222035973,
+              17.32856196712089
+            ],
+            [
+              -3.2024621747252446,
+              17.325180646328306
+            ],
+            [
+              -3.2024621700927725,
+              11.078296940875196
+            ]
+          ],
+          "conditionalGrossPolygon": [
+            [
+              -0.3617021304542475,
+              10.97829697988199
+            ],
+            [
+              -0.36170166809463034,
+              17.528685490970133
+            ],
+            [
+              -3.302462174873475,
+              17.525057426907352
+            ],
+            [
+              -3.3024621700186247,
+              10.978296939502084
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "A-D outer end beside source recess 21-22",
+      "bank": "A",
+      "referenceRoom": "A",
+      "sourceVertices": [
+        21,
+        22
+      ],
+      "opposingPlane": {
+        "normal": [
+          -0.0012981015031035656,
+          0.9999991574658889
+        ],
+        "constant": 9.036184377576058
+      },
+      "opposingAllowance": 0.2,
+      "fixedAxis": 0,
+      "range": [
+        -9.393869969113714,
+        -5.860507128634203
+      ],
+      "fullyOpposedRooms": [
+        "A"
+      ],
+      "partlyOpposedRooms": [
+        "B"
+      ],
+      "classification": "Widened end segment/pocket in the current model; the same registration qualification applies.",
+      "currentHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          0,
+          1
+        ],
+        "constant": 11.243130179947949,
+        "allowance": 0.1
+      },
+      "conditionalHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -0.0012981015031035656,
+          0.9999991574658889
+        ],
+        "constant": 10.636184377576058,
+        "allowance": 0.1
+      },
+      "targetGrossNormalGap": 1.6,
+      "samples": [
+        {
+          "fixedStudyCoordinate": -9.393869969113714,
+          "opposingGrossPoint": [
+            -9.393869969113714,
+            9.023997783875142
+          ],
+          "currentHallFrontPoint": [
+            -9.396750630639698,
+            11.243130179947949
+          ],
+          "conditionalHallFrontPoint": [
+            -9.39594693151868,
+            10.623996435820565
+          ],
+          "currentGrossNormalGap": 2.2191342657691226,
+          "currentConditionalClearWidth": 1.9191342657691226,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.6191342657691226
+        },
+        {
+          "fixedStudyCoordinate": -5.860507128634203,
+          "opposingGrossPoint": [
+            -5.860507128634203,
+            9.028584451353804
+          ],
+          "currentHallFrontPoint": [
+            -5.863381836195222,
+            11.243130179947949
+          ],
+          "conditionalHallFrontPoint": [
+            -5.862584091039169,
+            10.628583103299228
+          ],
+          "currentGrossNormalGap": 2.2145475944260333,
+          "currentConditionalClearWidth": 1.9145475944260333,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": 0.6145475944260332
+        }
+      ],
+      "fullyOpposedRoomExamples": [
+        {
+          "room": "A",
+          "oldConditionalInternalArea": 16.400000000009765,
+          "conditionalInternalArea": 18.09485901473915,
+          "areaIncrease": 1.694859014729385,
+          "conditionalInternalStudyAxisWidth": 2.747416298478745,
+          "conditionalInternalStudyAxisDepth": 6.596913104962336,
+          "oldInternalStudyAxisDepth": 5.978173607515686,
+          "conditionalInternalPolygon": [
+            [
+              -6.344885859991924,
+              10.727957110373978
+            ],
+            [
+              -6.3448855835488,
+              17.321303787463634
+            ],
+            [
+              -9.086219793010693,
+              17.31792175886713
+            ],
+            [
+              -9.092301882027545,
+              10.724390682501298
+            ]
+          ],
+          "conditionalGrossPolygon": [
+            [
+              -6.244885864179246,
+              10.628086836374749
+            ],
+            [
+              -6.244885575158106,
+              17.521427311305814
+            ],
+            [
+              -9.386035775148839,
+              17.51755202321958
+            ],
+            [
+              -9.39239461234751,
+              10.624001047095309
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "L hall beside source edge 2-3",
+      "bank": "L",
+      "referenceRoom": "L2",
+      "sourceVertices": [
+        2,
+        3
+      ],
+      "opposingPlane": {
+        "normal": [
+          0.001989974830354461,
+          -0.999998019998127
+        ],
+        "constant": -9.049089004164589
+      },
+      "opposingAllowance": 0.2,
+      "fixedAxis": 0,
+      "range": [
+        2.67272023480671,
+        10.987401470267578
+      ],
+      "fullyOpposedRooms": [
+        "L2",
+        "L3"
+      ],
+      "partlyOpposedRooms": [
+        "L1"
+      ],
+      "classification": "Regular corridor beside a source boundary. Resident photos identify overlook glazing; .20m remains a hypothetical boundary offset, not measured glazing thickness.",
+      "currentHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          0,
+          -1
+        ],
+        "constant": -7.501360454857337,
+        "allowance": 0.1
+      },
+      "conditionalHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          0.001989974830354461,
+          -0.999998019998127
+        ],
+        "constant": -7.449089004164589,
+        "allowance": 0.1
+      },
+      "targetGrossNormalGap": 1.6,
+      "samples": [
+        {
+          "fixedStudyCoordinate": 2.67272023480671,
+          "opposingGrossPoint": [
+            2.67272023480671,
+            9.054425577940037
+          ],
+          "currentHallFrontPoint": [
+            2.675810801430874,
+            7.501360454857337
+          ],
+          "conditionalHallFrontPoint": [
+            2.6759041945352773,
+            7.454428745943034
+          ],
+          "currentGrossNormalGap": 1.5530681981606418,
+          "currentConditionalClearWidth": 1.2530681981606417,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": -0.0469318018393583
+        },
+        {
+          "fixedStudyCoordinate": 10.987401470267578,
+          "opposingGrossPoint": [
+            10.987401470267578,
+            9.070971617082213
+          ],
+          "currentHallFrontPoint": [
+            10.990524963158371,
+            7.501360454857337
+          ],
+          "conditionalHallFrontPoint": [
+            10.990585429996145,
+            7.470974785085209
+          ],
+          "currentGrossNormalGap": 1.569614270064071,
+          "currentConditionalClearWidth": 1.269614270064071,
+          "conditionalClearWidth": 1.3,
+          "roomDepthIncreaseAtSection": -0.03038572993592914
+        }
+      ],
+      "fullyOpposedRoomExamples": [
+        {
+          "room": "L2",
+          "oldConditionalInternalArea": 16.399999833775354,
+          "conditionalInternalArea": 16.292639735475554,
+          "areaIncrease": -0.1073600982998002,
+          "conditionalInternalStudyAxisWidth": 2.7442622029824832,
+          "conditionalInternalStudyAxisDepth": 5.948331545753147,
+          "oldInternalStudyAxisDepth": 5.984775092358504,
+          "conditionalInternalPolygon": [
+            [
+              7.94306220238255,
+              1.4189581970607321
+            ],
+            [
+              7.946493240471043,
+              7.364916908251983
+            ],
+            [
+              5.205659730720762,
+              7.359462707754062
+            ],
+            [
+              5.20223103748856,
+              1.4165853624988358
+            ]
+          ],
+          "conditionalGrossPolygon": [
+            [
+              8.04294686148936,
+              1.2190445957961344
+            ],
+            [
+              8.046551075827931,
+              7.465116219220746
+            ],
+            [
+              5.105717293608994,
+              7.45926402242651
+            ],
+            [
+              5.102115582474405,
+              1.2164986140556806
+            ]
+          ]
+        },
+        {
+          "room": "L3",
+          "oldConditionalInternalArea": 16.393020920751027,
+          "conditionalInternalArea": 16.30170073007698,
+          "areaIncrease": -0.09132019067404684,
+          "conditionalInternalStudyAxisWidth": 2.74426373451014,
+          "conditionalInternalStudyAxisDepth": 5.951637758894753,
+          "oldInternalStudyAxisDepth": 5.982229110601509,
+          "conditionalInternalPolygon": [
+            [
+              10.88389418243528,
+              1.421504179408089
+            ],
+            [
+              10.88732607010217,
+              7.370769103150584
+            ],
+            [
+              8.14649350342676,
+              7.365314904529356
+            ],
+            [
+              8.14306233559203,
+              1.419131344255831
+            ]
+          ],
+          "conditionalGrossPolygon": [
+            [
+              10.983778877091588,
+              1.2215905781743004
+            ],
+            [
+              10.987383887625779,
+              7.47096841408386
+            ],
+            [
+              8.046551075827939,
+              7.4651162192207465
+            ],
+            [
+              8.042946861489368,
+              1.2190445957961487
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "straightFrontAlternative": [
+    {
+      "bank": "W",
+      "exampleRoom": "W1",
+      "anchor": "W hall beside L1 end wall",
+      "sourceEnd": "W outer end beside source recess 18-19",
+      "continuedStraightHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -0.9999998335670065,
+          0.0005769453693010555
+        ],
+        "constant": -0.6605830243482831,
+        "allowance": 0.1
+      },
+      "samples": [
+        {
+          "fixedStudyCoordinate": -2.50546236056305,
+          "isRepresentativeRoomFrontage": false,
+          "requiredOppositeFinishedFacePoint": [
+            2.0591373861374542,
+            -2.5062700840800716
+          ],
+          "effectiveSourceToClearHallFaceOffset": 0.5469791477711294,
+          "increaseOverEarlierSourceBoundaryAllowance": 0.3469791477711294,
+          "frontStepIfEarlierOffsetsRetained": 0.3469790686149431
+        },
+        {
+          "fixedStudyCoordinate": 1.2143419633988648,
+          "isRepresentativeRoomFrontage": false,
+          "requiredOppositeFinishedFacePoint": [
+            2.0612835103740563,
+            1.2135342398818434
+          ],
+          "effectiveSourceToClearHallFaceOffset": 0.5497106675696766,
+          "increaseOverEarlierSourceBoundaryAllowance": 0.34971066756967656,
+          "frontStepIfEarlierOffsetsRetained": 0.34971059076179634
+        },
+        {
+          "fixedStudyCoordinate": -0.9370927577376824,
+          "isRepresentativeRoomFrontage": true,
+          "requiredOppositeFinishedFacePoint": [
+            2.060042249867756,
+            -0.9379004812547039
+          ],
+          "effectiveSourceToClearHallFaceOffset": 0.5481308300233279,
+          "increaseOverEarlierSourceBoundaryAllowance": 0.34813083002332784,
+          "frontStepIfEarlierOffsetsRetained": 0.3481307518572503
+        }
+      ],
+      "conditionalExample": {
+        "oldInternalArea": 16.40000000001018,
+        "conditionalInternalArea": 17.10963798836068,
+        "conditionalInternalStudyAxisWidth": 2.7570473216942757,
+        "conditionalInternalStudyAxisDepth": 6.231406309522669
+      },
+      "meaning": "Keeping the opposite room-end finished face as the straight-corridor anchor allows a straight room front only if the source-to-clear-hall-face offset is reinterpreted here. This may include unresolved roof overhang/registration versus wall faces. The computed offset is not measured physical wall thickness."
+    },
+    {
+      "bank": "A",
+      "exampleRoom": "A",
+      "anchor": "A-D hall opposite W4 end wall",
+      "sourceEnd": "A-D outer end beside source recess 21-22",
+      "continuedStraightHallPlane": {
+        "kind": "hall-allocation",
+        "normal": [
+          -1.3731109502147914e-08,
+          1
+        ],
+        "constant": 10.978296984848555,
+        "allowance": 0.1
+      },
+      "samples": [
+        {
+          "fixedStudyCoordinate": -9.393869969113714,
+          "isRepresentativeRoomFrontage": false,
+          "requiredOppositeFinishedFacePoint": [
+            -9.393869949890162,
+            9.578296855860298
+          ],
+          "effectiveSourceToClearHallFaceOffset": 0.554298604944325,
+          "increaseOverEarlierSourceBoundaryAllowance": 0.354298604944325,
+          "frontStepIfEarlierOffsetsRetained": 0.3542977239294416
+        },
+        {
+          "fixedStudyCoordinate": -5.860507128634203,
+          "isRepresentativeRoomFrontage": false,
+          "requiredOppositeFinishedFacePoint": [
+            -5.86050710941065,
+            9.57829690437729
+          ],
+          "effectiveSourceToClearHallFaceOffset": 0.5497119898470384,
+          "increaseOverEarlierSourceBoundaryAllowance": 0.3497119898470384,
+          "frontStepIfEarlierOffsetsRetained": 0.34971110496777236
+        },
+        {
+          "fixedStudyCoordinate": -7.818354642334555,
+          "isRepresentativeRoomFrontage": true,
+          "requiredOppositeFinishedFacePoint": [
+            -7.818354623111001,
+            9.578296877493871
+          ],
+          "effectiveSourceToClearHallFaceOffset": 0.5522534477640253,
+          "increaseOverEarlierSourceBoundaryAllowance": 0.3522534477640253,
+          "frontStepIfEarlierOffsetsRetained": 0.352252565026026
+        }
+      ],
+      "conditionalExample": {
+        "oldInternalArea": 16.400000000009765,
+        "conditionalInternalArea": 17.12748845568031,
+        "conditionalInternalStudyAxisWidth": 2.7470898438294444,
+        "conditionalInternalStudyAxisDepth": 6.243006927457991
+      },
+      "meaning": "Keeping the opposite room-end finished face as the straight-corridor anchor allows a straight room front only if the source-to-clear-hall-face offset is reinterpreted here. This may include unresolved roof overhang/registration versus wall faces. The computed offset is not measured physical wall thickness."
+    }
+  ],
+  "coupledOneDimensionalFamily": {
+    "purpose": "Retired historical ratio-based alternative. It illustrates coupling but is not a constraint on the joint measured-plan candidate.",
+    "ratioHypothesisRetired": true,
+    "stairMeasurementSourceRecord": "data/source/house55-2og-stair-measurements.json",
+    "measuredStairClearWidth": 2.72,
+    "historicalL3ReferenceShare": 0.25,
+    "oldL3SideReferenceDistance": 0.44517753747286287,
+    "variables": {
+      "delta": "Rigid westward translation of all L-room polygons along the stair reference normal; preserves their untrimmed widths/areas.",
+      "epsilon": "W-room front advance into the western corridor; negative means W rooms become shallower.",
+      "tau": "Unknown combined distances from gross stair allocation boundaries to the measured stair clear faces; values 0 and .20m are illustrative assumptions."
+    },
+    "deltaEquation": "delta = 0.25 * (measured_stair_clear_width + tau) - old_L3_side_reference_distance",
+    "corridorEquation": "epsilon = current_clear_W - measured_clear_W - delta * projection",
+    "projection": 0.9999999999999991,
+    "simplifiedEquation": "delta + epsilon ≈ current_clear_W - 1.30",
+    "cases": [
+      {
+        "tauCombinedBoundaryToStairClearFaceOffsets": 0.0,
+        "tauIsMeasured": false,
+        "conditionalGrossStairWidth": 2.72,
+        "deltaRigidWestwardLTranslation": 0.23482246252713718,
+        "translationVectorStudyUV": [
+          -0.23482242345031654,
+          0.00013547039890395344
+        ],
+        "translationComponentAlongCorridorNormal": 0.23482246252713695,
+        "epsilonWFrontGrowthRange": [
+          0.024864926638076656,
+          0.028492995593508652
+        ],
+        "conditionalWFrontPlane": {
+          "kind": "hall-allocation",
+          "normal": [
+            -0.9999998335670065,
+            0.0005769453693010555
+          ],
+          "constant": -0.42576056182114613,
+          "allowance": 0.1
+        },
+        "conditionalW3Example": {
+          "oldInternalArea": 16.399999999989525,
+          "conditionalInternalArea": 16.474409792568846,
+          "areaIncrease": 0.07440979257932057,
+          "conditionalInternalStudyAxisDepth": 5.994738295890087
+        }
+      },
+      {
+        "tauCombinedBoundaryToStairClearFaceOffsets": 0.2,
+        "tauIsMeasured": false,
+        "conditionalGrossStairWidth": 2.9200000000000004,
+        "deltaRigidWestwardLTranslation": 0.2848224625271372,
+        "translationVectorStudyUV": [
+          -0.28482241512981343,
+          0.00016431568002528101
+        ],
+        "translationComponentAlongCorridorNormal": 0.28482246252713694,
+        "epsilonWFrontGrowthRange": [
+          -0.025135073361923332,
+          -0.021507004406491337
+        ],
+        "conditionalWFrontPlane": {
+          "kind": "hall-allocation",
+          "normal": [
+            -0.9999998335670065,
+            0.0005769453693010555
+          ],
+          "constant": -0.37576056182114614,
+          "allowance": 0.1
+        },
+        "conditionalW3Example": {
+          "oldInternalArea": 16.399999999989525,
+          "conditionalInternalArea": 16.337027439803638,
+          "areaIncrease": -0.06297256018588726,
+          "conditionalInternalStudyAxisDepth": 5.944738273733492
+        }
+      }
+    ],
+    "remainingConstraints": [
+      "Historical W4/L1 overlap alignment is not enforced by this rigid-translation family.",
+      "The R bank, source end containment and complete staircase length/landing/door arrangement remain unresolved.",
+      "The 25/75 reference fraction is historical relative evidence, not a new measured placement.",
+      "Gross allocation versus measured finished-face offsets remain assumptions; tau=.20m is not established wall thickness.",
+      "Untrimmed L polygons retain dimensions under rigid translation; this does not assert their translated containment in the physical floor.",
+      "Other western corridor runs and source-end effective offsets are not simultaneously refitted here.",
+      "The separate stair-width probes already demonstrate room overlap and floor-containment conflicts when expanding the saved enclosure."
+    ]
+  },
+  "crossingAndJunctionRooms": {
+    "boundaryTransitionRooms": [
+      "W2",
+      "B"
+    ],
+    "junctionAdjacentPartialFronts": [
+      "W4",
+      "D",
+      "L1"
+    ],
+    "qualification": "These rooms do not receive complete fitted fronts or area claims from the run-by-run examples. The independent variants are not a single coherent revised floor."
+  }
+}

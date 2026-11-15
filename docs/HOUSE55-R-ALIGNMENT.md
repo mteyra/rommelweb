@@ -1,5 +1,7 @@
 # House 55 · R-bank alignment and stair-flight study
 
+**Historical stage, superseded:** the resident has withdrawn the guessed stair reference percentages. The measured constraints are now 1.30 m hallways in both wings and a 2.72 m stairwell cross-section. Use the [new fitted-plan study](HOUSE55-MEASURED-PLAN.md); the alignment and ratios below document an earlier estimate only.
+
 Updated **15 November 2026**, **2. OG / index 2**. The latest candidate aligns the two estimated sides of R1–R3 to the endpoints of the opposite source recess. The official exterior, twenty resident-confirmed room references, 24 window records, gross stairwell and west stair entry are retained. Absolute apartment dimensions, partitions, clear stair widths and east stair access remain unverified.
 
 This step follows the [earlier conditional area scenario](HOUSE55-AREA-STUDY.md). Its source is [house55-r-alignment.mjs](../scripts/house55-r-alignment.mjs), with computed inputs and results under `rAlignment` in [study provenance](../data/source/house55-2og-study-provenance.json). Values below describe the calculation, not measurement accuracy or statistical confidence.

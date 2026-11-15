@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "house": "55",
+  "levelIndex": 2,
+  "purpose": "Find a geometrically coherent candidate with similar apartment dimensions using measured circulation and a category-average apartment-area target.",
+  "hardMeasurements": {
+    "hallwayClearWidthMetres": 1.3,
+    "hallwayScope": "Both wings, following the resident's additional check.",
+    "stairwellInsideWidthMetres": 2.72,
+    "stairAndCentralGuardZoneMetres": 1.43,
+    "stairLevelWalkwayMetres": 1.29
+  },
+  "topology": {
+    "roomCounts": {"A": 4, "W": 4, "L": 3, "E": 3, "R": 3, "N": 3},
+    "totalRooms": 20,
+    "separateLAndRDoorsOnSameLanding": true,
+    "sourceExteriorAndRecordedNoFloorRegionsPreserved": true
+  },
+  "fittingTargets": {
+    "meanApartmentEnvelopeAreaSquareMetres": 16.4,
+    "meanAreaIsMeasuredForTheseTwentyRooms": false,
+    "areaTargetSource": "Operator category average, applied to this candidate at the resident's request.",
+    "similarRoomDimensions": true,
+    "identicalDimensionsAreNotHardEvidence": true
+  },
+  "retiredConstraints": [
+    "All guessed 20/80 and 25/75 stair-to-extended-exterior-reference-line ratios.",
+    "An exactly 16.4 square metre area for each individual apartment.",
+    "Preserving old fitted room fronts or stair endpoints when they contradict measured circulation."
+  ],
+  "unknownsToExpose": [
+    "Wall thickness and source roof-edge offsets",
+    "Actual stairwell length and landing/tread geometry",
+    "Exact door jambs and swings",
+    "Bathroom, kitchenette and entry partitions",
+    "Actual apartment-to-apartment size differences",
+    "Finished floor elevations"
+  ],
+  "scope": "House 55 top floor. A common nominal apartment size is a candidate for this floor, not a verified universal apartment type across all eleven houses."
+}

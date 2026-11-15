@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "house": "55",
+  "levelIndex": 2,
+  "recordedDate": "2026-11-15",
+  "status": "resident-measured-not-yet-registered",
+  "widths": {
+    "totalWallToWallMetres": 2.72,
+    "stairAndCentralGuardMetres": 1.43,
+    "levelWalkwayMetres": 1.29,
+    "measurementFaces": "Inside stair-side wall to inside opposite wall. First span crosses the flight and central railing/gap; second span crosses the level walkway.",
+    "uncertaintyMetres": null,
+    "uncertaintyNote": "The resident reports these dimensions as exact. No instrument tolerance or repeated-measurement uncertainty was supplied.",
+    "clearFlightWidthMetres": null,
+    "centralGuardAndGapWidthMetres": null
+  },
+  "connectivity": {
+    "hallways": ["L", "R"],
+    "separateDoorsOntoSameTopFloorLanding": true,
+    "doorWidthsAndJambCoordinatesMeasured": false
+  },
+  "sourceEvidence": [
+    {
+      "id": "resident-stair-width-2026-11-15",
+      "kind": "resident_measurement_with_photographs",
+      "text": "I can also now tell you the exact size of the stairwell Total side to side is 272cm (143cm + 129cm) Attached image shows you more details.",
+      "photos": ["recovered-photo-06", "recovered-photo-07"],
+      "note": "Original text, seven photographs and checksums are retained in the separate private recovery archive."
+    },
+    {
+      "id": "resident-stair-width-split-confirmation-2026-11-15",
+      "kind": "resident_confirmation",
+      "question": "Does 143 cm run from the stair-side wall across the flight and central railing/gap, with the remaining 129 cm running from there to the opposite wall along the level walkway?",
+      "answer": "Yes, that is the split"
+    },
+    {
+      "id": "resident-two-landing-doors-2026-11-15",
+      "kind": "resident_confirmation",
+      "question": "Do L and R each have their own door directly onto the same top-floor stair landing?",
+      "answer": "Yes—one door to L, one to R"
+    }
+  ],
+  "registration": {
+    "campusCoordinates": null,
+    "flightOnL3Side": null,
+    "historicalReferenceRatioRetired": true,
+    "retiredConstraint": "Every guessed 20/80 or 25/75 split against an extended exterior reference line.",
+    "retirementSource": "Delete the 20% percent assumption thing that was a guess. You have more REAL data to figure things out correctly",
+    "note": "Flight on L3 side and walkway on R1 side are photo-supported candidates, not confirmed coordinate registration. No percentage reference alignment is an active fitting constraint. Only the measured 143/129 cross-section division remains."
+  },
+  "stillUnmeasured": [
+    "Wall-to-wall stairwell length",
+    "First and last tread positions and landing lengths",
+    "Door jamb positions, widths and swings",
+    "Separate clear flight and central guard/gap widths",
+    "Wall thicknesses and surveyed plan anchors",
+    "Riser count, floor-to-floor height and finished-floor elevations"
+  ],
+  "effectOnSavedModel": "Supersedes the inferred 1.780710 m stair enclosure width. It does not by itself provide replacement wall coordinates or authorize treating adjacent fitted apartment polygons as measured."
+}

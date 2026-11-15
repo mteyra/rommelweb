@@ -1,0 +1,2528 @@
+{
+  "schemaVersion": 1,
+  "currentStage": "rAlignment",
+  "house": "55",
+  "levelIndex": 2,
+  "inputs": {
+    "data/source/house55-2og-study-provenance.json": {
+      "sha256": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069"
+    },
+    "public/data/interior-studies.json": {
+      "sha256": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334"
+    },
+    "public/data/lod2.json": {
+      "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6"
+    },
+    "data/source/house55-2og-r-alignment-baseline.json": {
+      "sha256": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2"
+    }
+  },
+  "method": "Independent stdlib half-plane clipping, shoelace areas, ear triangulation and signed triangle intersections; no application modules imported.",
+  "units": {
+    "length": "metres",
+    "area": "square metres",
+    "coordinates": "campus metres rotated into retained study axes"
+  },
+  "rounding": "raw retains floating-point calculation output; rounded displays six decimals. Neither precision represents measurement accuracy.",
+  "assumptions": {
+    "targetInternalAreaSquareMetres": 16.4,
+    "publishedAreaSource": "https://www.werkswelt.de/index.php?id=wohnanlage-campus-sud-i",
+    "publishedAverageDefinitionSource": "https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/760-campus-sued-i-englisch-2026.pdf",
+    "targetInterpretation": "Conditional internal-envelope benchmark, borrowed from the published 16.4m² average. It is not proof of the rental area, clear area or individual room dimensions.",
+    "externalFacadeAllowanceMetres": 0.2,
+    "markedEndWallAllowanceMetres": 0.3,
+    "otherExternalEndAllowanceMetres": 0.2,
+    "allocationBoundaryHalfWallMetres": 0.1,
+    "recessBandMetres": 0.2,
+    "minimumConnectorClearStudyGuardMetres": 1.2,
+    "guardInterpretation": "Geometric study guard only, not a legal or accessibility-compliance claim.",
+    "internalPartitions": "Bathroom, kitchenette and other internal partition footprints are unknown and are not deducted. The internal envelope is not certified usable floor area."
+  },
+  "identifiability": {
+    "roomCountsByBank": {
+      "A": 4,
+      "E": 3,
+      "W": 4,
+      "L": 3,
+      "R": 3,
+      "N": 3
+    },
+    "potentialDividerPositionParametersBeforeOtherConstraints": 14,
+    "potentialSharedHallFrontOffsetsBeforeOtherConstraints": 6,
+    "notARemainingFreedomCount": true,
+    "explanation": "The counts describe a simplified initial parameterization, not the remaining rank or degrees of freedom of the current constrained model. Resident alignments, inherited divider slopes, fixed ends, equal-bay interpolation, shared hall fronts and area targets fix or couple parameters. Exact residual rank would require an explicit parameter vector and independent constraint Jacobian. Area targets and equality are modeling assumptions, not measurements.",
+    "missingPhysicalEvidence": [
+      "Registered wall faces and thicknesses",
+      "Floor elevations",
+      "Bathroom/kitchen/entrance partitions",
+      "Door endpoints",
+      "Stair length, landings and vertical construction"
+    ],
+    "supersedingEvidence": {
+      "path": "data/source/house55-2og-stair-measurements.json",
+      "note": "The resident measured 2.72 m wall-to-wall, split into 1.43 m flight/guard and 1.29 m walkway, and confirmed two landing doors. This script reconstructs the old saved geometry; its dimensions are not a measurement-compliant replacement."
+    }
+  },
+  "retainedMetadataNotIndependentlyRecomputed": {
+    "rawShellSectionArea": 637.124358,
+    "rawShellSectionMeaning": "Copied for context from provenance. This script independently intersects the saved study plate and roof plan; it does not resection the complete 3D shell."
+  },
+  "interpretation": [
+    "Conditional internal envelopes omit unknown internal service-partition footprints.",
+    "A published category-average area does not constrain every individual room to that exact area.",
+    "Agreement with the category average is not independent validation because most rooms were fitted to that benchmark.",
+    "No geometry was changed, and no measured floor plan, physical room number, occupancy, or compliant route is asserted."
+  ],
+  "raw": {
+    "transform": {
+      "originCampusXZ": [
+        0,
+        0
+      ],
+      "axisU": [
+        0.6759509953291936,
+        0.7369465733100823
+      ],
+      "axisV": [
+        -0.7369465733100823,
+        0.6759509953291936
+      ],
+      "angleDegrees": 47.4719559386725,
+      "determinant": 1.0
+    },
+    "rooms": [
+      {
+        "room": "A",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 19.732853793343494,
+        "conditionalInternalArea": 16.40000000000979,
+        "perimeterAllocationArea": 3.3328537933337046,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -9.79127889877418e-12,
+        "grossStudyAxisBounds": [
+          -9.391823620468612,
+          11.243130261602243,
+          -6.244885664200496,
+          17.52134901924106
+        ],
+        "grossStudyAxisExtents": [
+          3.1469379562681157,
+          6.278218757638818
+        ],
+        "internalStudyAxisBounds": [
+          -9.091731136450084,
+          11.343130179947948,
+          -6.344885583548797,
+          17.321303787463634
+        ],
+        "internalStudyAxisExtents": [
+          2.746845552901287,
+          5.978173607515686
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            -6.344885834199198,
+            11.343130179947948
+          ],
+          [
+            -6.344885583548797,
+            17.321303787463634
+          ],
+          [
+            -9.086219793010697,
+            17.317921758867122
+          ],
+          [
+            -9.091731136450084,
+            11.343130179947948
+          ],
+          [
+            -6.344885834199198,
+            11.343130179947948
+          ]
+        ]
+      },
+      {
+        "room": "B",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 18.478556526579997,
+        "conditionalInternalArea": 16.39999999999794,
+        "perimeterAllocationArea": 2.078556526582055,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 2.05702122002549e-12,
+        "grossStudyAxisBounds": [
+          -6.2448859601790385,
+          11.243130261602243,
+          -3.3024621651716792,
+          17.52500475420988
+        ],
+        "grossStudyAxisExtents": [
+          2.9424237950073593,
+          6.281874492607638
+        ],
+        "internalStudyAxisBounds": [
+          -6.144885834199195,
+          11.343130179947948,
+          -3.4024621702891715,
+          17.324933903075717
+        ],
+        "internalStudyAxisExtents": [
+          2.742423663910024,
+          5.9818037231277685
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            -3.4024621702891715,
+            11.343130179947948
+          ],
+          [
+            -3.4024621747250703,
+            17.324933903075717
+          ],
+          [
+            -6.144885583538449,
+            17.32155053071625
+          ],
+          [
+            -6.144885834199195,
+            11.343130179947948
+          ],
+          [
+            -3.4024621702891715,
+            11.343130179947948
+          ]
+        ]
+      },
+      {
+        "room": "C",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 18.478862451351993,
+        "conditionalInternalArea": 16.40000000000878,
+        "perimeterAllocationArea": 2.0788624513432126,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -8.782308213994838e-12,
+        "grossStudyAxisBounds": [
+          -3.30246247814899,
+          11.243130125612101,
+          -0.36170158558557475,
+          17.52865936426026
+        ],
+        "grossStudyAxisExtents": [
+          2.940760892563415,
+          6.285529238648159
+        ],
+        "internalStudyAxisBounds": [
+          -3.20246217472525,
+          11.343130179947948,
+          -0.46170168222036334,
+          17.32856196712089
+        ],
+        "internalStudyAxisExtents": [
+          2.7407604925048865,
+          5.985431787172942
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            -0.4617021047024718,
+            11.343130179947948
+          ],
+          [
+            -0.46170168222036334,
+            17.32856196712089
+          ],
+          [
+            -3.20246217472525,
+            17.32518064632832
+          ],
+          [
+            -3.2024621702891682,
+            11.343130179947948
+          ],
+          [
+            -0.4617021047024718,
+            11.343130179947948
+          ]
+        ]
+      },
+      {
+        "room": "D",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 19.108332409535016,
+        "conditionalInternalArea": 16.399999999999878,
+        "perimeterAllocationArea": 2.7083324095351387,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 1.2079226507921703e-13,
+        "grossStudyAxisBounds": [
+          -0.3617019315604919,
+          11.243130125612101,
+          2.6798837154731867,
+          17.532437944323135
+        ],
+        "grossStudyAxisExtents": [
+          3.0415856470336786,
+          6.289307818711034
+        ],
+        "internalStudyAxisBounds": [
+          -0.2617021047024675,
+          11.343130179947948,
+          2.4797278605098434,
+          17.332190856584205
+        ],
+        "internalStudyAxisExtents": [
+          2.741429965212311,
+          5.989060676636257
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            2.4750683055355873,
+            11.343130179947948
+          ],
+          [
+            2.4797278605098434,
+            17.332190856584205
+          ],
+          [
+            -0.261701682202942,
+            17.328808710373515
+          ],
+          [
+            -0.2617021047024675,
+            11.343130179947948
+          ],
+          [
+            2.4750683055355873,
+            11.343130179947948
+          ]
+        ]
+      },
+      {
+        "room": "E",
+        "bank": "E",
+        "recordStage": "areaStudy",
+        "grossArea": 18.473890329092505,
+        "conditionalInternalArea": 16.400000000009936,
+        "perimeterAllocationArea": 2.0738903290825697,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -9.936940159605001e-12,
+        "grossStudyAxisBounds": [
+          24.34034892666766,
+          1.9262697855026616,
+          30.54139863785955,
+          4.906009389211954
+        ],
+        "grossStudyAxisExtents": [
+          6.201049711191892,
+          2.9797396037092927
+        ],
+        "internalStudyAxisBounds": [
+          24.440349257588874,
+          2.0262697932533014,
+          30.34131733628645,
+          4.806009118002581
+        ],
+        "internalStudyAxisExtents": [
+          5.900968078697577,
+          2.779739324749279
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            30.34131733628645,
+            4.806009118002581
+          ],
+          [
+            24.440349257588874,
+            4.806008175972007
+          ],
+          [
+            24.440349257588878,
+            2.0262700219402476
+          ],
+          [
+            30.339051247172534,
+            2.0262697932533014
+          ],
+          [
+            30.34131733628645,
+            4.806009118002581
+          ]
+        ]
+      },
+      {
+        "room": "F",
+        "bank": "E",
+        "recordStage": "areaStudy",
+        "grossArea": 18.47403118119,
+        "conditionalInternalArea": 16.400000000000034,
+        "perimeterAllocationArea": 2.074031181189966,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -3.552713678800501e-14,
+        "grossStudyAxisBounds": [
+          24.34034892666766,
+          4.906008406283215,
+          30.5438270148086,
+          7.884604367903552
+        ],
+        "grossStudyAxisExtents": [
+          6.20347808814094,
+          2.9785959616203366
+        ],
+        "internalStudyAxisBounds": [
+          24.440349257588874,
+          5.006008175972013,
+          30.34374553497114,
+          7.784604068035453
+        ],
+        "internalStudyAxisExtents": [
+          5.903396277382267,
+          2.7785958920634393
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            30.34374553497114,
+            7.784603088853031
+          ],
+          [
+            24.440349257588874,
+            7.784604068035453
+          ],
+          [
+            24.440349257588878,
+            5.006008175972013
+          ],
+          [
+            30.341480379568537,
+            5.006009118028615
+          ],
+          [
+            30.34374553497114,
+            7.784603088853031
+          ]
+        ]
+      },
+      {
+        "room": "G",
+        "bank": "E",
+        "recordStage": "areaStudy",
+        "grossArea": 19.715737496433483,
+        "conditionalInternalArea": 16.399999999995032,
+        "perimeterAllocationArea": 3.3157374964384516,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 4.9666937229631e-12,
+        "grossStudyAxisBounds": [
+          24.340349055658308,
+          7.884603147991994,
+          30.546420464790295,
+          11.065772760554983
+        ],
+        "grossStudyAxisExtents": [
+          6.206071409131987,
+          3.1811696125629894
+        ],
+        "internalStudyAxisBounds": [
+          24.440349257588874,
+          7.984603088825988,
+          30.34617564083333,
+          10.765536533582402
+        ],
+        "internalStudyAxisExtents": [
+          5.905826383244456,
+          2.780933444756414
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            30.34617564083333,
+            10.765536533582402
+          ],
+          [
+            24.440349257588874,
+            10.758575630476017
+          ],
+          [
+            24.440349257588878,
+            7.984604068035453
+          ],
+          [
+            30.343908578253178,
+            7.984603088825988
+          ],
+          [
+            30.34617564083333,
+            10.765536533582402
+          ]
+        ]
+      },
+      {
+        "room": "W1",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 19.732510642542998,
+        "conditionalInternalArea": 16.400000000010166,
+        "perimeterAllocationArea": 3.3325106425328315,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -1.0167866548727034e-11,
+        "grossStudyAxisBounds": [
+          -5.8706801481170245,
+          -2.5217025991884277,
+          0.4015962203293948,
+          0.6354993139697878
+        ],
+        "grossStudyAxisExtents": [
+          6.27227636844642,
+          3.1572019131582154
+        ],
+        "internalStudyAxisBounds": [
+          -5.670514105961388,
+          -2.2213191947748836,
+          0.30159609535314136,
+          0.535355368392683
+        ],
+        "internalStudyAxisExtents": [
+          5.972110201314529,
+          2.7566745631675666
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.30159609535314047,
+            0.535355368392683
+          ],
+          [
+            -5.668069612244153,
+            0.5267735049413955
+          ],
+          [
+            -5.670514105961388,
+            -2.2213191947748836
+          ],
+          [
+            0.30159609535314136,
+            -2.209876329429671
+          ],
+          [
+            0.30159609535314047,
+            0.535355368392683
+          ]
+        ]
+      },
+      {
+        "room": "W2",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 18.477983115232497,
+        "conditionalInternalArea": 16.400000000001363,
+        "perimeterAllocationArea": 2.0779831152311345,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -1.3642420526593924e-12,
+        "grossStudyAxisBounds": [
+          -5.867907392134547,
+          0.6264866063674042,
+          0.4015963023234501,
+          3.5818898084018627
+        ],
+        "grossStudyAxisExtents": [
+          6.269503694457997,
+          2.9554032020344585
+        ],
+        "internalStudyAxisBounds": [
+          -5.667891707083271,
+          0.7267739673571444,
+          0.30159609535314136,
+          3.481794156570904
+        ],
+        "internalStudyAxisExtents": [
+          5.969487802436412,
+          2.75502018921376
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.30159609535314047,
+            3.481794156570904
+          ],
+          [
+            -5.665446140463345,
+            3.4760728211417202
+          ],
+          [
+            -5.667891707083271,
+            0.7267739673571444
+          ],
+          [
+            0.30159609535314136,
+            0.7353555750557867
+          ],
+          [
+            0.30159609535314047,
+            3.481794156570904
+          ]
+        ]
+      },
+      {
+        "room": "W3",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 18.477900481686003,
+        "conditionalInternalArea": 16.39999999998948,
+        "perimeterAllocationArea": 2.077900481696524,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 1.0519585202928283e-11,
+        "grossStudyAxisBounds": [
+          -5.865309163499294,
+          3.575881249006628,
+          0.4015963023234501,
+          6.529488498242945
+        ],
+        "grossStudyAxisExtents": [
+          6.266905465822744,
+          2.9536072492363172
+        ],
+        "internalStudyAxisBounds": [
+          -5.665268235480305,
+          3.6760730836551194,
+          0.30159609535314136,
+          6.429440703828544
+        ],
+        "internalStudyAxisExtents": [
+          5.966864330833446,
+          2.753367620173425
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.30159609535314047,
+            6.429440703828544
+          ],
+          [
+            -5.662821594071545,
+            6.426580211895528
+          ],
+          [
+            -5.665268235480305,
+            3.6760730836551194
+          ],
+          [
+            0.30159609535314136,
+            3.681794248504971
+          ],
+          [
+            0.30159609535314047,
+            6.429440703828544
+          ]
+        ]
+      },
+      {
+        "room": "W4",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 18.4782606803815,
+        "conditionalInternalArea": 16.40000000001801,
+        "perimeterAllocationArea": 2.0782606803634884,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -1.801225835151854e-11,
+        "grossStudyAxisBounds": [
+          -5.862711121850487,
+          6.526484763005857,
+          0.4015961243363533,
+          9.478296904382775
+        ],
+        "grossStudyAxisExtents": [
+          6.26430724618684,
+          2.9518121413769185
+        ],
+        "internalStudyAxisBounds": [
+          -5.662643689225661,
+          6.626580320218338,
+          0.30159609535314136,
+          9.378296988989803
+        ],
+        "internalStudyAxisExtents": [
+          5.964239784578802,
+          2.751716668771465
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.30159609535314047,
+            9.378296988989803
+          ],
+          [
+            -5.660195971974687,
+            9.378296907127783
+          ],
+          [
+            -5.662643689225661,
+            6.626580320218338
+          ],
+          [
+            0.30159609535314136,
+            6.629440726829467
+          ],
+          [
+            0.30159609535314047,
+            9.378296988989803
+          ]
+        ]
+      },
+      {
+        "room": "L1",
+        "bank": "L",
+        "recordStage": "areaStudy",
+        "grossArea": 18.4868509307885,
+        "conditionalInternalArea": 16.40697924547503,
+        "perimeterAllocationArea": 2.0798716853134707,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.006979245475029927,
+        "grossStudyAxisBounds": [
+          2.161283191648316,
+          1.212952956098244,
+          5.1057415581545875,
+          7.501360734059865
+        ],
+        "grossStudyAxisExtents": [
+          2.9444583665062716,
+          6.288407777961622
+        ],
+        "internalStudyAxisBounds": [
+          2.2613992241921976,
+          1.4140393802958187,
+          5.005683869988331,
+          7.40136045485734
+        ],
+        "internalStudyAxisExtents": [
+          2.744284645796133,
+          5.987321074561521
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            5.002230904306577,
+            1.4164122153037368
+          ],
+          [
+            5.005683869988331,
+            7.401360454857337
+          ],
+          [
+            2.2648535819356033,
+            7.40136045485734
+          ],
+          [
+            2.2613992241921976,
+            1.4140393802958187
+          ],
+          [
+            5.002230904306577,
+            1.4164122153037368
+          ]
+        ]
+      },
+      {
+        "room": "L2",
+        "bank": "L",
+        "recordStage": "areaStudy",
+        "grossArea": 18.47876294663901,
+        "conditionalInternalArea": 16.399999833775354,
+        "perimeterAllocationArea": 2.078763112863655,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 1.6622464471538478e-07,
+        "grossStudyAxisBounds": [
+          5.102115608026443,
+          1.2165429028365393,
+          8.04657188268437,
+          7.5013609850416705
+        ],
+        "grossStudyAxisExtents": [
+          2.9444562746579273,
+          6.284818082205131
+        ],
+        "internalStudyAxisBounds": [
+          5.20223103748856,
+          1.4165853624988287,
+          7.9465142697452995,
+          7.40136045485734
+        ],
+        "internalStudyAxisExtents": [
+          2.7442832322567394,
+          5.984775092358511
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            7.943062202382546,
+            1.418958197060718
+          ],
+          [
+            7.9465142697452995,
+            7.401360454857337
+          ],
+          [
+            5.205683903274491,
+            7.40136045485734
+          ],
+          [
+            5.20223103748856,
+            1.4165853624988287
+          ],
+          [
+            7.943062202382546,
+            1.418958197060718
+          ]
+        ]
+      },
+      {
+        "room": "L3",
+        "bank": "L",
+        "recordStage": "areaStudy",
+        "grossArea": 18.471124225793,
+        "conditionalInternalArea": 16.393020920750942,
+        "perimeterAllocationArea": 2.0781033050420596,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.006979079249056497,
+        "grossStudyAxisBounds": [
+          8.042946916484892,
+          1.219139902560884,
+          10.987401470267578,
+          7.5013609850416705
+        ],
+        "grossStudyAxisExtents": [
+          2.944454553782686,
+          6.2822210824807865
+        ],
+        "internalStudyAxisBounds": [
+          8.143062335592044,
+          1.419131344255824,
+          10.887343717002075,
+          7.40136045485734
+        ],
+        "internalStudyAxisExtents": [
+          2.7442813814100315,
+          5.982229110601516
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            10.883894182435279,
+            1.421504179408089
+          ],
+          [
+            10.887343717002075,
+            7.401360454857337
+          ],
+          [
+            8.146514303042462,
+            7.40136045485734
+          ],
+          [
+            8.143062335592044,
+            1.419131344255824
+          ],
+          [
+            10.883894182435279,
+            1.421504179408089
+          ]
+        ]
+      },
+      {
+        "room": "R1",
+        "bank": "R",
+        "recordStage": "rAlignment",
+        "grossArea": 18.116568847487503,
+        "conditionalInternalArea": 16.06834663756097,
+        "perimeterAllocationArea": 2.048222209926532,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.33165336243902743,
+        "grossStudyAxisBounds": [
+          13.057515741423042,
+          3.6744340931844164,
+          16.053278549492127,
+          9.726116980078544
+        ],
+        "grossStudyAxisExtents": [
+          2.9957628080690846,
+          6.0516828868941275
+        ],
+        "internalStudyAxisBounds": [
+          13.157538270005693,
+          3.7744343592232212,
+          15.953252960061103,
+          9.526027849462906
+        ],
+        "internalStudyAxisExtents": [
+          2.7957146900554104,
+          5.751593490239685
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            15.953252960061103,
+            3.7744343592232212
+          ],
+          [
+            15.951803542858432,
+            9.526027849462906
+          ],
+          [
+            13.158865430351918,
+            9.523534956833615
+          ],
+          [
+            13.157538270005693,
+            3.7744343592232275
+          ],
+          [
+            15.953252960061103,
+            3.7744343592232212
+          ]
+        ]
+      },
+      {
+        "room": "R2",
+        "bank": "R",
+        "recordStage": "rAlignment",
+        "grossArea": 18.124562898147502,
+        "conditionalInternalArea": 16.075807566029688,
+        "perimeterAllocationArea": 2.048755332117814,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.3241924339703104,
+        "grossStudyAxisBounds": [
+          16.051753241072976,
+          3.674433892198987,
+          19.049041357561208,
+          9.728788126427453
+        ],
+        "grossStudyAxisExtents": [
+          2.9972881164882317,
+          6.054354234228466
+        ],
+        "internalStudyAxisBounds": [
+          16.151803504222965,
+          3.7744343592232212,
+          18.948967632131193,
+          9.528699253800127
+        ],
+        "internalStudyAxisExtents": [
+          2.7971641279082284,
+          5.754264894576906
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            18.948967632131193,
+            3.7744343592232212
+          ],
+          [
+            18.944739098816893,
+            9.528699253800127
+          ],
+          [
+            16.151803504222965,
+            9.526206363418268
+          ],
+          [
+            16.15325296641164,
+            3.7744343592232275
+          ],
+          [
+            18.948967632131193,
+            3.7744343592232212
+          ]
+        ]
+      },
+      {
+        "room": "R3",
+        "bank": "R",
+        "recordStage": "rAlignment",
+        "grossArea": 18.132554101101505,
+        "conditionalInternalArea": 16.083268216111243,
+        "perimeterAllocationArea": 2.0492858849902618,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.31673178388875556,
+        "grossStudyAxisBounds": [
+          19.0445922281114,
+          3.674433892198987,
+          22.044803489679296,
+          9.73145939476752
+        ],
+        "grossStudyAxisExtents": [
+          3.0002112615678946,
+          6.057025502568532
+        ],
+        "internalStudyAxisBounds": [
+          19.14473902163632,
+          3.7744343592232212,
+          21.94468228088695,
+          9.53137065581393
+        ],
+        "internalStudyAxisExtents": [
+          2.7999432592506324,
+          5.756936296590709
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            21.94468228088695,
+            3.7744343592232212
+          ],
+          [
+            21.9376720516923,
+            9.53137065581393
+          ],
+          [
+            19.14473902163632,
+            9.528877767721092
+          ],
+          [
+            19.14896768613194,
+            3.7744343592232266
+          ],
+          [
+            21.94468228088695,
+            3.7744343592232212
+          ]
+        ]
+      },
+      {
+        "room": "N1",
+        "bank": "N",
+        "recordStage": "areaStudy",
+        "grossArea": 19.060458063215982,
+        "conditionalInternalArea": 16.400000000002095,
+        "perimeterAllocationArea": 2.6604580632138877,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -2.0961010704922955e-12,
+        "grossStudyAxisBounds": [
+          22.04955246839082,
+          -6.589466281011311,
+          25.238707468034235,
+          -0.6048290794811901
+        ],
+        "grossStudyAxisExtents": [
+          3.1891549996434136,
+          5.984637201530121
+        ],
+        "internalStudyAxisBounds": [
+          22.24963891102066,
+          -6.389072102753616,
+          25.13870757915703,
+          -0.7048290592464497
+        ],
+        "internalStudyAxisExtents": [
+          2.8890686681363675,
+          5.684243043507166
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            25.13870741287935,
+            -6.38338842886894
+          ],
+          [
+            25.13870757915703,
+            -0.7048290592464577
+          ],
+          [
+            22.24963891102066,
+            -0.7048290592464497
+          ],
+          [
+            22.254554856600024,
+            -6.389072102753616
+          ],
+          [
+            25.13870741287935,
+            -6.38338842886894
+          ]
+        ]
+      },
+      {
+        "room": "N2",
+        "bank": "N",
+        "recordStage": "areaStudy",
+        "grossArea": 18.461976781366012,
+        "conditionalInternalArea": 16.399999999989962,
+        "perimeterAllocationArea": 2.0619767813760497,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 1.0036416142611415e-11,
+        "grossStudyAxisBounds": [
+          25.238707244050474,
+          -6.583191701901807,
+          28.328413668454253,
+          -0.6048290794811901
+        ],
+        "grossStudyAxisExtents": [
+          3.0897064244037793,
+          5.978362622420617
+        ],
+        "internalStudyAxisBounds": [
+          25.338707412890884,
+          -6.382994297575678,
+          28.228413479630948,
+          -0.7048290592464559
+        ],
+        "internalStudyAxisExtents": [
+          2.8897060667400645,
+          5.678165238329222
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            28.228413416481715,
+            -6.377299679754138
+          ],
+          [
+            28.228413479630948,
+            -0.7048290592464559
+          ],
+          [
+            25.338707579157024,
+            -0.7048290592464568
+          ],
+          [
+            25.338707412890884,
+            -6.382994297575678
+          ],
+          [
+            28.228413416481715,
+            -6.377299679754138
+          ]
+        ]
+      },
+      {
+        "room": "N3",
+        "bank": "N",
+        "recordStage": "areaStudy",
+        "grossArea": 19.65465532004796,
+        "conditionalInternalArea": 16.400000000009406,
+        "perimeterAllocationArea": 3.2546553200385553,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -9.407585821463726e-12,
+        "grossStudyAxisBounds": [
+          28.32841316449079,
+          -6.577103090310148,
+          31.623504121055717,
+          -0.6048293454619067
+        ],
+        "grossStudyAxisExtents": [
+          3.295090956564927,
+          5.972273744848241
+        ],
+        "internalStudyAxisBounds": [
+          28.42841341648611,
+          -6.376905548460897,
+          31.32342640422713,
+          -0.7048290592464568
+        ],
+        "internalStudyAxisExtents": [
+          2.8950129877410227,
+          5.67207648921444
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            31.319022601834,
+            -6.371209150778398
+          ],
+          [
+            31.32342640422713,
+            -0.7048290592464577
+          ],
+          [
+            28.428413479630954,
+            -0.7048290592464568
+          ],
+          [
+            28.42841341648611,
+            -6.376905548460897
+          ],
+          [
+            31.319022601834,
+            -6.371209150778398
+          ]
+        ]
+      }
+    ],
+    "floorBudget": {
+      "sourceRoofProjectionArea": 510.61898449999995,
+      "retainedStudyPlateArea": 561.338565271133,
+      "annotatedCoreIntersectionArea": 510.61615899550134,
+      "retainedPlateOutsideAnnotatedCoreArea": 50.72240627563167,
+      "spaceAreasByKind": {
+        "room": 374.6164332219564,
+        "stairs": 13.977191452959499,
+        "corridor": 119.10010904319799,
+        "service": 2.9224376899474964
+      },
+      "hallAreasByLabel": {
+        "West hall": 59.65316100663048,
+        "East hall": 59.446948036567505
+      },
+      "allSpaceAreaSum": 510.6161714080614,
+      "areaConservationResidual": 1.2412560067787126e-05,
+      "pairwiseSpaceIntersectionAreaSum": 7.375498123973489e-08,
+      "conditionalInternalEnvelopeTotal": 327.0274224197451,
+      "conditionalMeanInternalEnvelopeArea": 16.351371120987256,
+      "conditionalMeanRoundedToPublishedOneDecimal": 16.4,
+      "categoryBenchmarkTimesRoomCount": 328.0,
+      "benchmarkTotalMinusConditionalInternalTotal": 0.9725775802548924
+    },
+    "rAlignment": {
+      "oppositeRecessLength": 8.98948763834736,
+      "candidateBankExtentAlongFacadePlane": 8.978520537162009,
+      "sourceFacadeSegmentLength": 8.079456479244135,
+      "sourceRoofSurfaceIndex": 39,
+      "sourceRoofSurfaceId": "DEBY_LOD2_3166499_deefba9b-e1a3-483f-ab2b-d63a38ca9855_2_poly",
+      "recessSourceVertexIndices": [
+        15,
+        16
+      ],
+      "facadeSourceVertexIndices": [
+        6,
+        7
+      ]
+    },
+    "rSensitivity": {
+      "grossNorthConnectorGap": 1.4999995329757603,
+      "conditionalNorthConnectorGap": 1.1999995329757602,
+      "declaredConnectorStudyGuard": 1.2,
+      "sharedHallFrontGrowthForMeanBenchmark": 0.11595935959029124,
+      "conditionalConnectorIfMeanBenchmarkForced": 1.084040173385469,
+      "individualRooms": [
+        {
+          "room": "R1",
+          "hallFrontGrowthToBenchmark": 0.11862797235606526,
+          "conditionalConnectorIfIndividuallyForced": 1.081371560619695,
+          "internalAreaGainForOneCentimetreDepth": 0.027957171043006213
+        },
+        {
+          "room": "R2",
+          "hallFrontGrowthToBenchmark": 0.11595932575416001,
+          "conditionalConnectorIfIndividuallyForced": 1.0840402072216002,
+          "internalAreaGainForOneCentimetreDepth": 0.027957170799645326
+        },
+        {
+          "room": "R3",
+          "hallFrontGrowthToBenchmark": 0.11329077933976239,
+          "conditionalConnectorIfIndividuallyForced": 1.0867087536359978,
+          "internalAreaGainForOneCentimetreDepth": 0.027957170090008532
+        }
+      ]
+    },
+    "staircase": {
+      "enclosure": {
+        "width": 1.7807098385229754,
+        "l3SideDistance": 0.44517753747286287,
+        "r1SideDistance": 1.3355323010501126,
+        "l3Share": 0.250000043714095,
+        "r1Share": 0.749999956285905
+      },
+      "symbolicFlight": {
+        "width": 1.5807099386206906,
+        "l3SideDistance": 0.3451777314315122,
+        "r1SideDistance": 1.2355322071891783,
+        "l3Share": 0.21836879935904643,
+        "r1Share": 0.7816312006409535
+      },
+      "enclosureArea": 13.977191452959499,
+      "enclosureStudyAxisBounds": [
+        10.983778961889914,
+        1.2217375782362243,
+        12.769017175810895,
+        9.071859632016933
+      ],
+      "flightStudyAxisBounds": [
+        11.085038418845388,
+        3.4056047526051416,
+        12.668232129461899,
+        7.710483124236138
+      ],
+      "flightEdgeLengths": [
+        1.5807097976937459,
+        4.30487859827487,
+        1.5807097976937459,
+        4.30487859827487
+      ],
+      "sideInsetL3": 0.09999980604135067,
+      "sideInsetR1": 0.10000009386093422,
+      "rightOnlyShrinkDerivativeAtZero": 0.14039347585200046,
+      "rightOnlyShrinkEquation": "L3_fraction(delta) = L3_side_distance / (gross_width - delta)",
+      "interpretation": "A positive right-only shrink increases the L3 share. Flight insets are symbolic assumptions."
+    },
+    "heights": {
+      "sourceBaseCampusY": 2.822,
+      "sourceBaseAltitudeNHN": 292.411,
+      "sourceMaximumBuildingHeight": 9.491,
+      "provisionalFloorCampusY": 9.149333333333333,
+      "provisionalFloorAboveBase": 6.327333333333333,
+      "equalStoreyGuideRecomputedAboveBase": 6.327333333333333,
+      "sourceFlatRoofCampusY": 11.401,
+      "sourceFlatRoofAboveProvisionalFloor": 2.251666666666667,
+      "interpretation": "Difference between an exterior roof surface and an assumed floor plane; no slab deduction or clear-ceiling measurement."
+    },
+    "unassigned": {
+      "grossArea": 2.9224376899474964,
+      "crossSectionsBesideStair": [
+        {
+          "studyV": 3.674433892198987,
+          "grossStripWidth": 0.2916113139639227
+        },
+        {
+          "studyV": 9.071859632016933,
+          "grossStripWidth": 0.2897434859004109
+        }
+      ],
+      "doorTargetCount": 0,
+      "interpretation": "Residual strip and connected pocket, with no established use or circulation function."
+    },
+    "doorGraph": {
+      "roomCount": 20,
+      "windowCount": 24,
+      "doorTargetCount": 21,
+      "spaceCountsByKind": {
+        "room": 20,
+        "stairs": 1,
+        "corridor": 2,
+        "service": 1
+      },
+      "roomsWithNoRepresentedDoorGraphRouteToStair": [
+        "E",
+        "F",
+        "G",
+        "R1",
+        "R2",
+        "R3",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "interpretation": "This audits saved connectivity only. The resident has confirmed separate L and R doors onto the same landing; the missing R connection is an implementation omission, not missing topological evidence or a claim about actual exits."
+    },
+    "numericalChecks": {
+      "maxInternalAreaVsProvenance": 1.1368683772161603e-13,
+      "maxGrossAreaVsProvenance": 1.3649849606167663e-07,
+      "maxInternalOutsideGross": 7.105427357601002e-15,
+      "maxInternalVsSavedPolygonSymmetricDifference": 5.284722142562259e-06
+    },
+    "preserved": {
+      "floorOutlineEqualsFrozenPreAlignmentBaseline": true,
+      "windowsEqualFrozenPreAlignmentBaseline": true,
+      "unchangedNonRRoomRecords": 17
+    }
+  },
+  "rounded": {
+    "transform": {
+      "originCampusXZ": [
+        0,
+        0
+      ],
+      "axisU": [
+        0.675951,
+        0.736947
+      ],
+      "axisV": [
+        -0.736947,
+        0.675951
+      ],
+      "angleDegrees": 47.471956,
+      "determinant": 1.0
+    },
+    "rooms": [
+      {
+        "room": "A",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 19.732854,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 3.332854,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          -9.391824,
+          11.24313,
+          -6.244886,
+          17.521349
+        ],
+        "grossStudyAxisExtents": [
+          3.146938,
+          6.278219
+        ],
+        "internalStudyAxisBounds": [
+          -9.091731,
+          11.34313,
+          -6.344886,
+          17.321304
+        ],
+        "internalStudyAxisExtents": [
+          2.746846,
+          5.978174
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            -6.344886,
+            11.34313
+          ],
+          [
+            -6.344886,
+            17.321304
+          ],
+          [
+            -9.08622,
+            17.317922
+          ],
+          [
+            -9.091731,
+            11.34313
+          ],
+          [
+            -6.344886,
+            11.34313
+          ]
+        ]
+      },
+      {
+        "room": "B",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 18.478557,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.078557,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.0,
+        "grossStudyAxisBounds": [
+          -6.244886,
+          11.24313,
+          -3.302462,
+          17.525005
+        ],
+        "grossStudyAxisExtents": [
+          2.942424,
+          6.281874
+        ],
+        "internalStudyAxisBounds": [
+          -6.144886,
+          11.34313,
+          -3.402462,
+          17.324934
+        ],
+        "internalStudyAxisExtents": [
+          2.742424,
+          5.981804
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            -3.402462,
+            11.34313
+          ],
+          [
+            -3.402462,
+            17.324934
+          ],
+          [
+            -6.144886,
+            17.321551
+          ],
+          [
+            -6.144886,
+            11.34313
+          ],
+          [
+            -3.402462,
+            11.34313
+          ]
+        ]
+      },
+      {
+        "room": "C",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 18.478862,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.078862,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          -3.302462,
+          11.24313,
+          -0.361702,
+          17.528659
+        ],
+        "grossStudyAxisExtents": [
+          2.940761,
+          6.285529
+        ],
+        "internalStudyAxisBounds": [
+          -3.202462,
+          11.34313,
+          -0.461702,
+          17.328562
+        ],
+        "internalStudyAxisExtents": [
+          2.74076,
+          5.985432
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            -0.461702,
+            11.34313
+          ],
+          [
+            -0.461702,
+            17.328562
+          ],
+          [
+            -3.202462,
+            17.325181
+          ],
+          [
+            -3.202462,
+            11.34313
+          ],
+          [
+            -0.461702,
+            11.34313
+          ]
+        ]
+      },
+      {
+        "room": "D",
+        "bank": "A",
+        "recordStage": "areaStudy",
+        "grossArea": 19.108332,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.708332,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.0,
+        "grossStudyAxisBounds": [
+          -0.361702,
+          11.24313,
+          2.679884,
+          17.532438
+        ],
+        "grossStudyAxisExtents": [
+          3.041586,
+          6.289308
+        ],
+        "internalStudyAxisBounds": [
+          -0.261702,
+          11.34313,
+          2.479728,
+          17.332191
+        ],
+        "internalStudyAxisExtents": [
+          2.74143,
+          5.989061
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            2.475068,
+            11.34313
+          ],
+          [
+            2.479728,
+            17.332191
+          ],
+          [
+            -0.261702,
+            17.328809
+          ],
+          [
+            -0.261702,
+            11.34313
+          ],
+          [
+            2.475068,
+            11.34313
+          ]
+        ]
+      },
+      {
+        "room": "E",
+        "bank": "E",
+        "recordStage": "areaStudy",
+        "grossArea": 18.47389,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.07389,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          24.340349,
+          1.92627,
+          30.541399,
+          4.906009
+        ],
+        "grossStudyAxisExtents": [
+          6.20105,
+          2.97974
+        ],
+        "internalStudyAxisBounds": [
+          24.440349,
+          2.02627,
+          30.341317,
+          4.806009
+        ],
+        "internalStudyAxisExtents": [
+          5.900968,
+          2.779739
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            30.341317,
+            4.806009
+          ],
+          [
+            24.440349,
+            4.806008
+          ],
+          [
+            24.440349,
+            2.02627
+          ],
+          [
+            30.339051,
+            2.02627
+          ],
+          [
+            30.341317,
+            4.806009
+          ]
+        ]
+      },
+      {
+        "room": "F",
+        "bank": "E",
+        "recordStage": "areaStudy",
+        "grossArea": 18.474031,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.074031,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          24.340349,
+          4.906008,
+          30.543827,
+          7.884604
+        ],
+        "grossStudyAxisExtents": [
+          6.203478,
+          2.978596
+        ],
+        "internalStudyAxisBounds": [
+          24.440349,
+          5.006008,
+          30.343746,
+          7.784604
+        ],
+        "internalStudyAxisExtents": [
+          5.903396,
+          2.778596
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            30.343746,
+            7.784603
+          ],
+          [
+            24.440349,
+            7.784604
+          ],
+          [
+            24.440349,
+            5.006008
+          ],
+          [
+            30.34148,
+            5.006009
+          ],
+          [
+            30.343746,
+            7.784603
+          ]
+        ]
+      },
+      {
+        "room": "G",
+        "bank": "E",
+        "recordStage": "areaStudy",
+        "grossArea": 19.715737,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 3.315737,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.0,
+        "grossStudyAxisBounds": [
+          24.340349,
+          7.884603,
+          30.54642,
+          11.065773
+        ],
+        "grossStudyAxisExtents": [
+          6.206071,
+          3.18117
+        ],
+        "internalStudyAxisBounds": [
+          24.440349,
+          7.984603,
+          30.346176,
+          10.765537
+        ],
+        "internalStudyAxisExtents": [
+          5.905826,
+          2.780933
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            30.346176,
+            10.765537
+          ],
+          [
+            24.440349,
+            10.758576
+          ],
+          [
+            24.440349,
+            7.984604
+          ],
+          [
+            30.343909,
+            7.984603
+          ],
+          [
+            30.346176,
+            10.765537
+          ]
+        ]
+      },
+      {
+        "room": "W1",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 19.732511,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 3.332511,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          -5.87068,
+          -2.521703,
+          0.401596,
+          0.635499
+        ],
+        "grossStudyAxisExtents": [
+          6.272276,
+          3.157202
+        ],
+        "internalStudyAxisBounds": [
+          -5.670514,
+          -2.221319,
+          0.301596,
+          0.535355
+        ],
+        "internalStudyAxisExtents": [
+          5.97211,
+          2.756675
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.301596,
+            0.535355
+          ],
+          [
+            -5.66807,
+            0.526774
+          ],
+          [
+            -5.670514,
+            -2.221319
+          ],
+          [
+            0.301596,
+            -2.209876
+          ],
+          [
+            0.301596,
+            0.535355
+          ]
+        ]
+      },
+      {
+        "room": "W2",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 18.477983,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.077983,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          -5.867907,
+          0.626487,
+          0.401596,
+          3.58189
+        ],
+        "grossStudyAxisExtents": [
+          6.269504,
+          2.955403
+        ],
+        "internalStudyAxisBounds": [
+          -5.667892,
+          0.726774,
+          0.301596,
+          3.481794
+        ],
+        "internalStudyAxisExtents": [
+          5.969488,
+          2.75502
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.301596,
+            3.481794
+          ],
+          [
+            -5.665446,
+            3.476073
+          ],
+          [
+            -5.667892,
+            0.726774
+          ],
+          [
+            0.301596,
+            0.735356
+          ],
+          [
+            0.301596,
+            3.481794
+          ]
+        ]
+      },
+      {
+        "room": "W3",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 18.4779,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.0779,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.0,
+        "grossStudyAxisBounds": [
+          -5.865309,
+          3.575881,
+          0.401596,
+          6.529488
+        ],
+        "grossStudyAxisExtents": [
+          6.266905,
+          2.953607
+        ],
+        "internalStudyAxisBounds": [
+          -5.665268,
+          3.676073,
+          0.301596,
+          6.429441
+        ],
+        "internalStudyAxisExtents": [
+          5.966864,
+          2.753368
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.301596,
+            6.429441
+          ],
+          [
+            -5.662822,
+            6.42658
+          ],
+          [
+            -5.665268,
+            3.676073
+          ],
+          [
+            0.301596,
+            3.681794
+          ],
+          [
+            0.301596,
+            6.429441
+          ]
+        ]
+      },
+      {
+        "room": "W4",
+        "bank": "W",
+        "recordStage": "areaStudy",
+        "grossArea": 18.478261,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.078261,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          -5.862711,
+          6.526485,
+          0.401596,
+          9.478297
+        ],
+        "grossStudyAxisExtents": [
+          6.264307,
+          2.951812
+        ],
+        "internalStudyAxisBounds": [
+          -5.662644,
+          6.62658,
+          0.301596,
+          9.378297
+        ],
+        "internalStudyAxisExtents": [
+          5.96424,
+          2.751717
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            0.301596,
+            9.378297
+          ],
+          [
+            -5.660196,
+            9.378297
+          ],
+          [
+            -5.662644,
+            6.62658
+          ],
+          [
+            0.301596,
+            6.629441
+          ],
+          [
+            0.301596,
+            9.378297
+          ]
+        ]
+      },
+      {
+        "room": "L1",
+        "bank": "L",
+        "recordStage": "areaStudy",
+        "grossArea": 18.486851,
+        "conditionalInternalArea": 16.406979,
+        "perimeterAllocationArea": 2.079872,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.006979,
+        "grossStudyAxisBounds": [
+          2.161283,
+          1.212953,
+          5.105742,
+          7.501361
+        ],
+        "grossStudyAxisExtents": [
+          2.944458,
+          6.288408
+        ],
+        "internalStudyAxisBounds": [
+          2.261399,
+          1.414039,
+          5.005684,
+          7.40136
+        ],
+        "internalStudyAxisExtents": [
+          2.744285,
+          5.987321
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            5.002231,
+            1.416412
+          ],
+          [
+            5.005684,
+            7.40136
+          ],
+          [
+            2.264854,
+            7.40136
+          ],
+          [
+            2.261399,
+            1.414039
+          ],
+          [
+            5.002231,
+            1.416412
+          ]
+        ]
+      },
+      {
+        "room": "L2",
+        "bank": "L",
+        "recordStage": "areaStudy",
+        "grossArea": 18.478763,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.078763,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.0,
+        "grossStudyAxisBounds": [
+          5.102116,
+          1.216543,
+          8.046572,
+          7.501361
+        ],
+        "grossStudyAxisExtents": [
+          2.944456,
+          6.284818
+        ],
+        "internalStudyAxisBounds": [
+          5.202231,
+          1.416585,
+          7.946514,
+          7.40136
+        ],
+        "internalStudyAxisExtents": [
+          2.744283,
+          5.984775
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            7.943062,
+            1.418958
+          ],
+          [
+            7.946514,
+            7.40136
+          ],
+          [
+            5.205684,
+            7.40136
+          ],
+          [
+            5.202231,
+            1.416585
+          ],
+          [
+            7.943062,
+            1.418958
+          ]
+        ]
+      },
+      {
+        "room": "L3",
+        "bank": "L",
+        "recordStage": "areaStudy",
+        "grossArea": 18.471124,
+        "conditionalInternalArea": 16.393021,
+        "perimeterAllocationArea": 2.078103,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.006979,
+        "grossStudyAxisBounds": [
+          8.042947,
+          1.21914,
+          10.987401,
+          7.501361
+        ],
+        "grossStudyAxisExtents": [
+          2.944455,
+          6.282221
+        ],
+        "internalStudyAxisBounds": [
+          8.143062,
+          1.419131,
+          10.887344,
+          7.40136
+        ],
+        "internalStudyAxisExtents": [
+          2.744281,
+          5.982229
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            10.883894,
+            1.421504
+          ],
+          [
+            10.887344,
+            7.40136
+          ],
+          [
+            8.146514,
+            7.40136
+          ],
+          [
+            8.143062,
+            1.419131
+          ],
+          [
+            10.883894,
+            1.421504
+          ]
+        ]
+      },
+      {
+        "room": "R1",
+        "bank": "R",
+        "recordStage": "rAlignment",
+        "grossArea": 18.116569,
+        "conditionalInternalArea": 16.068347,
+        "perimeterAllocationArea": 2.048222,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.331653,
+        "grossStudyAxisBounds": [
+          13.057516,
+          3.674434,
+          16.053279,
+          9.726117
+        ],
+        "grossStudyAxisExtents": [
+          2.995763,
+          6.051683
+        ],
+        "internalStudyAxisBounds": [
+          13.157538,
+          3.774434,
+          15.953253,
+          9.526028
+        ],
+        "internalStudyAxisExtents": [
+          2.795715,
+          5.751593
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            15.953253,
+            3.774434
+          ],
+          [
+            15.951804,
+            9.526028
+          ],
+          [
+            13.158865,
+            9.523535
+          ],
+          [
+            13.157538,
+            3.774434
+          ],
+          [
+            15.953253,
+            3.774434
+          ]
+        ]
+      },
+      {
+        "room": "R2",
+        "bank": "R",
+        "recordStage": "rAlignment",
+        "grossArea": 18.124563,
+        "conditionalInternalArea": 16.075808,
+        "perimeterAllocationArea": 2.048755,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.324192,
+        "grossStudyAxisBounds": [
+          16.051753,
+          3.674434,
+          19.049041,
+          9.728788
+        ],
+        "grossStudyAxisExtents": [
+          2.997288,
+          6.054354
+        ],
+        "internalStudyAxisBounds": [
+          16.151804,
+          3.774434,
+          18.948968,
+          9.528699
+        ],
+        "internalStudyAxisExtents": [
+          2.797164,
+          5.754265
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            18.948968,
+            3.774434
+          ],
+          [
+            18.944739,
+            9.528699
+          ],
+          [
+            16.151804,
+            9.526206
+          ],
+          [
+            16.153253,
+            3.774434
+          ],
+          [
+            18.948968,
+            3.774434
+          ]
+        ]
+      },
+      {
+        "room": "R3",
+        "bank": "R",
+        "recordStage": "rAlignment",
+        "grossArea": 18.132554,
+        "conditionalInternalArea": 16.083268,
+        "perimeterAllocationArea": 2.049286,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.316732,
+        "grossStudyAxisBounds": [
+          19.044592,
+          3.674434,
+          22.044803,
+          9.731459
+        ],
+        "grossStudyAxisExtents": [
+          3.000211,
+          6.057026
+        ],
+        "internalStudyAxisBounds": [
+          19.144739,
+          3.774434,
+          21.944682,
+          9.531371
+        ],
+        "internalStudyAxisExtents": [
+          2.799943,
+          5.756936
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            21.944682,
+            3.774434
+          ],
+          [
+            21.937672,
+            9.531371
+          ],
+          [
+            19.144739,
+            9.528878
+          ],
+          [
+            19.148968,
+            3.774434
+          ],
+          [
+            21.944682,
+            3.774434
+          ]
+        ]
+      },
+      {
+        "room": "N1",
+        "bank": "N",
+        "recordStage": "areaStudy",
+        "grossArea": 19.060458,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.660458,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          22.049552,
+          -6.589466,
+          25.238707,
+          -0.604829
+        ],
+        "grossStudyAxisExtents": [
+          3.189155,
+          5.984637
+        ],
+        "internalStudyAxisBounds": [
+          22.249639,
+          -6.389072,
+          25.138708,
+          -0.704829
+        ],
+        "internalStudyAxisExtents": [
+          2.889069,
+          5.684243
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            25.138707,
+            -6.383388
+          ],
+          [
+            25.138708,
+            -0.704829
+          ],
+          [
+            22.249639,
+            -0.704829
+          ],
+          [
+            22.254555,
+            -6.389072
+          ],
+          [
+            25.138707,
+            -6.383388
+          ]
+        ]
+      },
+      {
+        "room": "N2",
+        "bank": "N",
+        "recordStage": "areaStudy",
+        "grossArea": 18.461977,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 2.061977,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": 0.0,
+        "grossStudyAxisBounds": [
+          25.238707,
+          -6.583192,
+          28.328414,
+          -0.604829
+        ],
+        "grossStudyAxisExtents": [
+          3.089706,
+          5.978363
+        ],
+        "internalStudyAxisBounds": [
+          25.338707,
+          -6.382994,
+          28.228413,
+          -0.704829
+        ],
+        "internalStudyAxisExtents": [
+          2.889706,
+          5.678165
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            28.228413,
+            -6.3773
+          ],
+          [
+            28.228413,
+            -0.704829
+          ],
+          [
+            25.338708,
+            -0.704829
+          ],
+          [
+            25.338707,
+            -6.382994
+          ],
+          [
+            28.228413,
+            -6.3773
+          ]
+        ]
+      },
+      {
+        "room": "N3",
+        "bank": "N",
+        "recordStage": "areaStudy",
+        "grossArea": 19.654655,
+        "conditionalInternalArea": 16.4,
+        "perimeterAllocationArea": 3.254655,
+        "benchmarkArea": 16.4,
+        "benchmarkMinusInternalArea": -0.0,
+        "grossStudyAxisBounds": [
+          28.328413,
+          -6.577103,
+          31.623504,
+          -0.604829
+        ],
+        "grossStudyAxisExtents": [
+          3.295091,
+          5.972274
+        ],
+        "internalStudyAxisBounds": [
+          28.428413,
+          -6.376906,
+          31.323426,
+          -0.704829
+        ],
+        "internalStudyAxisExtents": [
+          2.895013,
+          5.672076
+        ],
+        "internalPolygonStudyCoordinates": [
+          [
+            31.319023,
+            -6.371209
+          ],
+          [
+            31.323426,
+            -0.704829
+          ],
+          [
+            28.428413,
+            -0.704829
+          ],
+          [
+            28.428413,
+            -6.376906
+          ],
+          [
+            31.319023,
+            -6.371209
+          ]
+        ]
+      }
+    ],
+    "floorBudget": {
+      "sourceRoofProjectionArea": 510.618984,
+      "retainedStudyPlateArea": 561.338565,
+      "annotatedCoreIntersectionArea": 510.616159,
+      "retainedPlateOutsideAnnotatedCoreArea": 50.722406,
+      "spaceAreasByKind": {
+        "room": 374.616433,
+        "stairs": 13.977191,
+        "corridor": 119.100109,
+        "service": 2.922438
+      },
+      "hallAreasByLabel": {
+        "West hall": 59.653161,
+        "East hall": 59.446948
+      },
+      "allSpaceAreaSum": 510.616171,
+      "areaConservationResidual": 1.2e-05,
+      "pairwiseSpaceIntersectionAreaSum": 0.0,
+      "conditionalInternalEnvelopeTotal": 327.027422,
+      "conditionalMeanInternalEnvelopeArea": 16.351371,
+      "conditionalMeanRoundedToPublishedOneDecimal": 16.4,
+      "categoryBenchmarkTimesRoomCount": 328.0,
+      "benchmarkTotalMinusConditionalInternalTotal": 0.972578
+    },
+    "rAlignment": {
+      "oppositeRecessLength": 8.989488,
+      "candidateBankExtentAlongFacadePlane": 8.978521,
+      "sourceFacadeSegmentLength": 8.079456,
+      "sourceRoofSurfaceIndex": 39,
+      "sourceRoofSurfaceId": "DEBY_LOD2_3166499_deefba9b-e1a3-483f-ab2b-d63a38ca9855_2_poly",
+      "recessSourceVertexIndices": [
+        15,
+        16
+      ],
+      "facadeSourceVertexIndices": [
+        6,
+        7
+      ]
+    },
+    "rSensitivity": {
+      "grossNorthConnectorGap": 1.5,
+      "conditionalNorthConnectorGap": 1.2,
+      "declaredConnectorStudyGuard": 1.2,
+      "sharedHallFrontGrowthForMeanBenchmark": 0.115959,
+      "conditionalConnectorIfMeanBenchmarkForced": 1.08404,
+      "individualRooms": [
+        {
+          "room": "R1",
+          "hallFrontGrowthToBenchmark": 0.118628,
+          "conditionalConnectorIfIndividuallyForced": 1.081372,
+          "internalAreaGainForOneCentimetreDepth": 0.027957
+        },
+        {
+          "room": "R2",
+          "hallFrontGrowthToBenchmark": 0.115959,
+          "conditionalConnectorIfIndividuallyForced": 1.08404,
+          "internalAreaGainForOneCentimetreDepth": 0.027957
+        },
+        {
+          "room": "R3",
+          "hallFrontGrowthToBenchmark": 0.113291,
+          "conditionalConnectorIfIndividuallyForced": 1.086709,
+          "internalAreaGainForOneCentimetreDepth": 0.027957
+        }
+      ]
+    },
+    "staircase": {
+      "enclosure": {
+        "width": 1.78071,
+        "l3SideDistance": 0.445178,
+        "r1SideDistance": 1.335532,
+        "l3Share": 0.25,
+        "r1Share": 0.75
+      },
+      "symbolicFlight": {
+        "width": 1.58071,
+        "l3SideDistance": 0.345178,
+        "r1SideDistance": 1.235532,
+        "l3Share": 0.218369,
+        "r1Share": 0.781631
+      },
+      "enclosureArea": 13.977191,
+      "enclosureStudyAxisBounds": [
+        10.983779,
+        1.221738,
+        12.769017,
+        9.07186
+      ],
+      "flightStudyAxisBounds": [
+        11.085038,
+        3.405605,
+        12.668232,
+        7.710483
+      ],
+      "flightEdgeLengths": [
+        1.58071,
+        4.304879,
+        1.58071,
+        4.304879
+      ],
+      "sideInsetL3": 0.1,
+      "sideInsetR1": 0.1,
+      "rightOnlyShrinkDerivativeAtZero": 0.140393,
+      "rightOnlyShrinkEquation": "L3_fraction(delta) = L3_side_distance / (gross_width - delta)",
+      "interpretation": "A positive right-only shrink increases the L3 share. Flight insets are symbolic assumptions."
+    },
+    "heights": {
+      "sourceBaseCampusY": 2.822,
+      "sourceBaseAltitudeNHN": 292.411,
+      "sourceMaximumBuildingHeight": 9.491,
+      "provisionalFloorCampusY": 9.149333,
+      "provisionalFloorAboveBase": 6.327333,
+      "equalStoreyGuideRecomputedAboveBase": 6.327333,
+      "sourceFlatRoofCampusY": 11.401,
+      "sourceFlatRoofAboveProvisionalFloor": 2.251667,
+      "interpretation": "Difference between an exterior roof surface and an assumed floor plane; no slab deduction or clear-ceiling measurement."
+    },
+    "unassigned": {
+      "grossArea": 2.922438,
+      "crossSectionsBesideStair": [
+        {
+          "studyV": 3.674434,
+          "grossStripWidth": 0.291611
+        },
+        {
+          "studyV": 9.07186,
+          "grossStripWidth": 0.289743
+        }
+      ],
+      "doorTargetCount": 0,
+      "interpretation": "Residual strip and connected pocket, with no established use or circulation function."
+    },
+    "doorGraph": {
+      "roomCount": 20,
+      "windowCount": 24,
+      "doorTargetCount": 21,
+      "spaceCountsByKind": {
+        "room": 20,
+        "stairs": 1,
+        "corridor": 2,
+        "service": 1
+      },
+      "roomsWithNoRepresentedDoorGraphRouteToStair": [
+        "E",
+        "F",
+        "G",
+        "R1",
+        "R2",
+        "R3",
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "interpretation": "This audits saved connectivity only. The resident has confirmed separate L and R doors onto the same landing; the missing R connection is an implementation omission, not missing topological evidence or a claim about actual exits."
+    },
+    "numericalChecks": {
+      "maxInternalAreaVsProvenance": 0.0,
+      "maxGrossAreaVsProvenance": 0.0,
+      "maxInternalOutsideGross": 0.0,
+      "maxInternalVsSavedPolygonSymmetricDifference": 5e-06
+    },
+    "preserved": {
+      "floorOutlineEqualsFrozenPreAlignmentBaseline": true,
+      "windowsEqualFrozenPreAlignmentBaseline": true,
+      "unchangedNonRRoomRecords": 17
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "house": "55",
+  "levelIndex": 2,
+  "recordedDate": "2026-11-15",
+  "status": "resident-measured-not-yet-registered",
+  "hallways": {
+    "banks": ["L", "W", "A", "E", "R", "N"],
+    "bankALabels": ["A", "B", "C", "D"],
+    "reportedWidthMetres": 1.3,
+    "scope": "Every hallway on both wings of House 55: L, W, A-B-C-D and the subsequently checked opposite wing.",
+    "measurementFacesInterpretation": "Treat as clear finished-wall-to-finished-wall hallway width. This conventional interpretation was stated by the assistant; exact endpoints have not separately been confirmed by the resident.",
+    "uncertaintyMetres": null,
+    "easternHallwayWidthMetres": 1.3
+  },
+  "sourceEvidence": {
+    "kind": "resident_measurement",
+    "text": "I can also tell you with fact that EVERY hallway in the \"L\", \"W\", and \"A-B-C-D\" side of the dorm measure 130cm wide.",
+    "subsequentConfirmation": "ok so we know the size of the hallways (I also checked the other wing and they were also 130cm wide)"
+  },
+  "distinctions": [
+    "The resident subsequently measured the other wing and confirmed the same 1.30 m width.",
+    "The staircase's independently confirmed level walkway is 1.29 m; do not round that observation into this 1.30 m record.",
+    "Corridor runs, turning junctions and end pockets have not yet been individually registered to source-model edges.",
+    "Wall thickness, hallway length and apartment depth do not follow from this width alone."
+  ]
+}
