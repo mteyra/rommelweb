@@ -249,7 +249,7 @@ test('every published old-house room returns an unchanged, safe fixed-size conce
     for (const raw of studies.buildings[id].levels) {
       const level = {...raw, isStudy: true}, rooms = level.spaces.filter(space => space.kind === 'room');
       assert.ok(rooms.length, `${id}/${level.index} has room candidates to audit`);
-      if (id === '55') assert.equal(rooms.length, 20, 'the resident-counted House 55 study keeps all 20 room references');
+      if (id === '55') assert.equal(rooms.length, 20, 'each House 55 module study keeps 20 single-room references');
       const levelBefore = JSON.stringify(level), counts = {full: 0, partial: 0, unavailable: 0};
       for (const room of rooms) {
         const label = `${id}/${level.index}/${room.shortLabel || room.id}`;
@@ -257,9 +257,6 @@ test('every published old-house room returns an unchanged, safe fixed-size conce
           const result = apartmentConcept(level, room);
           assert.ok(result && ['concept', 'unavailable'].includes(result.status), 'room fit has an explicit status');
           assert.equal(result.sourcePolicy.status, 'unassigned-schematic-concept');
-          if (id === '55' && level.index === 0) {
-            assert.equal(result.fit?.layout, 'dogleg-service', 'the unchanged House 55 ground-floor full concepts remain available');
-          }
           if (result.status === 'unavailable') {
             assert.deepEqual(result.items, []);
             assert.deepEqual(result.partitions, []);

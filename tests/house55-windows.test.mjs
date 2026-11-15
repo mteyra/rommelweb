@@ -27,22 +27,24 @@ test('source exterior windows are retained while independent layout windows foll
   }
   assert.equal(plan.windows.filter(window => !window.spaceId).length, 4, 'shared windows must not invent room/stairwell ownership');
   assert.equal(plan.layoutWindows.filter(window => !window.spaceId).length, 4);
+  const originalWindowIds = new Set(plan.windows.map(window => window.id));
+  const lowerLayoutWindowIds = [];
   for (const index of [0, 1]) {
     const floor = studies.buildings['55'].levels.find(level => level.index === index);
     assert.equal(floor.windows, undefined, 'top-floor observations must not silently become lower-floor evidence');
     assert.equal(floor.windowCoverage, undefined, 'independent layout windows cannot establish source façade coverage');
+    assert.equal(floor.layoutBasis, 'resident-module-layout');
+    assert.equal(floor.layoutWindows.length, 24);
+    assert.ok(floor.layoutWindows.every(window => window.confidence === 'estimated' && !Object.hasOwn(window, 'sourceSurfaceIndex')));
+    assert.deepEqual(getLevelWindows(floor), floor.layoutWindows, `floor ${index} displays its own schematic openings`);
+    assert.ok(floor.wallBands.length > 0 && floor.wallBands.every(band => band.confidence === 'estimated'),
+      `floor ${index} wall allocations remain independent estimates`);
+    assert.ok(floor.layoutWindows.every(window => !originalWindowIds.has(window.id)),
+      `floor ${index} symbols cannot reuse source-window identities`);
+    lowerLayoutWindowIds.push(...floor.layoutWindows.map(window => window.id));
   }
-  const ground = studies.buildings['55'].levels.find(level => level.index === 0);
-  assert.equal(ground.wallBands, undefined, 'the unchanged ground floor retains no window-wall study');
-  const first = studies.buildings['55'].levels.find(level => level.index === 1);
-  assert.equal(first.layoutBasis, 'resident-module-layout');
-  assert.equal(first.layoutWindows.length, 24);
-  assert.ok(first.layoutWindows.every(window => window.confidence === 'estimated' && !Object.hasOwn(window, 'sourceSurfaceIndex')));
-  assert.deepEqual(getLevelWindows(first), first.layoutWindows, 'the first floor displays its own schematic openings');
-  assert.ok(first.wallBands.length > 0 && first.wallBands.every(band => band.confidence === 'estimated'),
-    'first-floor wall allocations remain independent estimates');
-  const originalWindowIds = new Set(plan.windows.map(window => window.id));
-  assert.ok(first.layoutWindows.every(window => !originalWindowIds.has(window.id)), 'first-floor symbols cannot reuse source-window identities');
+  assert.equal(new Set(lowerLayoutWindowIds).size, lowerLayoutWindowIds.length,
+    'ground- and first-floor symbols retain separate interaction identities');
   const changes = [
     data => { upper(data).windows[0].residentName = 'Unsupported'; },
     data => { upper(data).wallBands[0].phone = 'Unsupported'; },

@@ -512,7 +512,7 @@ test('approved geometry retains strict door collinearity instead of inheriting s
   assert.throws(() => validateInteriorData(approved, campus, lod2), /boundary edge/);
 });
 
-test('House 55 retains its independent top-floor module layout while the ground floor and other houses stay unchanged', async () => {
+test('House 55 retains its independent top-floor module layout while all three levels resolve their own module plans', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
   assertUnchangedOtherFloors(published, await readHistoricalStudies());
   assert.equal(validate(published), true);
@@ -535,7 +535,13 @@ test('House 55 retains its independent top-floor module layout while the ground 
   }
   assert.ok(resolved.doors.every(door => !Object.hasOwn(door, 'hinge') && !Object.hasOwn(door, 'swing')));
   assert.equal(resolved.excludedAreas?.length || 0, 0, 'old source-shell exclusions do not constrain the independent outline');
-  assert.equal(getDisplayLevel(emptyApproved, published, '55', 0).layoutBasis, undefined, 'the ground floor retains its prior study');
+  for (const floor of [0, 1]) {
+    const lower = getDisplayLevel(emptyApproved, published, '55', floor);
+    assert.equal(lower.layoutBasis, 'resident-module-layout', `floor ${floor} has its own independent module plan`);
+    assert.equal(lower.spaces.filter(space => space.kind === 'room').length, 20);
+    assert.equal(lower.spaces.filter(space => space.kind === 'shared').length, 2);
+    assert.equal(lower.extrapolatedFrom, undefined, 'the current annotated plan does not inherit historical extrapolation metadata');
+  }
   for (const building of campus.buildings) {
     for (let floor = 0; floor < building.levels; floor++) {
       if (building.campus === 'I') continue;
@@ -702,8 +708,8 @@ test('the saved prior R1–R3 allocation remains one continuous block without a 
   }
 });
 
-test('the ground floor retains its saved prior core and exterior section independently of the module floors', async () => {
-  const published = freeze(await read('interior-studies')), before = structuredClone(published);
+test('the archived ground-floor extrapolation retains its historical core and complete source exterior section', async () => {
+  const published = freeze(await readHistoricalStudies()), before = structuredClone(published);
   const upper = await priorUpper(), official = lod2.buildings.find(building => building.number === '55');
   const elevations = getLevelElevations(emptyApproved, '55', 3, official.height);
   const allIds = published.buildings['55'].levels.flatMap(plan => [...plan.spaces, ...(plan.doors || []), ...(plan.excludedAreas || [])].map(item => item.id));

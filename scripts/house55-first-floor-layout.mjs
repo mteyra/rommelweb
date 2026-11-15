@@ -170,7 +170,10 @@ async function main() {
   if(index<0)throw Error('House 55 has no previous 1. OG study.');
   const plan=createFirstFloorPlan(topPlan,building.levels[index]);
   building.levels[index]=createFirstFloorStudyLevel(plan,building.levels[index]);
-  building.source='House 55 resident studies: 2. OG retains the accepted independent module plan. 1. OG derives its fixed core from that plan and applies the first-floor shared apartments, added singles and annotated cutouts. EG remains an earlier unverified extrapolation. Folded exterior evidence is retained separately.';
+  const groundFloorSource=building.levels.some(level=>level.index===0&&level.layoutBasis==='resident-module-layout')
+    ? 'EG reuses 1. OG and retains the blue-marked floor areas as unassigned space.'
+    : 'EG remains an earlier unverified extrapolation.';
+  building.source=`House 55 resident studies: 2. OG retains the accepted independent module plan. 1. OG derives its fixed core from that plan and applies the first-floor shared apartments, added singles and annotated cutouts. ${groundFloorSource} Folded exterior evidence is retained separately.`;
   validateInteriorStudies(studies,campus,lod2);
   await writeFile(new URL('../public/data/house55-first-floor-layout.json',import.meta.url),JSON.stringify(plan,null,2)+'\n');
   await writeFile(new URL('../public/data/interior-studies.json',import.meta.url),JSON.stringify(studies,null,2)+'\n');

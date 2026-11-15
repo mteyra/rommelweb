@@ -62,4 +62,4 @@ npm test
 npm run build
 ```
 
-The plan uses the top floor's exact campus coordinate frame, without recentering or rescaling the enlarged floor. Its separately placed layout-window symbols are schematic. The folded exterior retains the original LoD2 geometry and façade window evidence. EG and every other house retain their preceding studies.
+The plan uses the top floor's exact campus coordinate frame, without recentering or rescaling the enlarged floor. Its separately placed layout-window symbols are schematic. The folded exterior retains the original LoD2 geometry and façade window evidence. A subsequent [EG revision](HOUSE55-GROUND-FLOOR-LAYOUT.md) reuses this plan and restores the blue-marked regions; every other house retains its preceding studies.

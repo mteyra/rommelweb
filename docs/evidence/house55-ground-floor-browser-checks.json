@@ -1,0 +1,33 @@
+{
+  "checks": [
+    "Desktop 1440×1000: EG displays 25 spaces with exact single-room and shared-envelope cards; day/night rendering passes.",
+    "The expanded outline includes the restored areas and the new 21.70 m and 24.80 m outer runs.",
+    "390×844 and 320×568: selected ground floor fits without horizontal page overflow.",
+    "1. OG retains its original mixed-apartment summary and 25 spaces.",
+    "2. OG retains its original clear-room summary and 23 spaces.",
+    "Fold returns to the original exterior view."
+  ],
+  "dimensions": [
+    "7.40 m",
+    "8.10 m",
+    "12.00 m",
+    "7.40 m",
+    "21.70 m",
+    "7.40 m",
+    "5.00 m",
+    "12.40 m",
+    "7.40 m",
+    "5.00 m",
+    "9.30 m",
+    "2.90 m",
+    "2.70 m",
+    "4.50 m",
+    "24.80 m",
+    "7.40 m",
+    "8.10 m",
+    "15.50 m"
+  ],
+  "errors": [],
+  "checkedAt": "2026-11-15T16:43:59.279502+00:00",
+  "target": "Local production build served from dist with vite preview"
+}

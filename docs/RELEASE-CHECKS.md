@@ -2,7 +2,18 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — House 55 first-floor extension
+## Current revision — House 55 ground-floor continuation
+
+House 55 / **EG** now repeats the completed 1. OG apartment layout and retains the three blue-marked areas: two **9.30 × 4.50 m** strips and the **2.70 × 2.90 m** stair-side extension. The restored **91.53 m²** remains unassigned floor area, giving a **716.01 m²** footprint. Both upper floors are unchanged.
+
+- **All 213 tests pass**, along with the production build and path-cache check. The existing bundle-size advisory remains.
+- The new geometry checks verify the exact three additions, complete coverage, non-overlap, the larger outline, consistent camera orientation and deterministic published data. All **25 spaces, 24 door segments and 24 layout-window segments** retain their first-floor geometry with separate EG interaction IDs.
+- The [preservation receipt](evidence/house55-ground-floor-preservation.json) verifies unchanged upper-floor canonical files, sandbox and standalone study, all **14 other floor records**, source exterior/campus/approved-interior files, and original ground-floor façade evidence.
+- Isolated Firefox production-preview checks pass at **1440 × 1000**, **390 × 844** and **320 × 568**, covering shared/single cards, expanded outline dimensions, day/night mode, both preserved upper floors, folding and horizontal page overflow. No application console errors were observed. See the [browser receipt](evidence/house55-ground-floor-browser-checks.json).
+
+Reviewed images: [ground floor](preview/house55-ground-floor-floor.png), [day view](preview/house55-ground-floor-day-floor.png), [phone](preview/house55-ground-floor-phone.png) and [shared apartment](preview/house55-ground-floor-shared-apartment.png). The [ground-floor note](HOUSE55-GROUND-FLOOR-LAYOUT.md) records the retained regions and reproduction command. Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — House 55 first-floor extension
 
 House 55 / **1. OG** extends the approved top-floor core with **20 single apartments and two 6.20 × 7.40 m shared-apartment envelopes**. The four end additions and annotated cutouts give the requested 15.50 m and 12.40 m wings. The resident confirmed the **8.10 m W inner return** so the top-floor core and all other final dimensions remain fixed.
 

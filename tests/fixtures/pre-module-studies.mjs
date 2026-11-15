@@ -17,16 +17,10 @@ export const readHistoricalStudies = async () =>
 
 export function assertUnchangedOtherFloors(current, historical) {
   for (const [number, building] of Object.entries(historical.buildings)) {
-    if (number !== '55') {
-      assert.deepEqual(current.buildings[number], building,
-        `House ${number} must retain its historical study instead of inheriting the new module plan`);
-      continue;
-    }
-    // House 55's first and top floors now have independent module studies.
-    // Its ground floor and every other house retain the archived geometry.
-    for (const level of building.levels.filter(item => item.index === 0)) {
-      assert.deepEqual(current.buildings[number].levels.find(item => item.index === level.index), level,
-        `House 55 floor ${level.index} must retain its historical study`);
-    }
+    // All three House 55 floors now have separate module plans. Their dedicated
+    // module tests protect each accepted plan; other-house records stay frozen.
+    if (number === '55') continue;
+    assert.deepEqual(current.buildings[number], building,
+      `House ${number} must retain its historical study instead of inheriting the new module plan`);
   }
 }

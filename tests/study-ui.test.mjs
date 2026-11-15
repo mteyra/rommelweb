@@ -28,6 +28,7 @@ const floor = (index, {independent = false, shared = false} = {}) => ({
   doors: [], layoutWindows: [],
 });
 const levels = mixed => [floor(0), floor(1, {independent: mixed, shared: mixed}), floor(2, {independent: true})];
+const allModuleLevels = () => [floor(0, {independent: true, shared: true}), ...levels(true).slice(1)];
 
 function ui(levelRecords, selectedFloor) {
   const elements = new Map(), conceptCalls = [];
@@ -118,4 +119,42 @@ test('source modal reports an independent first floor only when the displayed da
     assert.match(copy, /top floor now shows an independent layout with 2\.70 × 6\.00 m clear rooms/);
     assert.match(copy, /The folded exterior retains its source model/);
   }
+});
+
+test('ground-floor shared apartments use their own evidence and keep the existing gross-envelope presentation', () => {
+  const view = ui(allModuleLevels(), 0);
+  view.renderFloor();
+  assert.equal(view.element('#floor-stage-title').textContent, 'House 55 / EG');
+  assert.match(view.element('#floor-stage-note').textContent, /Single rooms & shared envelopes/);
+  const details = view.element('#floor-detail-content').innerHTML;
+  assert.match(details, /HOUSE55-GROUND-FLOOR-LAYOUT\.md/);
+  assert.doesNotMatch(details, /HOUSE55-FIRST-FLOOR-LAYOUT\.md|HOUSE55-MODULE-LAYOUT\.md/);
+  view.spaceDialog({house: '55', floor: 0, spaceId: 'shared-0'});
+  const card = view.element('#modal-body').innerHTML;
+  assert.match(card, /6\.20 × 7\.40 m span · 45\.88 m² gross polygon area/);
+  assert.doesNotMatch(card, /Clear room dimensions|16\.20 m²|3\.10 m module =/);
+  assert.equal(view.conceptCalls.length, 0);
+});
+
+test('publishing the ground-floor module layout preserves both upper floors controls and apartment cards', () => {
+  for (const index of [1, 2]) {
+    const before = ui(levels(true), index), after = ui(allModuleLevels(), index);
+    for (const view of [before, after]) {
+      view.renderFloor();
+      view.spaceDialog({house: '55', floor: index, spaceId: `${index === 1 ? 'shared' : 'room'}-${index}`});
+    }
+    for (const selector of ['#floor-stage-title', '#floor-stage-note', '#floor-detail-content', '#modal-body']) {
+      assert.equal(after.element(selector).innerHTML, before.element(selector).innerHTML, `${index}: ${selector}`);
+      assert.equal(after.element(selector).textContent, before.element(selector).textContent, `${index}: ${selector}`);
+    }
+  }
+});
+
+test('source modal no longer describes EG as a template when all three House55 floors have module layouts', () => {
+  const view = ui(allModuleLevels(), 0);
+  view.accuracyDialog();
+  const copy = view.element('#modal-body').innerHTML;
+  assert.match(copy, /House 55’s EG and 1\. OG also use an independent layout/);
+  assert.match(copy, /Other older houses retain their earlier template studies/);
+  assert.doesNotMatch(copy, /House 55’s EG and other older houses retain their earlier template studies/);
 });
