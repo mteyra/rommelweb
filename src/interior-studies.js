@@ -96,7 +96,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
     const indexes = new Set();
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
-      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors']);
+      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands']);
       if (!Number.isInteger(level.index) || level.index < 0 || level.index >= mapped.levels || indexes.has(level.index)) fail(`${lp}.index`, 'must identify a unique existing floor');
       indexes.add(level.index);
       if (level.extrapolatedFrom !== undefined) {
@@ -188,6 +188,56 @@ export function validateInteriorStudies(studies, campus, lod2) {
         if (door.toSpaceId !== undefined) {
           const to = level.spaces.find(space => space.id === door.toSpaceId);
           if (from === to || !onBoundary(to)) fail(dp, 'door must share the destination boundary');
+        }
+      }
+      if (level.windows !== undefined && !Array.isArray(level.windows)) fail(lp, 'windows must be an array');
+      if (level.windowCoverage !== undefined && (level.windowCoverage !== 'complete-floor' || !level.windows?.length)) {
+        fail(`${lp}.windowCoverage`, 'requires a nonempty complete-floor window inventory');
+      }
+      const official = lod2.buildings.find(item => item.number === number);
+      for (const window of level.windows || []) {
+        const wp = `${lp}.windows`;
+        object(window, wp, ['id', 'label', 'spaceId', 'sourceSurfaceIndex', 'confidence', 'note', 'segment']);
+        identify(window, wp);
+        if (!CONFIDENCE.has(window.confidence)) fail(wp, 'window confidence is required');
+        if (level.extrapolatedFrom !== undefined && window.confidence !== 'estimated') fail(wp, 'extrapolated windows require estimated confidence');
+        text(window.note, `${wp}.note`);
+        if (!Array.isArray(window.segment) || window.segment.length !== 2 || !window.segment.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))) fail(wp, 'requires two finite window endpoints');
+        const width = Math.hypot(...window.segment[1].map((v, i) => v - window.segment[0][i]));
+        if (width < 0.3 || width > 4) fail(wp, 'window width must be 0.3–4 m');
+        const surface = Number.isInteger(window.sourceSurfaceIndex) && official.surfaces[window.sourceSurfaceIndex];
+        const wallEdges = surface?.type === 'WallSurface' && surface.points.slice(1).map((b, i) => [[surface.points[i][0], surface.points[i][2]], [b[0], b[2]]]);
+        if (!wallEdges || !wallEdges.some(([a, b]) => window.segment.every(point => pointOnStudySegment(a, b, point)))) {
+          fail(wp, 'window must lie on its referenced source exterior wall in plan');
+        }
+        const samples = Array.from({length: 9}, (_, i) => window.segment[0].map((v, axis) => v + (window.segment[1][axis] - v) * i / 8));
+        if (!samples.every(point => pointInStudyOutline(point, level.floorOutline))) fail(wp, 'window must stay within the displayed floor');
+        if (window.spaceId !== undefined) {
+          const space = level.spaces.find(item => item.id === window.spaceId);
+          if (!space || !rings(space).some(ring => ring.slice(1).some((b, i) => window.segment.every(point => pointOnStudySegment(ring[i], b, point))))) {
+            fail(wp, 'assigned window must lie on its space boundary');
+          }
+        }
+      }
+      if (level.wallBands !== undefined && !Array.isArray(level.wallBands)) fail(lp, 'wallBands must be an array');
+      for (const band of level.wallBands || []) {
+        const bp = `${lp}.wallBands`;
+        object(band, bp, ['id', 'label', 'confidence', 'note', 'polygon', 'holes']);
+        identify(band, bp);
+        if (band.confidence !== 'estimated') fail(bp, 'wall bands are explicitly estimated');
+        text(band.note, `${bp}.note`);
+        validateInteriorPolygon(band.polygon, `${bp}.polygon`);
+        if (band.holes !== undefined && !Array.isArray(band.holes)) fail(bp, 'holes must be an array');
+        for (const hole of band.holes || []) {
+          validateInteriorPolygon(hole, `${bp}.holes`);
+          if (!hole.every(point => pointInStudyRing(point, band.polygon)) || boundariesCross({outer: hole}, {outer: band.polygon})) fail(bp, 'band holes must stay inside their outer ring');
+        }
+        const polygon = {outer: band.polygon, holes: band.holes || []};
+        const samples = rings(band).flatMap(ring => ring.slice(1).flatMap((b, i) => Array.from({length: 5}, (_, t) => ring[i].map((v, axis) => v + (b[axis] - v) * t / 4))));
+        if (!samples.every(point => pointInStudyOutline(point, level.floorOutline))
+          || level.floorOutline.some(piece => boundariesCross(polygon, piece)
+            || (piece.holes || []).some(hole => overlapsArea(polygon, {outer: hole})))) {
+          fail(bp, 'wall bands must stay within the displayed floor and outside cutouts');
         }
       }
     }

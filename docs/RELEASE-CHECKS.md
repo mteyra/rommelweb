@@ -1,6 +1,22 @@
 # Release checks
 
-Checked on 15 November 2026. Current results cover the resident's House 55 top-floor left-side correction, stairwell landing and entrance, and the resulting two hallway regions. Earlier release checks remain below as recorded baselines.
+Checked on 15 November 2026. Current results cover House 55's resident-located top-floor windows and explicit wall-face hypothesis. Earlier release checks remain below as recorded baselines.
+
+
+## Current release — windows and wall-face hypothesis
+
+House 55 / 2. OG has **24 resident-located windows**: twenty room windows, including the verbally confirmed L windows, and four unassigned shared-area windows. The exterior and floor cutaway share these records. Whole openings fit their referenced source walls, short returns use explicit narrower width estimates, and windows retain sills without creating door targets. The earlier generic top-floor pattern is replaced; lower rows and other houses are unchanged.
+
+The **0.20 m wall-face case** moves L left, widens the stairwell from about 1.47 to 1.67 m gross, and gives R about 2.76 m gross bays. Shaded bands identify possible wall material. No measured thickness is claimed. Fourteen non-L/R room polygons and both complete lower-floor records remain unchanged. R's living-zone fit and the roughly 0.45 m west-return discrepancy remain explicit, alongside the unknown east stairwell connection.
+
+- `npm test`: **101 passing tests**. New checks cover the 24-window inventory, source-wall and same-floor assignment, rejection of unsupported/private fields, finite wall-band containment, retained window sills, unchanged door/space target counts, complete top-row replacement, unchanged lower rows, and rejection of an opening that does not fit its wall. Existing source, room-overlap, floor-hole and door tests remain in force.
+- `npm run build`: passed, including the unchanged path-cache check. Production JavaScript is approximately **191 kB gzipped**. The existing Vite advisory about a bundle over 500 kB uncompressed remains; it is not a build failure.
+- The independent [metric audit](HOUSE55-DIMENSION-REFIT.md) was regenerated from the current public data and archived baseline. It verifies **17 living-zone witnesses**, conditional R width failure, **24 windows**, a two-component door graph, all room approach probes and the unchanged source exterior. All-space numerical overlap is below **0.000001 m²** and exterior containment stays within the established **0.2 mm / 0.001 m²** bounds.
+- Production browser checks passed in isolated Firefox at **1440 × 1000**, **390 × 844**, and **320 × 568**. All floors, room/door cards, the west stairwell entry, correction-form targets, diagram key, day/night views, stack/collapse and empty-space return work. The drawing key identifies **24 windows** and **Possible wall**. House 53 remains unmapped.
+- Visually reviewed [night floor](preview/single-floor.png), [day floor](preview/house55-day-floor.png), [phone plan](preview/house55-phone-floor.png), [marked exterior](preview/house55-marked-windows.png), [drawing key](preview/house55-window-key.png), and [standalone evidence plan](preview/house55-window-wall-study.png). Visible labels do not overlap; all 23 top-floor spaces remain accessible through the drawing key.
+- No browser console errors, horizontal overflow, audio/video elements, cookies, localStorage or sessionStorage entries were observed. The original LoD2, campus data, path cache and empty approved-interior dataset match the preceding commit exactly. Both lower-floor study objects also match exactly.
+
+The repository remains public and publishes through its existing GitHub Pages workflow on `main`. These release checks describe tested geometry and interface behavior, not a measured or approved interior plan.
 
 ## Current revision
 

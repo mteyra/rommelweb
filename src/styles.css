@@ -980,6 +980,20 @@ body[data-theme='day'] .waybar .theme-moon {
   opacity: .65;
 }
 
+.study-legend > [data-evidence='window']::before {
+  height: 3px;
+  border-block: 1px solid #91b9c8;
+}
+
+body[data-theme='day'] .study-legend > [data-evidence='window']::before {
+  border-color: #376879;
+}
+
+.study-legend > [data-evidence='wall-band']::before {
+  border-top-width: 4px;
+  opacity: .45;
+}
+
 .study-notes {
   margin: 9px 0;
   padding-left: 14px;

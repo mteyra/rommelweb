@@ -24,13 +24,13 @@ export const SCENE_THEMES = Object.freeze({
     background: PAPER, ink: INK, activeInk: ACTIVE_INK, compass: 0x676963,
     roadFill: 0x555754, footFill: 0x66665f, pathBoundary: 0x464a42, roadLine: 0x5b5d56, footLine: 0x50534b, stepsLine: 0x68685e,
     roof: 0x363837, timber: 0x504638, plates: 0x382f29, timberHatch: 0x968575, plateHatch: 0x9b8e7f, joints: 0xa49783, floor: 0x777a75,
-    room: ACTIVE_INK, sharedSpace: 0xb6a886, windowGlass: 0x202b2c, windowFrame: 0x111715, windowSill: 0x7f8179, oldWindowFrame: 0xad8454,
+    room: ACTIVE_INK, sharedSpace: 0xb6a886, interiorWindow: 0x91b9c8, windowGlass: 0x202b2c, windowFrame: 0x111715, windowSill: 0x7f8179, oldWindowFrame: 0xad8454,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
     roadFill: 0x989c90, footFill: 0xb8b8a9, pathBoundary: 0x9a9f90, roadLine: 0x92988a, footLine: 0xa4aa99, stepsLine: 0x909786,
     roof: 0x74776f, timber: 0xa18a6d, plates: 0x695044, timberHatch: 0x705b47, plateHatch: 0xa98a73, joints: 0x544f42, floor: 0x899a89,
-    room: 0x354a3b, sharedSpace: 0x82653b, windowGlass: 0x667979, windowFrame: 0x303d38, windowSill: 0xa5afa4, oldWindowFrame: 0xa67e49,
+    room: 0x354a3b, sharedSpace: 0x82653b, interiorWindow: 0x376879, windowGlass: 0x667979, windowFrame: 0x303d38, windowSill: 0xa5afa4, oldWindowFrame: 0xa67e49,
   }),
 });
 
@@ -289,7 +289,8 @@ export class CampusScene {
       elevations: floorElevations.map(elevation => data.baseY + elevation), relativeElevations: floorElevations, guideHeight: data.height,
       status: 'Schematic window rows follow the current provisional or approved floor guides; opening positions are not surveyed.',
     };
-    const windowStudies = createBuildingWindowStudies(official.surfaces, windowRows.elevations, data.baseY + windowRows.guideHeight, {house: data.number, family});
+    const locatedLevels = (this.studies?.buildings[data.number]?.levels || []).filter(level => level.windows?.length && !getDisplayLevel(this.interiors, null, data.number, level.index));
+    const windowStudies = createBuildingWindowStudies(official.surfaces, windowRows.elevations, data.baseY + windowRows.guideHeight, {house: data.number, family, locatedLevels});
     for (const surface of official.surfaces) {
       const outer = surface.points.slice(0, -1).map(p => new THREE.Vector3(...p));
       if (outer.length < 3) continue;
@@ -383,6 +384,8 @@ export class CampusScene {
     const windowGroup = new THREE.Group(), windowMaterials = [];
     windowGroup.userData = {
       role: 'schematic-window-study', ...windowProfile, windowCount, rowGuides: windowRows,
+      locatedWindowCount: [...windowStudies.values()].reduce((sum, study) => sum + (study.locatedCount || 0), 0),
+      rejectedLocatedWindows: [...windowStudies.values()].flatMap(study => study.rejectedLocated || []),
       scope: family === 'plates'
         ? 'Three aligned appearance rows, including ground, on grounded multistorey wall portions. Complete windows plus clearance must fit the local source wall; roof-only patches and low shared wings are excluded. Larger common-room glazing is unmodeled.'
         : 'Upper storeys of broad facades, including adjacent near-coplanar source patches. Every mark is clipped to its original wall. Ground communal spaces, highly fragmented stair faces and loggia geometry remain unmodeled.',
@@ -607,7 +610,7 @@ export class CampusScene {
       mappedPathWidths: this.pathSourceRecords.filter(source => source.width !== null).length,
       theme: this.theme,
       schematicWindows: [...this.buildings.values()].reduce((sum, building) => sum + building.windowGroup.userData.windowCount, 0),
-      windowStudies: [...this.buildings.values()].map(building => ({number: building.data.number, count: building.windowGroup.userData.windowCount, rows: building.windowGroup.userData.rowGuides.relativeElevations, alignment: building.windowGroup.userData.alternateOffset === 0 ? 'aligned' : 'schematic offsets'})),
+      windowStudies: [...this.buildings.values()].map(building => ({number: building.data.number, count: building.windowGroup.userData.windowCount, locatedCount: building.windowGroup.userData.locatedWindowCount, rejectedLocated: building.windowGroup.userData.rejectedLocatedWindows, rows: building.windowGroup.userData.rowGuides.relativeElevations, alignment: building.windowGroup.userData.alternateOffset === 0 ? 'aligned' : 'schematic offsets'})),
       floorSections: [...this.buildings.values()].map(b => ({ number: b.data.number, areas: b.floorSections.map(section => section.area), openChains: b.floorSections.reduce((sum, section) => sum + section.openChains.length, 0) })),
       contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photo-informed schematic material and window study; opening positions are illustrative, with no room assignments or interior boundaries' };
   }

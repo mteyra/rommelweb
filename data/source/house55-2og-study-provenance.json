@@ -569,7 +569,8 @@
       "rightEndShiftMetres": -0.223666,
       "bottomWallLengthMetres": 8.079456,
       "correctionMeaning": "Outer alignment and three-room count follow the resident correction. Internal divider coordinates and all doorway positions remain estimates."
-    }
+    },
+    "stage": "earlier-left-side-stage-before-window-and-wall-face-study"
   },
   "annotation": {
     "filename": "house55-2og-resident-markup.png",
@@ -1838,7 +1839,8 @@
           ]
         }
       }
-    ]
+    ],
+    "zoneMeasurementsStage": "earlier-left-side-stage-before-window-and-wall-face-study"
   },
   "stairs": {
     "registeredLocalBoundsMetres": [
@@ -1935,7 +1937,8 @@
         2.321612,
         4.342385
       ]
-    }
+    },
+    "stage": "earlier-left-side-stage-before-window-and-wall-face-study"
   },
   "validation": {
     "roomOverlapMetresSquared": 0,
@@ -1946,7 +1949,8 @@
     "unchangedOtherRoomGeometryCount": 17,
     "separateHallwayRegions": 2,
     "sourceVerticesModified": false,
-    "approvedInteriorDataModified": false
+    "approvedInteriorDataModified": false,
+    "stage": "earlier-left-side-stage-before-window-and-wall-face-study"
   },
   "lowerFloorExtrapolation": [
     {
@@ -2440,5 +2444,559 @@
     "level": "The corrected directly annotated index-2 study.",
     "levels": "All three study levels, in order EG/index0, 1. OG/index1, 2. OG/index2.",
     "approvalStatus": "All are unmeasured study records; none creates an approved interior or a measured elevation anchor."
-  }
+  },
+  "windowWallStudy": {
+    "status": "resident-window-positions-and-unmeasured-wall-face-hypothesis",
+    "baseline": {
+      "path": "data/source/house55-2og-wall-offset-baseline.json",
+      "sha256": "9a214415e0532f5960cfebf1009a7f44e2bbbba6479ab878c59c97b1dbfb16d8",
+      "sourceCommit": "7bbf21d1daee723b34b4bca60df6707bb4b74f4c"
+    },
+    "images": {
+      "windows": {
+        "path": "data/source/house55-2og-window-marks.png",
+        "originalFilename": "codex-clipboard-g6kKzr.png",
+        "sha256": "dbdf4328b8b55fd1b49e330caa337f860b6b5fec6c68c35202521792476c7824",
+        "width": 1055,
+        "height": 648
+      },
+      "wallOffsets": {
+        "path": "data/source/house55-2og-wall-offsets.png",
+        "originalFilename": "codex-clipboard-HHWKEQ.png",
+        "sha256": "d5ff81c25d2b18fd198124ff29c0bfe47efb632d7f7e83c52320c2c7b4d79d9e",
+        "width": 1038,
+        "height": 652
+      }
+    },
+    "windows": {
+      "confirmedRoomWindowCount": 20,
+      "confirmedSharedWindowCount": 4,
+      "total": 24,
+      "lRoomClarification": "Resident explicitly confirmed one window on the north/outside wall of each L room.",
+      "sharedWindowPolicy": "The four shared-area windows retain their source façade locations without guessing room/stairwell ownership or access.",
+      "registration": {
+        "method": "Independent least-squares affine scale/offset for X and Y in the orthographic plot; no source geometry rescaling.",
+        "controls": [
+          {
+            "vertex": 20,
+            "pixel": [
+              174,
+              158
+            ]
+          },
+          {
+            "vertex": 23,
+            "pixel": [
+              98,
+              605
+            ]
+          },
+          {
+            "vertex": 0,
+            "pixel": [
+              358,
+              605
+            ]
+          },
+          {
+            "vertex": 13,
+            "pixel": [
+              775,
+              67
+            ]
+          },
+          {
+            "vertex": 12,
+            "pixel": [
+              980,
+              67
+            ]
+          },
+          {
+            "vertex": 9,
+            "pixel": [
+              957,
+              461
+            ]
+          }
+        ],
+        "localMetresToImagePixels": [
+          {
+            "slope": 21.50804081448717,
+            "intercept": 300.18294089460636
+          },
+          {
+            "slope": 22.31568056628892,
+            "intercept": 213.9741906814212
+          }
+        ]
+      },
+      "observations": [
+        {
+          "id": "study-55-2-window-W1",
+          "roomReference": "W1",
+          "sourceSurfaceIndex": 16,
+          "roofEdgeVertexIndexes": [
+            20,
+            21
+          ],
+          "observedImageCenterPixels": [
+            173,
+            190
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-W2",
+          "roomReference": "W2",
+          "sourceSurfaceIndex": 16,
+          "roofEdgeVertexIndexes": [
+            20,
+            21
+          ],
+          "observedImageCenterPixels": [
+            173,
+            261
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-W3",
+          "roomReference": "W3",
+          "sourceSurfaceIndex": 16,
+          "roofEdgeVertexIndexes": [
+            20,
+            21
+          ],
+          "observedImageCenterPixels": [
+            173,
+            330
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-W4",
+          "roomReference": "W4",
+          "sourceSurfaceIndex": 16,
+          "roofEdgeVertexIndexes": [
+            20,
+            21
+          ],
+          "observedImageCenterPixels": [
+            173,
+            391
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-A",
+          "roomReference": "A",
+          "sourceSurfaceIndex": 4,
+          "roofEdgeVertexIndexes": [
+            23,
+            0
+          ],
+          "observedImageCenterPixels": [
+            129,
+            605
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-B",
+          "roomReference": "B",
+          "sourceSurfaceIndex": 4,
+          "roofEdgeVertexIndexes": [
+            23,
+            0
+          ],
+          "observedImageCenterPixels": [
+            190,
+            605
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-C",
+          "roomReference": "C",
+          "sourceSurfaceIndex": 4,
+          "roofEdgeVertexIndexes": [
+            23,
+            0
+          ],
+          "observedImageCenterPixels": [
+            257,
+            605
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-D",
+          "roomReference": "D",
+          "sourceSurfaceIndex": 4,
+          "roofEdgeVertexIndexes": [
+            23,
+            0
+          ],
+          "observedImageCenterPixels": [
+            323,
+            605
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-N1",
+          "roomReference": "N1",
+          "sourceSurfaceIndex": 43,
+          "roofEdgeVertexIndexes": [
+            13,
+            12
+          ],
+          "observedImageCenterPixels": [
+            813,
+            67
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-N2",
+          "roomReference": "N2",
+          "sourceSurfaceIndex": 43,
+          "roofEdgeVertexIndexes": [
+            13,
+            12
+          ],
+          "observedImageCenterPixels": [
+            876,
+            67
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-N3",
+          "roomReference": "N3",
+          "sourceSurfaceIndex": 43,
+          "roofEdgeVertexIndexes": [
+            13,
+            12
+          ],
+          "observedImageCenterPixels": [
+            942,
+            67
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-E",
+          "roomReference": "E",
+          "sourceSurfaceIndex": 5,
+          "roofEdgeVertexIndexes": [
+            10,
+            9
+          ],
+          "observedImageCenterPixels": [
+            956,
+            297
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-F",
+          "roomReference": "F",
+          "sourceSurfaceIndex": 5,
+          "roofEdgeVertexIndexes": [
+            10,
+            9
+          ],
+          "observedImageCenterPixels": [
+            956,
+            357
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-G",
+          "roomReference": "G",
+          "sourceSurfaceIndex": 5,
+          "roofEdgeVertexIndexes": [
+            10,
+            9
+          ],
+          "observedImageCenterPixels": [
+            956,
+            423
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-R1",
+          "roomReference": "R1",
+          "sourceSurfaceIndex": 36,
+          "roofEdgeVertexIndexes": [
+            6,
+            7
+          ],
+          "observedImageCenterPixels": [
+            626,
+            430
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-R2",
+          "roomReference": "R2",
+          "sourceSurfaceIndex": 36,
+          "roofEdgeVertexIndexes": [
+            6,
+            7
+          ],
+          "observedImageCenterPixels": [
+            685,
+            430
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-R3",
+          "roomReference": "R3",
+          "sourceSurfaceIndex": 36,
+          "roofEdgeVertexIndexes": [
+            6,
+            7
+          ],
+          "observedImageCenterPixels": [
+            736,
+            430
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-L1",
+          "roomReference": "L1",
+          "sourceSurfaceIndex": 0,
+          "roofEdgeVertexIndexes": [
+            18,
+            17
+          ],
+          "observedImageCenterPixels": null,
+          "sourceOfPosition": "Resident explicitly confirmed one north-facing window per L room; centered within its estimated bay.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-L2",
+          "roomReference": "L2",
+          "sourceSurfaceIndex": 0,
+          "roofEdgeVertexIndexes": [
+            18,
+            17
+          ],
+          "observedImageCenterPixels": null,
+          "sourceOfPosition": "Resident explicitly confirmed one north-facing window per L room; centered within its estimated bay.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-L3",
+          "roomReference": "L3",
+          "sourceSurfaceIndex": 0,
+          "roofEdgeVertexIndexes": [
+            18,
+            17
+          ],
+          "observedImageCenterPixels": null,
+          "sourceOfPosition": "Resident explicitly confirmed one north-facing window per L room; centered within its estimated bay.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-west-hall",
+          "roomReference": null,
+          "sourceSurfaceIndex": 28,
+          "roofEdgeVertexIndexes": [
+            22,
+            21
+          ],
+          "observedImageCenterPixels": [
+            141,
+            417
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-south-shared",
+          "roomReference": null,
+          "sourceSurfaceIndex": 34,
+          "roofEdgeVertexIndexes": [
+            4,
+            5
+          ],
+          "observedImageCenterPixels": [
+            562,
+            431
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 1.05,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-east-return",
+          "roomReference": null,
+          "sourceSurfaceIndex": 6,
+          "roofEdgeVertexIndexes": [
+            7,
+            8
+          ],
+          "observedImageCenterPixels": [
+            774,
+            447
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 0.85,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        },
+        {
+          "id": "study-55-2-window-north-return",
+          "roomReference": null,
+          "sourceSurfaceIndex": 2,
+          "roofEdgeVertexIndexes": [
+            10,
+            11
+          ],
+          "observedImageCenterPixels": [
+            967,
+            259
+          ],
+          "sourceOfPosition": "Green mark snapped to its existing source façade; hand-stroke center is approximate.",
+          "widthMetres": 0.7,
+          "widthStatus": "Typical sketch or explicit narrower return-window estimate; not measured from green stroke length."
+        }
+      ],
+      "ignoredMarks": "Three green marks in empty plotting space are excluded; they do not touch any building wall. Blue strokes are not windows.",
+      "elevationPolicy": "The exterior uses the established appearance-only old-house row guides and typical-sketch sill/height. The plan uses a low display cutaway; neither establishes measured elevations."
+    },
+    "wallOffsets": {
+      "assumedOffsetMetres": 0.2,
+      "basis": "A transparent 0.20m sensitivity case for the resident’s arrows and finite-wall hypothesis. Not digitized as a dimension, not derived from hand length, and not optimized to make the R template fit.",
+      "lTranslationMetres": [
+        -0.2,
+        0
+      ],
+      "rEastEndExtensionMetres": 0.2,
+      "previousStairwellGrossWidthMetres": 1.4704149647792093,
+      "candidateStairwellGrossWidthMetres": 1.6704148033165005,
+      "priorRFacadeRunMetres": 8.079453260870862,
+      "candidateRGrossAxisRunMetres": 8.279453260870861,
+      "nominalRGrossBayMetres": 2.7598177536236204,
+      "facadeRunNotExpanded": true,
+      "bands": [
+        {
+          "name": "west-elbow",
+          "roofEdgeVertexIndexes": [
+            19,
+            18
+          ],
+          "assumedThicknessMetres": 0.2,
+          "interpretation": "Resident red façade-return mark; possible inward wall face, not a measured assembly."
+        },
+        {
+          "name": "west-connector",
+          "roofEdgeVertexIndexes": [
+            22,
+            21
+          ],
+          "assumedThicknessMetres": 0.2,
+          "interpretation": "Resident red façade-return mark; possible inward wall face, not a measured assembly."
+        },
+        {
+          "name": "east-return",
+          "roofEdgeVertexIndexes": [
+            7,
+            8
+          ],
+          "assumedThicknessMetres": 0.2,
+          "interpretation": "Resident red façade-return mark; possible inward wall face, not a measured assembly."
+        },
+        {
+          "name": "north-recess",
+          "roofEdgeVertexIndexes": [
+            15,
+            16
+          ],
+          "assumedThicknessMetres": 0.2,
+          "interpretation": "Resident blue roof/void-edge mark; not evidence of a full-height structural wall."
+        },
+        {
+          "name": "south-recess",
+          "roofEdgeVertexIndexes": [
+            2,
+            3
+          ],
+          "assumedThicknessMetres": 0.2,
+          "interpretation": "Resident blue roof/void-edge mark; not evidence of a full-height structural wall."
+        }
+      ],
+      "whatCanOverlap": "Different projected façade/roof edges and gross wall allocations may overlap visually. Independent room, stair and hall floor polygons must remain disjoint.",
+      "limitation": "Source LoD2 contains exterior faces, not paired inner faces or wall assemblies. Its stepped extra floor-section margins occur at other roof ends; they do not establish extra width in the R façade. The wall hypothesis is not verified by the source.",
+      "numericalCleanup": "L exterior edges clip against both original floor and roof constraints. Hall boundaries retain every adjoining serialized room corner. A 0.000002m schematic-flight inset avoids serialization slivers; it is not architectural clearance."
+    },
+    "unchangedRoomReferences": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "W1",
+      "W2",
+      "W3",
+      "W4",
+      "N1",
+      "N2",
+      "N3"
+    ],
+    "unchangedLowerFloors": [
+      0,
+      1
+    ],
+    "unchangedSourceExterior": true
+  },
+  "currentStage": "windowWallStudy"
 }

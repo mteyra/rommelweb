@@ -21,6 +21,7 @@ import { createHash } from 'node:crypto';
 import { difference, intersection, setPrecision, union } from 'polyclip-ts';
 import { floorSection } from '../src/sections.js';
 import { validateInteriorStudies } from '../src/interior-studies.js';
+import { applyHouse55WindowWallStudy } from './house55-window-wall-study.mjs';
 
 const sourceFile = new URL('../public/data/lod2.json', import.meta.url);
 const sourceBytes = await readFile(sourceFile);
@@ -796,8 +797,19 @@ study.metadata.outputContract = {
   levels: 'All three study levels, in order EG/index0, 1. OG/index1, 2. OG/index2.',
   approvalStatus: 'All are unmeasured study records; none creates an approved interior or a measured elevation anchor.',
 };
+// Keep the preceding stages reproducible as the comparison history. Apply the
+// resident's later window marks and finite-wall hypothesis only to index 2.
+const windowWallStudy = await applyHouse55WindowWallStudy(study.level, building);
+study.level = windowWallStudy.level;
+study.levels = [...lowerLevels, study.level];
+study.metadata.windowWallStudy = windowWallStudy.metadata;
+study.metadata.currentStage = 'windowWallStudy';
+study.metadata.roomInterpretation.zoneMeasurementsStage = 'earlier-left-side-stage-before-window-and-wall-face-study';
+study.metadata.residentCorrections.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
+study.metadata.stairs.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
+study.metadata.validation.stage = 'earlier-left-side-stage-before-window-and-wall-face-study';
 const generatedBuilding = {
-  source: 'House 55 resident-confirmed 2. OG count with a corrected left block, stairwell and marked west-hall entrance; remaining room envelopes and lower-floor extrapolations retain their preceding study geometry.',
+  source: 'House 55 resident-confirmed 2. OG count and exterior windows, with an explicitly unmeasured wall-face hypothesis for L, R and the staircase. Both lower floors retain their earlier study geometry.',
   sourceDate: '2026-11-15', levels: study.levels,
 };
 const campusData = JSON.parse(await readFile(new URL('../public/data/campus.json', import.meta.url)));
@@ -824,7 +836,7 @@ const svg = [
 ];
 const svgRing = ring => ring.map(point => imagePixel(project(local(point))).map(value => value.toFixed(2)).join(',')).join(' ');
 for (const polygon of floorMulti) svg.push(`<polygon points="${svgRing(polygon[0])}" fill="#34342d" stroke="#bdb8a5" stroke-width="2"/>`);
-for (const space of spaces.filter(space => space.kind !== 'corridor')) {
+for (const space of study.level.spaces.filter(space => space.kind !== 'corridor')) {
   const color = space.kind === 'stairs' ? '#6da2f2' : space.confidence === 'sketch' ? '#ecad78' : '#d6c678';
   svg.push(`<polygon points="${svgRing(space.polygon)}" fill="${color}" fill-opacity=".09" stroke="${color}" stroke-width="2" ${space.confidence === 'estimated' ? 'stroke-dasharray="6 4"' : ''}/>`);
   if (space.stairFlight) svg.push(`<polygon points="${svgRing(space.stairFlight)}" fill="${color}" fill-opacity=".13" stroke="${color}" stroke-width="1" stroke-dasharray="3 3"/>`);
@@ -833,22 +845,34 @@ for (const space of spaces.filter(space => space.kind !== 'corridor')) {
   svg.push(`<text x="${x}" y="${y}" fill="${color}" text-anchor="middle" font-size="15" font-family="sans-serif">${label}</text>`);
 }
 for (const exclusion of exclusions) svg.push(`<polygon points="${svgRing(exclusion.polygon)}" fill="#6d9960" fill-opacity=".16" stroke="#6d9960" stroke-width="2" stroke-dasharray="5 7"/>`);
-for (const door of doors) {
+for (const door of study.level.doors) {
   const [a, b] = door.segment.map(point => imagePixel(project(local(point))));
   svg.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#e4dfd1" stroke-width="5"/>`);
+}
+for (const window of study.level.windows) {
+  const [a, b] = window.segment.map(point => imagePixel(project(local(point))));
+  svg.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#87bdcf" stroke-width="5"/>`);
 }
 svg.push('</svg>');
 await writeFile(svgPath, svg.join('\n'));
 console.log(JSON.stringify({
   outputPath, svgPath, registrationRmsPixels: rounded(rms), confirmedUpstairsRoomCount: 20, sketchPositionRooms: 0, estimatedPartitionRooms: 20,
   floorAreaMetresSquared: rounded(multiArea(floorMulti)), removedGreenAreaMetresSquared: rounded(sourceSection.area - multiArea(floorMulti)),
-  approximateStairDimensionsMetres: [study.metadata.stairs.approximateWidthMetres, study.metadata.stairs.approximateRunMetres],
+  approximateStairDimensionsMetres: [study.metadata.windowWallStudy.wallOffsets.candidateStairwellGrossWidthMetres, study.metadata.stairs.approximateRunMetres],
   stairLeftWallShiftFromPreviousDimensionMetres: rounded(bounds.stairs[0] - priorDimensionBounds.stairs[0]),
-  correctedLeftBayWidthMetres: correctedLeftBayWidth, approximateStairwellWidthMetres: stairwellWidth,
+  correctedLeftBayWidthMetres: correctedLeftBayWidth,
+  markedWindows: study.level.windows.length,
+  wallOffsetHypothesisMetres: study.metadata.windowWallStudy.wallOffsets.assumedOffsetMetres,
   commonGrossDepthMetres: commonDepth, commonDepthRoomReferences: depthInputs.length,
   lowerFloors: lowerMetadata.map(level => ({
     index: level.index, sourceAreaMetresSquared: level.sourceSectionAreaMetresSquared,
     unassignedAreaMetresSquared: level.unassignedAreaMetresSquared, spaces: level.studySpaces, openings: level.estimatedOpenings,
   })),
-  validation: study.metadata.validation,
+  validation: {
+    currentStudySchemaPassed: true,
+    unchangedNonLRRoomCount: study.metadata.windowWallStudy.unchangedRoomReferences.length,
+    markedWindows: study.level.windows.length,
+    separateHallways: study.level.spaces.filter(space => space.kind === 'corridor').length,
+    originalExteriorModified: false,
+  },
 }, null, 2));

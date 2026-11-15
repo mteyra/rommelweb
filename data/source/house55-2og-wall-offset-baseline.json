@@ -1,0 +1,1461 @@
+{
+  "sourceCommit": "7bbf21d1daee723b34b4bca60df6707bb4b74f4c",
+  "meaning": "Frozen top-floor study before the resident window marks and proposed wall-face offsets. A comparison record, not a measured floor plan.",
+  "level": {
+    "index": 2,
+    "label": "2. OG — left-side correction study",
+    "source": "Resident-confirmed twenty-room count, left-side correction image and stairwell-entrance clarification supplied on 15 November 2026, aligned to Bavaria’s unchanged exterior model.",
+    "notes": "Twenty rooms and their general groups remain resident-confirmed. L1–L3 now shift between the marked source corners as three approximately 2.94m gross bays, retaining the previous roughly 5.40m model depth. The narrower stairwell is provisionally half a neighboring bay wide; its schematic flight leaves landing areas clear. The green-marked west-hall entrance into the stairwell is confirmed in location, with an illustrative 1.10m opening. The east hall's stairwell connection is unknown and is not invented. The other seventeen room polygons stay unchanged, including unresolved R1–R3 at about 2.69m gross width. Full apartment dimensions, service layouts, wall thickness, openings and floor height remain unmeasured. Study labels are not room numbers. Both lower floors retain the earlier frozen sketch.",
+    "floorOutline": [
+      {
+        "outer": [
+          [
+            -20.400017,
+            3.670562
+          ],
+          [
+            -14.146591,
+            -2.075863
+          ],
+          [
+            -10.615,
+            1.784
+          ],
+          [
+            -0.810355,
+            -7.225048
+          ],
+          [
+            4.90702,
+            -0.968298
+          ],
+          [
+            3.313861,
+            0.497504
+          ],
+          [
+            0.87,
+            2.745
+          ],
+          [
+            7.924865,
+            10.450124
+          ],
+          [
+            7.238,
+            11.079
+          ],
+          [
+            13.3,
+            17.717
+          ],
+          [
+            14.24,
+            16.857
+          ],
+          [
+            19.764,
+            11.799
+          ],
+          [
+            27.098837,
+            19.82719
+          ],
+          [
+            20.839776,
+            25.577108
+          ],
+          [
+            20.154574,
+            24.825672
+          ],
+          [
+            19.87247,
+            24.517666
+          ],
+          [
+            19.224,
+            23.807
+          ],
+          [
+            11.605421,
+            30.80674
+          ],
+          [
+            8.904876,
+            27.85618
+          ],
+          [
+            5.893531,
+            24.565323
+          ],
+          [
+            6.353601,
+            24.144121
+          ],
+          [
+            6.504,
+            24.006977
+          ],
+          [
+            7.76,
+            22.857
+          ],
+          [
+            2.304,
+            16.898
+          ],
+          [
+            2.219,
+            16.976
+          ],
+          [
+            0.48,
+            15.075
+          ],
+          [
+            1.043,
+            14.558
+          ],
+          [
+            -4.866,
+            8.09
+          ],
+          [
+            -5.773,
+            8.924
+          ],
+          [
+            -11.109,
+            13.826
+          ],
+          [
+            -19.495962,
+            4.659388
+          ],
+          [
+            -20.400017,
+            3.670562
+          ]
+        ],
+        "holes": []
+      }
+    ],
+    "excludedAreas": [
+      {
+        "id": "study-55-2-no-floor-1",
+        "label": "No floor — lower green mark",
+        "polygon": [
+          [
+            -5.295,
+            20.183
+          ],
+          [
+            -1.531,
+            16.724
+          ],
+          [
+            -1.432,
+            16.833
+          ],
+          [
+            0.48,
+            15.075
+          ],
+          [
+            1.043,
+            14.558
+          ],
+          [
+            -4.866,
+            8.09
+          ],
+          [
+            -5.773,
+            8.924
+          ],
+          [
+            -11.109,
+            13.826
+          ],
+          [
+            -5.295,
+            20.183
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-no-floor-2",
+        "label": "No floor — upper green mark",
+        "polygon": [
+          [
+            13.3,
+            17.717
+          ],
+          [
+            14.24,
+            16.857
+          ],
+          [
+            19.764,
+            11.799
+          ],
+          [
+            13.944,
+            5.43
+          ],
+          [
+            8.185,
+            10.735
+          ],
+          [
+            7.925,
+            10.45
+          ],
+          [
+            7.238,
+            11.079
+          ],
+          [
+            13.3,
+            17.717
+          ]
+        ]
+      }
+    ],
+    "sketchBoundaries": [
+      [
+        [
+          6.257722,
+          13.269879
+        ],
+        [
+          11.72417,
+          19.229601
+        ]
+      ],
+      [
+        [
+          11.72417,
+          19.229601
+        ],
+        [
+          7.76,
+          22.857
+        ]
+      ],
+      [
+        [
+          2.304,
+          16.898
+        ],
+        [
+          6.257722,
+          13.269879
+        ]
+      ]
+    ],
+    "spaces": [
+      {
+        "id": "study-55-2-sw-1",
+        "label": "Room A — estimated layout",
+        "shortLabel": "A",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Equal gross bays of about 3.02m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth; these are not measured full apartments or physical room numbers. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -19.253922,
+            4.923928
+          ],
+          [
+            -15.288007,
+            1.279522
+          ],
+          [
+            -13.245656,
+            3.506168
+          ],
+          [
+            -17.217691,
+            7.149446
+          ],
+          [
+            -19.253922,
+            4.923928
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-sw-2",
+        "label": "Room B — estimated layout",
+        "shortLabel": "B",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Equal gross bays of about 3.02m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth; these are not measured full apartments or physical room numbers. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -17.217691,
+            7.149446
+          ],
+          [
+            -13.245656,
+            3.506168
+          ],
+          [
+            -11.206663,
+            5.729152
+          ],
+          [
+            -15.181461,
+            9.374964
+          ],
+          [
+            -17.217691,
+            7.149446
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-sw-3",
+        "label": "Room C — estimated layout",
+        "shortLabel": "C",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Equal gross bays of about 3.02m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth; these are not measured full apartments or physical room numbers. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -15.181461,
+            9.374964
+          ],
+          [
+            -11.206663,
+            5.729152
+          ],
+          [
+            -9.167671,
+            7.952137
+          ],
+          [
+            -13.14523,
+            11.600482
+          ],
+          [
+            -15.181461,
+            9.374964
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-sw-4",
+        "label": "Room D — estimated layout",
+        "shortLabel": "D",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Equal gross bays of about 3.02m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth; these are not measured full apartments or physical room numbers. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -13.14523,
+            11.600482
+          ],
+          [
+            -9.167671,
+            7.952137
+          ],
+          [
+            -7.131519,
+            10.172025
+          ],
+          [
+            -11.109,
+            13.826
+          ],
+          [
+            -13.14523,
+            11.600482
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-east-1",
+        "label": "Room E — estimated layout",
+        "shortLabel": "E",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Equal gross bays of about 3.05m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth. Kitchen, bathroom, wall thicknesses and usable areas remain unknown. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            13.33446,
+            21.89442
+          ],
+          [
+            15.579568,
+            19.835135
+          ],
+          [
+            19.223289,
+            23.807653
+          ],
+          [
+            16.979859,
+            25.868769
+          ],
+          [
+            13.33446,
+            21.89442
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-east-2",
+        "label": "Room F — estimated layout",
+        "shortLabel": "F",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Equal gross bays of about 3.05m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth. Kitchen, bathroom, wall thicknesses and usable areas remain unknown. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            11.089351,
+            23.953706
+          ],
+          [
+            13.33446,
+            21.89442
+          ],
+          [
+            16.979859,
+            25.868769
+          ],
+          [
+            14.73643,
+            27.929884
+          ],
+          [
+            11.089351,
+            23.953706
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-east-3",
+        "label": "Room G — estimated layout",
+        "shortLabel": "G",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Equal gross bays of about 3.05m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth. Kitchen, bathroom, wall thicknesses and usable areas remain unknown. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            8.848932,
+            26.008691
+          ],
+          [
+            11.089351,
+            23.953706
+          ],
+          [
+            14.73643,
+            27.929884
+          ],
+          [
+            12.493,
+            29.991
+          ],
+          [
+            8.848932,
+            26.008691
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-west-1",
+        "label": "Room W1 — estimated layout",
+        "shortLabel": "W1",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Candidate 3.00m gross bays and a common fitted gross depth use some former corridor space. These similar envelope dimensions are a model assumption, not a measured full-apartment template. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -4.319036,
+            -4.00118
+          ],
+          [
+            -2.109932,
+            -6.030926
+          ],
+          [
+            1.532177,
+            -2.04486
+          ],
+          [
+            -0.676756,
+            -0.018755
+          ],
+          [
+            -4.319036,
+            -4.00118
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-west-2",
+        "label": "Room W2 — estimated layout",
+        "shortLabel": "W2",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Candidate 3.00m gross bays and a common fitted gross depth use some former corridor space. These similar envelope dimensions are a model assumption, not a measured full-apartment template. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -6.528072,
+            -1.971361
+          ],
+          [
+            -4.319036,
+            -4.00118
+          ],
+          [
+            -0.676756,
+            -0.018755
+          ],
+          [
+            -2.88569,
+            2.007349
+          ],
+          [
+            -6.528072,
+            -1.971361
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-west-3",
+        "label": "Room W3 — estimated layout",
+        "shortLabel": "W3",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Candidate 3.00m gross bays and a common fitted gross depth use some former corridor space. These similar envelope dimensions are a model assumption, not a measured full-apartment template. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -8.737108,
+            0.058459
+          ],
+          [
+            -6.528072,
+            -1.971361
+          ],
+          [
+            -2.88569,
+            2.007349
+          ],
+          [
+            -5.094624,
+            4.033454
+          ],
+          [
+            -8.737108,
+            0.058459
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-west-4",
+        "label": "Room W4 — estimated layout",
+        "shortLabel": "W4",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Candidate 3.00m gross bays and a common fitted gross depth use some former corridor space. These similar envelope dimensions are a model assumption, not a measured full-apartment template. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            -10.946144,
+            2.088278
+          ],
+          [
+            -8.737108,
+            0.058459
+          ],
+          [
+            -5.094624,
+            4.033454
+          ],
+          [
+            -7.303558,
+            6.059559
+          ],
+          [
+            -10.946144,
+            2.088278
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-center-left-1",
+        "label": "Room L1 — estimated layout",
+        "shortLabel": "L1",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
+        "polygon": [
+          [
+            -3.107065,
+            6.392891
+          ],
+          [
+            0.87,
+            2.745
+          ],
+          [
+            2.855981,
+            4.913955
+          ],
+          [
+            -1.119208,
+            8.560126
+          ],
+          [
+            -3.107065,
+            6.392891
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-center-left-2",
+        "label": "Room L2 — estimated layout",
+        "shortLabel": "L2",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
+        "polygon": [
+          [
+            -1.119208,
+            8.560126
+          ],
+          [
+            2.855981,
+            4.913955
+          ],
+          [
+            4.841961,
+            7.082911
+          ],
+          [
+            0.868649,
+            10.72736
+          ],
+          [
+            -1.119208,
+            8.560126
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-center-left-3",
+        "label": "Room L3 — estimated layout",
+        "shortLabel": "L3",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
+        "polygon": [
+          [
+            0.868649,
+            10.72736
+          ],
+          [
+            4.841885,
+            7.082981
+          ],
+          [
+            6.827828,
+            9.251971
+          ],
+          [
+            2.856506,
+            12.894595
+          ],
+          [
+            0.868649,
+            10.72736
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-center-right-1",
+        "label": "Room R1 — estimated layout",
+        "shortLabel": "R1",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
+        "polygon": [
+          [
+            2.304,
+            16.898
+          ],
+          [
+            6.257722,
+            13.269879
+          ],
+          [
+            8.079871,
+            15.256453
+          ],
+          [
+            4.122667,
+            18.884333
+          ],
+          [
+            2.304,
+            16.898
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-center-right-2",
+        "label": "Room R2 — estimated layout",
+        "shortLabel": "R2",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
+        "polygon": [
+          [
+            4.122667,
+            18.884333
+          ],
+          [
+            8.079871,
+            15.256453
+          ],
+          [
+            9.902021,
+            17.243027
+          ],
+          [
+            5.941333,
+            20.870667
+          ],
+          [
+            4.122667,
+            18.884333
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-center-right-3",
+        "label": "Room R3 — estimated layout",
+        "shortLabel": "R3",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
+        "polygon": [
+          [
+            5.941333,
+            20.870667
+          ],
+          [
+            9.902021,
+            17.243027
+          ],
+          [
+            11.72417,
+            19.229601
+          ],
+          [
+            7.76,
+            22.857
+          ],
+          [
+            5.941333,
+            20.870667
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-upper-right-1",
+        "label": "Room N1 — estimated layout",
+        "shortLabel": "N1",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Source-anchored gross bays remain about 3.19m wide; only their corridor-facing boundary moves to the common fitted gross depth. All internal positions and clear dimensions remain estimates. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            15.780034,
+            15.446882
+          ],
+          [
+            19.764,
+            11.799
+          ],
+          [
+            21.914333,
+            14.152667
+          ],
+          [
+            17.938155,
+            17.799745
+          ],
+          [
+            15.780034,
+            15.446882
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-upper-right-2",
+        "label": "Room N2 — estimated layout",
+        "shortLabel": "N2",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Source-anchored gross bays remain about 3.19m wide; only their corridor-facing boundary moves to the common fitted gross depth. All internal positions and clear dimensions remain estimates. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            17.938155,
+            17.799745
+          ],
+          [
+            21.914333,
+            14.152667
+          ],
+          [
+            24.064667,
+            16.506333
+          ],
+          [
+            20.093118,
+            20.149165
+          ],
+          [
+            17.938155,
+            17.799745
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-upper-right-3",
+        "label": "Room N3 — estimated layout",
+        "shortLabel": "N3",
+        "kind": "room",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Source-anchored gross bays remain about 3.19m wide; only their corridor-facing boundary moves to the common fitted gross depth. All internal positions and clear dimensions remain estimates. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
+        "polygon": [
+          [
+            20.093118,
+            20.149165
+          ],
+          [
+            24.064667,
+            16.506333
+          ],
+          [
+            26.215,
+            18.86
+          ],
+          [
+            22.250909,
+            22.501668
+          ],
+          [
+            20.093118,
+            20.149165
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-stairs",
+        "label": "Stairwell — resident correction",
+        "shortLabel": "Stairs",
+        "kind": "stairs",
+        "confidence": "estimated",
+        "note": "The resident confirms that the earlier stairwell was too wide and the green mark is an entrance into it from the west hall. The width is provisionally interpreted as half a neighboring room bay, about 1.47m; it is not a measurement. The enclosure follows L3's right wall from the north facade to the southern source corner. A separate schematic flight keeps the earlier approximate run, leaving upper and lower landing areas clear. The east-hall connection, exact enclosure, steps and landing dimensions remain unknown.",
+        "polygon": [
+          [
+            1.043,
+            14.558
+          ],
+          [
+            2.856506,
+            12.894595
+          ],
+          [
+            6.827828,
+            9.251971
+          ],
+          [
+            7.820799,
+            10.336466
+          ],
+          [
+            2.036928,
+            15.641617
+          ],
+          [
+            1.043,
+            14.558
+          ]
+        ],
+        "stairFlight": [
+          [
+            5.218726,
+            10.72789
+          ],
+          [
+            6.212655,
+            11.811507
+          ],
+          [
+            3.040191,
+            14.721393
+          ],
+          [
+            2.046262,
+            13.637776
+          ],
+          [
+            5.218726,
+            10.72789
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-potential-corridor",
+        "label": "West hall — study",
+        "shortLabel": "West hall",
+        "kind": "corridor",
+        "confidence": "estimated",
+        "note": "Western remainder between the room envelopes and corrected stairwell. The resident marks a door into the stairwell below the flight. Hall dimensions remain estimates and do not establish an approved route or usable floor area.",
+        "polygon": [
+          [
+            -15.288007,
+            1.279522
+          ],
+          [
+            -13.000153,
+            -0.82286
+          ],
+          [
+            -10.615,
+            1.784
+          ],
+          [
+            -10.946144,
+            2.088278
+          ],
+          [
+            -7.303558,
+            6.059559
+          ],
+          [
+            1.532177,
+            -2.04486
+          ],
+          [
+            3.608,
+            0.227
+          ],
+          [
+            0.87,
+            2.745
+          ],
+          [
+            -3.107065,
+            6.392891
+          ],
+          [
+            2.856506,
+            12.894595
+          ],
+          [
+            1.043,
+            14.558
+          ],
+          [
+            -4.866,
+            8.09
+          ],
+          [
+            -5.773,
+            8.924
+          ],
+          [
+            -7.131519,
+            10.172025
+          ],
+          [
+            -15.288007,
+            1.279522
+          ]
+        ]
+      },
+      {
+        "id": "study-55-2-potential-corridor-east",
+        "label": "East hall — connection unconfirmed",
+        "shortLabel": "East hall",
+        "kind": "corridor",
+        "confidence": "estimated",
+        "note": "Eastern remainder between the unchanged room envelopes and corrected stairwell. Its connection into the stairwell or western hall was not supplied; no opening or route is invented. The narrow gap beside R is an unresolved geometric result, not an approved circulation width.",
+        "polygon": [
+          [
+            0.48,
+            15.075
+          ],
+          [
+            1.043,
+            14.558
+          ],
+          [
+            2.036928,
+            15.641617
+          ],
+          [
+            7.820799,
+            10.336466
+          ],
+          [
+            7.924865,
+            10.450124
+          ],
+          [
+            7.238,
+            11.079
+          ],
+          [
+            13.3,
+            17.717
+          ],
+          [
+            14.24,
+            16.857
+          ],
+          [
+            15.780034,
+            15.446882
+          ],
+          [
+            22.250909,
+            22.501668
+          ],
+          [
+            19.957,
+            24.609
+          ],
+          [
+            19.224,
+            23.807
+          ],
+          [
+            19.223289,
+            23.807653
+          ],
+          [
+            15.579568,
+            19.835135
+          ],
+          [
+            8.848932,
+            26.008691
+          ],
+          [
+            6.783263,
+            23.751288
+          ],
+          [
+            7.76,
+            22.857
+          ],
+          [
+            11.72417,
+            19.229601
+          ],
+          [
+            6.257722,
+            13.269879
+          ],
+          [
+            2.219,
+            16.976
+          ],
+          [
+            0.48,
+            15.075
+          ]
+        ]
+      }
+    ],
+    "doors": [
+      {
+        "id": "study-55-2-opening-sw-1",
+        "label": "Estimated opening — Room A — estimated layout",
+        "spaceId": "study-55-2-sw-1",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -14.56933,
+            2.06305
+          ],
+          [
+            -13.960974,
+            2.726302
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-sw-2",
+        "label": "Estimated opening — Room B — estimated layout",
+        "spaceId": "study-55-2-sw-2",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -12.530337,
+            4.286034
+          ],
+          [
+            -11.921982,
+            4.949286
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-sw-3",
+        "label": "Estimated opening — Room C — estimated layout",
+        "spaceId": "study-55-2-sw-3",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -10.491345,
+            6.509019
+          ],
+          [
+            -9.882989,
+            7.172271
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-sw-4",
+        "label": "Estimated opening — Room D — estimated layout",
+        "spaceId": "study-55-2-sw-4",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -8.452352,
+            8.732003
+          ],
+          [
+            -7.843997,
+            9.395255
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-east-1",
+        "label": "Estimated opening — Room E — estimated layout",
+        "spaceId": "study-55-2-east-1",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            14.78864,
+            20.5606
+          ],
+          [
+            14.125388,
+            21.168956
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-east-2",
+        "label": "Estimated opening — Room F — estimated layout",
+        "spaceId": "study-55-2-east-2",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            12.543532,
+            22.619885
+          ],
+          [
+            11.88028,
+            23.228241
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-east-3",
+        "label": "Estimated opening — Room G — estimated layout",
+        "spaceId": "study-55-2-east-3",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            10.298423,
+            24.67917
+          ],
+          [
+            9.635171,
+            25.287526
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-west-1",
+        "label": "Estimated opening — Room W1 — estimated layout",
+        "spaceId": "study-55-2-west-1",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            0.766007,
+            -1.342104
+          ],
+          [
+            0.102755,
+            -0.733748
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-west-2",
+        "label": "Estimated opening — Room W2 — estimated layout",
+        "spaceId": "study-55-2-west-2",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -1.444833,
+            0.685749
+          ],
+          [
+            -2.108084,
+            1.294104
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-west-3",
+        "label": "Estimated opening — Room W3 — estimated layout",
+        "spaceId": "study-55-2-west-3",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -3.655672,
+            2.713602
+          ],
+          [
+            -4.318924,
+            3.321957
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-west-4",
+        "label": "Estimated opening — Room W4 — estimated layout",
+        "spaceId": "study-55-2-west-4",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -5.866512,
+            4.741455
+          ],
+          [
+            -6.529764,
+            5.34981
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-center-left-1",
+        "label": "Estimated opening — Room L1 — estimated layout",
+        "spaceId": "study-55-2-center-left-1",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -2.417314,
+            7.144882
+          ],
+          [
+            -1.808958,
+            7.808134
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-center-left-2",
+        "label": "Estimated opening — Room L2 — estimated layout",
+        "spaceId": "study-55-2-center-left-2",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            -0.429458,
+            9.312117
+          ],
+          [
+            0.178898,
+            9.975369
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-center-left-3",
+        "label": "Estimated opening — Room L3 — estimated layout",
+        "spaceId": "study-55-2-center-left-3",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            1.558399,
+            11.479351
+          ],
+          [
+            2.166755,
+            12.142603
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor"
+      },
+      {
+        "id": "study-55-2-opening-center-right-1",
+        "label": "Estimated opening — Room R1 — estimated layout",
+        "spaceId": "study-55-2-center-right-1",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            6.864581,
+            13.931498
+          ],
+          [
+            7.472936,
+            14.59475
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-center-right-2",
+        "label": "Estimated opening — Room R2 — estimated layout",
+        "spaceId": "study-55-2-center-right-2",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            8.685019,
+            15.916207
+          ],
+          [
+            9.293375,
+            16.579459
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-center-right-3",
+        "label": "Estimated opening — Room R3 — estimated layout",
+        "spaceId": "study-55-2-center-right-3",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            10.505457,
+            17.900915
+          ],
+          [
+            11.113813,
+            18.564167
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-upper-right-1",
+        "label": "Estimated opening — Room N1 — estimated layout",
+        "spaceId": "study-55-2-upper-right-1",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            16.556495,
+            16.293409
+          ],
+          [
+            17.164851,
+            16.956661
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-upper-right-2",
+        "label": "Estimated opening — Room N2 — estimated layout",
+        "spaceId": "study-55-2-upper-right-2",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            18.711458,
+            18.642829
+          ],
+          [
+            19.319814,
+            19.306081
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-upper-right-3",
+        "label": "Estimated opening — Room N3 — estimated layout",
+        "spaceId": "study-55-2-upper-right-3",
+        "confidence": "estimated",
+        "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
+        "segment": [
+          [
+            20.866422,
+            20.992249
+          ],
+          [
+            21.474778,
+            21.655501
+          ]
+        ],
+        "toSpaceId": "study-55-2-potential-corridor-east"
+      },
+      {
+        "id": "study-55-2-opening-stairs",
+        "label": "Stairwell entrance — resident mark",
+        "spaceId": "study-55-2-stairs",
+        "toSpaceId": "study-55-2-potential-corridor",
+        "confidence": "sketch",
+        "note": "The resident confirms the green mark as a door from the west hallway INTO the stairwell, on its left wall below the flight. The 1.10m gap and centered landing position are illustrative, not measured. No hinge, swing, exterior-exit status or east-side stairwell opening is inferred.",
+        "segment": [
+          [
+            1.949952,
+            13.726115
+          ],
+          [
+            1.13931,
+            14.469661
+          ]
+        ]
+      }
+    ]
+  }
+}

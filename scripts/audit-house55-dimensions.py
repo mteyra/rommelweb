@@ -268,10 +268,14 @@ def audit(args):
     for name, (labels, axis, key) in GROUPS.items():
         source = measurements[key]
         selected = [row for row in rows if row["label"] in labels]
+        group_bounds = unary_union([polygons[label] for label in labels]).bounds
+        current_run = group_bounds[axis + 2] - group_bounds[axis]
         groups.append({
             "name": name, "count": len(labels), "runAxis": axis,
-            "nominalRun": source["runMetres"],
-            "nominalAverageGrossBay": source["averageGrossBayMetres"],
+            "nominalRun": current_run,
+            "nominalAverageGrossBay": current_run / len(labels),
+            "runMeaning": "Current projected envelope extent; slight source skew differs from the nominal division interval.",
+            "earlierStageNominalRun": source["runMetres"],
             "grossPolygonArea": sum(row["grossPolygonArea"] for row in selected),
             "baselineGrossPolygonArea": sum(row["baselineArea"] for row in selected) if baseline else None,
             "packingWitnessCount": sum(row["packingWitness"] is not None for row in selected),
@@ -342,6 +346,25 @@ def audit(args):
     flight = Polygon([local(point) for point in stair_record["stairFlight"]]) if stair_record and stair_record.get("stairFlight") else None
     flat_points = [local([point[0], point[2]]) for point in building["surfaces"][39]["points"]]
     pairs = list(occupied.values())
+    all_spaces = list(polygons.values())
+    window_records = [{
+        "id": window["id"],
+        "roomReference": space_ids[window["spaceId"]]["shortLabel"] if window.get("spaceId") else None,
+        "sourceSurfaceIndex": window["sourceSurfaceIndex"],
+        "segment": [local(point) for point in window["segment"]],
+        "width": LineString(window["segment"]).length,
+        "confidence": window["confidence"],
+    } for window in level.get("windows", [])]
+    band_polygons = [
+        Polygon([local(point) for point in band["polygon"]], [[local(point) for point in ring] for ring in band.get("holes", [])])
+        for band in level.get("wallBands", [])
+    ]
+    wall_stage = metadata.get("windowWallStudy", {})
+    r_run = flat_points[7][0] - flat_points[6][0]
+    offset = wall_stage.get("wallOffsets", {}).get("assumedOffsetMetres", 0)
+    # A necessary bounding-width condition, not a fitted design solution.
+    required_run = 3 * (2.7 + 2 * args.inset)
+    west_return_y = (flat_points[21][1] + flat_points[22][1]) / 2
     similar_rooms = [{
         "label": label,
         "grossWidth": polygons[label].bounds[axis + 2] - polygons[label].bounds[axis],
@@ -392,7 +415,7 @@ def audit(args):
         "residentWorkingHypothesis": {
             "statement": "All top-floor apartments are single rooms, generally similar in size, with dimensional differences described as about a hand length.",
             "meaning": "A repeated single-apartment type with small dimensional variation is a qualitative prior. A hand length is not converted into a measured dimensional tolerance.",
-            "latestCorrection": "L starts at the source exterior elbow. The green door enters the stairwell from the west hallway. A narrower stairwell near half one L bay is a provisional interpretation; the eastern connection remains unconfirmed.",
+            "latestCorrection": "Resident marks identify exterior windows, including a later explicit confirmation for L1–L3. The latest wall-face hypothesis moves L 0.20m left, gives that width to the stairs, and extends R 0.20m toward the east hall. These offsets and finite wall bands are unmeasured. The observed west stairwell entry is retained; east access remains unconfirmed.",
         },
         "input": {"path": report_path(args.study), "sha256": digest(args.study)},
         "baseline": {"path": report_path(args.baseline), "sha256": digest(args.baseline)} if args.baseline else None,
@@ -429,8 +452,33 @@ def audit(args):
             "commonDepthVerification": depth_verification,
         },
         "groups": groups, "rooms": rows,
+        "windows": {
+            "coverage": level.get("windowCoverage"),
+            "count": len(window_records),
+            "roomWindowCount": sum(record["roomReference"] is not None for record in window_records),
+            "sharedUnassignedWindowCount": sum(record["roomReference"] is None for record in window_records),
+            "records": window_records,
+            "meaning": "Resident-informed locations; exact centers and widths are estimates. Four shared-area windows do not establish room ownership, doorways or access.",
+        },
+        "wallFaceHypothesis": {
+            "assumedOffset": offset,
+            "sourceExteriorUnchanged": wall_stage.get("unchangedSourceExterior"),
+            "sourceRFacadeAxisRun": r_run,
+            "candidateRGrossAxisRun": r_run + offset,
+            "necessaryGrossRunForThreeReferenceWidthsWithInset": required_run,
+            "necessaryExtensionBeyondSourceAlignedR": max(0, required_run - r_run),
+            "remainingNecessaryExtensionBeyondCandidate": max(0, required_run - r_run - offset),
+            "requirementMeaning": "Necessary width bound under the declared 0.10m-per-side sensitivity; not sufficient to prove a full apartment fit or a measured wall arrangement.",
+            "westW4PastExteriorReturn": polygons["W4"].bounds[3] - west_return_y,
+            "westW4PastAssumedInnerFace": polygons["W4"].bounds[3] - west_return_y - offset,
+            "westReturnMeaning": "Aligning the current W4 south divider with this return's inner face would require about 0.45m, not the illustrative 0.20m band. W4 has not been stretched or shortened to conceal the difference.",
+            "wallBandArea": sum(polygon.area for polygon in band_polygons),
+            "wallBandOutsideFloorArea": sum(polygon.difference(floor).area for polygon in band_polygons),
+            "wallBandMeaning": "Display hypothesis within gross envelopes, not extra usable floor area; independent spaces remain disjoint.",
+        },
         "topology": {
             "overlapArea": sum(first.intersection(second).area for i, first in enumerate(pairs) for second in pairs[i + 1:]),
+            "allSpaceOverlapArea": sum(first.intersection(second).area for i, first in enumerate(all_spaces) for second in all_spaces[i + 1:]),
             "outsideAnnotatedArea": outside.area,
             "maximumOutsideDistance": max([annotated.boundary.distance(Point(point)) for point in boundary_points(outside)], default=0),
             "roomArea": sum(polygons[label].area for label in EXPECTED_LABELS),
@@ -489,15 +537,22 @@ def audit(args):
                 polygons[label].equals_exact(baseline[label], 0)
                 for label in ["R1", "R2", "R3"]
             ) if baseline else None,
+            "nonLRRoomPolygonsUnchanged": all(
+                polygons[label].equals_exact(baseline[label], 0)
+                for label in EXPECTED_LABELS - {"L1", "L2", "L3", "R1", "R2", "R3"}
+            ) if baseline else None,
         },
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n")
-    if args.plot:
+    for plot_path, with_baseline in [(args.plot, True), (args.plan_plot, False)]:
+        if not plot_path:
+            continue
         draw_plot(
-            args.plot, flat, occupied,
-            {label: polygon for label, polygon in baseline.items() if label not in baseline_corridors} if baseline else None,
+            plot_path, flat, occupied,
+            {label: polygon for label, polygon in baseline.items() if label not in baseline_corridors} if baseline and with_baseline else None,
             witnesses, corridors, flight, [record for record in door_records if record["target"] == stair_record["shortLabel"]] if stair_record else [],
+            window_records, band_polygons,
         )
     print(json.dumps({
         "report": str(args.output),
@@ -509,14 +564,14 @@ def audit(args):
     }, indent=2))
 
 
-def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors):
+def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stair_doors, windows, wall_bands):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.patches import Polygon as Patch
 
-    panels = [(baseline, "Before the left-side and stairwell correction")] if baseline else []
-    panels.append((polygons, "Source-aligned L rooms · west stairwell entry · east access unconfirmed"))
+    panels = [(baseline, "Previous layout · before the window marks and wall-face hypothesis")] if baseline else []
+    panels.append((polygons, "House 55 · 2. OG · 24 resident-located windows · 0.20 m wall-face hypothesis"))
     figure, axes = plt.subplots(len(panels), 1, figsize=(16, 8.5 * len(panels)), squeeze=False, layout="constrained")
     for axis, (items, title) in zip(axes[:, 0], panels):
         axis.add_patch(Patch(list(flat.exterior.coords), facecolor="#eeeae3", edgecolor="#41413c", linewidth=2))
@@ -535,6 +590,13 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
             if items is polygons and witness is not None:
                 axis.add_patch(Patch(list(witness.exterior.coords), fill=False, edgecolor="#576d7a", linewidth=1.2, linestyle="--"))
         if items is polygons:
+            for band in wall_bands:
+                axis.add_patch(Patch(list(band.exterior.coords), facecolor="#79786e", edgecolor="#67665d", linewidth=0.5, alpha=0.8, zorder=4))
+            for window in windows:
+                segment = LineString(window["segment"])
+                xs, ys = segment.xy
+                axis.plot(xs, ys, color="#f9f8f4", linewidth=6.5, solid_capstyle="butt", zorder=5)
+                axis.plot(xs, ys, color="#287e9a", linewidth=3.5, solid_capstyle="butt", zorder=6)
             for label, corridor in corridors.items():
                 point = corridor.representative_point()
                 axis.text(point.x, point.y, label, ha="center", va="center", fontsize=9, color="#79746b")
@@ -563,9 +625,9 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
                 )
         axis.autoscale_view()
         subtitle = (
-            "Dashed rectangles: packing witnesses only. Stair flight and landings remain schematic; no east connection is inferred."
+            "Blue: windows · dark bands: unmeasured wall hypothesis · dashed rectangles: packing witnesses · R remains unresolved"
             if items is polygons
-            else "Retained dimensional candidate; twenty room references. Stairwell and L alignment awaiting this correction."
+            else "Frozen preceding study: 20 rooms, two halls and the marked west stairwell entrance. Exterior and lower floors retained."
         )
         axis.set_title(title + "\n" + subtitle, fontsize=14)
         axis.set_aspect("equal")
@@ -581,15 +643,16 @@ def draw_plot(path, flat, polygons, baseline, witnesses, corridors, flight, stai
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--study", type=Path, default=ROOT / "public/data/interior-studies.json")
-    parser.add_argument("--baseline", type=Path, default=ROOT / "data/source/house55-2og-dimension-baseline.json", help="Earlier study for comparison; defaults to the retained dimensional candidate before the left-side correction.")
+    parser.add_argument("--baseline", type=Path, default=ROOT / "data/source/house55-2og-wall-offset-baseline.json", help="Earlier study for comparison; defaults to the retained layout before window marks and wall-face offsets.")
     parser.add_argument("--output", type=Path, default=Path("/tmp/house55-dimension-audit.json"))
     parser.add_argument("--plot", type=Path, help="Optional standalone PNG outside published site data.")
+    parser.add_argument("--plan-plot", type=Path, help="Optional single-panel PNG of the current plan.")
     parser.add_argument("--inset", type=float, default=0.1, help="Explicit hypothetical clearance; not a measured wall thickness.")
     arguments = parser.parse_args()
     if arguments.inset < 0:
         parser.error("--inset must be nonnegative")
     protected_inputs = {arguments.study.resolve(), arguments.baseline.resolve()}
-    for output in [arguments.output, arguments.plot]:
+    for output in [arguments.output, arguments.plot, arguments.plan_plot]:
         if output is None:
             continue
         resolved = output.resolve()

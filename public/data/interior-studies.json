@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "buildings": {
     "55": {
-      "source": "House 55 resident-confirmed 2. OG count with a corrected left block, stairwell and marked west-hall entrance; remaining room envelopes and lower-floor extrapolations retain their preceding study geometry.",
+      "source": "House 55 resident-confirmed 2. OG count and exterior windows, with an explicitly unmeasured wall-face hypothesis for L, R and the staircase. Both lower floors retain their earlier study geometry.",
       "sourceDate": "2026-11-15",
       "levels": [
         {
@@ -2595,9 +2595,9 @@
         },
         {
           "index": 2,
-          "label": "2. OG — left-side correction study",
-          "source": "Resident-confirmed twenty-room count, left-side correction image and stairwell-entrance clarification supplied on 15 November 2026, aligned to Bavaria’s unchanged exterior model.",
-          "notes": "Twenty rooms and their general groups remain resident-confirmed. L1–L3 now shift between the marked source corners as three approximately 2.94m gross bays, retaining the previous roughly 5.40m model depth. The narrower stairwell is provisionally half a neighboring bay wide; its schematic flight leaves landing areas clear. The green-marked west-hall entrance into the stairwell is confirmed in location, with an illustrative 1.10m opening. The east hall's stairwell connection is unknown and is not invented. The other seventeen room polygons stay unchanged, including unresolved R1–R3 at about 2.69m gross width. Full apartment dimensions, service layouts, wall thickness, openings and floor height remain unmeasured. Study labels are not room numbers. Both lower floors retain the earlier frozen sketch.",
+          "label": "2. OG — windows and wall-face study",
+          "source": "Resident window marks, confirmation of one window per L room, and proposed wall-face offsets supplied on 15 November 2026; unchanged Bavarian exterior model.",
+          "notes": "The twenty-room count and all 24 exterior window locations are resident-confirmed. Exact window centers, widths and all room dimensions remain estimates. A separate 0.20m wall-face hypothesis shifts L left, widens the stairwell to about 1.67m, and gives R about 2.76m gross bays. R still does not fit the published living rectangle with the audit’s hypothetical wall inset. Shaded bands show possible wall material within gross envelopes; room areas never overlap. Four shared-area windows are unassigned to rooms or routes. The east-hall stairwell connection remains unknown. The exterior, no-floor roof wings and both lower floors are unchanged.",
           "floorOutline": [
             {
               "outer": [
@@ -2818,32 +2818,12 @@
           "sketchBoundaries": [
             [
               [
-                6.257722,
-                13.269879
-              ],
-              [
-                11.72417,
-                19.229601
-              ]
-            ],
-            [
-              [
-                11.72417,
-                19.229601
-              ],
-              [
-                7.76,
-                22.857
-              ]
-            ],
-            [
-              [
                 2.304,
                 16.898
               ],
               [
-                6.257722,
-                13.269879
+                7.76,
+                22.857
               ]
             ]
           ],
@@ -3184,27 +3164,35 @@
               "shortLabel": "L1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
+              "note": "The three L rooms move 0.20m left as an explicit wall-face hypothesis. Their existing equal gross widths and corridor-facing depth are retained; the staircase stays flush to L3 and gains that width. Each room has one north-facing window, confirmed by the resident. The offset, wall thickness and exact window centers remain unmeasured.",
               "polygon": [
                 [
-                  -3.107065,
-                  6.392891
+                  -3.242255,
+                  6.245502
+                ],
+                [
+                  0.735674,
+                  2.596818
+                ],
+                [
+                  0.870736,
+                  2.744323
                 ],
                 [
                   0.87,
                   2.745
                 ],
                 [
-                  2.855981,
-                  4.913955
+                  2.720883,
+                  4.766482
                 ],
                 [
-                  -1.119208,
-                  8.560126
+                  -1.254398,
+                  8.412737
                 ],
                 [
-                  -3.107065,
-                  6.392891
+                  -3.242255,
+                  6.245502
                 ]
               ]
             },
@@ -3214,27 +3202,27 @@
               "shortLabel": "L2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
+              "note": "The three L rooms move 0.20m left as an explicit wall-face hypothesis. Their existing equal gross widths and corridor-facing depth are retained; the staircase stays flush to L3 and gains that width. Each room has one north-facing window, confirmed by the resident. The offset, wall thickness and exact window centers remain unmeasured.",
               "polygon": [
                 [
-                  -1.119208,
-                  8.560126
+                  -1.254398,
+                  8.412737
                 ],
                 [
-                  2.855981,
-                  4.913955
+                  2.720883,
+                  4.766482
                 ],
                 [
-                  4.841961,
-                  7.082911
+                  4.706825,
+                  6.935472
                 ],
                 [
-                  0.868649,
-                  10.72736
+                  0.733459,
+                  10.579971
                 ],
                 [
-                  -1.119208,
-                  8.560126
+                  -1.254398,
+                  8.412737
                 ]
               ]
             },
@@ -3244,27 +3232,27 @@
               "shortLabel": "L3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms L1–L3 and their rightward shift are resident-confirmed. Their left edge follows the source northern elbow and L3 meets the stairwell wall above the southern source corner. Equal gross bays are about 2.94m wide; the previous approximately 5.40m gross depth is retained. These are unmeasured candidate envelopes, not exact apartment dimensions or physical room numbers.",
+              "note": "The three L rooms move 0.20m left as an explicit wall-face hypothesis. Their existing equal gross widths and corridor-facing depth are retained; the staircase stays flush to L3 and gains that width. Each room has one north-facing window, confirmed by the resident. The offset, wall thickness and exact window centers remain unmeasured.",
               "polygon": [
                 [
-                  0.868649,
-                  10.72736
+                  0.733459,
+                  10.579971
                 ],
                 [
-                  4.841885,
-                  7.082981
+                  4.706825,
+                  6.935472
                 ],
                 [
-                  6.827828,
-                  9.251971
+                  6.692768,
+                  9.104462
                 ],
                 [
-                  2.856506,
-                  12.894595
+                  2.721316,
+                  12.747206
                 ],
                 [
-                  0.868649,
-                  10.72736
+                  0.733459,
+                  10.579971
                 ]
               ]
             },
@@ -3274,23 +3262,23 @@
               "shortLabel": "R1",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
+              "note": "Three rooms and one south-facing window each are resident-confirmed. A hypothetical 0.20m shift of the east end toward the hallway is divided equally across R1–R3, giving about 2.76m gross bays. The original 8.08m exterior window wall is unchanged. These bays still fail the 2.70m clear-width living rectangle with a hypothetical 0.10m inset on both sides; the full apartment dimensions remain unresolved.",
               "polygon": [
                 [
                   2.304,
                   16.898
                 ],
                 [
-                  6.257722,
-                  13.269879
+                  6.257702,
+                  13.269857
                 ],
                 [
-                  8.079871,
-                  15.256453
+                  8.124957,
+                  15.305607
                 ],
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ],
                 [
                   2.304,
@@ -3304,27 +3292,27 @@
               "shortLabel": "R2",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
+              "note": "Three rooms and one south-facing window each are resident-confirmed. A hypothetical 0.20m shift of the east end toward the hallway is divided equally across R1–R3, giving about 2.76m gross bays. The original 8.08m exterior window wall is unchanged. These bays still fail the 2.70m clear-width living rectangle with a hypothetical 0.10m inset on both sides; the full apartment dimensions remain unresolved.",
               "polygon": [
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ],
                 [
-                  8.079871,
-                  15.256453
+                  8.124957,
+                  15.305607
                 ],
                 [
-                  9.902021,
-                  17.243027
+                  9.992212,
+                  17.341357
                 ],
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ],
                 [
-                  4.122667,
-                  18.884333
+                  4.167686,
+                  18.933503
                 ]
               ]
             },
@@ -3334,27 +3322,27 @@
               "shortLabel": "R3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
+              "note": "Three rooms and one south-facing window each are resident-confirmed. A hypothetical 0.20m shift of the east end toward the hallway is divided equally across R1–R3, giving about 2.76m gross bays. The original 8.08m exterior window wall is unchanged. These bays still fail the 2.70m clear-width living rectangle with a hypothetical 0.10m inset on both sides; the full apartment dimensions remain unresolved.",
               "polygon": [
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ],
                 [
-                  9.902021,
-                  17.243027
+                  9.992212,
+                  17.341357
                 ],
                 [
-                  11.72417,
-                  19.229601
+                  11.859467,
+                  19.377107
                 ],
                 [
-                  7.76,
-                  22.857
+                  7.895059,
+                  23.00451
                 ],
                 [
-                  5.941333,
-                  20.870667
+                  6.031372,
+                  20.969007
                 ]
               ]
             },
@@ -3454,19 +3442,19 @@
               "shortLabel": "Stairs",
               "kind": "stairs",
               "confidence": "estimated",
-              "note": "The resident confirms that the earlier stairwell was too wide and the green mark is an entrance into it from the west hall. The width is provisionally interpreted as half a neighboring room bay, about 1.47m; it is not a measurement. The enclosure follows L3's right wall from the north facade to the southern source corner. A separate schematic flight keeps the earlier approximate run, leaving upper and lower landing areas clear. The east-hall connection, exact enclosure, steps and landing dimensions remain unknown.",
+              "note": "The stairwell gains 0.20m on its west side as the L block shifts left in the wall-face hypothesis. Its gross width is about 1.67m; flight length and the east side are retained. This is an unmeasured enclosure, not a clear stair width. The resident-confirmed west-hall entrance remains below the flight. The east-hall connection and the shared-area window south of this enclosure remain unassigned to a stair route.",
               "polygon": [
                 [
-                  1.043,
-                  14.558
+                  0.908103,
+                  14.410342
                 ],
                 [
-                  2.856506,
-                  12.894595
+                  2.721316,
+                  12.747206
                 ],
                 [
-                  6.827828,
-                  9.251971
+                  6.692768,
+                  9.104462
                 ],
                 [
                   7.820799,
@@ -3479,28 +3467,32 @@
                 [
                   1.043,
                   14.558
+                ],
+                [
+                  0.908103,
+                  14.410342
                 ]
               ],
               "stairFlight": [
                 [
-                  5.218726,
-                  10.72789
+                  5.083537,
+                  10.580502
                 ],
                 [
-                  6.212655,
-                  11.811507
+                  6.212654,
+                  11.811506
                 ],
                 [
-                  3.040191,
-                  14.721393
+                  3.04019,
+                  14.721391
                 ],
                 [
-                  2.046262,
-                  13.637776
+                  1.911073,
+                  13.490388
                 ],
                 [
-                  5.218726,
-                  10.72789
+                  5.083537,
+                  10.580502
                 ]
               ]
             },
@@ -3510,7 +3502,7 @@
               "shortLabel": "West hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Western remainder between the room envelopes and corrected stairwell. The resident marks a door into the stairwell below the flight. Hall dimensions remain estimates and do not establish an approved route or usable floor area.",
+              "note": "West hall after the L block and stairwell west wall move 0.20m left as a wall-face hypothesis. The observed stairwell entrance is retained. Wall bands show a possible finite thickness without changing the source exterior or proving clear circulation widths.",
               "polygon": [
                 [
                   -15.288007,
@@ -3533,6 +3525,18 @@
                   6.059559
                 ],
                 [
+                  -5.094624,
+                  4.033454
+                ],
+                [
+                  -2.88569,
+                  2.007349
+                ],
+                [
+                  -0.676756,
+                  -0.018755
+                ],
+                [
                   1.532177,
                   -2.04486
                 ],
@@ -3541,20 +3545,32 @@
                   0.227
                 ],
                 [
-                  0.87,
-                  2.745
+                  0.870736,
+                  2.744323
                 ],
                 [
-                  -3.107065,
-                  6.392891
+                  0.735674,
+                  2.596818
                 ],
                 [
-                  2.856506,
-                  12.894595
+                  -3.242255,
+                  6.245502
                 ],
                 [
-                  1.043,
-                  14.558
+                  -1.254398,
+                  8.412737
+                ],
+                [
+                  0.733459,
+                  10.579971
+                ],
+                [
+                  2.721316,
+                  12.747206
+                ],
+                [
+                  0.908103,
+                  14.410342
                 ],
                 [
                   -4.866,
@@ -3569,6 +3585,18 @@
                   10.172025
                 ],
                 [
+                  -9.167671,
+                  7.952137
+                ],
+                [
+                  -11.206663,
+                  5.729152
+                ],
+                [
+                  -13.245656,
+                  3.506168
+                ],
+                [
                   -15.288007,
                   1.279522
                 ]
@@ -3580,7 +3608,7 @@
               "shortLabel": "East hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "Eastern remainder between the unchanged room envelopes and corrected stairwell. Its connection into the stairwell or western hall was not supplied; no opening or route is invented. The narrow gap beside R is an unresolved geometric result, not an approved circulation width.",
+              "note": "East hall after a hypothetical 0.20m extension of R toward this hall. Room and hall areas are disjoint. Its stairwell connection remains unknown; a window does not imply a door or an accessible route.",
               "polygon": [
                 [
                   0.48,
@@ -3619,6 +3647,14 @@
                   15.446882
                 ],
                 [
+                  17.938155,
+                  17.799745
+                ],
+                [
+                  20.093118,
+                  20.149165
+                ],
+                [
                   22.250909,
                   22.501668
                 ],
@@ -3639,24 +3675,48 @@
                   19.835135
                 ],
                 [
+                  13.33446,
+                  21.89442
+                ],
+                [
+                  11.089351,
+                  23.953706
+                ],
+                [
                   8.848932,
                   26.008691
                 ],
                 [
                   6.783263,
-                  23.751288
+                  23.751287
                 ],
                 [
                   7.76,
                   22.857
                 ],
                 [
-                  11.72417,
-                  19.229601
+                  7.895059,
+                  23.00451
                 ],
                 [
-                  6.257722,
-                  13.269879
+                  11.859467,
+                  19.377107
+                ],
+                [
+                  9.992212,
+                  17.341357
+                ],
+                [
+                  8.124957,
+                  15.305607
+                ],
+                [
+                  6.257702,
+                  13.269857
+                ],
+                [
+                  2.304,
+                  16.898
                 ],
                 [
                   2.219,
@@ -3876,12 +3936,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  -2.417314,
-                  7.144882
+                  -2.552504,
+                  6.997493
                 ],
                 [
-                  -1.808958,
-                  7.808134
+                  -1.944148,
+                  7.660745
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3894,12 +3954,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  -0.429458,
-                  9.312117
+                  -0.564648,
+                  9.164728
                 ],
                 [
-                  0.178898,
-                  9.975369
+                  0.043708,
+                  9.82798
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3912,12 +3972,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  1.558399,
-                  11.479351
+                  1.423209,
+                  11.331962
                 ],
                 [
-                  2.166755,
-                  12.142603
+                  2.031565,
+                  11.995214
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor"
@@ -3930,12 +3990,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  6.864581,
-                  13.931498
+                  6.887152,
+                  13.956106
                 ],
                 [
-                  7.472936,
-                  14.59475
+                  7.495507,
+                  14.619358
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor-east"
@@ -3948,12 +4008,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  8.685019,
-                  15.916207
+                  8.753948,
+                  15.991356
                 ],
                 [
-                  9.293375,
-                  16.579459
+                  9.362304,
+                  16.654608
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor-east"
@@ -3966,12 +4026,12 @@
               "note": "Illustrative 0.90m opening centered on a potential corridor-facing boundary; no door position, width, hinge or swing was supplied.",
               "segment": [
                 [
-                  10.505457,
-                  17.900915
+                  10.620327,
+                  18.026151
                 ],
                 [
-                  11.113813,
-                  18.564167
+                  11.228683,
+                  18.689403
                 ]
               ],
               "toSpaceId": "study-55-2-potential-corridor-east"
@@ -4039,12 +4099,641 @@
               "note": "The resident confirms the green mark as a door from the west hallway INTO the stairwell, on its left wall below the flight. The 1.10m gap and centered landing position are illustrative, not measured. No hinge, swing, exterior-exit status or east-side stairwell opening is inferred.",
               "segment": [
                 [
-                  1.949952,
-                  13.726115
+                  1.814762,
+                  13.578726
                 ],
                 [
-                  1.13931,
-                  14.469661
+                  1.00412,
+                  14.322272
+                ]
+              ]
+            }
+          ],
+          "windows": [
+            {
+              "id": "study-55-2-window-W1",
+              "label": "Window — W1",
+              "spaceId": "study-55-2-west-1",
+              "sourceSurfaceIndex": 16,
+              "confidence": "sketch",
+              "note": "One exterior window in W1, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -2.789192,
+                  -5.40691
+                ],
+                [
+                  -3.562355,
+                  -4.696473
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-W2",
+              "label": "Window — W2",
+              "spaceId": "study-55-2-west-2",
+              "sourceSurfaceIndex": 16,
+              "confidence": "sketch",
+              "note": "One exterior window in W2, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -5.131963,
+                  -3.254205
+                ],
+                [
+                  -5.905125,
+                  -2.543769
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-W3",
+              "label": "Window — W3",
+              "spaceId": "study-55-2-west-3",
+              "sourceSurfaceIndex": 16,
+              "confidence": "sketch",
+              "note": "One exterior window in W3, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -7.40874,
+                  -1.16214
+                ],
+                [
+                  -8.181902,
+                  -0.451704
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-W4",
+              "label": "Window — W4",
+              "spaceId": "study-55-2-west-4",
+              "sourceSurfaceIndex": 16,
+              "confidence": "sketch",
+              "note": "One exterior window in W4, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -9.421542,
+                  0.687366
+                ],
+                [
+                  -10.194705,
+                  1.397803
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-A",
+              "label": "Window — A",
+              "spaceId": "study-55-2-sw-1",
+              "sourceSurfaceIndex": 4,
+              "confidence": "sketch",
+              "note": "One exterior window in A, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -18.645102,
+                  5.589489
+                ],
+                [
+                  -17.936309,
+                  6.364158
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-B",
+              "label": "Window — B",
+              "spaceId": "study-55-2-sw-2",
+              "sourceSurfaceIndex": 4,
+              "confidence": "sketch",
+              "note": "One exterior window in B, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -16.730583,
+                  7.681944
+                ],
+                [
+                  -16.02179,
+                  8.456613
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-C",
+              "label": "Window — C",
+              "spaceId": "study-55-2-sw-3",
+              "sourceSurfaceIndex": 4,
+              "confidence": "sketch",
+              "note": "One exterior window in C, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -14.627751,
+                  9.980215
+                ],
+                [
+                  -13.918957,
+                  10.754884
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-D",
+              "label": "Window — D",
+              "spaceId": "study-55-2-sw-4",
+              "sourceSurfaceIndex": 4,
+              "confidence": "sketch",
+              "note": "One exterior window in D, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  -12.556304,
+                  12.244183
+                ],
+                [
+                  -11.847511,
+                  13.018852
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-N1",
+              "label": "Window — N1",
+              "spaceId": "study-55-2-upper-right-1",
+              "sourceSurfaceIndex": 43,
+              "confidence": "sketch",
+              "note": "One exterior window in N1, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  20.616102,
+                  12.731676
+                ],
+                [
+                  21.324325,
+                  13.506867
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-N2",
+              "label": "Window — N2",
+              "spaceId": "study-55-2-upper-right-2",
+              "sourceSurfaceIndex": 43,
+              "confidence": "sketch",
+              "note": "One exterior window in N2, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  22.591802,
+                  14.894196
+                ],
+                [
+                  23.300024,
+                  15.669387
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-N3",
+              "label": "Window — N3",
+              "spaceId": "study-55-2-upper-right-3",
+              "sourceSurfaceIndex": 43,
+              "confidence": "sketch",
+              "note": "One exterior window in N3, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  24.661582,
+                  17.159692
+                ],
+                [
+                  25.369804,
+                  17.934883
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-E",
+              "label": "Window — E",
+              "spaceId": "study-55-2-east-1",
+              "sourceSurfaceIndex": 5,
+              "confidence": "sketch",
+              "note": "One exterior window in E, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  18.288623,
+                  24.666363
+                ],
+                [
+                  17.515408,
+                  25.376742
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-F",
+              "label": "Window — F",
+              "spaceId": "study-55-2-east-2",
+              "sourceSurfaceIndex": 5,
+              "confidence": "sketch",
+              "note": "One exterior window in F, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  16.308682,
+                  26.485402
+                ],
+                [
+                  15.535467,
+                  27.195782
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-G",
+              "label": "Window — G",
+              "spaceId": "study-55-2-east-3",
+              "sourceSurfaceIndex": 5,
+              "confidence": "sketch",
+              "note": "One exterior window in G, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  14.130747,
+                  28.486346
+                ],
+                [
+                  13.357532,
+                  29.196725
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-R1",
+              "label": "Window — R1",
+              "spaceId": "study-55-2-center-right-1",
+              "sourceSurfaceIndex": 36,
+              "confidence": "sketch",
+              "note": "One exterior window in R1, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  2.718159,
+                  17.350341
+                ],
+                [
+                  3.427216,
+                  18.124768
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-R2",
+              "label": "Window — R2",
+              "spaceId": "study-55-2-center-right-2",
+              "sourceSurfaceIndex": 36,
+              "confidence": "sketch",
+              "note": "One exterior window in R2, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  4.570596,
+                  19.373559
+                ],
+                [
+                  5.279654,
+                  20.147986
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-R3",
+              "label": "Window — R3",
+              "spaceId": "study-55-2-center-right-3",
+              "sourceSurfaceIndex": 36,
+              "confidence": "sketch",
+              "note": "One exterior window in R3, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  6.171856,
+                  21.122441
+                ],
+                [
+                  6.880913,
+                  21.896869
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-L1",
+              "label": "Window — L1",
+              "spaceId": "study-55-2-center-left-1",
+              "sourceSurfaceIndex": 0,
+              "confidence": "sketch",
+              "note": "One exterior window in L1, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  1.373389,
+                  3.294768
+                ],
+                [
+                  2.082467,
+                  4.069176
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-L2",
+              "label": "Window — L2",
+              "spaceId": "study-55-2-center-left-2",
+              "sourceSurfaceIndex": 0,
+              "confidence": "sketch",
+              "note": "One exterior window in L2, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  3.359369,
+                  5.463723
+                ],
+                [
+                  4.068448,
+                  6.238131
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-L3",
+              "label": "Window — L3",
+              "spaceId": "study-55-2-center-left-3",
+              "sourceSurfaceIndex": 0,
+              "confidence": "sketch",
+              "note": "One exterior window in L3, confirmed by the resident's green marks or L-room clarification. Source façade retained; exact center and 1.05m model width remain estimates. No opening direction or resident identity is inferred.",
+              "segment": [
+                [
+                  5.34535,
+                  7.632678
+                ],
+                [
+                  6.054428,
+                  8.407087
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-west-hall",
+              "label": "Window — west hall",
+              "sourceSurfaceIndex": 28,
+              "confidence": "sketch",
+              "note": "Resident-marked shared-area window on the unchanged source façade. The 1.05m width and exact center are estimates. The window is not assigned to a room, stairwell, door or circulation route.",
+              "segment": [
+                [
+                  -12.009256,
+                  0.259964
+                ],
+                [
+                  -11.300513,
+                  1.034678
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-south-shared",
+              "label": "Window — south shared",
+              "sourceSurfaceIndex": 34,
+              "confidence": "sketch",
+              "note": "Resident-marked shared-area window on the unchanged source façade. The 1.05m width and exact center are estimates. The window is not assigned to a room, stairwell, door or circulation route.",
+              "segment": [
+                [
+                  0.624484,
+                  15.232943
+                ],
+                [
+                  1.3332,
+                  16.007682
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-east-return",
+              "label": "Window — east return",
+              "sourceSurfaceIndex": 6,
+              "confidence": "sketch",
+              "note": "Resident-marked shared-area window on the unchanged source façade. The 0.85m width and exact center are estimates. The window is not assigned to a room, stairwell, door or circulation route.",
+              "segment": [
+                [
+                  7.549196,
+                  23.049895
+                ],
+                [
+                  6.922109,
+                  23.623709
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-window-north-return",
+              "label": "Window — north return",
+              "sourceSurfaceIndex": 2,
+              "confidence": "sketch",
+              "note": "Resident-marked shared-area window on the unchanged source façade. The 0.70m width and exact center are estimates. The window is not assigned to a room, stairwell, door or circulation route.",
+              "segment": [
+                [
+                  19.301033,
+                  23.891284
+                ],
+                [
+                  19.773281,
+                  24.407987
+                ]
+              ]
+            }
+          ],
+          "windowCoverage": "complete-floor",
+          "wallBands": [
+            {
+              "id": "study-55-2-wall-band-west-elbow-1",
+              "label": "Possible wall band — west elbow",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  0.734617,
+                  2.597788
+                ],
+                [
+                  3.472617,
+                  0.079788
+                ],
+                [
+                  3.608,
+                  0.227
+                ],
+                [
+                  0.87,
+                  2.745
+                ],
+                [
+                  0.734617,
+                  2.597788
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-west-connector-1",
+              "label": "Possible wall band — west connector",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  -13.147265,
+                  -0.687674
+                ],
+                [
+                  -13.000153,
+                  -0.82286
+                ],
+                [
+                  -12.009346,
+                  0.260046
+                ],
+                [
+                  -12.156821,
+                  0.394963
+                ],
+                [
+                  -13.147265,
+                  -0.687674
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-west-connector-2",
+              "label": "Possible wall band — west connector",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  -11.448078,
+                  1.169677
+                ],
+                [
+                  -11.300557,
+                  1.034718
+                ],
+                [
+                  -10.615,
+                  1.784
+                ],
+                [
+                  -10.762565,
+                  1.918999
+                ],
+                [
+                  -11.448078,
+                  1.169677
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-east-return-1",
+              "label": "Possible wall band — east return",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  6.783263,
+                  23.751287
+                ],
+                [
+                  6.922335,
+                  23.623955
+                ],
+                [
+                  7.057124,
+                  23.771259
+                ],
+                [
+                  6.918015,
+                  23.89855
+                ],
+                [
+                  6.783263,
+                  23.751287
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-east-return-2",
+              "label": "Possible wall band — east return",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  7.549253,
+                  23.049957
+                ],
+                [
+                  7.76,
+                  22.857
+                ],
+                [
+                  7.895015,
+                  23.00455
+                ],
+                [
+                  7.684211,
+                  23.197445
+                ],
+                [
+                  7.549253,
+                  23.049957
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-north-recess-1",
+              "label": "Possible wall band — north recess",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  7.090316,
+                  11.213869
+                ],
+                [
+                  7.238,
+                  11.079
+                ],
+                [
+                  13.3,
+                  17.717
+                ],
+                [
+                  13.152316,
+                  17.851869
+                ],
+                [
+                  7.090316,
+                  11.213869
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-wall-band-south-recess-1",
+              "label": "Possible wall band — south recess",
+              "confidence": "estimated",
+              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
+              "polygon": [
+                [
+                  -4.866,
+                  8.09
+                ],
+                [
+                  -4.718342,
+                  7.955103
+                ],
+                [
+                  1.190658,
+                  14.423103
+                ],
+                [
+                  1.043,
+                  14.558
+                ],
+                [
+                  -4.866,
+                  8.09
                 ]
               ]
             }

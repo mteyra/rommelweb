@@ -2,6 +2,10 @@
 
 Inspected 14 November 2026. Covers the older houses **51, 53, 55, 57 and 59**. This study supports a separate illustrative window layer while preserving every official LoD2 surface and roofline. It does not supply a measured opening inventory, occupied floor plan or room assignment. Read with [OLD-BUILDING-SECTIONS.md](OLD-BUILDING-SECTIONS.md), [FACADE-REFERENCES.md](FACADE-REFERENCES.md) and the [newer-house window study](WINDOW-REFERENCES.md).
 
+## House 55 top-floor update · 15 November 2026
+
+The resident's [window marks](../data/source/house55-2og-window-marks.png) and explicit L-room clarification now provide **24 approximate opening locations** for House 55 / 2. OG: twenty room windows and four unassigned shared-area windows. This complete-floor inventory replaces the generic repeated top row for this house only. Exact centers, heights, widths and sill elevations are still estimated; the two short returns use narrower 0.85 m and 0.70 m trial widths. All whole openings pass source-wall containment. Lower floors and other houses retain the photograph-informed generic study described below. See [the current House 55 evidence](HOUSE55-DIMENSION-REFIT.md).
+
 ## Evidence register
 
 | Reference | Observations that can guide appearance | Limits |

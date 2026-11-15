@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 // A low cutaway for legibility, not a claim about measured ceiling height.
 export const INTERIOR_CUT_HEIGHT = 1.05;
+const WINDOW_SILL_CUT_HEIGHT = 0.70; // Display only; source sill height is unmeasured.
 const EPSILON = 1e-6;
 
 function splitAtDoors(a, b, doors, tolerance = EPSILON) {
@@ -83,10 +84,12 @@ export function createInteriorWireframe(level, { house, floor }) {
   group.userData = { role: level?.isStudy ? 'resident-interior-study' : 'approved-interior-cutaway', cutHeight: INTERIOR_CUT_HEIGHT };
   if (!level) return { group, pickables, labels };
   const doors = level.doors || [];
+  const windows = level.windows || [];
+  const fullHeightOpenings = [...doors, ...windows];
   const joints = new Map();
-  const addWall = (a, b, estimated) => {
-    const key = [a.join(','), b.join(',')].sort().join('|');
-    if (!joints.has(key) || !estimated) joints.set(key, {a, b, estimated});
+  const addWall = (a, b, estimated, top = INTERIOR_CUT_HEIGHT) => {
+    const key = `${[a.join(','), b.join(',')].sort().join('|')}|${top}`;
+    if (!joints.has(key) || !estimated) joints.set(key, {a, b, estimated, top});
   };
   for (const space of level.spaces) {
     const material = new THREE.MeshBasicMaterial({
@@ -101,7 +104,7 @@ export function createInteriorWireframe(level, { house, floor }) {
     pickables.push(mesh);
     for (const ring of [space.polygon, ...(space.holes || [])]) {
       for (let index = 1; index < ring.length; index++) {
-        for (const [a, b] of splitAtDoors(ring[index - 1], ring[index], doors, level.isStudy ? 0.002 : EPSILON)) {
+        for (const [a, b] of splitAtDoors(ring[index - 1], ring[index], fullHeightOpenings, level.isStudy ? 0.002 : EPSILON)) {
           const estimated = level.isStudy && space.confidence === 'estimated' && !followsSketch(a, b, level.sketchBoundaries || []);
           addWall(a, b, estimated);
         }
@@ -126,10 +129,13 @@ export function createInteriorWireframe(level, { house, floor }) {
       group.add(steps);
     }
   }
+  // A window has a sill below it. Removing an entire wall as for a door would
+  // incorrectly turn each marked window into another circulation opening.
+  for (const window of windows) addWall(...window.segment, false, WINDOW_SILL_CUT_HEIGHT);
   for (const estimated of [false, true]) {
-    const walls = [...joints.values()].filter(joint => Boolean(joint.estimated) === estimated).flatMap(({a, b}) => [
-      a[0], 0.045, a[1], b[0], 0.045, b[1], a[0], INTERIOR_CUT_HEIGHT, a[1], b[0], INTERIOR_CUT_HEIGHT, b[1],
-      a[0], 0.045, a[1], a[0], INTERIOR_CUT_HEIGHT, a[1], b[0], 0.045, b[1], b[0], INTERIOR_CUT_HEIGHT, b[1],
+    const walls = [...joints.values()].filter(joint => Boolean(joint.estimated) === estimated).flatMap(({a, b, top}) => [
+      a[0], 0.045, a[1], b[0], 0.045, b[1], a[0], top, a[1], b[0], top, b[1],
+      a[0], 0.045, a[1], a[0], top, a[1], b[0], 0.045, b[1], b[0], top, b[1],
     ]);
     if (!walls.length) continue;
     const material = estimated
@@ -142,6 +148,32 @@ export function createInteriorWireframe(level, { house, floor }) {
     group.add(lines);
   }
 
+  for (const band of level.wallBands || []) {
+    const material = new THREE.MeshBasicMaterial({color: 0xdfdfd5, transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false});
+    material.userData.themeRole = 'room';
+    const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(trianglesForSpace(band, INTERIOR_CUT_HEIGHT + 0.005), 3)), material);
+    mesh.userData = {role: 'estimated-wall-band', wallBandId: band.id};
+    group.add(mesh);
+  }
+  if (windows.length) {
+    const segments = windows.flatMap(({segment: [a, b]}) => {
+      const dx = b[0] - a[0], dz = b[1] - a[1], length = Math.hypot(dx, dz);
+      const nx = -dz / length * 0.065, nz = dx / length * 0.065;
+      return [
+        [a[0], WINDOW_SILL_CUT_HEIGHT, a[1]], [a[0], INTERIOR_CUT_HEIGHT + 0.015, a[1]],
+        [b[0], WINDOW_SILL_CUT_HEIGHT, b[1]], [b[0], INTERIOR_CUT_HEIGHT + 0.015, b[1]],
+        [a[0] - nx, INTERIOR_CUT_HEIGHT + 0.015, a[1] - nz], [b[0] - nx, INTERIOR_CUT_HEIGHT + 0.015, b[1] - nz],
+        [a[0] + nx, INTERIOR_CUT_HEIGHT + 0.015, a[1] + nz], [b[0] + nx, INTERIOR_CUT_HEIGHT + 0.015, b[1] + nz],
+        [a[0] - nx, INTERIOR_CUT_HEIGHT + 0.015, a[1] - nz], [a[0] + nx, INTERIOR_CUT_HEIGHT + 0.015, a[1] + nz],
+        [b[0] - nx, INTERIOR_CUT_HEIGHT + 0.015, b[1] - nz], [b[0] + nx, INTERIOR_CUT_HEIGHT + 0.015, b[1] + nz],
+      ];
+    });
+    const material = new THREE.LineBasicMaterial({color: 0x91b9c8, transparent: true, opacity: 1, depthWrite: false});
+    material.userData.themeRole = 'interiorWindow';
+    const lines = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(), 3)), material);
+    lines.userData = {role: 'resident-window-symbols', count: windows.length, windowIds: windows.map(window => window.id)};
+    group.add(lines);
+  }
   for (const door of doors) {
     const [a, b] = door.segment, dx = b[0] - a[0], dz = b[1] - a[1];
     const width = Math.hypot(dx, dz), nx = -dz / width, nz = dx / width;

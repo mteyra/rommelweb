@@ -544,7 +544,7 @@ test('the top-floor dimensional fit equalizes repeated bays without forcing the 
   const facade = Math.hypot(roof.points[7][0] - roof.points[6][0], roof.points[7][2] - roof.points[6][2]);
   assert.ok(facade < 3 * 2.70, 'the exact existing R facade cannot supply three literal 2.70m widths even before walls');
   for (const label of ['R1', 'R2', 'R3']) {
-    assert.ok(span(label, 0) < 2.71);
+    assert.ok(span(label, 0) > 2.76 && span(label, 0) < 2.78, 'the explicit 0.20m block extension is shared across three R bays');
     assert.match(plan.spaces.find(space => space.shortLabel === label).note, /unresolved/);
   }
 });
@@ -569,7 +569,7 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
       assert.ok(Math.abs(sy1 - sy0 - 4.304877) < 0.001);
     } else {
       const [lx0] = bounds(l3.polygon);
-      assert.ok(Math.abs(sx1 - sx0 - (lx1 - lx0) / 2) < 0.001, 'about half a room width is an explicit trial proportion');
+      assert.ok(Math.abs(sx1 - sx0 - (lx1 - lx0) / 2 - 0.20) < 0.001, 'the later wall-face hypothesis gives the former half-bay stairwell 0.20m more width');
       const [, fy0, , fy1] = bounds(stair.stairFlight);
       assert.ok(Math.abs(fy1 - fy0 - 4.304877) < 0.001, 'the existing schematic flight run is retained inside the extended enclosure');
       assert.ok(fy0 > sy0 + 1 && sy1 > fy1 + 1, 'upper and entrance landings are distinct from the flight');
@@ -582,9 +582,9 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
   }
 });
 
-test('the left correction preserves other rooms and represents only the confirmed west entry into the stairwell', async () => {
+test('the wall-face hypothesis preserves rooms outside L/R and only the confirmed west stairwell entry', async () => {
   const published = await read('interior-studies'), plan = display(published);
-  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-dimension-baseline.json', import.meta.url)));
+  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-wall-offset-baseline.json', import.meta.url)));
   const magnitude = Math.hypot(0.676, 0.737);
   const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
   const stair = plan.spaces.find(space => space.kind === 'stairs');
@@ -598,9 +598,9 @@ test('the left correction preserves other rooms and represents only the confirme
   for (const entry of roomEntries) {
     const space = plan.spaces.find(space => space.id === entry.spaceId);
     assert.equal(entry.toSpaceId, /^(?:[ABCD]|W\d|L\d)$/.test(space.shortLabel) ? westHall : eastHall);
-    if (/^L\d$/.test(space.shortLabel)) continue;
+    if (/^[LR]\d$/.test(space.shortLabel)) continue;
     const prior = baseline.level.spaces.find(item => item.id === space.id);
-    assert.deepEqual(space.polygon, prior.polygon, `${space.shortLabel}: only the left rooms may move`);
+    assert.deepEqual(space.polygon, prior.polygon, `${space.shortLabel}: only L and R room envelopes may change`);
     assert.deepEqual(space.holes, prior.holes);
     assert.deepEqual(entry.segment, baseline.level.doors.find(item => item.id === entry.id).segment, `${space.shortLabel}: retain its door position`);
   }
@@ -611,11 +611,11 @@ test('the left correction preserves other rooms and represents only the confirme
   const source = lod2.buildings.find(building => building.number === '55').surfaces[39];
   const corner = index => local([source.points[index][0], source.points[index][2]]);
   const l1 = plan.spaces.find(space => space.shortLabel === 'L1');
-  assert.ok(Math.abs(Math.min(...l1.polygon.map(local).map(p => p[0])) - corner(18)[0]) < 1e-5);
-  assert.ok(Math.abs(Math.min(...stair.polygon.map(local).map(p => p[0])) - corner(3)[0]) < 1e-5);
+  assert.ok(Math.abs(Math.min(...l1.polygon.map(local).map(p => p[0])) - corner(18)[0] + 0.20) < 1e-5);
+  assert.ok(Math.abs(Math.min(...stair.polygon.map(local).map(p => p[0])) - corner(3)[0] + 0.20) < 1e-5);
   const flightBottom = Math.max(...stair.stairFlight.map(local).map(p => p[1]));
   for (const point of entries[0].segment.map(local)) {
-    assert.ok(Math.abs(point[0] - corner(3)[0]) < 1e-5, 'entrance lies on the west wall');
+    assert.ok(Math.abs(point[0] - corner(3)[0] + 0.20) < 1e-5, 'entrance follows the west wall’s explicit 0.20m shift');
     assert.ok(point[1] > flightBottom && point[1] < corner(3)[1], 'entrance reaches the landing below the flight');
   }
 });
@@ -634,7 +634,8 @@ test('R1–R3 remain one continuous block and the corrected upper outline has no
     const corners = cornersOnly(block[0][0]);
     if (floor === 2) {
       assert.equal(corners.length, 4, 'an otherwise straight block must not acquire a fifth corner from source quantization');
-      assert.ok(sourceCorners.every(point => corners.some(corner => Math.hypot(corner[0] - point[0], corner[1] - point[1]) < 0.00001)), 'both outer wall corners land exactly on the adjoining official edges');
+      assert.ok(corners.some(corner => Math.hypot(corner[0] - sourceCorners[0][0], corner[1] - sourceCorners[0][1]) < 0.00001), 'the left exterior anchor is retained');
+      assert.ok(!corners.some(corner => Math.hypot(corner[0] - sourceCorners[1][0], corner[1] - sourceCorners[1][1]) < 0.00001), 'the east end now follows the explicit interior wall-face hypothesis, not the outer corner');
       assert.ok(Math.abs(sharedBoundaryLength(block[0][0], [sourceCorners[0], sourceCorners[1]]) - Math.hypot(sourceCorners[1][0] - sourceCorners[0][0], sourceCorners[1][1] - sourceCorners[0][1])) < 0.00002, 'the complete source wall span is one flush block edge');
       assert.ok(corners.every((point, i) => Math.hypot(point[0] - corners[(i + 1) % corners.length][0], point[1] - corners[(i + 1) % corners.length][1]) > 1), 'no tiny connecting edge remains');
     }

@@ -148,7 +148,7 @@ function triangulatedWall(surface, projectionFrame = surfaceFrame(surface)) {
  * Family-specific rules exclude unsupported shared/stair/roof-only portions.
  * Complete openings must fit; split records clip back to each original wall.
  */
-export function createWindowStudy(surface, absoluteFloorElevations, roofElevation, layout = null, profile = WINDOW_PROFILE) {
+export function createWindowStudy(surface, absoluteFloorElevations, roofElevation, layout = null, profile = WINDOW_PROFILE, skipFloors = []) {
   const layers = {frame: [], glass: [], head: [], sill: []};
   const empty = {layers, count: 0, patches: [], profile};
   const frame = surfaceFrame(surface);
@@ -170,6 +170,7 @@ export function createWindowStudy(surface, absoluteFloorElevations, roofElevatio
   const middle = layout ? (layout.minU + layout.maxU) / 2 : (frame.minU + frame.maxU) / 2, patches = [];
   let count = 0;
   for (let floor = profile.firstFloor; floor < absoluteFloorElevations.length; floor++) {
+    if (skipFloors.includes(floor)) continue;
     const interval = (absoluteFloorElevations[floor + 1] ?? roofElevation) - absoluteFloorElevations[floor];
     const height = profile.family === 'plates' ? profile.maxHeight : Math.min(profile.maxHeight, interval - 0.4);
     if (height < 1 || profile.sillOffset + height + profile.wallClearance > interval) continue;
@@ -199,6 +200,43 @@ export function createWindowStudy(surface, absoluteFloorElevations, roofElevatio
   return {layers, count, patches, profile};
 }
 
+/** Resident-located openings replace a complete floor's repeated bay pattern.
+ * Dimensions/elevations still use the appearance profile. Every whole opening
+ * must fit its actual source wall; failures are reported, never shrunk to fit.
+ */
+function createLocatedWindowStudy(surface, surfaceIndex, elevations, locatedLevels, profile) {
+  const layers = {frame: [], glass: [], head: [], sill: []}, patches = [], rejectedLocated = [];
+  const frame = surfaceFrame(surface);
+  const entries = locatedLevels.flatMap(level => (level.windows || []).filter(window => window.sourceSurfaceIndex === surfaceIndex).map(window => ({floor: level.index, window})));
+  if (!entries.length) return {layers, patches, count: 0, locatedCount: 0, rejectedLocated, profile};
+  if (!frame || frame.v[1] < 0.99) return {layers, patches, count: 0, locatedCount: 0, rejectedLocated: entries.map(entry => entry.window.id), profile};
+  const triangles = triangulatedWall(surface, frame);
+  const lift = (point, offset) => frame.lift(point).map((value, i) => value + frame.normal[i] * offset);
+  const add = (key, rectangle, offset) => {
+    for (const polygon of clipRectangle(rectangle, triangles)) {
+      for (let i = 1; i + 1 < polygon.length; i++) layers[key].push(...[polygon[0], polygon[i], polygon[i + 1]].flatMap(point => lift(point, offset)));
+    }
+  };
+  for (const {floor, window} of entries) {
+    const us = window.segment.map(([x, z]) => (x - frame.origin[0]) * frame.u[0] + (z - frame.origin[2]) * frame.u[2]);
+    const left = Math.min(...us), right = Math.max(...us);
+    const bottom = (elevations[floor] + profile.sillOffset - frame.origin[1]) / frame.v[1], top = bottom + profile.maxHeight;
+    const clearance = profile.wallClearance;
+    if (![left, right, bottom, top].every(Number.isFinite)
+      || !rectangleCovered([left - clearance, bottom - clearance, right + clearance, top + clearance], triangles)) {
+      rejectedLocated.push(window.id);
+      continue;
+    }
+    add('frame', [left, bottom, right, top], 0.012);
+    add('glass', [left + 0.07, bottom + 0.09, right - 0.07, top - 0.07], 0.022);
+    const transom = (bottom + top) / 2;
+    add('head', [left + 0.04, transom - 0.035, right - 0.04, transom + 0.035], 0.03);
+    add('sill', [left - 0.025, bottom, right + 0.025, bottom + 0.055], 0.037);
+    patches.push({floor, corners: [[left, bottom], [right, bottom], [right, top], [left, top]].map(point => frame.lift(point)), windowId: window.id});
+  }
+  return {layers, patches, count: patches.length, locatedCount: patches.length, rejectedLocated, profile};
+}
+
 /**
  * A broad façade may be split into multiple near-coplanar LoD2 wall records.
  * Share a display layout across adjacent records, then clip every layer back
@@ -207,6 +245,8 @@ export function createWindowStudy(surface, absoluteFloorElevations, roofElevatio
  */
 export function createBuildingWindowStudies(surfaces, elevations, roofElevation, options = {}) {
   const profile = getWindowProfile(options.house, options.family);
+  const locatedLevels = options.locatedLevels || [];
+  const skipFloors = locatedLevels.filter(level => level.windowCoverage === 'complete-floor').map(level => level.index);
   const walls = surfaces.map(surface => ({surface, frame: surfaceFrame(surface)})).filter(item => item.frame &&
     (!profile.groundedOnly || Math.min(...item.surface.points.map(point => point[1])) <= elevations[0] + 0.05) &&
     item.frame.maxV - item.frame.minV >= profile.minimumWallHeight);
@@ -234,7 +274,18 @@ export function createBuildingWindowStudies(surfaces, elevations, roofElevation,
     if (anchor.frame.maxU - anchor.frame.minU < profile.minimumAnchorSpan) continue;
     const us = group.flatMap(item => item.surface.points.map(point => point.reduce((sum, value, i) => sum + (value - anchor.frame.origin[i]) * anchor.frame.u[i], 0)));
     const layout = {frame: anchor.frame, minU: Math.min(...us), maxU: Math.max(...us), coverageTriangles: group.flatMap(item => triangulatedWall(item.surface, anchor.frame))};
-    for (const item of group) studies.set(item.surface, createWindowStudy(item.surface, elevations, roofElevation, layout, profile));
+    for (const item of group) studies.set(item.surface, createWindowStudy(item.surface, elevations, roofElevation, layout, profile, skipFloors));
+  }
+  for (const [index, surface] of surfaces.entries()) {
+    const located = createLocatedWindowStudy(surface, index, elevations, locatedLevels, profile);
+    if (!located.count && !located.rejectedLocated.length) continue;
+    const existing = studies.get(surface);
+    if (!existing) studies.set(surface, located);
+    else studies.set(surface, {
+      ...existing, count: existing.count + located.count, locatedCount: located.locatedCount, rejectedLocated: located.rejectedLocated,
+      patches: [...existing.patches, ...located.patches],
+      layers: Object.fromEntries(Object.keys(existing.layers).map(key => [key, [...existing.layers[key], ...located.layers[key]]])),
+    });
   }
   return studies;
 }
