@@ -2,7 +2,20 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — Yellow House 51 top floor
+## Current revision — Yellow House 51 first floor
+
+Only **House 51 / 1. OG**, the second physical storey named in the drawing, changes. The [first-floor annotation and derivation](HOUSE51-FIRST-FLOOR-LAYOUT.md) split G–H, N3–N4 and W1 into singles, add N0 and two A-bank rooms, retain shared A and add the two balconies. The blue-covered extra W row is canceled.
+
+- The enlarged A bank shifts **3.10 m** from its provisional placement after the two additions. Its first room F and **L1 have the same left module edge at U = 25.60 m** and clear-room edge at **25.80 m**. Existing L/R rooms and the central stair remain fixed.
+- The **629.44 m²** independent outline contains **23 singles, one shared apartment, two balconies, two connected halls and the stair**. Clear singles retain **2.70 × 6.00 m**, modules **3.10 m**, halls **1.40 m** and shared A **6.20 × 7.40 m gross**. Each balcony fills a **6.20 × 2.90 m** inferred rectangle; balcony depth reuses the accepted assumption.
+- All **28 doorways** lie on their two named neighboring boundaries; all **29 spaces** reach the stairs. Every apartment and balcony has one hallway entrance. Visible lime-marked corners are retained; the unmarked W1 and West balcony doorway positions are explicitly schematic. Complete assigned coverage has no overlaps, holes or unassigned remainder.
+- The [preservation receipt](evidence/house51-first-floor-preservation.json) verifies **91 protected files**, Yellow EG and 2. OG, every other house, retained fitting metadata and folded exterior evidence against **`f8d8281`**. Stairs remain aligned across all Yellow floors. Yellow EG and all three House 53 floors remain in the provisional catalog.
+- **All 290 tests pass**, including eleven new geometry/preservation tests and five additional UI tests. Isolated CLI checks reconstruct 1. OG from its prior fit and verify repeated first-floor, top-floor and generic generation preserves current outputs byte for byte. The production build and path-cache check pass with the existing bundle-size advisory.
+- The Firefox [browser receipt](evidence/house51-first-browser.json) covers all **29 space cards**, **22 directly visible doorway cards**, both themes and **1440 × 1000**, **390 × 844** and **320 × 568** viewports. Six doorway icons are hidden by the existing label-collision handling at the tested overview; every space remains accessible through the drawing key. No application console errors or horizontal overflow occurred. Floor switching, fold/unfold restoration and the preserved EG/2. OG controls pass; current evidence text correctly leaves only EG provisional.
+
+Reviewed views: [first floor at night](preview/house51-first-night.png), [daylight](preview/house51-first-day.png), [shifted F](preview/house51-first-shifted-f-card.png), [shared A](preview/house51-first-shared-a-card.png), [East balcony](preview/house51-first-east-balcony-card.png), [West balcony](preview/house51-first-west-balcony-card.png) and [320 px phone](preview/house51-first-phone-320-night.png).
+
+## Previous revision — Yellow House 51 top floor
 
 Only **House 51 / 2. OG** changes. The [resident’s annotated plan](HOUSE51-TOP-FLOOR-LAYOUT.md) adds **E beside D** in the A bank and **N0 beside N1**, retains W4/W3/W2, removes the blue surplus regions, and moves all room entrances to the lime-marked ends of their hall-facing walls. Yellow’s **EG and 1. OG remain unchanged** pending separate review.
 

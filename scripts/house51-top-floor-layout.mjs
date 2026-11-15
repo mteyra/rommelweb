@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {union} from 'polyclip-ts';
 import {createRegistration} from './generate-old-house-studies.mjs';
 import {createOldHouseModuleLayouts} from './old-house-module-layout.mjs';
-import {validateInteriorStudies} from '../src/interior-studies.js';
+import {isIndependentLayout, validateInteriorStudies} from '../src/interior-studies.js';
 
 const clone = value => structuredClone(value);
 const round = value => Math.round(value * 1e9) / 1e9;
@@ -247,7 +247,11 @@ export function createHouse51TopFloorLayout({studies, lod2, topPlan, oldHouseLay
   const plan = createLocalPlan(topPlan, frame);
   const result = clone(studies);
   result.buildings['51'].levels[levelIndex] = createYellowStudyLevel(plan, previous.levels[levelIndex]);
-  result.buildings['51'].source = 'Yellow House 51: the top floor follows the resident annotation with twenty-one single modules, added E and N0, marked door ends and a complete independent outline. EG and 1. OG retain their earlier provisional House 55 module fits inside the original source floors for separate resident review. Folded exterior evidence remains unchanged.';
+  // A later independent floor owns the updated whole-building summary. Rerun
+  // this historical operation without reverting that newer source description.
+  if (!previous.levels.some(level => level.index !== 2 && isIndependentLayout(level))) {
+    result.buildings['51'].source = 'Yellow House 51: the top floor follows the resident annotation with twenty-one single modules, added E and N0, marked door ends and a complete independent outline. EG and 1. OG retain their earlier provisional House 55 module fits inside the original source floors for separate resident review. Folded exterior evidence remains unchanged.';
+  }
   return {studies: result, plan};
 }
 

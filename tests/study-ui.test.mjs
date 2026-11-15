@@ -309,3 +309,118 @@ test('Yellow mixed-floor model evidence reports only the top floor as resident-m
   assert.match(copy, /HOUSE51-TOP-FLOOR-LAYOUT\.md/);
   assert.doesNotMatch(copy, /Houses 51 use provisional modules|House 51 uses independent layouts on all three levels/);
 });
+
+const publishedYellowLevels = JSON.parse(await readFile(
+  new URL('../public/data/interior-studies.json', import.meta.url), 'utf8')).buildings['51'].levels;
+
+test('Yellow first-floor drawing key uses its own evidence and explains the F-to-L1 alignment', () => {
+  const view = ui(publishedYellowLevels, 1, '51');
+  view.renderFloor();
+  assert.equal(view.element('#floor-stage-title').textContent, 'House 51 / 1. OG');
+  assert.equal(view.element('#floor-stage-note').textContent, '23 singles · Shared A · 2 balconies');
+  const details = view.element('#floor-detail-content').innerHTML;
+  assert.match(details, /Resident-marked first-floor layout · Yellow House/);
+  assert.match(details, /HOUSE51-FIRST-FLOOR-LAYOUT\.md/);
+  assert.match(details, /one 3\.10 m module so F’s left edge aligns with L1/);
+  assert.match(details, /Room F · A wing, resident-marked first-floor layout/);
+  assert.match(details, /Room L1, resident-marked first-floor layout/);
+  assert.match(details, /each item’s note distinguishes marked access from schematic placement/);
+  assert.match(details, /EG retains its provisional layout/);
+  assert.doesNotMatch(details, /HOUSE51-TOP-FLOOR-LAYOUT\.md|HOUSE55-FIRST-FLOOR-LAYOUT\.md|original outline retained/);
+});
+
+test('Yellow first-floor single rooms, shared A and both balconies keep their distinct card and measurement types', () => {
+  const view = ui(publishedYellowLevels, 1, '51');
+  for (const [id, label] of [
+    ['module-51-1-room-A-F', 'Room F · A wing'],
+    ['module-51-1-room-L-L1', 'Room L1'],
+    ['module-51-1-room-W-W1', 'Room W1'],
+  ]) {
+    view.spaceDialog({house: '51', floor: 1, spaceId: id});
+    const card = view.element('#modal-body').innerHTML;
+    assert.ok(card.includes(`${label} · study`));
+    assert.match(card, /Resident-marked first-floor layout/);
+    assert.match(card, /2\.70 × 6\.00 m · 16\.20 m² clear polygon area/);
+  }
+  assert.equal(view.conceptCalls.length, 3);
+  view.spaceDialog({house: '51', floor: 1, spaceId: 'module-51-1-shared-A'});
+  const shared = view.element('#modal-body').innerHTML;
+  assert.match(shared, /Shared apartment A · study/);
+  assert.match(shared, /6\.20 × 7\.40 m span · 45\.88 m² gross polygon area/);
+  assert.match(shared, /Net area, internal partitions and occupancy are not established/);
+  assert.doesNotMatch(shared, /Clear room dimensions|16\.20 m²|3\.10 m module =/);
+  for (const side of ['R', 'L']) {
+    view.spaceDialog({house: '51', floor: 1, spaceId: `module-51-1-common-${side}`});
+    const card = view.element('#modal-body').innerHTML;
+    assert.match(card, /balcony · study/);
+    assert.match(card, /A common area enclosed from the hallway in Yellow’s first-floor layout/);
+    assert.doesNotMatch(card, /Shared apartment envelope|Clear room dimensions|gross polygon area|study-identity-note/);
+  }
+  assert.equal(view.conceptCalls.length, 3, 'shared A and balconies do not offer a single-room furniture concept');
+});
+
+test('Yellow doorway cards preserve the marked-end evidence and the W1 and West balcony exceptions', () => {
+  const record = publishedYellowLevels.find(level => level.index === 1);
+  const view = ui(publishedYellowLevels, 1, '51');
+  for (const openingId of ['module-51-1-door-A-F', 'module-51-1-door-W-W1', 'module-51-1-common-door-L']) {
+    const door = record.doors.find(item => item.id === openingId);
+    view.spaceDialog({house: '51', floor: 1, spaceId: door.spaceId, openingId});
+    const card = view.element('#modal-body').innerHTML;
+    assert.match(card, /A doorway in Yellow’s resident-marked first-floor layout/);
+    assert.match(card, /Exact offsets, widths and opening details remain schematic/);
+    assert.ok(card.includes(esc(door.note)), 'the specific doorway evidence must reach its card unchanged');
+    assert.doesNotMatch(card, /A doorway placed from the resident’s lime-green mark|Clear room dimensions/);
+  }
+  view.spaceDialog({house: '51', floor: 1, spaceId: 'module-51-1-room-W-W1', openingId: 'module-51-1-door-W-W1'});
+  assert.match(view.element('#modal-body').innerHTML, /No distinct uncovered lime mark is visible for W1/);
+  view.spaceDialog({house: '51', floor: 1, spaceId: 'module-51-1-common-L', openingId: 'module-51-1-common-door-L'});
+  assert.match(view.element('#modal-body').innerHTML, /No distinct lime door mark is visible; the 0\.90 m stair-side doorway is schematic/);
+});
+
+test('Yellow mixed-floor overview and source modal report both upper floors and leave only EG provisional', () => {
+  const view = ui(publishedYellowLevels, null, '51');
+  view.renderFloor();
+  const overview = view.element('#floor-detail-content').innerHTML;
+  assert.match(overview, /Yellow’s 1\. OG has 23 single rooms, shared apartment A and two balconies/);
+  assert.match(overview, /2\. OG retains its resident-marked layout of 21 single rooms/);
+  assert.match(overview, /EG retains its existing provisional layout/);
+  assert.doesNotMatch(overview, /EG and 1\. OG retain|Select the top floor to review/);
+  view.accuracyDialog();
+  const copy = view.element('#modal-body').innerHTML;
+  assert.match(copy, /Yellow House 51’s 1\. OG has a resident-marked layout of 23 single rooms/);
+  assert.match(copy, /Yellow House 51’s 2\. OG has a resident-marked layout of 21 single rooms/);
+  assert.match(copy, /House 51’s EG retains its provisional modules and original outline/);
+  assert.match(copy, /HOUSE51-FIRST-FLOOR-LAYOUT\.md/);
+  assert.match(copy, /HOUSE51-TOP-FLOOR-LAYOUT\.md/);
+  assert.doesNotMatch(copy, /House 51’s EG and 1\. OG retain|House 51 uses independent layouts on all three levels|House 55’s top floor now shows/);
+});
+
+test('publishing Yellow first floor preserves EG and top-floor controls and cards while updating historical status', () => {
+  const beforeRecords = publishedYellowLevels.map(level => level.index === 1 ? yellowMixedLevels()[1] : level);
+  const originalTopNotes = publishedYellowLevels.find(level => level.index === 2).notes;
+  for (const index of [0, 2]) {
+    const room = publishedYellowLevels.find(level => level.index === index).spaces.find(space => space.kind === 'room');
+    const before = ui(beforeRecords, index, '51'), after = ui(publishedYellowLevels, index, '51');
+    for (const view of [before, after]) {
+      view.renderFloor();
+      view.spaceDialog({house: '51', floor: index, spaceId: room.id});
+    }
+    for (const selector of ['#floor-stage-title', '#floor-stage-note', '#modal-body']) {
+      assert.equal(after.element(selector).innerHTML, before.element(selector).innerHTML, `${index}: ${selector}`);
+      assert.equal(after.element(selector).textContent, before.element(selector).textContent, `${index}: ${selector}`);
+    }
+    const beforeDetails = before.element('#floor-detail-content').innerHTML;
+    const afterDetails = after.element('#floor-detail-content').innerHTML;
+    if (index === 0) assert.equal(afterDetails, beforeDetails, 'EG retains its existing drawing key and provisional evidence');
+    else {
+      assert.match(beforeDetails, /EG and 1\. OG remain exactly as previously drawn and await separate instructions/);
+      assert.match(afterDetails, /1\. OG has its own resident-marked layout/);
+      assert.match(afterDetails, /that revision left the lower floors unchanged/);
+      assert.match(afterDetails, /The current 1\. OG arrangement is documented separately/);
+      assert.match(afterDetails, /EG retains its provisional layout/);
+      assert.doesNotMatch(afterDetails, /EG and 1\. OG retain|EG and 1\. OG remain exactly as previously drawn and await/);
+    }
+  }
+  assert.equal(publishedYellowLevels.find(level => level.index === 2).notes, originalTopNotes,
+    'historical source notes remain untouched in the accepted top-floor data');
+});

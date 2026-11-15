@@ -1,0 +1,430 @@
+{
+  "checkedAt": "2026-11-15T21:06:36.190Z",
+  "browser": "Firefox via WebDriver BiDi",
+  "url": "http://127.0.0.1:4191/rommelweb/?qa=yellow-first",
+  "floors": [
+    {
+      "floor": 1,
+      "singles": 23,
+      "shared": 1,
+      "balconies": 2,
+      "spaces": 29,
+      "doors": 28,
+      "cards": [
+        {
+          "id": "module-51-1-room-E-H",
+          "label": "Room H",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-E-G",
+          "label": "Room G",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-E-F",
+          "label": "Room F · East wing",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-E-E",
+          "label": "Room E · East wing",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-N-N4",
+          "label": "Room N4",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-N-N3",
+          "label": "Room N3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-N-N2",
+          "label": "Room N2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-N-N1",
+          "label": "Room N1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-N-N0",
+          "label": "Room N0",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-R-R3",
+          "label": "Room R3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-R-R2",
+          "label": "Room R2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-R-R1",
+          "label": "Room R1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-L-L3",
+          "label": "Room L3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-L-L2",
+          "label": "Room L2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-L-L1",
+          "label": "Room L1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-A-F",
+          "label": "Room F · A wing",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-A-E",
+          "label": "Room E · A wing",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-A-D",
+          "label": "Room D",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-A-C",
+          "label": "Room C",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-W-W4",
+          "label": "Room W4",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-W-W3",
+          "label": "Room W3",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-W-W2",
+          "label": "Room W2",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-room-W-W1",
+          "label": "Room W1",
+          "kind": "room",
+          "dimensions": "2.70 × 6.00 m · 16.20 m² clear"
+        },
+        {
+          "id": "module-51-1-shared-A",
+          "label": "Shared apartment A",
+          "kind": "shared",
+          "dimensions": "6.20 × 7.40 m · 45.88 m² gross"
+        },
+        {
+          "id": "module-51-1-hall-east",
+          "label": "East hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "module-51-1-hall-west",
+          "label": "West hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "module-51-1-stairs",
+          "label": "Stairwell",
+          "kind": "stairs"
+        },
+        {
+          "id": "module-51-1-common-R",
+          "label": "East balcony",
+          "kind": "service"
+        },
+        {
+          "id": "module-51-1-common-L",
+          "label": "West balcony",
+          "kind": "service"
+        }
+      ],
+      "directDoorCards": [
+        "Room H doorway",
+        "Room G doorway",
+        "Room F · East wing doorway",
+        "Room N4 doorway",
+        "Room N3 doorway",
+        "Room N2 doorway",
+        "Room N1 doorway",
+        "Room N0 doorway",
+        "Room R2 doorway",
+        "Room R1 doorway",
+        "Room L3 doorway",
+        "Room L2 doorway",
+        "Room F · A wing doorway",
+        "Room E · A wing doorway",
+        "Room D doorway",
+        "Room C doorway",
+        "Room W4 doorway",
+        "Room W3 doorway",
+        "Room W2 doorway",
+        "Room W1 doorway",
+        "East hall stair entry",
+        "West balcony doorway"
+      ],
+      "doorLabels": [
+        {
+          "title": "Room H doorway",
+          "aria": "Explore Room H doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room G doorway",
+          "aria": "Explore Room G doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room F · East wing doorway",
+          "aria": "Explore Room F · East wing doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room E · East wing doorway",
+          "aria": "Explore Room E · East wing doorway, estimated layout, House 51, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Room N4 doorway",
+          "aria": "Explore Room N4 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room N3 doorway",
+          "aria": "Explore Room N3 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room N2 doorway",
+          "aria": "Explore Room N2 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room N1 doorway",
+          "aria": "Explore Room N1 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room N0 doorway",
+          "aria": "Explore Room N0 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room R3 doorway",
+          "aria": "Explore Room R3 doorway, estimated layout, House 51, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Room R2 doorway",
+          "aria": "Explore Room R2 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room R1 doorway",
+          "aria": "Explore Room R1 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room L3 doorway",
+          "aria": "Explore Room L3 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room L2 doorway",
+          "aria": "Explore Room L2 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room L1 doorway",
+          "aria": "Explore Room L1 doorway, estimated layout, House 51, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "Room F · A wing doorway",
+          "aria": "Explore Room F · A wing doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room E · A wing doorway",
+          "aria": "Explore Room E · A wing doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room D doorway",
+          "aria": "Explore Room D doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room C doorway",
+          "aria": "Explore Room C doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room W4 doorway",
+          "aria": "Explore Room W4 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room W3 doorway",
+          "aria": "Explore Room W3 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room W2 doorway",
+          "aria": "Explore Room W2 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Room W1 doorway",
+          "aria": "Explore Room W1 doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "Shared apartment A doorway",
+          "aria": "Explore Shared apartment A doorway, estimated layout, House 51, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "East hall stair entry",
+          "aria": "Explore East hall stair entry, estimated layout, House 51, floor 1",
+          "hidden": false
+        },
+        {
+          "title": "West hall stair entry",
+          "aria": "Explore West hall stair entry, estimated layout, House 51, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "East balcony doorway",
+          "aria": "Explore East balcony doorway, estimated layout, House 51, floor 1",
+          "hidden": true
+        },
+        {
+          "title": "West balcony doorway",
+          "aria": "Explore West balcony doorway, estimated layout, House 51, floor 1",
+          "hidden": false
+        }
+      ],
+      "responsive": [
+        {
+          "floor": 1,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 51,
+          "visibleDimensionCount": 20,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 1,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 19,
+          "visibleDimensionCount": 11,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 1,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 19,
+          "visibleDimensionCount": 11,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        },
+        {
+          "floor": 1,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 7,
+          "visibleDimensionCount": 2,
+          "selectedGreenOnly": true
+        },
+        {
+          "floor": 1,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 7,
+          "visibleDimensionCount": 2,
+          "selectedGreenOnly": true,
+          "theme": "day"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "All29spacecards open correctly, dimensions and per-floor evidence agree with data.",
+    "Both themes and three viewport sizes render without horizontal overflow.",
+    "Fold/unfold navigation restores1OG.",
+    "2OG and EG retain their expected controls.",
+    "Model and top-floor copy describe only EG as provisional."
+  ],
+  "screenshots": [
+    "docs/preview/house51-first-stack-night.png",
+    "docs/preview/house51-first-night.png",
+    "docs/preview/house51-first-day.png",
+    "docs/preview/house51-first-shifted-f-card.png",
+    "docs/preview/house51-first-shared-a-card.png",
+    "docs/preview/house51-first-east-balcony-card.png",
+    "docs/preview/house51-first-west-balcony-card.png",
+    "docs/preview/house51-first-w1-door.png",
+    "docs/preview/house51-first-west-balcony-door.png",
+    "docs/preview/house51-first-phone-390-night.png",
+    "docs/preview/house51-first-phone-390-day.png",
+    "docs/preview/house51-first-phone-320-night.png",
+    "docs/preview/house51-first-phone-320-day.png",
+    "docs/preview/house51-first-preserved-top.png",
+    "docs/preview/house51-first-preserved-eg.png"
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4191/rommelweb/assets/index-BEr_tJ9q.js"
+  ],
+  "errors": [],
+  "passed": true
+}
