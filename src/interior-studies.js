@@ -4,6 +4,11 @@ const KINDS = new Set(['room', 'corridor', 'stairs', 'lift', 'shared', 'service'
 const CONFIDENCE = new Set(['sketch', 'estimated']);
 const fail = (path, message) => { throw new Error(`Interior study ${path}: ${message}`); };
 
+export const isIndependentLayout = level => level?.layoutBasis === 'resident-module-layout';
+
+/** Folded façades retain source windows; independent floor layouts use their own openings. */
+export const getLevelWindows = level => (isIndependentLayout(level) ? level.layoutWindows : level?.windows) || [];
+
 function object(value, path, fields) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) fail(path, 'must be an object');
   for (const field of Object.keys(value)) {
@@ -96,7 +101,11 @@ export function validateInteriorStudies(studies, campus, lod2) {
     const indexes = new Set();
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
-      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands', 'dimensionGuides']);
+      object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands', 'dimensionGuides', 'layoutBasis', 'layoutWindows']);
+      if (level.layoutBasis !== undefined && !isIndependentLayout(level)) fail(`${lp}.layoutBasis`, 'must identify the resident-module-layout basis');
+      if (level.layoutWindows !== undefined && (!isIndependentLayout(level) || !Array.isArray(level.layoutWindows))) {
+        fail(`${lp}.layoutWindows`, 'requires an independent module layout and an array');
+      }
       if (!Number.isInteger(level.index) || level.index < 0 || level.index >= mapped.levels || indexes.has(level.index)) fail(`${lp}.index`, 'must identify a unique existing floor');
       indexes.add(level.index);
       if (level.extrapolatedFrom !== undefined) {
@@ -208,20 +217,32 @@ export function validateInteriorStudies(studies, campus, lod2) {
         fail(`${lp}.windowCoverage`, 'requires a nonempty complete-floor window inventory');
       }
       const official = lod2.buildings.find(item => item.number === number);
-      for (const window of level.windows || []) {
-        const wp = `${lp}.windows`;
-        object(window, wp, ['id', 'label', 'spaceId', 'sourceSurfaceIndex', 'confidence', 'note', 'segment']);
+      for (const [window, layoutWindow] of [
+        ...(level.windows || []).map(window => [window, false]),
+        ...(level.layoutWindows || []).map(window => [window, true]),
+      ]) {
+        const wp = `${lp}.${layoutWindow ? 'layoutWindows' : 'windows'}`;
+        object(window, wp, ['id', 'label', 'spaceId', ...(layoutWindow ? [] : ['sourceSurfaceIndex']), 'confidence', 'note', 'segment']);
         identify(window, wp);
         if (!CONFIDENCE.has(window.confidence)) fail(wp, 'window confidence is required');
+        if (layoutWindow && window.confidence !== 'estimated') fail(wp, 'layout windows are explicitly estimated positions');
         if (level.extrapolatedFrom !== undefined && window.confidence !== 'estimated') fail(wp, 'extrapolated windows require estimated confidence');
         text(window.note, `${wp}.note`);
         if (!Array.isArray(window.segment) || window.segment.length !== 2 || !window.segment.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))) fail(wp, 'requires two finite window endpoints');
         const width = Math.hypot(...window.segment[1].map((v, i) => v - window.segment[0][i]));
         if (width < 0.3 || width > 4) fail(wp, 'window width must be 0.3–4 m');
-        const surface = Number.isInteger(window.sourceSurfaceIndex) && official.surfaces[window.sourceSurfaceIndex];
-        const wallEdges = surface?.type === 'WallSurface' && surface.points.slice(1).map((b, i) => [[surface.points[i][0], surface.points[i][2]], [b[0], b[2]]]);
-        if (!wallEdges || !wallEdges.some(([a, b]) => window.segment.every(point => pointOnStudySegment(a, b, point)))) {
-          fail(wp, 'window must lie on its referenced source exterior wall in plan');
+        if (!layoutWindow) {
+          const surface = Number.isInteger(window.sourceSurfaceIndex) && official.surfaces[window.sourceSurfaceIndex];
+          const wallEdges = surface?.type === 'WallSurface' && surface.points.slice(1).map((b, i) => [[surface.points[i][0], surface.points[i][2]], [b[0], b[2]]]);
+          if (!wallEdges || !wallEdges.some(([a, b]) => window.segment.every(point => pointOnStudySegment(a, b, point)))) {
+            fail(wp, 'window must lie on its referenced source exterior wall in plan');
+          }
+          // These records describe the retained folded façade, not the newly
+          // arranged rooms or its independently generated floor outline.
+          if (isIndependentLayout(level)) {
+            if (window.spaceId !== undefined && !level.spaces.some(space => space.id === window.spaceId)) fail(wp, 'source window must reference a known study space');
+            continue;
+          }
         }
         const samples = Array.from({length: 9}, (_, i) => window.segment[0].map((v, axis) => v + (window.segment[1][axis] - v) * i / 8));
         if (!samples.every(point => pointInStudyOutline(point, level.floorOutline))) fail(wp, 'window must stay within the displayed floor');
@@ -271,7 +292,7 @@ export function studyFloorSection(section, level) {
   if (!level?.isStudy) return section;
   const polygons = level.floorOutline.map(polygon => ({...polygon, holes: polygon.holes || []}));
   return {...section, polygons, area: polygons.reduce((sum, polygon) => sum + ringArea(polygon.outer) - (polygon.holes || []).reduce((area, hole) => area + ringArea(hole), 0), 0),
-    sourceStatus: 'resident-sketch-floor-outline', outlineSource: level.source};
+    sourceStatus: isIndependentLayout(level) ? 'independent-module-layout-outline' : 'resident-sketch-floor-outline', outlineSource: level.source};
 }
 
 /** Orient the drawing to the building axes without rotating or rescaling geometry. */
@@ -292,7 +313,9 @@ export function studyPlanDirection(level, portrait = false) {
   }
   if (!best) return [0, 1, 0.025];
   let [x, z] = best.axis;
-  if (x < 0 || Math.abs(x) < 1e-6 && z < 0) { x *= -1; z *= -1; }
+  // The independent drawing begins with its left-to-right upper wing edge.
+  // Preserve that orientation so its labelled banks match the resident's plan.
+  if (!isIndependentLayout(level) && (x < 0 || Math.abs(x) < 1e-6 && z < 0)) { x *= -1; z *= -1; }
   if (portrait) [x, z] = [z, -x];
   return [-z * 0.025, 1, x * 0.025];
 }

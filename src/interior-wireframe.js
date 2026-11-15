@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { getLevelWindows, isIndependentLayout } from './interior-studies.js';
 
 // A low cutaway for legibility, not a claim about measured ceiling height.
 export const INTERIOR_CUT_HEIGHT = 1.05;
@@ -81,10 +82,10 @@ function labelPosition(space) {
  */
 export function createInteriorWireframe(level, { house, floor }) {
   const group = new THREE.Group(), pickables = [], labels = [];
-  group.userData = { role: level?.isStudy ? 'resident-interior-study' : 'approved-interior-cutaway', cutHeight: INTERIOR_CUT_HEIGHT };
+  group.userData = { role: isIndependentLayout(level) ? 'independent-module-layout' : level?.isStudy ? 'resident-interior-study' : 'approved-interior-cutaway', cutHeight: INTERIOR_CUT_HEIGHT };
   if (!level) return { group, pickables, labels };
   const doors = level.doors || [];
-  const windows = level.windows || [];
+  const windows = getLevelWindows(level);
   const fullHeightOpenings = [...doors, ...windows];
   const joints = new Map();
   const addWall = (a, b, estimated, top = INTERIOR_CUT_HEIGHT) => {
@@ -171,7 +172,7 @@ export function createInteriorWireframe(level, { house, floor }) {
     const material = new THREE.LineBasicMaterial({color: 0x91b9c8, transparent: true, opacity: 1, depthWrite: false});
     material.userData.themeRole = 'interiorWindow';
     const lines = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(), 3)), material);
-    lines.userData = {role: 'resident-window-symbols', count: windows.length, windowIds: windows.map(window => window.id)};
+    lines.userData = {role: isIndependentLayout(level) ? 'layout-window-symbols' : 'resident-window-symbols', count: windows.length, windowIds: windows.map(window => window.id)};
     group.add(lines);
   }
   for (const door of doors) {

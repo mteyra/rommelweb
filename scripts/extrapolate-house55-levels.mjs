@@ -66,6 +66,9 @@ function nodeSharedRing(ring, vertices) {
  * Extra lower wings receive no inferred rooms, circulation or window records.
  */
 export function refreshHouse55LowerLevels(lowerLevels, topLevel, building) {
+  if (topLevel?.layoutBasis === 'resident-module-layout') {
+    throw new Error('The independent module layout belongs only to House 55 / 2. OG; use the retained pre-module study to reproduce historical lower floors');
+  }
   if (building?.number !== '55' || topLevel?.index !== 2 || topLevel.extrapolatedFrom !== undefined) {
     throw new Error('House 55 extrapolation requires its directly documented index-2 study');
   }

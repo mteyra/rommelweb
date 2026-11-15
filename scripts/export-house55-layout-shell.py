@@ -24,6 +24,11 @@ def export(repo):
     if approved.get("buildings", {}).get("55"):
         raise ValueError("Review the exporter: an approved House 55 interior now exists.")
     level = next(p for p in studies["buildings"]["55"]["levels"] if p["index"] == 2)
+    if level.get("layoutBasis") == "resident-module-layout":
+        raise ValueError(
+            "The active floor uses the independent module layout. "
+            "Regenerate it and the sandbox together with npm run layout:build."
+        )
     if len(level["floorOutline"]) != 1:
         raise ValueError("Review sandbox schema before exporting multiple floor components.")
     axes = provenance["registration"]["localAxesInCampusXZ"]

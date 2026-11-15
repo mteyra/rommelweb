@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { difference } from 'polyclip-ts';
+import { readHistoricalSource, assertUnchangedOtherFloors } from './fixtures/pre-module-studies.mjs';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url));
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -14,14 +15,15 @@ const distance = (p, a, b) => {
   return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy);
 };
 
-test('published dimension evidence matches the current model and its living-zone witnesses really fit', async () => {
+test('historical R-alignment evidence matches its retained model and its living-zone witnesses really fit', async () => {
   const [reportBytes, studyBytes, baselineBytes, sourceBytes, provenanceBytes] = await Promise.all([
-    read('docs/data/house55-dimension-audit.json'), read('public/data/interior-studies.json'),
+    read('docs/data/house55-dimension-audit.json'), readHistoricalSource('public/data/interior-studies.json'),
     read('data/source/house55-2og-stair-ratio-baseline.json'), read('public/data/lod2.json'),
     read('data/source/house55-2og-study-provenance.json'),
   ]);
   const report = JSON.parse(reportBytes);
-  assert.equal(report.input.sha256, digest(studyBytes), 'regenerate the dated evidence after study changes');
+  assert.equal(report.input.sha256, digest(studyBytes), 'the dated evidence must match its retained pre-module input');
+  assertUnchangedOtherFloors(JSON.parse(await read('public/data/interior-studies.json')), JSON.parse(studyBytes));
   assert.equal(report.baseline.sha256, digest(baselineBytes));
   assert.equal(report.sourceSHA256, digest(sourceBytes));
   assert.equal(report.provenanceSHA256, digest(provenanceBytes));
@@ -36,7 +38,7 @@ test('published dimension evidence matches the current model and its living-zone
   for (const item of report.rooms) {
     const space = plan.spaces.find(space => space.shortLabel === item.label);
     assert.ok(space);
-    assert.ok(item.packingWitness, `${item.label}: aligned current envelopes must retain the audited witness`);
+    assert.ok(item.packingWitness, `${item.label}: historical aligned envelopes must retain the audited witness`);
     witnessed++;
     const witness = item.packingWitness;
     const edges = witness.slice(1).map((p, i) => Math.hypot(p[0] - witness[i][0], p[1] - witness[i][1])).sort();
@@ -78,9 +80,9 @@ test('published dimension evidence matches the current model and its living-zone
   assert.ok(Math.abs(report.topology.areaConservationResidual) < 0.001);
 });
 
-test('area evidence is current and exposes the R shortfall instead of forcing a fit', async () => {
+test('historical area evidence retains its R shortfall instead of being applied to the new module plan', async () => {
   const [auditBytes, studyBytes, provenanceBytes] = await Promise.all([
-    read('docs/data/house55-area-audit.json'), read('public/data/interior-studies.json'),
+    read('docs/data/house55-area-audit.json'), readHistoricalSource('public/data/interior-studies.json'),
     read('data/source/house55-2og-study-provenance.json'),
   ]);
   const audit = JSON.parse(auditBytes);
@@ -118,10 +120,10 @@ test('area evidence is current and exposes the R shortfall instead of forcing a 
   assert.ok(Math.abs(audit.areaBudget.areaConservationResidual) < 0.001);
 });
 
-test('alignment evidence separates the quarter-split enclosure from the inset schematic flight', async () => {
+test('historical alignment evidence separates the quarter-split enclosure from the inset schematic flight', async () => {
   const [report, data, lod] = await Promise.all([
     read('docs/data/house55-dimension-audit.json').then(JSON.parse),
-    read('public/data/interior-studies.json').then(JSON.parse),
+    readHistoricalSource('public/data/interior-studies.json').then(JSON.parse),
     read('public/data/lod2.json').then(JSON.parse),
   ]);
   const alignment = report.stairAlignment;

@@ -1,4 +1,4 @@
-import { studyPlanDirection } from './interior-studies.js';
+import { isIndependentLayout, studyPlanDirection } from './interior-studies.js';
 
 const ringArea = ring => {
   const [ox, oz] = ring[0];
@@ -8,7 +8,7 @@ const ringArea = ring => {
   }, 0) / 2);
 };
 
-/** Computed extents of validated study geometry, never measured clear-room dimensions. */
+/** Computed design extents; the layout basis distinguishes clear rooms from gross study envelopes. */
 export function studyRoomMeasurements(level, space) {
   if (!level?.isStudy || space?.kind !== 'room') return null;
   const direction = studyPlanDirection(level);
@@ -21,7 +21,7 @@ export function studyRoomMeasurements(level, space) {
   };
   const spans = [span(along), span(across)].sort((a, b) => a - b);
   const area = ringArea(space.polygon) - (space.holes || []).reduce((sum, hole) => sum + ringArea(hole), 0);
-  return {shortSpan: spans[0], longSpan: spans[1], area};
+  return {shortSpan: spans[0], longSpan: spans[1], area, areaBasis: isIndependentLayout(level) ? 'clear-room-layout' : 'gross-study-envelope'};
 }
 
 const distance = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
@@ -75,7 +75,7 @@ export function studyDimensionRuns(level) {
     const [start, end] = guide.segment, length = distance(start, end);
     return {
       id: guide.id, start, end, length, outward: guide.outward,
-      label: `${guide.label} ≈ ${length.toFixed(2)} m`,
+      label: `${guide.label}${isIndependentLayout(level) ? '' : ' ≈'} ${length.toFixed(2)} m`,
       note: guide.note, isStudyGuide: true, priority: 1,
     };
   });

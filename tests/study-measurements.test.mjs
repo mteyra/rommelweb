@@ -64,3 +64,20 @@ test('estimated bank dimensions remain separate from immutable source exterior r
   assert.deepEqual(source, before);
   assert.deepEqual(studyDimensionRuns(null), []);
 });
+
+test('independent layout measures clear rooms and exact design guides separately from its wall allowances', () => {
+  const angle = Math.PI / 7;
+  const level = {
+    isStudy: true, layoutBasis: 'resident-module-layout',
+    floorOutline: [{outer: transform(rectangle(0, 0, 3.10, 7.40), angle)}],
+    dimensionGuides: [{id: 'module-width', label: 'Module', segment: transform([[0, 0], [3.10, 0]], angle), outward: [0, -1]}],
+  };
+  const room = {kind: 'room', polygon: transform(rectangle(0.20, 1.40, 2.70, 6.00), angle)};
+  const result = studyRoomMeasurements(level, room);
+  close(result.shortSpan, 2.70);
+  close(result.longSpan, 6.00);
+  close(result.area, 16.20);
+  assert.equal(result.areaBasis, 'clear-room-layout');
+  assert.equal(studyDimensionRuns(level)[0].label, 'Module 3.10 m');
+  assert.equal(studyRoomMeasurements({...level, layoutBasis: undefined}, room).areaBasis, 'gross-study-envelope');
+});

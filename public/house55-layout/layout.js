@@ -1,17 +1,17 @@
 import {
-  AREA, setRoomDimension, rectangleVertices, rectangleBounds,
+  AREA, MIN_WIDTH, setRoomDimension, rectangleVertices, rectangleBounds,
   snapRoom, analyzeLayout, packRooms
 } from './geometry.js';
 
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
-const STORE = 'rommelweb.house55.layout.v1';
+const STORE = 'rommelweb.house55.module-layout.v2';
 const colours = { A: '#cddfcf', W: '#d4e4df', L: '#dedfc2', E: '#d5dfe8', R: '#e6ddc8', N: '#dcd8e6' };
 const bankNames = { A: 'A–D', W: 'W1–W4', L: 'L1–L3', E: 'E–G', R: 'R1–R3', N: 'N1–N3' };
 const state = {
-  data: null, rooms: [], selected: 'A', gap: 0, scope: 'room',
+  data: null, rooms: [], selected: 'A', gap: .4, scope: 'room',
   autoPack: true, snap: true, dimensions: true, allDimensions: false,
-  guides: false, moveBank: false, view: null, initialView: null,
+  guides: true, moveBank: false, view: null, initialView: null,
   past: [], future: [], gesture: null, inputBefore: null, analysis: null
 };
 const clone = value => structuredClone(value);
@@ -74,6 +74,7 @@ function layoutDocument() {
 }
 function validateLayout(document) {
   if (!document || document.version !== 1 || document.house !== 55 || document.level !== 2) throw new Error('This is not a House Red top-floor layout file.');
+  if (document.areaPerRoom !== AREA) throw new Error('This saved layout uses an earlier room area. The current plan uses 16.2 m² clear interiors.');
   if (document.shellHash !== state.data.shellHash) throw new Error('This layout uses a different shell version.');
   if (!Array.isArray(document.rooms) || document.rooms.length !== 20) throw new Error('A layout needs all twenty rooms.');
   if (!Number.isFinite(document.gap) || document.gap < 0 || document.gap > 1) throw new Error('Room spacing must be between 0 and 100 cm.');
@@ -83,8 +84,8 @@ function validateLayout(document) {
     if (!original || ids.has(room.id) || room.bank !== original.bank) throw new Error('The room labels do not match this floor.');
     ids.add(room.id);
     if (![room.x, room.y, room.width, room.depth, room.rotation].every(Number.isFinite)) throw new Error('Room dimensions and positions must be finite numbers.');
-    if (Math.abs(room.x) > 1000 || Math.abs(room.y) > 1000 || room.width < 1.64 - 1e-10 || room.width > 10 || room.depth < 1.64 - 1e-10 || room.depth > 10) throw new Error('A room has dimensions or a position outside the editor range.');
-    if (Math.abs(room.width * room.depth - AREA) > 1e-7 || room.rotation % 90 !== 0) throw new Error('Each room must be 16.4 m² with a rotation in steps of 90°.');
+    if (Math.abs(room.x) > 1000 || Math.abs(room.y) > 1000 || room.width < MIN_WIDTH - 1e-10 || room.width > 10 || room.depth < MIN_WIDTH - 1e-10 || room.depth > 10) throw new Error('A room has dimensions or a position outside the editor range.');
+    if (Math.abs(room.width * room.depth - AREA) > 1e-7 || room.rotation % 90 !== 0) throw new Error('Each room must be 16.2 m² with a rotation in steps of 90°.');
     return { id: room.id, bank: original.bank, x: room.x, y: room.y, width: room.width, depth: AREA / room.width, rotation: ((room.rotation % 180) + 180) % 180 };
   });
   return { rooms, gap: document.gap, selected: ids.has(document.selected) ? document.selected : 'A' };
@@ -106,13 +107,13 @@ function packBanks(bankIds) {
   }
 }
 function resizeRooms(axis, value, ids = targetedIds()) {
-  if (!Number.isFinite(value) || value < 1.64 || value > 10) return false;
+  if (!Number.isFinite(value) || value < MIN_WIDTH || value > 10) return false;
   state.rooms = state.rooms.map(room => ids.includes(room.id) ? setRoomDimension(room, axis, value) : room);
   if (state.autoPack) packBanks(new Set(state.rooms.filter(room => ids.includes(room.id)).map(room => room.bank)));
   return true;
 }
 function dimensionInput(axis, value) {
-  if (!Number.isFinite(value) || value < 1.64 || value > 10) return;
+  if (!Number.isFinite(value) || value < MIN_WIDTH || value > 10) return;
   if (!state.inputBefore) state.inputBefore = shapeSnapshot();
   resizeRooms(axis, value); render();
 }
@@ -141,12 +142,13 @@ function localToWorld(room, u, v) {
   return [room.x + u * c - v * s, room.y + u * s + v * c];
 }
 function dimension(svg, a, b, label, { shell = false, labelOffset = .13 } = {}) {
+  const scale = Math.abs(svg.getScreenCTM()?.a || 20);
   const group = node('g', { 'pointer-events': 'none', 'data-dimension': shell ? 'shell' : 'room' });
   group.append(node('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: 'dimension-line', 'marker-start': 'url(#arrow)', 'marker-end': 'url(#arrow)' }));
   let angle = Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI;
   if (angle > 90 || angle < -90) angle += 180;
   const x = (a[0] + b[0]) / 2, y = (a[1] + b[1]) / 2;
-  group.append(node('text', { x, y: y - labelOffset, class: shell ? 'shell-dimension-label' : 'dimension-label', transform: `rotate(${angle} ${x} ${y})` }, label));
+  group.append(node('text', { x, y: y - labelOffset, class: shell ? 'shell-dimension-label' : 'dimension-label', transform: `rotate(${angle} ${x} ${y})`, style: `font-size:${Math.max(shell ? .35 : .28, 7.5 / scale)}px` }, label));
   svg.append(group);
 }
 function roomDimensions(svg, room) {
@@ -161,7 +163,7 @@ function roomHandle(svg, room, axis) {
   const handle = node('g', {
     'data-resize': axis, style: `cursor:${vertical ? 'ns' : 'ew'}-resize`,
     role: 'slider', tabindex: 0, 'aria-label': `Resize ${axis} of room ${room.id}`,
-    'aria-valuemin': 1.64, 'aria-valuemax': 10, 'aria-valuenow': f(room[axis], 3),
+    'aria-valuemin': MIN_WIDTH, 'aria-valuemax': 10, 'aria-valuenow': f(room[axis], 3),
     'aria-orientation': vertical ? 'vertical' : 'horizontal'
   });
   handle.append(node('circle', { cx: point[0], cy: point[1], r: Math.max(.28, 11 / scale), fill: 'transparent' }));
@@ -170,28 +172,36 @@ function roomHandle(svg, room, axis) {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
     event.preventDefault(); event.stopPropagation();
     const step = event.shiftKey ? .1 : .01, sign = ['ArrowLeft', 'ArrowDown'].includes(event.key) ? -1 : 1;
-    transact(() => resizeRooms(axis, Math.max(1.64, Math.min(10, selectedRoom()[axis] + sign * step))));
+    transact(() => resizeRooms(axis, Math.max(MIN_WIDTH, Math.min(10, selectedRoom()[axis] + sign * step))));
     svg.querySelector(`[data-resize="${axis}"]`)?.focus({ preventScroll: true });
   });
   svg.append(handle);
 }
 function drawGuides(svg) {
   const guides = state.data.referenceOverlays;
+  const fontStyle = `font-size:${Math.max(.32, 7.5 / Math.abs(svg.getScreenCTM()?.a || 20))}px`;
   if (!guides) return;
   for (const hall of guides.hallways || guides.corridors || []) {
     const polygons = hall.polygons || (hall.polygon ? [{ outline: hall.polygon }] : []);
     svg.append(node('path', { d: polygonPath(polygons), fill: '#cfdac2', 'fill-opacity': .42, stroke: '#7b9270', 'stroke-width': .04, 'stroke-dasharray': '.12 .1', 'pointer-events': 'none' }));
-    if (hall.labelPosition) svg.append(node('text', { x: hall.labelPosition[0], y: hall.labelPosition[1], class: 'guide-label' }, '1.30 m'));
+    if (hall.polygon) {
+      const xs = hall.polygon.map(p => p[0]), ys = hall.polygon.map(p => p[1]);
+      const x = (Math.min(...xs) + Math.max(...xs)) / 2, y = (Math.min(...ys) + Math.max(...ys)) / 2;
+      const vertical = Math.max(...ys) - Math.min(...ys) > Math.max(...xs) - Math.min(...xs);
+      svg.append(node('text', { x, y, class: 'guide-label', transform: vertical ? `rotate(-90 ${x} ${y})` : '', style: fontStyle }, `${f(hall.width || 1.4)} m`));
+    }
   }
   const stair = guides.stair;
   if (stair?.polygon) {
     svg.append(node('path', { d: ringPath(stair.polygon), fill: '#e5c8b1', 'fill-opacity': .4, stroke: '#a37b5d', 'stroke-width': .05, 'stroke-dasharray': '.15 .1', 'pointer-events': 'none' }));
     const xs = stair.polygon.map(p => p[0]), ys = stair.polygon.map(p => p[1]);
-    svg.append(node('text', { x: (Math.min(...xs) + Math.max(...xs)) / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2, class: 'guide-label' }, '2.72 m stair'));
+    const x = (Math.min(...xs) + Math.max(...xs)) / 2, y = (Math.min(...ys) + Math.max(...ys)) / 2;
+    svg.append(node('text', { x, y, class: 'guide-label', transform: `rotate(-90 ${x} ${y})`, style: fontStyle }, `${f(stair.width || 2.7)} m stair`));
   }
 }
 function draw() {
   const svg = $('plan'), v = state.view;
+  const pixelsPerMetre = Math.min(svg.clientWidth / v.width, svg.clientHeight / v.height);
   svg.setAttribute('viewBox', `${v.x} ${v.y} ${v.width} ${v.height}`);
   svg.replaceChildren();
   const defs = node('defs');
@@ -201,10 +211,18 @@ function draw() {
   arrow.append(node('path', { d: 'M1 1 L7 4 L1 7', fill: 'none', stroke: '#3f6e60', 'stroke-width': 1.2 })); defs.append(arrow);
   svg.append(defs);
   svg.append(node('rect', { x: v.x - v.width, y: v.y - v.height, width: v.width * 3, height: v.height * 3, fill: 'url(#grid)', 'pointer-events': 'none' }));
-  svg.append(node('path', { d: polygonPath(state.data.shell), fill: '#eeeee5', stroke: '#5b6f60', 'stroke-width': .075, 'fill-rule': 'evenodd', 'data-shell': 'original', 'pointer-events': 'none' }));
+  svg.append(node('path', { d: polygonPath(state.data.shell), fill: '#eeeee5', stroke: '#5b6f60', 'stroke-width': .075, 'fill-rule': 'evenodd', 'data-shell': 'module-layout', 'pointer-events': 'none' }));
   if (state.guides) drawGuides(svg);
   const errors = new Map(state.analysis.rooms.map(room => [room.id, room]));
   const order = [...state.rooms.filter(room => room.id !== state.selected), selectedRoom()];
+  // Each module owns two 20 cm side strips. Adjacent clear interiors start
+  // 40 cm apart; edits remain free to overlap these illustrative wall strips.
+  for (const room of order) for (const sign of [-1, 1]) {
+    const inner = sign * room.width / 2, outer = inner + sign * .2;
+    const polygon = [[inner, -room.depth / 2], [outer, -room.depth / 2], [outer, room.depth / 2], [inner, room.depth / 2]]
+      .map(([u, v]) => localToWorld(room, u, v));
+    svg.append(node('path', {d: ringPath(polygon), fill: '#aab4ab', 'fill-opacity': .7, 'pointer-events': 'none', 'data-side-wall': room.id}));
+  }
   for (const room of order) {
     const status = errors.get(room.id), isSelected = room.id === state.selected;
     const path = node('path', {
@@ -212,7 +230,7 @@ function draw() {
       'fill-opacity': .87, stroke: status.valid ? '#8b9e8e' : '#bf884d', 'stroke-width': .04,
       class: `room-shape${isSelected ? ' selected' : ''}`, 'data-room': room.id,
       tabindex: 0, role: 'button',
-      'aria-label': `Room ${room.id}. ${f(room.width)} by ${f(room.depth)} metres. 16.4 square metres.${status.valid ? '' : ' Placement conflict.'}`
+      'aria-label': `Room ${room.id}. ${f(room.width)} by ${f(room.depth)} metres. 16.2 square metres.${status.valid ? '' : ' Placement conflict.'}`
     });
     path.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setSelection(room.id); return; }
@@ -223,19 +241,19 @@ function draw() {
       svg.querySelector(`[data-room="${room.id}"]`)?.focus({ preventScroll: true });
     });
     svg.append(path);
-    svg.append(node('text', { x: room.x, y: room.y - .14, class: 'room-label' }, room.id));
-    svg.append(node('text', { x: room.x, y: room.y + .34, class: 'area-label' }, '16.4 m²'));
+    svg.append(node('text', { x: room.x, y: room.y - .14, class: 'room-label', style: `font-size:${Math.max(.58, 9 / pixelsPerMetre)}px` }, room.id));
+    if (pixelsPerMetre >= 18) svg.append(node('text', { x: room.x, y: room.y + .49, class: 'area-label', style: 'font-size:.32px' }, '16.2 m²'));
   }
   if (state.dimensions) {
     const bounds = state.data.bounds;
     dimension(svg, [bounds.minX, bounds.minY - 1.05], [bounds.maxX, bounds.minY - 1.05], `${f(bounds.maxX - bounds.minX)} m · overall`, { shell: true, labelOffset: .23 });
     dimension(svg, [bounds.minX - 1.05, bounds.minY], [bounds.minX - 1.05, bounds.maxY], `${f(bounds.maxY - bounds.minY)} m`, { shell: true, labelOffset: .23 });
-    for (const room of state.rooms) if (state.allDimensions || room.id === state.selected) roomDimensions(svg, room);
+    if (pixelsPerMetre >= 15) for (const room of state.rooms) if (state.allDimensions || room.id === state.selected) roomDimensions(svg, room);
   }
   roomHandle(svg, selectedRoom(), 'width'); roomHandle(svg, selectedRoom(), 'depth');
   const b = state.data.bounds, scaleY = b.maxY + 1.1;
   svg.append(node('path', { d: `M${b.minX},${scaleY - .15}V${scaleY}h2v-.15`, fill: 'none', stroke: '#65816e', 'stroke-width': .045, 'pointer-events': 'none' }));
-  svg.append(node('text', { x: b.minX + 1, y: scaleY + .45, class: 'shell-dimension-label' }, '2 metres'));
+  svg.append(node('text', { x: b.minX + 1, y: scaleY + .45, class: 'shell-dimension-label', style: `font-size:${Math.max(.35, 7.5 / pixelsPerMetre)}px` }, '2 metres'));
   $('zoom-label').textContent = `${Math.round(state.initialView.width / v.width * 100)}%`;
 }
 function updateInspector() {
@@ -253,7 +271,7 @@ function updateInspector() {
   const issues = [];
   if (!status.insideShell) issues.push('Crosses the shell or a cutout.');
   if (status.overlaps.length) issues.push(`Overlaps ${status.overlaps.map(item => item.id).join(', ')}.`);
-  $('room-status').textContent = issues.join(' ') || 'Inside the floor shell, with no room overlap. Hallways and internal walls are not enforced.';
+  $('room-status').textContent = issues.join(' ') || 'Clear interior inside the layout shell, with no room overlap. Hall and wall guides are advisory while editing.';
   $('conflict-list').replaceChildren();
   for (const id of [...new Set([...state.analysis.outOfBounds, ...state.analysis.overlaps.flatMap(item => [item.a, item.b])])]) {
     const button = document.createElement('button'); button.textContent = id; button.title = `Inspect room ${id}`;
@@ -299,7 +317,7 @@ $('plan').addEventListener('pointermove', event => {
     const theta = g.room.rotation * Math.PI / 180, dx = point[0] - g.room.x, dy = point[1] - g.room.y;
     const projected = g.axis === 'width' ? dx * Math.cos(theta) + dy * Math.sin(theta) : -dx * Math.sin(theta) + dy * Math.cos(theta);
     state.rooms = clone(g.before.rooms);
-    resizeRooms(g.axis, Math.max(1.64, Math.min(10, projected * 2)), g.ids);
+    resizeRooms(g.axis, Math.max(MIN_WIDTH, Math.min(10, projected * 2)), g.ids);
   } else {
     let dx = point[0] - g.start[0], dy = point[1] - g.start[1];
     if (state.snap && !event.altKey) {
@@ -364,7 +382,7 @@ $('conflict-summary').addEventListener('click', () => {
   if (id) setSelection(id, { focus: true }); else tell('All room rectangles are within the shell, without overlap.');
 });
 $('reset-button').addEventListener('click', () => {
-  transact(() => { state.rooms = clone(state.data.rooms); state.gap = 0; packBanks(state.data.banks.map(bank => bank.id)); });
+  transact(() => { state.rooms = clone(state.data.rooms); state.gap = state.data.defaultGap ?? .4; });
   fitView(); render(); tell('Starting rectangles restored. Undo brings your layout back.');
 });
 document.addEventListener('keydown', event => {
@@ -405,6 +423,7 @@ window.addEventListener('hashchange', () => {
     history.replaceState(null, '', location.pathname + location.search);
   } catch (error) { tell(`Shared layout could not load: ${error.message}`); }
 });
+new ResizeObserver(() => { if (state.data && state.view) draw(); }).observe($('plan'));
 $('share-button').addEventListener('click', () => {
   finishInput(); $('share-url').value = sharedURL(); $('copy-status').textContent = 'Anyone with this link can open this version. Later edits do not change the link.';
   $('share-dialog').showModal(); $('share-url').select();
@@ -416,7 +435,7 @@ $('copy-link-button').addEventListener('click', async () => {
 
 try {
   const response = await fetch('./shell.json');
-  if (!response.ok) throw new Error('Could not load the original floor shell.');
+  if (!response.ok) throw new Error('Could not load the module layout shell.');
   state.data = await response.json();
   if (state.data.rooms.length !== 20) throw new Error('The floor must have twenty room rectangles.');
   const components = Array.isArray(state.data.shell) ? state.data.shell : [state.data.shell];
@@ -425,7 +444,8 @@ try {
   const b = state.data.bounds, pad = 2.4;
   state.initialView = { x: b.minX - pad, y: b.minY - pad, width: b.maxX - b.minX + pad * 2, height: b.maxY - b.minY + pad * 2 };
   state.rooms = clone(state.data.rooms);
-  packBanks(state.data.banks.map(bank => bank.id));
+  state.gap = state.data.defaultGap ?? .4;
+  if (state.data.targetArea !== AREA) throw new Error('The room area and layout shell versions do not match.');
   for (const room of state.rooms) {
     const option = document.createElement('option'); option.value = room.id; option.textContent = `${room.id} · bank ${bankNames[room.bank]}`; $('room-select').append(option);
   }

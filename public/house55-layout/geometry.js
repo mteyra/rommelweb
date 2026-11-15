@@ -3,10 +3,10 @@
  * Room: {id,bank,x,y,width,depth,rotation}; x/y are centers in metres.
  * Rotation is a multiple of 90 degrees. Width/depth are the room's local axes.
  * Shell: {outline:[[x,y],...],holes:[ring,...]}, or disjoint component array.
- * Mutations preserve metadata and the fixed 16.4m² area. Analysis deliberately
+ * Mutations preserve metadata and the fixed 16.2m² area. Analysis deliberately
  * permits invalid placements: it reports conflicts instead of rejecting moves.
  */
-export const AREA = 16.4;
+export const AREA = 16.2;
 export const MAX_WIDTH = 10;
 export const MIN_WIDTH = AREA / MAX_WIDTH;
 export const EPSILON = 1e-9;

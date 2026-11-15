@@ -440,6 +440,9 @@ export function generateOldHouseStudies({studies, lod2, campus, interiors, roomM
   setPrecision();
   const source = lod2.buildings.find(b => b.number === '55');
   const top = studies.buildings['55']?.levels.find(level => level.index === 2);
+  if (top?.layoutBasis === 'resident-module-layout') {
+    throw new Error('The independent module layout belongs only to House 55 / 2. OG; use the retained pre-module studies to reproduce historical other-house records');
+  }
   if (!top || top.spaces.filter(s => s.kind === 'room').length !== 20) throw new Error('The current twenty-room House 55 top study is required');
   const result = {schemaVersion: 1, buildings: {}};
   const metadata = {

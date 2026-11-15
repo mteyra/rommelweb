@@ -2,11 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
+import {readHistoricalSource, assertUnchangedOtherFloors} from './fixtures/pre-module-studies.mjs';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 
-test('the independent old-house evidence describes the exact published inputs and retains its incomplete-inventory findings', async () => {
+test('the historical old-house audit keeps its exact source fingerprints and unchanged incomplete-inventory findings', async () => {
   const paths = [
     'public/data/interior-studies.json',
     'data/source/old-house-study-provenance.json',
@@ -15,12 +16,13 @@ test('the independent old-house evidence describes the exact published inputs an
     'scripts/generate-old-house-studies.mjs',
   ];
   const [auditBytes, ...inputs] = await Promise.all([
-    read('docs/evidence/old-house-studies-audit.json'), ...paths.map(read),
+    read('docs/evidence/old-house-studies-audit.json'), ...paths.map(readHistoricalSource),
   ]);
   const audit = JSON.parse(auditBytes), studies = JSON.parse(inputs[0]);
   assert.deepEqual(audit.inputs.map(record => record.path), paths);
   paths.forEach((path, i) => assert.equal(audit.inputs[i].sha256, sha(inputs[i]),
-    `Regenerate the independent audit after changing ${path}`));
+    `Retain the exact historical input bytes for ${path}`));
+  assertUnchangedOtherFloors(JSON.parse(await read('public/data/interior-studies.json')), studies);
   const houses = ['51', '53', '55', '57', '59'];
   const levels = houses.flatMap(number => studies.buildings[number].levels);
   assert.equal(levels.length, 15);

@@ -8472,7 +8472,7 @@
       ]
     },
     "55": {
-      "source": "House 55 resident-informed 2. OG arrangement and relative alignment, including the aligned R bank and conditional wall/flight allowances. Lower-floor interiors repeat that core as estimates. Absolute apartment dimensions and east stair access remain unverified.",
+      "source": "House 55 resident studies: 2. OG uses the independent 15 November 2026 module layout (2.70 × 6.00 m clear rooms, 3.10 m modules, 1.40 m hallways and 2.70 m stairwell). EG and 1. OG retain their earlier, unverified extrapolations. Folded exterior window evidence is retained separately.",
       "sourceDate": "2026-11-15",
       "levels": [
         {
@@ -11357,1570 +11357,1240 @@
         },
         {
           "index": 2,
-          "label": "2. OG — aligned R-bank study",
-          "source": "Resident-requested R-bank alignment to both opposite recess endpoints; existing twenty-room/window observations and gross stair alignment retained. Schematic flight insets, residual strip classification and internal dimensions remain estimates.",
-          "notes": "The resident confirms twenty rooms and twenty-four window locations on this floor. R1–R3 now align their side lines to both ends of the opposite recess, while preserving the source shell, windows and north hallway guard. Their conditional internal envelopes remain below the unverified 16.4m² benchmark. The stair enclosure and west entry remain; a symmetric 0.10m schematic flight inset meets the requested 20–25% L3 / 75–80% R1 ratio. The narrow stair-side strip and blind end pocket are unassigned, with no doorway or assumed passage.",
+          "label": "2. OG · module layout",
+          "layoutBasis": "resident-module-layout",
+          "source": "Resident-measured 2.70 m room width and user-prescribed 6.00 m length, 3.10 m modules, 1.40 m halls and annotated outline, 15 November 2026.",
+          "notes": "User-specified House 55 top-floor solution, 15 November 2026, drawn independently of the folded official exterior. Each clear room is 2.70 x 6.00 m (16.20 square metres). Its two 0.20 m side strips give a 3.10 m module, including 0.40 m between adjacent clear rooms. Hallways use the requested 1.40 m design width. The stair block uses the requested 1.30 + 1.40 = 2.70 m split. The 6.00 m room depth plus 1.40 m hallway accounts for the full 7.40 m wing depth. End-wall and hallway-wall thicknesses are not additionally allocated. The clear width is resident measured. The length, wall allocations, hall width, stair split and outline are the latest user-directed modeling assumptions. Door widths and positions, relocated window symbols, stair treads and 1.40 m landings are illustrative. No floor elevation or bathroom/kitchen partition is established.",
           "floorOutline": [
             {
               "outer": [
                 [
-                  -20.400017,
-                  3.670562
+                  12.472089086,
+                  29.976654056
                 ],
                 [
-                  -14.146591,
-                  -2.075863
+                  7.47005172,
+                  24.523249414
                 ],
                 [
-                  -10.615,
-                  1.784
+                  8.87025021,
+                  23.238942523
                 ],
                 [
-                  -0.810355,
-                  -7.225048
+                  -5.527505991,
+                  7.541980511
                 ],
                 [
-                  4.90702,
-                  -0.968298
+                  -10.980910633,
+                  12.544017876
                 ],
                 [
-                  3.313861,
-                  0.497504
+                  -19.362702976,
+                  3.405880367
                 ],
                 [
-                  0.87,
-                  2.745
+                  -13.909298333,
+                  -1.596156998
                 ],
                 [
-                  7.924865,
-                  10.450124
+                  -10.529543356,
+                  2.088575869
                 ],
                 [
-                  7.238,
-                  11.079
+                  -1.391405847,
+                  -6.293216474
                 ],
                 [
-                  13.3,
-                  17.717
+                  3.610631518,
+                  -0.839811831
                 ],
                 [
-                  14.24,
-                  16.857
+                  -0.074101348,
+                  2.539943146
                 ],
                 [
-                  19.764,
-                  11.799
+                  14.323654852,
+                  18.236905157
                 ],
                 [
-                  27.098837,
-                  19.82719
+                  19.777059495,
+                  13.234867792
                 ],
                 [
-                  20.839776,
-                  25.577108
+                  26.063403751,
+                  20.088470923
                 ],
                 [
-                  20.154574,
-                  24.825672
+                  20.609999109,
+                  25.090508289
                 ],
                 [
-                  19.87247,
-                  24.517666
+                  19.325692217,
+                  23.6903098
                 ],
                 [
-                  19.224,
-                  23.807
-                ],
-                [
-                  11.605421,
-                  30.80674
-                ],
-                [
-                  8.904876,
-                  27.85618
-                ],
-                [
-                  5.893531,
-                  24.565323
-                ],
-                [
-                  6.353601,
-                  24.144121
-                ],
-                [
-                  6.504,
-                  24.006977
-                ],
-                [
-                  7.76,
-                  22.857
-                ],
-                [
-                  2.304,
-                  16.898
-                ],
-                [
-                  2.219,
-                  16.976
-                ],
-                [
-                  0.48,
-                  15.075
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  -4.866,
-                  8.09
-                ],
-                [
-                  -5.773,
-                  8.924
-                ],
-                [
-                  -11.109,
-                  13.826
-                ],
-                [
-                  -19.495962,
-                  4.659388
-                ],
-                [
-                  -20.400017,
-                  3.670562
-                ]
-              ],
-              "holes": []
-            }
-          ],
-          "excludedAreas": [
-            {
-              "id": "study-55-2-no-floor-1",
-              "label": "No floor — lower green mark",
-              "polygon": [
-                [
-                  -5.295,
-                  20.183
-                ],
-                [
-                  -1.531,
-                  16.724
-                ],
-                [
-                  -1.432,
-                  16.833
-                ],
-                [
-                  0.48,
-                  15.075
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  -4.866,
-                  8.09
-                ],
-                [
-                  -5.773,
-                  8.924
-                ],
-                [
-                  -11.109,
-                  13.826
-                ],
-                [
-                  -5.295,
-                  20.183
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-no-floor-2",
-              "label": "No floor — upper green mark",
-              "polygon": [
-                [
-                  13.3,
-                  17.717
-                ],
-                [
-                  14.24,
-                  16.857
-                ],
-                [
-                  19.764,
-                  11.799
-                ],
-                [
-                  13.944,
-                  5.43
-                ],
-                [
-                  8.185,
-                  10.735
-                ],
-                [
-                  7.925,
-                  10.45
-                ],
-                [
-                  7.238,
-                  11.079
-                ],
-                [
-                  13.3,
-                  17.717
+                  12.472089086,
+                  29.976654056
                 ]
               ]
             }
-          ],
-          "sketchBoundaries": [
-            [
-              [
-                2.304,
-                16.898
-              ],
-              [
-                7.76,
-                22.857
-              ]
-            ]
           ],
           "spaces": [
             {
-              "id": "study-55-2-sw-1",
-              "label": "Room A — estimated layout",
-              "shortLabel": "A",
+              "id": "study-55-2-east-3",
+              "label": "Room G",
+              "shortLabel": "G",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
               "polygon": [
                 [
-                  -19.253922,
-                  4.923928
+                  12.6194784,
+                  29.841463857
                 ],
                 [
-                  -14.633999,
-                  0.678533
+                  8.563772428,
+                  25.419784417
                 ],
                 [
-                  -12.506823,
-                  2.997658
+                  10.553528176,
+                  23.59471673
                 ],
                 [
-                  -17.133535,
-                  7.241426
+                  14.609234148,
+                  28.01639617
                 ],
                 [
-                  -19.253922,
-                  4.923928
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-sw-2",
-              "label": "Room B — estimated layout",
-              "shortLabel": "B",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -17.133535,
-                  7.241426
-                ],
-                [
-                  -12.506823,
-                  2.997658
-                ],
-                [
-                  -10.517889,
-                  5.166067
-                ],
-                [
-                  -15.147295,
-                  9.412306
-                ],
-                [
-                  -17.133535,
-                  7.241426
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-sw-3",
-              "label": "Room C — estimated layout",
-              "shortLabel": "C",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -15.147295,
-                  9.412306
-                ],
-                [
-                  -10.517889,
-                  5.166067
-                ],
-                [
-                  -8.530079,
-                  7.33325
-                ],
-                [
-                  -13.162178,
-                  11.58196
-                ],
-                [
-                  -15.147295,
-                  9.412306
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-sw-4",
-              "label": "Room D — estimated layout",
-              "shortLabel": "D",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -13.162178,
-                  11.58196
-                ],
-                [
-                  -8.530079,
-                  7.33325
-                ],
-                [
-                  -6.477424,
-                  9.57113
-                ],
-                [
-                  -11.109,
-                  13.826
-                ],
-                [
-                  -13.162178,
-                  11.58196
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-east-1",
-              "label": "Room E — estimated layout",
-              "shortLabel": "E",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  12.837417,
-                  21.253758
-                ],
-                [
-                  15.033325,
-                  19.239601
-                ],
-                [
-                  19.223289,
-                  23.807653
-                ],
-                [
-                  17.029022,
-                  25.823601
-                ],
-                [
-                  12.837417,
-                  21.253758
+                  12.6194784,
+                  29.841463857
                 ]
               ]
             },
             {
               "id": "study-55-2-east-2",
-              "label": "Room F — estimated layout",
+              "label": "Room F",
               "shortLabel": "F",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
               "polygon": [
                 [
-                  10.642351,
-                  23.267143
+                  14.904012778,
+                  27.746015772
                 ],
                 [
-                  12.837417,
-                  21.253758
+                  10.848306806,
+                  23.324336332
                 ],
                 [
-                  17.029022,
-                  25.823601
+                  12.838062554,
+                  21.499268644
                 ],
                 [
-                  14.835599,
-                  27.838774
+                  16.893768526,
+                  25.920948084
                 ],
                 [
-                  10.642351,
-                  23.267143
+                  14.904012778,
+                  27.746015772
                 ]
               ]
             },
             {
-              "id": "study-55-2-east-3",
-              "label": "Room G — estimated layout",
-              "shortLabel": "G",
+              "id": "study-55-2-east-1",
+              "label": "Room E",
+              "shortLabel": "E",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
               "polygon": [
                 [
-                  8.303391,
-                  25.412513
+                  17.188547155,
+                  25.650567686
                 ],
                 [
-                  10.642351,
-                  23.267143
+                  13.132841183,
+                  21.228888246
                 ],
                 [
-                  14.835599,
-                  27.838774
+                  15.122596931,
+                  19.403820559
                 ],
                 [
-                  12.493,
-                  29.991
+                  19.178302903,
+                  23.825499999
                 ],
                 [
-                  8.303391,
-                  25.412513
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-west-1",
-              "label": "Room W1 — estimated layout",
-              "shortLabel": "W1",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -4.428105,
-                  -3.90086
-                ],
-                [
-                  -2.109932,
-                  -6.030925
-                ],
-                [
-                  2.120963,
-                  -1.400469
-                ],
-                [
-                  -0.19687,
-                  0.725521
-                ],
-                [
-                  -4.428105,
-                  -3.90086
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-west-2",
-              "label": "Room W2 — estimated layout",
-              "shortLabel": "W2",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -6.599895,
-                  -1.905299
-                ],
-                [
-                  -4.428105,
-                  -3.90086
-                ],
-                [
-                  -0.19687,
-                  0.725521
-                ],
-                [
-                  -2.368202,
-                  2.717137
-                ],
-                [
-                  -6.599895,
-                  -1.905299
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-west-3",
-              "label": "Room W3 — estimated layout",
-              "shortLabel": "W3",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -8.772576,
-                  0.091079
-                ],
-                [
-                  -6.599895,
-                  -1.905299
-                ],
-                [
-                  -2.368202,
-                  2.717137
-                ],
-                [
-                  -4.540425,
-                  4.709569
-                ],
-                [
-                  -8.772576,
-                  0.091079
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-west-4",
-              "label": "Room W4 — estimated layout",
-              "shortLabel": "W4",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -10.94682,
-                  2.087541
-                ],
-                [
-                  -10.615675,
-                  1.783262
-                ],
-                [
-                  -10.615,
-                  1.784
-                ],
-                [
-                  -8.772576,
-                  0.091079
-                ],
-                [
-                  -4.540425,
-                  4.709569
-                ],
-                [
-                  -6.713539,
-                  6.702819
-                ],
-                [
-                  -10.94682,
-                  2.087541
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-center-left-1",
-              "label": "Room L1 — estimated layout",
-              "shortLabel": "L1",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.41m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -4.064728,
-                  6.665976
-                ],
-                [
-                  0.56704,
-                  2.412647
-                ],
-                [
-                  0.870736,
-                  2.744323
-                ],
-                [
-                  0.87,
-                  2.745
-                ],
-                [
-                  2.552253,
-                  4.58231
-                ],
-                [
-                  -2.076871,
-                  8.833211
-                ],
-                [
-                  -4.064728,
-                  6.665976
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-center-left-2",
-              "label": "Room L2 — estimated layout",
-              "shortLabel": "L2",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -2.076871,
-                  8.833211
-                ],
-                [
-                  2.552253,
-                  4.58231
-                ],
-                [
-                  4.538197,
-                  6.751301
-                ],
-                [
-                  -0.089014,
-                  11.000446
-                ],
-                [
-                  -2.076871,
-                  8.833211
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-center-left-3",
-              "label": "Room L3 — estimated layout",
-              "shortLabel": "L3",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.39m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  -0.089014,
-                  11.000446
-                ],
-                [
-                  4.538197,
-                  6.751301
-                ],
-                [
-                  6.524141,
-                  8.920293
-                ],
-                [
-                  2.554628,
-                  12.565476
-                ],
-                [
-                  1.898843,
-                  13.16768
-                ],
-                [
-                  -0.089014,
-                  11.000446
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-center-right-1",
-              "label": "Room R1 — estimated layout",
-              "shortLabel": "R1",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Resident-requested R-bank alignment study: both side lines meet the opposite recess endpoints, retaining source exterior and windows. Approximately 16.07m² inside the existing assumed perimeter allowances is 0.33m² below the conditional 16.4m² benchmark. The 1.20m north connector study guard is retained; the remaining narrow stair-side strip is unassigned, not an assumed passage. Actual apartment and service-partition dimensions remain unknown.",
-              "polygon": [
-                [
-                  1.661524,
-                  16.196293
-                ],
-                [
-                  6.118379,
-                  12.106429
-                ],
-                [
-                  8.143368,
-                  14.314146
-                ],
-                [
-                  3.68257,
-                  18.403663
-                ],
-                [
-                  2.304,
-                  16.898
-                ],
-                [
-                  1.661524,
-                  16.196293
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-center-right-2",
-              "label": "Room R2 — estimated layout",
-              "shortLabel": "R2",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Resident-requested R-bank alignment study: both side lines meet the opposite recess endpoints, retaining source exterior and windows. Approximately 16.08m² inside the existing assumed perimeter allowances is 0.32m² below the conditional 16.4m² benchmark. The 1.20m north connector study guard is retained; the remaining narrow stair-side strip is unassigned, not an assumed passage. Actual apartment and service-partition dimensions remain unknown.",
-              "polygon": [
-                [
-                  3.68257,
-                  18.403663
-                ],
-                [
-                  8.143368,
-                  14.314146
-                ],
-                [
-                  10.168357,
-                  16.521863
-                ],
-                [
-                  5.703614,
-                  20.611031
-                ],
-                [
-                  3.68257,
-                  18.403663
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-center-right-3",
-              "label": "Room R3 — estimated layout",
-              "shortLabel": "R3",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Resident-requested R-bank alignment study: both side lines meet the opposite recess endpoints, retaining source exterior and windows. Approximately 16.08m² inside the existing assumed perimeter allowances is 0.32m² below the conditional 16.4m² benchmark. The 1.20m north connector study guard is retained; the remaining narrow stair-side strip is unassigned, not an assumed passage. Actual apartment and service-partition dimensions remain unknown.",
-              "polygon": [
-                [
-                  5.703614,
-                  20.611031
-                ],
-                [
-                  10.168357,
-                  16.521863
-                ],
-                [
-                  12.193345,
-                  18.72958
-                ],
-                [
-                  7.724656,
-                  22.818397
-                ],
-                [
-                  5.703614,
-                  20.611031
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-upper-right-1",
-              "label": "Room N1 — estimated layout",
-              "shortLabel": "N1",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  15.350144,
-                  15.840507
-                ],
-                [
-                  19.764,
-                  11.799
-                ],
-                [
-                  21.91159,
-                  14.149664
-                ],
-                [
-                  17.505856,
-                  18.190744
-                ],
-                [
-                  15.350144,
-                  15.840507
-                ]
-              ]
-            },
-            {
-              "id": "study-55-2-upper-right-2",
-              "label": "Room N2 — estimated layout",
-              "shortLabel": "N2",
-              "kind": "room",
-              "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
-              "polygon": [
-                [
-                  17.505856,
-                  18.190744
-                ],
-                [
-                  21.91159,
-                  14.149664
-                ],
-                [
-                  23.995593,
-                  16.430728
-                ],
-                [
-                  19.594346,
-                  20.467692
-                ],
-                [
-                  17.505856,
-                  18.190744
+                  17.188547155,
+                  25.650567686
                 ]
               ]
             },
             {
               "id": "study-55-2-upper-right-3",
-              "label": "Room N3 — estimated layout",
+              "label": "Room N3",
               "shortLabel": "N3",
               "kind": "room",
               "confidence": "estimated",
-              "note": "Conditional area study: approximately 16.40m² inside assumed perimeter allowances, before unknown service-partition footprints. The published 16.4m² average is a study benchmark, not a verified individual apartment area. A straight corridor wall and source facade are retained; room dimensions and masonry remain estimates.",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
               "polygon": [
                 [
-                  19.594346,
-                  20.467692
+                  21.506534112,
+                  23.996787581
                 ],
                 [
-                  23.995593,
-                  16.430728
+                  19.681466425,
+                  22.007031833
                 ],
                 [
-                  26.215,
-                  18.86
+                  24.103145865,
+                  17.951325861
                 ],
                 [
-                  21.821666,
-                  22.895998
+                  25.928213552,
+                  19.941081609
                 ],
                 [
-                  19.594346,
-                  20.467692
+                  21.506534112,
+                  23.996787581
                 ]
               ]
             },
             {
-              "id": "study-55-2-stairs",
-              "label": "Stairwell — resident correction",
-              "shortLabel": "Stairs",
-              "kind": "stairs",
+              "id": "study-55-2-upper-right-2",
+              "label": "Room N2",
+              "shortLabel": "N2",
+              "kind": "room",
               "confidence": "estimated",
-              "note": "The resident-aligned gross enclosure remains unchanged at about 1.781m and a 25% L3 / 75% R1 split about the fixed exterior-edge extension. The schematic flight now uses an explicit 0.10m inset on both sides, giving about 1.581m width and 21.84% L3 / 78.16% R1. These are conditional display allowances, not measured masonry or clear stair dimensions. Shrinking only the R edge with the west edge fixed would exceed 25% on the L3 side. The west entry remains; east access is unconfirmed.",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
               "polygon": [
                 [
-                  0.742734,
-                  14.229329
+                  19.411086027,
+                  21.712253203
                 ],
                 [
-                  1.898843,
-                  13.16768
+                  17.586018339,
+                  19.722497456
                 ],
                 [
-                  2.554628,
-                  12.565476
+                  22.007697779,
+                  15.666791484
                 ],
                 [
-                  6.524141,
-                  8.920293
+                  23.832765467,
+                  17.656547231
                 ],
                 [
-                  7.726655,
-                  10.233645
-                ],
-                [
-                  5.921263,
-                  11.891527
-                ],
-                [
-                  1.945754,
-                  15.542216
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  0.742734,
-                  14.229329
-                ]
-              ],
-              "stairFlight": [
-                [
-                  4.983194,
-                  10.471103
-                ],
-                [
-                  6.051676,
-                  11.636002
-                ],
-                [
-                  2.88089,
-                  14.547719
-                ],
-                [
-                  1.812408,
-                  13.38282
-                ],
-                [
-                  4.983194,
-                  10.471103
+                  19.411086027,
+                  21.712253203
                 ]
               ]
             },
             {
-              "id": "study-55-2-potential-corridor",
-              "label": "West hall — study",
-              "shortLabel": "West hall",
-              "kind": "corridor",
+              "id": "study-55-2-upper-right-1",
+              "label": "Room N1",
+              "shortLabel": "N1",
+              "kind": "room",
               "confidence": "estimated",
-              "note": "Hall envelope recalculated around the conditional area study. Assumed boundary allowances and a 1.20m connector guard are geometric study inputs, not measurements or code-compliance findings. The east stairwell entrance remains unconfirmed.",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
               "polygon": [
                 [
-                  -14.633999,
-                  0.678533
+                  17.315637941,
+                  19.427718826
                 ],
                 [
-                  -13.000153,
-                  -0.82286
+                  15.490570254,
+                  17.437963078
                 ],
                 [
-                  -10.615675,
-                  1.783262
+                  19.912249694,
+                  13.382257106
                 ],
                 [
-                  -10.94682,
-                  2.087541
+                  21.737317381,
+                  15.372012854
                 ],
                 [
-                  -6.713539,
-                  6.702819
+                  17.315637941,
+                  19.427718826
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-right-3",
+              "label": "Room R3",
+              "shortLabel": "R3",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  8.73506001,
+                  23.091553208
                 ],
                 [
-                  -4.540425,
-                  4.709569
+                  6.909992323,
+                  21.10179746
                 ],
                 [
-                  -2.368202,
-                  2.717137
+                  11.331671763,
+                  17.046091488
                 ],
                 [
-                  -0.19687,
-                  0.725521
+                  13.15673945,
+                  19.035847236
                 ],
                 [
-                  2.120963,
-                  -1.400469
+                  8.73506001,
+                  23.091553208
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-right-2",
+              "label": "Room R2",
+              "shortLabel": "R2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  6.639611925,
+                  20.807018831
                 ],
                 [
-                  3.608,
-                  0.227
+                  4.814544238,
+                  18.817263083
                 ],
                 [
-                  0.870736,
-                  2.744323
+                  9.236223677,
+                  14.761557111
                 ],
                 [
-                  0.56704,
-                  2.412647
+                  11.061291365,
+                  16.751312859
                 ],
                 [
-                  -4.064728,
-                  6.665976
+                  6.639611925,
+                  20.807018831
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-right-1",
+              "label": "Room R1",
+              "shortLabel": "R1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  4.544163839,
+                  18.522484453
                 ],
                 [
-                  -2.076871,
-                  8.833211
+                  2.719096152,
+                  16.532728705
                 ],
                 [
-                  -0.089014,
-                  11.000446
+                  7.140775592,
+                  12.477022733
                 ],
                 [
-                  1.898843,
-                  13.16768
+                  8.965843279,
+                  14.466778481
                 ],
                 [
-                  0.742734,
-                  14.229329
+                  4.544163839,
+                  18.522484453
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-left-3",
+              "label": "Room L3",
+              "shortLabel": "L3",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  1.655373269,
+                  13.301862935
                 ],
                 [
-                  -4.866,
-                  8.09
+                  -0.169694418,
+                  11.312107187
                 ],
                 [
-                  -5.773,
-                  8.924
+                  4.251985022,
+                  7.256401215
                 ],
                 [
-                  -6.477424,
-                  9.57113
+                  6.077052709,
+                  9.246156963
                 ],
                 [
-                  -8.530079,
-                  7.33325
+                  1.655373269,
+                  13.301862935
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-left-2",
+              "label": "Room L2",
+              "shortLabel": "L2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -0.440074816,
+                  11.017328557
                 ],
                 [
-                  -10.517889,
-                  5.166067
+                  -2.265142504,
+                  9.027572809
                 ],
                 [
-                  -12.506823,
-                  2.997658
+                  2.156536936,
+                  4.971866837
                 ],
                 [
-                  -14.633999,
-                  0.678533
+                  3.981604624,
+                  6.961622585
+                ],
+                [
+                  -0.440074816,
+                  11.017328557
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-center-left-1",
+              "label": "Room L1",
+              "shortLabel": "L1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -2.535522902,
+                  8.73279418
+                ],
+                [
+                  -4.360590589,
+                  6.743038432
+                ],
+                [
+                  0.061088851,
+                  2.68733246
+                ],
+                [
+                  1.886156538,
+                  4.677088208
+                ],
+                [
+                  -2.535522902,
+                  8.73279418
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-4",
+              "label": "Room D",
+              "shortLabel": "D",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -11.116100833,
+                  12.396628562
+                ],
+                [
+                  -12.94116852,
+                  10.406872814
+                ],
+                [
+                  -8.51948908,
+                  6.351166842
+                ],
+                [
+                  -6.694421393,
+                  8.34092259
+                ],
+                [
+                  -11.116100833,
+                  12.396628562
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-3",
+              "label": "Room C",
+              "shortLabel": "C",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -13.211548918,
+                  10.112094185
+                ],
+                [
+                  -15.036616605,
+                  8.122338437
+                ],
+                [
+                  -10.614937166,
+                  4.066632465
+                ],
+                [
+                  -8.789869478,
+                  6.056388213
+                ],
+                [
+                  -13.211548918,
+                  10.112094185
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-2",
+              "label": "Room B",
+              "shortLabel": "B",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -15.306997004,
+                  7.827559807
+                ],
+                [
+                  -17.132064691,
+                  5.837804059
+                ],
+                [
+                  -12.710385251,
+                  1.782098087
+                ],
+                [
+                  -10.885317564,
+                  3.771853835
+                ],
+                [
+                  -15.306997004,
+                  7.827559807
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-sw-1",
+              "label": "Room A",
+              "shortLabel": "A",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -17.402445089,
+                  5.54302543
+                ],
+                [
+                  -19.227512776,
+                  3.553269682
+                ],
+                [
+                  -14.805833337,
+                  -0.50243629
+                ],
+                [
+                  -12.980765649,
+                  1.487319458
+                ],
+                [
+                  -17.402445089,
+                  5.54302543
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-4",
+              "label": "Room W4",
+              "shortLabel": "W4",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -6.32644807,
+                  6.375065109
+                ],
+                [
+                  -10.382154042,
+                  1.953385669
+                ],
+                [
+                  -8.392398294,
+                  0.128317982
+                ],
+                [
+                  -4.336692322,
+                  4.549997422
+                ],
+                [
+                  -6.32644807,
+                  6.375065109
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-3",
+              "label": "Room W3",
+              "shortLabel": "W3",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -4.041913692,
+                  4.279617024
+                ],
+                [
+                  -8.097619664,
+                  -0.142062416
+                ],
+                [
+                  -6.107863917,
+                  -1.967130103
+                ],
+                [
+                  -2.052157945,
+                  2.454549336
+                ],
+                [
+                  -4.041913692,
+                  4.279617024
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-2",
+              "label": "Room W2",
+              "shortLabel": "W2",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  -1.757379315,
+                  2.184168938
+                ],
+                [
+                  -5.813085287,
+                  -2.237510502
+                ],
+                [
+                  -3.823329539,
+                  -4.062578189
+                ],
+                [
+                  0.232376433,
+                  0.359101251
+                ],
+                [
+                  -1.757379315,
+                  2.184168938
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-west-1",
+              "label": "Room W1",
+              "shortLabel": "W1",
+              "kind": "room",
+              "confidence": "estimated",
+              "note": "Clear interior 2.70 x 6.00 m = 16.20 square metres. Two 0.20 m side walls are allocated outside it, giving a 3.10 m module. Bathroom and kitchen partitions are not yet drawn.",
+              "polygon": [
+                [
+                  0.527155062,
+                  0.088720853
+                ],
+                [
+                  -3.52855091,
+                  -4.332958587
+                ],
+                [
+                  -1.538795162,
+                  -6.158026275
+                ],
+                [
+                  2.51691081,
+                  -1.736346835
+                ],
+                [
+                  0.527155062,
+                  0.088720853
                 ]
               ]
             },
             {
               "id": "study-55-2-potential-corridor-east",
-              "label": "East hall — connection unconfirmed",
+              "label": "East hall",
               "shortLabel": "East hall",
               "kind": "corridor",
               "confidence": "estimated",
-              "note": "East hall follows the recess-aligned R-bank study and retains the 1.20m north connector study guard. The narrow strip beside the staircase and its blind end pocket are unassigned and not treated as a passage; no east stair entrance is inferred.",
+              "note": "Continuous 1.40 m clear hallway in the user-specified layout.",
               "polygon": [
                 [
-                  5.921264,
-                  11.891526
+                  20.609999109,
+                  25.090508289
                 ],
                 [
-                  7.726655,
-                  10.233645
+                  15.269986246,
+                  19.26863036
                 ],
                 [
-                  7.924865,
-                  10.450124
+                  8.416383114,
+                  25.554974616
                 ],
                 [
-                  7.238,
-                  11.079
+                  7.47005172,
+                  24.523249414
                 ],
                 [
-                  13.3,
-                  17.717
+                  13.291929649,
+                  19.183236551
                 ],
                 [
-                  14.24,
-                  16.857
+                  7.005585393,
+                  12.329633419
                 ],
                 [
-                  15.350144,
-                  15.840507
+                  8.037310595,
+                  11.383302025
                 ],
                 [
-                  17.505856,
-                  18.190744
+                  14.323654852,
+                  18.236905157
                 ],
                 [
-                  19.594346,
-                  20.467692
+                  15.355380055,
+                  17.290573764
                 ],
                 [
-                  21.821666,
-                  22.895998
+                  21.641724311,
+                  24.144176895
                 ],
                 [
-                  19.957,
-                  24.609
-                ],
-                [
-                  19.224,
-                  23.807
-                ],
-                [
-                  19.223289,
-                  23.807653
-                ],
-                [
-                  15.033325,
-                  19.239601
-                ],
-                [
-                  12.837417,
-                  21.253758
-                ],
-                [
-                  10.642351,
-                  23.267143
-                ],
-                [
-                  8.303391,
-                  25.412513
-                ],
-                [
-                  6.783263,
-                  23.751287
-                ],
-                [
-                  7.76,
-                  22.857
-                ],
-                [
-                  7.724656,
-                  22.818397
-                ],
-                [
-                  12.193345,
-                  18.72958
-                ],
-                [
-                  10.168357,
-                  16.521863
-                ],
-                [
-                  8.143368,
-                  14.314146
-                ],
-                [
-                  6.118379,
-                  12.106429
-                ],
-                [
-                  5.921264,
-                  11.891526
+                  20.609999109,
+                  25.090508289
                 ]
               ]
             },
             {
-              "id": "study-55-2-unassigned-stair-side",
-              "label": "Unassigned strip — access unknown",
-              "shortLabel": "Unassigned",
-              "kind": "service",
+              "id": "study-55-2-potential-corridor",
+              "label": "West hall",
+              "shortLabel": "West hall",
+              "kind": "corridor",
               "confidence": "estimated",
-              "note": "Narrow residual strip beside the staircase and its connected blind end pocket. No room, passage, service use or east stair entrance is established here. It is explicitly excluded from the hallway study and has no doorway.",
+              "note": "Continuous 1.40 m clear hallway in the user-specified layout.",
               "polygon": [
                 [
-                  0.48,
-                  15.075
+                  0.758838266,
+                  14.395583643
                 ],
                 [
-                  1.043,
-                  14.558
+                  -5.527505991,
+                  7.541980511
                 ],
                 [
-                  1.945754,
-                  15.542216
+                  -6.559231194,
+                  8.488311904
                 ],
                 [
-                  5.921263,
-                  11.891527
+                  -14.941023536,
+                  -0.649825605
                 ],
                 [
-                  6.118379,
-                  12.106429
+                  -13.909298333,
+                  -1.596156998
                 ],
                 [
-                  1.661524,
-                  16.196293
+                  -6.473837384,
+                  6.510255308
                 ],
                 [
-                  2.304,
-                  16.898
+                  2.664300125,
+                  -1.871537034
                 ],
                 [
-                  2.219,
-                  16.976
+                  3.610631518,
+                  -0.839811831
                 ],
                 [
-                  0.48,
-                  15.075
+                  -4.495780788,
+                  6.595649118
+                ],
+                [
+                  1.790563468,
+                  13.449252249
+                ],
+                [
+                  0.758838266,
+                  14.395583643
+                ]
+              ]
+            },
+            {
+              "id": "study-55-2-stairs",
+              "label": "Stairwell",
+              "shortLabel": "Stairs",
+              "kind": "stairs",
+              "confidence": "estimated",
+              "note": "Requested 2.70 m split: 1.30 m flight column and 1.40 m walkway. Flight run, treads, 1.40 m landings and doors are illustrative.",
+              "polygon": [
+                [
+                  2.583905953,
+                  16.385339391
+                ],
+                [
+                  0.758838266,
+                  14.395583643
+                ],
+                [
+                  6.212242908,
+                  9.393546277
+                ],
+                [
+                  8.037310595,
+                  11.383302025
+                ],
+                [
+                  2.583905953,
+                  16.385339391
+                ]
+              ],
+              "stairFlight": [
+                [
+                  3.615631156,
+                  15.439007997
+                ],
+                [
+                  2.736894862,
+                  14.480977452
+                ],
+                [
+                  6.126849099,
+                  11.371602873
+                ],
+                [
+                  7.005585393,
+                  12.329633419
+                ],
+                [
+                  3.615631156,
+                  15.439007997
                 ]
               ]
             }
           ],
           "doors": [
             {
-              "id": "study-55-2-opening-sw-1",
-              "label": "Estimated opening — Room A — estimated layout",
-              "spaceId": "study-55-2-sw-1",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -13.874589,
-                  1.50647
-                ],
-                [
-                  -13.266233,
-                  2.169721
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-sw-2",
-              "label": "Estimated opening — Room B — estimated layout",
-              "spaceId": "study-55-2-sw-2",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -11.816534,
-                  3.750237
-                ],
-                [
-                  -11.208178,
-                  4.413488
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-sw-3",
-              "label": "Estimated opening — Room C — estimated layout",
-              "spaceId": "study-55-2-sw-3",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -9.828162,
-                  5.918033
-                ],
-                [
-                  -9.219806,
-                  6.581284
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-sw-4",
-              "label": "Estimated opening — Room D — estimated layout",
-              "spaceId": "study-55-2-sw-4",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -7.807929,
-                  8.120564
-                ],
-                [
-                  -7.199574,
-                  8.783816
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-east-1",
-              "label": "Estimated opening — Room E — estimated layout",
-              "spaceId": "study-55-2-east-1",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  13.603745,
-                  20.550857
-                ],
-                [
-                  14.266997,
-                  19.942502
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-east-2",
-              "label": "Estimated opening — Room F — estimated layout",
-              "spaceId": "study-55-2-east-2",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  11.408258,
-                  22.564629
-                ],
-                [
-                  12.07151,
-                  21.956272
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-east-3",
-              "label": "Estimated opening — Room G — estimated layout",
+              "id": "module-door-G",
+              "label": "Room G doorway",
               "spaceId": "study-55-2-east-3",
+              "toSpaceId": "study-55-2-potential-corridor-east",
               "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
               "segment": [
                 [
-                  9.141245,
-                  24.644006
+                  9.227024344,
+                  24.811428521
                 ],
                 [
-                  9.804497,
-                  24.03565
+                  9.89027626,
+                  24.203072626
                 ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
+              ]
             },
             {
-              "id": "study-55-2-opening-west-1",
-              "label": "Estimated opening — Room W1 — estimated layout",
-              "spaceId": "study-55-2-west-1",
+              "id": "module-door-F",
+              "label": "Room F doorway",
+              "spaceId": "study-55-2-east-2",
+              "toSpaceId": "study-55-2-potential-corridor-east",
               "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
               "segment": [
                 [
-                  1.293673,
-                  -0.641652
+                  11.511558722,
+                  22.715980436
                 ],
                 [
-                  0.63042,
-                  -0.033296
+                  12.174810638,
+                  22.10762454
                 ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              ]
             },
             {
-              "id": "study-55-2-opening-west-2",
-              "label": "Estimated opening — Room W2 — estimated layout",
-              "spaceId": "study-55-2-west-2",
+              "id": "module-door-E",
+              "label": "Room E doorway",
+              "spaceId": "study-55-2-east-1",
+              "toSpaceId": "study-55-2-potential-corridor-east",
               "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
               "segment": [
                 [
-                  -0.950911,
-                  1.417151
+                  13.796093099,
+                  20.62053235
                 ],
                 [
-                  -1.614161,
-                  2.025507
+                  14.459345015,
+                  20.012176455
                 ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
+              ]
             },
             {
-              "id": "study-55-2-opening-west-3",
-              "label": "Estimated opening — Room W3 — estimated layout",
-              "spaceId": "study-55-2-west-3",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -3.122688,
-                  3.409175
-                ],
-                [
-                  -3.785939,
-                  4.017531
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-west-4",
-              "label": "Estimated opening — Room W4 — estimated layout",
-              "spaceId": "study-55-2-west-4",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -5.295356,
-                  5.402016
-                ],
-                [
-                  -5.958608,
-                  6.010372
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-center-left-1",
-              "label": "Estimated opening — Room L1 — estimated layout",
-              "spaceId": "study-55-2-center-left-1",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -2.766622,
-                  8.08122
-                ],
-                [
-                  -3.374977,
-                  7.417967
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-center-left-2",
-              "label": "Estimated opening — Room L2 — estimated layout",
-              "spaceId": "study-55-2-center-left-2",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  -0.778765,
-                  10.248455
-                ],
-                [
-                  -1.38712,
-                  9.585202
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-center-left-3",
-              "label": "Estimated opening — Room L3 — estimated layout",
-              "spaceId": "study-55-2-center-left-3",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  1.209093,
-                  12.415689
-                ],
-                [
-                  0.600736,
-                  11.752437
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor"
-            },
-            {
-              "id": "study-55-2-opening-center-right-1",
-              "label": "Estimated opening — Room R1 — estimated layout",
-              "spaceId": "study-55-2-center-right-1",
-              "confidence": "estimated",
-              "note": "Illustrative doorway recentered on the aligned R-bank corridor wall. Width, hinge, exact position and apartment internals remain unmeasured.",
-              "segment": [
-                [
-                  6.826696,
-                  12.878662
-                ],
-                [
-                  7.435051,
-                  13.541913
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-center-right-2",
-              "label": "Estimated opening — Room R2 — estimated layout",
-              "spaceId": "study-55-2-center-right-2",
-              "confidence": "estimated",
-              "note": "Illustrative doorway recentered on the aligned R-bank corridor wall. Width, hinge, exact position and apartment internals remain unmeasured.",
-              "segment": [
-                [
-                  8.851684,
-                  15.086378
-                ],
-                [
-                  9.460041,
-                  15.749631
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-center-right-3",
-              "label": "Estimated opening — Room R3 — estimated layout",
-              "spaceId": "study-55-2-center-right-3",
-              "confidence": "estimated",
-              "note": "Illustrative doorway recentered on the aligned R-bank corridor wall. Width, hinge, exact position and apartment internals remain unmeasured.",
-              "segment": [
-                [
-                  10.876673,
-                  17.294095
-                ],
-                [
-                  11.485029,
-                  17.957348
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-upper-right-1",
-              "label": "Estimated opening — Room N1 — estimated layout",
-              "spaceId": "study-55-2-upper-right-1",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  16.732178,
-                  17.347252
-                ],
-                [
-                  16.123822,
-                  16.683999
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-upper-right-2",
-              "label": "Estimated opening — Room N2 — estimated layout",
-              "spaceId": "study-55-2-upper-right-2",
-              "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
-              "segment": [
-                [
-                  18.854279,
-                  19.660844
-                ],
-                [
-                  18.245923,
-                  18.997592
-                ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
-            },
-            {
-              "id": "study-55-2-opening-upper-right-3",
-              "label": "Estimated opening — Room N3 — estimated layout",
+              "id": "module-door-N3",
+              "label": "Room N3 doorway",
               "spaceId": "study-55-2-upper-right-3",
+              "toSpaceId": "study-55-2-potential-corridor-east",
               "confidence": "estimated",
-              "note": "Illustrative opening recentered on the conditional area-study corridor wall. Door width, position, hinge and internal apartment plan remain unmeasured.",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
               "segment": [
                 [
-                  21.012184,
-                  22.013471
+                  20.898178216,
+                  23.333535665
                 ],
                 [
-                  20.403828,
-                  21.350219
+                  20.289822321,
+                  22.670283749
                 ]
-              ],
-              "toSpaceId": "study-55-2-potential-corridor-east"
+              ]
             },
             {
-              "id": "study-55-2-opening-stairs",
-              "label": "Stairwell entrance — resident mark",
+              "id": "module-door-N2",
+              "label": "Room N2 doorway",
+              "spaceId": "study-55-2-upper-right-2",
+              "toSpaceId": "study-55-2-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  18.802730131,
+                  21.049001287
+                ],
+                [
+                  18.194374235,
+                  20.385749372
+                ]
+              ]
+            },
+            {
+              "id": "module-door-N1",
+              "label": "Room N1 doorway",
+              "spaceId": "study-55-2-upper-right-1",
+              "toSpaceId": "study-55-2-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  16.707282045,
+                  18.76446691
+                ],
+                [
+                  16.09892615,
+                  18.101214994
+                ]
+              ]
+            },
+            {
+              "id": "module-door-R3",
+              "label": "Room R3 doorway",
+              "spaceId": "study-55-2-center-right-3",
+              "toSpaceId": "study-55-2-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  12.548383555,
+                  18.37259532
+                ],
+                [
+                  11.940027659,
+                  17.709343404
+                ]
+              ]
+            },
+            {
+              "id": "module-door-R2",
+              "label": "Room R2 doorway",
+              "spaceId": "study-55-2-center-right-2",
+              "toSpaceId": "study-55-2-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  10.452935469,
+                  16.088060943
+                ],
+                [
+                  9.844579573,
+                  15.424809027
+                ]
+              ]
+            },
+            {
+              "id": "module-door-R1",
+              "label": "Room R1 doorway",
+              "spaceId": "study-55-2-center-right-1",
+              "toSpaceId": "study-55-2-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  8.357487384,
+                  13.803526565
+                ],
+                [
+                  7.749131488,
+                  13.140274649
+                ]
+              ]
+            },
+            {
+              "id": "module-door-L3",
+              "label": "Room L3 doorway",
+              "spaceId": "study-55-2-center-left-3",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  1.047017373,
+                  12.638611019
+                ],
+                [
+                  0.438661478,
+                  11.975359103
+                ]
+              ]
+            },
+            {
+              "id": "module-door-L2",
+              "label": "Room L2 doorway",
+              "spaceId": "study-55-2-center-left-2",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -1.048430712,
+                  10.354076641
+                ],
+                [
+                  -1.656786608,
+                  9.690824725
+                ]
+              ]
+            },
+            {
+              "id": "module-door-L1",
+              "label": "Room L1 doorway",
+              "spaceId": "study-55-2-center-left-1",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -3.143878798,
+                  8.069542264
+                ],
+                [
+                  -3.752234693,
+                  7.406290348
+                ]
+              ]
+            },
+            {
+              "id": "module-door-D",
+              "label": "Room D doorway",
+              "spaceId": "study-55-2-sw-4",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -7.302777288,
+                  7.677670674
+                ],
+                [
+                  -7.911133184,
+                  7.014418758
+                ]
+              ]
+            },
+            {
+              "id": "module-door-C",
+              "label": "Room C doorway",
+              "spaceId": "study-55-2-sw-3",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -9.398225374,
+                  5.393136297
+                ],
+                [
+                  -10.00658127,
+                  4.729884381
+                ]
+              ]
+            },
+            {
+              "id": "module-door-B",
+              "label": "Room B doorway",
+              "spaceId": "study-55-2-sw-2",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -11.493673459,
+                  3.108601919
+                ],
+                [
+                  -12.102029355,
+                  2.445350003
+                ]
+              ]
+            },
+            {
+              "id": "module-door-A",
+              "label": "Room A doorway",
+              "spaceId": "study-55-2-sw-1",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -13.589121545,
+                  0.824067542
+                ],
+                [
+                  -14.197477441,
+                  0.160815626
+                ]
+              ]
+            },
+            {
+              "id": "module-door-W4",
+              "label": "Room W4 doorway",
+              "spaceId": "study-55-2-west-4",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -5.663196154,
+                  5.766709214
+                ],
+                [
+                  -4.999944238,
+                  5.158353318
+                ]
+              ]
+            },
+            {
+              "id": "module-door-W3",
+              "label": "Room W3 doorway",
+              "spaceId": "study-55-2-west-3",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -3.378661777,
+                  3.671261128
+                ],
+                [
+                  -2.715409861,
+                  3.062905232
+                ]
+              ]
+            },
+            {
+              "id": "module-door-W2",
+              "label": "Room W2 doorway",
+              "spaceId": "study-55-2-west-2",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  -1.094127399,
+                  1.575813042
+                ],
+                [
+                  -0.430875483,
+                  0.967457147
+                ]
+              ]
+            },
+            {
+              "id": "module-door-W1",
+              "label": "Room W1 doorway",
+              "spaceId": "study-55-2-west-1",
+              "toSpaceId": "study-55-2-potential-corridor",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway centred on the room-to-hall boundary.",
+              "segment": [
+                [
+                  1.190406978,
+                  -0.519635043
+                ],
+                [
+                  1.853658894,
+                  -1.127990939
+                ]
+              ]
+            },
+            {
+              "id": "module-stair-door-0",
+              "label": "East hall stair entry",
+              "spaceId": "study-55-2-stairs",
+              "toSpaceId": "study-55-2-potential-corridor-east",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway connecting the hall to its stair landing.",
+              "segment": [
+                [
+                  7.189822036,
+                  12.16064567
+                ],
+                [
+                  7.853073952,
+                  11.552289774
+                ]
+              ]
+            },
+            {
+              "id": "module-stair-door-1",
+              "label": "West hall stair entry",
               "spaceId": "study-55-2-stairs",
               "toSpaceId": "study-55-2-potential-corridor",
-              "confidence": "sketch",
-              "note": "Resident-confirmed west-hall entrance INTO the stairwell, below the flight. Its position follows the aligned west stair wall; displayed width and landing position remain estimates. The opposite stairwell entrance is unconfirmed.",
+              "confidence": "estimated",
+              "note": "Illustrative 0.90 m doorway connecting the hall to its stair landing.",
               "segment": [
                 [
-                  1.648554,
-                  13.39752
+                  0.943074909,
+                  14.226595894
                 ],
                 [
-                  0.838341,
-                  14.141534
+                  1.606326825,
+                  13.618239998
                 ]
               ]
             }
@@ -13356,342 +13026,1535 @@
             }
           ],
           "windowCoverage": "complete-floor",
-          "wallBands": [
+          "layoutWindows": [
             {
-              "id": "study-55-2-wall-band-east-return-1",
-              "label": "Possible wall band — east return",
+              "id": "module-window-G",
+              "label": "Room G window",
+              "spaceId": "study-55-2-east-3",
               "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  6.783263,
-                  23.751287
+                  13.227459323,
+                  29.283804286
                 ],
                 [
-                  6.922335,
-                  23.623955
-                ],
-                [
-                  7.057124,
-                  23.771259
-                ],
-                [
-                  6.918015,
-                  23.89855
-                ],
-                [
-                  6.783263,
-                  23.751287
+                  14.001253225,
+                  28.574055741
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-east-return-2",
-              "label": "Possible wall band — east return",
+              "id": "module-window-F",
+              "label": "Room F window",
+              "spaceId": "study-55-2-east-2",
               "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  7.549253,
-                  23.049957
+                  15.511993701,
+                  27.1883562
                 ],
                 [
-                  7.76,
-                  22.857
-                ],
-                [
-                  7.895015,
-                  23.00455
-                ],
-                [
-                  7.684211,
-                  23.197445
-                ],
-                [
-                  7.549253,
-                  23.049957
+                  16.285787603,
+                  26.478607655
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-north-recess-1",
-              "label": "Possible wall band — north recess",
+              "id": "module-window-E",
+              "label": "Room E window",
+              "spaceId": "study-55-2-east-1",
               "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  7.090316,
-                  11.213869
+                  17.796528078,
+                  25.092908115
                 ],
                 [
-                  7.238,
-                  11.079
-                ],
-                [
-                  13.3,
-                  17.717
-                ],
-                [
-                  13.152316,
-                  17.851869
-                ],
-                [
-                  7.090316,
-                  11.213869
+                  18.57032198,
+                  24.38315957
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-south-recess-1",
-              "label": "Possible wall band — south recess",
+              "id": "module-window-N3",
+              "label": "Room N3 window",
+              "spaceId": "study-55-2-upper-right-3",
               "confidence": "estimated",
-              "note": "Illustrative 0.20m inward band at a resident-marked edge. Not measured wall thickness or added usable floor area. Gross space envelopes may include wall material; independent room polygons never overlap.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  -4.866,
-                  8.09
+                  25.370553981,
+                  19.333100686
                 ],
                 [
-                  -4.718342,
-                  7.955103
-                ],
-                [
-                  1.190658,
-                  14.423103
-                ],
-                [
-                  1.043,
-                  14.558
-                ],
-                [
-                  -4.866,
-                  8.09
+                  24.660805436,
+                  18.559306784
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-west-elbow-1",
-              "label": "Possible wall band — west elbow",
+              "id": "module-window-N2",
+              "label": "Room N2 window",
+              "spaceId": "study-55-2-upper-right-2",
               "confidence": "estimated",
-              "note": "The 0.450m band illustrates the resident-confirmed gross corner overlap. Actual wall thickness, assembly and usable area remain unmeasured.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  0.565583,
-                  2.413985
+                  23.275105895,
+                  17.048566309
                 ],
                 [
-                  3.303583,
-                  -0.104015
-                ],
-                [
-                  3.608,
-                  0.227
-                ],
-                [
-                  0.87,
-                  2.745
-                ],
-                [
-                  0.565583,
-                  2.413985
+                  22.56535735,
+                  16.274772407
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-west-connector-1",
-              "label": "Possible wall band — west connector",
+              "id": "module-window-N1",
+              "label": "Room N1 window",
+              "spaceId": "study-55-2-upper-right-1",
               "confidence": "estimated",
-              "note": "The 0.450m band illustrates the resident-confirmed gross corner overlap. Actual wall thickness, assembly and usable area remain unmeasured.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  -13.331134,
-                  -0.518711
+                  21.17965781,
+                  14.764031931
                 ],
                 [
-                  -13.000153,
-                  -0.82286
-                ],
-                [
-                  -12.009346,
-                  0.260046
-                ],
-                [
-                  -12.341064,
-                  0.563517
-                ],
-                [
-                  -13.331134,
-                  -0.518711
+                  20.469909265,
+                  13.990238029
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-west-connector-2",
-              "label": "Possible wall band — west connector",
+              "id": "module-window-R3",
+              "label": "Room R3 window",
+              "spaceId": "study-55-2-center-right-3",
               "confidence": "estimated",
-              "note": "The 0.450m band illustrates the resident-confirmed gross corner overlap. Actual wall thickness, assembly and usable area remain unmeasured.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  -11.632321,
-                  1.338231
+                  8.177400439,
+                  22.483572285
                 ],
                 [
-                  -11.300557,
-                  1.034718
-                ],
-                [
-                  -10.615,
-                  1.784
-                ],
-                [
-                  -10.946808,
-                  2.087553
-                ],
-                [
-                  -11.632321,
-                  1.338231
+                  7.467651894,
+                  21.709778383
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-area-end-w1-1",
-              "label": "Thicker outer end wall — W1",
+              "id": "module-window-R2",
+              "label": "Room R2 window",
+              "spaceId": "study-55-2-center-right-2",
               "confidence": "estimated",
-              "note": "Resident-requested thickness hypothesis for this outside end wall. Its displayed 0.30m allowance is an explicit unmeasured study assumption, not a measured wall assembly.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  -2.330838,
-                  -5.827945
+                  6.081952354,
+                  20.199037908
                 ],
                 [
-                  -2.109932,
-                  -6.030925
-                ],
-                [
-                  2.120963,
-                  -1.400469
-                ],
-                [
-                  1.899879,
-                  -1.197684
-                ],
-                [
-                  -2.330838,
-                  -5.827945
+                  5.372203809,
+                  19.425244006
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-area-end-a-1",
-              "label": "Thicker outer end wall — A",
+              "id": "module-window-R1",
+              "label": "Room R1 window",
+              "spaceId": "study-55-2-center-right-1",
               "confidence": "estimated",
-              "note": "Resident-requested thickness hypothesis for this outside end wall. Its displayed 0.30m allowance is an explicit unmeasured study assumption, not a measured wall assembly.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  -19.253922,
-                  4.923928
+                  3.986504268,
+                  17.91450353
                 ],
                 [
-                  -14.633999,
-                  0.678533
-                ],
-                [
-                  -14.431213,
-                  0.899617
-                ],
-                [
-                  -19.051011,
-                  5.144897
-                ],
-                [
-                  -19.220825,
-                  4.960102
-                ],
-                [
-                  -19.253922,
-                  4.923928
+                  3.276755723,
+                  17.140709628
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-area-end-n3-1",
-              "label": "Thicker outer end wall — N3",
+              "id": "module-window-L3",
+              "label": "Room L3 window",
+              "spaceId": "study-55-2-center-left-3",
               "confidence": "estimated",
-              "note": "Resident-requested thickness hypothesis for this outside end wall. Its displayed 0.30m allowance is an explicit unmeasured study assumption, not a measured wall assembly.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  21.618881,
-                  22.674914
+                  5.519393138,
+                  8.63817604
                 ],
                 [
-                  26.012043,
-                  18.639074
-                ],
-                [
-                  26.215,
-                  18.86
-                ],
-                [
-                  21.821666,
-                  22.895998
-                ],
-                [
-                  21.618881,
-                  22.674914
+                  4.809644593,
+                  7.864382138
                 ]
               ]
             },
             {
-              "id": "study-55-2-wall-band-area-end-g-1",
-              "label": "Thicker outer end wall — G",
+              "id": "module-window-L2",
+              "label": "Room L2 window",
+              "spaceId": "study-55-2-center-left-2",
               "confidence": "estimated",
-              "note": "Resident-requested thickness hypothesis for this outside end wall. Its displayed 0.30m allowance is an explicit unmeasured study assumption, not a measured wall assembly.",
-              "polygon": [
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
                 [
-                  8.303391,
-                  25.412513
+                  3.423945052,
+                  6.353641662
                 ],
                 [
-                  8.524475,
-                  25.209728
+                  2.714196507,
+                  5.57984776
+                ]
+              ]
+            },
+            {
+              "id": "module-window-L1",
+              "label": "Room L1 window",
+              "spaceId": "study-55-2-center-left-1",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  1.328496967,
+                  4.069107285
                 ],
                 [
-                  12.713919,
-                  29.788034
+                  0.618748422,
+                  3.295313383
+                ]
+              ]
+            },
+            {
+              "id": "module-window-D",
+              "label": "Room D window",
+              "spaceId": "study-55-2-sw-4",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -11.673760404,
+                  11.788647639
                 ],
                 [
-                  12.493,
-                  29.991
+                  -12.383508949,
+                  11.014853737
+                ]
+              ]
+            },
+            {
+              "id": "module-window-C",
+              "label": "Room C window",
+              "spaceId": "study-55-2-sw-3",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -13.769208489,
+                  9.504113262
                 ],
                 [
-                  8.303391,
-                  25.412513
+                  -14.478957034,
+                  8.73031936
+                ]
+              ]
+            },
+            {
+              "id": "module-window-B",
+              "label": "Room B window",
+              "spaceId": "study-55-2-sw-2",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -15.864656575,
+                  7.219578884
+                ],
+                [
+                  -16.57440512,
+                  6.445784982
+                ]
+              ]
+            },
+            {
+              "id": "module-window-A",
+              "label": "Room A window",
+              "spaceId": "study-55-2-sw-1",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -17.96010466,
+                  4.935044507
+                ],
+                [
+                  -18.669853205,
+                  4.161250605
+                ]
+              ]
+            },
+            {
+              "id": "module-window-W4",
+              "label": "Room W4 window",
+              "spaceId": "study-55-2-west-4",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -9.774173119,
+                  1.395726098
+                ],
+                [
+                  -9.000379217,
+                  0.685977553
+                ]
+              ]
+            },
+            {
+              "id": "module-window-W3",
+              "label": "Room W3 window",
+              "spaceId": "study-55-2-west-3",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -7.489638741,
+                  -0.699721987
+                ],
+                [
+                  -6.71584484,
+                  -1.409470532
+                ]
+              ]
+            },
+            {
+              "id": "module-window-W2",
+              "label": "Room W2 window",
+              "spaceId": "study-55-2-west-2",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -5.205104364,
+                  -2.795170073
+                ],
+                [
+                  -4.431310462,
+                  -3.504918618
+                ]
+              ]
+            },
+            {
+              "id": "module-window-W1",
+              "label": "Room W1 window",
+              "spaceId": "study-55-2-west-1",
+              "confidence": "estimated",
+              "note": "Relocated schematic 1.05 m window in the independent module layout; the folded exterior keeps its separate source placement.",
+              "segment": [
+                [
+                  -2.920569987,
+                  -4.890618158
+                ],
+                [
+                  -2.146776085,
+                  -5.600366703
+                ]
+              ]
+            },
+            {
+              "id": "module-window-shared-0",
+              "label": "Shared window 1",
+              "confidence": "estimated",
+              "note": "Schematic shared opening, relocated for this independent floor layout; not a newly measured window.",
+              "segment": [
+                [
+                  8.29809169,
+                  25.426008966
+                ],
+                [
+                  7.588343144,
+                  24.652215064
+                ]
+              ]
+            },
+            {
+              "id": "module-window-shared-1",
+              "label": "Shared window 2",
+              "confidence": "estimated",
+              "note": "Schematic shared opening, relocated for this independent floor layout; not a newly measured window.",
+              "segment": [
+                [
+                  20.738964759,
+                  24.972216865
+                ],
+                [
+                  21.512758661,
+                  24.26246832
+                ]
+              ]
+            },
+            {
+              "id": "module-window-shared-2",
+              "label": "Shared window 3",
+              "confidence": "estimated",
+              "note": "Schematic shared opening, relocated for this independent floor layout; not a newly measured window.",
+              "segment": [
+                [
+                  -13.165752238,
+                  -0.785515767
+                ],
+                [
+                  -13.875500783,
+                  -1.559309669
+                ]
+              ]
+            },
+            {
+              "id": "module-window-shared-3",
+              "label": "Shared window 4",
+              "confidence": "estimated",
+              "note": "Schematic shared opening, relocated for this independent floor layout; not a newly measured window.",
+              "segment": [
+                [
+                  3.492340094,
+                  -0.968777481
+                ],
+                [
+                  2.782591549,
+                  -1.742571383
                 ]
               ]
             }
           ],
-          "dimensionGuides": [
+          "wallBands": [
             {
-              "id": "study-55-2-dimension-r-bank",
-              "label": "R bank",
-              "confidence": "estimated",
-              "segment": [
+              "id": "module-wall-G-0",
+              "label": "G side wall 1",
+              "polygon": [
                 [
-                  1.661524,
-                  16.196293
+                  12.472089086,
+                  29.976654056
                 ],
                 [
-                  7.724656,
-                  22.818397
+                  8.416383114,
+                  25.554974616
+                ],
+                [
+                  8.563772428,
+                  25.419784417
+                ],
+                [
+                  12.6194784,
+                  29.841463857
+                ],
+                [
+                  12.472089086,
+                  29.976654056
                 ]
               ],
-              "outward": [
-                -0.7375495742969205,
-                0.67529299230366
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-G-1",
+              "label": "G side wall 2",
+              "polygon": [
+                [
+                  14.609234148,
+                  28.01639617
+                ],
+                [
+                  10.553528176,
+                  23.59471673
+                ],
+                [
+                  10.700917491,
+                  23.459526531
+                ],
+                [
+                  14.756623463,
+                  27.881205971
+                ],
+                [
+                  14.609234148,
+                  28.01639617
+                ]
               ],
-              "note": "Estimated R-bank span aligned to the opposite recess endpoints. Distinct from the unchanged 8.08m source shell edge; side-wall slopes make this approximately 8.98m versus the opposite 8.99m recess."
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-F-0",
+              "label": "F side wall 1",
+              "polygon": [
+                [
+                  14.756623463,
+                  27.881205971
+                ],
+                [
+                  10.700917491,
+                  23.459526531
+                ],
+                [
+                  10.848306806,
+                  23.324336332
+                ],
+                [
+                  14.904012778,
+                  27.746015772
+                ],
+                [
+                  14.756623463,
+                  27.881205971
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-F-1",
+              "label": "F side wall 2",
+              "polygon": [
+                [
+                  16.893768526,
+                  25.920948084
+                ],
+                [
+                  12.838062554,
+                  21.499268644
+                ],
+                [
+                  12.985451868,
+                  21.364078445
+                ],
+                [
+                  17.04115784,
+                  25.785757885
+                ],
+                [
+                  16.893768526,
+                  25.920948084
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-E-0",
+              "label": "E side wall 1",
+              "polygon": [
+                [
+                  17.04115784,
+                  25.785757885
+                ],
+                [
+                  12.985451868,
+                  21.364078445
+                ],
+                [
+                  13.132841183,
+                  21.228888246
+                ],
+                [
+                  17.188547155,
+                  25.650567686
+                ],
+                [
+                  17.04115784,
+                  25.785757885
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-E-1",
+              "label": "E side wall 2",
+              "polygon": [
+                [
+                  19.178302903,
+                  23.825499999
+                ],
+                [
+                  15.122596931,
+                  19.403820559
+                ],
+                [
+                  15.269986246,
+                  19.26863036
+                ],
+                [
+                  19.325692217,
+                  23.6903098
+                ],
+                [
+                  19.178302903,
+                  23.825499999
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-N3-0",
+              "label": "N3 side wall 1",
+              "polygon": [
+                [
+                  21.641724311,
+                  24.144176895
+                ],
+                [
+                  21.506534112,
+                  23.996787581
+                ],
+                [
+                  25.928213552,
+                  19.941081609
+                ],
+                [
+                  26.063403751,
+                  20.088470923
+                ],
+                [
+                  21.641724311,
+                  24.144176895
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-N3-1",
+              "label": "N3 side wall 2",
+              "polygon": [
+                [
+                  19.681466425,
+                  22.007031833
+                ],
+                [
+                  19.546276226,
+                  21.859642518
+                ],
+                [
+                  23.967955666,
+                  17.803936546
+                ],
+                [
+                  24.103145865,
+                  17.951325861
+                ],
+                [
+                  19.681466425,
+                  22.007031833
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-N2-0",
+              "label": "N2 side wall 1",
+              "polygon": [
+                [
+                  19.546276226,
+                  21.859642518
+                ],
+                [
+                  19.411086027,
+                  21.712253203
+                ],
+                [
+                  23.832765467,
+                  17.656547231
+                ],
+                [
+                  23.967955666,
+                  17.803936546
+                ],
+                [
+                  19.546276226,
+                  21.859642518
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-N2-1",
+              "label": "N2 side wall 2",
+              "polygon": [
+                [
+                  17.586018339,
+                  19.722497456
+                ],
+                [
+                  17.45082814,
+                  19.575108141
+                ],
+                [
+                  21.87250758,
+                  15.519402169
+                ],
+                [
+                  22.007697779,
+                  15.666791484
+                ],
+                [
+                  17.586018339,
+                  19.722497456
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-N1-0",
+              "label": "N1 side wall 1",
+              "polygon": [
+                [
+                  17.45082814,
+                  19.575108141
+                ],
+                [
+                  17.315637941,
+                  19.427718826
+                ],
+                [
+                  21.737317381,
+                  15.372012854
+                ],
+                [
+                  21.87250758,
+                  15.519402169
+                ],
+                [
+                  17.45082814,
+                  19.575108141
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-N1-1",
+              "label": "N1 side wall 2",
+              "polygon": [
+                [
+                  15.490570254,
+                  17.437963078
+                ],
+                [
+                  15.355380055,
+                  17.290573764
+                ],
+                [
+                  19.777059495,
+                  13.234867792
+                ],
+                [
+                  19.912249694,
+                  13.382257106
+                ],
+                [
+                  15.490570254,
+                  17.437963078
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-R3-0",
+              "label": "R3 side wall 1",
+              "polygon": [
+                [
+                  8.87025021,
+                  23.238942523
+                ],
+                [
+                  8.73506001,
+                  23.091553208
+                ],
+                [
+                  13.15673945,
+                  19.035847236
+                ],
+                [
+                  13.291929649,
+                  19.183236551
+                ],
+                [
+                  8.87025021,
+                  23.238942523
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-R3-1",
+              "label": "R3 side wall 2",
+              "polygon": [
+                [
+                  6.909992323,
+                  21.10179746
+                ],
+                [
+                  6.774802124,
+                  20.954408145
+                ],
+                [
+                  11.196481564,
+                  16.898702173
+                ],
+                [
+                  11.331671763,
+                  17.046091488
+                ],
+                [
+                  6.909992323,
+                  21.10179746
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-R2-0",
+              "label": "R2 side wall 1",
+              "polygon": [
+                [
+                  6.774802124,
+                  20.954408145
+                ],
+                [
+                  6.639611925,
+                  20.807018831
+                ],
+                [
+                  11.061291365,
+                  16.751312859
+                ],
+                [
+                  11.196481564,
+                  16.898702173
+                ],
+                [
+                  6.774802124,
+                  20.954408145
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-R2-1",
+              "label": "R2 side wall 2",
+              "polygon": [
+                [
+                  4.814544238,
+                  18.817263083
+                ],
+                [
+                  4.679354039,
+                  18.669873768
+                ],
+                [
+                  9.101033478,
+                  14.614167796
+                ],
+                [
+                  9.236223677,
+                  14.761557111
+                ],
+                [
+                  4.814544238,
+                  18.817263083
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-R1-0",
+              "label": "R1 side wall 1",
+              "polygon": [
+                [
+                  4.679354039,
+                  18.669873768
+                ],
+                [
+                  4.544163839,
+                  18.522484453
+                ],
+                [
+                  8.965843279,
+                  14.466778481
+                ],
+                [
+                  9.101033478,
+                  14.614167796
+                ],
+                [
+                  4.679354039,
+                  18.669873768
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-R1-1",
+              "label": "R1 side wall 2",
+              "polygon": [
+                [
+                  2.719096152,
+                  16.532728705
+                ],
+                [
+                  2.583905953,
+                  16.385339391
+                ],
+                [
+                  7.005585393,
+                  12.329633419
+                ],
+                [
+                  7.140775592,
+                  12.477022733
+                ],
+                [
+                  2.719096152,
+                  16.532728705
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-L3-0",
+              "label": "L3 side wall 1",
+              "polygon": [
+                [
+                  1.790563468,
+                  13.449252249
+                ],
+                [
+                  1.655373269,
+                  13.301862935
+                ],
+                [
+                  6.077052709,
+                  9.246156963
+                ],
+                [
+                  6.212242908,
+                  9.393546277
+                ],
+                [
+                  1.790563468,
+                  13.449252249
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-L3-1",
+              "label": "L3 side wall 2",
+              "polygon": [
+                [
+                  -0.169694418,
+                  11.312107187
+                ],
+                [
+                  -0.304884617,
+                  11.164717872
+                ],
+                [
+                  4.116794823,
+                  7.1090119
+                ],
+                [
+                  4.251985022,
+                  7.256401215
+                ],
+                [
+                  -0.169694418,
+                  11.312107187
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-L2-0",
+              "label": "L2 side wall 1",
+              "polygon": [
+                [
+                  -0.304884617,
+                  11.164717872
+                ],
+                [
+                  -0.440074816,
+                  11.017328557
+                ],
+                [
+                  3.981604624,
+                  6.961622585
+                ],
+                [
+                  4.116794823,
+                  7.1090119
+                ],
+                [
+                  -0.304884617,
+                  11.164717872
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-L2-1",
+              "label": "L2 side wall 2",
+              "polygon": [
+                [
+                  -2.265142504,
+                  9.027572809
+                ],
+                [
+                  -2.400332703,
+                  8.880183495
+                ],
+                [
+                  2.021346737,
+                  4.824477523
+                ],
+                [
+                  2.156536936,
+                  4.971866837
+                ],
+                [
+                  -2.265142504,
+                  9.027572809
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-L1-0",
+              "label": "L1 side wall 1",
+              "polygon": [
+                [
+                  -2.400332703,
+                  8.880183495
+                ],
+                [
+                  -2.535522902,
+                  8.73279418
+                ],
+                [
+                  1.886156538,
+                  4.677088208
+                ],
+                [
+                  2.021346737,
+                  4.824477523
+                ],
+                [
+                  -2.400332703,
+                  8.880183495
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-L1-1",
+              "label": "L1 side wall 2",
+              "polygon": [
+                [
+                  -4.360590589,
+                  6.743038432
+                ],
+                [
+                  -4.495780788,
+                  6.595649118
+                ],
+                [
+                  -0.074101348,
+                  2.539943146
+                ],
+                [
+                  0.061088851,
+                  2.68733246
+                ],
+                [
+                  -4.360590589,
+                  6.743038432
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-D-0",
+              "label": "D side wall 1",
+              "polygon": [
+                [
+                  -10.980910633,
+                  12.544017876
+                ],
+                [
+                  -11.116100833,
+                  12.396628562
+                ],
+                [
+                  -6.694421393,
+                  8.34092259
+                ],
+                [
+                  -6.559231194,
+                  8.488311904
+                ],
+                [
+                  -10.980910633,
+                  12.544017876
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-D-1",
+              "label": "D side wall 2",
+              "polygon": [
+                [
+                  -12.94116852,
+                  10.406872814
+                ],
+                [
+                  -13.076358719,
+                  10.259483499
+                ],
+                [
+                  -8.654679279,
+                  6.203777527
+                ],
+                [
+                  -8.51948908,
+                  6.351166842
+                ],
+                [
+                  -12.94116852,
+                  10.406872814
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-C-0",
+              "label": "C side wall 1",
+              "polygon": [
+                [
+                  -13.076358719,
+                  10.259483499
+                ],
+                [
+                  -13.211548918,
+                  10.112094185
+                ],
+                [
+                  -8.789869478,
+                  6.056388213
+                ],
+                [
+                  -8.654679279,
+                  6.203777527
+                ],
+                [
+                  -13.076358719,
+                  10.259483499
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-C-1",
+              "label": "C side wall 2",
+              "polygon": [
+                [
+                  -15.036616605,
+                  8.122338437
+                ],
+                [
+                  -15.171806804,
+                  7.974949122
+                ],
+                [
+                  -10.750127365,
+                  3.91924315
+                ],
+                [
+                  -10.614937166,
+                  4.066632465
+                ],
+                [
+                  -15.036616605,
+                  8.122338437
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-B-0",
+              "label": "B side wall 1",
+              "polygon": [
+                [
+                  -15.171806804,
+                  7.974949122
+                ],
+                [
+                  -15.306997004,
+                  7.827559807
+                ],
+                [
+                  -10.885317564,
+                  3.771853835
+                ],
+                [
+                  -10.750127365,
+                  3.91924315
+                ],
+                [
+                  -15.171806804,
+                  7.974949122
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-B-1",
+              "label": "B side wall 2",
+              "polygon": [
+                [
+                  -17.132064691,
+                  5.837804059
+                ],
+                [
+                  -17.26725489,
+                  5.690414745
+                ],
+                [
+                  -12.84557545,
+                  1.634708773
+                ],
+                [
+                  -12.710385251,
+                  1.782098087
+                ],
+                [
+                  -17.132064691,
+                  5.837804059
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-A-0",
+              "label": "A side wall 1",
+              "polygon": [
+                [
+                  -17.26725489,
+                  5.690414745
+                ],
+                [
+                  -17.402445089,
+                  5.54302543
+                ],
+                [
+                  -12.980765649,
+                  1.487319458
+                ],
+                [
+                  -12.84557545,
+                  1.634708773
+                ],
+                [
+                  -17.26725489,
+                  5.690414745
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-A-1",
+              "label": "A side wall 2",
+              "polygon": [
+                [
+                  -19.227512776,
+                  3.553269682
+                ],
+                [
+                  -19.362702976,
+                  3.405880367
+                ],
+                [
+                  -14.941023536,
+                  -0.649825605
+                ],
+                [
+                  -14.805833337,
+                  -0.50243629
+                ],
+                [
+                  -19.227512776,
+                  3.553269682
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W4-0",
+              "label": "W4 side wall 1",
+              "polygon": [
+                [
+                  -6.473837384,
+                  6.510255308
+                ],
+                [
+                  -10.529543356,
+                  2.088575869
+                ],
+                [
+                  -10.382154042,
+                  1.953385669
+                ],
+                [
+                  -6.32644807,
+                  6.375065109
+                ],
+                [
+                  -6.473837384,
+                  6.510255308
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W4-1",
+              "label": "W4 side wall 2",
+              "polygon": [
+                [
+                  -4.336692322,
+                  4.549997422
+                ],
+                [
+                  -8.392398294,
+                  0.128317982
+                ],
+                [
+                  -8.245008979,
+                  -0.006872217
+                ],
+                [
+                  -4.189303007,
+                  4.414807223
+                ],
+                [
+                  -4.336692322,
+                  4.549997422
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W3-0",
+              "label": "W3 side wall 1",
+              "polygon": [
+                [
+                  -4.189303007,
+                  4.414807223
+                ],
+                [
+                  -8.245008979,
+                  -0.006872217
+                ],
+                [
+                  -8.097619664,
+                  -0.142062416
+                ],
+                [
+                  -4.041913692,
+                  4.279617024
+                ],
+                [
+                  -4.189303007,
+                  4.414807223
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W3-1",
+              "label": "W3 side wall 2",
+              "polygon": [
+                [
+                  -2.052157945,
+                  2.454549336
+                ],
+                [
+                  -6.107863917,
+                  -1.967130103
+                ],
+                [
+                  -5.960474602,
+                  -2.102320303
+                ],
+                [
+                  -1.90476863,
+                  2.319359137
+                ],
+                [
+                  -2.052157945,
+                  2.454549336
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W2-0",
+              "label": "W2 side wall 1",
+              "polygon": [
+                [
+                  -1.90476863,
+                  2.319359137
+                ],
+                [
+                  -5.960474602,
+                  -2.102320303
+                ],
+                [
+                  -5.813085287,
+                  -2.237510502
+                ],
+                [
+                  -1.757379315,
+                  2.184168938
+                ],
+                [
+                  -1.90476863,
+                  2.319359137
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W2-1",
+              "label": "W2 side wall 2",
+              "polygon": [
+                [
+                  0.232376433,
+                  0.359101251
+                ],
+                [
+                  -3.823329539,
+                  -4.062578189
+                ],
+                [
+                  -3.675940225,
+                  -4.197768388
+                ],
+                [
+                  0.379765747,
+                  0.223911052
+                ],
+                [
+                  0.232376433,
+                  0.359101251
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W1-0",
+              "label": "W1 side wall 1",
+              "polygon": [
+                [
+                  0.379765747,
+                  0.223911052
+                ],
+                [
+                  -3.675940225,
+                  -4.197768388
+                ],
+                [
+                  -3.52855091,
+                  -4.332958587
+                ],
+                [
+                  0.527155062,
+                  0.088720853
+                ],
+                [
+                  0.379765747,
+                  0.223911052
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
+            },
+            {
+              "id": "module-wall-W1-1",
+              "label": "W1 side wall 2",
+              "polygon": [
+                [
+                  2.51691081,
+                  -1.736346835
+                ],
+                [
+                  -1.538795162,
+                  -6.158026275
+                ],
+                [
+                  -1.391405847,
+                  -6.293216474
+                ],
+                [
+                  2.664300125,
+                  -1.871537034
+                ],
+                [
+                  2.51691081,
+                  -1.736346835
+                ]
+              ],
+              "confidence": "estimated",
+              "note": "One 0.20 m side-wall allocation. Adjacent rooms retain both allocations, totalling 0.40 m."
             }
-          ]
+          ],
+          "dimensionGuides": []
         }
       ]
     },

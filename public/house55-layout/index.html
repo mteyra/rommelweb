@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#f5f4ef">
-  <meta name="description" content="Arrange twenty fixed-area apartments inside the original House Red top-floor shell. Resize, drag, snap and share your layout.">
+  <meta name="description" content="Arrange twenty 2.70 × 6.00 m room interiors in the House Red module layout. The unfolded plan is separate from the exterior model.">
   <title>House Red · Layout sandbox · Rommelweb</title>
   <link rel="stylesheet" href="./layout.css">
 </head>
 <body>
   <header class="masthead">
     <a class="brand" href="../"><span class="brand-mark"></span>rommelweb <span class="brand-divider">/</span> <span class="brand-sub">layout sandbox</span></a>
-    <nav><a href="../house55-study/">Previous study ↗</a><a href="../">Digital twin ↗</a></nav>
+    <nav><a href="../house55-study/">Module plan ↗</a><a href="../#house-55">Folded exterior ↗</a></nav>
   </header>
   <main>
     <section class="intro">
-      <div><p class="eyebrow">House Red · 55 · Top floor / 2. OG</p><h1>Your layout. Same shell.</h1></div>
-      <p>Drag the rooms. Change a side. The other side adjusts. <br><strong>Every rectangle stays at 16.4 m².</strong></p>
+      <div><p class="eyebrow">House Red · 55 · Top floor / 2. OG</p><h1>Your rooms. Your dimensions.</h1></div>
+      <p>Drag the rooms. Change a side. The other side adjusts. <br><strong>Every room interior stays at 16.2 m².</strong></p>
       <div class="intro-actions"><button id="share-button" class="primary">Share layout ↗</button><span id="save-status">Saved on this device</span></div>
     </section>
     <div id="load-error" role="alert" hidden></div>
@@ -24,10 +24,10 @@
       <div class="drawing-column">
         <div class="toolbar">
           <div class="tool-group"><button id="undo-button" title="Undo (Ctrl / Cmd + Z)" disabled>↶ <span>Undo</span></button><button id="redo-button" title="Redo (Ctrl / Cmd + Shift + Z)" disabled>↷ <span>Redo</span></button><span class="tool-divider"></span><button id="pack-all-button" title="Bring the rooms in each bank together using the chosen gap">Pack banks</button></div>
-          <div class="tool-group"><button id="fit-button">Full shell</button><button id="focus-button">Focus room</button><button id="zoom-out-button" aria-label="Zoom out">−</button><button id="zoom-in-button" aria-label="Zoom in">+</button></div>
+          <div class="tool-group"><button id="fit-button">Full layout</button><button id="focus-button">Focus room</button><button id="zoom-out-button" aria-label="Zoom out">−</button><button id="zoom-in-button" aria-label="Zoom in">+</button></div>
         </div>
         <div class="canvas" id="canvas">
-          <div class="canvas-tag"><span class="live-dot"></span> ORIGINAL TWIN SHELL <span class="tag-separator">·</span> <span id="zoom-label">100%</span></div>
+          <div class="canvas-tag"><span class="live-dot"></span> UNFOLDED LAYOUT SHELL <span class="tag-separator">·</span> <span id="zoom-label">100%</span></div>
           <svg id="plan" role="group" aria-label="House Red top-floor layout. Drag rooms to move them. Use the two handles to resize a selected room." tabindex="0"></svg>
           <div class="canvas-hint" id="canvas-hint">Drag a room to move · handles resize · drag empty space to pan</div>
         </div>
@@ -35,32 +35,32 @@
           <label><input type="checkbox" id="snap-toggle" checked> Snap edges</label>
           <label><input type="checkbox" id="dimensions-toggle" checked> Dimension arrows</label>
           <label><input type="checkbox" id="all-dimensions-toggle"> All room dimensions</label>
-          <label><input type="checkbox" id="guides-toggle"> Hall / stair guides</label>
+          <label><input type="checkbox" id="guides-toggle" checked> Hall / stair guides</label>
         </div>
         <div class="statusbar" aria-live="polite">
-          <span><strong>20</strong> rooms <span class="dot">·</span> <strong id="total-area">328.0</strong> m² locked</span>
+          <span><strong>20</strong> rooms <span class="dot">·</span> <strong id="total-area">324.0</strong> m² locked</span>
           <button id="conflict-summary" class="status-chip">Checking placement…</button>
         </div>
       </div>
       <aside>
-        <div class="inspector-heading"><p class="eyebrow">Shape & placement</p><span class="lock-badge">▣ 16.4 m²</span></div>
+        <div class="inspector-heading"><p class="eyebrow">Shape & placement</p><span class="lock-badge">▣ 16.2 m²</span></div>
         <div class="room-heading"><h2 id="room-title">A</h2><select id="room-select" aria-label="Select room"></select></div>
         <label class="field-label" for="scope-select">Apply dimensions to</label>
         <select id="scope-select"><option value="room">This room</option><option value="bank">This bank</option><option value="all">All 20 rooms</option></select>
         <div class="dimension-inputs">
-          <label for="width-input"><span>Width</span><div class="input-unit"><input id="width-input" type="number" min="1.64" max="10" step="0.01" inputmode="decimal"><span>m</span></div></label>
+          <label for="width-input"><span>Clear width</span><div class="input-unit"><input id="width-input" type="number" min="1.62" max="10" step="0.01" inputmode="decimal"><span>m</span></div></label>
           <span class="linked-symbol" title="Area stays fixed">⇄</span>
-          <label for="depth-input"><span>Depth / height</span><div class="input-unit"><input id="depth-input" type="number" min="1.64" max="10" step="0.01" inputmode="decimal"><span>m</span></div></label>
+          <label for="depth-input"><span>Clear length</span><div class="input-unit"><input id="depth-input" type="number" min="1.62" max="10" step="0.01" inputmode="decimal"><span>m</span></div></label>
         </div>
-        <input type="range" id="width-slider" min="1.64" max="10" step="0.01" aria-label="Adjust room width">
+        <input type="range" id="width-slider" min="1.62" max="10" step="0.01" aria-label="Adjust room width">
         <div class="slider-caption"><span>Narrow & deep</span><span>Wide & shallow</span></div>
-        <div class="formula"><span id="area-equation">3.000 × 5.467</span><strong>= 16.400 m²</strong></div>
-        <p class="fineprint">Full apartment rectangle, including space for bathroom and kitchen. Internal walls come later.</p>
+        <div class="formula"><span id="area-equation">2.700 × 6.000</span><strong>= 16.200 m²</strong></div>
+        <p class="fineprint">Clear room interior: 2.70 × 6.00 m at the starting layout, including bathroom, kitchen and entrance. Two 20 cm side walls make a 3.10 m module.</p>
         <div class="section-rule"></div>
         <div class="section-heading"><h3>Bring the rooms together</h3><button id="rotate-button" class="text-button">Rotate 90° ↻</button></div>
         <label class="check-row"><input type="checkbox" id="auto-pack-toggle" checked><span>Keep bank together when resizing</span></label>
-        <div class="gap-row"><label for="gap-input">Space between rooms</label><div class="input-unit small"><input id="gap-input" type="number" min="0" max="100" step="1" value="0" inputmode="numeric"><span>cm</span></div></div>
-        <p class="fineprint" id="gap-note">0 cm makes the rectangles touch. This is a layout setting, not a measured wall.</p>
+        <div class="gap-row"><label for="gap-input">Space between rooms</label><div class="input-unit small"><input id="gap-input" type="number" min="0" max="100" step="1" value="40" inputmode="numeric"><span>cm</span></div></div>
+        <p class="fineprint" id="gap-note">40 cm between clear interiors preserves the two 20 cm room-side walls. Changing this spacing is an optional layout edit.</p>
         <button id="pack-bank-button" class="wide-button">Pack this bank</button>
         <label class="check-row move-bank"><input type="checkbox" id="move-bank-toggle"><span>Drag the whole bank together</span></label>
         <div class="section-rule"></div>
@@ -70,15 +70,15 @@
         <details class="more-tools"><summary>Save, load & start again</summary>
           <div class="file-actions"><button id="export-button">Download layout</button><button id="import-button">Load layout</button></div>
           <input type="file" id="import-file" accept=".json,application/json" hidden>
-          <button id="reset-button" class="reset-button">Reset to starting rectangles</button>
+          <button id="reset-button" class="reset-button">Reset to the module layout</button>
           <p class="fineprint">Edits save in this browser. Share a layout link or download the file to keep a version.</p>
         </details>
       </aside>
     </section>
     <section class="footnotes">
-      <p><strong>A working canvas.</strong> The shell and its cutouts come directly from the digital twin. All rooms start at 3.00 × 5.467 m. Orange marks overlap or a room crossing the shell; you can keep experimenting.</p>
-      <p id="guide-note"><strong>Optional guides:</strong> 130 cm hallways and the 272 cm stairwell cross-section. Their drawn positions and the stair length belong to the previous candidate and remain adjustable in our next iteration.</p>
-      <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-LAYOUT-SANDBOX.md">How the sandbox works ↗</a>
+      <p><strong>A working canvas.</strong> The unfolded shell follows the prescribed wing dimensions, independently of the folded exterior. Rooms start at 2.70 × 6.00 m, on 3.10 m modules. Orange marks overlap or a room crossing the layout shell.</p>
+      <p id="guide-note"><strong>Optional guides:</strong> 140 cm hallways and a 270 cm stairwell split into 130 + 140 cm. These follow the prescribed module plan; edits can move rooms into these guides.</p>
+      <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MODULE-LAYOUT.md">How the sandbox works ↗</a>
     </section>
   </main>
   <div id="toast" role="status"></div>

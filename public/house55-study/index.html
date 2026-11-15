@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#f6f4ef">
-  <meta name="description" content="A measured-circulation floor-plan study for House Red at Rommelwood: twenty rooms, 130 cm hallways and a 272 cm stairwell.">
-  <title>House Red · Floor plan study · Rommelweb</title>
+  <meta name="description" content="House Red's top-floor module layout: twenty 2.70 by 6.00 metre room interiors, 3.10 metre modules and 1.40 metre hallways.">
+  <title>House Red · Top-floor module plan · Rommelweb</title>
   <style>
     :root{color-scheme:light;--paper:#f6f4ef;--ink:#203b3e;--muted:#607272;--line:#d9dfd9;--accent:#b74737;--blue:#d7e7e9;--green:#e1e9d6}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -41,59 +41,63 @@
     @media(max-width:430px){.canvas{height:430px}.stat strong{font-size:20px}.stat:first-child strong{font-size:16px;white-space:nowrap}.stat small{font-size:10px}nav a:first-child{display:none}.caption{gap:10px;padding:12px}.toolbar{gap:9px}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
+  <style>.canvas svg{touch-action:none;cursor:grab}.canvas svg:active{cursor:grabbing}.plan-room:focus{outline:none;stroke:#b74737;stroke-width:.13}.intro p:last-child{max-width:490px}.stat strong{font-size:23px}.module-note{font-size:12px;color:var(--muted)}@media(max-width:430px){.stat strong{font-size:19px}}</style>
 </head>
 <body>
 <div class="wrap">
-  <header><a class="brand" href="../"><i></i>rommelweb</a><nav><a href="../house55-layout/">Layout sandbox ↗</a><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MEASURED-PLAN.md">Read the study ↗</a></nav></header>
+  <header><a class="brand" href="../"><i></i>rommelweb</a><nav><a href="../house55-layout/">Layout sandbox ↗</a><a href="../#house-55">Folded exterior ↗</a></nav></header>
   <section class="intro">
-    <div><p class="eyebrow">House Red · 55 · Top floor / 2. OG</p><h1>House Red, refitted.</h1></div>
-    <p>Twenty rooms fitted around 130 cm hallways and a 272 cm stairwell. Select a room to inspect the candidate. The earlier percentage guess is no longer a constraint.</p>
+    <div><p class="eyebrow">House Red · 55 · Top floor / 2. OG</p><h1>The top floor, by the module.</h1></div>
+    <p>Twenty room interiors, each 2.70 × 6.00 m. Two 20 cm side walls make a 3.10 m module. This unfolded layout follows the prescribed dimensions independently of the folded exterior.</p>
   </section>
-  <section class="stats" aria-label="Plan summary">
-    <div class="stat"><span>Typical room interior</span><strong id="nominal">Calculating…</strong><small>Full apartment envelope</small></div>
-    <div class="stat"><span>Average room area</span><strong id="mean">—</strong><small>16.4 m² category target</small></div>
-    <div class="stat"><span>Both hallway wings</span><strong>1.30 m</strong><small>Resident measured</small></div>
-    <div class="stat"><span>Stairwell inside width</span><strong>2.72 m</strong><small>1.43 m + 1.29 m</small></div>
+  <section class="stats" aria-label="Plan dimensions">
+    <div class="stat"><span>Clear room interior</span><strong>2.70 × 6.00 m</strong><small>16.20 m² per room</small></div>
+    <div class="stat"><span>Room module width</span><strong>3.10 m</strong><small>20 cm + 270 cm + 20 cm</small></div>
+    <div class="stat"><span>Hallway width</span><strong>1.40 m</strong><small>Prescribed layout width</small></div>
+    <div class="stat"><span>Stairwell width</span><strong>2.70 m</strong><small>1.30 m + 1.40 m</small></div>
   </section>
   <main>
     <div id="error" role="alert"></div>
-    <section class="workspace" aria-label="Interactive floor-plan comparison">
+    <section class="workspace" aria-label="Top-floor module plan">
       <div class="drawing">
         <div class="toolbar">
-          <div class="segmented" aria-label="Plan version"><button id="candidate-button" aria-pressed="true">New candidate</button><button id="previous-button" aria-pressed="false">Earlier layout</button></div>
+          <span class="small-title">Unfolded layout · metres</span>
+          <button class="toggle" id="fit-button">Full plan</button>
           <button class="toggle" id="focus-button" aria-pressed="false">Focus selected room</button>
-          <button class="toggle" id="dimension-button" aria-pressed="false">Show dimensions</button>
+          <button class="toggle" id="dimension-button" aria-pressed="true">Room dimensions</button>
         </div>
-        <div class="canvas"><svg id="plan" role="img" aria-label="House Red top floor, twenty labelled selectable rooms"></svg></div>
-        <div class="caption"><span><i class="key" style="background:#d7e7e9"></i>Room interiors</span><span><i class="key" style="background:#e1e9d6"></i>Clear hallways</span><span><i class="key" style="background:#efd2c6"></i>Stairwell</span><span><i class="key" style="background:#aab4ab"></i>Assumed walls</span><span><i class="key" style="background:#efeee7"></i>Unassigned / roof margin</span><span id="version-caption">Candidate placement · measured circulation</span></div>
+        <div class="canvas"><svg id="plan" role="group" aria-label="House Red top floor, twenty selectable rooms. Drag to pan; scroll to zoom." tabindex="0"></svg></div>
+        <div class="caption"><span><i class="key" style="background:#d7e7e9"></i>Clear room interiors</span><span><i class="key" style="background:#e1e9d6"></i>1.40 m hallways</span><span><i class="key" style="background:#efd2c6"></i>Stairwell</span><span><i class="key" style="background:#aab4ab"></i>20 cm side walls</span><span>Drag to pan · scroll to zoom</span></div>
       </div>
       <aside>
-        <span class="small-title">Room inspection</span><h2 id="room-title">W3</h2><p id="room-bank">West bank · candidate</p>
+        <span class="small-title">Room inspection</span><h2 id="room-title">A</h2><p id="room-bank">Room module</p>
         <div class="details-grid">
-          <div class="detail"><span>Interior width</span><strong id="room-width">—</strong></div>
-          <div class="detail"><span>Full depth</span><strong id="room-depth">—</strong></div>
-          <div class="detail"><span>Envelope area</span><strong id="room-area">—</strong></div>
-          <div class="detail"><span>Hallway</span><strong id="room-hall">1.30 m</strong></div>
+          <div class="detail"><span>Clear width</span><strong>2.70 m</strong></div>
+          <div class="detail"><span>Clear length</span><strong>6.00 m</strong></div>
+          <div class="detail"><span>Clear area</span><strong>16.20 m²</strong></div>
+          <div class="detail"><span>Module width</span><strong>3.10 m</strong></div>
         </div>
         <select id="room-select" aria-label="Select a room"></select>
-        <p class="note">Room labels identify the drawing. The envelope includes space for the entrance and bathroom/kitchen; their internal partitions are still to be placed.</p>
-        <div class="rule"></div><span class="measured">CONFIRMED CROSS-SECTION</span>
-        <h3>143 cm + 129 cm = 272 cm</h3><p class="note">The first span includes the stair flight and central railing/gap. The second is the parallel level walkway.</p>
-        <p class="note" id="stair-note">Stair length, landings and exact wall positions remain candidate geometry.</p>
+        <p class="note">Labels identify the drawing. Each clear rectangle includes the entrance, bathroom, kitchen and living space; the internal service partitions can be developed next.</p>
+        <div class="rule"></div><span class="measured">PRESCRIBED DIMENSIONS</span>
+        <h3>9.30 + 2.70 + 9.30 = 21.30 m</h3><p class="note">Three room modules on each side of the stairwell. Four-module wings span 12.40 m; room depth plus hallway is 7.40 m.</p>
+        <p class="note">The folded exterior keeps its own building outline. No scaling or clipping of these room interiors is used to match that exterior.</p>
+        <a href="../house55-layout/" class="module-note">Arrange this layout in the sandbox ↗</a>
       </aside>
     </section>
     <section class="below">
       <div>
-        <p class="eyebrow">How to read this plan</p><h2>Measured widths. A fitted arrangement.</h2>
-        <p id="fit-description">The twenty-room arrangement is fitted inside the retained building outline. Similar room dimensions and the operator's average area guide the fit.</p>
-        <p id="assumptions">Wall thicknesses, the exact stair position and its length are explicit assumptions. The plan is a candidate for checking against the real building.</p>
+        <p class="eyebrow">How the outline closes</p><h2>One consistent set of dimensions.</h2>
+        <p>The prescribed modules produce the 21.30 m central span, 9.30 m and 12.40 m wings, 1.90 m left steps and 5.00 m right steps. All twenty clear interiors remain 2.70 × 6.00 m.</p>
+        <p>Each room has its own 20 cm side allowance, so adjacent clear interiors have 40 cm between them. The 7.40 m depth budgets 6.00 m for the interior and 1.40 m for its hall; additional front and rear wall thickness is not allocated.</p>
+        <p>The stair flight, landings, door and window symbols show a possible arrangement within the prescribed dimensions. Their detailed construction is still to be resolved.</p>
         <div class="checks" id="checks"></div>
-        <p style="margin-top:18px"><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MEASURED-PLAN.md">Open the calculations and assumptions ↗</a></p>
+        <p style="margin-top:18px"><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MODULE-LAYOUT.md">Dimensions and assumptions ↗</a></p>
       </div>
-      <div><p class="eyebrow">Across the six room banks</p><h2>Similar dimensions, small differences.</h2><div class="table-wrap"><table><thead><tr><th>Bank</th><th>Rooms</th><th>Width × depth</th><th>Mean area</th></tr></thead><tbody id="bank-table"></tbody></table></div></div>
+      <div><p class="eyebrow">Across the six room banks</p><h2>Twenty equal room interiors.</h2><div class="table-wrap"><table><thead><tr><th>Bank</th><th>Rooms</th><th>Module span</th><th>Clear area each</th></tr></thead><tbody id="bank-table"></tbody></table></div></div>
     </section>
   </main>
-  <footer><div>Rommelwood · House 55 · Candidate study, 15 November 2026</div><div><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MEASURED-PLAN.md">Design notes</a><a href="https://github.com/mteyra/rommelweb/blob/main/docs/CONTEXT-RECOVERY-2026-11-15.md">Recovered context</a><a href="plan.json">Plan data</a></div></footer>
+  <footer><div>Rommelwood · House 55 · Resident-directed module layout</div><div><a href="../#house-55">Campus model</a><a href="../house55-layout/">Layout sandbox</a><a href="../data/house55-module-layout.json">Plan data</a></div></footer>
 </div>
 <script type="module" src="./study.js"></script>
 </body>

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { getLevelElevations } from './interiors.js';
-import { getDisplayLevel, studyFloorSection, studyPlanDirection } from './interior-studies.js';
+import { getDisplayLevel, isIndependentLayout, studyFloorSection, studyPlanDirection } from './interior-studies.js';
 import { icon } from './icons.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createFacadeSegments, createStoreyJointSegments, createTimberBoardStudy, FACADE_PROFILES, timberLineBrightness } from './facade.js';
@@ -486,7 +486,9 @@ export class CampusScene {
       const material = new THREE.MeshBasicMaterial({ color: 0x777a75, transparent: true, opacity: 0.22, depthWrite: false, side: THREE.DoubleSide });
       material.userData.themeRole = 'floor';
       const mesh = new THREE.Mesh(geometry, material);
-      mesh.userData = { house: data.number, floor, role: level?.isStudy ? 'resident-floor-outline' : 'source-envelope-section', sourceId: official.id, sectionStatus: section.sourceStatus, sampleElevation: section.sampleElevation };
+      mesh.userData = { house: data.number, floor, role: isIndependentLayout(level) ? 'independent-layout-outline' : level?.isStudy ? 'resident-floor-outline' : 'source-envelope-section',
+        ...(isIndependentLayout(level) ? {layoutBasis: level.layoutBasis} : {sourceId: official.id}),
+        sectionStatus: section.sourceStatus, sampleElevation: section.sampleElevation };
       slab.add(mesh);
       const lineMat = new THREE.LineBasicMaterial({ color: INK, transparent: true, opacity: 0.68 });
       const boundary = section.polygons.flatMap(polygon => [polygon.outer, ...(polygon.holes || [])]).flatMap(ring =>
@@ -545,10 +547,12 @@ export class CampusScene {
     el.addEventListener('pointerenter', () => this.setHovered(data.number));
     el.addEventListener('pointerleave', () => this.setHovered(null));
     this.labelsElement.appendChild(el);
-    const floorDimensions = floorSections.map((section, floor) => [
-      ...exteriorDimensionRuns(section.polygons),
-      ...studyDimensionRuns(getDisplayLevel(this.interiors, this.studies, data.number, floor)),
-    ]);
+    const floorDimensions = floorSections.map((section, floor) => {
+      const level = getDisplayLevel(this.interiors, this.studies, data.number, floor);
+      const outline = exteriorDimensionRuns(section.polygons).map(run => isIndependentLayout(level)
+        ? {...run, isLayoutOutline: true, note: `${run.label}, independent layout outline. Rooms use the chosen clear dimensions and separate wall allowances.`} : run);
+      return [...outline, ...studyDimensionRuns(level)];
+    });
     const record = { data, group, floorGroups, floorElevations, floorSections, floorDimensions, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, weathering, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, detailGroup, detailMaterials, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
     this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.baseY + Math.max(data.height, record.exterior.visible ? data.height : floorElevations.at(-1) + record.currentGap * (data.levels - 1)) + 3, data.centroid[1]), type: 'house', number: data.number });
@@ -1018,6 +1022,9 @@ export class CampusScene {
     const key = `${this.selected}:${this.activeFloor}`;
     if (this.dimensionKey !== key) {
       this.dimensionKey = key;
+      this.dimensionLayer.setAttribute('aria-label', runs.some(run => run.isLayoutOutline)
+        ? 'Independent layout dimensions in metres. Rooms have separate clear dimensions and wall allowances.'
+        : 'Exterior source-section lengths in metres. Zoom in to reveal smaller runs.');
       this.dimensionLayer.replaceChildren();
       this.dimensionNodes = new Map();
       for (const run of runs) {

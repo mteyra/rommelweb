@@ -4,10 +4,13 @@ import {readFile} from 'node:fs/promises';
 import {difference, intersection, union} from 'polyclip-ts';
 import {refreshHouse55LowerLevels} from '../scripts/extrapolate-house55-levels.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
+import {readHistoricalStudies, assertUnchangedOtherFloors} from './fixtures/pre-module-studies.mjs';
 
 const read = name => readFile(new URL(`../public/data/${name}.json`, import.meta.url), 'utf8').then(JSON.parse);
-const [published, campus, lod2] = await Promise.all([read('interior-studies'), read('campus'), read('lod2')]);
-const original = published.buildings['55'];
+const [published, historical, campus, lod2] = await Promise.all([
+  read('interior-studies'), readHistoricalStudies(), read('campus'), read('lod2'),
+]);
+const original = historical.buildings['55'];
 const building = lod2.buildings.find(item => item.number === '55');
 const top = original.levels.find(level => level.index === 2);
 const lower = original.levels.filter(level => level.index < 2);
@@ -21,7 +24,8 @@ const frozen = value => {
   return value;
 };
 
-test('lower studies repeat the current core with explicit estimated provenance and retain their own complete source plates', () => {
+test('lower studies reproduce their historical core and retain their own complete source plates', () => {
+  assertUnchangedOtherFloors(published, historical);
   const input = frozen(structuredClone({lower, top, building})), before = JSON.stringify(input);
   const {levels, metadata} = refreshHouse55LowerLevels(input.lower, input.top, input.building);
   assert.equal(JSON.stringify(input), before, 'neither the official shell nor any existing study may be mutated');
@@ -50,7 +54,7 @@ test('lower studies repeat the current core with explicit estimated provenance a
   assert.equal(new Set(ids).size, ids.length, 'rooms and doorways keep distinct identities on every floor');
 });
 
-test('repeated L rooms, staircase flight and door graph keep current top-floor positions without filling extra lower circulation', () => {
+test('repeated L rooms, staircase flight and door graph keep historical top-floor positions without filling extra lower circulation', () => {
   const {levels} = refreshHouse55LowerLevels(lower, top, building);
   for (const level of levels) {
     const floor = level.floorOutline.map(piece => [piece.outer, ...(piece.holes || [])]);
@@ -84,7 +88,9 @@ test('repeated L rooms, staircase flight and door graph keep current top-floor p
   }
 });
 
-test('extrapolation rejects a materially incompatible lower plate instead of squeezing the current core into it', () => {
+test('historical extrapolation rejects an incompatible lower plate and refuses the independent module plan', () => {
+  const independent = published.buildings['55'].levels.find(level => level.index === 2);
+  assert.throws(() => refreshHouse55LowerLevels(lower, independent, building), /independent.*module|module.*independent/i);
   const altered = structuredClone(lower);
   altered[0].floorOutline = [{outer: [[-1, -1], [1, -1], [1, 1], [-1, 1], [-1, -1]], holes: []}];
   assert.throws(() => refreshHouse55LowerLevels(altered, top, building), /disconnects|sub-millimetre/);

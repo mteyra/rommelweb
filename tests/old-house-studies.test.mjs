@@ -6,11 +6,12 @@ import {createRegistration, generateOldHouseStudies, polygonArea} from '../scrip
 import {floorSection} from '../src/sections.js';
 import {getLevelElevations} from '../src/interiors.js';
 import {validateInteriorStudies} from '../src/interior-studies.js';
+import {readHistoricalStudies, assertUnchangedOtherFloors} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../public/data/${path}.json`, import.meta.url), 'utf8'));
-const [studies, lod2, campus, interiors, roomMarkers] = await Promise.all(
-  ['interior-studies', 'lod2', 'campus', 'interiors', 'room-markers'].map(read),
-);
+const [studies, published, lod2, campus, interiors, roomMarkers] = await Promise.all([
+  readHistoricalStudies(), ...['interior-studies', 'lod2', 'campus', 'interiors', 'room-markers'].map(read),
+]);
 const input = {studies, lod2, campus, interiors, roomMarkers}, before = JSON.stringify(input);
 const generated = generateOldHouseStudies(input), output = generated.studies, metadata = generated.metadata;
 const shape = space => [space.polygon, ...(space.holes || [])];
@@ -39,8 +40,9 @@ function circleApproach(door, hall) {
   });
 }
 
-test('adaptation preserves all input records and guards the audited exterior correspondence against source drift', () => {
+test('historical adaptation preserves all input records and guards the audited exterior correspondence against source drift', () => {
   assert.equal(JSON.stringify(input), before);
+  assertUnchangedOtherFloors(published, studies);
   assert.deepEqual(Object.keys(output.buildings), ['51', '53', '57', '59']);
   for (const [number, building] of Object.entries(output.buildings)) {
     assert.deepEqual(studies.buildings[number], building, `${number}: published studies match their reproducible generator`);
@@ -66,6 +68,11 @@ test('adaptation preserves all input records and guards the audited exterior cor
     changed.surfaces[registration.manifest.targetSurface].points[0][0] += 0.01;
     assert.throws(() => createRegistration(source, changed), /Review changed official/);
   }
+});
+
+test('other-house generation refuses to propagate the independent House 55 module floor', () => {
+  assert.throws(() => generateOldHouseStudies({...input, studies: published}),
+    /independent.*module|module.*independent/i);
 });
 
 test('all twelve inferred floors retain their own exact official sections and do not inherit House55-specific observations', () => {

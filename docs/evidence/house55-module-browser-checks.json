@@ -1,0 +1,68 @@
+{
+  "checks": [
+    "Desktop: House 55 unfolds and selects 2. OG with 23 spaces; exact 2.70×6.00m/16.20m² clear room card and wall allowance; day/night render.",
+    "390px phone: complete selected floor fits without horizontal page overflow.",
+    "320px phone: complete selected floor fits without horizontal page overflow.",
+    "Fold returns to exterior view."
+  ],
+  "dimensions": [
+    "7.40 m",
+    "1.90 m",
+    "21.30 m",
+    "7.40 m",
+    "12.40 m",
+    "7.40 m",
+    "5.00 m",
+    "12.40 m",
+    "7.40 m",
+    "5.00 m",
+    "21.30 m",
+    "7.40 m",
+    "9.30 m",
+    "7.40 m",
+    "1.90 m",
+    "9.30 m"
+  ],
+  "errors": [],
+  "revision": "House 55 independent module layout",
+  "date": "2026-11-15",
+  "browser": "Isolated Firefox, WebDriver BiDi",
+  "mainApp": "Production preview of npm run build",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      568
+    ]
+  ],
+  "standalonePages": {
+    "viewports": [
+      [
+        1440,
+        1100
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "checks": [
+      "20 contained rooms without overlap on first load",
+      "room selection and focus",
+      "dimension toggle",
+      "packing preserves prescribed module spacing",
+      "reciprocal resizing and undo",
+      "reset to canonical module layout",
+      "shared-link roundtrip",
+      "no horizontal overflow"
+    ],
+    "consoleErrors": 0
+  }
+}

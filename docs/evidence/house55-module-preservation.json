@@ -1,0 +1,40 @@
+{
+  "revision": "House 55 independent module layout",
+  "date": "2026-11-15",
+  "checks": {
+    "otherHouseRecordsUnchanged": true,
+    "house55LowerFloorsUnchanged": true,
+    "foldedWindowInventoryUnchanged": true,
+    "topFloorRoomCount": 20,
+    "topFloorDoorCount": 22
+  },
+  "files": [
+    {
+      "path": "public/data/lod2.json",
+      "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "unchangedFromPreviousCommit": true
+    },
+    {
+      "path": "public/data/campus.json",
+      "sha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "unchangedFromPreviousCommit": true
+    },
+    {
+      "path": "public/data/interiors.json",
+      "sha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "unchangedFromPreviousCommit": true
+    },
+    {
+      "path": "public/data/interior-studies.json",
+      "sha256": "78ec2481b0400a7627368c578b339c01933691c64b3b3331b2e473a64ed4888f"
+    },
+    {
+      "path": "public/data/house55-module-layout.json",
+      "sha256": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165"
+    },
+    {
+      "path": "public/house55-layout/shell.json",
+      "sha256": "fb0765bea42826441098f7bd1b6b05e599320f4f3f91045fe85ff52e91ce480d"
+    }
+  ]
+}

@@ -65,8 +65,8 @@ test('photographic exteriors integrate with all eleven fixed buildings, colored 
     const red = view.buildings.get('55');
     assert.equal(red.windowGroup.userData.locatedWindowCount, 24);
     assert.deepEqual(red.windowGroup.userData.rejectedLocatedWindows, []);
-    assert.equal(view.labels.filter(label => label.number === '55' && label.type === 'room' && label.floor === 2).length, 24);
-    assert.equal(view.labels.filter(label => label.number === '55' && label.type === 'door' && label.floor === 2).length, 21);
+    assert.equal(view.labels.filter(label => label.number === '55' && label.type === 'room' && label.floor === 2).length, 23);
+    assert.equal(view.labels.filter(label => label.number === '55' && label.type === 'door' && label.floor === 2).length, 22);
     view.selected = '55';
     view.applyTheme(0);
     assert.ok(red.exteriorFills.filter(material => material.userData.role === 'RoofSurface').every(material => material.opacity === 1),

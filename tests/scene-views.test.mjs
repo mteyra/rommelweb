@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import {CampusScene, HOME_DIRECTION, advanceFloorMotion, explodedFloorGap} from '../src/scene.js';
 import {floorSection} from '../src/sections.js';
 import {getLevelElevations, validateInteriorData} from '../src/interiors.js';
+import {getDisplayLevel, studyFloorSection} from '../src/interior-studies.js';
 
 const labelElement = () => ({hidden: false, classList: {toggle() {}}});
 function fixture(reduced = true) {
@@ -279,4 +280,50 @@ test('approved interior geometry beyond a source section is included in floor ca
   view.setFloor(1);
   assert.equal(view.focusBounds().max.x, 23, 'unapproved geometry must not influence the public scene');
   assert.deepEqual(building.floorSections, before);
+});
+
+test('House 55 independent top floor fits its own outline and clear rooms without the folded source shell', async () => {
+  const read = name => readFile(new URL(`../public/data/${name}.json`, import.meta.url), 'utf8').then(JSON.parse);
+  const [studies, campus, lod2] = await Promise.all(['interior-studies', 'campus', 'lod2'].map(read));
+  const view = fixture(), record = view.buildings.get('51');
+  const official = lod2.buildings.find(building => building.number === '55');
+  const before = JSON.stringify(official);
+  record.data = {...campus.buildings.find(building => building.number === '55'), height: official.height, baseY: official.baseY, footprint: official.groundPolygons[0]};
+  record.floorElevations = getLevelElevations(view.interiors, '55', record.data.levels, official.height);
+  record.floorSections = record.floorElevations.map((elevation, floor) =>
+    studyFloorSection(floorSection(official, elevation), getDisplayLevel(view.interiors, studies, '55', floor)));
+  view.buildings = new Map([['55', record]]);
+  view.selected = '55';
+  view.studies = studies;
+  view.lod2 = lod2;
+  view.explode(true);
+  view.setFloor(2);
+  assert.equal(record.exterior.visible, false);
+  assert.deepEqual(record.floorGroups.map(group => group.visible), [false, false, true]);
+  assert.equal(record.floorSections[2].sourceStatus, 'independent-module-layout-outline');
+  const level = getDisplayLevel(view.interiors, studies, '55', 2);
+  const allPoints = [...level.floorOutline.flatMap(piece => piece.outer), ...level.spaces.flatMap(space => space.polygon)];
+  for (const [width, height] of [[320, 568], [390, 844], [1440, 900]]) {
+    view.container.getBoundingClientRect = () => ({width, height});
+    view.resize();
+    const top = width <= 700 ? Math.min(148, height * 0.27) : 140;
+    const bottom = width <= 700 ? Math.min(196, height * 0.35) : 150;
+    for (const [x, z] of allPoints) for (const offset of [0, 1.05]) {
+      const y = record.data.baseY + record.floorElevations[2] + record.targetGap * 2 + offset;
+      const point = new THREE.Vector3(x, y, z).project(view.camera);
+      const screenY = (1 - point.y) * height / 2;
+      assert.ok(Math.abs(point.x) <= 1 && screenY >= top && screenY <= height - bottom, `independent geometry fits ${width}×${height}`);
+    }
+  }
+  const roomCenter = label => {
+    const points = level.spaces.find(space => space.shortLabel === label).polygon.slice(0, -1);
+    return new THREE.Vector3(
+      points.reduce((sum, p) => sum + p[0], 0) / points.length,
+      record.data.baseY + record.floorElevations[2] + record.targetGap * 2,
+      points.reduce((sum, p) => sum + p[1], 0) / points.length,
+    ).project(view.camera);
+  };
+  assert.ok(roomCenter('G').x < roomCenter('A').x, 'desktop G bank is left of A, matching the resident annotation');
+  assert.ok(roomCenter('A').y > roomCenter('W1').y, 'desktop A bank is above W1, matching the resident annotation');
+  assert.equal(JSON.stringify(official), before, 'framing the new floor must not transform the retained source model');
 });

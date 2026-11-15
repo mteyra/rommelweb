@@ -257,7 +257,9 @@ test('every published old-house room returns an unchanged, safe fixed-size conce
           const result = apartmentConcept(level, room);
           assert.ok(result && ['concept', 'unavailable'].includes(result.status), 'room fit has an explicit status');
           assert.equal(result.sourcePolicy.status, 'unassigned-schematic-concept');
-          if (id === '55') assert.equal(result.fit?.layout, 'dogleg-service', 'the existing House 55 full concepts remain available');
+          if (id === '55' && level.layoutBasis !== 'resident-module-layout') {
+            assert.equal(result.fit?.layout, 'dogleg-service', 'the unchanged lower-floor House 55 full concepts remain available');
+          }
           if (result.status === 'unavailable') {
             assert.deepEqual(result.items, []);
             assert.deepEqual(result.partitions, []);

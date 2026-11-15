@@ -2,7 +2,19 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — photographic exterior details
+## Current revision — independent House 55 top-floor layout
+
+House 55 / 2. OG now uses the resident's requested module solution: twenty **2.70 × 6.00 m** clear rooms, a **0.20 m side strip on each side**, **3.10 m modules**, **1.40 m hallways** and a **2.70 m stair block split 1.30 + 1.40 m**. The outline matches the annotated **7.40, 9.30, 12.40, 21.30, 1.90 and 5.00 m** runs. The main unfolded view, standalone study and sandbox starting layout share the same generated plan.
+
+- Independent polygon checks establish **478.78 m²** of exact coverage by clear rooms, side-wall strips, hallways and stairs, with no positive-area overlaps. All twenty room doors and both stair entries lie on their actual shared boundaries; all 23 spaces connect to the stair. All 24 relocated window symbols remain on the independent outline.
+- The [preservation receipt](evidence/house55-module-preservation.json) verifies unchanged LoD2, campus and approved-interior bytes, unchanged lower floors and other-house records, and the original folded façade window inventory. Historical audit tests resolve their original retained snapshots; legacy transfer generators reject the new independent floor.
+- `npm run build` passes with the existing bundle-size advisory. The path-cache check passes. The independent top-floor camera preserves the resident annotation's orientation and fits its own geometry at desktop and phone sizes.
+- Isolated Firefox checks of the production preview pass at **1440 × 1000**, **390 × 844** and **320 × 568**: unfold/select/fold, exact room dimensions, outline labels, day/night rendering and no horizontal page overflow. No application console errors were observed; the [browser receipt](evidence/house55-module-browser-checks.json) retains the checks.
+- Standalone study and sandbox checks pass at **1440 × 1100** and **390 × 844**: twenty fitting rooms, selection, focus, dimension toggle, reciprocal resizing, packing, undo, reset and share-link roundtrip. The sandbox starts with a 0.40 m clear-room gap. Old 16.4 m² layouts cannot silently replace this 16.2 m² starting plan.
+
+Reviewed images: [campus floor](preview/house55-module-floor.png), [phone floor](preview/house55-module-phone.png), [standalone study](preview/house55-module-study.png), and [sandbox](preview/house55-module-sandbox.png). Dimensions, derivation, unallocated end/hall wall depth and illustrative openings are documented in the [current module-layout note](HOUSE55-MODULE-LAYOUT.md).
+
+## Previous revision — photographic exterior details
 
 The new appearance pass registers the resident's six photographs against the retained source faces and the architect's gallery. It adds **eight corner loggias** across Lila 53a and Grey 55a, their recessed stair fronts and railings, selected shared ground frontages, Red 55's courtyard/rear glazing and sloped-roof opening, and roof-bed/coping/hardware studies. Explicit photographed window rows preserve large blank timber spans. Timber weathering, fine grooves, staggered older-house panels, colored frames, reveals, sills and transoms remain original procedural graphics.
 

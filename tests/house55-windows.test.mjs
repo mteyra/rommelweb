@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createInteriorWireframe } from '../src/interior-wireframe.js';
-import { getDisplayLevel, validateInteriorStudies } from '../src/interior-studies.js';
+import { getDisplayLevel, getLevelWindows, validateInteriorStudies } from '../src/interior-studies.js';
 import { createBuildingWindowStudies, getOldFacadeRowGuides } from '../src/windows.js';
 
 const read = name => readFile(new URL(`../public/data/${name}.json`, import.meta.url), 'utf8').then(JSON.parse);
@@ -10,16 +10,23 @@ const [studies, campus, lod2] = await Promise.all(['interior-studies', 'campus',
 const upper = data => data.buildings['55'].levels.find(level => level.index === 2);
 const validate = data => validateInteriorStudies(data, campus, lod2);
 const empty = {schemaVersion: 1, buildings: {}};
+const previousUpper = JSON.parse(await readFile(new URL('../data/source/house55-2og-before-module-layout.json', import.meta.url), 'utf8')).level;
 
-test('the resident window inventory covers all twenty room references plus four unassigned shared windows', () => {
+test('source exterior windows are retained while independent layout windows follow the new room geometry', () => {
   const plan = upper(studies);
   assert.equal(validate(studies), true);
+  assert.equal(plan.layoutBasis, 'resident-module-layout');
   assert.equal(plan.windowCoverage, 'complete-floor');
   assert.equal(plan.windows.length, 24);
+  assert.deepEqual(plan.windows, previousUpper.windows, 'the module layout preserves the complete original exterior inventory');
+  assert.equal(plan.layoutWindows.length, 24);
+  assert.ok(plan.layoutWindows.every(window => window.confidence === 'estimated' && !Object.hasOwn(window, 'sourceSurfaceIndex')));
   for (const room of plan.spaces.filter(space => space.kind === 'room')) {
-    assert.equal(plan.windows.filter(window => window.spaceId === room.id).length, 1, `${room.shortLabel} must retain one resident-confirmed window`);
+    assert.equal(plan.windows.filter(window => window.spaceId === room.id).length, 1, `${room.shortLabel} retains its historical source window reference`);
+    assert.equal(plan.layoutWindows.filter(window => window.spaceId === room.id).length, 1, `${room.shortLabel} receives one schematic layout window`);
   }
   assert.equal(plan.windows.filter(window => !window.spaceId).length, 4, 'shared windows must not invent room/stairwell ownership');
+  assert.equal(plan.layoutWindows.filter(window => !window.spaceId).length, 4);
   for (const index of [0, 1]) {
     const floor = studies.buildings['55'].levels.find(level => level.index === index);
     assert.equal(floor.windows, undefined, 'top-floor observations must not silently become lower-floor evidence');
@@ -29,11 +36,11 @@ test('the resident window inventory covers all twenty room references plus four 
     data => { upper(data).windows[0].residentName = 'Unsupported'; },
     data => { upper(data).wallBands[0].phone = 'Unsupported'; },
     data => { upper(data).windows[0].sourceSurfaceIndex = 39; },
-    data => { upper(data).windows[0].spaceId = upper(data).spaces.find(space => space.shortLabel === 'G').id; },
+    data => { upper(data).layoutWindows[0].spaceId = upper(data).spaces.find(space => space.shortLabel === 'A').id; },
     data => { upper(data).windows[0].spaceId = studies.buildings['55'].levels[0].spaces[0].id; },
     data => { upper(data).windows[0].segment = [[900, 900], [901, 900]]; },
     data => { upper(data).wallBands[0].confidence = 'sketch'; },
-    data => { upper(data).wallBands[0].polygon = upper(data).excludedAreas[0].polygon; },
+    data => { upper(data).wallBands[0].polygon = [[900, 900], [901, 900], [901, 901], [900, 901], [900, 900]]; },
   ];
   for (const change of changes) {
     const invalid = structuredClone(studies);
@@ -42,24 +49,26 @@ test('the resident window inventory covers all twenty room references plus four 
   }
 });
 
-test('plan windows retain sills and do not become clickable doors or additional room labels', () => {
+test('independent layout windows retain sills without displaying or moving source façade windows', () => {
   const before = JSON.stringify(studies);
   const plan = getDisplayLevel(empty, studies, '55', 2);
   const result = createInteriorWireframe(plan, {house: '55', floor: 2});
-  const symbols = result.group.children.find(child => child.userData.role === 'resident-window-symbols');
+  const symbols = result.group.children.find(child => child.userData.role === 'layout-window-symbols');
   assert.ok(symbols);
   assert.equal(symbols.userData.count, 24);
   assert.equal(new Set(symbols.userData.windowIds).size, 24);
-  assert.equal(result.pickables.filter(mesh => mesh.userData.openingId).length, 21);
+  assert.deepEqual(symbols.userData.windowIds, plan.layoutWindows.map(window => window.id));
+  assert.ok(!symbols.userData.windowIds.some(id => plan.windows.some(window => window.id === id)));
+  assert.equal(result.pickables.filter(mesh => mesh.userData.openingId).length, 22);
   assert.equal(result.labels.filter(label => label.kind === 'space').length, plan.spaces.length);
-  assert.equal(result.labels.filter(label => label.kind === 'door').length, 21);
+  assert.equal(result.labels.filter(label => label.kind === 'door').length, 22);
   assert.ok(result.group.children.some(child => child.userData.role === 'estimated-wall-band'));
   const wallSegments = result.group.children.filter(child => /interior-walls$/.test(child.userData.role || ''))
     .flatMap(child => {
       const p = child.geometry.attributes.position.array;
       return Array.from({length: p.length / 6}, (_, i) => [...p.slice(i * 6, i * 6 + 6)]);
     });
-  for (const window of plan.windows) {
+  for (const window of getLevelWindows(plan)) {
     const [a, b] = window.segment;
     const dx = b[0] - a[0], dz = b[1] - a[1], length2 = dx * dx + dz * dz;
     const acrossCenter = segment => {
@@ -74,13 +83,15 @@ test('plan windows retain sills and do not become clickable doors or additional 
   assert.equal(JSON.stringify(studies), before);
 });
 
-test('resident top-floor placements replace repeated exterior windows without changing lower rows or source surfaces', () => {
+test('the module layout preserves every folded exterior window and original source surface', () => {
   const building = lod2.buildings.find(building => building.number === '55');
   const before = JSON.stringify(building), guide = getOldFacadeRowGuides(building, 3);
   const baseOptions = {house: '55', family: 'plates'};
   const previous = createBuildingWindowStudies(building.surfaces, guide.elevations, building.baseY + guide.guideHeight, baseOptions);
   const current = createBuildingWindowStudies(building.surfaces, guide.elevations, building.baseY + guide.guideHeight, {...baseOptions, locatedLevels: studies.buildings['55'].levels});
+  const beforeLayout = createBuildingWindowStudies(building.surfaces, guide.elevations, building.baseY + guide.guideHeight, {...baseOptions, locatedLevels: [previousUpper]});
   const patches = map => [...map.values()].flatMap(study => study.patches);
+  assert.deepEqual(patches(current), patches(beforeLayout), 'independent room dimensions and layout windows cannot alter folded façade patches');
   assert.deepEqual(patches(current).filter(patch => patch.floor < 2), patches(previous).filter(patch => patch.floor < 2));
   assert.deepEqual([...current.values()].flatMap(study => study.rejectedLocated || []), []);
   const top = patches(current).filter(patch => patch.floor === 2);

@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import {
   AREA, setRoomDimension, normalizeRoom, normalizeRotation, rectangleBounds,
   rectangleVertices, roomShellIntersectionArea, roomContainedInShell,
@@ -13,7 +14,7 @@ const room = (id, x = 5, y = 5, width = 2.8, rotation = 0, bank = 'A') =>
   ({ id, bank, x, y, width, depth: AREA/width, rotation });
 const bigShell = { outline: [[-100,-100],[100,-100],[100,100],[-100,100]], holes: [] };
 
-test('repeated reciprocal width/depth edits retain16.4m² and do not mutate the input', () => {
+test('repeated reciprocal width/depth edits retain 16.2 m² and do not mutate the input', () => {
   const original = room('A');
   let result = original;
   for (let i = 0; i < 500; i++) {
@@ -25,15 +26,15 @@ test('repeated reciprocal width/depth edits retain16.4m² and do not mutate the 
   assert.notEqual(result, original);
   close(original.width, 2.8);
   close(setRoomDimension(original, 'width', 100).width, 10);
-  close(setRoomDimension(original, 'depth', 100).width, 1.64);
+  close(setRoomDimension(original, 'depth', 100).width, AREA / 10);
   close(setRoomDimension(original, 'width', .01).depth, 10);
   assert.throws(() => setRoomDimension(original, 'width', NaN), RangeError);
   assert.throws(() => setRoomDimension(original, 'depth', 0), RangeError);
 });
 
 test('right angle rotations keep local dimensions and produce exact world bounds', () => {
-  const r = room('A', 0, 0, 4.1, 90);
-  assert.deepEqual(rectangleVertices(r), [[-2,-2.05],[2,-2.05],[2,2.05],[-2,2.05]]);
+  const width = AREA / 4, r = room('A', 0, 0, width, 90);
+  assert.deepEqual(rectangleVertices(r), [[-2,-width/2],[2,-width/2],[2,width/2],[-2,width/2]]);
   assert.equal(normalizeRotation(-90), 90);
   assert.equal(normalizeRotation(360), 0);
   assert.throws(() => normalizeRotation(45), RangeError);
@@ -42,7 +43,7 @@ test('right angle rotations keep local dimensions and produce exact world bounds
 
 test('concave shell rejects a room whose four corners all fit but whose edges bridge a notch', () => {
   const shell = { outline: [[0,0],[10,0],[10,10],[7,10],[7,3],[3,3],[3,10],[0,10]] };
-  const r = room('bridge', 5, 8, 8.2);
+  const r = room('bridge', 5, 8, AREA / 2);
   // The four corners are in the arms, but the middle8m² lies in the notch.
   close(roomShellIntersectionArea(r, shell), AREA-8);
   assert.equal(roomContainedInShell(r, shell), false);
@@ -65,7 +66,7 @@ test('skewed boundaries, reversed rings and disconnected shell components preser
   close(roomShellIntersectionArea(r, [...triangle].reverse()), .5);
   const components = [{ outline: [[0,0],[3,0],[3,10],[0,10]] },
     { outer: [[7,0],[10,0],[10,10],[7,10]] }];
-  close(roomShellIntersectionArea(room('bridge', 5, 8, 8.2), components), AREA-8);
+  close(roomShellIntersectionArea(room('bridge', 5, 8, AREA / 2), components), AREA-8);
 });
 
 test('touching is legal, positive overlaps are measured, and triple overlaps do not inflate union area', () => {
@@ -144,4 +145,30 @@ test('packing all banks keeps each independent row axis and does not claim conta
   close(rectangleBounds(packed[3]).minY-rectangleBounds(packed[2]).maxY, .20);
   assert.equal(packed.length, input.length);
   assert.ok(packed.every(r => Math.abs(r.width*r.depth-AREA)<1e-12));
+});
+
+test('the published sandbox starts with all twenty exact clear interiors and preserves the 3.10 m module pitch when packed', async () => {
+  const data = JSON.parse(await readFile(new URL('../public/house55-layout/shell.json', import.meta.url), 'utf8'));
+  assert.equal(data.targetArea, 16.2);
+  assert.equal(data.defaultGap, .4);
+  assert.equal(data.rooms.length, 20);
+  for (const room of data.rooms) {
+    close(room.width, 2.7);
+    close(room.depth, 6);
+  }
+  const before = analyzeLayout(data.rooms, data.shell);
+  assert.equal(before.valid, true);
+  close(before.totalArea, 324);
+  let packed = data.rooms;
+  for (const bank of data.banks) {
+    packed = packRooms(packed, bank.roomIds, {axis: bank.axis, gap: data.defaultGap, anchor: 'center', align: 'center'});
+    const members = packed.filter(room => room.bank === bank.id).sort((a, b) => a[bank.axis] - b[bank.axis]);
+    for (let i = 1; i < members.length; i++) close(members[i][bank.axis] - members[i - 1][bank.axis], 3.1);
+  }
+  assert.equal(analyzeLayout(packed, data.shell).valid, true);
+  for (const room of data.rooms) {
+    const after = packed.find(item => item.id === room.id);
+    close(after.x, room.x);
+    close(after.y, room.y);
+  }
 });

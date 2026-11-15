@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { Raycaster, Vector3 } from 'three';
 import { difference, intersection, union } from 'polyclip-ts';
 import { validateInteriorData, getLevelElevations } from '../src/interiors.js';
-import { validateInteriorStudies, getDisplayLevel, studyFloorSection, studyPlanDirection } from '../src/interior-studies.js';
+import { validateInteriorStudies, getDisplayLevel, getLevelWindows, studyFloorSection, studyPlanDirection } from '../src/interior-studies.js';
 import { createInteriorWireframe } from '../src/interior-wireframe.js';
 import { floorSection } from '../src/sections.js';
 
@@ -17,6 +17,13 @@ const level = studies => entry(studies).levels[0];
 const room = studies => level(studies).spaces[0];
 const validate = studies => validateInteriorStudies(studies, campus, lod2);
 const display = studies => getDisplayLevel(emptyApproved, studies, '55', 2);
+const priorUpper = async () => JSON.parse(await readFile(new URL('../data/source/house55-2og-before-module-layout.json', import.meta.url), 'utf8')).level;
+const priorStudyData = async () => {
+  const data = await read('interior-studies');
+  data.buildings['55'].levels = data.buildings['55'].levels.map(level => level.index === 2 ? null : level);
+  data.buildings['55'].levels[data.buildings['55'].levels.indexOf(null)] = await priorUpper();
+  return data;
+};
 
 // Synthetic plans exercise the data contract; none is loaded by the website.
 function fixture() {
@@ -35,6 +42,43 @@ function fixture() {
     }],
   } } };
 }
+
+test('independent floor openings and outline stay separate from the retained source façade', async () => {
+  const data = fixture(), plan = level(data);
+  const original = (await read('interior-studies')).buildings['55'].levels.find(item => item.index === 2);
+  plan.layoutBasis = 'resident-module-layout';
+  plan.windows = [{...structuredClone(original.windows[0]), id: 'source-window-fixture', spaceId: 'study-room-a'}];
+  plan.windowCoverage = 'complete-floor';
+  plan.layoutWindows = [{
+    id: 'layout-window-fixture', label: 'Layout window', spaceId: 'study-room-a',
+    confidence: 'estimated', note: 'Schematic opening on the independently arranged room.',
+    segment: [[1, 3], [2, 3]],
+  }];
+  const before = structuredClone(data);
+  assert.equal(validate(data), true, 'source façade windows need not move into the independent floor outline');
+  const shown = display(data);
+  assert.deepEqual(getLevelWindows(shown), plan.layoutWindows);
+  const section = studyFloorSection({polygons: [{outer: rectangle(90, 90, 99, 99)}], sourceStatus: 'source'}, shown);
+  assert.equal(section.sourceStatus, 'independent-module-layout-outline');
+  assert.deepEqual(section.polygons[0].outer, plan.floorOutline[0].outer);
+  const wireframe = createInteriorWireframe(shown, {house: '55', floor: 2});
+  const symbols = wireframe.group.children.find(child => child.userData.role === 'layout-window-symbols');
+  assert.deepEqual(symbols.userData.windowIds, ['layout-window-fixture']);
+  assert.ok(!wireframe.group.children.some(child => child.userData.role === 'resident-window-symbols'));
+  assert.deepEqual(data, before);
+  for (const change of [
+    copy => { level(copy).layoutBasis = 'measured-floor'; },
+    copy => { delete level(copy).layoutBasis; },
+    copy => { level(copy).windows[0].segment = [[900, 900], [901, 900]]; },
+    copy => { level(copy).layoutWindows[0].segment = [[1, 2], [2, 2]]; },
+    copy => { level(copy).layoutWindows[0].confidence = 'sketch'; },
+    copy => { level(copy).layoutWindows[0].sourceSurfaceIndex = 0; },
+  ]) {
+    const invalid = structuredClone(data);
+    change(invalid);
+    assert.throws(() => validate(invalid), /layoutBasis|layoutWindows|window|not allowed/);
+  }
+});
 
 test('estimated dimension guides reject external spans, source-confidence upgrades and private metadata', () => {
   const data = fixture(), plan = level(data);
@@ -473,7 +517,7 @@ test('approved geometry retains strict door collinearity instead of inheriting s
   assert.throws(() => validateInteriorData(approved, campus, lod2), /boundary edge/);
 });
 
-test('House 55 studies cover its three floors while retaining the directly annotated upper-floor evidence', async () => {
+test('House 55 exposes the independent module layout only on its top floor', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
   assert.equal(validate(published), true);
   assert.ok(published.buildings['55']);
@@ -484,22 +528,20 @@ test('House 55 studies cover its three floors while retaining the directly annot
   assert.equal(Object.hasOwn(resolved, 'reviewedAt'), false);
   assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'estimated'));
   assert.equal(resolved.spaces.filter(space => space.kind === 'room').length, 20, 'the resident-confirmed count includes three L rooms');
-  assert.equal(resolved.spaces.length, 24, 'twenty rooms, stairwell, two halls and the explicitly unassigned strip');
-  const unassigned = resolved.spaces.find(space => space.kind === 'service');
-  assert.ok(unassigned && !resolved.doors.some(door => [door.spaceId, door.toSpaceId].includes(unassigned.id)), 'the residual strip cannot become a passage through a guessed opening');
-  assert.equal(resolved.doors.length, 21, 'twenty estimated room openings and the resident-located stairwell entrance');
+  assert.equal(resolved.layoutBasis, 'resident-module-layout');
+  assert.equal(resolved.spaces.length, 23, 'twenty clear rooms, stairwell and two halls');
+  assert.equal(resolved.doors.length, 22, 'twenty room openings and the two stairwell entries');
   assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'sketch').length, 0);
   assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'estimated').length, 20, 'fitted envelopes remain estimates even where counts and approximate positions were sketched');
   for (const [prefix, count] of [['W', 4], ['L', 3], ['R', 3], ['N', 3]]) {
     assert.deepEqual(resolved.spaces.filter(space => new RegExp(`^${prefix}\\d+$`).test(space.shortLabel)).map(space => space.shortLabel).sort(),
       Array.from({length: count}, (_, i) => `${prefix}${i + 1}`), `${prefix} run matches the confirmed room count`);
   }
-  assert.ok(resolved.spaces.filter(space => space.kind === 'room').every(space => /sketch|estimate/i.test(space.label)), 'labels must identify the evidence rather than imply physical room numbers');
   assert.ok(resolved.doors.every(door => !Object.hasOwn(door, 'hinge') && !Object.hasOwn(door, 'swing')));
-  assert.equal(resolved.doors.filter(door => door.confidence === 'sketch').length, 1, 'the green stairwell entrance is resident-located; its width remains an estimate');
-  assert.equal(resolved.excludedAreas.length, 2, 'both resident-marked missing wings are retained');
-  assert.match(resolved.notes, /confirm/i, 'the source note records the resident’s count confirmation');
-  assert.doesNotMatch(resolved.notes, /not a confirmed room count/i);
+  assert.equal(resolved.excludedAreas?.length || 0, 0, 'old source-shell exclusions do not constrain the independent outline');
+  for (const floor of [0, 1]) {
+    assert.equal(getDisplayLevel(emptyApproved, published, '55', floor).layoutBasis, undefined, 'lower floors retain their prior studies');
+  }
   for (const building of campus.buildings) {
     for (let floor = 0; floor < building.levels; floor++) {
       if (building.campus === 'I') continue;
@@ -570,8 +612,8 @@ test('the frozen pre-area stage retains its historical bay and depth assumptions
   }
 });
 
-test('the corrected stair enclosure is flush to L3 with a continuous shared wall on every displayed floor', async () => {
-  const published = await read('interior-studies');
+test('the saved prior stair correction retains its historical L3 alignment and ratio', async () => {
+  const published = await priorStudyData();
   const source = lod2.buildings.find(building => building.number === '55').surfaces[39].points;
   const origin = [source[3][0], source[3][2]], delta = [source[4][0] - origin[0], source[4][2] - origin[1]];
   const length = Math.hypot(...delta), along = delta.map(value => value / length), towardR = [along[1], -along[0]];
@@ -602,8 +644,8 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
   }
 });
 
-test('the area refit preserves the established hall assignments and only the confirmed west stairwell entry', async () => {
-  const published = await read('interior-studies'), plan = display(published);
+test('the saved prior area refit retains its hall assignments and historical west-only stair entry', async () => {
+  const published = await priorStudyData(), plan = display(published);
   const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-area-baseline.json', import.meta.url)));
   const magnitude = Math.hypot(0.676, 0.737);
   const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
@@ -641,8 +683,8 @@ test('the area refit preserves the established hall assignments and only the con
   }
 });
 
-test('R1–R3 remain one continuous block and the corrected upper outline has no corner spur', async () => {
-  const published = await read('interior-studies');
+test('the saved prior R1–R3 allocation remains one continuous block without a corner spur', async () => {
+  const published = await priorStudyData();
   const roof = lod2.buildings.find(building => building.number === '55').surfaces[39];
   const sourceCorners = [6, 7].map(index => [roof.points[index][0], roof.points[index][2]]);
   for (const floor of [0, 1, 2]) {
@@ -666,9 +708,9 @@ test('R1–R3 remain one continuous block and the corrected upper outline has no
   }
 });
 
-test('lower-floor extrapolations use the corrected core while retaining their own full exterior sections', async () => {
+test('lower floors retain the saved prior core and their own exterior sections independently of the new top floor', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
-  const upper = display(published), official = lod2.buildings.find(building => building.number === '55');
+  const upper = await priorUpper(), official = lod2.buildings.find(building => building.number === '55');
   const elevations = getLevelElevations(emptyApproved, '55', 3, official.height);
   const allIds = published.buildings['55'].levels.flatMap(plan => [...plan.spaces, ...(plan.doors || []), ...(plan.excludedAreas || [])].map(item => item.id));
   assert.equal(new Set(allIds).size, allIds.length, 'same-looking floor plans still need globally unique interaction IDs');
@@ -723,7 +765,7 @@ test('the House 55 study reads along its building axes in either aspect without 
   const screenRight = direction => new Vector3(0, 1, 0).cross(new Vector3(...direction)).normalize();
   const desktop = studyPlanDirection(plan), portrait = studyPlanDirection(plan, true);
   const right = screenRight(desktop), portraitRight = screenRight(portrait);
-  assert.ok(Math.abs(right.x - 0.676) < 0.01 && Math.abs(right.z - 0.737) < 0.01, 'desktop screen-right follows the registered House 55 long axis');
+  assert.ok(Math.abs(right.x + 0.676) < 0.01 && Math.abs(right.z + 0.737) < 0.01, 'desktop screen-right follows the independent plan orientation in the resident annotation');
   assert.ok(Math.abs(right.dot(portraitRight)) < 1e-10, 'portrait rotates the long axis vertically instead of shrinking a horizontal plan');
   for (const direction of [desktop, portrait]) {
     assert.equal(direction[1], 1);
