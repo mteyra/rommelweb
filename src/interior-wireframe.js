@@ -112,10 +112,12 @@ export function createInteriorWireframe(level, { house, floor }) {
       }
     }
     labels.push({ text: space.label, shortText: space.shortLabel, position: labelPosition(space), spaceId: space.id, kind: 'space', confidence: space.confidence });
-    // A marked flight is only part of a stairwell; its landings remain clear.
-    // Older studies keep their schematic full-enclosure treads.
+    // A marked flight can also sit inside a connected common space, such as
+    // the Bar. Only its supplied flight receives treads; landings stay clear.
+    // Older stairwell studies keep their schematic full-enclosure treads.
     const flight = level.isStudy && space.stairFlight ? space.stairFlight : space.polygon;
-    if (space.kind === 'stairs' && flight.length === 5 && (space.stairFlight || !space.holes?.length)) {
+    const connectedFlight = level.isStudy && space.stairConnection && space.stairFlight;
+    if ((space.kind === 'stairs' || connectedFlight) && flight.length === 5 && (space.stairFlight || !space.holes?.length)) {
       const p = flight;
       const lengths = p.slice(1).map((b, i) => Math.hypot(b[0] - p[i][0], b[1] - p[i][1]));
       const start = lengths.indexOf(Math.max(...lengths)), a = p[start], b = p[(start + 1) % 4], c = p[(start + 2) % 4], d = p[(start + 3) % 4];
@@ -126,8 +128,31 @@ export function createInteriorWireframe(level, { house, floor }) {
       const material = new THREE.LineBasicMaterial({color: 0xb6a886, transparent: true, opacity: 0.8});
       material.userData.themeRole = 'sharedSpace';
       const steps = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(treads, 3)), material);
-      steps.userData.role = 'schematic-stair-treads';
+      steps.userData = {role: 'schematic-stair-treads', spaceId: space.id};
       group.add(steps);
+    }
+    if (level.isStudy && space.stairConnection) {
+      const connection = space.stairConnection;
+      const [a, b] = connection.segment;
+      const length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      const ux = (b[0] - a[0]) / length, uz = (b[1] - a[1]) / length;
+      const nx = -uz, nz = ux, head = Math.min(0.42, length * 0.28);
+      const shaft = Math.min(0.04, head * 0.12), halfHead = head * 0.55;
+      const neck = [b[0] - ux * head, b[1] - uz * head];
+      const offset = (point, width) => [point[0] + nx * width, 0.095, point[1] + nz * width];
+      const positions = [
+        offset(a, shaft), offset(a, -shaft), offset(neck, -shaft),
+        offset(a, shaft), offset(neck, -shaft), offset(neck, shaft),
+        offset(neck, halfHead), offset(neck, -halfHead), [b[0], 0.095, b[1]],
+      ].flat();
+      const material = new THREE.MeshBasicMaterial({color: 0x91b9c8, transparent: true, opacity: 0.95, side: THREE.DoubleSide, depthWrite: false});
+      material.userData.themeRole = 'interiorWindow';
+      const arrow = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
+      arrow.userData = {
+        role: 'stair-connection-symbol', spaceId: space.id, direction: connection.direction,
+        fromFloor: floor, toFloor: connection.levelIndex, targetSpaceId: connection.spaceId,
+      };
+      group.add(arrow);
     }
   }
   // A window has a sill below it. Removing an entire wall as for a door would

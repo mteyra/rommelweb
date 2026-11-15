@@ -104,6 +104,7 @@ function renderFloor() {
   const independent = isIndependentLayout(level);
   const whiteLayout = independent && state.selected === '57';
   const greenLayout = independent && state.selected === '59';
+  const orangeLayout = independent && state.selected === '53';
   const yellowFirstLayout = independent && state.selected === '51' && state.floor === 1;
   const yellowTopLayout = independent && state.selected === '51' && state.floor === 2;
   const yellowLevels = studies?.buildings?.['51']?.levels || [];
@@ -131,6 +132,9 @@ function renderFloor() {
   $('#floor-stage-note').textContent = state.floor === null ? 'Choose a level to look inside.'
     : fitted ? 'Provisional module placement · original outline'
     : yellowFirstLayout ? '23 singles · Shared A · 2 balconies'
+    : orangeLayout ? state.floor === 2 ? '20 singles · Hall 1.40 m'
+      : state.floor === 1 ? '22 singles · Shared N3–N4 · Bar access'
+      : '22 singles · Shared N3–N4 · Bar & common room'
     : sharedApartments ? 'Single rooms & shared envelopes · Hall 1.40 m'
     : independent ? 'Room 2.70 × 6.00 m · Module 3.10 m · Hall 1.40 m'
     : extrapolated ? 'Extrapolated study · exterior in model metres.'
@@ -143,10 +147,11 @@ function renderFloor() {
     ? 'A house on its own. Select a floor to look closer.'
     : 'Almost overhead. Drag to adjust; All levels returns to the stack.';
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : level?.isStudy ? 'Rooms & drawing key' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
-  const spaceButtons = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip${level.isStudy && space.confidence === 'estimated' ? ' is-estimated' : ''}" data-space="${esc(space.id)}"${level.isStudy ? ` aria-label="${esc(`${space.label}, ${yellowFirstLayout ? 'resident-marked first-floor layout' : yellowTopLayout ? 'resident-marked top-floor layout' : whiteLayout || greenLayout ? 'resident-confirmed arrangement' : space.confidence === 'estimated' ? 'estimated area' : 'resident sketch'}, temporary study label`)}"` : ''}>${esc(space.label)}</button>`).join('')}</div>` : '';
+  const spaceButtons = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip${level.isStudy && space.confidence === 'estimated' ? ' is-estimated' : ''}" data-space="${esc(space.id)}"${level.isStudy ? ` aria-label="${esc(`${space.label}, ${yellowFirstLayout ? 'resident-marked first-floor layout' : yellowTopLayout ? 'resident-marked top-floor layout' : orangeLayout ? 'resident-marked arrangement' : whiteLayout || greenLayout ? 'resident-confirmed arrangement' : space.confidence === 'estimated' ? 'estimated area' : 'resident sketch'}, temporary study label`)}"` : ''}>${esc(space.label)}</button>`).join('')}</div>` : '';
   const dimensionEvidence = fitted ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-HOUSES-MODULE-LAYOUT.md" target="_blank" rel="noopener">Module placement & field checks ↗</a>'
     : whiteLayout ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE57-MODULE-LAYOUT.md" target="_blank" rel="noopener">White’s layout & resident confirmation ↗</a>'
     : greenLayout ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE59-MODULE-LAYOUT.md" target="_blank" rel="noopener">Green’s layout & resident confirmation ↗</a>'
+    : orangeLayout ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE53-MODULE-LAYOUT.md" target="_blank" rel="noopener">Orange’s layouts & access notes ↗</a>'
     : yellowFirstLayout ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE51-FIRST-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Yellow’s first-floor layout & access notes ↗</a>'
     : yellowTopLayout ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE51-TOP-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Yellow’s top-floor layout & door marks ↗</a>'
     : independent && state.selected === '55' && state.floor === 0 ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-GROUND-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Layout dimensions & assumptions ↗</a>'
@@ -158,6 +163,7 @@ function renderFloor() {
   const drawingEvidence = fitted ? 'Provisional module placement · original outline retained'
     : yellowFirstLayout ? 'Resident-marked first-floor layout · Yellow House'
     : yellowTopLayout ? 'Resident-marked top-floor layout · Yellow House'
+    : orangeLayout ? 'Resident-marked arrangement · Orange House'
     : greenLayout ? 'Resident-confirmed arrangement · Green House'
     : whiteLayout ? 'Resident-confirmed arrangement · shared with House 55'
     : sharedApartments ? 'Independent floor layout'
@@ -179,19 +185,26 @@ function renderFloor() {
     : yellowTopLayout
     ? `Yellow’s top floor has 21 single rooms, including E beside D in the A wing and N0 beside N1. Door positions follow the lime-green marks, and the marked surplus gaps are removed. The two rooms labelled E are distinguished by wing in their cards. ${yellowFirstPublished ? '1. OG has its own resident-marked layout. ' : ''}${yellowProvisionalNote}`
     : '';
+  const orangeLayoutNote = !orangeLayout ? '' : state.floor === 2
+    ? 'Orange’s top floor has 20 single rooms in the resident-marked arrangement. Doorway notes distinguish marked access from schematic placement. '
+    : state.floor === 1
+    ? 'Orange’s first floor has 22 single rooms, shared apartment N3–N4 and the west balcony. The east enclosure contains a separate stair down to the ground-floor Bar. Doorway notes distinguish marked access from schematic placement. '
+    : 'Orange’s ground floor has 22 single rooms, shared apartment N3–N4, the Bar beside the east hall and the Common room beside the west hall. The Bar has a separate stair connection to 1. OG; each opening has its own access note. ';
   const stackLayoutNote = state.selected === '57' && studies?.buildings?.['57']?.levels.every(isIndependentLayout)
     ? 'White follows Red’s resident-confirmed internal arrangement on all three levels. Its EG common rooms are the east Gym and west Study; 1. OG has only the west balcony. Select a floor for the layout, dimensions and drawing key.'
     : state.selected === '59' && studies?.buildings?.['59']?.levels.every(isIndependentLayout)
     ? 'Green follows Red on 1. OG and 2. OG. EG has the Hausmeister enclosure, Garden room, Storage and the restored single beside the A bank. Select a floor for the layout, dimensions and drawing key.'
+    : state.selected === '53' && studies?.buildings?.['53']?.levels.length === 3 && studies.buildings['53'].levels.every(isIndependentLayout)
+    ? 'Orange has resident-marked layouts on all three levels. The 2. OG has 20 single rooms; EG and 1. OG each have 22 singles plus shared apartment N3–N4. The first floor has the west balcony and a separate stair down to the Bar. EG has the Bar in the east and the Common room in the west. Select a floor for its rooms, dimensions and access notes.'
     : state.selected === '51' && yellowFirstPublished
     ? `Yellow’s 1. OG has 23 single rooms, shared apartment A and two balconies, with F’s left edge aligned to L1. ${isIndependentLayout(yellowLevels.find(level => level.index === 2)) ? 'The 2. OG retains its resident-marked layout of 21 single rooms. ' : ''}${yellowStackProvisionalNote}Select a floor to review its rooms, dimensions and drawing key.`
     : state.selected === '51' && isIndependentLayout(yellowLevels.find(level => level.index === 2))
     ? `Yellow’s 2. OG follows the resident’s room and doorway annotation. ${yellowStackProvisionalNote}Select the top floor to review its rooms, dimensions and drawing key.`
     : 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.';
-  const openingPrecision = yellowFirstLayout || yellowTopLayout
+  const openingPrecision = yellowFirstLayout || yellowTopLayout || orangeLayout
     ? 'Window positions and exact doorway offsets and widths remain schematic.'
     : 'Window and doorway positions remain schematic.';
-  const dimensionNote = whiteLayoutNote + greenLayoutNote + yellowLayoutNote + (fitted
+  const dimensionNote = whiteLayoutNote + greenLayoutNote + yellowLayoutNote + orangeLayoutNote + (fitted
     ? 'Single rooms use 2.70 × 6.00 m clear rectangles (16.20 m²), with a 0.20 m side wall on each side of a 3.10 m module. Shared apartments, where placed, use 6.20 × 7.40 m gross envelopes. Hall runs use 1.40 m. These dimensions are borrowed from the House 55 layout for this provisional fit. The current exterior outline is retained in full; unused gray space remains unassigned. Room counts, positions and access await on-site checks.'
     : sharedApartments
     ? `Single rooms have 2.70 × 6.00 m clear rectangles (16.20 m²), with a 0.20 m side wall on each side of every 3.10 m module. Shared apartments are shown as whole gross envelopes; their internal rooms, services and wall positions remain unresolved. Main hall runs are 1.40 m wide. Outline dimensions describe this independent layout. ${openingPrecision}`
@@ -246,12 +259,16 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
     const independent = isIndependentLayout(level);
     const whiteLayout = independent && number === '57';
     const greenLayout = independent && number === '59';
+    const orangeLayout = independent && number === '53';
     const yellowFirstLayout = independent && number === '51' && floor === 1;
     const yellowTopLayout = independent && number === '51' && floor === 2;
     const fitted = isFittedModuleLayout(level);
     const moduleLayout = isModuleLayout(level);
     const sharedApartments = independent && level.spaces.some(space => space.kind === 'shared');
     const enclosedCommonAreas = independent && level.spaces.some(space => space.kind === 'service');
+    const stairConnection = !door && space.stairConnection;
+    const linkedLevel = stairConnection ? getDisplayLevel(interiors, studies, number, stairConnection.levelIndex) : null;
+    const linkedSpace = linkedLevel?.spaces.find(item => item.id === stairConnection.spaceId);
     const title = `${door ? door.label : space.label} · study`;
     const description = fitted
       ? door ? 'A proposed doorway in the fitted module layout. Its location and actual access await on-site checks.'
@@ -264,6 +281,8 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
         ? 'A doorway in Yellow’s resident-marked first-floor layout. Exact offsets, widths and opening details remain schematic.'
         : yellowTopLayout
         ? 'A doorway placed from the resident’s lime-green mark. Its exact offset, width and opening details remain schematic.'
+        : orangeLayout
+        ? 'A doorway in Orange’s resident-marked arrangement. Exact offsets, widths and opening details remain schematic.'
         : 'A schematic doorway in the independent room layout. Its position and opening details remain adjustable.'
         : space.kind === 'room' ? 'A clear room rectangle using the chosen 2.70 × 6.00 m dimensions, arranged within a 3.10 m module.'
           : space.kind === 'shared' ? 'A whole shared-apartment envelope. Its internal rooms, services and wall positions remain unresolved.'
@@ -272,6 +291,9 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
           : greenLayout && space.label === 'Garden room' ? 'The Garden room beside the east hall and Hausmeister enclosure, separated from the hall by a wall with one marked doorway.'
           : greenLayout && space.label === 'Storage' ? 'The large Storage room beside the west hall, enclosed with its own marked doorway.'
           : yellowFirstLayout && space.kind === 'service' ? 'A common area enclosed from the hallway in Yellow’s first-floor layout. Exact dimensions and opening details remain schematic.'
+          : orangeLayout && stairConnection && space.kind === 'stairs' ? 'The separate stair connects Orange’s first-floor east enclosure to the ground-floor Bar. Its flight, treads and landing dimensions remain schematic.'
+          : orangeLayout && stairConnection && space.kind === 'service' ? 'The ground-floor Bar connects to the separate access stair on 1. OG. Its fixtures and exact stair details remain unresolved.'
+          : orangeLayout && space.kind === 'service' ? 'A common area enclosed from the hallway in Orange’s resident-marked arrangement. Exact dimensions and opening details remain schematic.'
           : space.kind === 'service' ? whiteLayout || greenLayout
             ? `A resident-confirmed common area in ${whiteLayout ? 'White' : 'Green'}’s layout, enclosed from the hallway with its own marked doorway.`
             : 'A common area enclosed from the hallway, with its own marked doorway.'
@@ -286,6 +308,8 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
             ? 'A space in Green’s resident-confirmed arrangement. Its drawn dimensions remain schematic.'
             : yellowFirstLayout
             ? 'A space in Yellow’s resident-marked first-floor arrangement. Its drawn dimensions remain schematic.'
+            : orangeLayout
+            ? 'A space in Orange’s resident-marked arrangement. Its drawn dimensions remain schematic.'
             : 'A proposed space in the independent room layout. Its arrangement still needs verification.'
       : number !== '55'
       ? 'An estimated layout transferred from House 55 and adapted to this house’s exterior. Its rooms, corridors, openings and apartment types have not been verified in this house.'
@@ -305,7 +329,13 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
       : measurement.areaBasis === 'shared-apartment-layout'
       ? `<div class="source-item"><strong>Shared apartment envelope · before walls</strong><p>${measurement.shortSpan.toFixed(2)} × ${measurement.longSpan.toFixed(2)} m span · ${measurement.area.toFixed(2)} m² gross polygon area</p><p>Whole apartment envelope, including wall allowances. Internal rooms and services have not yet been divided. Spans follow the layout axes; polygon area excludes recesses and cutouts.</p></div>`
       : `<div class="source-item"><strong>Study envelope · before walls</strong><p>≈ ${measurement.shortSpan.toFixed(1)} × ${measurement.longSpan.toFixed(1)} m span · ≈ ${measurement.area.toFixed(1)} m² gross polygon area</p><p>Not measured living area. Spans follow the building axes; polygon area excludes recesses and cutouts.</p></div>`;
-    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${fitted ? 'Provisional placement' : yellowFirstLayout ? 'Resident-marked first-floor layout' : yellowTopLayout ? 'Resident-marked top-floor layout' : whiteLayout || greenLayout ? 'Resident-confirmed arrangement' : independent ? 'Independent layout' : extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' || moduleLayout && space.kind === 'shared' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${dimensions}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
+    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${fitted ? 'Provisional placement' : yellowFirstLayout ? 'Resident-marked first-floor layout' : yellowTopLayout ? 'Resident-marked top-floor layout' : orangeLayout ? 'Resident-marked arrangement' : whiteLayout || greenLayout ? 'Resident-confirmed arrangement' : independent ? 'Independent layout' : extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' || moduleLayout && space.kind === 'shared' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${dimensions}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions">${linkedSpace ? `<button class="outline-button" id="view-stair-connection">View ${esc(linkedSpace.label)} on ${esc(floorNotation(stairConnection.levelIndex))} ${stairConnection.direction === 'down' ? '↘' : '↗'}</button>` : ''}<button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
+    if (linkedSpace) $('#view-stair-connection').onclick = () => {
+      const returnFocus = lastFocus;
+      selectFloor(stairConnection.levelIndex);
+      spaceDialog({house: number, floor: stairConnection.levelIndex, spaceId: linkedSpace.id});
+      lastFocus = returnFocus;
+    };
     $('#correct-space-study').onclick = () => {
       correctionDialog(number, floor);
       const observation = $('#correction-form').elements.observation;
@@ -636,6 +666,9 @@ function accuracyDialog() {
   const greenLayoutSources = independentHouses.includes('59')
     ? ' Green follows Red on both upper floors, including both first-floor balconies. EG has one north-wing Hausmeister enclosure, an east Garden room, west Storage and the restored A-bank single.'
     : '';
+  const orangeLayoutSources = independentHouses.includes('53')
+    ? ' Orange House 53 follows the resident’s drawings on all three levels. Its top floor has 20 single rooms; EG and 1. OG each have 22 singles and shared apartment N3–N4. The first floor has the west balcony and a separate stair down to the Bar, following the clarified blue arrow. EG has the Bar beside the east hall and the Common room beside the west hall. Doorway notes distinguish marked access from schematic placement; exact offsets, widths and stair details remain unmeasured.'
+    : '';
   const yellowFirstSources = isIndependentLayout(studies?.buildings?.['51']?.levels.find(level => level.index === 1))
     ? ' Yellow House 51’s 1. OG has a resident-marked layout of 23 single rooms, shared apartment A and two balconies. The A wing shifts by one 3.10 m module to align F’s left edge with L1. Doorway notes distinguish annotated ends from schematic access; exact offsets and widths remain unmeasured.'
     : '';
@@ -654,7 +687,7 @@ function accuracyDialog() {
     ? ` Houses ${fittedHouses.join(', ')} use provisional modules fitted within their original outlines. Unused gray space stays unassigned, and their rooms and access await on-site checks.`
     : independentHouses.length && !mixedFittedSources ? ' Other older houses retain their earlier template studies.' : '';
   const foldedExteriorSource = independentHouses.length > 1 ? 'The folded exteriors retain their source models.' : 'The folded exterior retains its source model.';
-  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Timber grooves, weathering and staggered older-house plates follow photographic references. Lila and Grey include identified recessed balconies and stair fronts; mapped window rows retain their blank timber spans. Blue’s upper rows align, and Red has separately identified rear and roof glazing. Recess depths, equipment positions and unseen openings remain estimated. Source exterior dimensions remain unchanged.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/PHOTO-FACADE-UPGRADE.md" target="_blank" rel="noopener">Photo study and limits ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interior studies, with visible limits</strong><p>${esc(completedFloorSources + partialFloorSources + whiteLayoutSources + greenLayoutSources + yellowFirstSources + yellowTopSources + mixedFittedSources + otherFloorSources)} ${foldedExteriorSource} Floor heights and actual access still need measured plans. Optional furniture arrangements are concepts, and temporary labels identify no resident or physical room number.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MODULE-LAYOUT.md" target="_blank" rel="noopener">Red’s layout dimensions ↗</a>${whiteLayoutSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE57-MODULE-LAYOUT.md" target="_blank" rel="noopener">White’s layout & resident confirmation ↗</a>' : ''}${greenLayoutSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE59-MODULE-LAYOUT.md" target="_blank" rel="noopener">Green’s layout & resident confirmation ↗</a>' : ''}${yellowFirstSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE51-FIRST-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Yellow’s first-floor layout & access notes ↗</a>' : ''}${yellowTopSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE51-TOP-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Yellow’s top-floor layout & door marks ↗</a>' : ''} · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/${fittedBuildings.length ? 'OLD-HOUSES-MODULE-LAYOUT.md' : 'OLD-HOUSES-STUDY.md'}" target="_blank" rel="noopener">Other houses’ fit checks ↗</a></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
+  modal(`<div class="modal-eyebrow">THE MODEL / ${state.selected ? `HOUSE ${state.selected}` : 'CAMPUS'}</div><h2 class="modal-title">Real shape. Visible craft.</h2><div class="source-list"><div class="source-item"><strong>Verified exterior source</strong><p>Eleven address-matched LoD2 models, 289 wall, roof and ground surfaces.${model ? ` House ${state.selected}: ${model.height.toFixed(2)} m high, model date ${model.creationDate}.` : ''} Source geometry remains in metres; the camera makes the houses feel closer.</p><a href="${lod2.metadata.url}" target="_blank" rel="noopener">Bavaria’s official model ↗</a></div><div class="source-item"><strong>Photo-informed façade linework</strong><p>Timber grooves, weathering and staggered older-house plates follow photographic references. Lila and Grey include identified recessed balconies and stair fronts; mapped window rows retain their blank timber spans. Blue’s upper rows align, and Red has separately identified rear and roof glazing. Recess depths, equipment positions and unseen openings remain estimated. Source exterior dimensions remain unchanged.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/PHOTO-FACADE-UPGRADE.md" target="_blank" rel="noopener">Photo study and limits ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/FACADE-REFERENCES.md" target="_blank" rel="noopener">Material references ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/WINDOW-REFERENCES.md" target="_blank" rel="noopener">Newer windows ↗</a> · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/OLD-WINDOW-REFERENCES.md" target="_blank" rel="noopener">Older windows ↗</a></div><div class="source-item"><strong>Interior studies, with visible limits</strong><p>${esc(completedFloorSources + partialFloorSources + whiteLayoutSources + greenLayoutSources + orangeLayoutSources + yellowFirstSources + yellowTopSources + mixedFittedSources + otherFloorSources)} ${foldedExteriorSource} Floor heights and actual access still need measured plans. Optional furniture arrangements are concepts, and temporary labels identify no resident or physical room number.</p><a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-MODULE-LAYOUT.md" target="_blank" rel="noopener">Red’s layout dimensions ↗</a>${whiteLayoutSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE57-MODULE-LAYOUT.md" target="_blank" rel="noopener">White’s layout & resident confirmation ↗</a>' : ''}${greenLayoutSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE59-MODULE-LAYOUT.md" target="_blank" rel="noopener">Green’s layout & resident confirmation ↗</a>' : ''}${orangeLayoutSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE53-MODULE-LAYOUT.md" target="_blank" rel="noopener">Orange’s layouts & access notes ↗</a>' : ''}${yellowFirstSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE51-FIRST-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Yellow’s first-floor layout & access notes ↗</a>' : ''}${yellowTopSources ? ' · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE51-TOP-FLOOR-LAYOUT.md" target="_blank" rel="noopener">Yellow’s top-floor layout & door marks ↗</a>' : ''} · <a href="https://github.com/mteyra/rommelweb/blob/main/docs/${fittedBuildings.length ? 'OLD-HOUSES-MODULE-LAYOUT.md' : 'OLD-HOUSES-STUDY.md'}" target="_blank" rel="noopener">Other houses’ fit checks ↗</a></div></div><p class="source-note">Datenquelle: Bayerische Vermessungsverwaltung – <a href="https://www.geodaten.bayern.de" target="_blank" rel="noopener">www.geodaten.bayern.de</a> · CC BY 4.0. Reprojected for the web. Floor references © OpenStreetMap contributors, ODbL. LoD2 footprint reference: 2025-10-14. No façade photographs are bundled.</p>`);
 }
 
 function correctionDialog(number = state.selected || '', floor = state.floor) {

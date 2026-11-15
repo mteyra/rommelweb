@@ -79,6 +79,15 @@ function overlapsArea(a, b) {
     || interiorProbes(b).some(point => pointInStudyOutline(point, [a]));
 }
 
+const sameStudyPoint = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]) <= 0.002;
+
+function alignedStairFlights(a, b) {
+  const corners = a.slice(0, -1), other = b.slice(0, -1);
+  // A floor may serialize the same footprint from another corner or winding.
+  return other.some((_, offset) => [1, -1].some(step => corners.every((point, i) =>
+    sameStudyPoint(point, other[(offset + step * i + other.length) % other.length]))));
+}
+
 /** A separate, explicitly unmeasured layer. It can never create approval or floor-height anchors. */
 export function validateInteriorStudies(studies, campus, lod2) {
   object(studies, '$', ['schemaVersion', 'buildings']);
@@ -100,7 +109,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(building.sourceDate) || !Number.isFinite(Date.parse(building.sourceDate)) || new Date(building.sourceDate).toISOString().slice(0, 10) !== building.sourceDate) fail(`${path}.sourceDate`, 'must be a calendar date');
     }
     if (!Array.isArray(building.levels) || !building.levels.length) fail(`${path}.levels`, 'requires at least one study floor');
-    const indexes = new Set();
+    const indexes = new Set(), stairConnections = [];
     for (const level of building.levels) {
       const lp = `${path}.levels[${level.index}]`;
       object(level, lp, ['index', 'label', 'source', 'notes', 'extrapolatedFrom', 'floorOutline', 'excludedAreas', 'sketchBoundaries', 'spaces', 'doors', 'windows', 'windowCoverage', 'wallBands', 'dimensionGuides', 'layoutBasis', 'layoutWindows']);
@@ -143,7 +152,7 @@ export function validateInteriorStudies(studies, campus, lod2) {
       }
       for (const [i, space] of level.spaces.entries()) {
         const sp = `${lp}.spaces[${i}]`;
-        object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes', 'stairFlight']);
+        object(space, sp, ['id', 'label', 'shortLabel', 'kind', 'confidence', 'note', 'polygon', 'holes', 'stairFlight', 'stairConnection']);
         identify(space, sp);
         if (space.shortLabel !== undefined) text(space.shortLabel, `${sp}.shortLabel`, 16);
         if (!KINDS.has(space.kind) || !CONFIDENCE.has(space.confidence)) fail(sp, 'requires a known space kind and sketch/estimated confidence');
@@ -162,7 +171,9 @@ export function validateInteriorStudies(studies, campus, lod2) {
           || (piece.holes || []).some(hole => overlapsArea(spacePolygon, {outer: hole})))) fail(sp, 'space must not cover a floor cutout or cross the floor boundary');
         if (space.stairFlight !== undefined) {
           const fp = `${sp}.stairFlight`;
-          if (space.kind !== 'stairs') fail(fp, 'is only allowed inside a stairwell');
+          if (space.kind !== 'stairs' && !(space.kind === 'service' && space.stairConnection !== undefined)) {
+            fail(fp, 'is only allowed inside a stairwell or a service space with a stair connection');
+          }
           validateInteriorPolygon(space.stairFlight, fp);
           if (space.stairFlight.length !== 5) fail(fp, 'requires one closed quadrilateral for the schematic flight');
           const corners = space.stairFlight.slice(0, -1);
@@ -177,6 +188,33 @@ export function validateInteriorStudies(studies, campus, lod2) {
             || (space.holes || []).some(hole => overlapsArea(flight, {outer: hole}))) {
             fail(fp, 'must stay entirely within its stairwell and outside its cutouts');
           }
+        }
+        if (space.stairConnection !== undefined) {
+          const cp = `${sp}.stairConnection`, connection = space.stairConnection;
+          object(connection, cp, ['levelIndex', 'spaceId', 'direction', 'segment']);
+          if (!['stairs', 'service'].includes(space.kind) || space.stairFlight === undefined) {
+            fail(cp, 'requires a stairwell or service space with a contained stairFlight');
+          }
+          if (!Number.isInteger(connection.levelIndex) || connection.levelIndex === level.index) {
+            fail(`${cp}.levelIndex`, 'must reference a different existing study floor in this house');
+          }
+          if (typeof connection.spaceId !== 'string' || !/^[a-zA-Z0-9][a-zA-Z0-9._:-]{0,79}$/.test(connection.spaceId)) {
+            fail(`${cp}.spaceId`, 'must reference a stable geometry ID in the destination floor');
+          }
+          if (!['up', 'down'].includes(connection.direction)
+            || connection.direction !== (connection.levelIndex > level.index ? 'up' : 'down')) {
+            fail(`${cp}.direction`, 'must point up to a higher floor or down to a lower floor');
+          }
+          if (!Array.isArray(connection.segment) || connection.segment.length !== 2
+            || !connection.segment.every(point => Array.isArray(point) && point.length === 2 && point.every(Number.isFinite))
+            || Math.hypot(connection.segment[1][0] - connection.segment[0][0], connection.segment[1][1] - connection.segment[0][1]) < 0.01) {
+            fail(`${cp}.segment`, 'requires two distinct finite endpoints');
+          }
+          // Convex flight validation makes endpoint containment sufficient for the whole segment.
+          if (!connection.segment.every(point => pointInStudyRing(point, space.stairFlight))) {
+            fail(`${cp}.segment`, 'must stay entirely within its stairFlight');
+          }
+          stairConnections.push({level, space, path: cp});
         }
       }
       for (let i = 0; i < level.spaces.length; i++) for (let j = i + 1; j < level.spaces.length; j++) {
@@ -275,6 +313,24 @@ export function validateInteriorStudies(studies, campus, lod2) {
             || (piece.holes || []).some(hole => overlapsArea(polygon, {outer: hole})))) {
           fail(bp, 'wall bands must stay within the displayed floor and outside cutouts');
         }
+      }
+    }
+    for (const {level, space, path: cp} of stairConnections) {
+      const connection = space.stairConnection;
+      const destination = building.levels.find(item => item.index === connection.levelIndex);
+      if (!destination) fail(`${cp}.levelIndex`, 'must reference an existing study floor in this house');
+      const target = destination.spaces.find(item => item.id === connection.spaceId);
+      if (!target) fail(`${cp}.spaceId`, 'must reference an existing space in the destination floor of this house');
+      const reverse = target.stairConnection;
+      if (!reverse || reverse.levelIndex !== level.index || reverse.spaceId !== space.id || reverse.direction === connection.direction) {
+        fail(cp, 'requires a reciprocal stair connection back to its source floor and space');
+      }
+      if (!alignedStairFlights(space.stairFlight, target.stairFlight)) {
+        fail(cp, 'paired stairFlight footprints must align between floors');
+      }
+      if (!sameStudyPoint(connection.segment[0], reverse.segment[1])
+        || !sameStudyPoint(connection.segment[1], reverse.segment[0])) {
+        fail(`${cp}.segment`, 'paired direction segments must reverse the same route between floors');
       }
     }
   }
