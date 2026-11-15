@@ -323,7 +323,7 @@ test('White study identifiers are unique, stable, floor-specific and reference e
 test('legacy fitting and source-study generation cannot overwrite the independently accepted White layout', () => {
   const fitted = createOldHouseModuleLayouts(input);
   assert.deepEqual(fitted.studies.buildings['57'], studies.buildings['57']);
-  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['51', '53']);
+  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['53']);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
   const mixed = structuredClone(historical);
   mixed.buildings['57'] = structuredClone(studies.buildings['57']);

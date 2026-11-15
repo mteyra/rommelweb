@@ -15,7 +15,8 @@ const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, publishe
   read('tests/fixtures/house59-before-resident-layout.json'),
   read('tests/fixtures/house51-before-top-floor-layout.json'),
 ]);
-const houses = ['51', '53'];
+const houses = ['53'];
+const originalTargets = ['51', '53'];
 const historicalHouses = ['51', '53', '57', '59'];
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan};
 const snapshot = structuredClone(input);
@@ -102,9 +103,9 @@ test('fitting is deterministic, leaves inputs intact and preserves the accepted 
 
 test('all twelve historical source outlines and facade observations remain exact', () => {
   const historicalInput = structuredClone(input);
-  for (const house of houses) historicalInput.studies.buildings[house] = structuredClone(historical.buildings[house]);
+  for (const house of originalTargets) historicalInput.studies.buildings[house] = structuredClone(historical.buildings[house]);
   const fromHistorical = createOldHouseModuleLayouts(historicalInput);
-  for (const house of houses) {
+  for (const house of originalTargets) {
     assert.deepEqual(fromHistorical.studies.buildings[house], fittingStudy(house),
       `${house}: historical provisional interiors reproduce their exact dated fit`);
     assert.deepEqual(fromHistorical.metadata.houses[house], fitting(house));

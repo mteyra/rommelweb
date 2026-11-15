@@ -349,7 +349,7 @@ test('Green identifiers are unique, floor-specific and reference only existing G
 
 test('legacy generators preserve all completed Red, White and Green floors', () => {
   const fitted = createOldHouseModuleLayouts(input);
-  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['51', '53']);
+  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['53']);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
   for (const house of ['55', '57', '59']) assert.deepEqual(fitted.studies.buildings[house], studies.buildings[house]);
   const mixed = structuredClone(historical);

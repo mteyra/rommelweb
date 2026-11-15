@@ -315,15 +315,14 @@ test('legacy regenerators preserve completed Yellow floors and retain only their
   const fitted = createOldHouseModuleLayouts({studies, lod2, topPlan, firstFloorPlan, groundFloorPlan});
   assert.deepEqual(fitted.studies, studies);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
-  assert.deepEqual(Object.keys(oldHouseLayouts.houses).sort(), ['51', '53']);
+  assert.deepEqual(Object.keys(oldHouseLayouts.houses).sort(), ['53']);
   assert.deepEqual(topFloorReleaseFits.metadata.houses['51'].levels.map(item => item.levelIndex), [0, 1],
     'The historical top-floor release retained exactly its two lower-floor fits');
-  assert.deepEqual(oldHouseLayouts.houses['51'].levels.map(item => item.levelIndex),
-    studies.buildings['51'].levels.filter(item => item.layoutBasis === 'fitted-module-layout').map(item => item.index),
-    'Today’s catalog includes every remaining provisional floor and no completed floor');
+  assert.equal(oldHouseLayouts.houses['51'], undefined,
+    'Today’s catalog contains no fitting entry for the completed Yellow house');
   assert.deepEqual(oldHouseLayouts.houses['53'].levels.map(item => item.levelIndex), [0, 1, 2]);
-  assert.deepEqual(without(oldHouseLayouts.houses['51'], ['levels']), without(before.layout, ['levels']),
-    'Retiring completed floors does not alter the Yellow fitting frame');
+  assert.deepEqual(without(topFloorReleaseFits.metadata.houses['51'], ['levels']), without(before.layout, ['levels']),
+    'The historical release retains the exact Yellow fitting frame');
   const mixed = structuredClone(historical);
   for (const house of ['51', '57', '59']) mixed.buildings[house] = structuredClone(studies.buildings[house]);
   const source = structuredClone(mixed);

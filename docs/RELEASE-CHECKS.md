@@ -2,7 +2,22 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — Yellow House 51 first floor
+## Current revision — Yellow House 51 ground floor
+
+Yellow’s **EG** now follows the [general ground-floor sketch](HOUSE51-GROUND-FLOOR-LAYOUT.md), completing the house’s three independent layouts. It retains the middle-floor single-room splits and N0, inserts **B** before the shifted shared **A**, encloses **Sports room** beside West hall and **Laundry** beside East hall. Both upper-floor records remain unchanged.
+
+- The **708.18 m²** outline contains **23 singles, one shared apartment, two common rooms, two connected halls and the stair**, with complete assigned coverage and no overlaps or residual gaps. Singles remain **2.70 × 6.00 m**, modules **3.10 m**, halls **1.40 m** and shared A **6.20 × 7.40 m gross**.
+- Sports combines the former A-bank F module and west common area into a **9.30 × 7.40 m** enclosure. Laundry extends the former east balcony to N0’s outer edge, making a **6.20 × 7.40 m** enclosure. These spans follow module alignment and the general sketch.
+- Every apartment and common room has one hallway entrance; all **29 spaces** reach the retained stair through **28 doorways**. Clear ground-floor marks place A-wing E, D, C and Sports entrances at the illustrated ends. Other room doors retain the middle-floor pattern; B and Laundry access remain schematic. **26 layout-window symbols** include the former F opening reassigned to Sports and the shifted shared-A openings.
+- The [preservation receipt](evidence/house51-ground-floor-preservation.json) verifies **100 protected files**, both Yellow upper-floor records, all other houses and their retained fitting metadata against **`155d32c`**. Folded exterior evidence remains exact. Only House 53’s three floors remain in the provisional catalog.
+- **All 306 tests pass**, including eleven new ground-floor geometry/preservation tests and five UI tests. Historical floor releases remain reproducible. Isolated repeated ground, first-floor, top-floor and generic generator commands preserve the current outputs byte for byte.
+- The production build and path-cache check pass. JavaScript is **236.12 kB gzipped**, with the existing bundle-size advisory.
+- The Firefox [browser receipt](evidence/house51-ground-browser.json) covers all **29 ground-floor cards**, **21 directly visible doorway cards**, both themes and **1440 × 1000**, **390 × 844** and **320 × 568** viewports. Seven door icons are hidden by the existing label-collision handling at the tested overview; all spaces remain accessible from the drawing key. There are no application console errors or horizontal overflow. Fold/unfold, floor switching and other-house controls pass.
+- Both Yellow upper-floor views are **pixel-identical** to `155d32c` in matched **1440 × 1000** captures, with zero changed pixels.
+
+Reviewed views: [ground floor at night](preview/house51-ground-night.png), [daylight](preview/house51-ground-day.png), [new B](preview/house51-ground-inserted-b-card.png), [shared A](preview/house51-ground-shared-a-card.png), [Sports doorway](preview/house51-ground-sports-door.png), [Laundry](preview/house51-ground-laundry-card.png) and [320 px phone](preview/house51-ground-phone-320-night.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — Yellow House 51 first floor
 
 Only **House 51 / 1. OG**, the second physical storey named in the drawing, changes. The [first-floor annotation and derivation](HOUSE51-FIRST-FLOOR-LAYOUT.md) split G–H, N3–N4 and W1 into singles, add N0 and two A-bank rooms, retain shared A and add the two balconies. The blue-covered extra W row is canceled.
 

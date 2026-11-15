@@ -1,0 +1,5035 @@
+{
+  "schemaVersion": 1,
+  "house": "51",
+  "levelIndex": 0,
+  "status": "resident-module-layout",
+  "units": "metres",
+  "sourceTemplate": "public/data/house51-first-floor-layout.json",
+  "sourceHashes": {
+    "public/data/house51-first-floor-layout.json": "67e8ed5ded2a129b785a6b69b96b02762cd664e8d39e98a516e41a437c930d25"
+  },
+  "sourceAnnotation": {
+    "path": "data/source/house51-eg-resident-annotation.png",
+    "sha256": "5b5ea5454f08a61209a917af39994ece6756be42de5333469f3e335c0b742b61"
+  },
+  "dimensions": {
+    "roomWidth": 2.7,
+    "roomDepth": 6,
+    "sideWall": 0.2,
+    "moduleWidth": 3.1,
+    "hallwayWidth": 1.4,
+    "stairFlightWidth": 1.3,
+    "stairWalkwayWidth": 1.4,
+    "stairWidth": 2.7,
+    "sharedWidth": 6.2,
+    "sharedDepth": 7.4,
+    "balconyWidth": 6.2,
+    "balconyDepth": 2.9,
+    "sportsWidth": 9.3,
+    "sportsDepth": 7.4,
+    "laundryWidth": 6.2,
+    "laundryDepth": 7.4
+  },
+  "coordinateFrame": {
+    "originCampusXZ": [
+      -60.64706032949067,
+      -6.7373368408143195
+    ],
+    "axisU": [
+      0.7358274942449722,
+      -0.6771690326005505
+    ],
+    "axisV": [
+      0.6771690326005505,
+      0.7358274942449722
+    ],
+    "basis": "Existing rigid Yellow registration, with the retained [0, -0.4] m core translation absorbed into the origin. Local dimensions are unscaled metres."
+  },
+  "retainedCoreTranslation": [
+    0,
+    -0.4
+  ],
+  "groundFloorChanges": {
+    "insertedSingle": "B",
+    "sharedAShift": [
+      3.1,
+      0
+    ],
+    "sportsReplacesSingle": "A/F",
+    "sportsAbsorbsFormerFHall": true,
+    "laundryExtendsFormerEastBalcony": true,
+    "commonRoomBasis": "Ground-floor uses follow the general resident sketch. Complete module alignment establishes the inferred rectangular envelopes."
+  },
+  "shell": {
+    "outline": [
+      [
+        -5,
+        7.4
+      ],
+      [
+        0,
+        7.4
+      ],
+      [
+        0,
+        -5
+      ],
+      [
+        7.4,
+        -5
+      ],
+      [
+        7.4,
+        0
+      ],
+      [
+        19.4,
+        0
+      ],
+      [
+        19.4,
+        -7.4
+      ],
+      [
+        47.3,
+        -7.4
+      ],
+      [
+        47.3,
+        0
+      ],
+      [
+        36.1,
+        0
+      ],
+      [
+        36.1,
+        12.4
+      ],
+      [
+        28.7,
+        12.4
+      ],
+      [
+        28.7,
+        7.4
+      ],
+      [
+        16.7,
+        7.4
+      ],
+      [
+        16.7,
+        14.8
+      ],
+      [
+        -5,
+        14.8
+      ],
+      [
+        -5,
+        7.4
+      ]
+    ],
+    "holes": []
+  },
+  "rooms": [
+    {
+      "id": "module-51-0-room-E-H",
+      "label": "H",
+      "bank": "E",
+      "polygon": [
+        [
+          0,
+          -4.8
+        ],
+        [
+          6,
+          -4.8
+        ],
+        [
+          6,
+          -2.1
+        ],
+        [
+          0,
+          -2.1
+        ],
+        [
+          0,
+          -4.8
+        ]
+      ],
+      "modulePolygon": [
+        [
+          0,
+          -5
+        ],
+        [
+          6,
+          -5
+        ],
+        [
+          6,
+          -1.9
+        ],
+        [
+          0,
+          -1.9
+        ],
+        [
+          0,
+          -5
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            0,
+            -5
+          ],
+          [
+            6,
+            -5
+          ],
+          [
+            6,
+            -4.8
+          ],
+          [
+            0,
+            -4.8
+          ],
+          [
+            0,
+            -5
+          ]
+        ],
+        [
+          [
+            0,
+            -2.1
+          ],
+          [
+            6,
+            -2.1
+          ],
+          [
+            6,
+            -1.9
+          ],
+          [
+            0,
+            -1.9
+          ],
+          [
+            0,
+            -2.1
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          6,
+          -4.65
+        ],
+        [
+          6,
+          -3.75
+        ]
+      ],
+      "windowSegment": [
+        [
+          0,
+          -3.975
+        ],
+        [
+          0,
+          -2.925
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "right",
+        "end": "top",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-E-G",
+      "label": "G",
+      "bank": "E",
+      "polygon": [
+        [
+          0,
+          -1.7
+        ],
+        [
+          6,
+          -1.7
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          -1.7
+        ]
+      ],
+      "modulePolygon": [
+        [
+          0,
+          -1.9
+        ],
+        [
+          6,
+          -1.9
+        ],
+        [
+          6,
+          1.2
+        ],
+        [
+          0,
+          1.2
+        ],
+        [
+          0,
+          -1.9
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            0,
+            -1.9
+          ],
+          [
+            6,
+            -1.9
+          ],
+          [
+            6,
+            -1.7
+          ],
+          [
+            0,
+            -1.7
+          ],
+          [
+            0,
+            -1.9
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            1.2
+          ],
+          [
+            0,
+            1.2
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          6,
+          -0.05
+        ],
+        [
+          6,
+          0.85
+        ]
+      ],
+      "windowSegment": [
+        [
+          0,
+          -0.875
+        ],
+        [
+          0,
+          0.175
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "right",
+        "end": "bottom",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-E-F",
+      "label": "F",
+      "bank": "E",
+      "polygon": [
+        [
+          0,
+          1.4
+        ],
+        [
+          6,
+          1.4
+        ],
+        [
+          6,
+          4.1
+        ],
+        [
+          0,
+          4.1
+        ],
+        [
+          0,
+          1.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          0,
+          1.2
+        ],
+        [
+          6,
+          1.2
+        ],
+        [
+          6,
+          4.3
+        ],
+        [
+          0,
+          4.3
+        ],
+        [
+          0,
+          1.2
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            0,
+            1.2
+          ],
+          [
+            6,
+            1.2
+          ],
+          [
+            6,
+            1.4
+          ],
+          [
+            0,
+            1.4
+          ],
+          [
+            0,
+            1.2
+          ]
+        ],
+        [
+          [
+            0,
+            4.1
+          ],
+          [
+            6,
+            4.1
+          ],
+          [
+            6,
+            4.3
+          ],
+          [
+            0,
+            4.3
+          ],
+          [
+            0,
+            4.1
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          6,
+          1.55
+        ],
+        [
+          6,
+          2.45
+        ]
+      ],
+      "windowSegment": [
+        [
+          0,
+          2.225
+        ],
+        [
+          0,
+          3.275
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "right",
+        "end": "top",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-E-E",
+      "label": "E",
+      "bank": "E",
+      "polygon": [
+        [
+          0,
+          4.5
+        ],
+        [
+          6,
+          4.5
+        ],
+        [
+          6,
+          7.2
+        ],
+        [
+          0,
+          7.2
+        ],
+        [
+          0,
+          4.5
+        ]
+      ],
+      "modulePolygon": [
+        [
+          0,
+          4.3
+        ],
+        [
+          6,
+          4.3
+        ],
+        [
+          6,
+          7.4
+        ],
+        [
+          0,
+          7.4
+        ],
+        [
+          0,
+          4.3
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            0,
+            4.3
+          ],
+          [
+            6,
+            4.3
+          ],
+          [
+            6,
+            4.5
+          ],
+          [
+            0,
+            4.5
+          ],
+          [
+            0,
+            4.3
+          ]
+        ],
+        [
+          [
+            0,
+            7.2
+          ],
+          [
+            6,
+            7.2
+          ],
+          [
+            6,
+            7.4
+          ],
+          [
+            0,
+            7.4
+          ],
+          [
+            0,
+            7.2
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          6,
+          6.15
+        ],
+        [
+          6,
+          7.05
+        ]
+      ],
+      "windowSegment": [
+        [
+          0,
+          5.325
+        ],
+        [
+          0,
+          6.375
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "right",
+        "end": "bottom",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-N-N4",
+      "label": "N4",
+      "bank": "N",
+      "polygon": [
+        [
+          -4.8,
+          8.8
+        ],
+        [
+          -2.1,
+          8.8
+        ],
+        [
+          -2.1,
+          14.8
+        ],
+        [
+          -4.8,
+          14.8
+        ],
+        [
+          -4.8,
+          8.8
+        ]
+      ],
+      "modulePolygon": [
+        [
+          -5,
+          8.8
+        ],
+        [
+          -1.9,
+          8.8
+        ],
+        [
+          -1.9,
+          14.8
+        ],
+        [
+          -5,
+          14.8
+        ],
+        [
+          -5,
+          8.8
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            -5,
+            8.8
+          ],
+          [
+            -4.8,
+            8.8
+          ],
+          [
+            -4.8,
+            14.8
+          ],
+          [
+            -5,
+            14.8
+          ],
+          [
+            -5,
+            8.8
+          ]
+        ],
+        [
+          [
+            -2.1,
+            8.8
+          ],
+          [
+            -1.9,
+            8.8
+          ],
+          [
+            -1.9,
+            14.8
+          ],
+          [
+            -2.1,
+            14.8
+          ],
+          [
+            -2.1,
+            8.8
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          -4.65,
+          8.8
+        ],
+        [
+          -3.75,
+          8.8
+        ]
+      ],
+      "windowSegment": [
+        [
+          -3.975,
+          14.8
+        ],
+        [
+          -2.925,
+          14.8
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-N-N3",
+      "label": "N3",
+      "bank": "N",
+      "polygon": [
+        [
+          -1.7,
+          8.8
+        ],
+        [
+          1,
+          8.8
+        ],
+        [
+          1,
+          14.8
+        ],
+        [
+          -1.7,
+          14.8
+        ],
+        [
+          -1.7,
+          8.8
+        ]
+      ],
+      "modulePolygon": [
+        [
+          -1.9,
+          8.8
+        ],
+        [
+          1.2,
+          8.8
+        ],
+        [
+          1.2,
+          14.8
+        ],
+        [
+          -1.9,
+          14.8
+        ],
+        [
+          -1.9,
+          8.8
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            -1.9,
+            8.8
+          ],
+          [
+            -1.7,
+            8.8
+          ],
+          [
+            -1.7,
+            14.8
+          ],
+          [
+            -1.9,
+            14.8
+          ],
+          [
+            -1.9,
+            8.8
+          ]
+        ],
+        [
+          [
+            1,
+            8.8
+          ],
+          [
+            1.2,
+            8.8
+          ],
+          [
+            1.2,
+            14.8
+          ],
+          [
+            1,
+            14.8
+          ],
+          [
+            1,
+            8.8
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          -0.05,
+          8.8
+        ],
+        [
+          0.85,
+          8.8
+        ]
+      ],
+      "windowSegment": [
+        [
+          -0.875,
+          14.8
+        ],
+        [
+          0.175,
+          14.8
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "right",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-N-N2",
+      "label": "N2",
+      "bank": "N",
+      "polygon": [
+        [
+          1.4,
+          8.8
+        ],
+        [
+          4.1,
+          8.8
+        ],
+        [
+          4.1,
+          14.8
+        ],
+        [
+          1.4,
+          14.8
+        ],
+        [
+          1.4,
+          8.8
+        ]
+      ],
+      "modulePolygon": [
+        [
+          1.2,
+          8.8
+        ],
+        [
+          4.3,
+          8.8
+        ],
+        [
+          4.3,
+          14.8
+        ],
+        [
+          1.2,
+          14.8
+        ],
+        [
+          1.2,
+          8.8
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            1.2,
+            8.8
+          ],
+          [
+            1.4,
+            8.8
+          ],
+          [
+            1.4,
+            14.8
+          ],
+          [
+            1.2,
+            14.8
+          ],
+          [
+            1.2,
+            8.8
+          ]
+        ],
+        [
+          [
+            4.1,
+            8.8
+          ],
+          [
+            4.3,
+            8.8
+          ],
+          [
+            4.3,
+            14.8
+          ],
+          [
+            4.1,
+            14.8
+          ],
+          [
+            4.1,
+            8.8
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          1.55,
+          8.8
+        ],
+        [
+          2.45,
+          8.8
+        ]
+      ],
+      "windowSegment": [
+        [
+          2.225,
+          14.8
+        ],
+        [
+          3.275,
+          14.8
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-N-N1",
+      "label": "N1",
+      "bank": "N",
+      "polygon": [
+        [
+          4.5,
+          8.8
+        ],
+        [
+          7.2,
+          8.8
+        ],
+        [
+          7.2,
+          14.8
+        ],
+        [
+          4.5,
+          14.8
+        ],
+        [
+          4.5,
+          8.8
+        ]
+      ],
+      "modulePolygon": [
+        [
+          4.3,
+          8.8
+        ],
+        [
+          7.4,
+          8.8
+        ],
+        [
+          7.4,
+          14.8
+        ],
+        [
+          4.3,
+          14.8
+        ],
+        [
+          4.3,
+          8.8
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            4.3,
+            8.8
+          ],
+          [
+            4.5,
+            8.8
+          ],
+          [
+            4.5,
+            14.8
+          ],
+          [
+            4.3,
+            14.8
+          ],
+          [
+            4.3,
+            8.8
+          ]
+        ],
+        [
+          [
+            7.2,
+            8.8
+          ],
+          [
+            7.4,
+            8.8
+          ],
+          [
+            7.4,
+            14.8
+          ],
+          [
+            7.2,
+            14.8
+          ],
+          [
+            7.2,
+            8.8
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          6.15,
+          8.8
+        ],
+        [
+          7.05,
+          8.8
+        ]
+      ],
+      "windowSegment": [
+        [
+          5.325,
+          14.8
+        ],
+        [
+          6.375,
+          14.8
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "right",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-N-N0",
+      "label": "N0",
+      "bank": "N",
+      "polygon": [
+        [
+          7.6,
+          8.8
+        ],
+        [
+          10.3,
+          8.8
+        ],
+        [
+          10.3,
+          14.8
+        ],
+        [
+          7.6,
+          14.8
+        ],
+        [
+          7.6,
+          8.8
+        ]
+      ],
+      "modulePolygon": [
+        [
+          7.4,
+          8.8
+        ],
+        [
+          10.5,
+          8.8
+        ],
+        [
+          10.5,
+          14.8
+        ],
+        [
+          7.4,
+          14.8
+        ],
+        [
+          7.4,
+          8.8
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            7.4,
+            8.8
+          ],
+          [
+            7.6,
+            8.8
+          ],
+          [
+            7.6,
+            14.8
+          ],
+          [
+            7.4,
+            14.8
+          ],
+          [
+            7.4,
+            8.8
+          ]
+        ],
+        [
+          [
+            10.3,
+            8.8
+          ],
+          [
+            10.5,
+            8.8
+          ],
+          [
+            10.5,
+            14.8
+          ],
+          [
+            10.3,
+            14.8
+          ],
+          [
+            10.3,
+            8.8
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          7.75,
+          8.8
+        ],
+        [
+          8.65,
+          8.8
+        ]
+      ],
+      "windowSegment": [
+        [
+          8.425,
+          14.8
+        ],
+        [
+          9.475,
+          14.8
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-R-R3",
+      "label": "R3",
+      "bank": "R",
+      "polygon": [
+        [
+          7.6,
+          0
+        ],
+        [
+          10.3,
+          0
+        ],
+        [
+          10.3,
+          6
+        ],
+        [
+          7.6,
+          6
+        ],
+        [
+          7.6,
+          0
+        ]
+      ],
+      "modulePolygon": [
+        [
+          7.4,
+          0
+        ],
+        [
+          10.5,
+          0
+        ],
+        [
+          10.5,
+          6
+        ],
+        [
+          7.4,
+          6
+        ],
+        [
+          7.4,
+          0
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            7.4,
+            0
+          ],
+          [
+            7.6,
+            0
+          ],
+          [
+            7.6,
+            6
+          ],
+          [
+            7.4,
+            6
+          ],
+          [
+            7.4,
+            0
+          ]
+        ],
+        [
+          [
+            10.3,
+            0
+          ],
+          [
+            10.5,
+            0
+          ],
+          [
+            10.5,
+            6
+          ],
+          [
+            10.3,
+            6
+          ],
+          [
+            10.3,
+            0
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          7.75,
+          6
+        ],
+        [
+          8.65,
+          6
+        ]
+      ],
+      "windowSegment": [
+        [
+          8.425,
+          0
+        ],
+        [
+          9.475,
+          0
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-R-R2",
+      "label": "R2",
+      "bank": "R",
+      "polygon": [
+        [
+          10.7,
+          0
+        ],
+        [
+          13.4,
+          0
+        ],
+        [
+          13.4,
+          6
+        ],
+        [
+          10.7,
+          6
+        ],
+        [
+          10.7,
+          0
+        ]
+      ],
+      "modulePolygon": [
+        [
+          10.5,
+          0
+        ],
+        [
+          13.6,
+          0
+        ],
+        [
+          13.6,
+          6
+        ],
+        [
+          10.5,
+          6
+        ],
+        [
+          10.5,
+          0
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            10.5,
+            0
+          ],
+          [
+            10.7,
+            0
+          ],
+          [
+            10.7,
+            6
+          ],
+          [
+            10.5,
+            6
+          ],
+          [
+            10.5,
+            0
+          ]
+        ],
+        [
+          [
+            13.4,
+            0
+          ],
+          [
+            13.6,
+            0
+          ],
+          [
+            13.6,
+            6
+          ],
+          [
+            13.4,
+            6
+          ],
+          [
+            13.4,
+            0
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          12.35,
+          6
+        ],
+        [
+          13.25,
+          6
+        ]
+      ],
+      "windowSegment": [
+        [
+          11.525,
+          0
+        ],
+        [
+          12.575,
+          0
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "right",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-R-R1",
+      "label": "R1",
+      "bank": "R",
+      "polygon": [
+        [
+          13.8,
+          0
+        ],
+        [
+          16.5,
+          0
+        ],
+        [
+          16.5,
+          6
+        ],
+        [
+          13.8,
+          6
+        ],
+        [
+          13.8,
+          0
+        ]
+      ],
+      "modulePolygon": [
+        [
+          13.6,
+          0
+        ],
+        [
+          16.7,
+          0
+        ],
+        [
+          16.7,
+          6
+        ],
+        [
+          13.6,
+          6
+        ],
+        [
+          13.6,
+          0
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            13.6,
+            0
+          ],
+          [
+            13.8,
+            0
+          ],
+          [
+            13.8,
+            6
+          ],
+          [
+            13.6,
+            6
+          ],
+          [
+            13.6,
+            0
+          ]
+        ],
+        [
+          [
+            16.5,
+            0
+          ],
+          [
+            16.7,
+            0
+          ],
+          [
+            16.7,
+            6
+          ],
+          [
+            16.5,
+            6
+          ],
+          [
+            16.5,
+            0
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          13.95,
+          6
+        ],
+        [
+          14.85,
+          6
+        ]
+      ],
+      "windowSegment": [
+        [
+          14.625,
+          0
+        ],
+        [
+          15.675,
+          0
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-L-L3",
+      "label": "L3",
+      "bank": "L",
+      "polygon": [
+        [
+          19.6,
+          1.4
+        ],
+        [
+          22.3,
+          1.4
+        ],
+        [
+          22.3,
+          7.4
+        ],
+        [
+          19.6,
+          7.4
+        ],
+        [
+          19.6,
+          1.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          19.4,
+          1.4
+        ],
+        [
+          22.5,
+          1.4
+        ],
+        [
+          22.5,
+          7.4
+        ],
+        [
+          19.4,
+          7.4
+        ],
+        [
+          19.4,
+          1.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            19.4,
+            1.4
+          ],
+          [
+            19.6,
+            1.4
+          ],
+          [
+            19.6,
+            7.4
+          ],
+          [
+            19.4,
+            7.4
+          ],
+          [
+            19.4,
+            1.4
+          ]
+        ],
+        [
+          [
+            22.3,
+            1.4
+          ],
+          [
+            22.5,
+            1.4
+          ],
+          [
+            22.5,
+            7.4
+          ],
+          [
+            22.3,
+            7.4
+          ],
+          [
+            22.3,
+            1.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          19.75,
+          1.4
+        ],
+        [
+          20.65,
+          1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          20.425,
+          7.4
+        ],
+        [
+          21.475,
+          7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-L-L2",
+      "label": "L2",
+      "bank": "L",
+      "polygon": [
+        [
+          22.7,
+          1.4
+        ],
+        [
+          25.4,
+          1.4
+        ],
+        [
+          25.4,
+          7.4
+        ],
+        [
+          22.7,
+          7.4
+        ],
+        [
+          22.7,
+          1.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          22.5,
+          1.4
+        ],
+        [
+          25.6,
+          1.4
+        ],
+        [
+          25.6,
+          7.4
+        ],
+        [
+          22.5,
+          7.4
+        ],
+        [
+          22.5,
+          1.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            22.5,
+            1.4
+          ],
+          [
+            22.7,
+            1.4
+          ],
+          [
+            22.7,
+            7.4
+          ],
+          [
+            22.5,
+            7.4
+          ],
+          [
+            22.5,
+            1.4
+          ]
+        ],
+        [
+          [
+            25.4,
+            1.4
+          ],
+          [
+            25.6,
+            1.4
+          ],
+          [
+            25.6,
+            7.4
+          ],
+          [
+            25.4,
+            7.4
+          ],
+          [
+            25.4,
+            1.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          22.85,
+          1.4
+        ],
+        [
+          23.75,
+          1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          23.525,
+          7.4
+        ],
+        [
+          24.575,
+          7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-L-L1",
+      "label": "L1",
+      "bank": "L",
+      "polygon": [
+        [
+          25.8,
+          1.4
+        ],
+        [
+          28.5,
+          1.4
+        ],
+        [
+          28.5,
+          7.4
+        ],
+        [
+          25.8,
+          7.4
+        ],
+        [
+          25.8,
+          1.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          25.6,
+          1.4
+        ],
+        [
+          28.7,
+          1.4
+        ],
+        [
+          28.7,
+          7.4
+        ],
+        [
+          25.6,
+          7.4
+        ],
+        [
+          25.6,
+          1.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            25.6,
+            1.4
+          ],
+          [
+            25.8,
+            1.4
+          ],
+          [
+            25.8,
+            7.4
+          ],
+          [
+            25.6,
+            7.4
+          ],
+          [
+            25.6,
+            1.4
+          ]
+        ],
+        [
+          [
+            28.5,
+            1.4
+          ],
+          [
+            28.7,
+            1.4
+          ],
+          [
+            28.7,
+            7.4
+          ],
+          [
+            28.5,
+            7.4
+          ],
+          [
+            28.5,
+            1.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          27.45,
+          1.4
+        ],
+        [
+          28.35,
+          1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          26.625,
+          7.4
+        ],
+        [
+          27.675,
+          7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "right",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-A-E",
+      "label": "E",
+      "bank": "A",
+      "polygon": [
+        [
+          28.9,
+          -7.4
+        ],
+        [
+          31.6,
+          -7.4
+        ],
+        [
+          31.6,
+          -1.4
+        ],
+        [
+          28.9,
+          -1.4
+        ],
+        [
+          28.9,
+          -7.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          28.7,
+          -7.4
+        ],
+        [
+          31.8,
+          -7.4
+        ],
+        [
+          31.8,
+          -1.4
+        ],
+        [
+          28.7,
+          -1.4
+        ],
+        [
+          28.7,
+          -7.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            28.7,
+            -7.4
+          ],
+          [
+            28.9,
+            -7.4
+          ],
+          [
+            28.9,
+            -1.4
+          ],
+          [
+            28.7,
+            -1.4
+          ],
+          [
+            28.7,
+            -7.4
+          ]
+        ],
+        [
+          [
+            31.6,
+            -7.4
+          ],
+          [
+            31.8,
+            -7.4
+          ],
+          [
+            31.8,
+            -1.4
+          ],
+          [
+            31.6,
+            -1.4
+          ],
+          [
+            31.6,
+            -7.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          29.05,
+          -1.4
+        ],
+        [
+          29.95,
+          -1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          29.725,
+          -7.4
+        ],
+        [
+          30.775,
+          -7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "resident-eg-lime-mark",
+        "basis": "The doorway end follows the ground-floor lime mark; its width and exact corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-A-D",
+      "label": "D",
+      "bank": "A",
+      "polygon": [
+        [
+          32,
+          -7.4
+        ],
+        [
+          34.7,
+          -7.4
+        ],
+        [
+          34.7,
+          -1.4
+        ],
+        [
+          32,
+          -1.4
+        ],
+        [
+          32,
+          -7.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          31.8,
+          -7.4
+        ],
+        [
+          34.9,
+          -7.4
+        ],
+        [
+          34.9,
+          -1.4
+        ],
+        [
+          31.8,
+          -1.4
+        ],
+        [
+          31.8,
+          -7.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            31.8,
+            -7.4
+          ],
+          [
+            32,
+            -7.4
+          ],
+          [
+            32,
+            -1.4
+          ],
+          [
+            31.8,
+            -1.4
+          ],
+          [
+            31.8,
+            -7.4
+          ]
+        ],
+        [
+          [
+            34.7,
+            -7.4
+          ],
+          [
+            34.9,
+            -7.4
+          ],
+          [
+            34.9,
+            -1.4
+          ],
+          [
+            34.7,
+            -1.4
+          ],
+          [
+            34.7,
+            -7.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          33.65,
+          -1.4
+        ],
+        [
+          34.55,
+          -1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          32.825,
+          -7.4
+        ],
+        [
+          33.875,
+          -7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "right",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "resident-eg-lime-mark",
+        "basis": "The doorway end follows the ground-floor lime mark; its width and exact corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-A-C",
+      "label": "C",
+      "bank": "A",
+      "polygon": [
+        [
+          35.1,
+          -7.4
+        ],
+        [
+          37.8,
+          -7.4
+        ],
+        [
+          37.8,
+          -1.4
+        ],
+        [
+          35.1,
+          -1.4
+        ],
+        [
+          35.1,
+          -7.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          34.9,
+          -7.4
+        ],
+        [
+          38,
+          -7.4
+        ],
+        [
+          38,
+          -1.4
+        ],
+        [
+          34.9,
+          -1.4
+        ],
+        [
+          34.9,
+          -7.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            34.9,
+            -7.4
+          ],
+          [
+            35.1,
+            -7.4
+          ],
+          [
+            35.1,
+            -1.4
+          ],
+          [
+            34.9,
+            -1.4
+          ],
+          [
+            34.9,
+            -7.4
+          ]
+        ],
+        [
+          [
+            37.8,
+            -7.4
+          ],
+          [
+            38,
+            -7.4
+          ],
+          [
+            38,
+            -1.4
+          ],
+          [
+            37.8,
+            -1.4
+          ],
+          [
+            37.8,
+            -7.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          35.25,
+          -1.4
+        ],
+        [
+          36.15,
+          -1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          35.925,
+          -7.4
+        ],
+        [
+          36.975,
+          -7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "left",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "resident-eg-lime-mark",
+        "basis": "The doorway end follows the ground-floor lime mark; its width and exact corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-A-B",
+      "label": "B",
+      "bank": "A",
+      "polygon": [
+        [
+          38.2,
+          -7.4
+        ],
+        [
+          40.9,
+          -7.4
+        ],
+        [
+          40.9,
+          -1.4
+        ],
+        [
+          38.2,
+          -1.4
+        ],
+        [
+          38.2,
+          -7.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          38,
+          -7.4
+        ],
+        [
+          41.1,
+          -7.4
+        ],
+        [
+          41.1,
+          -1.4
+        ],
+        [
+          38,
+          -1.4
+        ],
+        [
+          38,
+          -7.4
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            38,
+            -7.4
+          ],
+          [
+            38.2,
+            -7.4
+          ],
+          [
+            38.2,
+            -1.4
+          ],
+          [
+            38,
+            -1.4
+          ],
+          [
+            38,
+            -7.4
+          ]
+        ],
+        [
+          [
+            40.9,
+            -7.4
+          ],
+          [
+            41.1,
+            -7.4
+          ],
+          [
+            41.1,
+            -1.4
+          ],
+          [
+            40.9,
+            -1.4
+          ],
+          [
+            40.9,
+            -7.4
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 0,
+      "doorSegment": [
+        [
+          39.85,
+          -1.4
+        ],
+        [
+          40.75,
+          -1.4
+        ]
+      ],
+      "windowSegment": [
+        [
+          39.025,
+          -7.4
+        ],
+        [
+          40.075,
+          -7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "right",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "schematic-new-single",
+        "basis": "No separate B doorway mark is supplied. The bottom-right entrance continues the adjacent alternating corner pattern; its placement, width and offset are schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-W-W4",
+      "label": "W4",
+      "bank": "W",
+      "polygon": [
+        [
+          30.1,
+          0.2
+        ],
+        [
+          36.1,
+          0.2
+        ],
+        [
+          36.1,
+          2.9
+        ],
+        [
+          30.1,
+          2.9
+        ],
+        [
+          30.1,
+          0.2
+        ]
+      ],
+      "modulePolygon": [
+        [
+          30.1,
+          0
+        ],
+        [
+          36.1,
+          0
+        ],
+        [
+          36.1,
+          3.1
+        ],
+        [
+          30.1,
+          3.1
+        ],
+        [
+          30.1,
+          0
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            30.1,
+            0
+          ],
+          [
+            36.1,
+            0
+          ],
+          [
+            36.1,
+            0.2
+          ],
+          [
+            30.1,
+            0.2
+          ],
+          [
+            30.1,
+            0
+          ]
+        ],
+        [
+          [
+            30.1,
+            2.9
+          ],
+          [
+            36.1,
+            2.9
+          ],
+          [
+            36.1,
+            3.1
+          ],
+          [
+            30.1,
+            3.1
+          ],
+          [
+            30.1,
+            2.9
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          30.1,
+          0.35
+        ],
+        [
+          30.1,
+          1.25
+        ]
+      ],
+      "windowSegment": [
+        [
+          36.1,
+          1.025
+        ],
+        [
+          36.1,
+          2.075
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "left",
+        "end": "top",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-W-W3",
+      "label": "W3",
+      "bank": "W",
+      "polygon": [
+        [
+          30.1,
+          3.3
+        ],
+        [
+          36.1,
+          3.3
+        ],
+        [
+          36.1,
+          6
+        ],
+        [
+          30.1,
+          6
+        ],
+        [
+          30.1,
+          3.3
+        ]
+      ],
+      "modulePolygon": [
+        [
+          30.1,
+          3.1
+        ],
+        [
+          36.1,
+          3.1
+        ],
+        [
+          36.1,
+          6.2
+        ],
+        [
+          30.1,
+          6.2
+        ],
+        [
+          30.1,
+          3.1
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            30.1,
+            3.1
+          ],
+          [
+            36.1,
+            3.1
+          ],
+          [
+            36.1,
+            3.3
+          ],
+          [
+            30.1,
+            3.3
+          ],
+          [
+            30.1,
+            3.1
+          ]
+        ],
+        [
+          [
+            30.1,
+            6
+          ],
+          [
+            36.1,
+            6
+          ],
+          [
+            36.1,
+            6.2
+          ],
+          [
+            30.1,
+            6.2
+          ],
+          [
+            30.1,
+            6
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          30.1,
+          4.95
+        ],
+        [
+          30.1,
+          5.85
+        ]
+      ],
+      "windowSegment": [
+        [
+          36.1,
+          4.125
+        ],
+        [
+          36.1,
+          5.175
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "left",
+        "end": "bottom",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-W-W2",
+      "label": "W2",
+      "bank": "W",
+      "polygon": [
+        [
+          30.1,
+          6.4
+        ],
+        [
+          36.1,
+          6.4
+        ],
+        [
+          36.1,
+          9.1
+        ],
+        [
+          30.1,
+          9.1
+        ],
+        [
+          30.1,
+          6.4
+        ]
+      ],
+      "modulePolygon": [
+        [
+          30.1,
+          6.2
+        ],
+        [
+          36.1,
+          6.2
+        ],
+        [
+          36.1,
+          9.3
+        ],
+        [
+          30.1,
+          9.3
+        ],
+        [
+          30.1,
+          6.2
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            30.1,
+            6.2
+          ],
+          [
+            36.1,
+            6.2
+          ],
+          [
+            36.1,
+            6.4
+          ],
+          [
+            30.1,
+            6.4
+          ],
+          [
+            30.1,
+            6.2
+          ]
+        ],
+        [
+          [
+            30.1,
+            9.1
+          ],
+          [
+            36.1,
+            9.1
+          ],
+          [
+            36.1,
+            9.3
+          ],
+          [
+            30.1,
+            9.3
+          ],
+          [
+            30.1,
+            9.1
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          30.1,
+          6.55
+        ],
+        [
+          30.1,
+          7.45
+        ]
+      ],
+      "windowSegment": [
+        [
+          36.1,
+          7.225
+        ],
+        [
+          36.1,
+          8.275
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "left",
+        "end": "top",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    },
+    {
+      "id": "module-51-0-room-W-W1",
+      "label": "W1",
+      "bank": "W",
+      "polygon": [
+        [
+          30.1,
+          9.5
+        ],
+        [
+          36.1,
+          9.5
+        ],
+        [
+          36.1,
+          12.2
+        ],
+        [
+          30.1,
+          12.2
+        ],
+        [
+          30.1,
+          9.5
+        ]
+      ],
+      "modulePolygon": [
+        [
+          30.1,
+          9.3
+        ],
+        [
+          36.1,
+          9.3
+        ],
+        [
+          36.1,
+          12.4
+        ],
+        [
+          30.1,
+          12.4
+        ],
+        [
+          30.1,
+          9.3
+        ]
+      ],
+      "sideWalls": [
+        [
+          [
+            30.1,
+            9.3
+          ],
+          [
+            36.1,
+            9.3
+          ],
+          [
+            36.1,
+            9.5
+          ],
+          [
+            30.1,
+            9.5
+          ],
+          [
+            30.1,
+            9.3
+          ]
+        ],
+        [
+          [
+            30.1,
+            12.2
+          ],
+          [
+            36.1,
+            12.2
+          ],
+          [
+            36.1,
+            12.4
+          ],
+          [
+            30.1,
+            12.4
+          ],
+          [
+            30.1,
+            12.2
+          ]
+        ]
+      ],
+      "width": 2.7,
+      "depth": 6,
+      "area": 16.2,
+      "rotation": 90,
+      "doorSegment": [
+        [
+          30.1,
+          11.15
+        ],
+        [
+          30.1,
+          12.05
+        ]
+      ],
+      "windowSegment": [
+        [
+          36.1,
+          10.325
+        ],
+        [
+          36.1,
+          11.375
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "left",
+        "end": "bottom",
+        "width": 0.9,
+        "centerOffsetFromClearEdge": 0.6,
+        "jambOffsetFromClearEdge": 0.15,
+        "evidence": "retained-middle-floor-pattern",
+        "basis": "Retained from the completed middle-floor doorway pattern, consistent with the general ground-floor annotation; exact width and corner offsets remain schematic."
+      }
+    }
+  ],
+  "sharedApartments": [
+    {
+      "id": "module-51-0-shared-A",
+      "label": "A",
+      "bank": "A",
+      "kind": "shared",
+      "polygon": [
+        [
+          41.1,
+          -7.4
+        ],
+        [
+          47.3,
+          -7.4
+        ],
+        [
+          47.3,
+          0
+        ],
+        [
+          41.1,
+          0
+        ],
+        [
+          41.1,
+          -7.4
+        ]
+      ],
+      "width": 6.2,
+      "depth": 7.4,
+      "area": 45.88,
+      "areaBasis": "assumed-gross-envelope",
+      "moduleCount": 2,
+      "doorSegment": [
+        [
+          41.1,
+          -1.05
+        ],
+        [
+          41.1,
+          -0.15
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "left",
+        "end": "bottom",
+        "width": 0.9,
+        "centerOffsetFromEnvelopeEdge": 0.6,
+        "jambOffsetFromEnvelopeEdge": 0.15,
+        "evidence": "retained-shared-entrance-after-shift",
+        "basis": "The existing left-bottom entrance moves with shared A after inserting B. Its width and corner offset remain schematic."
+      },
+      "windowSegments": [
+        [
+          [
+            42.125,
+            -7.4
+          ],
+          [
+            43.175,
+            -7.4
+          ]
+        ],
+        [
+          [
+            45.225,
+            -7.4
+          ],
+          [
+            46.275,
+            -7.4
+          ]
+        ]
+      ]
+    }
+  ],
+  "corridors": [
+    {
+      "id": "module-51-0-hall-E",
+      "label": "E bank hallway",
+      "bank": "E",
+      "polygon": [
+        [
+          6,
+          -5
+        ],
+        [
+          7.4,
+          -5
+        ],
+        [
+          7.4,
+          7.4
+        ],
+        [
+          6,
+          7.4
+        ],
+        [
+          6,
+          -5
+        ]
+      ],
+      "width": 1.4
+    },
+    {
+      "id": "module-51-0-hall-N",
+      "label": "N bank hallway",
+      "bank": "N",
+      "polygon": [
+        [
+          -5,
+          7.4
+        ],
+        [
+          10.5,
+          7.4
+        ],
+        [
+          10.5,
+          8.8
+        ],
+        [
+          -5,
+          8.8
+        ],
+        [
+          -5,
+          7.4
+        ]
+      ],
+      "width": 1.4
+    },
+    {
+      "id": "module-51-0-hall-R",
+      "label": "R bank hallway",
+      "bank": "R",
+      "polygon": [
+        [
+          7.4,
+          6
+        ],
+        [
+          16.7,
+          6
+        ],
+        [
+          16.7,
+          7.4
+        ],
+        [
+          7.4,
+          7.4
+        ],
+        [
+          7.4,
+          6
+        ]
+      ],
+      "width": 1.4
+    },
+    {
+      "id": "module-51-0-hall-L",
+      "label": "L bank hallway",
+      "bank": "L",
+      "polygon": [
+        [
+          19.4,
+          0
+        ],
+        [
+          28.7,
+          0
+        ],
+        [
+          28.7,
+          1.4
+        ],
+        [
+          19.4,
+          1.4
+        ],
+        [
+          19.4,
+          0
+        ]
+      ],
+      "width": 1.4
+    },
+    {
+      "id": "module-51-0-hall-A",
+      "label": "A bank hallway",
+      "bank": "A",
+      "polygon": [
+        [
+          28.7,
+          -1.4
+        ],
+        [
+          41.1,
+          -1.4
+        ],
+        [
+          41.1,
+          0
+        ],
+        [
+          28.7,
+          0
+        ],
+        [
+          28.7,
+          -1.4
+        ]
+      ],
+      "width": 1.4
+    },
+    {
+      "id": "module-51-0-hall-W",
+      "label": "W bank hallway",
+      "bank": "W",
+      "polygon": [
+        [
+          28.7,
+          0
+        ],
+        [
+          30.1,
+          0
+        ],
+        [
+          30.1,
+          12.4
+        ],
+        [
+          28.7,
+          12.4
+        ],
+        [
+          28.7,
+          0
+        ]
+      ],
+      "width": 1.4
+    }
+  ],
+  "commonAreas": [
+    {
+      "id": "module-51-0-common-R",
+      "label": "Laundry",
+      "bank": "R",
+      "kind": "service",
+      "use": "laundry",
+      "polygon": [
+        [
+          10.5,
+          7.4
+        ],
+        [
+          16.7,
+          7.4
+        ],
+        [
+          16.7,
+          14.8
+        ],
+        [
+          10.5,
+          14.8
+        ],
+        [
+          10.5,
+          7.4
+        ]
+      ],
+      "width": 6.2,
+      "depth": 7.4,
+      "area": 45.88,
+      "doorSegment": [
+        [
+          15.65,
+          7.4
+        ],
+        [
+          16.55,
+          7.4
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "top",
+        "end": "right",
+        "evidence": "retained-balcony-stair-side-access"
+      },
+      "windowSegments": [],
+      "note": "Resident-marked Laundry beside N0, occupying the 6.20 m module gap to the stair and extending to the N-wing facade at 7.40 m depth. Its one doorway retains the former east balcony stair-side entrance; exact dimensions, opening and equipment remain schematic."
+    },
+    {
+      "id": "module-51-0-common-L",
+      "label": "Sports room",
+      "bank": "L",
+      "kind": "service",
+      "use": "sports-room",
+      "polygon": [
+        [
+          19.4,
+          -7.4
+        ],
+        [
+          28.7,
+          -7.4
+        ],
+        [
+          28.7,
+          0
+        ],
+        [
+          19.4,
+          0
+        ],
+        [
+          19.4,
+          -7.4
+        ]
+      ],
+      "width": 9.3,
+      "depth": 7.4,
+      "area": 68.82,
+      "doorSegment": [
+        [
+          27.65,
+          0
+        ],
+        [
+          28.55,
+          0
+        ]
+      ],
+      "doorPlacement": {
+        "wall": "bottom",
+        "end": "right",
+        "evidence": "resident-eg-lime-mark"
+      },
+      "windowSegments": [
+        [
+          [
+            26.625,
+            -7.4
+          ],
+          [
+            27.675,
+            -7.4
+          ]
+        ]
+      ],
+      "replaces": [
+        "module-51-1-room-A-F",
+        "module-51-1-common-L"
+      ],
+      "note": "Resident-marked Sports room absorbs the former A-bank F module and its hall segment plus the west-balcony gap extended to the outer facade. The resulting 9.30 x 7.40 m gross enclosure has one bottom-right entrance to West hall following the lime mark; internal equipment and exact dimensions remain schematic."
+    }
+  ],
+  "stair": {
+    "polygon": [
+      [
+        16.7,
+        0
+      ],
+      [
+        19.4,
+        0
+      ],
+      [
+        19.4,
+        7.4
+      ],
+      [
+        16.7,
+        7.4
+      ],
+      [
+        16.7,
+        0
+      ]
+    ],
+    "width": 2.7,
+    "length": 7.4,
+    "flightPolygon": [
+      [
+        16.7,
+        1.4
+      ],
+      [
+        18,
+        1.4
+      ],
+      [
+        18,
+        6
+      ],
+      [
+        16.7,
+        6
+      ],
+      [
+        16.7,
+        1.4
+      ]
+    ],
+    "walkwayPolygon": [
+      [
+        18,
+        0
+      ],
+      [
+        19.4,
+        0
+      ],
+      [
+        19.4,
+        7.4
+      ],
+      [
+        18,
+        7.4
+      ],
+      [
+        18,
+        0
+      ]
+    ],
+    "landings": [
+      {
+        "label": "Upper landing",
+        "polygon": [
+          [
+            16.7,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            18,
+            1.4
+          ],
+          [
+            16.7,
+            1.4
+          ],
+          [
+            16.7,
+            0
+          ]
+        ]
+      },
+      {
+        "label": "Lower landing",
+        "polygon": [
+          [
+            16.7,
+            6
+          ],
+          [
+            18,
+            6
+          ],
+          [
+            18,
+            7.4
+          ],
+          [
+            16.7,
+            7.4
+          ],
+          [
+            16.7,
+            6
+          ]
+        ]
+      }
+    ],
+    "connectionSegments": [
+      [
+        [
+          16.7,
+          6.25
+        ],
+        [
+          16.7,
+          7.15
+        ]
+      ],
+      [
+        [
+          19.4,
+          0.25
+        ],
+        [
+          19.4,
+          1.15
+        ]
+      ]
+    ]
+  },
+  "wallBands": [
+    {
+      "id": "module-51-0-wall-E-H-0",
+      "label": "Room H side wall 1",
+      "polygon": [
+        [
+          0,
+          -5
+        ],
+        [
+          6,
+          -5
+        ],
+        [
+          6,
+          -4.8
+        ],
+        [
+          0,
+          -4.8
+        ],
+        [
+          0,
+          -5
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-H-1",
+      "label": "Room H side wall 2",
+      "polygon": [
+        [
+          0,
+          -2.1
+        ],
+        [
+          6,
+          -2.1
+        ],
+        [
+          6,
+          -1.9
+        ],
+        [
+          0,
+          -1.9
+        ],
+        [
+          0,
+          -2.1
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-G-0",
+      "label": "Room G side wall 1",
+      "polygon": [
+        [
+          0,
+          -1.9
+        ],
+        [
+          6,
+          -1.9
+        ],
+        [
+          6,
+          -1.7
+        ],
+        [
+          0,
+          -1.7
+        ],
+        [
+          0,
+          -1.9
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-G-1",
+      "label": "Room G side wall 2",
+      "polygon": [
+        [
+          0,
+          1
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          1.2
+        ],
+        [
+          0,
+          1.2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-F-0",
+      "label": "Room F side wall 1",
+      "polygon": [
+        [
+          0,
+          1.2
+        ],
+        [
+          6,
+          1.2
+        ],
+        [
+          6,
+          1.4
+        ],
+        [
+          0,
+          1.4
+        ],
+        [
+          0,
+          1.2
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-F-1",
+      "label": "Room F side wall 2",
+      "polygon": [
+        [
+          0,
+          4.1
+        ],
+        [
+          6,
+          4.1
+        ],
+        [
+          6,
+          4.3
+        ],
+        [
+          0,
+          4.3
+        ],
+        [
+          0,
+          4.1
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-E-0",
+      "label": "Room E · East wing side wall 1",
+      "polygon": [
+        [
+          0,
+          4.3
+        ],
+        [
+          6,
+          4.3
+        ],
+        [
+          6,
+          4.5
+        ],
+        [
+          0,
+          4.5
+        ],
+        [
+          0,
+          4.3
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-E-E-1",
+      "label": "Room E · East wing side wall 2",
+      "polygon": [
+        [
+          0,
+          7.2
+        ],
+        [
+          6,
+          7.2
+        ],
+        [
+          6,
+          7.4
+        ],
+        [
+          0,
+          7.4
+        ],
+        [
+          0,
+          7.2
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N4-0",
+      "label": "Room N4 side wall 1",
+      "polygon": [
+        [
+          -5,
+          8.8
+        ],
+        [
+          -4.8,
+          8.8
+        ],
+        [
+          -4.8,
+          14.8
+        ],
+        [
+          -5,
+          14.8
+        ],
+        [
+          -5,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N4-1",
+      "label": "Room N4 side wall 2",
+      "polygon": [
+        [
+          -2.1,
+          8.8
+        ],
+        [
+          -1.9,
+          8.8
+        ],
+        [
+          -1.9,
+          14.8
+        ],
+        [
+          -2.1,
+          14.8
+        ],
+        [
+          -2.1,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N3-0",
+      "label": "Room N3 side wall 1",
+      "polygon": [
+        [
+          -1.9,
+          8.8
+        ],
+        [
+          -1.7,
+          8.8
+        ],
+        [
+          -1.7,
+          14.8
+        ],
+        [
+          -1.9,
+          14.8
+        ],
+        [
+          -1.9,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N3-1",
+      "label": "Room N3 side wall 2",
+      "polygon": [
+        [
+          1,
+          8.8
+        ],
+        [
+          1.2,
+          8.8
+        ],
+        [
+          1.2,
+          14.8
+        ],
+        [
+          1,
+          14.8
+        ],
+        [
+          1,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N2-0",
+      "label": "Room N2 side wall 1",
+      "polygon": [
+        [
+          1.2,
+          8.8
+        ],
+        [
+          1.4,
+          8.8
+        ],
+        [
+          1.4,
+          14.8
+        ],
+        [
+          1.2,
+          14.8
+        ],
+        [
+          1.2,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N2-1",
+      "label": "Room N2 side wall 2",
+      "polygon": [
+        [
+          4.1,
+          8.8
+        ],
+        [
+          4.3,
+          8.8
+        ],
+        [
+          4.3,
+          14.8
+        ],
+        [
+          4.1,
+          14.8
+        ],
+        [
+          4.1,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N1-0",
+      "label": "Room N1 side wall 1",
+      "polygon": [
+        [
+          4.3,
+          8.8
+        ],
+        [
+          4.5,
+          8.8
+        ],
+        [
+          4.5,
+          14.8
+        ],
+        [
+          4.3,
+          14.8
+        ],
+        [
+          4.3,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N1-1",
+      "label": "Room N1 side wall 2",
+      "polygon": [
+        [
+          7.2,
+          8.8
+        ],
+        [
+          7.4,
+          8.8
+        ],
+        [
+          7.4,
+          14.8
+        ],
+        [
+          7.2,
+          14.8
+        ],
+        [
+          7.2,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N0-0",
+      "label": "Room N0 side wall 1",
+      "polygon": [
+        [
+          7.4,
+          8.8
+        ],
+        [
+          7.6,
+          8.8
+        ],
+        [
+          7.6,
+          14.8
+        ],
+        [
+          7.4,
+          14.8
+        ],
+        [
+          7.4,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-N-N0-1",
+      "label": "Room N0 side wall 2",
+      "polygon": [
+        [
+          10.3,
+          8.8
+        ],
+        [
+          10.5,
+          8.8
+        ],
+        [
+          10.5,
+          14.8
+        ],
+        [
+          10.3,
+          14.8
+        ],
+        [
+          10.3,
+          8.8
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-R-R3-0",
+      "label": "Room R3 side wall 1",
+      "polygon": [
+        [
+          7.4,
+          0
+        ],
+        [
+          7.6,
+          0
+        ],
+        [
+          7.6,
+          6
+        ],
+        [
+          7.4,
+          6
+        ],
+        [
+          7.4,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-R-R3-1",
+      "label": "Room R3 side wall 2",
+      "polygon": [
+        [
+          10.3,
+          0
+        ],
+        [
+          10.5,
+          0
+        ],
+        [
+          10.5,
+          6
+        ],
+        [
+          10.3,
+          6
+        ],
+        [
+          10.3,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-R-R2-0",
+      "label": "Room R2 side wall 1",
+      "polygon": [
+        [
+          10.5,
+          0
+        ],
+        [
+          10.7,
+          0
+        ],
+        [
+          10.7,
+          6
+        ],
+        [
+          10.5,
+          6
+        ],
+        [
+          10.5,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-R-R2-1",
+      "label": "Room R2 side wall 2",
+      "polygon": [
+        [
+          13.4,
+          0
+        ],
+        [
+          13.6,
+          0
+        ],
+        [
+          13.6,
+          6
+        ],
+        [
+          13.4,
+          6
+        ],
+        [
+          13.4,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-R-R1-0",
+      "label": "Room R1 side wall 1",
+      "polygon": [
+        [
+          13.6,
+          0
+        ],
+        [
+          13.8,
+          0
+        ],
+        [
+          13.8,
+          6
+        ],
+        [
+          13.6,
+          6
+        ],
+        [
+          13.6,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-R-R1-1",
+      "label": "Room R1 side wall 2",
+      "polygon": [
+        [
+          16.5,
+          0
+        ],
+        [
+          16.7,
+          0
+        ],
+        [
+          16.7,
+          6
+        ],
+        [
+          16.5,
+          6
+        ],
+        [
+          16.5,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-L-L3-0",
+      "label": "Room L3 side wall 1",
+      "polygon": [
+        [
+          19.4,
+          1.4
+        ],
+        [
+          19.6,
+          1.4
+        ],
+        [
+          19.6,
+          7.4
+        ],
+        [
+          19.4,
+          7.4
+        ],
+        [
+          19.4,
+          1.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-L-L3-1",
+      "label": "Room L3 side wall 2",
+      "polygon": [
+        [
+          22.3,
+          1.4
+        ],
+        [
+          22.5,
+          1.4
+        ],
+        [
+          22.5,
+          7.4
+        ],
+        [
+          22.3,
+          7.4
+        ],
+        [
+          22.3,
+          1.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-L-L2-0",
+      "label": "Room L2 side wall 1",
+      "polygon": [
+        [
+          22.5,
+          1.4
+        ],
+        [
+          22.7,
+          1.4
+        ],
+        [
+          22.7,
+          7.4
+        ],
+        [
+          22.5,
+          7.4
+        ],
+        [
+          22.5,
+          1.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-L-L2-1",
+      "label": "Room L2 side wall 2",
+      "polygon": [
+        [
+          25.4,
+          1.4
+        ],
+        [
+          25.6,
+          1.4
+        ],
+        [
+          25.6,
+          7.4
+        ],
+        [
+          25.4,
+          7.4
+        ],
+        [
+          25.4,
+          1.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-L-L1-0",
+      "label": "Room L1 side wall 1",
+      "polygon": [
+        [
+          25.6,
+          1.4
+        ],
+        [
+          25.8,
+          1.4
+        ],
+        [
+          25.8,
+          7.4
+        ],
+        [
+          25.6,
+          7.4
+        ],
+        [
+          25.6,
+          1.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-L-L1-1",
+      "label": "Room L1 side wall 2",
+      "polygon": [
+        [
+          28.5,
+          1.4
+        ],
+        [
+          28.7,
+          1.4
+        ],
+        [
+          28.7,
+          7.4
+        ],
+        [
+          28.5,
+          7.4
+        ],
+        [
+          28.5,
+          1.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-E-0",
+      "label": "Room E · A wing side wall 1",
+      "polygon": [
+        [
+          28.7,
+          -7.4
+        ],
+        [
+          28.9,
+          -7.4
+        ],
+        [
+          28.9,
+          -1.4
+        ],
+        [
+          28.7,
+          -1.4
+        ],
+        [
+          28.7,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-E-1",
+      "label": "Room E · A wing side wall 2",
+      "polygon": [
+        [
+          31.6,
+          -7.4
+        ],
+        [
+          31.8,
+          -7.4
+        ],
+        [
+          31.8,
+          -1.4
+        ],
+        [
+          31.6,
+          -1.4
+        ],
+        [
+          31.6,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-D-0",
+      "label": "Room D side wall 1",
+      "polygon": [
+        [
+          31.8,
+          -7.4
+        ],
+        [
+          32,
+          -7.4
+        ],
+        [
+          32,
+          -1.4
+        ],
+        [
+          31.8,
+          -1.4
+        ],
+        [
+          31.8,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-D-1",
+      "label": "Room D side wall 2",
+      "polygon": [
+        [
+          34.7,
+          -7.4
+        ],
+        [
+          34.9,
+          -7.4
+        ],
+        [
+          34.9,
+          -1.4
+        ],
+        [
+          34.7,
+          -1.4
+        ],
+        [
+          34.7,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-C-0",
+      "label": "Room C side wall 1",
+      "polygon": [
+        [
+          34.9,
+          -7.4
+        ],
+        [
+          35.1,
+          -7.4
+        ],
+        [
+          35.1,
+          -1.4
+        ],
+        [
+          34.9,
+          -1.4
+        ],
+        [
+          34.9,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-C-1",
+      "label": "Room C side wall 2",
+      "polygon": [
+        [
+          37.8,
+          -7.4
+        ],
+        [
+          38,
+          -7.4
+        ],
+        [
+          38,
+          -1.4
+        ],
+        [
+          37.8,
+          -1.4
+        ],
+        [
+          37.8,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-B-0",
+      "label": "Room B side wall 1",
+      "polygon": [
+        [
+          38,
+          -7.4
+        ],
+        [
+          38.2,
+          -7.4
+        ],
+        [
+          38.2,
+          -1.4
+        ],
+        [
+          38,
+          -1.4
+        ],
+        [
+          38,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-A-B-1",
+      "label": "Room B side wall 2",
+      "polygon": [
+        [
+          40.9,
+          -7.4
+        ],
+        [
+          41.1,
+          -7.4
+        ],
+        [
+          41.1,
+          -1.4
+        ],
+        [
+          40.9,
+          -1.4
+        ],
+        [
+          40.9,
+          -7.4
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W4-0",
+      "label": "Room W4 side wall 1",
+      "polygon": [
+        [
+          30.1,
+          0
+        ],
+        [
+          36.1,
+          0
+        ],
+        [
+          36.1,
+          0.2
+        ],
+        [
+          30.1,
+          0.2
+        ],
+        [
+          30.1,
+          0
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W4-1",
+      "label": "Room W4 side wall 2",
+      "polygon": [
+        [
+          30.1,
+          2.9
+        ],
+        [
+          36.1,
+          2.9
+        ],
+        [
+          36.1,
+          3.1
+        ],
+        [
+          30.1,
+          3.1
+        ],
+        [
+          30.1,
+          2.9
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W3-0",
+      "label": "Room W3 side wall 1",
+      "polygon": [
+        [
+          30.1,
+          3.1
+        ],
+        [
+          36.1,
+          3.1
+        ],
+        [
+          36.1,
+          3.3
+        ],
+        [
+          30.1,
+          3.3
+        ],
+        [
+          30.1,
+          3.1
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W3-1",
+      "label": "Room W3 side wall 2",
+      "polygon": [
+        [
+          30.1,
+          6
+        ],
+        [
+          36.1,
+          6
+        ],
+        [
+          36.1,
+          6.2
+        ],
+        [
+          30.1,
+          6.2
+        ],
+        [
+          30.1,
+          6
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W2-0",
+      "label": "Room W2 side wall 1",
+      "polygon": [
+        [
+          30.1,
+          6.2
+        ],
+        [
+          36.1,
+          6.2
+        ],
+        [
+          36.1,
+          6.4
+        ],
+        [
+          30.1,
+          6.4
+        ],
+        [
+          30.1,
+          6.2
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W2-1",
+      "label": "Room W2 side wall 2",
+      "polygon": [
+        [
+          30.1,
+          9.1
+        ],
+        [
+          36.1,
+          9.1
+        ],
+        [
+          36.1,
+          9.3
+        ],
+        [
+          30.1,
+          9.3
+        ],
+        [
+          30.1,
+          9.1
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W1-0",
+      "label": "Room W1 side wall 1",
+      "polygon": [
+        [
+          30.1,
+          9.3
+        ],
+        [
+          36.1,
+          9.3
+        ],
+        [
+          36.1,
+          9.5
+        ],
+        [
+          30.1,
+          9.5
+        ],
+        [
+          30.1,
+          9.3
+        ]
+      ],
+      "width": 0.2
+    },
+    {
+      "id": "module-51-0-wall-W-W1-1",
+      "label": "Room W1 side wall 2",
+      "polygon": [
+        [
+          30.1,
+          12.2
+        ],
+        [
+          36.1,
+          12.2
+        ],
+        [
+          36.1,
+          12.4
+        ],
+        [
+          30.1,
+          12.4
+        ],
+        [
+          30.1,
+          12.2
+        ]
+      ],
+      "width": 0.2
+    }
+  ],
+  "outlineDimensions": [
+    {
+      "a": [
+        -5,
+        7.4
+      ],
+      "b": [
+        0,
+        7.4
+      ],
+      "length": 5
+    },
+    {
+      "a": [
+        0,
+        7.4
+      ],
+      "b": [
+        0,
+        -5
+      ],
+      "length": 12.4
+    },
+    {
+      "a": [
+        0,
+        -5
+      ],
+      "b": [
+        7.4,
+        -5
+      ],
+      "length": 7.4
+    },
+    {
+      "a": [
+        7.4,
+        -5
+      ],
+      "b": [
+        7.4,
+        0
+      ],
+      "length": 5
+    },
+    {
+      "a": [
+        7.4,
+        0
+      ],
+      "b": [
+        19.4,
+        0
+      ],
+      "length": 12
+    },
+    {
+      "a": [
+        19.4,
+        0
+      ],
+      "b": [
+        19.4,
+        -7.4
+      ],
+      "length": 7.4
+    },
+    {
+      "a": [
+        19.4,
+        -7.4
+      ],
+      "b": [
+        47.3,
+        -7.4
+      ],
+      "length": 27.9
+    },
+    {
+      "a": [
+        47.3,
+        -7.4
+      ],
+      "b": [
+        47.3,
+        0
+      ],
+      "length": 7.4
+    },
+    {
+      "a": [
+        47.3,
+        0
+      ],
+      "b": [
+        36.1,
+        0
+      ],
+      "length": 11.2
+    },
+    {
+      "a": [
+        36.1,
+        0
+      ],
+      "b": [
+        36.1,
+        12.4
+      ],
+      "length": 12.4
+    },
+    {
+      "a": [
+        36.1,
+        12.4
+      ],
+      "b": [
+        28.7,
+        12.4
+      ],
+      "length": 7.4
+    },
+    {
+      "a": [
+        28.7,
+        12.4
+      ],
+      "b": [
+        28.7,
+        7.4
+      ],
+      "length": 5
+    },
+    {
+      "a": [
+        28.7,
+        7.4
+      ],
+      "b": [
+        16.7,
+        7.4
+      ],
+      "length": 12
+    },
+    {
+      "a": [
+        16.7,
+        7.4
+      ],
+      "b": [
+        16.7,
+        14.8
+      ],
+      "length": 7.4
+    },
+    {
+      "a": [
+        16.7,
+        14.8
+      ],
+      "b": [
+        -5,
+        14.8
+      ],
+      "length": 21.7
+    },
+    {
+      "a": [
+        -5,
+        14.8
+      ],
+      "b": [
+        -5,
+        7.4
+      ],
+      "length": 7.4
+    }
+  ],
+  "unassignedPolygons": [],
+  "totals": {
+    "singleCount": 23,
+    "sharedApartmentCount": 1,
+    "apartmentCount": 24,
+    "moduleCount": 25,
+    "singleClearArea": 372.6,
+    "sharedEnvelopeArea": 45.88,
+    "sideWallArea": 55.2,
+    "bankHallArea": 99.82,
+    "commonArea": 114.7,
+    "stairArea": 19.98,
+    "shellArea": 708.18,
+    "unassignedArea": 0
+  },
+  "notes": [
+    "Yellow House 51 EG follows the resident ground-floor sketch, using the accepted 1. OG modules and exact stair registration. Both upper floor records remain unchanged.",
+    "There are twenty-three single apartments and one shared A envelope. The H/G, N4/N3 and W2/W1 splits remain as on 1. OG, and N0 stays beside N1. One new B single is inserted before shared A; shared A moves right by one 3.10 m pitch.",
+    "The A-bank F single becomes part of Sports room. Sports occupies the former F module and its local hall segment plus the west-balcony gap extended to the north facade: one 9.30 x 7.40 m enclosure. The A bank now reads E, D, C, B, shared A.",
+    "Laundry fills the east-balcony gap beside N0, extended to the southern N-wing facade: one 6.20 x 7.40 m enclosure. Sports room and Laundry each have one entrance from their main hallway; no internal subdivisions or equipment are inferred.",
+    "Singles retain 2.70 x 6.00 m clear interiors, two 0.20 m side allocations and 3.10 m pitch. Halls remain 1.40 m and shared A stays a 6.20 x 7.40 m gross envelope. Common-room dimensions follow module alignment; they are not new site measurements.",
+    "Clear lime marks place Sports at the bottom-right entrance, A-wing E at bottom-left, D at bottom-right and C at bottom-left. The other room door ends retain the completed middle-floor pattern. B uses a schematic bottom-right entrance; Laundry inherits the east balcony stair-side entrance, and shared A retains its left-bottom entrance after shifting.",
+    "Openings remain schematic 0.90 m widths, generally centred 0.60 m from the clear-room or envelope corner with 0.15 m jambs. The general sketch establishes room types and relative placement, not exact jamb dimensions, hinges or door swings.",
+    "The independent ground-floor outline is the complete union of modules, halls, stair and both common enclosures. It has no residual gray gaps. The unchanged Yellow frame retains exact stair alignment with both accepted upper floors.",
+    "The former A-bank F window stays in place and is reassociated with Sports room. B receives a schematic room window and shared A keeps its two openings shifted with the envelope. No further common-room openings are invented; folded source facade geometry and window evidence remain unchanged."
+  ]
+}
