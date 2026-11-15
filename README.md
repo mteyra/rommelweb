@@ -6,7 +6,9 @@ A spatial community home for **Campus Süd I and II**, Erwin-Rommel-Straße, Erl
 
 The repository and GitHub Pages demo are public. See [release checks](docs/RELEASE-CHECKS.md) for build, browser and publication verification.
 
-**New House 55 plan:** [open the interactive measured-width candidate](https://mteyra.github.io/rommelweb/house55-study/) or [read its calculations](docs/HOUSE55-MEASURED-PLAN.md). Twenty apartments fit the source outline with a nominal **2.97 × 5.53 m** reference, bank-specific dimensions averaging **16.40 m²**, measured **1.30 m hallways in both wings** and a **2.72 m inside stairwell**. The guessed stair percentages are retired. Independent checks verify containment, non-overlap, positive assumed walls and connected circulation.
+**House Red layout sandbox:** [resize and arrange the rooms yourself](https://mteyra.github.io/rommelweb/house55-layout/) inside the exact top-floor shell. Every rectangle stays at **16.4 m²**. Edit one room, a bank or all twenty; drag, snap, pack, undo, and share a version. [Sandbox guide](docs/HOUSE55-LAYOUT-SANDBOX.md).
+
+**Earlier House 55 candidate:** [open the measured-width study](https://mteyra.github.io/rommelweb/house55-study/) or [read its calculations](docs/HOUSE55-MEASURED-PLAN.md). Twenty apartments fit the source outline with a nominal **2.97 × 5.53 m** reference, bank-specific dimensions averaging **16.40 m²**, measured **1.30 m hallways in both wings** and a **2.72 m inside stairwell**. The guessed stair percentages are retired. Independent checks verify containment, non-overlap, positive assumed walls and connected circulation.
 
 The new plan is a separate reviewable candidate; the 3D campus below still contains the earlier estimated interiors. [Recovered context](docs/CONTEXT-RECOVERY-2026-11-15.md), [system audit](docs/SYSTEM-AUDIT-2026-11-15.md) and [the historical conflict analysis](docs/HOUSE55-MEASURED-STAIR-RECONCILIATION.md) preserve the evidence behind this revision.
 

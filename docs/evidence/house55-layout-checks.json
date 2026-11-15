@@ -1,0 +1,733 @@
+{
+  "date": "2026-11-15",
+  "publishedPath": "https://mteyra.github.io/rommelweb/house55-layout/",
+  "localTestUrl": "http://127.0.0.1:5199/house55-layout/",
+  "browserChecks": [
+    "Initial twenty fixed-area rectangles and original shell loaded",
+    "Real numeric width edit adjusts only selected room with exact reciprocal depth",
+    "Repeated real depth edits preserve all twenty 16.4m\u00b2 areas without precision drift",
+    "Bank dimension scope changes exactly A\u2013D",
+    "All-room edit is a single exact undo/redo transaction",
+    "Real width-slider drag changes reciprocal shape and undoes in one step",
+    "Pack banks produces exact20cm gaps and exact touching at zero gap",
+    "Real room drag preserves dimensions and supports exact undo",
+    "Real whole-bank drag preserves relative offsets and other banks",
+    "Both real SVG resize handles adjust reciprocal dimensions",
+    "Real pointer movement snaps a room edge to its neighbour without area change",
+    "Rotation preserves fixed area and undo",
+    "Selected/all dimension arrows and shell dimensions toggle correctly",
+    "Download captures full precision; import roundtrips edits and rejects wrong shell",
+    "Local persistence restores full-precision layout after reload",
+    "Generated share URL reconstructs the exact room layout",
+    "Reset restores initial rectangles and remains undoable",
+    "390px and320px layouts fit viewport; focused real touch drag and numeric edits work",
+    "No browser console errors"
+  ],
+  "consoleErrors": [],
+  "finalReview": {
+    "url": "http://127.0.0.1:5199/house55-layout/",
+    "checks": [
+      "Same-tab share navigation applies different snapshot, consumes hash, and supports exact undo/redo",
+      "390px and320px keep stable430px canvas between whole shell and focused view without overflow"
+    ],
+    "snapshots": {},
+    "responsive": [
+      {
+        "width": 390,
+        "initialHeight": 430,
+        "focusHeight": 430,
+        "horizontalOverflow": false
+      },
+      {
+        "width": 320,
+        "initialHeight": 430,
+        "focusHeight": 430,
+        "horizontalOverflow": false
+      }
+    ],
+    "errors": []
+  },
+  "independentAudit": {
+    "method": "Independent Python stdlib triangulation/clipping and cell-decomposition union area, from browser snapshots.",
+    "shellSymmetricDifferenceFromCanonicalTwinArea": -2.2737367544323206e-13,
+    "shellResidentNoFloorIntersectionArea": 1.3647313904471482e-07,
+    "canonicalResidentNoFloorIntersectionArea": 1.3647313904471482e-07,
+    "inheritedVoidBoundaryResidualPreserved": true,
+    "sourceHashes": {
+      "public/data/interior-studies.json": true,
+      "public/data/interiors.json": true,
+      "data/source/house55-2og-study-provenance.json": true,
+      "public/data/lod2.json": true,
+      "public/house55-study/plan.json": true
+    },
+    "snapshots": {
+      "initial": {
+        "roomMaxAreaError": 7.105427357601002e-15,
+        "maxReportedOutsideError": 1.0658141036401503e-14,
+        "outsideRooms": [],
+        "pairOverlapCount": 0,
+        "reportedPairOverlapCount": 0,
+        "occupiedUnionArea": 328.0,
+        "reportedUnionError": 0.0,
+        "rooms": [
+          {
+            "id": "A",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "B",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "C",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "D",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "E",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "F",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "G",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "W1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W2",
+            "outsideArea": -7.105427357601002e-15,
+            "reportedError": -7.105427357601002e-15,
+            "areaError": -7.105427357601002e-15
+          },
+          {
+            "id": "W3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W4",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "L1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "L2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "L3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": 0.0
+          },
+          {
+            "id": "R1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R2",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "N1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": -3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": -3.552713678800501e-15
+          }
+        ]
+      },
+      "edited": {
+        "roomMaxAreaError": 7.105427357601002e-15,
+        "maxReportedOutsideError": 1.0658141036401503e-14,
+        "outsideRooms": [],
+        "pairOverlapCount": 1,
+        "reportedPairOverlapCount": 1,
+        "occupiedUnionArea": 327.7622,
+        "reportedUnionError": 0.0,
+        "rooms": [
+          {
+            "id": "A",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 3.552713678800501e-15
+          },
+          {
+            "id": "B",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "C",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "D",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "E",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "F",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "G",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "W1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W2",
+            "outsideArea": -7.105427357601002e-15,
+            "reportedError": -7.105427357601002e-15,
+            "areaError": -7.105427357601002e-15
+          },
+          {
+            "id": "W3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W4",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "L1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "L2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "L3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": 0.0
+          },
+          {
+            "id": "R1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R2",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "N1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": -3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": -3.552713678800501e-15
+          }
+        ]
+      },
+      "lowerVoid": {
+        "roomMaxAreaError": 7.105427357601002e-15,
+        "maxReportedOutsideError": 1.0658141036401503e-14,
+        "outsideRooms": [
+          "A"
+        ],
+        "pairOverlapCount": 0,
+        "reportedPairOverlapCount": 0,
+        "occupiedUnionArea": 328.0,
+        "reportedUnionError": 0.0,
+        "rooms": [
+          {
+            "id": "A",
+            "outsideArea": 16.4,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "B",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "C",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "D",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "E",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "F",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "G",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "W1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W2",
+            "outsideArea": -7.105427357601002e-15,
+            "reportedError": -7.105427357601002e-15,
+            "areaError": -7.105427357601002e-15
+          },
+          {
+            "id": "W3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W4",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "L1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "L2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "L3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": 0.0
+          },
+          {
+            "id": "R1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R2",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "N1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": -3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": -3.552713678800501e-15
+          }
+        ]
+      },
+      "upperVoid": {
+        "roomMaxAreaError": 7.105427357601002e-15,
+        "maxReportedOutsideError": 1.0658141036401503e-14,
+        "outsideRooms": [
+          "A"
+        ],
+        "pairOverlapCount": 0,
+        "reportedPairOverlapCount": 0,
+        "occupiedUnionArea": 328.0,
+        "reportedUnionError": 0.0,
+        "rooms": [
+          {
+            "id": "A",
+            "outsideArea": 16.399999999999995,
+            "reportedError": -3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "B",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "C",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "D",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "E",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "F",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "G",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "W1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W2",
+            "outsideArea": -7.105427357601002e-15,
+            "reportedError": -7.105427357601002e-15,
+            "areaError": -7.105427357601002e-15
+          },
+          {
+            "id": "W3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W4",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "L1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "L2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "L3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": 0.0
+          },
+          {
+            "id": "R1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R2",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "N1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": -3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": -3.552713678800501e-15
+          }
+        ]
+      },
+      "tripleOverlap": {
+        "roomMaxAreaError": 7.105427357601002e-15,
+        "maxReportedOutsideError": 1.0658141036401503e-14,
+        "outsideRooms": [],
+        "pairOverlapCount": 3,
+        "reportedPairOverlapCount": 3,
+        "occupiedUnionArea": 295.2,
+        "reportedUnionError": 0.0,
+        "rooms": [
+          {
+            "id": "A",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "B",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "C",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "D",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "E",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "F",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "G",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 7.105427357601002e-15
+          },
+          {
+            "id": "W1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W2",
+            "outsideArea": -7.105427357601002e-15,
+            "reportedError": -7.105427357601002e-15,
+            "areaError": -7.105427357601002e-15
+          },
+          {
+            "id": "W3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "W4",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "L1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "L2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 3.552713678800501e-15,
+            "areaError": 0.0
+          },
+          {
+            "id": "L3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": 0.0
+          },
+          {
+            "id": "R1",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R2",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "R3",
+            "outsideArea": 0.0,
+            "reportedError": 0.0,
+            "areaError": 0.0
+          },
+          {
+            "id": "N1",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": 0.0,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N2",
+            "outsideArea": 3.552713678800501e-15,
+            "reportedError": -3.552713678800501e-15,
+            "areaError": -3.552713678800501e-15
+          },
+          {
+            "id": "N3",
+            "outsideArea": 1.0658141036401503e-14,
+            "reportedError": 1.0658141036401503e-14,
+            "areaError": -3.552713678800501e-15
+          }
+        ]
+      }
+    },
+    "allChecksPassed": true
+  },
+  "sourceHashes": {
+    "public/house55-layout/geometry.js": "7231eb0c16a4ba4fbaa831f8fc9dfbde9e65cb8b047a5a144e45f6458bb46877",
+    "public/house55-layout/index.html": "832356225d8b169e08e1a43a9bc915cd5180903041002c6fac6d468ffcb1bd5a",
+    "public/house55-layout/layout.css": "5895e555efb659674e95e7b44106661b0e3f7cfbae386c5d9e802ff33588f38e",
+    "public/house55-layout/layout.js": "ccf0df07acc3ccec21cf90897415d11100e2ace98469258cb51d1782a0a95195",
+    "public/house55-layout/shell.json": "e4012d93e0dcc7b2ebf6358e41ef46e6f4bbdf41004b43aeb518bbf76ea3c3a3"
+  }
+}
