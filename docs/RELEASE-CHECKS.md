@@ -2,7 +2,24 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — aligned R bank, five-house studies and apartment concepts
+## Current revision — photographic exterior details
+
+The new appearance pass registers the resident's six photographs against the retained source faces and the architect's gallery. It adds **eight corner loggias** across Lila 53a and Grey 55a, their recessed stair fronts and railings, selected shared ground frontages, Red 55's courtyard/rear glazing and sloped-roof opening, and roof-bed/coping/hardware studies. Explicit photographed window rows preserve large blank timber spans. Timber weathering, fine grooves, staggered older-house panels, colored frames, reveals, sills and transoms remain original procedural graphics.
+
+The [photographic study](PHOTO-FACADE-UPGRADE.md) distinguishes observations from estimates. Recess depths, equipment positions, many opening dimensions, hidden faces and incomplete lower rows are not surveyed. No accuracy percentage or new interior occupancy is inferred.
+
+- **164 tests passed** in the full local suite. Focused geometry, integration and theme tests were repeated after the final entrance and draw-order refinements. Tests cover closed/coplanar recess masks, positive area subtraction, feature containment, observed row counts after clipping, material continuity, bounded weathering meshes, unchanged source records and retained floor controls.
+- `npm run build` passed, including the unchanged path-cache check. Production JavaScript is approximately **227 kB gzipped**. Vite's existing advisory about a bundle over 500 kB uncompressed remains.
+- The [preservation audit](evidence/exterior-appearance-audit.json) records SHA-256 hashes for seven public data files. Official LoD2, campus JSON/GeoJSON, paths, approved interiors, interior studies and room-marker metadata are **byte-identical to `7665017`**. No source footprint, building placement, height, floor elevation, interior polygon or room record changed. House 55 retains all 24 located upper-floor windows with no rejected record.
+- Display recesses remove the corresponding wall/roof patch, hatching and ordinary windows. They do not paint a balcony over a solid façade or alter the source used by floor sections. All architectural details live under the exterior group and disappear with it during unfolding. The actively inspected roof is opaque, and architectural infill depth-tests after the shell, preventing rear openings from showing through the roof.
+- Isolated Firefox production-preview checks passed at **1600 × 1000**, **390 × 844** and **320 × 568**. The [browser receipt](evidence/exterior-browser-checks.json) records all eleven WebGL houses, photographed views in both themes, House 55's unfolded/top-floor view and unchanged R1 area card, mobile panel exclusivity and no horizontal overflow. Additional views inspect Lila's bicycle frontage, Grey's opposite stair face, Blue's shared frontage and Red's courtyard entrance.
+- No application errors or warnings, audio/video elements, cookies, local-storage entries or session-storage entries were observed. No resident data, private invitation or raw façade photograph was added.
+
+Reviewed images: [campus](preview/campus.png), [daylight campus](preview/day-campus.png), [Lila night](preview/lila-facade-night.png), [Lila day](preview/lila-facade-day.png), [Grey](preview/grey-facade-night.png), [Blue frontage](preview/blue-shared-front.png), [Red rear](preview/red-facade-night.png), [Red courtyard](preview/red-courtyard.png), and [phone](preview/exterior-phone.png).
+
+Publication uses the existing public GitHub Pages workflow on `main`. The interior work below is the unchanged baseline for this exterior-only release.
+
+## Previous revision — aligned R bank, five-house studies and apartment concepts
 
 House 55's estimated R bank spans **8.978521 m**, aligned to the opposite **8.989488 m** recess, while retaining the original **8.079456 m exterior-shell segment**. Its three conditional inside-perimeter areas are **16.068–16.083 m²**; seventeen other room polygons remain unchanged. The existing **25% L3 / 75% R1** enclosure is retained because a right-only shrink would increase the L3 fraction above 25%. A separate schematic flight with two assumed 0.10 m side insets gives **21.837% / 78.163%**. These are distinct geometry hypotheses, documented in the [R-alignment report](HOUSE55-R-ALIGNMENT.md).
 

@@ -1,6 +1,16 @@
 # Façade reference study
 
-Inspected 14 November 2026. This study supports a wireframe material layer for the two building generations. The official LoD2 source remains the authority for the rendered exterior envelope. Photographs establish visible surface character; they do not supply measured elevation drawings. The later [window reference study](WINDOW-REFERENCES.md) supports a separate illustrative upper-window layer for the six newer houses.
+Inspected 14 November 2026; updated from six resident-supplied photographs on 15 November 2026. This study supports a wireframe material layer for the two building generations. The official LoD2 source remains the authority for the rendered exterior envelope. Photographs establish visible surface character; they do not supply measured elevation drawings. The [window reference study](WINDOW-REFERENCES.md) supports the separate window construction layer.
+
+## Resident photograph update · 15 November 2026
+
+The resident identified Lila **53a**, Grau **55a**, Blau **51a**, the rear of Rot **55**, and a courtyard view with Blau on the left, Gelb **51** behind, and Rot on the right. The fourth photograph is a close view of older cladding with yellow window frames. The fifth shows a corner of Blau with aligned upper windows. These descriptions improve house identification; orientation and feature registration are recorded separately in [the photograph-to-façade study](PHOTO-FACADE-UPGRADE.md).
+
+The close photographs support larger, clearly separated rectangular plates on the older buildings and narrow, unevenly weathered vertical boards on the newer buildings. The implementation now uses paired timber groove lines with small deterministic width/brightness variation and occasional shorter grain strokes. A separate restrained silver-gray/ochre fill gives adjacent board pairs a softly correlated color field, with broad vertical variation. This is an original procedural study: it uses no raster texture, sampled photograph colors, or copied image pixels. Fine and distant timber layers retain the same board positions, and coplanar source patches share their pattern and color phase.
+
+The color layer stays exactly on the source wall plane and subtracts both source holes and the union of window/recess masks. It intersects board bands before triangulation, avoiding invisible source-triangle diagonals that would multiply the mesh size. The current six-house fixture stays below **60,000 color vertices**, including all registered façade masks, so day/night color transitions remain practical. The correlated pairs and selected gray/ochre palette are rendering choices; they do not describe measured boards, documented maintenance, or exact weathering on unseen faces.
+
+The old-house detail shows about four panel courses over the approximate regular window height. Using the **1.55 m typology reference** gives roughly **0.39 m per course**. Perspective, incomplete course edges and the unassigned room sketch prevent a measured conclusion. A **0.38 m course height and 1.15 m plate length** are therefore appearance settings, not new building measurements. They replace the earlier finer pattern. This changes neither wall thickness nor any internal study.
 
 ## Reference register
 
@@ -42,15 +52,15 @@ The following numbers are **optional visual parameters**, not measurements of th
 
 | Layer | Suggested starting treatment | Evidence status |
 | --- | --- | --- |
-| New-house timber | Vertical lines at roughly 0.14–0.20 m display pitch; reduce density or opacity at a distance | Orientation observed; pitch inferred for rendering |
-| Old-house plate courses | Horizontal lines at roughly 0.25–0.35 m display pitch | Orientation and course pattern observed; pitch inferred |
-| Old-house plate joints | Short vertical joints about 0.9–1.4 m apart, alternating their offset by course | Elongated staggered plate pattern observed; module and stagger amount inferred |
+| New-house timber | Current 0.14 m board pitch, paired shallow groove lines and sparse shorter grain; reduce density at a distance | Orientation and variable weathering observed; board pitch, groove gap and grain invented for rendering |
+| Old-house plate courses | Current 0.38 m horizontal course pitch | Approximately four courses over the reference window height; still unmeasured |
+| Old-house plate joints | Current 1.15 m plate length, with half-length offsets on alternate courses | Elongated staggered pattern observed; module and stagger amount inferred |
 | Storey separator emphasis | Use existing provisional floor intervals only as a subtle visualization guide | Thin bands observed on new houses; actual separator elevations unmeasured |
-| Windows, doors and loggias | Retain source geometry; the newer houses may receive a separate schematic upper-window appearance layer, with ground, stair and recess exceptions | See [window references](WINDOW-REFERENCES.md); character observed, exact positions and complete house/face inventory absent |
+| Windows, doors and loggias | Retain source geometry; apply separate construction graphics and identified face exceptions | See [window references](WINDOW-REFERENCES.md) and [the current feature register](PHOTO-FACADE-UPGRADE.md); exact coordinates and the complete house/face inventory remain unmeasured |
 
 Implementation principles:
 
-1. Keep every official LoD2 surface, hole, roofline and height unchanged. Clip new seam segments to the actual surface polygon and its holes.
+1. Keep every official LoD2 surface, hole, roofline and height unchanged. Clip new seam segments to the actual surface polygon and its holes. Subtract window and identified recess masks as a union, so neither hatch nor storey joints run through glazing or an open stair/loggia feature. Overlapping masks must not restore material lines.
 2. Make generated seams a distinct **schematic façade detail** layer. They are visual annotation, not additional surveyed geometry, room boundaries or structural members.
 3. Keep silhouette and roof edges clearer than material seams. Fine detail should emerge when zooming in without turning the campus overview into a dense wire mesh.
 4. Apply material directions in each wall's local plane. “Vertical” follows world elevation; horizontal courses follow level intersections with the wall.

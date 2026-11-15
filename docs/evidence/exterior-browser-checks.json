@@ -1,0 +1,40 @@
+{
+  "viewports": [
+    [
+      1600,
+      1000
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      568
+    ]
+  ],
+  "houses": 11,
+  "photographedViews": [
+    "53a",
+    "55a",
+    "51a",
+    "55"
+  ],
+  "themes": [
+    "night",
+    "day"
+  ],
+  "redUpperSpaces": 24,
+  "redR1Area": "16.07m²",
+  "floorIsolation": true,
+  "panelExclusivity": true,
+  "noHorizontalOverflow": true,
+  "mediaCount": 0,
+  "storage": {
+    "local": 0,
+    "session": 0,
+    "cookie": ""
+  },
+  "errors": [],
+  "warnings": []
+}

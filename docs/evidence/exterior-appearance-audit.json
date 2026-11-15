@@ -1,0 +1,699 @@
+{
+  "date": "2026-11-15",
+  "baselineCommit": "76650171095b87d6f5228505bf5fb086b8e8eb5c",
+  "scope": "Exterior appearance only. Computational preservation checks do not establish survey accuracy. Recess dimensions, hidden faces and photographic placements retain the limits in PHOTO-FACADE-UPGRADE.md.",
+  "sourceFiles": [
+    {
+      "path": "public/data/lod2.json",
+      "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "identicalToBaseline": true
+    },
+    {
+      "path": "public/data/campus.json",
+      "sha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "identicalToBaseline": true
+    },
+    {
+      "path": "public/data/campus.geojson",
+      "sha256": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
+      "identicalToBaseline": true
+    },
+    {
+      "path": "public/data/path-network.json",
+      "sha256": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d",
+      "identicalToBaseline": true
+    },
+    {
+      "path": "public/data/interiors.json",
+      "sha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "identicalToBaseline": true
+    },
+    {
+      "path": "public/data/interior-studies.json",
+      "sha256": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+      "identicalToBaseline": true
+    },
+    {
+      "path": "public/data/room-markers.json",
+      "sha256": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826",
+      "identicalToBaseline": true
+    }
+  ],
+  "buildings": [
+    {
+      "house": "49",
+      "unchangedHeight": 18.097,
+      "unchangedBaseY": 0.414,
+      "featureCount": 1,
+      "features": [
+        {
+          "id": "49-inset-roof-bed",
+          "kind": "inset-roof-bed",
+          "sourceSurfaceIndices": [
+            5
+          ],
+          "depth": 0.46,
+          "evidence": "Light green roof and coping visible in photographic references; roof-bed depth is a presentation allowance beneath the unchanged source cap."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 5,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 496.54473759511234
+        }
+      ],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "51",
+      "unchangedHeight": 10.605,
+      "unchangedBaseY": 2.107,
+      "featureCount": 0,
+      "features": [],
+      "displayCutouts": [],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "51a",
+      "unchangedHeight": 10.351,
+      "unchangedBaseY": 2.751,
+      "featureCount": 4,
+      "features": [
+        {
+          "id": "51a-southwest-shared-glazing",
+          "kind": "shared-ground-glazing",
+          "floor": 0,
+          "sourceSurfaceIndices": [
+            6
+          ],
+          "evidence": "Use and broad frontage identified in the architect photograph. Bay spacing, depth and opening limits remain estimated; no room identity is assigned."
+        },
+        {
+          "id": "51a-courtyard-shared-glazing",
+          "kind": "shared-ground-glazing",
+          "floor": 0,
+          "sourceSurfaceIndices": [
+            2
+          ],
+          "evidence": "Use and broad frontage identified in the architect photograph. Bay spacing, depth and opening limits remain estimated; no room identity is assigned."
+        },
+        {
+          "id": "51a-photographic-window-rows-6",
+          "kind": "photographic-window-rows",
+          "sourceSurfaceIndices": [
+            6
+          ],
+          "rows": [
+            {
+              "floor": 1,
+              "count": 6,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 2,
+              "count": 6,
+              "coverage": "photographed row"
+            }
+          ],
+          "evidence": "Visible window centers estimated from a coarse planar rectification of resident/architect photographs; no calibrated metric error bound is established. Occluded rows retain the generic appearance study; partial ground rows are not complete opening inventories."
+        },
+        {
+          "id": "51a-inset-roof-bed",
+          "kind": "inset-roof-bed",
+          "sourceSurfaceIndices": [
+            7
+          ],
+          "depth": 0.46,
+          "evidence": "Light green roof and coping visible in photographic references; roof-bed depth is a presentation allowance beneath the unchanged source cap."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 6,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 43.1333066666667
+        },
+        {
+          "sourceSurface": 2,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 16.972573333333315
+        },
+        {
+          "sourceSurface": 7,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 497.82179726371
+        }
+      ],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "53",
+      "unchangedHeight": 10.236,
+      "unchangedBaseY": 1.775,
+      "featureCount": 0,
+      "features": [],
+      "displayCutouts": [],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "53a",
+      "unchangedHeight": 15.111,
+      "unchangedBaseY": 0,
+      "featureCount": 8,
+      "features": [
+        {
+          "id": "53a-east-stair",
+          "kind": "recessed-stair-elevation",
+          "sourceSurfaceIndices": [
+            9,
+            4,
+            1,
+            3
+          ],
+          "width": 7.000000000000001,
+          "depth": 1.65,
+          "evidence": "Photographic open landings registered to the source façade band. Recess depth, rear doors and visible stair details remain schematic; no interior route is created."
+        },
+        {
+          "id": "53a-top-southeast-loggia",
+          "kind": "corner-loggia",
+          "floor": 4,
+          "sourceSurfaceIndices": [
+            9,
+            4,
+            1,
+            3,
+            2
+          ],
+          "frontWidth": 7.3,
+          "returnWidth": 3.3,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "53a-middle-northeast-loggia",
+          "kind": "corner-loggia",
+          "floor": 2,
+          "sourceSurfaceIndices": [
+            3,
+            1,
+            4,
+            9,
+            7
+          ],
+          "frontWidth": 6,
+          "returnWidth": 3.25,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "53a-upper-northwest-loggia",
+          "kind": "corner-loggia",
+          "floor": 3,
+          "sourceSurfaceIndices": [
+            7,
+            5,
+            8
+          ],
+          "frontWidth": 6.8,
+          "returnWidth": 3.25,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "53a-north-bike-storage",
+          "kind": "bike-storage",
+          "floor": 0,
+          "sourceSurfaceIndices": [
+            7
+          ],
+          "evidence": "Use and broad frontage identified in the architect photograph. Bay spacing, depth and opening limits remain estimated; no room identity is assigned."
+        },
+        {
+          "id": "53a-photographic-window-rows-2",
+          "kind": "photographic-window-rows",
+          "sourceSurfaceIndices": [
+            2
+          ],
+          "rows": [
+            {
+              "floor": 0,
+              "count": 2,
+              "coverage": "visible openings only; not a floor total"
+            },
+            {
+              "floor": 2,
+              "count": 7,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 3,
+              "count": 7,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 4,
+              "count": 6,
+              "coverage": "photographed row"
+            }
+          ],
+          "evidence": "Visible window centers estimated from a coarse planar rectification of resident/architect photographs; no calibrated metric error bound is established. Occluded rows retain the generic appearance study; partial ground rows are not complete opening inventories."
+        },
+        {
+          "id": "53a-photographic-window-rows-7",
+          "kind": "photographic-window-rows",
+          "sourceSurfaceIndices": [
+            7
+          ],
+          "rows": [
+            {
+              "floor": 1,
+              "count": 5,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 2,
+              "count": 4,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 3,
+              "count": 4,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 4,
+              "count": 5,
+              "coverage": "photographed row"
+            }
+          ],
+          "evidence": "Visible window centers estimated from a coarse planar rectification of resident/architect photographs; no calibrated metric error bound is established. Occluded rows retain the generic appearance study; partial ground rows are not complete opening inventories."
+        },
+        {
+          "id": "53a-inset-roof-bed",
+          "kind": "inset-roof-bed",
+          "sourceSurfaceIndices": [
+            6
+          ],
+          "depth": 0.46,
+          "evidence": "Light green roof and coping visible in photographic references; roof-bed depth is a presentation allowance beneath the unchanged source cap."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 4,
+          "type": "WallSurface",
+          "count": 5,
+          "removedDisplayArea": 96.40349276542167
+        },
+        {
+          "sourceSurface": 9,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 19.142060323378146
+        },
+        {
+          "sourceSurface": 2,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 8.653259999999989
+        },
+        {
+          "sourceSurface": 3,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 15.733200116485335
+        },
+        {
+          "sourceSurface": 7,
+          "type": "WallSurface",
+          "count": 3,
+          "removedDisplayArea": 88.38040205070527
+        },
+        {
+          "sourceSurface": 5,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 8.522150269672096
+        },
+        {
+          "sourceSurface": 6,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 496.966729983385
+        }
+      ],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "55",
+      "unchangedHeight": 9.491,
+      "unchangedBaseY": 2.822,
+      "featureCount": 4,
+      "features": [
+        {
+          "id": "55-rear-common-glazing",
+          "kind": "shared-ground-glazing",
+          "sourceSurfaceIndices": [
+            43
+          ],
+          "divisions": 9,
+          "evidence": "Resident rear photo locates a broad red framed communal opening below roof33. Nine divisions are an estimate, not a confirmed count; no apartments are assigned."
+        },
+        {
+          "id": "55-courtyard-entry-glazing",
+          "kind": "shared-ground-glazing",
+          "sourceSurfaceIndices": [
+            4
+          ],
+          "divisions": 8,
+          "evidence": "Resident courtyard photo identifies the red entrance under the opposite low roof3, facing Blue House. Its source low-edge registration is fixed; glazing subdivisions and entry leaves remain estimated visual cues, not surveyed doors."
+        },
+        {
+          "id": "55-rear-roof-window",
+          "kind": "sloped-roof-window",
+          "sourceSurfaceIndices": [
+            33
+          ],
+          "width": 2.32,
+          "length": 1.14,
+          "divisions": 3,
+          "evidence": "Resident rear photo shows a small three-part bank on the roof slope with maintenance rungs. Size and offsets are estimated; this is not an occupied floor or apartment opening."
+        },
+        {
+          "id": "55-roof-cap-study",
+          "kind": "roof-vent-caps",
+          "count": 12,
+          "sourceSurfaceIndices": [
+            39
+          ],
+          "evidence": "Approximately twelve square caps are distinguishable in the resident rear-roof photograph. Positions here remain an estimated sparse distribution, not a mechanical-services survey."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 43,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 22.69162010083653
+        },
+        {
+          "sourceSurface": 4,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 23.509549256857028
+        },
+        {
+          "sourceSurface": 33,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 2.644799827199577
+        }
+      ],
+      "locatedWindowsRetained": 24,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "55a",
+      "unchangedHeight": 18.198,
+      "unchangedBaseY": 0.613,
+      "featureCount": 10,
+      "features": [
+        {
+          "id": "55a-north-stair",
+          "kind": "recessed-stair-elevation",
+          "sourceSurfaceIndices": [
+            2,
+            0,
+            4,
+            6
+          ],
+          "width": 6.970000000000001,
+          "depth": 1.65,
+          "evidence": "Photographic open landings registered to the source façade band. Recess depth, rear doors and visible stair details remain schematic; no interior route is created."
+        },
+        {
+          "id": "55a-top-southwest-loggia",
+          "kind": "corner-loggia",
+          "floor": 5,
+          "sourceSurfaceIndices": [
+            5,
+            3,
+            9
+          ],
+          "frontWidth": 6.9,
+          "returnWidth": 3.25,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "55a-middle-southeast-loggia",
+          "kind": "corner-loggia",
+          "floor": 3,
+          "sourceSurfaceIndices": [
+            7,
+            3,
+            5
+          ],
+          "frontWidth": 9.9,
+          "returnWidth": 3.2,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "55a-lower-southwest-loggia",
+          "kind": "corner-loggia",
+          "floor": 2,
+          "sourceSurfaceIndices": [
+            5,
+            3,
+            9
+          ],
+          "frontWidth": 6.9,
+          "returnWidth": 3.25,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "55a-upper-northeast-loggia",
+          "kind": "corner-loggia",
+          "floor": 4,
+          "sourceSurfaceIndices": [
+            6,
+            4,
+            0,
+            2,
+            7
+          ],
+          "frontWidth": 7.3,
+          "returnWidth": 3.25,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "55a-lower-northwest-loggia",
+          "kind": "corner-loggia",
+          "floor": 1,
+          "sourceSurfaceIndices": [
+            2,
+            0,
+            4,
+            6,
+            9
+          ],
+          "frontWidth": 6.9,
+          "returnWidth": 3.25,
+          "evidence": "Corner and relative floor identified in resident photograph; depth, width and rear glazing are estimated appearance geometry."
+        },
+        {
+          "id": "55a-northeast-ground-glazing",
+          "kind": "shared-ground-glazing",
+          "floor": 0,
+          "sourceSurfaceIndices": [
+            6,
+            4
+          ],
+          "evidence": "Use and broad frontage identified in the architect photograph. Bay spacing, depth and opening limits remain estimated; no room identity is assigned."
+        },
+        {
+          "id": "55a-east-ground-glazing",
+          "kind": "shared-ground-glazing",
+          "floor": 0,
+          "sourceSurfaceIndices": [
+            7
+          ],
+          "evidence": "Use and broad frontage identified in the architect photograph. Bay spacing, depth and opening limits remain estimated; no room identity is assigned."
+        },
+        {
+          "id": "55a-photographic-window-rows-7",
+          "kind": "photographic-window-rows",
+          "sourceSurfaceIndices": [
+            7
+          ],
+          "rows": [
+            {
+              "floor": 3,
+              "count": 4,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 4,
+              "count": 4,
+              "coverage": "photographed row"
+            },
+            {
+              "floor": 5,
+              "count": 5,
+              "coverage": "photographed row"
+            }
+          ],
+          "evidence": "Visible window centers estimated from a coarse planar rectification of resident/architect photographs; no calibrated metric error bound is established. Occluded rows retain the generic appearance study; partial ground rows are not complete opening inventories."
+        },
+        {
+          "id": "55a-inset-roof-bed",
+          "kind": "inset-roof-bed",
+          "sourceSurfaceIndices": [
+            1
+          ],
+          "depth": 0.46,
+          "evidence": "Light green roof and coping visible in photographic references; roof-bed depth is a presentation allowance beneath the unchanged source cap."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 0,
+          "type": "WallSurface",
+          "count": 6,
+          "removedDisplayArea": 115.63020000772177
+        },
+        {
+          "sourceSurface": 5,
+          "type": "WallSurface",
+          "count": 2,
+          "removedDisplayArea": 36.335401258063825
+        },
+        {
+          "sourceSurface": 9,
+          "type": "WallSurface",
+          "count": 3,
+          "removedDisplayArea": 25.67175000000003
+        },
+        {
+          "sourceSurface": 7,
+          "type": "WallSurface",
+          "count": 3,
+          "removedDisplayArea": 50.43005000000011
+        },
+        {
+          "sourceSurface": 3,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 8.425600189481457
+        },
+        {
+          "sourceSurface": 6,
+          "type": "WallSurface",
+          "count": 2,
+          "removedDisplayArea": 34.56281105122345
+        },
+        {
+          "sourceSurface": 4,
+          "type": "WallSurface",
+          "count": 2,
+          "removedDisplayArea": 5.317255015563134
+        },
+        {
+          "sourceSurface": 2,
+          "type": "WallSurface",
+          "count": 1,
+          "removedDisplayArea": 18.16772289354833
+        },
+        {
+          "sourceSurface": 1,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 498.6525128759301
+        }
+      ],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "57",
+      "unchangedHeight": 9.672,
+      "unchangedBaseY": 2.641,
+      "featureCount": 0,
+      "features": [],
+      "displayCutouts": [],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "57a",
+      "unchangedHeight": 23.458,
+      "unchangedBaseY": 1.66,
+      "featureCount": 1,
+      "features": [
+        {
+          "id": "57a-inset-roof-bed",
+          "kind": "inset-roof-bed",
+          "sourceSurfaceIndices": [
+            3
+          ],
+          "depth": 0.46,
+          "evidence": "Light green roof and coping visible in photographic references; roof-bed depth is a presentation allowance beneath the unchanged source cap."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 3,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 497.3234995768902
+        }
+      ],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "59",
+      "unchangedHeight": 9.745,
+      "unchangedBaseY": 2.668,
+      "featureCount": 0,
+      "features": [],
+      "displayCutouts": [],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    },
+    {
+      "house": "59a",
+      "unchangedHeight": 18.333,
+      "unchangedBaseY": 2.4,
+      "featureCount": 1,
+      "features": [
+        {
+          "id": "59a-inset-roof-bed",
+          "kind": "inset-roof-bed",
+          "sourceSurfaceIndices": [
+            0
+          ],
+          "depth": 0.46,
+          "evidence": "Light green roof and coping visible in photographic references; roof-bed depth is a presentation allowance beneath the unchanged source cap."
+        }
+      ],
+      "displayCutouts": [
+        {
+          "sourceSurface": 0,
+          "type": "RoofSurface",
+          "count": 1,
+          "removedDisplayArea": 498.6666877716781
+        }
+      ],
+      "locatedWindowsRetained": 0,
+      "rejectedLocatedWindows": []
+    }
+  ]
+}

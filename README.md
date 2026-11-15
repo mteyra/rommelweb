@@ -10,7 +10,7 @@ This independent resident project starts with the actual eleven houses and grows
 
 ![Rommelweb dark campus explorer with eleven official exterior models](docs/preview/campus.png)
 
-Preview details: [daylight campus](docs/preview/day-campus.png) · [group carousel](docs/preview/groups.png) · [expanded group details](docs/preview/group-details.png) · [timber and window study](docs/preview/timber-detail.png) · [daylight detail](docs/preview/day-timber-detail.png) · [older windows](docs/preview/older-windows.png) · [aligned Blue House windows](docs/preview/blue-house.png) · [isolated house floors](docs/preview/unfolded-levels.png) · [House 55, 2. OG](docs/preview/house55-r-alignment-night.png) · [older-house studies](docs/preview/old-house-top-studies.png) · [apartment concept](docs/preview/apartment-concept-night.png) · [published room references](docs/preview/room-references.png) · [phone layout](docs/preview/mobile.png) · [timeline](docs/preview/timeline.png).
+Preview details: [daylight campus](docs/preview/day-campus.png) · [group carousel](docs/preview/groups.png) · [expanded group details](docs/preview/group-details.png) · [Lila façade](docs/preview/lila-facade-night.png) · [daylight detail](docs/preview/lila-facade-day.png) · [Grey loggias](docs/preview/grey-facade-night.png) · [Red rear façade](docs/preview/red-facade-night.png) · [Blue frontage](docs/preview/blue-shared-front.png) · [isolated house floors](docs/preview/unfolded-levels.png) · [House 55, 2. OG](docs/preview/house55-r-alignment-night.png) · [older-house studies](docs/preview/old-house-top-studies.png) · [apartment concept](docs/preview/apartment-concept-night.png) · [published room references](docs/preview/room-references.png) · [phone layout](docs/preview/mobile.png) · [timeline](docs/preview/timeline.png).
 
 ## This release
 
@@ -18,8 +18,9 @@ Preview details: [daylight campus](docs/preview/day-campus.png) · [group carous
 - A full-screen spatial interface with **day/night mode**, defaulting to night, and a lower overview from the southwest. Daylight uses warm off-white ground and neutral light panels; geographical alignment, metre scale, source roof shapes, heights and relative building-base elevations remain unchanged.
 - Hover a house to highlight it, then click to focus. A primary click on empty map space restores the campus overview; dragging, cancelled gestures and multi-pointer gestures do not trigger that action. The Rommelweb brand also restores the overview. Drag to orbit and use the wheel to zoom.
 - Buildings and their address-label buttons are the navigation, with keyboard access through the labels. The selected house's unfold control starts at bottom left; a selected floor uses a compact control bar below its drawing.
-- Photo-informed façade linework: vertical timber seams on the newer houses and horizontal plate courses with faint short joints on the older houses. Natural timber and older brown façades sit beneath neutral charcoal/gray roofs. Colors, seam spacing and floor bands are schematic; source polygons are unchanged.
-- A separate **schematic window layer** adds narrow dark frames, lower transoms and head strips to the newer houses. Blue House **51a has vertically aligned upper rows**, following a resident correction; the other newer houses retain illustrative row offsets. Typical width is referenced to a resident sketch, while positions, heights and repetition remain unmeasured. Newer-house ground-floor glazing, stairs and loggias remain unmodeled. See the [newer-window evidence](docs/WINDOW-REFERENCES.md).
+- Photo-informed façade linework: fine vertical timber grooves and weathering on the newer houses, and larger staggered plate courses on the older houses. Colored older-house window frames, transoms, reveals, sills and Blue's differing upper blind/head treatment follow the photographic references. The existing metre-scale source and interior datasets remain unchanged.
+- **Lila 53a and Grey 55a** now have photographed corner loggias, recessed stair/landing elevations, railings and lime-colored fascias. Identified upper window rows preserve the observed blank timber spans. Blue **51a** retains vertically aligned upper windows. Roofs have inset beds, coping and low photographic hardware studies; Red **55** has separately identified rear shared glazing and a sloped-roof window. Recesses are cut from a display copy of the source faces, so timber and regular windows do not continue through balcony openings. See the [face-by-face photo study](docs/PHOTO-FACADE-UPGRADE.md).
+- The **window and exterior-detail layers remain appearance studies**. Visible counts and relative placements have photographic support; absolute opening sizes, recess depths, hidden faces, roof equipment positions and many ground/lower rows remain estimated. No façade detail establishes an occupied room or modifies a floor plan. See the [newer-window evidence](docs/WINDOW-REFERENCES.md).
 - Older houses now have three aligned appearance rows where complete windows fit the source shell, including regular ground-row windows. Their approximately 1.05 × 1.55 m profile and 0.95 m sill come from one unassigned room sketch. Row spacing uses a broad horizontal roof as a visual guide and leaves the floor-section elevations unchanged. No opening establishes a room, occupancy or usable roof space. See the [older-window evidence](docs/OLD-WINDOW-REFERENCES.md).
 - Continuous streets and paths from retained OSM geometry: joined outlines at intersections, mapped widths where available and crisp screen-width centerlines otherwise. Decorative trees and gray context-building blocks remain absent.
 - An unfolded **level study** isolates the selected house and separates thin horizontal sections through its actual LoD2 shell. Selecting a floor hides the other levels and moves to a nearly overhead view. Upper outlines can shrink or split beneath the older houses' stepped roofs. OSM floor counts and provisional heights determine the initial sections; they do not establish occupancy or usable headroom.
@@ -37,6 +38,8 @@ Preview details: [daylight campus](docs/preview/day-campus.png) · [group carous
 - A concrete architectural brief, residency-validation workflow and proposed API contract.
 
 ## What still requires evidence or infrastructure
+
+**Exteriors:** matching a photo establishes visible features and relative placement, not survey accuracy. Additional elevations and measurements are needed for unseen openings, exact loggia depths, equipment sizes and actual storey levels. The retained LoD2 model supplies the common scale and roof/footprint envelope; its simplified geometry is not a façade survey. No numerical accuracy percentage is claimed.
 
 **Interiors:** the first resident-informed pilot remains **Red House 55, second floor (2. OG)**. Its confirmed counts and relative hallway/stair constraints support an envelope study. The resident's “one hand length” variation is qualitative; absolute room dimensions and a precise tolerance remain unmeasured. The published 16.4 m² is a category average, not an individual clear-area measurement; the 2.70 × 3.30 m sketch describes only a living zone. Area benchmarks, perimeter allowances and the latest R alignment are conditional modeling choices. R's remaining area difference, actual service partitions and the east stairwell connection remain open questions; circulation guards are not code-compliance findings.
 
@@ -74,6 +77,8 @@ The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pag
 | `src/path-network.js` | Development-time buffering and union of explicitly mapped path widths |
 | `src/facade.js` | Photo-informed schematic seams clipped to unchanged exterior surfaces |
 | `src/windows.js` | Separate newer/older window profiles, house-specific corrections and appearance-only row guides |
+| `src/exterior-details.js` | Photo-registered loggias, stair fronts, roof details, shared glazing and explicit window rows |
+| `src/exterior-presentation.js` | Cut recesses from display surfaces without editing source geometry or interior sections |
 | `src/main.js` | House selection, animated group/QR carousel, theme control, local timeline and dialogs |
 | `src/data.js` | Public community listings and small data helpers |
 | `src/room-references.js` | Cited room typologies and approximate dimensions, without room placements |
@@ -113,6 +118,7 @@ The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pag
 | `docs/ARCHITECTURE.md` | Product, privacy, data model, permissions and staged delivery |
 | `docs/GEOMETRY.md` | Detailed geometry provenance, transformations and uncertainties |
 | `docs/FACADE-REFERENCES.md` | Inspected photo references and schematic material-line limits |
+| `docs/PHOTO-FACADE-UPGRADE.md` | Photographic face registration, observed feature inventory and estimated-detail limits |
 | `docs/WINDOW-REFERENCES.md` | Identified-house photographs, narrow-window typology and unmeasured-placement limits |
 | `docs/OLD-WINDOW-REFERENCES.md` | Older-house photographs, typical window dimensions, aligned-row character and roof safeguards |
 | `docs/OLD-BUILDING-SECTIONS.md` | Older-house roof/floor evidence, clear-height limits and plate-cladding refinement |

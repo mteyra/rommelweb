@@ -1,10 +1,20 @@
 # Campus Süd II window references
 
-Inspected 14 November 2026; updated with the resident's iteration 6 correction. This addendum supports **photo-informed, unmeasured window linework** on the six newer houses. It does not turn the official LoD2 building envelopes into a measured façade or room model. See [the material study](FACADE-REFERENCES.md), [older-house windows](OLD-WINDOW-REFERENCES.md) and [geometry provenance](GEOMETRY.md).
+Inspected 14 November 2026; updated with the resident's photographs on 15 November 2026. This addendum supports **photo-informed, unmeasured window linework** on the six newer houses. It does not turn the official LoD2 building envelopes into a measured façade or room model. See [the material study](FACADE-REFERENCES.md), [older-house windows](OLD-WINDOW-REFERENCES.md), [the current photograph-to-façade register](PHOTO-FACADE-UPGRADE.md) and [geometry provenance](GEOMETRY.md).
 
 ## Resident correction: house 51a
 
 The resident has explicitly corrected the blue house's window pattern: **51a's upper window rows align vertically**. This local observation is authoritative project input and supersedes any previous generic stagger inferred for this house from the shared newer-building style. Use no alternating row offset on 51a. Its exact bay pitch, individual opening coordinates, floor elevations and full face inventory remain unverified. The source photographs still support its tall narrow upper windows and distinct café/shared ground floor.
+
+The resident's fifth close photograph confirms that alignment at the visible corner. The top opening has a visibly lowered slatted blind, leaving two approximately equal visible panes; the opening immediately below has a shorter head zone and a lower transom. The graphics therefore keep their centers aligned but give the top row a **0.55 m illustrative slatted head zone / 0.52 transom fraction**, and the row below a **0.34 m head zone / 0.36 transom fraction**. The fraction is measured from the opening bottom across its height minus the head zone. These values communicate the photograph; they are not measured construction dimensions. A lowered blind is a temporary state, so the image does not prove that every top-floor window has a permanently different frame assembly.
+
+## Construction graphics and face exceptions
+
+Regular openings now have distinct shallow reveal, frame, glass, head/blind and sill layers, with clipped outlines and a single horizontal transom. The layer offsets make the drawing legible and do not enlarge the official building envelope. Dark glass remains glass rather than an inferred opaque room panel. Timber and plate marks are masked at the opening, and room-window candidates intersecting a registered stair/loggia exclusion are rejected as whole windows.
+
+Reviewed photo-to-surface matches can provide explicit rows of window centers for one original wall record. They can identify ground-floor glazing independently of the upper room rhythm, or suppress a face that contains a stair/recess. All centers remain unmeasured visual placements and must pass the existing source-wall containment check. Unspecified faces retain the conservative family fallback. This keeps a photographed shared frontage from becoming an ordinary room grid while allowing source segmentation to remain unchanged.
+
+The API in `src/windows.js` accepts `layoutsBySurface` and `exclusionsBySurface` maps keyed by original source surface objects. Explicit row coordinates use that original wall's local horizontal frame. Mask checks cover an entire coplanar wall group before each construction graphic is clipped back to its original patch. The separate resident-located House 55 inventory retains its original centers and identifiers.
 
 ## Primary sources and identifiable houses
 
@@ -26,7 +36,7 @@ The `/2023/08/` upload path is not a verified photography date. These are primar
 
 ## What the references support
 
-**Opening shape.** Room windows are tall and slim, with dark frames and a horizontal transom in the lower part. The architect explicitly describes floor-to-ceiling windows. The lower pane should therefore not automatically be treated as a solid wall panel. A dark head strip or blind zone is visible above many openings. The photograph contains different blind positions; a neutral repeated graphic can communicate the construction without reproducing that transient state.
+**Opening shape.** Room windows are tall and slim, with dark frames and a horizontal transom, usually in the lower part. The architect explicitly describes floor-to-ceiling windows. The lower pane should therefore not automatically be treated as a solid wall panel. A dark head strip or blind zone is visible above many openings. Photographs contain different blind positions; the top-row treatment for 51a above is a visual reference pose rather than an asserted permanent distinction.
 
 **Horizontal rhythm.** Photographs 527 and 939 show successive rows shifting sideways within the façade's room-width rhythm. The observed arrangement also includes aligned pairs and irregular interruptions: it does **not** establish one universal checkerboard or an exact two-row cycle on every face. In particular, **51a uses vertically aligned rows according to the resident correction above**; it must not inherit a generic stagger.
 
@@ -57,9 +67,9 @@ A LoD2 wall record is not a façade bay, blank panel or room boundary. The easte
 
 There is a useful, explicitly **inferred** orientation match in photograph 490. The identified Türkis/57a is foreground, and the identified Pink/59a is behind and to its left. The public site coordinates place 59a south of 57a. Combined with 57a's fragmented north-northwest source elevation and the photographed exterior stair, this supports identifying the photographed room-window side as the eastern/east-southeastern elevation. That side should not be interpreted as universally blank. The photograph still shows broad blank corner areas and green loggia interruptions; it does not provide their measured offsets.
 
-The appearance implementation can share one provisional rhythm across adjacent, nearly coplanar source patches, then clip each graphic back to the exact original surface. In the current study, adjacency uses a shared-vertex tolerance of 2 mm, normal-angle tolerance of 0.75° and plane tolerance of 0.08 m. A display group needs a span of at least 20 m and one source patch spanning at least 12 m. These are **algorithm settings**, not measurements of façade construction or proof of a wall's function. In 57a they allow the broad eastern wall while leaving the heavily fragmented north-northwest face without a generic window grid.
+The appearance implementation can share one provisional rhythm across adjacent, nearly coplanar source patches, then clip each graphic back to the exact original surface. In the current study, adjacency uses a shared-vertex tolerance of 2 mm, normal-angle tolerance of 0.75° and plane tolerance of 0.08 m. A fallback display group needs a span of at least 20 m and one source patch spanning at least 12 m. A registered explicit layout bypasses those span heuristics but still requires full opening containment and the exclusion checks. These are **algorithm settings**, not measurements of façade construction or proof of a wall's function. In 57a the fallback allows the broad eastern wall while leaving the heavily fragmented north-northwest face without a generic window grid.
 
-No source vertices are merged or moved by this grouping. The original patches, polygon holes and exterior envelope remain unchanged. Stair and recess suppression is a conservative display heuristic; completing every face accurately still requires a reviewed façade inventory.
+No source vertices are merged or moved by this grouping. The original patches, polygon holes and exterior envelope remain unchanged. The fallback stair/recess suppression remains a conservative display heuristic; photographed face exceptions are listed separately in the current feature register. Completing every face accurately still requires a reviewed façade inventory.
 
 ## Reuse and attribution
 

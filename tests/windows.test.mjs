@@ -129,6 +129,59 @@ test('resident alignment correction affects Blue House 51a only', () => {
   }
 });
 
+test('Blue keeps aligned columns while the photographed top blind and lower transom compositions differ', () => {
+  const surface = {...wall, holes: []};
+  const before = JSON.stringify(surface);
+  const study = createBuildingWindowStudies([surface], [0, 3, 6], 9, {house: '51a'}).get(surface);
+  const first = study.construction.filter(item => item.floor === 1), top = study.construction.filter(item => item.floor === 2);
+  assert.ok(first.length && top.length);
+  assert.ok(first.every(item => item.headStyle === 'solid' && item.transomRatio === 0.36));
+  assert.ok(top.every(item => item.headStyle === 'slatted' && item.transomRatio === 0.52));
+  assert.ok(top[0].headHeight > first[0].headHeight);
+  assert.ok(study.layers.reveal.length && study.layers.blind.length && study.linework.length);
+  for (const [a, b] of study.linework) for (const point of [a, b]) {
+    assert.ok(point[0] >= 0 && point[0] <= 22.8 && point[1] > 3 && point[1] < 9);
+    assert.ok(Math.abs(point[2] - 0.038) < 1e-10);
+  }
+  assert.equal(JSON.stringify(surface), before);
+});
+
+test('reviewed face rows override a generic grid, while complete openings touching recess masks are omitted', () => {
+  const surface = {...wall, holes: []};
+  const mask = [[4.8, 3, 0], [6.2, 3, 0], [6.2, 6, 0], [4.8, 6, 0], [4.8, 3, 0]];
+  const layout = {replace: true, rows: [
+    {floor: 0, centers: [2], height: 2.2},
+    {floor: 1, centers: [2, 5.5, 9], headStyle: 'slatted'},
+    {floor: 3, centers: [2, 9], width: 1.2},
+  ]};
+  const before = JSON.stringify({surface, mask, layout});
+  const study = createBuildingWindowStudies([surface], [0, 3, 6, 9, 12], 15, {
+    layoutsBySurface: new Map([[surface, layout]]), exclusionsBySurface: new Map([[surface, [mask]]]),
+  }).get(surface);
+  assert.deepEqual(study.patches.map(item => item.floor), [0, 1, 1, 3, 3], 'no row is invented for the unspecified floors');
+  assert.deepEqual(study.patches.filter(item => item.floor === 1).map(item => (item.corners[0][0] + item.corners[1][0]) / 2), [2, 9]);
+  assert.ok(study.construction.every(item => item.explicit));
+  assert.equal(JSON.stringify({surface, mask, layout}), before);
+  assert.throws(() => createBuildingWindowStudies([surface], [0, 3, 6], 9, {
+    layoutsBySurface: new Map([[surface, {replace: true, rows: [{floor: 1.5, centers: [2]}]}]]),
+  }), /existing integer floor/);
+});
+
+test('a recess mask on either source fragment suppresses the complete shared opening on both fragments', () => {
+  const patch = (left, right) => ({type: 'WallSurface', points: [[left, 0, 0], [right, 0, 0], [right, 9, 0], [left, 9, 0], [left, 0, 0]]});
+  const first = patch(0, 7), second = patch(7, 22.8);
+  const intact = createBuildingWindowStudies([first, second], [0, 3, 6], 9, {family: 'plates'});
+  const crossing = intact.get(first).patches.find(patch => patch.floor === 2 && patch.corners[0][0] < 7 && patch.corners[1][0] > 7);
+  assert.ok(crossing);
+  const center = (crossing.corners[0][0] + crossing.corners[1][0]) / 2;
+  const mask = [[center - 0.04, 7.1, 0], [center + 0.04, 7.1, 0], [center + 0.04, 7.3, 0], [center - 0.04, 7.3, 0], [center - 0.04, 7.1, 0]];
+  const masked = createBuildingWindowStudies([first, second], [0, 3, 6], 9, {
+    family: 'plates', exclusionsBySurface: new Map([[first, [mask]]]),
+  });
+  assert.ok([...masked.values()].every(study => !study.patches.some(item => item.floor === 2
+    && Math.abs((item.corners[0][0] + item.corners[1][0]) / 2 - center) < 1e-8)), 'masking may not leave an orphan partial window in the adjacent source fragment');
+});
+
 test('old-room windows use three aligned rows including ground and reject roof-only or low shared walls', () => {
   const surface = {...wall, holes: [], points: [[0, 0, 0], [22.8, 0, 0], [22.8, 9, 0], [0, 9, 0], [0, 0, 0]]};
   const study = createWindowStudy(surface, [0, 3, 6], 9, null, OLD_WINDOW_PROFILE);

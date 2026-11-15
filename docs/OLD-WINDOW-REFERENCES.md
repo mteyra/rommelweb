@@ -1,10 +1,10 @@
 # Campus Süd I window references
 
-Inspected 14 November 2026. Covers the older houses **51, 53, 55, 57 and 59**. This study supports a separate illustrative window layer while preserving every official LoD2 surface and roofline. It does not supply a measured opening inventory, occupied floor plan or room assignment. Read with [OLD-BUILDING-SECTIONS.md](OLD-BUILDING-SECTIONS.md), [FACADE-REFERENCES.md](FACADE-REFERENCES.md) and the [newer-house window study](WINDOW-REFERENCES.md).
+Inspected 14 November 2026; updated from the resident's close photographs on 15 November 2026. Covers the older houses **51, 53, 55, 57 and 59**. This study supports a separate illustrative window layer while preserving every official LoD2 surface and roofline. It does not supply a measured opening inventory, occupied floor plan or room assignment. Read with [OLD-BUILDING-SECTIONS.md](OLD-BUILDING-SECTIONS.md), [FACADE-REFERENCES.md](FACADE-REFERENCES.md), [the current photograph-to-façade register](PHOTO-FACADE-UPGRADE.md) and the [newer-house window study](WINDOW-REFERENCES.md).
 
 ## House 55 top-floor update · 15 November 2026
 
-The resident's [window marks](../data/source/house55-2og-window-marks.png) and explicit L-room clarification now provide **24 approximate opening locations** for House 55 / 2. OG: twenty room windows and four unassigned shared-area windows. This complete-floor inventory replaces the generic repeated top row for this house only. Exact centers, heights, widths and sill elevations are still estimated; the two short returns use narrower 0.85 m and 0.70 m trial widths. All whole openings pass source-wall containment. Lower floors and other houses retain the photograph-informed generic study described below. See [the current House 55 evidence](HOUSE55-DIMENSION-REFIT.md).
+The resident's [window marks](../data/source/house55-2og-window-marks.png) and explicit L-room clarification now provide **24 approximate opening locations** for House 55 / 2. OG: twenty room windows and four unassigned shared-area windows. This complete-floor inventory replaces the generic repeated top row for this house only. Exact centers, heights, widths and sill elevations are still estimated; the two short returns use narrower 0.85 m and 0.70 m trial widths. All whole openings pass source-wall containment. The current exterior-detail update preserves these 24 centers and identifiers. Lower floors and other houses retain the photograph-informed generic study described below except where a separate face detail is registered. See [the current House 55 evidence](HOUSE55-R-ALIGNMENT.md).
 
 ## Evidence register
 
@@ -16,6 +16,8 @@ The resident's [window marks](../data/source/house55-2og-window-marks.png) and e
 | [Resident room-layout page](https://rommelwood.de/wohnen/zimmergrundriss/) and [older single-room sketch](https://rommelwood.de/media/images/zimmerskizze.jpg) | Approximate window sill, top and horizontal extent in one typical room; continuous clear ceiling height | No house, floor, room number, wall direction or survey date. The page warns about differences and mirrored layouts |
 | Same page: [older accessible double-apartment drawing](https://rommelwood.de/media/images/grundriss.png) | Confirms a separate apartment typology with two rooms and shared facilities | Not a whole-floor plan or a façade schedule; it cannot determine the windows on every double apartment |
 | Resident project feedback | Upper floors differ, triangular roof space is unoccupied | Valuable local evidence; the exact roof-void boundary and measured internal sections still need an identified floor/section submission |
+| Resident photograph 4, 15 November 2026 | Close cladding/window view: deep yellow frame, a single horizontal transom around mid-height, shallow outside sill, dark opening reveal; plates continue in larger staggered courses around the opening | The image contains lowered shutters on some windows. It does not measure frame size, reveal depth, panel modules or permanent shutter positions |
+| Resident photograph 6, same submission | Identified Red 55 at right and Yellow 51 behind, with their respective frame colors and larger shared-area glazing below the sloping roof | Oblique courtyard view; not a complete elevation or room-opening count |
 
 The reference photographs were inspected at their published resolution. Capture dates, renovation state and present-day finishes are not independently verified.
 
@@ -42,7 +44,7 @@ The photographed room-window stacks generally align vertically. Use an aligned i
 
 Ground-level regular windows are visible, so excluding every older-house ground row would omit part of the photographed character. Ground floors also have broad multi-pane entrance/shared glazing and other uses. A generic room-window profile cannot accurately reconstruct those larger openings or identify the room behind a candidate position.
 
-The operator images visibly contain yellow, orange-toned and red frames against brown plate cladding. The resident map identifies the houses as Yellow 51, Orange 53, Red 55, White 57 and Green 59, but a nickname is not by itself a paint specification. This research has not established a current, address-registered color inventory for every window on all five houses. A muted observed frame cue or a clearly illustrative tint based on the house identity is acceptable; do not claim exact paint colors or universal consistency.
+The operator images visibly contain yellow, orange-toned and red frames against brown plate cladding. The resident map identifies the houses as Yellow 51, Orange 53, Red 55, White 57 and Green 59; the resident now explicitly confirms that frame colors change with the house color. The appearance layer uses those five identities, with separate subdued day/night colors. The chosen RGB values are visual approximations, not sampled paint specifications, and the evidence does not inventory every replacement window.
 
 ## Roof and floor safeguards
 
@@ -57,7 +59,7 @@ The next useful evidence is one address-and-direction photo set for an older hou
 
 ## Current illustrative settings
 
-The appearance study uses the approximately 1.05 × 1.55 m typology, 0.95 m sill, aligned columns and one middle transom. Its 3.25 m bay pitch and 0.08 m containment clearance are **rendering settings**, not surveyed dimensions. It does not add the newer buildings' dark head strip.
+The appearance study uses the approximately 1.05 × 1.55 m typology, 0.95 m sill, aligned columns and one middle transom. Its 3.25 m bay pitch and 0.08 m containment clearance are **rendering settings**, not surveyed dimensions. The current construction graphics add a shallow dark reveal, painted frame, sill and clipped wire outlines. They do not add the newer buildings' deep dark head strip. Material courses stop at windows and registered recesses instead of continuing across glazing.
 
 For this appearance layer, three provisional rows are distributed using a dominant broad horizontal source roof as a guide, rather than extending rows toward the highest roof peak. Geometry heuristics suppress low wings and candidate regions treated as roof-only; those heuristics do not classify actual use. This guide does not establish actual floor levels, headroom or occupancy, and does not change the separate floor-section data or official exterior.
 

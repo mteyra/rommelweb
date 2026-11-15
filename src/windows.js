@@ -27,6 +27,15 @@ export const OLD_WINDOW_PROFILE = Object.freeze({
   status: 'Photo-informed schematic older-house window study. One unassigned typical sketch gives approximately 1.05m width, 1.55m height and 0.95m sill; bay positions, pitch, frame colors and row guides are illustrative. Three aligned rows where whole openings fit below the source roof; no surveyed openings, room assignments or occupancy.',
 });
 
+/** Frame paint read as house identity; neutral lighting values, not swatches. */
+export const OLD_WINDOW_COLORS = Object.freeze({
+  '51': Object.freeze({night: 0xc7ad5d, day: 0xb7962f}),
+  '53': Object.freeze({night: 0xc67c4a, day: 0xb36329}),
+  '55': Object.freeze({night: 0xb95650, day: 0xa5443a}),
+  '57': Object.freeze({night: 0xbdc1b6, day: 0xb1b7b3}),
+  '59': Object.freeze({night: 0x81915f, day: 0x758342}),
+});
+
 /** Resident corrections override a material-family default only for that house. */
 export function getWindowProfile(house, family = 'timber') {
   if (family === 'plates') return OLD_WINDOW_PROFILE;
@@ -34,9 +43,11 @@ export function getWindowProfile(house, family = 'timber') {
   if (String(house) !== '51a') return WINDOW_PROFILE;
   return Object.freeze({
     ...WINDOW_PROFILE, alternateOffset: 0,
+    headHeight: 0.34, transomRatio: 0.36,
+    topHeadHeight: 0.55, topTransomRatio: 0.52, topHeadStyle: 'slatted',
     alignmentSource: 'Resident correction: Blue House 51a upper window rows are vertically aligned.',
     source: 'https://www.karlundp.de/wp-content/uploads/2023/08/Campus_Sued_Erlangen-158.jpg',
-    status: `${WINDOW_PROFILE.status} House 51a row alignment follows a resident correction; other dimensions and placement remain schematic.`,
+    status: `${WINDOW_PROFILE.status} House 51a rows stay aligned; the supplied close-up informs a taller slatted top-row blind zone and a lower transom on the row below. Blind pose and dimensions are illustrative, not permanent measured differences.`,
   });
 }
 
@@ -143,98 +154,173 @@ function triangulatedWall(surface, projectionFrame = surfaceFrame(surface)) {
   return ShapeUtils.triangulateShape(rings[0].map(point => new Vector2(...point)), rings.slice(1).map(ring => ring.map(point => new Vector2(...point)))).map(indices => indices.map(index => vertices[index]));
 }
 
+const windowLayers = () => ({reveal: [], frame: [], glass: [], head: [], blind: [], sill: []});
+const projectRing = (ring, frame) => ring.map(point => [frame.u, frame.v].map(axis =>
+  point.reduce((sum, value, i) => sum + (value - frame.origin[i]) * axis[i], 0)));
+function exclusionTriangles(rings, frame) {
+  return rings.flatMap(ring => {
+    const points = projectRing(ring, frame);
+    if (Math.hypot(points[0][0] - points.at(-1)[0], points[0][1] - points.at(-1)[1]) < 1e-8) points.pop();
+    return ShapeUtils.triangulateShape(points.map(point => new Vector2(...point)), [])
+      .map(indices => indices.map(index => points[index]));
+  });
+}
+
+function lineCoveredIntervals(a, b, triangles) {
+  const intervals = [];
+  for (const raw of triangles) {
+    const triangle = cross(...raw) < 0 ? [...raw].reverse() : raw;
+    let low = 0, high = 1;
+    for (let edge = 0; edge < 3; edge++) {
+      const p = triangle[edge], q = triangle[(edge + 1) % 3], first = cross(p, q, a), last = cross(p, q, b);
+      if (first < -1e-9 && last < -1e-9) { high = -1; break; }
+      if (first < 0 && last >= 0) low = Math.max(low, first / (first - last));
+      if (last < 0 && first >= 0) high = Math.min(high, first / (first - last));
+    }
+    if (high - low > 1e-8) intervals.push([low, high]);
+  }
+  intervals.sort((a, b) => a[0] - b[0]);
+  const result = [];
+  for (const interval of intervals) {
+    const last = result.at(-1);
+    if (last && interval[0] <= last[1] + 1e-8) last[1] = Math.max(last[1], interval[1]);
+    else result.push([...interval]);
+  }
+  return result;
+}
+
+/** Construction cues remain a shallow independent layer on the source wall. */
+function addWindowConstruction(layers, linework, frame, triangles, rectangle, specification) {
+  const [left, bottom, right, top] = rectangle;
+  const {headHeight = 0, transomRatio = 0.5, headStyle = 'solid'} = specification;
+  const lift = (point, offset) => frame.lift(point).map((value, i) => value + frame.normal[i] * offset);
+  const add = (key, rect, offset) => {
+    for (const polygon of clipRectangle(rect, triangles)) for (let i = 1; i + 1 < polygon.length; i++) {
+      layers[key].push(...[polygon[0], polygon[i], polygon[i + 1]].flatMap(point => lift(point, offset)));
+    }
+  };
+  const line = (a, b) => {
+    for (const [low, high] of lineCoveredIntervals(a, b, triangles)) {
+      const at = t => a.map((value, i) => value + (b[i] - value) * t);
+      linework.push([lift(at(low), 0.038), lift(at(high), 0.038)]);
+    }
+  };
+  const rectangleLines = ([x0, y0, x1, y1]) => {
+    const points = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+    points.forEach((point, index) => line(point, points[(index + 1) % 4]));
+  };
+  add('reveal', [left - 0.022, bottom - 0.018, right + 0.022, top + 0.018], 0.012);
+  add('frame', rectangle, 0.016);
+  add('glass', [left + 0.075, bottom + 0.085, right - 0.075, top - Math.max(0.075, headHeight)], 0.024);
+  if (headHeight) add(headStyle === 'slatted' ? 'blind' : 'head',
+    [left + 0.055, top - headHeight, right - 0.055, top - 0.055], 0.029);
+  const transom = bottom + (top - bottom - headHeight) * transomRatio;
+  add('head', [left + 0.04, transom - 0.032, right - 0.04, transom + 0.032], 0.031);
+  add('sill', [left - 0.025, bottom, right + 0.025, bottom + 0.055], 0.037);
+  rectangleLines(rectangle);
+  rectangleLines([left + 0.075, bottom + 0.085, right - 0.075, top - Math.max(0.075, headHeight)]);
+  line([left + 0.04, transom - 0.032], [right - 0.04, transom - 0.032]);
+  line([left + 0.04, transom + 0.032], [right - 0.04, transom + 0.032]);
+  if (headStyle === 'slatted') {
+    for (let y = top - headHeight + 0.04; y < top - 0.07; y += 0.045) line([left + 0.06, y], [right - 0.06, y]);
+  }
+}
+
 /**
  * Return batched planar frame/glass/head/sill geometry over broad source walls.
  * Family-specific rules exclude unsupported shared/stair/roof-only portions.
  * Complete openings must fit; split records clip back to each original wall.
  */
-export function createWindowStudy(surface, absoluteFloorElevations, roofElevation, layout = null, profile = WINDOW_PROFILE, skipFloors = []) {
-  const layers = {frame: [], glass: [], head: [], sill: []};
-  const empty = {layers, count: 0, patches: [], profile};
+export function createWindowStudy(surface, absoluteFloorElevations, roofElevation, layout = null, profile = WINDOW_PROFILE, skipFloors = [], options = {}) {
+  const layers = windowLayers(), linework = [], construction = [];
+  const empty = {layers, linework, construction, count: 0, patches: [], profile};
   const frame = surfaceFrame(surface);
   const layoutFrame = layout?.frame || frame;
   const span = layout ? layout.maxU - layout.minU : frame ? frame.maxU - frame.minU : 0;
-  if (!frame || span < profile.minimumWallSpan || frame.v[1] < 0.99) return empty;
+  if (!frame || !options.explicitLayout && span < profile.minimumWallSpan || frame.v[1] < 0.99) return empty;
   if (!Array.isArray(absoluteFloorElevations) || !absoluteFloorElevations.every(Number.isFinite) || !Number.isFinite(roofElevation) ||
     absoluteFloorElevations.some((value, i) => i > 0 && value <= absoluteFloorElevations[i - 1]) || roofElevation <= absoluteFloorElevations.at(-1)) throw new Error('Window study requires ascending finite floor elevations below its roof');
+  if (options.explicitLayout && (!Array.isArray(options.explicitLayout.rows) || options.explicitLayout.rows.some(row =>
+    !Number.isInteger(row.floor) || row.floor < 0 || row.floor >= absoluteFloorElevations.length))) throw new Error('Explicit window row floors must identify an existing integer floor');
   if (frame.maxV - frame.minV < profile.minimumWallHeight || profile.groundedOnly && Math.min(...surface.points.map(point => point[1])) > absoluteFloorElevations[0] + 0.05) return empty;
   const wallTriangles = triangulatedWall(surface, frame);
+  const maskTriangles = exclusionTriangles(options.exclusions || [], frame);
   const toV = height => (height - frame.origin[1]) / frame.v[1];
-  const lift = (point, offset) => frame.lift(point).map((value, i) => value + frame.normal[i] * offset);
-  const addLayer = (key, rectangle, offset) => {
-    for (const polygon of clipRectangle(rectangle, wallTriangles)) {
-      for (let i = 1; i + 1 < polygon.length; i++) layers[key].push(...[polygon[0], polygon[i], polygon[i + 1]].flatMap(point => lift(point, offset)));
-    }
-  };
   const columns = Math.max(1, Math.floor((span - (profile.family === 'plates' ? 0.8 : 3)) / profile.bayPitch));
   const middle = layout ? (layout.minU + layout.maxU) / 2 : (frame.minU + frame.maxU) / 2, patches = [];
   let count = 0;
-  for (let floor = profile.firstFloor; floor < absoluteFloorElevations.length; floor++) {
+  const firstFloor = Math.min(profile.firstFloor, ...(options.explicitLayout?.rows || []).map(row => row.floor));
+  if (!Number.isInteger(firstFloor) || firstFloor < 0) throw new Error('Explicit window row floors must be nonnegative integers');
+  for (let floor = firstFloor; floor < absoluteFloorElevations.length; floor++) {
     if (skipFloors.includes(floor)) continue;
+    const explicitRow = options.explicitLayout?.rows?.find(row => row.floor === floor);
+    if (options.explicitLayout?.replace && !explicitRow || explicitRow?.disabled) continue;
+    if (explicitRow && (!Array.isArray(explicitRow.centers) || !explicitRow.centers.every(Number.isFinite))) throw new Error('Explicit window rows require finite local centres');
     const interval = (absoluteFloorElevations[floor + 1] ?? roofElevation) - absoluteFloorElevations[floor];
-    const height = profile.family === 'plates' ? profile.maxHeight : Math.min(profile.maxHeight, interval - 0.4);
-    if (height < 1 || profile.sillOffset + height + profile.wallClearance > interval) continue;
-    const bottom = toV(absoluteFloorElevations[floor] + profile.sillOffset), top = bottom + height;
+    const width = explicitRow?.width ?? profile.width;
+    const height = explicitRow?.height ?? (profile.family === 'plates' ? profile.maxHeight : Math.min(profile.maxHeight, interval - 0.4));
+    const sillOffset = explicitRow?.sillOffset ?? profile.sillOffset;
+    const topFloor = floor === absoluteFloorElevations.length - 1;
+    const headHeight = explicitRow?.headHeight ?? (topFloor ? profile.topHeadHeight : undefined) ?? profile.headHeight;
+    const headStyle = explicitRow?.headStyle ?? (topFloor ? profile.topHeadStyle : undefined) ?? 'solid';
+    const transomRatio = explicitRow?.transomRatio ?? (topFloor ? profile.topTransomRatio : undefined) ?? profile.transomRatio ?? (profile.family === 'plates' ? 0.5 : 0.32);
+    if (![width, height, sillOffset, headHeight, transomRatio].every(Number.isFinite) || width <= 0.16 || height <= 0.2 || sillOffset < 0
+      || headHeight < 0 || headHeight >= height - 0.17 || transomRatio <= 0 || transomRatio >= 1 || !['solid', 'slatted'].includes(headStyle)) {
+      throw new Error('Window construction requires positive finite dimensions and a supported head style');
+    }
+    if (height < 1 || sillOffset + height + profile.wallClearance > interval) continue;
+    const bottom = toV(absoluteFloorElevations[floor] + sillOffset), top = bottom + height;
     const stagger = (floor % 2 ? -0.5 : 0.5) * profile.alternateOffset;
-    for (let column = 0; column < columns; column++) {
-      const layoutCenter = middle + (column - (columns - 1) / 2) * profile.bayPitch + stagger;
-      const worldCenter = layoutFrame.lift([layoutCenter, 0]);
+    const centers = explicitRow?.centers ?? Array.from({length: columns}, (_, column) => middle + (column - (columns - 1) / 2) * profile.bayPitch + stagger);
+    for (const centerValue of centers) {
+      const worldCenter = (explicitRow ? frame : layoutFrame).lift([centerValue, 0]);
       const center = worldCenter.reduce((sum, value, i) => sum + (value - frame.origin[i]) * frame.u[i], 0);
-      const left = center - profile.width / 2, right = center + profile.width / 2;
+      const layoutCenter = worldCenter.reduce((sum, value, i) => sum + (value - layoutFrame.origin[i]) * layoutFrame.u[i], 0);
+      const left = center - width / 2, right = center + width / 2;
       const rectangle = [left, bottom, right, top];
-      const layoutBottom = (absoluteFloorElevations[floor] + profile.sillOffset - layoutFrame.origin[1]) / layoutFrame.v[1];
+      const layoutBottom = (absoluteFloorElevations[floor] + sillOffset - layoutFrame.origin[1]) / layoutFrame.v[1];
       const clearance = profile.wallClearance;
-      if (!rectangleCovered([layoutCenter - profile.width / 2 - clearance, layoutBottom - clearance, layoutCenter + profile.width / 2 + clearance, layoutBottom + height + clearance], layout?.coverageTriangles || wallTriangles)) continue;
+      if (!rectangleCovered([layoutCenter - width / 2 - clearance, layoutBottom - clearance, layoutCenter + width / 2 + clearance, layoutBottom + height + clearance], layout?.coverageTriangles || wallTriangles)) continue;
+      if (clipRectangle([left - clearance, bottom - clearance, right + clearance, top + clearance], maskTriangles).some(polygon => area(polygon) > 1e-9)) continue;
       const clippedArea = clipRectangle(rectangle, wallTriangles).reduce((sum, polygon) => sum + area(polygon), 0);
-      if (layout ? clippedArea < 0.00001 : Math.abs(clippedArea - profile.width * height) > 0.00001) continue;
-      addLayer('frame', rectangle, 0.012);
-      addLayer('glass', [left + 0.07, bottom + 0.09, right - 0.07, top - Math.max(0.07, profile.headHeight)], 0.022);
-      if (profile.headHeight) addLayer('head', [left + 0.055, top - profile.headHeight, right - 0.055, top - 0.055], 0.029);
-      const transom = bottom + (height - profile.headHeight) * (profile.family === 'plates' ? 0.5 : 0.32);
-      addLayer('head', [left + 0.04, transom - 0.035, right - 0.04, transom + 0.035], 0.03);
-      addLayer('sill', [left - 0.025, bottom, right + 0.025, bottom + 0.055], 0.037);
+      if (layout ? clippedArea < 0.00001 : Math.abs(clippedArea - width * height) > 0.00001) continue;
+      addWindowConstruction(layers, linework, frame, wallTriangles, rectangle, {headHeight, headStyle, transomRatio});
       patches.push({floor, corners: [[left, bottom], [right, bottom], [right, top], [left, top]].map(point => frame.lift(point))});
+      construction.push({floor, headHeight, headStyle, transomRatio, explicit: Boolean(explicitRow)});
       if (clipRectangle([center - 0.0001, (bottom + top) / 2 - 0.0001, center + 0.0001, (bottom + top) / 2 + 0.0001], wallTriangles).length) count++;
     }
   }
-  return {layers, count, patches, profile};
+  return {layers, linework, construction, count, patches, profile};
 }
 
 /** Resident-located openings replace a complete floor's repeated bay pattern.
  * Dimensions/elevations still use the appearance profile. Every whole opening
  * must fit its actual source wall; failures are reported, never shrunk to fit.
  */
-function createLocatedWindowStudy(surface, surfaceIndex, elevations, locatedLevels, profile) {
-  const layers = {frame: [], glass: [], head: [], sill: []}, patches = [], rejectedLocated = [];
+function createLocatedWindowStudy(surface, surfaceIndex, elevations, locatedLevels, profile, exclusions = []) {
+  const layers = windowLayers(), linework = [], construction = [], patches = [], rejectedLocated = [];
   const frame = surfaceFrame(surface);
   const entries = locatedLevels.flatMap(level => (level.windows || []).filter(window => window.sourceSurfaceIndex === surfaceIndex).map(window => ({floor: level.index, window})));
-  if (!entries.length) return {layers, patches, count: 0, locatedCount: 0, rejectedLocated, profile};
-  if (!frame || frame.v[1] < 0.99) return {layers, patches, count: 0, locatedCount: 0, rejectedLocated: entries.map(entry => entry.window.id), profile};
+  if (!entries.length) return {layers, linework, construction, patches, count: 0, locatedCount: 0, rejectedLocated, profile};
+  if (!frame || frame.v[1] < 0.99) return {layers, linework, construction, patches, count: 0, locatedCount: 0, rejectedLocated: entries.map(entry => entry.window.id), profile};
   const triangles = triangulatedWall(surface, frame);
-  const lift = (point, offset) => frame.lift(point).map((value, i) => value + frame.normal[i] * offset);
-  const add = (key, rectangle, offset) => {
-    for (const polygon of clipRectangle(rectangle, triangles)) {
-      for (let i = 1; i + 1 < polygon.length; i++) layers[key].push(...[polygon[0], polygon[i], polygon[i + 1]].flatMap(point => lift(point, offset)));
-    }
-  };
+  const masks = exclusionTriangles(exclusions, frame);
   for (const {floor, window} of entries) {
     const us = window.segment.map(([x, z]) => (x - frame.origin[0]) * frame.u[0] + (z - frame.origin[2]) * frame.u[2]);
     const left = Math.min(...us), right = Math.max(...us);
     const bottom = (elevations[floor] + profile.sillOffset - frame.origin[1]) / frame.v[1], top = bottom + profile.maxHeight;
     const clearance = profile.wallClearance;
     if (![left, right, bottom, top].every(Number.isFinite)
-      || !rectangleCovered([left - clearance, bottom - clearance, right + clearance, top + clearance], triangles)) {
+      || !rectangleCovered([left - clearance, bottom - clearance, right + clearance, top + clearance], triangles)
+      || clipRectangle([left - clearance, bottom - clearance, right + clearance, top + clearance], masks).some(polygon => area(polygon) > 1e-9)) {
       rejectedLocated.push(window.id);
       continue;
     }
-    add('frame', [left, bottom, right, top], 0.012);
-    add('glass', [left + 0.07, bottom + 0.09, right - 0.07, top - 0.07], 0.022);
-    const transom = (bottom + top) / 2;
-    add('head', [left + 0.04, transom - 0.035, right - 0.04, transom + 0.035], 0.03);
-    add('sill', [left - 0.025, bottom, right + 0.025, bottom + 0.055], 0.037);
+    addWindowConstruction(layers, linework, frame, triangles, [left, bottom, right, top], {headHeight: 0, transomRatio: 0.5});
     patches.push({floor, corners: [[left, bottom], [right, bottom], [right, top], [left, top]].map(point => frame.lift(point)), windowId: window.id});
+    construction.push({floor, headHeight: 0, headStyle: 'solid', transomRatio: 0.5, located: true});
   }
-  return {layers, patches, count: patches.length, locatedCount: patches.length, rejectedLocated, profile};
+  return {layers, linework, construction, patches, count: patches.length, locatedCount: patches.length, rejectedLocated, profile};
 }
 
 /**
@@ -246,6 +332,8 @@ function createLocatedWindowStudy(surface, surfaceIndex, elevations, locatedLeve
 export function createBuildingWindowStudies(surfaces, elevations, roofElevation, options = {}) {
   const profile = getWindowProfile(options.house, options.family);
   const locatedLevels = options.locatedLevels || [];
+  const exclusionsBySurface = options.exclusionsBySurface || new Map();
+  const layoutsBySurface = options.layoutsBySurface || new Map();
   const skipFloors = locatedLevels.filter(level => level.windowCoverage === 'complete-floor').map(level => level.index);
   const walls = surfaces.map(surface => ({surface, frame: surfaceFrame(surface)})).filter(item => item.frame &&
     (!profile.groundedOnly || Math.min(...item.surface.points.map(point => point[1])) <= elevations[0] + 0.05) &&
@@ -271,19 +359,24 @@ export function createBuildingWindowStudies(surfaces, elevations, roofElevation,
   const studies = new Map();
   for (const group of groups) {
     const anchor = group.reduce((a, b) => a.frame.maxU - a.frame.minU > b.frame.maxU - b.frame.minU ? a : b);
-    if (anchor.frame.maxU - anchor.frame.minU < profile.minimumAnchorSpan) continue;
+    if (anchor.frame.maxU - anchor.frame.minU < profile.minimumAnchorSpan && !group.some(item => layoutsBySurface.has(item.surface))) continue;
     const us = group.flatMap(item => item.surface.points.map(point => point.reduce((sum, value, i) => sum + (value - anchor.frame.origin[i]) * anchor.frame.u[i], 0)));
     const layout = {frame: anchor.frame, minU: Math.min(...us), maxU: Math.max(...us), coverageTriangles: group.flatMap(item => triangulatedWall(item.surface, anchor.frame))};
-    for (const item of group) studies.set(item.surface, createWindowStudy(item.surface, elevations, roofElevation, layout, profile, skipFloors));
+    const exclusions = group.flatMap(item => exclusionsBySurface.get(item.surface) || []);
+    for (const item of group) studies.set(item.surface, createWindowStudy(item.surface, elevations, roofElevation, layout, profile, skipFloors, {
+      exclusions, explicitLayout: layoutsBySurface.get(item.surface),
+    }));
   }
   for (const [index, surface] of surfaces.entries()) {
-    const located = createLocatedWindowStudy(surface, index, elevations, locatedLevels, profile);
+    const located = createLocatedWindowStudy(surface, index, elevations, locatedLevels, profile, exclusionsBySurface.get(surface) || []);
     if (!located.count && !located.rejectedLocated.length) continue;
     const existing = studies.get(surface);
     if (!existing) studies.set(surface, located);
     else studies.set(surface, {
       ...existing, count: existing.count + located.count, locatedCount: located.locatedCount, rejectedLocated: located.rejectedLocated,
       patches: [...existing.patches, ...located.patches],
+      linework: [...existing.linework, ...located.linework],
+      construction: [...existing.construction, ...located.construction],
       layers: Object.fromEntries(Object.keys(existing.layers).map(key => [key, [...existing.layers[key], ...located.layers[key]]])),
     });
   }

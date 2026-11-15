@@ -4,17 +4,19 @@ import { getLevelElevations } from './interiors.js';
 import { getDisplayLevel, studyFloorSection, studyPlanDirection } from './interior-studies.js';
 import { icon } from './icons.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { createFacadeSegments, createStoreyJointSegments, FACADE_PROFILES } from './facade.js';
+import { createFacadeSegments, createStoreyJointSegments, createTimberBoardStudy, FACADE_PROFILES, timberLineBrightness } from './facade.js';
 import { floorSection, triangulateSection } from './sections.js';
 import { pathSources, loadPathNetwork, triangulatePathPolygons, pathBoundarySegments } from './paths.js';
 import { LineSegments2 } from 'three/addons/lines/LineSegments2.js';
 import { LineSegmentsGeometry } from 'three/addons/lines/LineSegmentsGeometry.js';
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
-import { createBuildingWindowStudies, getWindowProfile, getOldFacadeRowGuides } from './windows.js';
+import { createBuildingWindowStudies, getWindowProfile, getOldFacadeRowGuides, OLD_WINDOW_COLORS } from './windows.js';
 import { createInteriorWireframe, INTERIOR_CUT_HEIGHT } from './interior-wireframe.js';
 import { exteriorDimensionRuns, studyDimensionRuns, layoutExteriorDimensions } from './study-measurements.js';
 import { apartmentConcept } from './apartment-concepts.js';
 import { createApartmentWireframe } from './apartment-wireframe.js';
+import { createExteriorDetails } from './exterior-details.js';
+import { presentExteriorSurface } from './exterior-presentation.js';
 
 const PAPER = 0x151715;
 const INK = 0xa8aaa3;
@@ -28,12 +30,14 @@ export const SCENE_THEMES = Object.freeze({
     roadFill: 0x555754, footFill: 0x66665f, pathBoundary: 0x464a42, roadLine: 0x5b5d56, footLine: 0x50534b, stepsLine: 0x68685e,
     roof: 0x363837, timber: 0x504638, plates: 0x382f29, timberHatch: 0x968575, plateHatch: 0x9b8e7f, joints: 0xa49783, floor: 0x777a75,
     room: ACTIVE_INK, sharedSpace: 0xb6a886, interiorWindow: 0x91b9c8, windowGlass: 0x202b2c, windowFrame: 0x111715, windowSill: 0x7f8179, oldWindowFrame: 0xad8454,
+    detailMetal: 0x92958b, detailRecess: 0x202422, detailSoffit: 0x555a4c, detailLime: 0x8eaa56, detailRoofBed: 0x41443a, detailRoofHardware: 0x5c615a, detailRoofTexture: 0x686e52, detailGlazing: 0x243235,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
     roadFill: 0x989c90, footFill: 0xb8b8a9, pathBoundary: 0x9a9f90, roadLine: 0x92988a, footLine: 0xa4aa99, stepsLine: 0x909786,
     roof: 0x74776f, timber: 0xa18a6d, plates: 0x695044, timberHatch: 0x705b47, plateHatch: 0xa98a73, joints: 0x544f42, floor: 0x899a89,
     room: 0x354a3b, sharedSpace: 0x82653b, interiorWindow: 0x376879, windowGlass: 0x667979, windowFrame: 0x303d38, windowSill: 0xa5afa4, oldWindowFrame: 0xa67e49,
+    detailMetal: 0x626c68, detailRecess: 0x454d47, detailSoffit: 0x858b77, detailLime: 0x9db667, detailRoofBed: 0x868873, detailRoofHardware: 0x69716c, detailRoofTexture: 0x626c4b, detailGlazing: 0x566f70,
   }),
 });
 
@@ -294,7 +298,8 @@ export class CampusScene {
     const family = data.campus === 'II' ? 'timber' : 'plates';
     const floorElevations = getLevelElevations(this.interiors, data.number, data.levels, data.height);
     const detailSegments = [], distantSegments = [], jointSegments = [];
-    const windowLayers = {frame: [], glass: [], head: [], sill: []};
+    const timberBoards = {positions: [], nightColors: [], dayColors: [], boardCount: 0};
+    const windowLayers = {reveal: [], frame: [], glass: [], head: [], blind: [], sill: []}, windowLinework = [];
     let windowCount = 0;
     const windowProfile = getWindowProfile(data.number, family);
     const windowRows = family === 'plates' ? getOldFacadeRowGuides(official, data.levels, this.interiors) : {
@@ -302,44 +307,42 @@ export class CampusScene {
       status: 'Schematic window rows follow the current provisional or approved floor guides; opening positions are not surveyed.',
     };
     const locatedLevels = (this.studies?.buildings[data.number]?.levels || []).filter(level => level.windows?.length && !getDisplayLevel(this.interiors, null, data.number, level.index));
-    const windowStudies = createBuildingWindowStudies(official.surfaces, windowRows.elevations, data.baseY + windowRows.guideHeight, {house: data.number, family, locatedLevels});
+    const architecturalDetails = createExteriorDetails(official, {house: data.number, levels: data.levels, absoluteFloorElevations: windowRows.elevations});
+    const windowStudies = createBuildingWindowStudies(official.surfaces, windowRows.elevations, data.baseY + windowRows.guideHeight, {
+      house: data.number, family, locatedLevels,
+      exclusionsBySurface: architecturalDetails.exclusionsBySurface,
+      layoutsBySurface: architecturalDetails.layoutsBySurface,
+    });
     for (const surface of official.surfaces) {
-      const outer = surface.points.slice(0, -1).map(p => new THREE.Vector3(...p));
-      if (outer.length < 3) continue;
-      const normal = new THREE.Vector3();
-      for (let i = 0; i < outer.length; i++) {
-        const a = outer[i], b = outer[(i + 1) % outer.length];
-        normal.x += (a.y - b.y) * (a.z + b.z);
-        normal.y += (a.z - b.z) * (a.x + b.x);
-        normal.z += (a.x - b.x) * (a.y + b.y);
-      }
-      const axis = Math.abs(normal.x) > Math.abs(normal.y) && Math.abs(normal.x) > Math.abs(normal.z) ? 'x' : Math.abs(normal.y) > Math.abs(normal.z) ? 'y' : 'z';
-      const project = p => axis === 'x' ? new THREE.Vector2(p.y, p.z) : axis === 'y' ? new THREE.Vector2(p.x, p.z) : new THREE.Vector2(p.x, p.y);
-      const holes = (surface.holes || []).map(h => h.slice(0, -1).map(p => new THREE.Vector3(...p)));
-      const indices = THREE.ShapeUtils.triangulateShape(outer.map(project), holes.map(h => h.map(project))).flat();
+      const masks = architecturalDetails.exclusionsBySurface.get(surface) || [];
+      const presentation = presentExteriorSurface(surface, masks);
       const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.Float32BufferAttribute([...outer, ...holes.flat()].flatMap(v => [v.x, v.y, v.z]), 3));
-      geometry.setIndex(indices);
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(presentation.positions, 3));
       geometry.computeVertexNormals();
       if (!geometries.has(surface.type)) geometries.set(surface.type, []);
       geometries.get(surface.type).push(geometry);
-      for (const ring of [surface.points, ...(surface.holes || [])]) {
-        for (let i = 0; i < ring.length - 1; i++) {
-          const a = ring[i], b = ring[i + 1];
-          const key = [a.join(','), b.join(',')].sort().join('|');
-          edges.set(key, [a, b]);
-        }
+      for (const [a, b] of presentation.boundarySegments) {
+        const key = [a.join(','), b.join(',')].sort().join('|');
+        edges.set(key, [a, b]);
       }
-      detailSegments.push(...createFacadeSegments(surface, family, 1));
-      distantSegments.push(...createFacadeSegments(surface, family, 4));
-      if (family === 'timber') jointSegments.push(...createStoreyJointSegments(surface, floorElevations.slice(1).map(elevation => data.baseY + elevation)));
+      const study = windowStudies.get(surface);
+      const constructionMasks = [...masks, ...(study?.patches || []).map(patch => [...patch.corners, patch.corners[0]])];
+      const materialOptions = {exclusions: constructionMasks, elevationOrigin: data.baseY};
+      detailSegments.push(...createFacadeSegments(surface, family, 1, materialOptions));
+      distantSegments.push(...createFacadeSegments(surface, family, 4, materialOptions));
+      if (family === 'timber') {
+        const boards = createTimberBoardStudy(surface, {...materialOptions, elevations: [...windowRows.elevations, data.baseY + data.height]});
+        for (const key of ['positions', 'nightColors', 'dayColors']) timberBoards[key].push(...boards[key]);
+        timberBoards.boardCount += boards.boardCount;
+      }
+      if (family === 'timber') jointSegments.push(...createStoreyJointSegments(surface, floorElevations.slice(1).map(elevation => data.baseY + elevation), {exclusions: masks}));
       if (windowStudies.has(surface)) {
-        const study = windowStudies.get(surface);
         windowCount += study.count;
         for (const key of Object.keys(windowLayers)) windowLayers[key].push(...study.layers[key]);
+        windowLinework.push(...(study.linework || []));
       }
     }
-    // Batch by material while preserving every official source vertex/triangle.
+    // Presentation cutouts do not alter the retained source used by floor sections.
     for (const [type, parts] of geometries) {
       const geometry = mergeGeometries(parts);
       parts.forEach(part => part.dispose());
@@ -362,19 +365,33 @@ export class CampusScene {
     sourceEdges.renderOrder = 2;
     exterior.add(sourceEdges);
     exteriorLines.push(edgeMaterial);
+    let weathering = null;
+    if (timberBoards.positions.length) {
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.Float32BufferAttribute(timberBoards.positions, 3));
+      geometry.setAttribute('color', new THREE.Float32BufferAttribute(timberBoards.nightColors, 3));
+      const material = new THREE.MeshBasicMaterial({
+        color: 0xffffff, vertexColors: true, side: THREE.DoubleSide, transparent: true,
+        opacity: 0.42, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1,
+      });
+      weathering = new THREE.Mesh(geometry, material);
+      weathering.renderOrder = 0.5;
+      weathering.userData = {
+        role: 'procedural-timber-weathering', boardCount: timberBoards.boardCount,
+        nightColors: new Float32Array(timberBoards.nightColors), dayColors: new Float32Array(timberBoards.dayColors),
+      };
+      exterior.add(weathering);
+    }
     const facadeGroups = [];
     const facadeMaterials = [];
     for (const [index, segments] of [detailSegments, distantSegments].entries()) {
-      const material = new THREE.LineBasicMaterial({ color: family === 'timber' ? 0x968575 : 0x9b8e7f, transparent: true, opacity: index ? 0.2 : 0.16, depthWrite: false, vertexColors: family === 'plates' });
+      const material = new THREE.LineBasicMaterial({ color: family === 'timber' ? 0x968575 : 0x9b8e7f, transparent: true, opacity: index ? 0.2 : 0.16, depthWrite: false, vertexColors: true });
       material.userData.themeRole = family === 'timber' ? 'timberHatch' : 'plateHatch';
       const hatchGeometry = new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3));
-      if (family === 'plates') {
-        // Photographs show dominant horizontal courses; vertical plate joints are faint.
-        hatchGeometry.setAttribute('color', new THREE.Float32BufferAttribute(segments.flatMap(([a, b]) => {
-          const brightness = Math.abs(a[1] - b[1]) > 0.0001 ? (index ? 0.07 : 0.24) : 1;
-          return Array(6).fill(brightness);
-        }), 3));
-      }
+      hatchGeometry.setAttribute('color', new THREE.Float32BufferAttribute(segments.flatMap(([a, b]) => {
+        const brightness = family === 'timber' ? timberLineBrightness([a, b]) : Math.abs(a[1] - b[1]) > 0.0001 ? (index ? 0.28 : 0.62) : 1;
+        return Array(6).fill(brightness);
+      }), 3));
       const hatch = new THREE.LineSegments(hatchGeometry, material);
       hatch.renderOrder = 1;
       hatch.userData = { role: 'schematic-material-hatching', ...FACADE_PROFILES[family], segmentCount: segments.length };
@@ -399,20 +416,57 @@ export class CampusScene {
       locatedWindowCount: [...windowStudies.values()].reduce((sum, study) => sum + (study.locatedCount || 0), 0),
       rejectedLocatedWindows: [...windowStudies.values()].flatMap(study => study.rejectedLocated || []),
       scope: family === 'plates'
-        ? 'Three aligned appearance rows, including ground, on grounded multistorey wall portions. Complete windows plus clearance must fit the local source wall; roof-only patches and low shared wings are excluded. Larger common-room glazing is unmodeled.'
-        : 'Upper storeys of broad facades, including adjacent near-coplanar source patches. Every mark is clipped to its original wall. Ground communal spaces, highly fragmented stair faces and loggia geometry remain unmodeled.',
+        ? 'Three aligned appearance rows, including ground, on grounded multistorey wall portions. Located House55 windows retained. Identified shared glazing is a separate photographic detail.'
+        : 'Photo-informed room rows and construction details, clipped to source faces and suppressed inside identified stair/loggia openings. Unseen faces retain provisional rhythms.',
     };
     for (const [layer, positions] of Object.entries(windowLayers)) {
       if (!positions.length) continue;
-      const themeRole = layer === 'glass' ? 'windowGlass' : layer === 'sill' ? 'windowSill' : family === 'plates' ? 'oldWindowFrame' : 'windowFrame';
+      const themeRole = layer === 'glass' ? 'windowGlass' : layer === 'sill' ? 'windowSill' : ['reveal', 'blind'].includes(layer) ? 'windowFrame' : family === 'plates' ? 'oldWindowFrame' : 'windowFrame';
       const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: layer === 'glass' ? 0.87 : 0.96, depthWrite: true});
       material.userData = {themeRole, windowLayer: layer};
+      if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
       const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
-      mesh.renderOrder = layer === 'frame' ? 3 : 4;
+      mesh.renderOrder = layer === 'reveal' ? 2 : layer === 'frame' ? 3 : 4;
+      windowGroup.add(mesh);
+      windowMaterials.push(material);
+    }
+    if (windowLinework.length) {
+      const material = new THREE.LineBasicMaterial({color: 0x7f8179, transparent: true, opacity: 0.7, depthWrite: false});
+      material.userData = {themeRole: family === 'plates' ? 'oldWindowFrame' : 'windowSill', windowLayer: 'construction'};
+      if (family === 'plates') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      const mesh = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(windowLinework.flat(2), 3)), material);
+      mesh.renderOrder = 5;
       windowGroup.add(mesh);
       windowMaterials.push(material);
     }
     exterior.add(windowGroup);
+    const detailGroup = new THREE.Group(), detailMaterials = [];
+    detailGroup.userData = {role: 'photographic-exterior-details', features: architecturalDetails.features, status: 'Replaceable visual hypotheses inside the fixed source envelope; not an approved interior.'};
+    for (const [themeRole, positions] of Object.entries(architecturalDetails.triangleLayers)) {
+      if (!positions.length) continue;
+      const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: 0.92, depthWrite: true});
+      material.userData = {themeRole, detailType: 'surface'};
+      if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
+      mesh.userData = {house: data.number, floor: null, role: 'photographic-exterior-details'};
+      // The source shell writes depth first, preventing far-side glazing from
+      // bleeding through a translucent roof when it is batched with near faces.
+      mesh.renderOrder = 1;
+      detailGroup.add(mesh);
+      detailMaterials.push(material);
+      exteriorPickables.push(mesh);
+    }
+    for (const [themeRole, segments] of Object.entries(architecturalDetails.segmentLayers)) {
+      if (!segments.length) continue;
+      const material = new THREE.LineBasicMaterial({color: SCENE_THEMES.night[themeRole], transparent: true, opacity: 0.75, depthWrite: false});
+      material.userData = {themeRole, detailType: 'line'};
+      if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      const mesh = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3)), material);
+      mesh.renderOrder = 3;
+      detailGroup.add(mesh);
+      detailMaterials.push(material);
+    }
+    exterior.add(detailGroup);
     group.add(exterior);
     const floorGroups = [];
     const fillMaterials = [];
@@ -495,7 +549,7 @@ export class CampusScene {
       ...exteriorDimensionRuns(section.polygons),
       ...studyDimensionRuns(getDisplayLevel(this.interiors, this.studies, data.number, floor)),
     ]);
-    const record = { data, group, floorGroups, floorElevations, floorSections, floorDimensions, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, label: el, currentGap: 0, targetGap: 0 };
+    const record = { data, group, floorGroups, floorElevations, floorSections, floorDimensions, interiorGroups, interiorPickables, fillMaterials, lineMaterials, pickables, exterior, exteriorFills, exteriorLines, exteriorPickables, facadeGroups, facadeMaterials, weathering, materialFamily: family, jointMaterial, joints, windowGroup, windowMaterials, detailGroup, detailMaterials, label: el, currentGap: 0, targetGap: 0 };
     this.buildings.set(data.number, record);
     this.labels.push({ el, getPosition: () => new THREE.Vector3(data.centroid[0], data.baseY + Math.max(data.height, record.exterior.visible ? data.height : floorElevations.at(-1) + record.currentGap * (data.levels - 1)) + 3, data.centroid[1]), type: 'house', number: data.number });
   }
@@ -589,10 +643,20 @@ export class CampusScene {
     this.scene.traverse(object => {
       for (const material of [object.material].flat().filter(Boolean)) {
         const role = material.userData.themeRole;
-        if (role) material.color.copy(this.themeColors[role]);
+        if (material.userData.themeOverride) {
+          material.color.set(material.userData.themeOverride.night).lerp(new THREE.Color(material.userData.themeOverride.day), dayMix);
+        } else if (role) material.color.copy(this.themeColors[role]);
       }
     });
-    for (const building of this.buildings.values()) this.applyBuildingAppearance(building);
+    for (const building of this.buildings.values()) {
+      if (building.weathering) {
+        const colors = building.weathering.geometry.getAttribute('color');
+        const {nightColors, dayColors} = building.weathering.userData;
+        for (let i = 0; i < colors.array.length; i++) colors.array[i] = nightColors[i] + (dayColors[i] - nightColors[i]) * dayMix;
+        colors.needsUpdate = true;
+      }
+      this.applyBuildingAppearance(building);
+    }
   }
 
   applyBuildingAppearance(building) {
@@ -605,11 +669,15 @@ export class CampusScene {
       material.opacity = active ? 0.98 : hovered ? 0.94 : dim ? 0.2 : 0.76;
     });
     building.exteriorFills.forEach(material => {
-      material.opacity = dim ? blend(0.16, 0.26) : material.userData.role === 'RoofSurface' ? blend(0.72, 0.91) : active ? blend(0.65, 0.94) : blend(0.54, 0.86);
+      material.opacity = dim ? blend(0.16, 0.26) : material.userData.role === 'RoofSurface' ? active ? 1 : blend(0.72, 0.91) : active ? blend(0.65, 0.94) : blend(0.54, 0.86);
     });
     building.jointMaterial.opacity = dim ? 0.07 : active ? 0.46 : 0.34;
+    if (building.weathering) building.weathering.material.opacity = dim ? blend(0.07, 0.13) : active ? 0.56 : 0.42;
     building.windowMaterials.forEach(material => {
-      material.opacity = dim ? blend(0.12, 0.18) : material.userData.windowLayer === 'glass' ? 0.87 : 0.96;
+      material.opacity = dim ? blend(0.12, 0.18) : material.userData.windowLayer === 'glass' ? 0.87 : material.userData.windowLayer === 'construction' ? 0.70 : 0.96;
+    });
+    building.detailMaterials?.forEach(material => {
+      material.opacity = dim ? blend(0.18, 0.26) : material.userData.detailType === 'line' ? active ? 0.9 : 0.68 : 0.94;
     });
     building.lineMaterials.forEach((material, i) => {
       material.color.copy(active ? colors.activeInk : colors.ink);
@@ -631,7 +699,8 @@ export class CampusScene {
       schematicWindows: [...this.buildings.values()].reduce((sum, building) => sum + building.windowGroup.userData.windowCount, 0),
       windowStudies: [...this.buildings.values()].map(building => ({number: building.data.number, count: building.windowGroup.userData.windowCount, locatedCount: building.windowGroup.userData.locatedWindowCount, rejectedLocated: building.windowGroup.userData.rejectedLocatedWindows, rows: building.windowGroup.userData.rowGuides.relativeElevations, alignment: building.windowGroup.userData.alternateOffset === 0 ? 'aligned' : 'schematic offsets'})),
       floorSections: [...this.buildings.values()].map(b => ({ number: b.data.number, areas: b.floorSections.map(section => section.area), openChains: b.floorSections.reduce((sum, section) => sum + section.openChains.length, 0) })),
-      contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photo-informed schematic material and window study; opening positions are illustrative, with no room assignments or interior boundaries' };
+      exteriorDetails: [...this.buildings.values()].map(b => ({house: b.data.number, features: b.detailGroup.userData.features})),
+      contextBoxes: 0, trees: 0, units: 'metres', facadeStatus: 'Photographic detail layer on retained source dimensions; unmeasured openings, recesses and roof fixtures do not establish room assignments or interior boundaries' };
   }
 
   setCommunity(enabled, clubs) {
