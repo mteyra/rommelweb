@@ -1,7 +1,7 @@
 {
-  "baselineCommit": "00df697ef4f8d473d55611a0af128f1f8a1046cb",
+  "baselineCommit": "ec4645560248e0fc68ed10f9800c4c5cfac3ab07",
   "date": "2026-11-16",
-  "purpose": "Baseline before adding only provisional newer-house interiors. Exact old study objects and folded input files remain unchanged.",
+  "purpose": "Combined preservation baseline after integrating completed Orange House 53. All older study records and protected source/rendering files match the incoming Orange release; the six newer study records and canonical layout remain exactly as in the newer-house release. The original 34 source sections are retained verbatim.",
   "fileHashes": {
     "public/data/lod2.json": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
     "public/data/campus.json": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
@@ -25,11 +25,13 @@
     "src/interiors.js": "4c956ac5c62c4a8eaf8bd0e9274e9b940ff9bbd93190e3f1fc0e2c12a7ccf696",
     "src/house55-window-alignment.js": "2234698ca5cae5d2424f318079c52e1b33bedd2fb1332779101a021b1ba56e26",
     "public/data/campus.geojson": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
-    "public/data/old-house-module-layouts.json": "50ee0fccf26cd9cf07cfa8aef1a18ffc0abc492ec77d785ee5b340057ae048cd"
+    "public/data/old-house-module-layouts.json": "22760c6cf6f2cbe2996d338359874b23864813ac3e4ff63edc94ac1ea5801da3",
+    "public/data/house53-module-layouts.json": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f",
+    "src/interior-wireframe.js": "c3ee172ad7575e1ad80701bee626395c2e8e0e892fd3b21cb1567cbf53735456"
   },
   "oldStudyHashes": {
     "51": "2e1080f7e1697f611848959a1e58dac214c054ef0fa1ada900d640f4796dc06e",
-    "53": "fef952217658216521112313aedd2c1cb6e746d9205566f458b9d76578a4e985",
+    "53": "f7c4969b00f6f8932cdfca6d2493b45c48a6e6910a292cfed5829618b10c95d8",
     "55": "b72e644f25c10c42af238f152a97aef33f5e827290de6bef876a82feb0c1ef39",
     "57": "0a66c00a65bb0ee4b35d01cef66b95bb843f57f7f7a22530b30bbc397c8b051c",
     "59": "98f729819d84dfc02cc7711affba708ef38e2b60c068a2e8f9a4b3913c81bd91"
@@ -1825,5 +1827,16 @@
         "sampleOffset": 0
       }
     ]
-  }
+  },
+  "originalBaselineCommit": "00df697ef4f8d473d55611a0af128f1f8a1046cb",
+  "newerBaselineCommit": "ae1da593ea72792cc7c4e117340806280e936ffd",
+  "newerStudyHashes": {
+    "49": "89fd2c46f058446a319ff52b35485bb60f292318a455eee7a7980297fe4bf944",
+    "51a": "570dd728eb30e53e6a3d9274a4b381a0c5f61f47884bbea22c2430e97a4fd6ec",
+    "53a": "0f9d0ca8cd31caad23e95528f189b0be917c41b0d8ef6e29aa89cd1deb626411",
+    "55a": "25bc201f8d84c771e248ec7a41c5d6581c4cffa998bc0515d4709fd2e9f6cd1a",
+    "57a": "f8b31631816242f98cc5a22b52112de99b658eae0b4d717113cd68b9e96f8879",
+    "59a": "792a0ca6d3cd1de2110ed1be780593d27256f045147a3f0556666c5271e448d8"
+  },
+  "newerCanonicalHash": "2a08d98f5d77a2d81759cd9fa9995275a6e9e532cd6658a340d6c4ec67ff3120"
 }

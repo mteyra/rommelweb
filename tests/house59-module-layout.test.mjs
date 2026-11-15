@@ -12,13 +12,14 @@ import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
-  oldHouseLayouts, before, historical, archivedYellow] = await Promise.all([
+  oldHouseLayouts, before, historical, archivedYellow, archivedOrange] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
   read('public/data/interiors.json'), read('public/data/room-markers.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/house59-module-layouts.json'),
   read('public/data/old-house-module-layouts.json'), read('tests/fixtures/house59-before-resident-layout.json'),
   readHistoricalStudies(), read('tests/fixtures/house51-before-top-floor-layout.json'),
+  read('tests/fixtures/house53-before-resident-layout.json'),
 ]);
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts};
 const snapshot = structuredClone(input), generated = createHouse59ModuleLayouts(input);
@@ -348,39 +349,41 @@ test('Green identifiers are unique, floor-specific and reference only existing G
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test('legacy generators preserve all completed Red, White and Green floors', () => {
+test('legacy generators preserve all completed Yellow, Orange, Red, White and Green floors', () => {
   const fitted = createOldHouseModuleLayouts(input);
-  assert.deepEqual(Object.keys(fitted.metadata.houses).sort(), ['53']);
+  assert.deepEqual(Object.keys(fitted.metadata.houses), []);
   assert.deepEqual(fitted.metadata, oldHouseLayouts);
-  for (const house of ['55', '57', '59']) assert.deepEqual(fitted.studies.buildings[house], studies.buildings[house]);
+  assert.deepEqual(fitted.studies, studies);
   const mixed = structuredClone(historical);
-  for (const house of ['57', '59']) mixed.buildings[house] = structuredClone(studies.buildings[house]);
+  for (const house of ['51', '53', '57', '59']) mixed.buildings[house] = structuredClone(studies.buildings[house]);
   const previous = structuredClone(mixed);
   const result = generateOldHouseStudies({studies: mixed, lod2, campus, interiors, roomMarkers});
-  for (const house of ['57', '59']) assert.deepEqual(result.studies.buildings[house], previous.buildings[house]);
+  for (const house of ['51', '53', '57', '59']) assert.deepEqual(result.studies.buildings[house], previous.buildings[house]);
 });
 
 test('Green preservation receipt protects completed Red and White, remaining provisional houses and all exterior evidence', async () => {
   const receipt = await read('docs/evidence/house59-layout-preservation.json');
   const sha = value => createHash('sha256').update(value).digest('hex');
   assert.equal(receipt.baseCommit, before.baseCommit);
+  // Exact receipt-era bytes: validator/wireframe from its base b4af250847d77a7cb2ae48f2151f91b44d23e20c,
+  // and the unchanged concept UI from 00df697. Current modules support Orange's
+  // linked stairs and Campus II; current schema, renderer and UI tests cover them.
+  const greenReleaseSources = {
+    'src/interior-studies.js': 'tests/fixtures/interior-studies-at-house59-release.js',
+    'src/interior-wireframe.js': 'tests/fixtures/interior-wireframe-at-house59-release.js',
+    'src/apartment-concepts.js': 'tests/fixtures/apartment-concepts-before-newer-layout.txt',
+  };
   for (const [path, record] of Object.entries(receipt.immutableFiles)) {
     assert.equal(record.unchanged, true, path);
-    // The live validator and concept UI now accept the independent Campus II
-    // layer. Preserve their exact 00df697 bytes for this dated Green receipt;
-    // runtime suites still exercise both current modules and protect old rooms.
-    const archivedSources = {
-      'src/interior-studies.js': './fixtures/interior-studies-before-newer-layout.txt',
-      'src/apartment-concepts.js': './fixtures/apartment-concepts-before-newer-layout.txt',
-    };
-    const observedPath = archivedSources[path] ?? `../${path}`;
-    assert.equal(sha(await readFile(new URL(observedPath, import.meta.url))), record.sha256, path);
+    const source = greenReleaseSources[path] || path;
+    assert.equal(sha(await readFile(new URL(`../${source}`, import.meta.url))), record.sha256, path);
   }
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['59']);
-  // This dated receipt predates Yellow's top-floor replacement and Campus II.
-  // Recreate that study snapshot while retaining the original receipt hash.
+  // This receipt predates Yellow's top-floor and Orange's replacements, plus
+  // Campus II. Recreate that snapshot while retaining the original release hash.
   const greenReleaseStudies = withoutNewerStudies(studies);
   greenReleaseStudies.buildings['51'] = structuredClone(archivedYellow.building);
+  greenReleaseStudies.buildings['53'] = structuredClone(archivedOrange.building);
   assert.equal(sha(JSON.stringify(greenReleaseStudies, null, 2) + '\n'), receipt.studyChangeScope.afterSha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.greenCanonical.path}`, import.meta.url))),
     receipt.greenCanonical.sha256);
@@ -392,7 +395,7 @@ test('Green preservation receipt protects completed Red and White, remaining pro
     assert.equal(sha(JSON.stringify(greenReleaseStudies.buildings[house])), record.sha256, house);
   }
   for (const house of ['51', '53']) {
-    const layout = house === '51' ? archivedYellow.layout : oldHouseLayouts.houses[house];
+    const layout = {'51': archivedYellow, '53': archivedOrange}[house].layout;
     assert.equal(sha(JSON.stringify(layout)), receipt.retainedFittedHouses[house].sha256);
   }
   assert.equal(receipt.currentFittedCatalogExcludes59, true);

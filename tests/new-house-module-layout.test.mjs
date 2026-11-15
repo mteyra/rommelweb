@@ -46,10 +46,18 @@ test('newer generator is pure, deterministic and exactly reproduces the saved la
   assert.deepEqual(createNewHouseModuleLayouts({...inputs,studies:original}),output);
 });
 
-test('all old study records and folded source inputs retain their exact baseline hashes',async()=>{
+test('all merged old/newer study records and folded source inputs retain their exact baseline hashes',async()=>{
   for(const [house,digest] of Object.entries(before.oldStudyHashes)){
     assert.equal(hash(JSON.stringify(studies.buildings[house])),digest,`old study ${house}`);
   }
+  for(const [house,digest] of Object.entries(before.newerStudyHashes)){
+    assert.equal(hash(JSON.stringify(studies.buildings[house])),digest,`preserved newer study ${house}`);
+  }
+  assert.equal(hash(await readFile(new URL('../public/data/new-house-module-layouts.json',import.meta.url))),
+    before.newerCanonicalHash,'preserved newer canonical layout');
+  assert.equal(Object.keys(before.oldStudyHashes).length,5);
+  assert.equal(Object.keys(before.newerStudyHashes).length,6);
+  assert.equal(Object.keys(before.fileHashes).length,25);
   for(const [path,digest] of Object.entries(before.fileHashes)){
     assert.equal(hash(await readFile(new URL(`../${path}`,import.meta.url))),digest,path);
   }

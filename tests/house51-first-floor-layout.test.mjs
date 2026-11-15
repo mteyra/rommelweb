@@ -14,12 +14,14 @@ import {validateInteriorStudies} from '../src/interior-studies.js';
 import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, topPlan, published, before, catalog, campus, lod2, redTop, redFirst, redGround, beforeGround] = await Promise.all([
+const [studies, topPlan, published, before, catalog, campus, lod2, redTop, redFirst, redGround,
+  archivedOrange, beforeGround] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/house51-top-floor-layout.json'),
   read('public/data/house51-first-floor-layout.json'), read('tests/fixtures/house51-before-first-floor-layout.json'),
   read('public/data/old-house-module-layouts.json'), read('public/data/campus.json'), read('public/data/lod2.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'),
+  read('tests/fixtures/house53-before-resident-layout.json'),
   read('tests/fixtures/house51-before-ground-floor-layout.json'),
 ]);
 const input = {studies, topPlan}, snapshot = structuredClone(input);
@@ -256,9 +258,7 @@ test('the historical middle-floor release retains its EG fit and current regener
   assert.deepEqual(firstFloorReleaseFits.metadata.houses['51'].levels.map(item => item.levelIndex), [0]);
   assert.deepEqual(firstFloorReleaseFits.metadata.houses['51'].levels[0],
     before.layout.levels.find(item => item.levelIndex === 0));
-  assert.deepEqual(Object.keys(catalog.houses), ['53']);
-  assert.equal(catalog.houses['51'], undefined);
-  assert.deepEqual(catalog.houses['53'].levels.map(item => item.levelIndex), [0, 1, 2]);
+  assert.deepEqual(Object.keys(catalog.houses), [], 'Completed houses have no current provisional fitting records');
 });
 
 test('both Yellow CLIs and generic regeneration keep current outputs unchanged in an isolated workspace', async t => {
@@ -315,11 +315,16 @@ test('the first-floor preservation receipt protects the top floor, EG and the ex
     assert.equal(record.unchanged, true, path);
     assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
   }
-  assert.equal(sha(JSON.stringify(withoutNewerStudies(firstFloorRelease.studies), null, 2) + '\n'),
+  // This release predates Orange's independent layouts and the Campus II layer.
+  // Restore that dated snapshot here; current geometry is checked separately.
+  const firstFloorReleaseStudies = withoutNewerStudies(firstFloorRelease.studies);
+  firstFloorReleaseStudies.buildings['53'] = structuredClone(archivedOrange.building);
+  assert.equal(sha(JSON.stringify(firstFloorReleaseStudies, null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
-    assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
+    assert.equal(sha(JSON.stringify(firstFloorReleaseStudies.buildings[house])), record.sha256, house);
   }
+  assert.equal(sha(JSON.stringify(archivedOrange.layout)), receipt.unchangedHouse53Fit.sha256);
   for (const index of [0, 2]) assert.equal(sha(JSON.stringify(firstFloorRelease.studies.buildings['51'].levels.find(item =>
     item.index === index))), receipt.unchangedYellowLevels[index].sha256);
   assert.deepEqual(plan.sourceAnnotation, receipt.annotation);

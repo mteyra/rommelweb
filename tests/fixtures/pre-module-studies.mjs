@@ -24,10 +24,10 @@ export function assertUnchangedOtherFloors(current, historical) {
     // may replace only provisional interiors, retaining every original outline.
     if (number === '55') continue;
     const next = current.buildings[number];
-    // Completed Yellow/White/Green layouts explicitly replace their provisional
+    // Completed Yellow/Orange/White/Green layouts explicitly replace their provisional
     // outlines. Original source/fitted geometry remains under the historical
     // old-house suites; each house's dedicated suite protects its replacement.
-    if (['51', '57', '59'].includes(number) && next?.levels.every(level => level.layoutBasis === 'resident-module-layout')) {
+    if (['51', '53', '57', '59'].includes(number) && next?.levels.every(level => level.layoutBasis === 'resident-module-layout')) {
       assert.deepEqual(without(next, ['source', 'sourceDate', 'levels']),
         without(building, ['source', 'sourceDate', 'levels']));
       assert.deepEqual(next.levels.map(level => level.index), building.levels.map(level => level.index));

@@ -1,0 +1,980 @@
+{
+  "checkedAt": "2026-11-15T23:42:36.100Z",
+  "browser": "Isolated Firefox headless via WebDriver BiDi",
+  "url": "http://127.0.0.1:4187/rommelweb/?qa=newer-orange-integration",
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "devicePixelRatio": 1
+  },
+  "floors": [
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "2 singles \u00b7 1 WG4",
+      "spaces": 6
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "49",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "49",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "49",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "49",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": [],
+      "inventory": "",
+      "spaces": 5
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": [],
+      "inventory": "3 WG4 apartments",
+      "spaces": 6
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 8,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 5,
+      "labelOverlaps": [],
+      "inventory": "3 WG4 apartments",
+      "spaces": 6
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "2 singles \u00b7 1 WG4",
+      "spaces": 6
+    },
+    {
+      "house": "53a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "53a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "53a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "53a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 6,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "1 single \u00b7 1 accessible single \u00b7 1 WG3",
+      "spaces": 6
+    },
+    {
+      "house": "55a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "55a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 28,
+      "visibleSpaceLabels": 16,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "13 singles",
+      "spaces": 16
+    },
+    {
+      "house": "55a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "55a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "55a",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 28,
+      "visibleSpaceLabels": 16,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "13 singles",
+      "spaces": 16
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "1 single \u00b7 1 accessible single \u00b7 1 WG3",
+      "spaces": 6
+    },
+    {
+      "house": "57a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "57a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "57a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "57a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "57a",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "57a",
+      "floor": 6,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "57a",
+      "floor": 7,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "59a",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 6,
+      "visibleSpaceLabels": 5,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "",
+      "spaces": 5
+    },
+    {
+      "house": "59a",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "59a",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "59a",
+      "floor": 3,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "59a",
+      "floor": 4,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    },
+    {
+      "house": "59a",
+      "floor": 5,
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 30,
+      "visibleSpaceLabels": 17,
+      "visibleDimensionCount": 7,
+      "labelOverlaps": [],
+      "inventory": "14 singles",
+      "spaces": 17
+    }
+  ],
+  "responsive": [
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "width": 390,
+      "height": 844,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 9,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 4,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "width": 320,
+      "height": 740,
+      "theme": "day",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 7,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 3,
+      "labelOverlaps": []
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "width": 320,
+      "height": 740,
+      "theme": "night",
+      "horizontalOverflow": false,
+      "visibleLabelCount": 7,
+      "visibleSpaceLabels": 6,
+      "visibleDimensionCount": 3,
+      "labelOverlaps": []
+    }
+  ],
+  "cards": [
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-S1",
+      "label": "Apartment S1",
+      "kind": "room",
+      "typology": "newer-single",
+      "measurements": {
+        "shortSpan": 2.920000000415172,
+        "longSpan": 7.199999999223834,
+        "area": 21.023999998566016,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-hall",
+      "label": "Branching hall",
+      "kind": "corridor",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-stairs",
+      "label": "Stairs",
+      "kind": "stairs",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-lift",
+      "label": "Lift / risers",
+      "kind": "lift",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 0,
+      "id": "newer-51a-0-Community",
+      "label": "Community",
+      "kind": "service",
+      "typology": null,
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001702,
+        "longSpan": 11.679999999610267,
+        "area": 93.44000000010593,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-E",
+      "label": "Whole apartment WG4-E",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 7.999999999962704,
+        "longSpan": 11.679999999554385,
+        "area": 93.43999999162975,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-S",
+      "label": "Whole apartment WG4-S",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001697,
+        "longSpan": 11.679999999810626,
+        "area": 93.44000000010585,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001702,
+        "longSpan": 11.679999999610267,
+        "area": 93.44000000010593,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-WG4-E",
+      "label": "Whole apartment WG4-E",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 7.999999999962704,
+        "longSpan": 11.679999999554385,
+        "area": 93.43999999162975,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 2,
+      "id": "newer-51a-2-WG4-S",
+      "label": "Whole apartment WG4-S",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001697,
+        "longSpan": 11.679999999810626,
+        "area": 93.44000000010585,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "53a",
+      "floor": 0,
+      "id": "newer-53a-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.00000000073458,
+        "longSpan": 11.680000000612043,
+        "area": 93.4399999999641,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000355413,
+        "longSpan": 8.760000001031138,
+        "area": 70.08000000108815,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "55a",
+      "floor": 0,
+      "id": "newer-55a-0-Accessible",
+      "label": "Apartment Accessible",
+      "kind": "room",
+      "typology": "newer-accessible",
+      "measurements": {
+        "shortSpan": 5.000000000193133,
+        "longSpan": 6.000000000340658,
+        "area": 29.99999999929479,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "57a",
+      "floor": 0,
+      "id": "newer-57a-0-WG3-W",
+      "label": "Whole apartment WG3-W",
+      "kind": "shared",
+      "typology": "newer-wg3",
+      "measurements": {
+        "shortSpan": 8.000000000683265,
+        "longSpan": 8.760000000231834,
+        "area": 70.08000000283978,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "49",
+      "floor": 0,
+      "id": "newer-49-0-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001066894,
+        "longSpan": 11.68000000046247,
+        "area": 93.44000000226534,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001702,
+        "longSpan": 11.679999999610267,
+        "area": 93.44000000010593,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "id": "newer-51a-1-WG4-W",
+      "label": "Whole apartment WG4-W",
+      "kind": "shared",
+      "typology": "newer-wg4",
+      "measurements": {
+        "shortSpan": 8.000000001001702,
+        "longSpan": 11.679999999610267,
+        "area": 93.44000000010593,
+        "areaBasis": "bounding-apartment-envelope"
+      },
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "oldFurnitureControl": false
+    }
+  ],
+  "orangeStairNavigation": [
+    {
+      "width": 1440,
+      "height": 1000,
+      "theme": "night",
+      "fromFloor": 1,
+      "toFloor": 0,
+      "returnFloor": 1,
+      "sourceSpace": "module-53-1-common-R",
+      "targetSpace": "module-53-0-common-R",
+      "buttonNavigation": true,
+      "activeFloorMatches": true,
+      "apartmentMeasurement": false,
+      "furnitureControl": false,
+      "labelOverlaps": [],
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "day",
+      "fromFloor": 1,
+      "toFloor": 0,
+      "returnFloor": 1,
+      "sourceSpace": "module-53-1-common-R",
+      "targetSpace": "module-53-0-common-R",
+      "buttonNavigation": true,
+      "activeFloorMatches": true,
+      "apartmentMeasurement": false,
+      "furnitureControl": false,
+      "labelOverlaps": [],
+      "horizontalOverflow": false
+    }
+  ],
+  "directDoorCards": [],
+  "screenshots": [
+    "docs/preview/integration-newer-grey-2og.png",
+    "docs/preview/integration-newer-blue-mobile.png",
+    "docs/preview/integration-orange-bar-stair-card.png",
+    "docs/preview/integration-orange-stair-floor.png"
+  ],
+  "floorScreenshots": [],
+  "oldHouseSmoke": [
+    {
+      "house": "55",
+      "floor": 2,
+      "oldClearMeasurements": true,
+      "oldFurnitureControl": true
+    },
+    {
+      "house": "51",
+      "floor": 2,
+      "oldClearMeasurements": true,
+      "oldFurnitureControl": true
+    }
+  ],
+  "checks": [
+    "Merged bundle serves exact workspace interior study, newer canonical and Orange canonical data.",
+    "All 34 newer floors retain inventory counts, source-section dimension labels, gray-unassigned wording and collision-free visible labels.",
+    "All 10 whole-WG cards and representative newer single, accessible and common/core/circulation cards retain bounding-envelope semantics and no old furnishings.",
+    "Newer cards and floor views pass targeted 390 px and 320 px checks in day and night themes.",
+    "Orange\u2019s separate Bar access stair navigates from 1. OG to EG and back with active floor, linked card and service semantics synchronized on desktop and phone.",
+    "Global evidence includes both completed Orange layouts and provisional newer apartments, without obsolete older-template claims.",
+    "Red and Yellow top-floor cards retain their clear-room dimensions and furniture controls."
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4187/rommelweb/assets/index-sFZyorii.js"
+  ],
+  "checkedWGCount": 10,
+  "errors": [],
+  "harnessRecovery": "After the newer and Orange desktop checks passed, a same-house navigation helper folded the already-open house before the phone check. The helper now checks the expanded state. Only the remaining phone stair, model and old-house checks were resumed; application source and build did not change.",
+  "resumedAt": "2026-11-15T23:46:12.604Z",
+  "passed": true,
+  "visualReview": [
+    "Grey 2. OG: thirteen provisional singles, central circulation/core and protected gray remainder remain legible inside the full retained source outline.",
+    "Blue 1. OG at 320 px in day theme: all three whole-WG labels and the hall/core fit above readable floor controls; gray remainder remains distinct.",
+    "Orange 1. OG: the separate Bar stair flight and down arrow are visible inside the east enclosure. Existing rooms, shared apartment, west balcony and independent outline retain their arrangement.",
+    "Orange Bar card: the return-to-1. OG action is visible and service space does not display apartment measurements or furniture controls."
+  ],
+  "limitations": [
+    "Newer geometry remains an estimate rather than measured or approved internal plans; the original exterior outline is retained.",
+    "Only visible labels were checked for collisions in this integration sweep. Collision-hidden doorway labels were not recounted; the original newer-house browser receipt contains that inventory. Room cards remain reachable through the drawing key.",
+    "The comprehensive original newer-house browser receipt remains separate; this merged-build run repeats all floor inventories, all WG cards and targeted responsive/typology checks."
+  ]
+}

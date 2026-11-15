@@ -16,19 +16,28 @@ import {validateInteriorStudies} from '../src/interior-studies.js';
 import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, firstFloorPlan, published, before, catalog, topPlan, campus, lod2, redTop, redFirst, redGround, beforeCorrection] =
+const [studies, firstFloorPlan, published, before, catalog, topPlan, campus, lod2, redTop, redFirst, redGround,
+  archivedOrange, beforeCorrection] =
   await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/house51-first-floor-layout.json'),
     read('public/data/house51-ground-floor-layout.json'), read('tests/fixtures/house51-before-ground-floor-layout.json'),
     read('public/data/old-house-module-layouts.json'), read('public/data/house51-top-floor-layout.json'),
     read('public/data/campus.json'), read('public/data/lod2.json'), read('public/data/house55-module-layout.json'),
     read('public/data/house55-first-floor-layout.json'), read('public/data/house55-ground-floor-layout.json'),
+    read('tests/fixtures/house53-before-resident-layout.json'),
     read('tests/fixtures/house51-before-ground-sports-correction.json'),
   ]);
 const input = {studies, firstFloorPlan}, snapshot = structuredClone(input);
 const result = createHouse51GroundFloorLayout(input), plan = result.plan;
 const level = result.studies.buildings['51'].levels.find(item => item.index === 0);
-const originalGroundRelease = structuredClone(studies);
+// Both dated Yellow releases preceded Orange's replacement. Rehydrate its
+// exact retained fit only for those receipts; current generation uses studies.
+const correctedGroundRelease = structuredClone(studies);
+correctedGroundRelease.buildings['53'] = structuredClone(archivedOrange.building);
+const correctedGroundReleaseFits = createOldHouseModuleLayouts({
+  studies: correctedGroundRelease, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
+});
+const originalGroundRelease = structuredClone(correctedGroundRelease);
 originalGroundRelease.buildings['51'].source = beforeCorrection.buildingSource;
 originalGroundRelease.buildings['51'].levels = originalGroundRelease.buildings['51'].levels.map(item =>
   item.index === 0 ? structuredClone(beforeCorrection.level) : item);
@@ -352,8 +361,7 @@ test('completed Yellow is retired from provisional fitting and upper regeneratio
   });
   assert.deepEqual(fitted.studies, studies);
   assert.deepEqual(fitted.metadata, catalog);
-  assert.deepEqual(Object.keys(catalog.houses), ['53']);
-  assert.deepEqual(catalog.houses['53'].levels.map(item => item.levelIndex), [0, 1, 2]);
+  assert.deepEqual(Object.keys(catalog.houses), [], 'Completed Yellow and Orange have no remaining provisional fits');
   assert.deepEqual(createHouse51FirstFloorLayout({studies, topPlan}).studies, studies);
   assert.deepEqual(createHouse51TopFloorLayout({studies, lod2, topPlan: redTop, oldHouseLayouts: catalog}).studies, studies);
 });
@@ -408,11 +416,11 @@ test('the original ground preservation receipt remains valid for its archived re
   assert.equal(sha(JSON.stringify(withoutNewerStudies(originalGroundRelease), null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
-    assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
+    assert.equal(sha(JSON.stringify(originalGroundRelease.buildings[house])), record.sha256, house);
   }
   for (const index of [1, 2]) assert.equal(sha(JSON.stringify(studies.buildings['51'].levels.find(item =>
     item.index === index))), receipt.unchangedYellowLevels[index].sha256);
-  assert.equal(sha(JSON.stringify(catalog.houses['53'])), receipt.unchangedHouse53Fit.sha256);
+  assert.equal(sha(JSON.stringify(archivedOrange.layout)), receipt.unchangedHouse53Fit.sha256);
   assert.deepEqual(receipt.currentYellowFittedLevels, []);
   assert.equal(sha(JSON.stringify(beforeCorrection.plan, null, 2) + '\n'), receipt.yellowCanonical.sha256,
     'The original canonical output is retained in the correction baseline');
@@ -432,18 +440,21 @@ test('the Sports correction receipt verifies its narrow scope against the publis
   assert.deepEqual(receipt.studyChangeScope.changedLevels, [0]);
   assert.equal(sha(JSON.stringify(withoutNewerStudies(originalGroundRelease), null, 2) + '\n'),
     receipt.studyChangeScope.beforeSha256);
-  assert.equal(sha(JSON.stringify(withoutNewerStudies(studies), null, 2) + '\n'),
+  assert.equal(sha(JSON.stringify(withoutNewerStudies(correctedGroundRelease), null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   const inherited = receipt.inheritedImmutableEvidence;
   assert.equal(sha(await readFile(new URL(`../${inherited.path}`, import.meta.url))), inherited.sha256);
   const priorReceipt = await read(inherited.path);
   assert.equal(Object.keys(priorReceipt.immutableFiles).length, inherited.immutableFileCount);
   for (const [path, record] of Object.entries({...priorReceipt.immutableFiles, ...receipt.additionalImmutableFiles})) {
-    assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
+    const bytes = path === 'public/data/old-house-module-layouts.json'
+      ? JSON.stringify(correctedGroundReleaseFits.metadata, null, 2) + '\n'
+      : await readFile(new URL(`../${path}`, import.meta.url));
+    assert.equal(sha(bytes), record.sha256, path);
     assert.equal(record.unchanged, true);
   }
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
-    assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
+    assert.equal(sha(JSON.stringify(correctedGroundRelease.buildings[house])), record.sha256, house);
   }
   for (const index of [1, 2]) assert.equal(sha(JSON.stringify(studies.buildings['51'].levels.find(item =>
     item.index === index))), receipt.unchangedYellowLevels[index].sha256);

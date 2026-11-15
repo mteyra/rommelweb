@@ -30,7 +30,7 @@ const floor = (index, {independent = false, shared = false} = {}) => ({
 const levels = mixed => [floor(0), floor(1, {independent: mixed, shared: mixed}), floor(2, {independent: true})];
 const allModuleLevels = () => [floor(0, {independent: true, shared: true}), ...levels(true).slice(1)];
 
-function ui(levelRecords, selectedFloor, selectedHouse = '55') {
+function ui(levelRecords, selectedFloor, selectedHouse = '55', otherBuildings = {}) {
   const elements = new Map(), conceptCalls = [];
   const element = selector => {
     if (!elements.has(selector)) elements.set(selector, {
@@ -41,13 +41,14 @@ function ui(levelRecords, selectedFloor, selectedHouse = '55') {
     });
     return elements.get(selector);
   };
-  const fixture = {levelRecords, selectedFloor, selectedHouse};
+  const fixture = {levelRecords, selectedFloor, selectedHouse, otherBuildings};
   const document = {
     body: element('body'), activeElement: element('active'),
     querySelector: element, querySelectorAll: () => [], createElement: () => element('created'),
   };
   const controls = runInNewContext(`${source}
-    studies = {schemaVersion: 1, buildings: {[fixture.selectedHouse]: {levels: fixture.levelRecords}}};
+    studies = {schemaVersion: 1, buildings: {...fixture.otherBuildings, [fixture.selectedHouse]: {levels: fixture.levelRecords}}};
+    campus = {buildings: [{number: fixture.selectedHouse, levels: fixture.levelRecords.length}]};
     interiors = {schemaVersion: 1, buildings: {}};
     lod2 = {buildings: [], metadata: {url: 'https://example.test/source'}};
     Object.assign(state, {selected: fixture.selectedHouse, floor: fixture.selectedFloor, exploded: true});
@@ -258,7 +259,7 @@ test('publishing the ground-floor module layout preserves both upper floors cont
 });
 
 test('source modal no longer describes EG as a template when all three House55 floors have module layouts', () => {
-  const view = ui(allModuleLevels(), 0);
+  const view = ui(allModuleLevels(), 0, '55', {'53': {levels: levels(false)}});
   view.accuracyDialog();
   const copy = view.element('#modal-body').innerHTML;
   assert.match(copy, /House 55 uses independent layouts on all three levels/);
@@ -390,6 +391,8 @@ test('Yellow mixed-floor model evidence reports only the top floor as resident-m
   assert.doesNotMatch(copy, /Houses 51 use provisional modules|House 51 uses independent layouts on all three levels/);
 });
 
+const publishedStudyBuildings = JSON.parse(await readFile(
+  new URL('../public/data/interior-studies.json', import.meta.url), 'utf8')).buildings;
 const publishedYellowLevels = JSON.parse(await readFile(
   new URL('./fixtures/house51-before-ground-floor-layout.json', import.meta.url), 'utf8')).building.levels;
 
@@ -505,6 +508,159 @@ test('publishing Yellow first floor preserves EG and top-floor controls and card
     'historical source notes remain untouched in the accepted top-floor data');
 });
 
+const publishedOrangeLevels = publishedStudyBuildings['53'].levels;
+const previousOrangeBuilding = JSON.parse(await readFile(
+  new URL('./fixtures/house53-before-resident-layout.json', import.meta.url), 'utf8')).building;
+
+test('all three Orange floors use their own drawing evidence, counts and clear single-room cards', () => {
+  const stageNotes = [
+    '22 singles · Shared N3–N4 · Bar & common room',
+    '22 singles · Shared N3–N4 · Bar access',
+    '20 singles · Hall 1.40 m',
+  ];
+  for (const record of publishedOrangeLevels) {
+    const view = ui(publishedOrangeLevels, record.index, '53');
+    view.renderFloor();
+    assert.equal(view.element('#floor-stage-title').textContent, `House 53 / ${record.index ? `${record.index}. OG` : 'EG'}`);
+    assert.equal(view.element('#floor-stage-note').textContent, stageNotes[record.index]);
+    const details = view.element('#floor-detail-content').innerHTML;
+    assert.match(details, /Resident-marked arrangement · Orange House/);
+    assert.match(details, /HOUSE53-MODULE-LAYOUT\.md/);
+    assert.match(details, /Window positions and exact doorway offsets and widths remain schematic/);
+    assert.doesNotMatch(details, /Provisional module placement|original outline retained|HOUSE55-MODULE-LAYOUT\.md|HOUSE51-.*LAYOUT\.md/);
+    if (record.index > 0) assert.doesNotMatch(details, /EG R2|Bar has no clear lime/);
+    if (record.index === 2) assert.doesNotMatch(details, /Shared N3-N4|shared apartment N3–N4/);
+    const rooms = record.spaces.filter(space => space.kind === 'room' && space.shortLabel === 'E');
+    assert.equal(rooms.length, 2, 'the A-wing and East-wing E labels remain separately selectable');
+    assert.notEqual(rooms[0].label, rooms[1].label);
+    for (const room of rooms) {
+      assert.ok(details.includes(esc(`${room.label}, resident-marked arrangement`)));
+      view.spaceDialog({house: '53', floor: record.index, spaceId: room.id});
+      const card = view.element('#modal-body').innerHTML;
+      assert.ok(card.includes(esc(`${room.label} · study`)));
+      assert.match(card, /Resident-marked arrangement/);
+      assert.match(card, /2\.70 × 6\.00 m · 16\.20 m² clear polygon area/);
+      assert.ok(card.includes(esc(room.note)), 'room-specific source limits survive rendering');
+      assert.doesNotMatch(card, /Provisional placement|transferred from House 55/);
+    }
+    assert.equal(view.conceptCalls.length, 2);
+  }
+});
+
+test('Orange shared N3–N4, common spaces and Bar access stair retain separate card types and controls', () => {
+  for (const index of [0, 1]) {
+    const view = ui(publishedOrangeLevels, index, '53');
+    const record = publishedOrangeLevels.find(level => level.index === index);
+    view.spaceDialog({house: '53', floor: index, spaceId: `module-53-${index}-shared-N3-N4`});
+    const shared = view.element('#modal-body').innerHTML;
+    assert.match(shared, /Shared apartment N3–N4 · study/);
+    assert.match(shared, /Resident-marked arrangement/);
+    assert.match(shared, /6\.20 × 7\.40 m span · 45\.88 m² gross polygon area/);
+    assert.match(shared, /internal rooms, services and wall positions remain unresolved/);
+    assert.doesNotMatch(shared, /Clear room dimensions|16\.20 m²|3\.10 m module =/);
+    for (const [side, label] of index === 0
+      ? [['R', 'Bar'], ['L', 'Common room']]
+      : [['R', 'Bar access stair'], ['L', 'West balcony']]) {
+      const spaceId = `module-53-${index}-common-${side}`;
+      const space = record.spaces.find(item => item.id === spaceId);
+      view.spaceDialog({house: '53', floor: index, spaceId});
+      const card = view.element('#modal-body').innerHTML;
+      assert.ok(card.includes(`${label} · study`));
+      assert.match(card, side === 'R' ? index === 0
+        ? /ground-floor Bar connects to the separate access stair on 1\. OG/
+        : /separate stair connects Orange’s first-floor east enclosure to the ground-floor Bar/
+        : /A common area enclosed from the hallway in Orange’s resident-marked arrangement/);
+      assert.ok(card.includes(esc(space.note)));
+      assert.doesNotMatch(card, /Shared apartment envelope|Clear room dimensions|gross polygon area|study-identity-note/);
+    }
+    assert.equal(view.conceptCalls.length, 0, 'shared and common spaces do not offer single-room furniture controls');
+    assert.equal(view.element('#modal-body .modal-actions').children.length, 0);
+  }
+});
+
+test('Orange door cards preserve each annotation and do not invent a hallway entrance to the Bar', () => {
+  for (const record of publishedOrangeLevels) {
+    const view = ui(publishedOrangeLevels, record.index, '53');
+    const room = record.spaces.find(space => space.kind === 'room');
+    const doors = record.doors.filter(door => door.spaceId === room.id || door.spaceId.includes('-common-'));
+    assert.ok(doors.length > 0);
+    for (const door of doors) {
+      view.spaceDialog({house: '53', floor: record.index, spaceId: door.spaceId, openingId: door.id});
+      const card = view.element('#modal-body').innerHTML;
+      assert.match(card, /A doorway in Orange’s resident-marked arrangement/);
+      assert.match(card, /Exact offsets, widths and opening details remain schematic/);
+      assert.ok(card.includes(esc(door.note)), 'do not replace opening-specific evidence with a blanket marked-door claim');
+      assert.doesNotMatch(card, /A doorway placed from the resident’s lime-green mark|Clear room dimensions|Provisional placement/);
+    }
+  }
+  const ground = publishedOrangeLevels.find(level => level.index === 0);
+  assert.equal(ground.doors.some(door => door.spaceId === 'module-53-0-common-R'), false,
+    'the clarified stair connection replaces the previously inferred Bar hallway door');
+});
+
+test('Orange Bar access cards navigate down and back up through the explicit stair connection', () => {
+  const view = ui(publishedOrangeLevels, 1, '53');
+  view.renderFloor();
+  const details = view.element('#floor-detail-content').innerHTML;
+  assert.match(details, /east enclosure contains a separate stair down to the ground-floor Bar/);
+  assert.doesNotMatch(details, /two balconies|East balcony|outward edge adjustment/);
+  view.spaceDialog({house: '53', floor: 1, spaceId: 'module-53-1-common-R'});
+  assert.match(view.element('#modal-body').innerHTML, /Bar access stair · study/);
+  assert.match(view.element('#modal-body').innerHTML, /View Bar on EG ↘/);
+  view.element('#view-stair-connection').onclick();
+  assert.equal(view.element('#floor-stage-title').textContent, 'House 53 / EG');
+  assert.match(view.element('#modal-body').innerHTML, /Bar · study/);
+  assert.match(view.element('#modal-body').innerHTML, /View Bar access stair on 1\. OG ↗/);
+  view.element('#view-stair-connection').onclick();
+  assert.equal(view.element('#floor-stage-title').textContent, 'House 53 / 1. OG');
+  assert.match(view.element('#modal-body').innerHTML, /Bar access stair · study/);
+  assert.equal(view.conceptCalls.length, 0);
+});
+
+test('Orange overview and model evidence publish all floors while historical fitted data stays provisional', () => {
+  const before = ui(previousOrangeBuilding.levels, null, '53');
+  before.accuracyDialog();
+  const previous = before.element('#modal-body').innerHTML;
+  assert.match(previous, /Houses 53 use provisional modules fitted within their original outlines/);
+  assert.doesNotMatch(previous, /Orange House 53 follows|House 53 uses independent layouts|HOUSE53-MODULE-LAYOUT\.md/);
+  const after = ui(publishedOrangeLevels, null, '53');
+  after.renderFloor();
+  const overview = after.element('#floor-detail-content').innerHTML;
+  assert.match(overview, /Orange has resident-marked layouts on all three levels/);
+  assert.match(overview, /2\. OG has 20 single rooms/);
+  assert.match(overview, /EG and 1\. OG each have 22 singles plus shared apartment N3–N4/);
+  assert.match(overview, /Bar in the east and the Common room in the west/);
+  after.accuracyDialog();
+  const current = after.element('#modal-body').innerHTML;
+  assert.match(current, /House 53 uses independent layouts on all three levels/);
+  assert.match(current, /Orange House 53 follows the resident’s drawings on all three levels/);
+  assert.match(current, /HOUSE53-MODULE-LAYOUT\.md/);
+  assert.match(current, /separate stair down to the Bar, following the clarified blue arrow/);
+  assert.doesNotMatch(current, /House(?:s)? 53[^<.]*provisional|original outlines/);
+});
+
+test('historical Orange publication leaves Yellow’s then-provisional EG controls and cards unchanged', () => {
+  for (const index of [0, 1, 2]) {
+    const room = publishedYellowLevels.find(level => level.index === index).spaces.find(space => space.kind === 'room');
+    const before = ui(publishedYellowLevels, index, '51', {'53': previousOrangeBuilding});
+    const after = ui(publishedYellowLevels, index, '51', {'53': publishedStudyBuildings['53']});
+    for (const view of [before, after]) {
+      view.renderFloor();
+      view.spaceDialog({house: '51', floor: index, spaceId: room.id});
+    }
+    for (const selector of ['#floor-stage-title', '#floor-stage-note', '#floor-detail-content', '#modal-body']) {
+      assert.equal(after.element(selector).innerHTML, before.element(selector).innerHTML, `${index}: ${selector}`);
+      assert.equal(after.element(selector).textContent, before.element(selector).textContent, `${index}: ${selector}`);
+    }
+  }
+  const view = ui(publishedYellowLevels, 0, '51', {'53': publishedStudyBuildings['53']});
+  view.accuracyDialog();
+  const copy = view.element('#modal-body').innerHTML;
+  assert.match(copy, /House 53 uses independent layouts on all three levels/);
+  assert.match(copy, /House 51’s EG retains its provisional modules and original outline/);
+  assert.doesNotMatch(copy, /Houses 51, 53 use|Houses 51 and 53 use|House(?:s)? 53[^<.]*provisional/);
+});
+
 const completedYellowLevels = JSON.parse(await readFile(
   new URL('../public/data/interior-studies.json', import.meta.url), 'utf8')).buildings['51'].levels;
 
@@ -611,4 +767,21 @@ test('Yellow ground-floor completion preserves upper-floor controls, cards and r
       ? /The current EG arrangement is documented separately/
       : /The current lower-floor arrangements are documented separately/);
   }
+});
+
+test('the complete catalogue distinguishes completed older layouts from provisional newer apartments', () => {
+  const view = ui(completedYellowLevels, null, '51', publishedStudyBuildings);
+  view.accuracyDialog();
+  const model = view.element('#modal-body').innerHTML;
+  assert.match(model, /Houses 51, 53, 55, 57 and 59 use independent layouts on all three levels/);
+  assert.match(model, /Yellow House 51’s EG has a resident-marked layout/);
+  assert.match(model, /Orange House 53 follows the resident’s drawings on all three levels/);
+  assert.match(model, /separate stair down to the Bar, following the clarified blue arrow/);
+  assert.match(model, /HOUSE51-GROUND-FLOOR-LAYOUT\.md/);
+  assert.match(model, /HOUSE53-MODULE-LAYOUT\.md/);
+  assert.match(model, /Newer houses 49, 51a, 53a, 55a, 57a, 59a show estimated apartment placements within their unchanged exterior outlines/);
+  assert.match(model, /WGs represent whole shared apartments for three or four people/);
+  assert.match(model, /House and floor assignments, internal divisions, circulation and openings remain provisional/);
+  assert.match(model, /NEWER-HOUSE-INTERIOR-ESTIMATES\.md/);
+  assert.doesNotMatch(model, /earlier template|Other houses’ fit checks|OLD-HOUSES-MODULE-LAYOUT\.md|OLD-HOUSES-STUDY\.md/);
 });

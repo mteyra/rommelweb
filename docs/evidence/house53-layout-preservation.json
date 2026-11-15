@@ -1,0 +1,469 @@
+{
+  "baseCommit": "00df697ef4f8d473d55611a0af128f1f8a1046cb",
+  "comparisonMethod": "Complete immutable files compare byte-for-byte to git show at baseCommit. Embedded building and level records compare deeply and use SHA-256 of JSON.stringify(record). Only the three Orange House 53 layouts and their building-level source description change.",
+  "immutableFiles": {
+    "data/source/dorms-lod2.gml": {
+      "sha256": "b9a84843ec4074d4d505673c3fc78da194737e410c2b7727cc1a236b318bfef2",
+      "unchanged": true
+    },
+    "data/source/generate-old-house-studies-before-module-layout.mjs": {
+      "sha256": "653923748d1ee7e6a21fdfd7286895d769da2bfa5e72f5a780ea640abc0c8bc2",
+      "unchanged": true
+    },
+    "data/source/house-markers.json": {
+      "sha256": "9396efa3c5ab18b557f64e20e87d395f4a25ffd70110aa207d10c45277c5eb00",
+      "unchanged": true
+    },
+    "data/source/house51-1og-resident-annotation.png": {
+      "sha256": "a1b3965b7afcb579224086779bbe771d562ca4411f50321b8ebf6c7711100567",
+      "unchanged": true
+    },
+    "data/source/house51-2og-resident-annotation.png": {
+      "sha256": "1f898a8bcfc9a1030232d294554a3328c3b4001ca6dcc0d85e38abc4a80072d9",
+      "unchanged": true
+    },
+    "data/source/house51-eg-resident-annotation.png": {
+      "sha256": "5b5ea5454f08a61209a917af39994ece6756be42de5333469f3e335c0b742b61",
+      "unchanged": true
+    },
+    "data/source/house55-1og-before-module-layout.json": {
+      "sha256": "2bfed9415d985f0d04d232e34a1b7773f4890da74c07f4f0c90fb81ac326238b",
+      "unchanged": true
+    },
+    "data/source/house55-1og-module-breakdown.png": {
+      "sha256": "45915f968a893a4a950125fbabe0fb99d0944aa9e8c871d6ece76d29f4a4959a",
+      "unchanged": true
+    },
+    "data/source/house55-1og-module-outline.png": {
+      "sha256": "0d782eefd4858f8cd4e12a3c1770bd42ae3dc907f7461503af5ecf1bc0110277",
+      "unchanged": true
+    },
+    "data/source/house55-1og-shared-envelope.png": {
+      "sha256": "6e5d1834fc096e579a02c3a95c005a0e5605cd15866663dd10313cf08563549b",
+      "unchanged": true
+    },
+    "data/source/house55-2og-area-baseline.json": {
+      "sha256": "868a6f93a7cde1cd09909c3b6e5009cc862c3035e4828d9b8fb578fb0cee4de8",
+      "unchanged": true
+    },
+    "data/source/house55-2og-area-wall-marks.png": {
+      "sha256": "03ad1ccd28fdfd585762f8e4743b5f09984df6382fa0f21c2a83c2d9d75c7ba6",
+      "unchanged": true
+    },
+    "data/source/house55-2og-before-module-layout.json": {
+      "sha256": "0f6b1537c4f8741bff9afc29f2c79376e6f49f1ec8850148321ecfbb76b77ebc",
+      "unchanged": true
+    },
+    "data/source/house55-2og-dimension-baseline.json": {
+      "sha256": "43b7917c18c3734a86992403083e08c212e552fc776c4fea6c5eb21eb2a2a3c1",
+      "unchanged": true
+    },
+    "data/source/house55-2og-hallway-measurements.json": {
+      "sha256": "a7beb308beef1be4266c380634aad8cd0d409674918a661ce6bee8acb04b189b",
+      "unchanged": true
+    },
+    "data/source/house55-2og-l-overlap-correction.png": {
+      "sha256": "a35b1a9df6d55c7626148f536448d8ce4254c6b2206e09b385e4ca2417810e07",
+      "unchanged": true
+    },
+    "data/source/house55-2og-left-correction.png": {
+      "sha256": "dbad4facac5f354b934020577ee83e4a8b4372dceb43ac3fe660fa44c14191fd",
+      "unchanged": true
+    },
+    "data/source/house55-2og-measured-fit-constraints.json": {
+      "sha256": "79588d9823c4c92b64f2acd1ba94591a7910c12720e87c3749feb948c6ba0df9",
+      "unchanged": true
+    },
+    "data/source/house55-2og-module-breakdown.png": {
+      "sha256": "56aee29c1d9060e0d5b385f301d155ae149471683d334220223592c8cbdc5a29",
+      "unchanged": true
+    },
+    "data/source/house55-2og-module-outline.png": {
+      "sha256": "3c70ff6fbfb337e0d93d76b2c7d149ca0aadd22b7609843a2a48d4630f9b074a",
+      "unchanged": true
+    },
+    "data/source/house55-2og-overlap-reference.png": {
+      "sha256": "6159c5a93209886b108c3dcd0fe2d925a8e7eb171d6b502fc85352043254b204",
+      "unchanged": true
+    },
+    "data/source/house55-2og-r-alignment-baseline.json": {
+      "sha256": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2",
+      "unchanged": true
+    },
+    "data/source/house55-2og-resident-markup.png": {
+      "sha256": "46e8288900b26170fa83ee93ae8bbaa68a0385e55280ade3d01583cd94a757ba",
+      "unchanged": true
+    },
+    "data/source/house55-2og-sketch-baseline.json": {
+      "sha256": "accdfa4f54f719e96f001cc23235f6ee24d32105ea1c15c6838c1161e720cee6",
+      "unchanged": true
+    },
+    "data/source/house55-2og-stair-measurements.json": {
+      "sha256": "9a2e150adb92f716f42245b5d31a5ab731733ab41f940e3c2494517ee3348de4",
+      "unchanged": true
+    },
+    "data/source/house55-2og-stair-ratio-baseline.json": {
+      "sha256": "64801d3747c247f45404f1300abd5b9e3b779734e411c35e8a349354f50c5eba",
+      "unchanged": true
+    },
+    "data/source/house55-2og-study-provenance.json": {
+      "sha256": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
+      "unchanged": true
+    },
+    "data/source/house55-2og-wall-offset-baseline.json": {
+      "sha256": "9a214415e0532f5960cfebf1009a7f44e2bbbba6479ab878c59c97b1dbfb16d8",
+      "unchanged": true
+    },
+    "data/source/house55-2og-wall-offsets.png": {
+      "sha256": "d5ff81c25d2b18fd198124ff29c0bfe47efb632d7f7e83c52320c2c7b4d79d9e",
+      "unchanged": true
+    },
+    "data/source/house55-2og-window-marks.png": {
+      "sha256": "dbdf4328b8b55fd1b49e330caa337f860b6b5fec6c68c35202521792476c7824",
+      "unchanged": true
+    },
+    "data/source/house55-common-enclosure-annotation.png": {
+      "sha256": "78ff0cf48a8559bfdc52ccb27b405dd32782f47b7ab08c52e653e8620fb468aa",
+      "unchanged": true
+    },
+    "data/source/house55-eg-before-module-layout.json": {
+      "sha256": "37445207af2f1432237b4d7c33ff19517067f68c7b7d4e629d587cd1b7117aa9",
+      "unchanged": true
+    },
+    "data/source/house55-exterior-dimension-request.png": {
+      "sha256": "4b48c3bec6134e17a0624526b9d4669caee1447bf285e47d71b942334c83cef4",
+      "unchanged": true
+    },
+    "data/source/house55-first-floor-shared-pairs-annotation.png": {
+      "sha256": "e04efddf493fe02160cbf51a6371c31c38e09a53555d70dd3f9e53d41210dfc0",
+      "unchanged": true
+    },
+    "data/source/house55-ground-floor-shared-pairs-annotation.png": {
+      "sha256": "5229a5dd4dc5e293c52e49c25ffd801122afa174e303d95a72aab4eccc78ccdd",
+      "unchanged": true
+    },
+    "data/source/house55-stair-ratio-mark.png": {
+      "sha256": "7e0d117946c06d72cd33cf67c0b55bbd63644387cd5e19fd50d63b782c53a2e4",
+      "unchanged": true
+    },
+    "data/source/house59-eg-resident-annotation.png": {
+      "sha256": "d7647b1ec8d4892aa9105c4188cd5f8098b1603a5cc152bec1c778c925a87bf4",
+      "unchanged": true
+    },
+    "data/source/interior-studies-before-module-layout.json": {
+      "sha256": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+      "unchanged": true
+    },
+    "data/source/lod2-source.json": {
+      "sha256": "1401fa4c6f5131de70984438a141bebc7f2444753d7d0728ac53c2a218afd90d",
+      "unchanged": true
+    },
+    "data/source/old-house-study-provenance.json": {
+      "sha256": "c3d6cf5e0258376abbd9d4b5dae15560e571096d1c5df41603825f2aec6e0e6a",
+      "unchanged": true
+    },
+    "data/source/osm-raw.json": {
+      "sha256": "074224fe0657c43551b28bc97d7f1773100e3a82addc6c661ce7ed40cea1bc7f",
+      "unchanged": true
+    },
+    "docs/evidence/exterior-appearance-audit.json": {
+      "sha256": "2e67b62694815b891fa63b1f6ccdc07385ba7462f1e4f82f5ae96591146d9b71",
+      "unchanged": true
+    },
+    "docs/evidence/exterior-browser-checks.json": {
+      "sha256": "e2ddddc3189c16554b736a0ee0cf41f1cbc138223c9086aa6eb24d7fb209e554",
+      "unchanged": true
+    },
+    "docs/evidence/house51-first-browser.json": {
+      "sha256": "54512037b1546065089398a2df2dfd527c9442721e49ae26e08f3344f18fc9fc",
+      "unchanged": true
+    },
+    "docs/evidence/house51-first-floor-preservation.json": {
+      "sha256": "69a179d11cd912704106b24e94aeb861a5e7fdacc03c94b0a0197ab37fe4f212",
+      "unchanged": true
+    },
+    "docs/evidence/house51-ground-alignment-browser.json": {
+      "sha256": "cd7da349b5961e39268b0c5b206e5752365a2c5ed530b2fe46c86e5ace78a8c6",
+      "unchanged": true
+    },
+    "docs/evidence/house51-ground-browser.json": {
+      "sha256": "a01792b6988ed232b3a9c93034eef62ff65e03705833625a94a2a33afe3b754f",
+      "unchanged": true
+    },
+    "docs/evidence/house51-ground-floor-preservation.json": {
+      "sha256": "b9b05e3168c079ef5446f7c6b5a49702293511f8a741a90136dab689f8f7c7ff",
+      "unchanged": true
+    },
+    "docs/evidence/house51-ground-sports-correction-preservation.json": {
+      "sha256": "b2fab7557df42c239b6aafe1d77eb07ab892c0dbd5f1b9fe1f0fe16c6e54588a",
+      "unchanged": true
+    },
+    "docs/evidence/house51-top-browser.json": {
+      "sha256": "297559d0d583201d937c4e462d6873d91be08d93842c5d5bf7066417044b5c73",
+      "unchanged": true
+    },
+    "docs/evidence/house51-top-floor-preservation.json": {
+      "sha256": "af8dc6ceb927142cdba31ddf36cf8cc5e14054a1133836bcfe9bf997baf2b17f",
+      "unchanged": true
+    },
+    "docs/evidence/house55-common-enclosures-browser-checks.json": {
+      "sha256": "7401c2bd89ca6ff5a4063d9f87eaffae4410d55cc049f4b3f840c38df4bd639d",
+      "unchanged": true
+    },
+    "docs/evidence/house55-common-enclosures-preservation.json": {
+      "sha256": "2a54d47f8207a037992b732005108f7d5bd34e8eb58e515471bc090d9040d64f",
+      "unchanged": true
+    },
+    "docs/evidence/house55-exterior-refinement-browser.json": {
+      "sha256": "033c0e7d296c1c79fc921794340a8457426fec04c8a6b0e2820af51482debb46",
+      "unchanged": true
+    },
+    "docs/evidence/house55-exterior-refinement-preservation.json": {
+      "sha256": "d92a8913b84f8e04d36d82a653f689d3f426e54cec99a74e24c49cde562461eb",
+      "unchanged": true
+    },
+    "docs/evidence/house55-first-floor-browser-checks.json": {
+      "sha256": "613b2e3ded540c19f5a83bdaeb6ef1c180e742870ff7d9e80cd7eb7d771b668e",
+      "unchanged": true
+    },
+    "docs/evidence/house55-first-floor-preservation.json": {
+      "sha256": "5fb5a49cf4decf811edc2e7b49ae7b3133ad0bc489cc48776e12d838a2536b30",
+      "unchanged": true
+    },
+    "docs/evidence/house55-ground-floor-browser-checks.json": {
+      "sha256": "6266aa6860f71db572b74954bff8550616862c88dcc6f2c5c63ff1dc72198bf2",
+      "unchanged": true
+    },
+    "docs/evidence/house55-ground-floor-preservation.json": {
+      "sha256": "2cd7e153db61a66daefdf419c484dd6f08907104e7f37e4d6051c8574f82f455",
+      "unchanged": true
+    },
+    "docs/evidence/house55-layout-checks.json": {
+      "sha256": "a29c0aaa7627d3b24d39410a16aefaf42f830909953118a9576e451903d2edac",
+      "unchanged": true
+    },
+    "docs/evidence/house55-module-browser-checks.json": {
+      "sha256": "4ee940f1c3804b236fa4115115a572ed21be425943721c9eb746cc93756ce051",
+      "unchanged": true
+    },
+    "docs/evidence/house55-module-preservation.json": {
+      "sha256": "2a521e269b22a8fdbe34f9c164bc4379cce9d2c5ee61a218d33deda26b8481fd",
+      "unchanged": true
+    },
+    "docs/evidence/house57-layout-browser.json": {
+      "sha256": "01d9e1c8760b2b5344a5239a4be2e6c4e322ad6c234ef8b2661d5a622732f87f",
+      "unchanged": true
+    },
+    "docs/evidence/house57-layout-preservation.json": {
+      "sha256": "76cd525e8bf127ebefe867a6214a4969941d820a558699001a9f4977b24fac59",
+      "unchanged": true
+    },
+    "docs/evidence/house59-layout-browser.json": {
+      "sha256": "34aa5fec99920321863d0ca799784102037247f2814167fab97ecd195d375def",
+      "unchanged": true
+    },
+    "docs/evidence/house59-layout-preservation.json": {
+      "sha256": "6ee0c9283fa6573d3d79f1b17ce6ac6e236b2404163e04007f0305ae97413b46",
+      "unchanged": true
+    },
+    "docs/evidence/interior-study-browser-checks.json": {
+      "sha256": "41f2f05618fba0dcad0a6fc2026d569177de874a9deb6fd40305b92fc8e6ee41",
+      "unchanged": true
+    },
+    "docs/evidence/old-house-module-browser-checks.json": {
+      "sha256": "a620891ac87bcdb795261627919d3d44f568466b3e3baf8eb9e01f38f2d98488",
+      "unchanged": true
+    },
+    "docs/evidence/old-house-module-preservation.json": {
+      "sha256": "a48857b81d817fc2a50424af2ba7d17fa25cccc7cb99e273005d56d9b791fb48",
+      "unchanged": true
+    },
+    "docs/evidence/old-house-studies-audit.json": {
+      "sha256": "7c77ecb85897ae20a63e2e925fe56119ca84d27958f8f26626de4b7f2bdee1cc",
+      "unchanged": true
+    },
+    "docs/evidence/old-house-studies-overview.png": {
+      "sha256": "922b8b6ca629fecee761f1bcec23e53fedaaa71a2f1f931b538a4d159715970d",
+      "unchanged": true
+    },
+    "docs/evidence/rejected-old-house-pwa-audit.json": {
+      "sha256": "1731ed16d9fac6fec42e7f30a868b64e4f097b7f93b70244065a0f460ee50366",
+      "unchanged": true
+    },
+    "docs/evidence/rejected-old-house-pwa-input.json": {
+      "sha256": "704e66932ffcfa1b8737cf9092aca3d7024cc88950292bd01b32da80b94b2b67",
+      "unchanged": true
+    },
+    "docs/evidence/rejected-old-house-pwa-metadata.json": {
+      "sha256": "d4a4f6ad36e5381495e51c03e3208e50713635a17d5bfc72fc740b6d0aba1456",
+      "unchanged": true
+    },
+    "docs/evidence/rejected-old-house-pwa-overview.png": {
+      "sha256": "a51edc9f60cd182d4636f48ef28c07c94e69b5930853bd6989b4159a24075e00",
+      "unchanged": true
+    },
+    "public/data/campus.geojson": {
+      "sha256": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
+      "unchanged": true
+    },
+    "public/data/campus.json": {
+      "sha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "unchanged": true
+    },
+    "public/data/house51-first-floor-layout.json": {
+      "sha256": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
+      "unchanged": true
+    },
+    "public/data/house51-ground-floor-layout.json": {
+      "sha256": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44",
+      "unchanged": true
+    },
+    "public/data/house51-top-floor-layout.json": {
+      "sha256": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
+      "unchanged": true
+    },
+    "public/data/house55-first-floor-layout.json": {
+      "sha256": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3",
+      "unchanged": true
+    },
+    "public/data/house55-ground-floor-layout.json": {
+      "sha256": "5d75a54fd62c30b55dd1a8ff0665a4ace55a27ecc0e38bc983cbed224e7e43ed",
+      "unchanged": true
+    },
+    "public/data/house55-module-layout.json": {
+      "sha256": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165",
+      "unchanged": true
+    },
+    "public/data/house57-module-layouts.json": {
+      "sha256": "5cbcef27ab20cba3b359bddbc077fc05173f167f27907d66d3372349b05797f4",
+      "unchanged": true
+    },
+    "public/data/house59-module-layouts.json": {
+      "sha256": "317f884704242e3c38fe54a5f181aabae5f6d68e8b24d1b0c00de318c384714c",
+      "unchanged": true
+    },
+    "public/data/interiors.json": {
+      "sha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "unchanged": true
+    },
+    "public/data/lod2.json": {
+      "sha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "unchanged": true
+    },
+    "public/data/path-network.json": {
+      "sha256": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d",
+      "unchanged": true
+    },
+    "public/data/room-markers.json": {
+      "sha256": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826",
+      "unchanged": true
+    },
+    "scripts/generate-old-house-studies.mjs": {
+      "sha256": "adc46a01b275eb7a9f0fbb5dbaeaa397c8c8f0f413666ddd59b5668162f22bac",
+      "unchanged": true
+    },
+    "scripts/house55-area-study.mjs": {
+      "sha256": "07d0d88ae24e5a09bc459a52d985cf22ebcb0bf028f11b27c1e5a1a618ac30da",
+      "unchanged": true
+    },
+    "scripts/house55-first-floor-layout.mjs": {
+      "sha256": "59aa8c43f1ff04ad6a3947b2ba1deaea2db9d261e0904a6149e14863aa0661e5",
+      "unchanged": true
+    },
+    "scripts/house55-ground-floor-layout.mjs": {
+      "sha256": "d0f56d615540148e4dc8bc90ab07329d32c2eb434ab07f5dea954cea89085f3e",
+      "unchanged": true
+    },
+    "scripts/house55-module-layout.mjs": {
+      "sha256": "08833b4b20891cf10cc2bce7d273bbacf4af28ae6d739d7878e741f42de9ee64",
+      "unchanged": true
+    },
+    "scripts/house55-r-alignment.mjs": {
+      "sha256": "8395b78de9c6cd38e882806a34eaf728a905e004c4dc37b62fd21c18d5e4b644",
+      "unchanged": true
+    },
+    "scripts/house55-stair-alignment.mjs": {
+      "sha256": "f9406400f0d5f10b3f0a632c47664f9ffb113e8363d525e050e7eb341be43ee2",
+      "unchanged": true
+    },
+    "scripts/house55-window-wall-study.mjs": {
+      "sha256": "af5717ae47646e67f6b95cb4ac9652d7484f6c85b4497ae4f200963f873cf65e",
+      "unchanged": true
+    },
+    "scripts/house57-module-layout.mjs": {
+      "sha256": "0cbe47a544740620a8afee28e0f85ed69d5d7615ae6a2b4f1014ffd0a545147f",
+      "unchanged": true
+    },
+    "scripts/house59-module-layout.mjs": {
+      "sha256": "53ad48f815c5c508a6b69d45cec3dd138ef015395358780ebe7243f50e6992f0",
+      "unchanged": true
+    },
+    "tests/fixtures/house57-before-resident-layout.json": {
+      "sha256": "d529f4f2a3e1f056bf38d6d1aa8f61b937f790ca463740ce10fa0ae31c7e73c9",
+      "unchanged": true
+    },
+    "tests/fixtures/house59-before-resident-layout.json": {
+      "sha256": "6f3adf85aece53b3329909261f6918ec5713865b0097b59d9b314d196fb7094e",
+      "unchanged": true
+    }
+  },
+  "studyChangeScope": {
+    "path": "public/data/interior-studies.json",
+    "beforeSha256": "4a029dc8d83b8ab749c7e39428595a000183aeff17ae41ae0bc4d1a855dd2233",
+    "afterSha256": "679e1ffc5606239995fa662131b64af7175a8db8e3ac70002ffb0dbe52e8d84c",
+    "changedBuildingRecords": [
+      "53"
+    ],
+    "changedLevels": [
+      0,
+      1,
+      2
+    ]
+  },
+  "unchangedStudyBuildings": {
+    "51": {
+      "sha256": "2e1080f7e1697f611848959a1e58dac214c054ef0fa1ada900d640f4796dc06e",
+      "unchanged": true
+    },
+    "55": {
+      "sha256": "b72e644f25c10c42af238f152a97aef33f5e827290de6bef876a82feb0c1ef39",
+      "unchanged": true
+    },
+    "57": {
+      "sha256": "0a66c00a65bb0ee4b35d01cef66b95bb843f57f7f7a22530b30bbc397c8b051c",
+      "unchanged": true
+    },
+    "59": {
+      "sha256": "98f729819d84dfc02cc7711affba708ef38e2b60c068a2e8f9a4b3913c81bd91",
+      "unchanged": true
+    }
+  },
+  "unchangedCompletedYellow": {
+    "sha256": "2e1080f7e1697f611848959a1e58dac214c054ef0fa1ada900d640f4796dc06e",
+    "unchanged": true
+  },
+  "currentFittedHouses": [],
+  "orangeCanonical": {
+    "path": "public/data/house53-module-layouts.json",
+    "sha256": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f"
+  },
+  "historicalOrangeFit": {
+    "path": "tests/fixtures/house53-before-resident-layout.json",
+    "sha256": "6ac111e02bfd5ff696efea33241a60135494cdff0a2ec27e4234013024abdab5"
+  },
+  "annotations": [
+    {
+      "path": "data/source/house53-2og-resident-annotation.png",
+      "sha256": "add982c84bbf1e14e2cf75029485c2124fa735b741441273e8d429cccc2caca8"
+    },
+    {
+      "path": "data/source/house53-1og-resident-annotation.png",
+      "sha256": "537d5ab1bf861722d06f0c4e516536b926efc7c674d22337fc2447325ac55fe2"
+    },
+    {
+      "path": "data/source/house53-eg-resident-annotation.png",
+      "sha256": "cc923c79eda879f64da3f423795bd50e2465adda6aa77a909704108d88e747be"
+    }
+  ],
+  "foldedExteriorUnchanged": true
+}

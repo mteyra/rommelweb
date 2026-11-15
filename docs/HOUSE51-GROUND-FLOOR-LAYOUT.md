@@ -57,6 +57,6 @@ npm test
 npm run build
 ```
 
-The [ground-floor generator](../scripts/house51-ground-floor-layout.mjs) writes the [canonical EG plan](../public/data/house51-ground-floor-layout.json), replaces only the EG study and retires Yellow’s last provisional fitting entry. House 53 retains all three provisional floors.
+The [ground-floor generator](../scripts/house51-ground-floor-layout.mjs) writes the [canonical EG plan](../public/data/house51-ground-floor-layout.json), replaces only the EG study and retires Yellow’s last provisional fitting entry. The subsequent [Orange release](HOUSE53-MODULE-LAYOUT.md) completes the remaining three floors and leaves the provisional catalog empty.
 
 The [original preservation receipt](evidence/house51-ground-floor-preservation.json) records the first ground-floor version against `155d32cb51fe3834c7bc61deb946c3e4e4d6c0e8`. The [Sports correction receipt](evidence/house51-ground-sports-correction-preservation.json) compares this alignment fix against `f7a4e8c8b03f13e71d7ca0a365bef9610fa36722`. The [pre-ground-floor fixture](../tests/fixtures/house51-before-ground-floor-layout.json) retains the earlier Yellow record and fit. Re-running either upper-floor generator preserves the completed-house source description as well as the ground-floor geometry. Final tests, browser views and publication checks are recorded in [release checks](RELEASE-CHECKS.md).
