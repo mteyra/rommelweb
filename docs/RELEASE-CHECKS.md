@@ -2,7 +2,20 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — Yellow House 51 ground floor
+## Current revision — Yellow Sports width and E alignment
+
+The ground-floor Sports enclosure was one **3.10 m module** too wide. Following the resident’s correction, E’s left module edge now aligns with the L1/L2 boundary at **U = 25.60 m**. Sports narrows from **9.30 m to 6.20 m**. The E–D–C–B–shared A bank and its short hall move left by one module while retaining every apartment’s dimensions.
+
+The corrected floor is **685.24 m²**, with the same **23 singles, one shared apartment, Sports and Laundry**, 29 selectable spaces, 28 doorways and 26 layout windows. Laundry, the other room banks, the stair, both upper floors, all other houses and the folded exterior remain unchanged. The [current layout guide](HOUSE51-GROUND-FLOOR-LAYOUT.md) records the alignment and module coordinates.
+
+- The [correction receipt](evidence/house51-ground-sports-correction-preservation.json) compares against **`f7a4e8c`**. It protects both upper floors, all other houses, the original annotation/catalog and **101 unchanged ground-floor entities**. The previous ground-floor receipt remains unchanged and is verified against an archived reconstruction of that release.
+- Geometric checks verify E’s exact alignment, fixed room sizes, the common 3.10 m translation of the A bank and its openings, and complete coverage after removing only the far **3.10 × 7.40 m** strip of the ground-floor outline.
+- **All 308 tests pass**. The [alignment browser receipt](evidence/house51-ground-alignment-browser.json) verifies the corrected Sports/E boundary, Sports/E/shared-A cards and phone rendering, with no application console errors. Both upper-floor views remain pixel-identical to the preceding release.
+- The production build passes; JavaScript is **236.10 kB gzipped**. The existing bundle-size advisory remains.
+
+Reviewed views: [corrected alignment](preview/house51-ground-alignment-night.png), [Sports room](preview/house51-ground-alignment-sports-card.png), [E](preview/house51-ground-alignment-e-card.png) and [phone](preview/house51-ground-alignment-phone-390-day.png).
+
+## Previous revision — Yellow House 51 ground floor
 
 Yellow’s **EG** now follows the [general ground-floor sketch](HOUSE51-GROUND-FLOOR-LAYOUT.md), completing the house’s three independent layouts. It retains the middle-floor single-room splits and N0, inserts **B** before the shifted shared **A**, encloses **Sports room** beside West hall and **Laundry** beside East hall. Both upper-floor records remain unchanged.
 

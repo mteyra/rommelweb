@@ -436,12 +436,13 @@ test('Yellow ground-floor drawing key describes its rooms, service enclosures an
   const details = view.element('#floor-detail-content').innerHTML;
   assert.match(details, /Resident-marked ground-floor layout · Yellow House/);
   assert.match(details, /HOUSE51-GROUND-FLOOR-LAYOUT\.md/);
-  assert.match(details, /Single B is inserted before shared A/);
-  assert.match(details, /Sports enclosure replaces the A-wing F module/);
+  assert.match(details, /single B sits before shared A/);
+  assert.match(details, /Sports has a 6\.20 × 7\.40 m envelope/);
+  assert.match(details, /E’s left module edge in the A wing aligns with the boundary between L1 and L2/);
   assert.match(details, /Room B, resident-marked ground-floor layout/);
   assert.match(details, /Sports room, resident-marked ground-floor layout/);
   assert.match(details, /Laundry, resident-marked ground-floor layout/);
-  assert.doesNotMatch(details, /provisional layout|original outline retained|HOUSE51-FIRST-FLOOR-LAYOUT\.md/);
+  assert.doesNotMatch(details, /provisional layout|original outline retained|HOUSE51-FIRST-FLOOR-LAYOUT\.md|Sports enclosure replaces the A-wing F module|moves one module to the right/);
 });
 
 test('Yellow ground-floor singles and shared A retain separate measurement and concept behavior', () => {
@@ -469,7 +470,7 @@ test('Yellow ground-floor Sports and Laundry cards explain their use without sin
   const level = completedYellowLevels.find(record => record.index === 0);
   const view = ui(completedYellowLevels, 0, '51');
   for (const [label, description] of [
-    ['Sports room', /former A-wing F module with the adjacent common-area extension/],
+    ['Sports room', /6\.20 × 7\.40 m Sports enclosure beside Yellow’s west hall/],
     ['Laundry', /beside Yellow’s east hall and N0, with one hallway entrance/],
   ]) {
     const space = level.spaces.find(item => item.label === label);
@@ -505,8 +506,9 @@ test('Yellow completed-stack and model copy include the ground floor without pro
   assert.match(model, /House 51 uses independent layouts on all three levels/);
   assert.match(model, /Yellow House 51’s EG has a resident-marked layout/);
   assert.match(model, /Sports beside the west hall and Laundry beside the east hall/);
+  assert.match(model, /E’s left module edge in the A wing aligns with the boundary between L1 and L2/);
   for (const name of ['GROUND', 'FIRST', 'TOP']) assert.ok(model.includes(`HOUSE51-${name}-FLOOR-LAYOUT.md`));
-  assert.doesNotMatch(model, /51’s EG retains its provisional|51’s EG and 1\. OG retain|Houses 51 use provisional/);
+  assert.doesNotMatch(model, /51’s EG retains its provisional|51’s EG and 1\. OG retain|Houses 51 use provisional|before the shifted shared A/);
 });
 
 test('Yellow ground-floor completion preserves upper-floor controls, cards and raw source notes', () => {

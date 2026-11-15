@@ -15,17 +15,22 @@ import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mj
 import {validateInteriorStudies} from '../src/interior-studies.js';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, firstFloorPlan, published, before, catalog, topPlan, campus, lod2, redTop, redFirst, redGround] =
+const [studies, firstFloorPlan, published, before, catalog, topPlan, campus, lod2, redTop, redFirst, redGround, beforeCorrection] =
   await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/house51-first-floor-layout.json'),
     read('public/data/house51-ground-floor-layout.json'), read('tests/fixtures/house51-before-ground-floor-layout.json'),
     read('public/data/old-house-module-layouts.json'), read('public/data/house51-top-floor-layout.json'),
     read('public/data/campus.json'), read('public/data/lod2.json'), read('public/data/house55-module-layout.json'),
     read('public/data/house55-first-floor-layout.json'), read('public/data/house55-ground-floor-layout.json'),
+    read('tests/fixtures/house51-before-ground-sports-correction.json'),
   ]);
 const input = {studies, firstFloorPlan}, snapshot = structuredClone(input);
 const result = createHouse51GroundFloorLayout(input), plan = result.plan;
 const level = result.studies.buildings['51'].levels.find(item => item.index === 0);
+const originalGroundRelease = structuredClone(studies);
+originalGroundRelease.buildings['51'].source = beforeCorrection.buildingSource;
+originalGroundRelease.buildings['51'].levels = originalGroundRelease.buildings['51'].levels.map(item =>
+  item.index === 0 ? structuredClone(beforeCorrection.level) : item);
 const close = (actual, expected, label = '') =>
   assert.ok(Math.abs(actual - expected) < 1e-6, `${label}: ${actual} vs ${expected}`);
 const edges = ring => ring.slice(1).map((b, index) => [ring[index], b]);
@@ -117,11 +122,11 @@ test('the ground sketch has 23 fixed-size singles, one shared A, and a new singl
   for (const pair of [['E/H', 'E/G'], ['N/N4', 'N/N3'], ['W/W1', 'W/W2']]) {
     pair.forEach(label => assert.ok(room(label), `${label} remains its own single room`));
   }
-  assert.equal(room('A/F'), undefined, 'Sports replaces the middle floor’s F module');
-  for (const [label, x] of [['E', 28.7], ['D', 31.8], ['C', 34.9], ['B', 38]]) {
+  assert.equal(room('A/F'), undefined, 'The ground floor retains the E/D/C/B bank labels');
+  for (const [label, x] of [['E', 25.6], ['D', 28.7], ['C', 31.8], ['B', 34.9]]) {
     sameArea([room(`A/${label}`).modulePolygon], [rect(x, -7.4, 3.1, 6)], `${label} in ground A bank`);
   }
-  sameArea([plan.sharedApartments[0].polygon], [rect(41.1, -7.4, 6.2, 7.4)], 'Shared A moves one module');
+  sameArea([plan.sharedApartments[0].polygon], [rect(38, -7.4, 6.2, 7.4)], 'Shared A follows the corrected bank');
   close(ringArea(plan.sharedApartments[0].polygon), 45.88, 'Shared A unchanged envelope size');
   for (const item of plan.rooms.filter(item => item.bank !== 'A')) {
     const prior = firstFloorPlan.rooms.find(other => key(other) === key(item));
@@ -131,15 +136,15 @@ test('the ground sketch has 23 fixed-size singles, one shared A, and a new singl
   }
 });
 
-test('Sports and Laundry are separate enlarged common rooms with one entrance each', () => {
+test('Sports fills the corrected two-module gap and Laundry keeps its original enclosure and entrance', () => {
   assert.equal(plan.commonAreas.length, 2);
   const sports = plan.commonAreas.find(item => item.bank === 'L');
   const laundry = plan.commonAreas.find(item => item.bank === 'R');
   assert.match(sports.label, /sport/i);
   assert.match(laundry.label, /laundry/i);
-  sameArea([sports.polygon], [rect(19.4, -7.4, 9.3, 7.4)], 'Sports closes west gap and takes old F');
+  sameArea([sports.polygon], [rect(19.4, -7.4, 6.2, 7.4)], 'Sports stops at the L1/L2 module boundary');
   sameArea([laundry.polygon], [rect(10.5, 7.4, 6.2, 7.4)], 'Laundry behind N0 reaches the stair');
-  close(ringArea(sports.polygon), 68.82, 'Sports model area');
+  close(ringArea(sports.polygon), 45.88, 'Sports model area');
   close(ringArea(laundry.polygon), 45.88, 'Laundry model area');
   assert.ok(!level.spaces.some(item => /balcony/i.test(item.label)), 'Ground floor has no balcony labels');
   for (const item of plan.commonAreas) {
@@ -162,14 +167,71 @@ test('all floor space is disjoint, inside the new shell, and connected by 1.40 m
   const occupied = union(...pieces);
   close(area(occupied), pieces.reduce((sum, piece) => sum + area([piece]), 0), 'No positive-area overlap');
   sameArea(occupied, shell, 'No residual unassigned gap');
-  close(ringArea(plan.shell.outline), 708.18, 'Ground floor model area');
+  close(ringArea(plan.shell.outline), 685.24, 'Ground floor model area');
   for (const hall of plan.corridors) {
     close(Math.min(...edges(hall.polygon).map(([a, b]) => distance(a, b))), 1.4, `${hall.bank} hall width`);
   }
-  sameArea([plan.corridors.find(item => item.bank === 'A').polygon], [rect(28.7, -1.4, 12.4, 1.4)],
+  sameArea([plan.corridors.find(item => item.bank === 'A').polygon], [rect(25.6, -1.4, 12.4, 1.4)],
     'A hall serves four singles and shared A after Sports enclosure');
   close(area(intersection(shell, [rect(28.7, 12.4, 7.4, 3.1)])), 0,
     'No extra W room beyond the inherited four singles');
+});
+
+test('E aligns exactly with the L1/L2 boundary and the correction preserves every unrelated ground-floor entity', () => {
+  const left = item => Math.min(...item.modulePolygon.map(point => point[0]));
+  const right = item => Math.max(...item.modulePolygon.map(point => point[0]));
+  const edge = left(room('A/E')), sports = plan.commonAreas.find(item => item.bank === 'L');
+  close(edge, right(room('L/L2')), 'E left edge equals L2 right module edge');
+  close(edge, left(room('L/L1')), 'E left edge equals L1 left module edge');
+  close(Math.max(...sports.polygon.map(point => point[0])), edge, 'Sports ends precisely at E');
+  close(Math.min(...room('A/E').polygon.map(point => point[0])),
+    Math.min(...room('L/L1').polygon.map(point => point[0])), 'Clear-room left edges align too');
+  const shifted = ring => ring.map(([u, v]) => [Math.round((u - 3.1) * 1e9) / 1e9, v]);
+  for (const current of plan.rooms) {
+    const previous = beforeCorrection.plan.rooms.find(item => key(item) === key(current));
+    if (current.bank !== 'A') assert.deepEqual(current, previous, `${key(current)} fully preserved`);
+    else {
+      for (const field of ['polygon', 'modulePolygon', 'doorSegment', 'windowSegment']) {
+        assert.deepEqual(current[field], shifted(previous[field]), `${key(current)} ${field} moves one pitch`);
+      }
+      assert.deepEqual(current.sideWalls, previous.sideWalls.map(shifted), `${key(current)} wall widths preserved`);
+    }
+  }
+  for (const field of ['polygon', 'doorSegment']) {
+    assert.deepEqual(plan.sharedApartments[0][field], shifted(beforeCorrection.plan.sharedApartments[0][field]),
+      `Shared A ${field} shifts with its bank`);
+  }
+  assert.deepEqual(plan.sharedApartments[0].windowSegments,
+    beforeCorrection.plan.sharedApartments[0].windowSegments.map(shifted), 'Both shared A openings move together');
+  for (const field of ['polygon', 'doorSegment', 'windowSegments']) {
+    assert.deepEqual(plan.sharedApartments[0][field], firstFloorPlan.sharedApartments[0][field],
+      `Shared A ${field} is restored to its upper-floor registration`);
+  }
+  assert.deepEqual(plan.commonAreas.find(item => item.bank === 'R'),
+    beforeCorrection.plan.commonAreas.find(item => item.bank === 'R'), 'Laundry remains exact');
+  for (const hall of plan.corridors.filter(item => item.bank !== 'A')) {
+    assert.deepEqual(hall, beforeCorrection.plan.corridors.find(item => item.bank === hall.bank),
+      `${hall.bank} hall unchanged`);
+  }
+  for (const field of ['coordinateFrame', 'retainedCoreTranslation', 'stair']) {
+    assert.deepEqual(plan[field], beforeCorrection.plan[field], `${field} unchanged`);
+  }
+  const changed = id => /-(?:room|door|window|wall)-A-/.test(id)
+    || id === 'module-51-0-shared-A' || id === 'module-51-0-hall-west'
+    || id === 'module-51-0-common-L' || id === 'module-51-0-common-door-L'
+    || id.startsWith('module-51-0-window-shared-A-') || id.startsWith('module-51-0-window-common-L-');
+  for (const field of ['spaces', 'doors', 'layoutWindows', 'wallBands']) {
+    assert.deepEqual(level[field].map(item => item.id), beforeCorrection.level[field].map(item => item.id),
+      `${field} inventory stays stable`);
+    for (const item of level[field].filter(item => !changed(item.id))) {
+      assert.deepEqual(item, beforeCorrection.level[field].find(previous => previous.id === item.id),
+        `${item.id} exact previous ground-floor record`);
+    }
+  }
+  const oldShell = [beforeCorrection.plan.shell.outline], newShell = [plan.shell.outline];
+  sameArea(difference(oldShell, newShell), [rect(44.2, -7.4, 3.1, 7.4)],
+    'Only the far A-wing strip is removed from the previous outline');
+  close(area(difference(newShell, oldShell)), 0, 'Correction never grows an unrelated part of the outline');
 });
 
 test('every doorway lies on its actual two-space boundary and every room reaches the retained stairs', () => {
@@ -246,8 +308,10 @@ test('space identities stay unique, windows face outside, and folded source open
   assert.notEqual(duplicateE[0].label, duplicateE[1].label, 'Two E cards distinguish their wings');
   assert.equal(level.layoutWindows.length, 26);
   const sports = plan.commonAreas.find(item => item.bank === 'L');
-  const oldF = firstFloorPlan.rooms.find(item => item.bank === 'A' && item.label === 'F');
-  assert.deepEqual(sports.windowSegments, [oldF.windowSegment], 'Sports keeps F’s existing layout window');
+  const previousSports = beforeCorrection.plan.commonAreas.find(item => item.bank === 'L');
+  assert.deepEqual(sports.windowSegments, previousSports.windowSegments.map(segment =>
+    segment.map(([u, v]) => [Math.round((u - 3.1) * 1e9) / 1e9, v])),
+    'The retained single schematic Sports window moves onto its narrowed facade');
   assert.deepEqual(plan.commonAreas.find(item => item.bank === 'R').windowSegments, [],
     'Laundry does not invent a facade window pattern');
   for (const window of level.layoutWindows) {
@@ -331,7 +395,7 @@ test('ground and upper CLIs reproduce output and preserve all completed floors i
   }
 });
 
-test('the ground preservation receipt protects both upper floors, every other house and folded exterior evidence', async () => {
+test('the original ground preservation receipt remains valid for its archived release', async () => {
   const receipt = await read('docs/evidence/house51-ground-floor-preservation.json');
   assert.equal(receipt.baseCommit, before.baseCommit);
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['51']);
@@ -340,7 +404,7 @@ test('the ground preservation receipt protects both upper floors, every other ho
     assert.equal(record.unchanged, true, path);
     assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
   }
-  assert.equal(sha(await readFile(new URL('../public/data/interior-studies.json', import.meta.url))),
+  assert.equal(sha(JSON.stringify(originalGroundRelease, null, 2) + '\n'),
     receipt.studyChangeScope.afterSha256);
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
     assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
@@ -349,11 +413,47 @@ test('the ground preservation receipt protects both upper floors, every other ho
     item.index === index))), receipt.unchangedYellowLevels[index].sha256);
   assert.equal(sha(JSON.stringify(catalog.houses['53'])), receipt.unchangedHouse53Fit.sha256);
   assert.deepEqual(receipt.currentYellowFittedLevels, []);
-  for (const field of ['yellowCanonical', 'historicalYellowFit', 'annotation']) {
+  assert.equal(sha(JSON.stringify(beforeCorrection.plan, null, 2) + '\n'), receipt.yellowCanonical.sha256,
+    'The original canonical output is retained in the correction baseline');
+  for (const field of ['historicalYellowFit', 'annotation']) {
     assert.equal(sha(await readFile(new URL(`../${receipt[field].path}`, import.meta.url))), receipt[field].sha256, field);
   }
   assert.equal(sha(await readFile(new URL(`../${receipt.firstFloorGeneratorGuard.path}`, import.meta.url))),
     receipt.firstFloorGeneratorGuard.afterSha256);
   assert.deepEqual(plan.sourceAnnotation, receipt.annotation);
+  assert.equal(receipt.foldedExteriorUnchanged, true);
+});
+
+test('the Sports correction receipt verifies its narrow scope against the published ground-floor release', async () => {
+  const receipt = await read('docs/evidence/house51-ground-sports-correction-preservation.json');
+  assert.equal(receipt.baseCommit, beforeCorrection.baseCommit);
+  assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['51']);
+  assert.deepEqual(receipt.studyChangeScope.changedLevels, [0]);
+  assert.equal(sha(JSON.stringify(originalGroundRelease, null, 2) + '\n'), receipt.studyChangeScope.beforeSha256);
+  assert.equal(sha(await readFile(new URL('../public/data/interior-studies.json', import.meta.url))),
+    receipt.studyChangeScope.afterSha256);
+  const inherited = receipt.inheritedImmutableEvidence;
+  assert.equal(sha(await readFile(new URL(`../${inherited.path}`, import.meta.url))), inherited.sha256);
+  const priorReceipt = await read(inherited.path);
+  assert.equal(Object.keys(priorReceipt.immutableFiles).length, inherited.immutableFileCount);
+  for (const [path, record] of Object.entries({...priorReceipt.immutableFiles, ...receipt.additionalImmutableFiles})) {
+    assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
+    assert.equal(record.unchanged, true);
+  }
+  for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
+    assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
+  }
+  for (const index of [1, 2]) assert.equal(sha(JSON.stringify(studies.buildings['51'].levels.find(item =>
+    item.index === index))), receipt.unchangedYellowLevels[index].sha256);
+  for (const [field, group] of Object.entries(receipt.unchangedGroundEntityGroups)) {
+    const records = group.ids.map(id => level[field].find(item => item.id === id));
+    assert.ok(records.every(Boolean), `${field}: every preserved record exists`);
+    assert.equal(sha(JSON.stringify(records)), group.sha256, `${field}: all preserved records exact`);
+  }
+  assert.equal(sha(JSON.stringify(beforeCorrection.plan, null, 2) + '\n'), receipt.canonicalChange.beforeSha256);
+  assert.equal(sha(await readFile(new URL(`../${receipt.canonicalChange.path}`, import.meta.url))),
+    receipt.canonicalChange.afterSha256);
+  assert.equal(sha(await readFile(new URL(`../${receipt.historicalGroundFloor.path}`, import.meta.url))),
+    receipt.historicalGroundFloor.sha256);
   assert.equal(receipt.foldedExteriorUnchanged, true);
 });

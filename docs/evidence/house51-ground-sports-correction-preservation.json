@@ -1,0 +1,245 @@
+{
+  "baseCommit": "f7a4e8c8b03f13e71d7ca0a365bef9610fa36722",
+  "comparisonMethod": "The original ground-floor receipt remains unchanged. Its 100 immutable files plus the additional files below compare byte-for-byte against f7a4e8c. Embedded records compare deeply and use SHA-256 of JSON.stringify(record). The correction narrows Sports by one 3.10 m module and moves the complete A bank and its hall left by that pitch; all other floor geometry remains exact.",
+  "inheritedImmutableEvidence": {
+    "path": "docs/evidence/house51-ground-floor-preservation.json",
+    "sha256": "b9b05e3168c079ef5446f7c6b5a49702293511f8a741a90136dab689f8f7c7ff",
+    "immutableFileCount": 100
+  },
+  "additionalImmutableFiles": {
+    "public/data/old-house-module-layouts.json": {
+      "sha256": "50ee0fccf26cd9cf07cfa8aef1a18ffc0abc492ec77d785ee5b340057ae048cd",
+      "unchanged": true
+    },
+    "data/source/house51-eg-resident-annotation.png": {
+      "sha256": "5b5ea5454f08a61209a917af39994ece6756be42de5333469f3e335c0b742b61",
+      "unchanged": true
+    }
+  },
+  "studyChangeScope": {
+    "path": "public/data/interior-studies.json",
+    "beforeSha256": "3bef6a6c4f3fc28547d9ab533fd8775cedd5eb504b58b4c74e788b92ff8bd666",
+    "afterSha256": "4a029dc8d83b8ab749c7e39428595a000183aeff17ae41ae0bc4d1a855dd2233",
+    "changedBuildingRecords": [
+      "51"
+    ],
+    "changedLevels": [
+      0
+    ]
+  },
+  "unchangedStudyBuildings": {
+    "53": {
+      "sha256": "fef952217658216521112313aedd2c1cb6e746d9205566f458b9d76578a4e985",
+      "unchanged": true
+    },
+    "55": {
+      "sha256": "b72e644f25c10c42af238f152a97aef33f5e827290de6bef876a82feb0c1ef39",
+      "unchanged": true
+    },
+    "57": {
+      "sha256": "0a66c00a65bb0ee4b35d01cef66b95bb843f57f7f7a22530b30bbc397c8b051c",
+      "unchanged": true
+    },
+    "59": {
+      "sha256": "98f729819d84dfc02cc7711affba708ef38e2b60c068a2e8f9a4b3913c81bd91",
+      "unchanged": true
+    }
+  },
+  "unchangedYellowLevels": {
+    "1": {
+      "sha256": "fc2f8c943c3ff2450ffcdaeb643fc21a88aee22cbac87ce0a02978dfd9a57b7f",
+      "unchanged": true
+    },
+    "2": {
+      "sha256": "eaac60bfbee18d8b4799b52218e5d5a7ae03addfe29a466a54adee2bbdda76fe",
+      "unchanged": true
+    }
+  },
+  "unchangedGroundEntityGroups": {
+    "spaces": {
+      "ids": [
+        "module-51-0-room-E-H",
+        "module-51-0-room-E-G",
+        "module-51-0-room-E-F",
+        "module-51-0-room-E-E",
+        "module-51-0-room-N-N4",
+        "module-51-0-room-N-N3",
+        "module-51-0-room-N-N2",
+        "module-51-0-room-N-N1",
+        "module-51-0-room-N-N0",
+        "module-51-0-room-R-R3",
+        "module-51-0-room-R-R2",
+        "module-51-0-room-R-R1",
+        "module-51-0-room-L-L3",
+        "module-51-0-room-L-L2",
+        "module-51-0-room-L-L1",
+        "module-51-0-room-W-W4",
+        "module-51-0-room-W-W3",
+        "module-51-0-room-W-W2",
+        "module-51-0-room-W-W1",
+        "module-51-0-hall-east",
+        "module-51-0-stairs",
+        "module-51-0-common-R"
+      ],
+      "sha256": "8a8c72bf1cfcabeb07ddc2c68beb9af7676ab6976eca9daa6b3c9a002c972655"
+    },
+    "doors": {
+      "ids": [
+        "module-51-0-door-E-H",
+        "module-51-0-door-E-G",
+        "module-51-0-door-E-F",
+        "module-51-0-door-E-E",
+        "module-51-0-door-N-N4",
+        "module-51-0-door-N-N3",
+        "module-51-0-door-N-N2",
+        "module-51-0-door-N-N1",
+        "module-51-0-door-N-N0",
+        "module-51-0-door-R-R3",
+        "module-51-0-door-R-R2",
+        "module-51-0-door-R-R1",
+        "module-51-0-door-L-L3",
+        "module-51-0-door-L-L2",
+        "module-51-0-door-L-L1",
+        "module-51-0-door-W-W4",
+        "module-51-0-door-W-W3",
+        "module-51-0-door-W-W2",
+        "module-51-0-door-W-W1",
+        "module-51-0-stair-door-0",
+        "module-51-0-stair-door-1",
+        "module-51-0-common-door-R"
+      ],
+      "sha256": "b915a87891eb3789021e122855e60012f271d234c88f5e1b38cd3eb0e19644ca"
+    },
+    "layoutWindows": {
+      "ids": [
+        "module-51-0-window-E-H",
+        "module-51-0-window-E-G",
+        "module-51-0-window-E-F",
+        "module-51-0-window-E-E",
+        "module-51-0-window-N-N4",
+        "module-51-0-window-N-N3",
+        "module-51-0-window-N-N2",
+        "module-51-0-window-N-N1",
+        "module-51-0-window-N-N0",
+        "module-51-0-window-R-R3",
+        "module-51-0-window-R-R2",
+        "module-51-0-window-R-R1",
+        "module-51-0-window-L-L3",
+        "module-51-0-window-L-L2",
+        "module-51-0-window-L-L1",
+        "module-51-0-window-W-W4",
+        "module-51-0-window-W-W3",
+        "module-51-0-window-W-W2",
+        "module-51-0-window-W-W1"
+      ],
+      "sha256": "f441398329d42988084860715ab7947b5bb39237176b575f5a3d73dcf9002bad"
+    },
+    "wallBands": {
+      "ids": [
+        "module-51-0-wall-E-H-0",
+        "module-51-0-wall-E-H-1",
+        "module-51-0-wall-E-G-0",
+        "module-51-0-wall-E-G-1",
+        "module-51-0-wall-E-F-0",
+        "module-51-0-wall-E-F-1",
+        "module-51-0-wall-E-E-0",
+        "module-51-0-wall-E-E-1",
+        "module-51-0-wall-N-N4-0",
+        "module-51-0-wall-N-N4-1",
+        "module-51-0-wall-N-N3-0",
+        "module-51-0-wall-N-N3-1",
+        "module-51-0-wall-N-N2-0",
+        "module-51-0-wall-N-N2-1",
+        "module-51-0-wall-N-N1-0",
+        "module-51-0-wall-N-N1-1",
+        "module-51-0-wall-N-N0-0",
+        "module-51-0-wall-N-N0-1",
+        "module-51-0-wall-R-R3-0",
+        "module-51-0-wall-R-R3-1",
+        "module-51-0-wall-R-R2-0",
+        "module-51-0-wall-R-R2-1",
+        "module-51-0-wall-R-R1-0",
+        "module-51-0-wall-R-R1-1",
+        "module-51-0-wall-L-L3-0",
+        "module-51-0-wall-L-L3-1",
+        "module-51-0-wall-L-L2-0",
+        "module-51-0-wall-L-L2-1",
+        "module-51-0-wall-L-L1-0",
+        "module-51-0-wall-L-L1-1",
+        "module-51-0-wall-W-W4-0",
+        "module-51-0-wall-W-W4-1",
+        "module-51-0-wall-W-W3-0",
+        "module-51-0-wall-W-W3-1",
+        "module-51-0-wall-W-W2-0",
+        "module-51-0-wall-W-W2-1",
+        "module-51-0-wall-W-W1-0",
+        "module-51-0-wall-W-W1-1"
+      ],
+      "sha256": "d002557572b5216c58754d64bcf268e8476e86f0ef751cd66ecbcafc05528580"
+    }
+  },
+  "changedGroundEntityIds": {
+    "spaces": [
+      "module-51-0-room-A-E",
+      "module-51-0-room-A-D",
+      "module-51-0-room-A-C",
+      "module-51-0-room-A-B",
+      "module-51-0-shared-A",
+      "module-51-0-hall-west",
+      "module-51-0-common-L"
+    ],
+    "doors": [
+      "module-51-0-door-A-E",
+      "module-51-0-door-A-D",
+      "module-51-0-door-A-C",
+      "module-51-0-door-A-B",
+      "module-51-0-door-A-A",
+      "module-51-0-common-door-L"
+    ],
+    "layoutWindows": [
+      "module-51-0-window-A-E",
+      "module-51-0-window-A-D",
+      "module-51-0-window-A-C",
+      "module-51-0-window-A-B",
+      "module-51-0-window-shared-A-0",
+      "module-51-0-window-shared-A-1",
+      "module-51-0-window-common-L-0"
+    ],
+    "wallBands": [
+      "module-51-0-wall-A-E-0",
+      "module-51-0-wall-A-E-1",
+      "module-51-0-wall-A-D-0",
+      "module-51-0-wall-A-D-1",
+      "module-51-0-wall-A-C-0",
+      "module-51-0-wall-A-C-1",
+      "module-51-0-wall-A-B-0",
+      "module-51-0-wall-A-B-1"
+    ]
+  },
+  "correction": {
+    "eLeftModuleEdgeU": 25.6,
+    "alignedWith": "L2 right / L1 left module boundary",
+    "sportsWidthBefore": 9.3,
+    "sportsWidthAfter": 6.2,
+    "sportsDepth": 7.4,
+    "aBankTranslation": [
+      -3.1,
+      0
+    ],
+    "shellAreaBefore": 708.18,
+    "shellAreaAfter": 685.24,
+    "apartmentInventoryUnchanged": true,
+    "laundryUnchanged": true,
+    "stairUnchanged": true
+  },
+  "canonicalChange": {
+    "path": "public/data/house51-ground-floor-layout.json",
+    "beforeSha256": "b6fc7b82dcaed649d4929458054464750d119d82cdc7f3b3bb0a94924f139a84",
+    "afterSha256": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44"
+  },
+  "historicalGroundFloor": {
+    "path": "tests/fixtures/house51-before-ground-sports-correction.json",
+    "sha256": "027fafb60c609744f7ec6d6377b821921b7506a86d75b19267773a3bc79a7e19"
+  },
+  "foldedExteriorUnchanged": true
+}

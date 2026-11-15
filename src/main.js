@@ -180,7 +180,7 @@ function renderFloor() {
     ? 'Green follows Red’s internal arrangement, including both balconies on this level. '
     : 'Green follows Red’s internal arrangement on this level. ';
   const yellowLayoutNote = yellowGroundLayout
-    ? 'Yellow’s ground floor has 23 single rooms, shared apartment A, Sports beside the west hall and Laundry beside the east hall. Single B is inserted before shared A, which moves one module to the right. The Sports enclosure replaces the A-wing F module and extends into the adjacent common area. Both upper floors retain their own layouts. '
+    ? 'Yellow’s ground floor has 23 single rooms, shared apartment A, Sports beside the west hall and Laundry beside the east hall. Sports has a 6.20 × 7.40 m envelope. E’s left module edge in the A wing aligns with the boundary between L1 and L2, and single B sits before shared A. Both upper floors retain their own layouts. '
     : yellowFirstLayout
     ? `Yellow’s first floor has 23 single rooms, shared apartment A and two balconies. The A wing is shifted by one 3.10 m module so F’s left edge aligns with L1. Doorway ends follow the annotation where clear; each item’s note distinguishes marked access from schematic placement. ${yellowProvisionalNote}`
     : yellowTopLayout
@@ -291,7 +291,7 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
           : greenLayout && space.label === 'Hausmeister' ? 'The resident-marked Hausmeister enclosure occupying the north wing. Its former apartment divisions are removed; internal fittings remain undivided.'
           : greenLayout && space.label === 'Garden room' ? 'The Garden room beside the east hall and Hausmeister enclosure, separated from the hall by a wall with one marked doorway.'
           : greenLayout && space.label === 'Storage' ? 'The large Storage room beside the west hall, enclosed with its own marked doorway.'
-          : yellowGroundLayout && space.label === 'Sports room' ? 'The Sports enclosure beside Yellow’s west hall. It combines the former A-wing F module with the adjacent common-area extension; internal fittings remain undivided.'
+          : yellowGroundLayout && space.label === 'Sports room' ? 'The 6.20 × 7.40 m Sports enclosure beside Yellow’s west hall. Its right edge meets E’s left module edge in the A wing, aligned with the boundary between L1 and L2; internal fittings remain undivided.'
           : yellowGroundLayout && space.label === 'Laundry' ? 'The Laundry enclosure beside Yellow’s east hall and N0, with one hallway entrance. Equipment and internal fittings remain undivided.'
           : yellowFirstLayout && space.kind === 'service' ? 'A common area enclosed from the hallway in Yellow’s first-floor layout. Exact dimensions and opening details remain schematic.'
           : space.kind === 'service' ? whiteLayout || greenLayout
@@ -661,7 +661,7 @@ function accuracyDialog() {
     ? ' Green follows Red on both upper floors, including both first-floor balconies. EG has one north-wing Hausmeister enclosure, an east Garden room, west Storage and the restored A-bank single.'
     : '';
   const yellowGroundSources = isIndependentLayout(studies?.buildings?.['51']?.levels.find(level => level.index === 0))
-    ? ' Yellow House 51’s EG has a resident-marked layout of 23 single rooms, shared apartment A, Sports beside the west hall and Laundry beside the east hall. Single B is inserted before the shifted shared A; both upper floors retain their completed arrangements.'
+    ? ' Yellow House 51’s EG has a resident-marked layout of 23 single rooms, shared apartment A, Sports beside the west hall and Laundry beside the east hall. Sports has a 6.20 × 7.40 m envelope; E’s left module edge in the A wing aligns with the boundary between L1 and L2. Single B sits before shared A; both upper floors retain their completed arrangements.'
     : '';
   const yellowFirstSources = isIndependentLayout(studies?.buildings?.['51']?.levels.find(level => level.index === 1))
     ? ' Yellow House 51’s 1. OG has a resident-marked layout of 23 single rooms, shared apartment A and two balconies. The A wing shifts by one 3.10 m module to align F’s left edge with L1. Doorway notes distinguish annotated ends from schematic access; exact offsets and widths remain unmeasured.'
