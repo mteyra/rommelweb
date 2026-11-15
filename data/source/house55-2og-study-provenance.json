@@ -6,10 +6,374 @@
   "generatedForDate": "2026-11-15",
   "generator": "node scripts/generate-house55-study.mjs",
   "source": "Resident annotated House 55 / 2. OG screenshot supplied in this project on 2026-11-15; registered to Bayerische Vermessungsverwaltung LoD2 exterior.",
+  "dimensionRefit": {
+    "status": "common-depth-candidate-with-unresolved-right-block",
+    "basis": "Resident-confirmed twenty-room count, general hallway positions and broadly similar single-apartment types with small dimensional variation; approximate 2.70×3.30m living zone in Rommelwood’s older single-apartment sketch.",
+    "sourceUrl": "https://rommelwood.de/wohnen/zimmergrundriss/",
+    "candidateGrossModuleMetres": 3,
+    "moduleReason": "The two explicitly counted exterior runs are approximately 12.066/4 and 9.140/3 metres per bay. A rounded 3m gross module is a fit assumption for W/L, not a measured structural grid.",
+    "changes": "Equal SW/east divisions; four 3m W bays and three 3m L bays. Seventeen non-R envelopes share a fitted gross depth, changing only their five corridor-facing walls after the width fit. N frontage is retained. R geometry remains unchanged and unresolved. The attached stairs retain their width-fit position against L3.",
+    "commonDepth": {
+      "candidateGrossDepthMetres": 5.395477451475493,
+      "method": "Arithmetic mean of the seventeen source-clipped width-only envelope depths in the study axes, minimizing the sum of their squared depth changes with equal per-room weight. Each zone corridor-facing wall is then solved against its source-clipped mean depth; source skew allows small individual differences.",
+      "inputStage": "Reproducible width-only stage: equal SW/east divisions, 3m W/L bays, N source frontage, approximate original depths. Source-clipped polygons are serialized to six decimals before measuring the retained input vector, as in the prior public study.",
+      "inputDepths": [
+        {
+          "id": "study-55-2-sw-1",
+          "label": "A",
+          "zone": "sw-known-four",
+          "projectedGrossBoundsMetres": [
+            -9.39151446988122,
+            11.577233271012062,
+            -6.369555637955021,
+            17.521193522514167
+          ],
+          "projectedGrossDepthMetres": 5.943960251502105
+        },
+        {
+          "id": "study-55-2-sw-2",
+          "label": "B",
+          "zone": "sw-known-four",
+          "projectedGrossBoundsMetres": [
+            -6.369555843940091,
+            11.577232614059689,
+            -3.353076054797692,
+            17.524941908766014
+          ],
+          "projectedGrossDepthMetres": 5.947709294706325
+        },
+        {
+          "id": "study-55-2-sw-3",
+          "label": "C",
+          "zone": "sw-known-four",
+          "projectedGrossBoundsMetres": [
+            -3.3530760787959517,
+            11.577232614059689,
+            -0.33659584368588646,
+            17.528689558071285
+          ],
+          "projectedGrossDepthMetres": 5.951456944011596
+        },
+        {
+          "id": "study-55-2-sw-4",
+          "label": "D",
+          "zone": "sw-known-four",
+          "projectedGrossBoundsMetres": [
+            -0.33659620465971596,
+            11.577233133022066,
+            2.6798837154731867,
+            17.532437944323135
+          ],
+          "projectedGrossDepthMetres": 5.955204811301069
+        },
+        {
+          "id": "study-55-2-east-1",
+          "label": "E",
+          "zone": "east-known-three",
+          "projectedGrossBoundsMetres": [
+            24.90267216071094,
+            1.9262697855026616,
+            30.541453261899452,
+            4.972771248152625
+          ],
+          "projectedGrossDepthMetres": 5.638781101188513
+        },
+        {
+          "id": "study-55-2-east-2",
+          "label": "F",
+          "zone": "east-known-three",
+          "projectedGrossBoundsMetres": [
+            24.90267229570115,
+            4.972771011169808,
+            30.54393683284708,
+            8.01927214084391
+          ],
+          "projectedGrossDepthMetres": 5.641264537145929
+        },
+        {
+          "id": "study-55-2-east-3",
+          "label": "G",
+          "zone": "east-known-three",
+          "projectedGrossBoundsMetres": [
+            24.90267229570115,
+            8.019271297905023,
+            30.546420464790295,
+            11.065772760554983
+          ],
+          "projectedGrossDepthMetres": 5.643748169089143
+        },
+        {
+          "id": "study-55-2-west-1",
+          "label": "W1",
+          "zone": "west-question",
+          "projectedGrossBoundsMetres": [
+            -5.870680885063598,
+            -2.5217032751394233,
+            -0.9263287505999127,
+            0.4854017536484645
+          ],
+          "projectedGrossDepthMetres": 4.944352134463685
+        },
+        {
+          "id": "study-55-2-west-2",
+          "label": "W2",
+          "zone": "west-question",
+          "projectedGrossBoundsMetres": [
+            -5.868112573259454,
+            0.47829717671162175,
+            -0.9263287505999127,
+            3.48303380020267
+          ],
+          "projectedGrossDepthMetres": 4.941783822659541
+        },
+        {
+          "id": "study-55-2-west-3",
+          "label": "W3",
+          "zone": "west-question",
+          "projectedGrossBoundsMetres": [
+            -5.865444499687776,
+            3.4782968606183413,
+            -0.9263290665770052,
+            6.480665109810301
+          ],
+          "projectedGrossDepthMetres": 4.9391154331107705
+        },
+        {
+          "id": "study-55-2-west-4",
+          "label": "W4",
+          "zone": "west-question",
+          "projectedGrossBoundsMetres": [
+            -5.862775689169525,
+            6.478297220476056,
+            -0.9263290665770052,
+            9.478297156364507
+          ],
+          "projectedGrossDepthMetres": 4.93644662259252
+        },
+        {
+          "id": "study-55-2-center-left-1",
+          "label": "L1",
+          "zone": "center-left-question",
+          "projectedGrossBoundsMetres": [
+            0.9999998646377475,
+            1.2129466905524793,
+            4.000000393483211,
+            6.380337742280795
+          ],
+          "projectedGrossDepthMetres": 5.167391051728316
+        },
+        {
+          "id": "study-55-2-center-left-2",
+          "label": "L2",
+          "zone": "center-left-question",
+          "projectedGrossBoundsMetres": [
+            4.000000080505901,
+            1.2155443552286167,
+            7.000000180382464,
+            6.380337742280795
+          ],
+          "projectedGrossDepthMetres": 5.164793387052178
+        },
+        {
+          "id": "study-55-2-center-left-3",
+          "label": "L3",
+          "zone": "center-left-question",
+          "projectedGrossBoundsMetres": [
+            6.999999559427481,
+            1.218141343953759,
+            9.999999967281717,
+            6.380337424303846
+          ],
+          "projectedGrossDepthMetres": 5.162196080350087
+        },
+        {
+          "id": "study-55-2-upper-right-1",
+          "label": "N1",
+          "zone": "upper-right-question",
+          "projectedGrossBoundsMetres": [
+            22.050183225662575,
+            -6.589466281011311,
+            25.242774652174074,
+            -1.334879217764687
+          ],
+          "projectedGrossDepthMetres": 5.254587063246624
+        },
+        {
+          "id": "study-55-2-upper-right-2",
+          "label": "N2",
+          "zone": "upper-right-question",
+          "projectedGrossBoundsMetres": [
+            25.242774184208002,
+            -6.583183265513425,
+            28.430821263172756,
+            -1.334879217764687
+          ],
+          "projectedGrossDepthMetres": 5.2483040477487375
+        },
+        {
+          "id": "study-55-2-upper-right-3",
+          "label": "N3",
+          "zone": "upper-right-question",
+          "projectedGrossBoundsMetres": [
+            28.43082115318073,
+            -6.576901662913103,
+            31.62293731014802,
+            -1.334879739726846
+          ],
+          "projectedGrossDepthMetres": 5.2420219231862575
+        }
+      ],
+      "widthOnlyLocalBoundsMetres": {
+        "sw-known-four": [
+          -9.386035537089448,
+          11.577233107951308,
+          2.6798837154731867,
+          17.532437944323135
+        ],
+        "east-known-three": [
+          24.90267243930383,
+          1.9262698504979516,
+          30.546420464790295,
+          11.065772760554983
+        ],
+        "west-question": [
+          -5.870781383777705,
+          -2.521703183146093,
+          -0.9263292338628435,
+          9.478296816853907
+        ],
+        "center-left-question": [
+          1,
+          1.2188641355532677,
+          10,
+          6.380337193978741
+        ],
+        "center-right-question": [
+          14.010314289032232,
+          4.358180953379414,
+          22.089767549903094,
+          9.727900752759712
+        ],
+        "upper-right-question": [
+          22.054728090171842,
+          -6.589466281011311,
+          31.618867715182958,
+          -1.3348794253505543
+        ],
+        "stairs": [
+          10,
+          3.4056054548121386,
+          12.336167864417838,
+          7.7104822740819206
+        ]
+      },
+      "corridorFacingWallChanges": [
+        {
+          "zone": "sw-known-four",
+          "coordinateIndex": 1,
+          "beforeMetres": 11.577233107951308,
+          "afterMetres": 12.131338408429421,
+          "meanGrossDepthMetres": 5.395477436485445
+        },
+        {
+          "zone": "east-known-three",
+          "coordinateIndex": 0,
+          "beforeMetres": 24.90267243930383,
+          "afterMetres": 25.148459447554604,
+          "meanGrossDepthMetres": 5.3954774589469485
+        },
+        {
+          "zone": "west-question",
+          "coordinateIndex": 2,
+          "beforeMetres": -0.9263292338628435,
+          "afterMetres": -0.471275900647952,
+          "meanGrossDepthMetres": 5.3954774732600885
+        },
+        {
+          "zone": "center-left-question",
+          "coordinateIndex": 3,
+          "beforeMetres": 6.380337193978741,
+          "afterMetres": 6.611021932563128,
+          "meanGrossDepthMetres": 5.3954774478268455
+        },
+        {
+          "zone": "upper-right-question",
+          "coordinateIndex": 3,
+          "beforeMetres": -1.3348794253505543,
+          "afterMetres": -1.1877062926249704,
+          "meanGrossDepthMetres": 5.395477432700268
+        }
+      ],
+      "scope": "Seventeen rooms A–G, W1–W4, L1–L3 and N1–N3. R1–R3 are excluded from the fit and retain their exact previous geometry; stairs and lower-floor baseline do not move in this stage.",
+      "interpretation": "A fitted gross model depth before walls, not a measured full-apartment template, clear living dimension or rental-area target. Similar dimensions do not establish identical interiors or usable areas. The resident’s hand-length description is qualitative and has not been converted into a measured tolerance."
+    },
+    "stairTranslationFromPreviousStudyMetres": [
+      0.697071,
+      0
+    ],
+    "unresolved": "R remains about 2.69m gross per bay. Three literal 2.70m clear-width living zones plus walls cannot fit this fixed facade span. Exact full apartment dimensions and equal usable areas remain unproved everywhere.",
+    "scope": "Only index2 is refitted. Lower floors retain the frozen earlier sketch; this candidate is not automatically repeated downwards.",
+    "originalLocalBoundsMetres": {
+      "sw-known-four": [
+        -9.386036,
+        11.577233,
+        2.679884,
+        17.532438
+      ],
+      "east-known-three": [
+        24.902672,
+        1.92627,
+        30.54642,
+        11.065773
+      ],
+      "west-question": [
+        -5.870781,
+        -2.521703,
+        -0.926329,
+        8.930248
+      ],
+      "center-left-question": [
+        2.610996,
+        1.218864,
+        9.302929,
+        6.380337
+      ],
+      "center-right-question": [
+        14.214969,
+        4.358181,
+        22.313433,
+        9.727901
+      ],
+      "upper-right-question": [
+        22.054728,
+        -6.589466,
+        31.618868,
+        -1.334879
+      ],
+      "stairs": [
+        9.749577,
+        3.405605,
+        12.085745,
+        7.710482
+      ]
+    },
+    "originalHandStrokeCutsLocalMetres": {
+      "sw": [
+        -6.516745,
+        -3.827782,
+        -0.574958
+      ],
+      "east": [
+        4.821184,
+        7.404145
+      ]
+    },
+    "auditDocument": "docs/HOUSE55-DIMENSION-REFIT.md"
+  },
   "residentCorrections": {
     "source": "Resident follow-ups on 2026-11-15: stairs against the left block, R block flush to the exterior edges, requested lower-floor repetition, and confirmed room counts including three rooms L1–L3.",
     "stairs": {
-      "instruction": "Move stairs flush against the right/east wall of the left block; the later three-room correction keeps this outer position unchanged.",
+      "instruction": "Keep stairs flush against L3. The width candidate moves its attached stairs plan-right; the common-depth stage keeps that position while extending contact. This position is provisional.",
       "adjacentStudyRoom": "L3",
       "originalLocalBoundsMetres": [
         9.749577,
@@ -18,26 +382,26 @@
         7.710482
       ],
       "correctedLocalBoundsMetres": [
-        9.302929,
+        10,
         3.405605,
-        11.639097,
+        12.336168,
         7.710482
       ],
       "translationInLocalMetres": [
-        -0.446648,
+        0.250423,
         0
       ],
       "sharedWallInCampusXZ": [
         [
-          3.778575,
-          9.157784
+          4.249761,
+          9.671488
         ],
         [
-          1.586356,
-          11.168557
+          1.88754,
+          11.838193
         ]
       ],
-      "sharedWallLengthMetres": 2.974732,
+      "sharedWallLengthMetres": 3.205416,
       "unchanged": "Stair width, north/south position, run length and orientation remain the original approximate sketch values."
     },
     "rightBlock": {
@@ -711,7 +1075,7 @@
   },
   "roomInterpretation": {
     "explicitlyDividedSketchBays": 7,
-    "estimatedPartitionBays": 13,
+    "estimatedPartitionBays": 20,
     "candidateTotal": 20,
     "confirmedRoomCount": 20,
     "confirmedCounts": {
@@ -722,8 +1086,8 @@
       "right": 3,
       "north": 3
     },
-    "confirmationSource": "Resident double-check on 2026-11-15: all existing zone counts are correct except the left block, which contains three rooms L1–L3.",
-    "confirmationLimit": "Room counts are resident-confirmed. The registered outer strokes, divider coordinates, doorways, floor elevations and study labels remain unmeasured; study labels are not physical room numbers.",
+    "confirmationSource": "Resident double-check on 2026-11-15: all twenty top-floor rooms, including L1–L3, and their general hallway positions are correct; dimensions must be rechecked.",
+    "confirmationLimit": "Room counts and general hallway positions are resident-confirmed. All twenty fitted room envelopes, divider coordinates, doorways and floor elevations remain unmeasured; study labels are not physical room numbers.",
     "publicMapFloor2MarkerCount": 20,
     "markerCountRole": "Secondary aggregate crosscheck only; the current count is confirmed directly by the resident rather than inferred from map markers.",
     "noRoomNumbers": "All identifiers and alphabetic labels are study references; none represent actual physical room numbers or residents.",
@@ -732,11 +1096,11 @@
         "id": "sw-known-four",
         "selectedCount": 4,
         "countBasis": "resident-confirmed",
-        "confidence": "sketch",
-        "note": "The resident confirms four rooms here, also explicitly divided in red. Their boundaries follow approximate hand strokes; these are not physical room numbers or measured partitions.",
+        "confidence": "estimated",
+        "note": "Four rooms are resident-confirmed. Equal gross bays of about 3.02m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth; these are not measured full apartments or physical room numbers. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
         "rectifiedLocalBoundsMetres": [
           -9.386036,
-          11.577233,
+          12.131338,
           2.679884,
           17.532438
         ],
@@ -745,23 +1109,23 @@
         "rooms": [
           {
             "id": "study-55-2-sw-1",
-            "grossAreaMetresSquared": 17.065583,
-            "grossBayWidthMetres": 2.86929
+            "grossAreaMetresSquared": 16.266117,
+            "grossBayWidthMetres": 3.01648
           },
           {
             "id": "study-55-2-sw-2",
-            "grossAreaMetresSquared": 15.98709,
-            "grossBayWidthMetres": 2.688963
+            "grossAreaMetresSquared": 16.264043,
+            "grossBayWidthMetres": 3.01648
           },
           {
             "id": "study-55-2-sw-3",
-            "grossAreaMetresSquared": 19.351506,
-            "grossBayWidthMetres": 3.252824
+            "grossAreaMetresSquared": 16.275349,
+            "grossBayWidthMetres": 3.01648
           },
           {
             "id": "study-55-2-sw-4",
-            "grossAreaMetresSquared": 19.362872,
-            "grossBayWidthMetres": 3.254842
+            "grossAreaMetresSquared": 16.275306,
+            "grossBayWidthMetres": 3.01648
           }
         ],
         "observed": {
@@ -831,10 +1195,10 @@
         "id": "east-known-three",
         "selectedCount": 3,
         "countBasis": "resident-confirmed",
-        "confidence": "sketch",
-        "note": "The resident confirms these three rooms, also divided in red. Their drawn boundaries are approximate; the separate north block is counted separately, and lower facade marks are not plan divisions.",
+        "confidence": "estimated",
+        "note": "Three rooms are resident-confirmed. Equal gross bays of about 3.05m replace uneven hand-stroke divisions. Their corridor-facing wall moves to the common fitted gross depth. Kitchen, bathroom, wall thicknesses and usable areas remain unknown. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
         "rectifiedLocalBoundsMetres": [
-          24.902672,
+          25.148459,
           1.92627,
           30.54642,
           11.065773
@@ -844,18 +1208,18 @@
         "rooms": [
           {
             "id": "study-55-2-east-1",
-            "grossAreaMetresSquared": 16.320011,
-            "grossBayWidthMetres": 2.894914
+            "grossAreaMetresSquared": 16.425978,
+            "grossBayWidthMetres": 3.046501
           },
           {
             "id": "study-55-2-east-2",
-            "grossAreaMetresSquared": 14.567155,
-            "grossBayWidthMetres": 2.582962
+            "grossAreaMetresSquared": 16.433544,
+            "grossBayWidthMetres": 3.046501
           },
           {
             "id": "study-55-2-east-3",
-            "grossAreaMetresSquared": 20.641067,
-            "grossBayWidthMetres": 3.661628
+            "grossAreaMetresSquared": 16.423939,
+            "grossBayWidthMetres": 3.046501
           }
         ],
         "observed": {
@@ -926,36 +1290,54 @@
         "selectedCount": 4,
         "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "The resident confirms four rooms in this formerly question-marked zone. Equal divider positions within the approximate outer boundary remain an estimated layout.",
+        "note": "Four rooms are resident-confirmed. Candidate 3.00m gross bays and a common fitted gross depth use some former corridor space. These similar envelope dimensions are a model assumption, not a measured full-apartment template. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
         "rectifiedLocalBoundsMetres": [
           -5.870781,
           -2.521703,
-          -0.926329,
-          8.930248
+          -0.471276,
+          9.478297
         ],
-        "runMetres": 11.451951,
-        "averageGrossBayMetres": 2.862988,
+        "runMetres": 12,
+        "averageGrossBayMetres": 3,
         "rooms": [
           {
             "id": "study-55-2-west-1",
-            "grossAreaMetresSquared": 14.128588,
-            "grossBayWidthMetres": 2.862988
+            "grossAreaMetresSquared": 16.18737,
+            "grossBayWidthMetres": 3
           },
           {
             "id": "study-55-2-west-2",
-            "grossAreaMetresSquared": 14.144788,
-            "grossBayWidthMetres": 2.862988
+            "grossAreaMetresSquared": 16.179522,
+            "grossBayWidthMetres": 3
           },
           {
             "id": "study-55-2-west-3",
-            "grossAreaMetresSquared": 14.137569,
-            "grossBayWidthMetres": 2.862988
+            "grossAreaMetresSquared": 16.171524,
+            "grossBayWidthMetres": 3
           },
           {
             "id": "study-55-2-west-4",
-            "grossAreaMetresSquared": 14.130349,
-            "grossBayWidthMetres": 2.862988
+            "grossAreaMetresSquared": 16.163525,
+            "grossBayWidthMetres": 3
           }
+        ],
+        "correctedLocalCornersMetres": [
+          [
+            -5.870781,
+            -2.521703
+          ],
+          [
+            -0.471276,
+            -2.511358
+          ],
+          [
+            -0.471276,
+            9.478297
+          ],
+          [
+            -5.860107,
+            9.478297
+          ]
         ],
         "observed": {
           "pixels": [
@@ -1025,31 +1407,49 @@
         "selectedCount": 3,
         "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "The resident confirms three rooms L1–L3. The original outer boundary and aligned stairs stay fixed; two equal-spaced internal dividers are estimated, and the stairs now adjoin L3.",
+        "note": "Three rooms L1–L3 are resident-confirmed. Candidate 3.00m gross bays and a common fitted depth replace the implausibly narrow earlier L subdivisions. The stairs remain flush to L3 after shifting about 0.70m plan-right. L1 has only partial facade frontage, so its exact shape and window need checking. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
         "rectifiedLocalBoundsMetres": [
-          2.610996,
+          1,
           1.218864,
-          9.302929,
-          6.380337
+          10,
+          6.611022
         ],
-        "runMetres": 6.691933,
-        "averageGrossBayMetres": 2.230644,
+        "runMetres": 9,
+        "averageGrossBayMetres": 3,
         "rooms": [
           {
             "id": "study-55-2-center-left-1",
-            "grossAreaMetresSquared": 11.521301,
-            "grossBayWidthMetres": 2.230644
+            "grossAreaMetresSquared": 16.190328,
+            "grossBayWidthMetres": 3
           },
           {
             "id": "study-55-2-center-left-2",
-            "grossAreaMetresSquared": 11.516906,
-            "grossBayWidthMetres": 2.230644
+            "grossAreaMetresSquared": 16.182537,
+            "grossBayWidthMetres": 3
           },
           {
             "id": "study-55-2-center-left-3",
-            "grossAreaMetresSquared": 11.51251,
-            "grossBayWidthMetres": 2.230644
+            "grossAreaMetresSquared": 16.174745,
+            "grossBayWidthMetres": 3
           }
+        ],
+        "correctedLocalCornersMetres": [
+          [
+            1,
+            1.212947
+          ],
+          [
+            10,
+            1.220739
+          ],
+          [
+            10,
+            6.611022
+          ],
+          [
+            1,
+            6.611022
+          ]
         ],
         "observed": {
           "pixels": [
@@ -1119,7 +1519,7 @@
         "selectedCount": 3,
         "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "The resident confirms three rooms R1–R3 and the alignment against the adjacent exterior wall edges. Their internal divider locations remain equally spaced estimates.",
+        "note": "Three rooms and the flush exterior alignment are resident-confirmed. The retained facade is about 8.08m long: roughly 2.69m gross per bay, before walls. Three literal 2.70m clear-width templates cannot fit this fixed span. This block is unresolved; no narrower real apartment type or invented wall thickness is asserted.",
         "rectifiedLocalBoundsMetres": [
           14.010314,
           4.358181,
@@ -1231,29 +1631,29 @@
         "selectedCount": 3,
         "countBasis": "resident-confirmed",
         "confidence": "estimated",
-        "note": "The resident confirms three rooms in the north block. Its outer boundary follows the approximate sketch; equal internal divider locations remain estimated.",
+        "note": "Three rooms are resident-confirmed. Source-anchored gross bays remain about 3.19m wide; only their corridor-facing boundary moves to the common fitted gross depth. All internal positions and clear dimensions remain estimates. The shared fitted gross depth is approximately 5.40m before walls; it is not a measured clear apartment depth.",
         "rectifiedLocalBoundsMetres": [
           22.054728,
           -6.589466,
           31.618868,
-          -1.334879
+          -1.187706
         ],
         "runMetres": 9.56414,
         "averageGrossBayMetres": 3.188047,
         "rooms": [
           {
             "id": "study-55-2-upper-right-1",
-            "grossAreaMetresSquared": 16.753792,
+            "grossAreaMetresSquared": 17.223665,
             "grossBayWidthMetres": 3.188047
           },
           {
             "id": "study-55-2-upper-right-2",
-            "grossAreaMetresSquared": 16.721824,
+            "grossAreaMetresSquared": 17.191019,
             "grossBayWidthMetres": 3.188047
           },
           {
             "id": "study-55-2-upper-right-3",
-            "grossAreaMetresSquared": 16.712448,
+            "grossAreaMetresSquared": 17.18225,
             "grossBayWidthMetres": 3.188047
           }
         ],
@@ -1330,21 +1730,21 @@
       7.710482
     ],
     "correctedLocalBoundsMetres": [
-      9.302929,
+      10,
       3.405605,
-      11.639097,
+      12.336168,
       7.710482
     ],
     "approximateRunMetres": 4.304877,
     "approximateWidthMetres": 2.336168,
     "runInCampusXZ": [
       [
-        4.568142,
-        10.018599
+        5.039328,
+        10.532304
       ],
       [
-        1.395678,
-        12.928485
+        1.866864,
+        13.442189
       ]
     ],
     "observed": {
@@ -1412,7 +1812,7 @@
   },
   "validation": {
     "roomOverlapMetresSquared": 0,
-    "spaceOutsideFloorMetresSquared": 0,
+    "spaceOutsideFloorMetresSquared": 0.000678,
     "floorInsideExcludedGreenMetresSquared": 0,
     "doorBoundaryChecksPassed": true,
     "sourceVerticesModified": false,
@@ -1422,7 +1822,12 @@
     {
       "index": 0,
       "extrapolatedFrom": 2,
-      "method": "Resident-requested repetition of the corrected shared 2. OG study geometry. Every lower-floor space and opening is an estimate, including rooms whose upstairs counts are resident-confirmed.",
+      "method": "Resident-requested repetition of the earlier 2. OG sketch. The new top-floor dimensional candidate has not been propagated. Every lower-floor space and opening remains an estimate.",
+      "frozenSource": {
+        "path": "data/source/house55-2og-sketch-baseline.json",
+        "sha256": "accdfa4f54f719e96f001cc23235f6ee24d32105ea1c15c6838c1161e720cee6",
+        "sourceCommit": "3eac42c1bbbc908c458f7c18241edef26f41ac95"
+      },
       "floorPlateSource": "Complete unmodified LoD2 horizontal section at this floor’s provisional guide; holes and disconnected components are retained.",
       "provisionalElevationAboveBuildingBase": 0,
       "provisionalPlaneCampusY": 2.822,
@@ -1652,7 +2057,12 @@
     {
       "index": 1,
       "extrapolatedFrom": 2,
-      "method": "Resident-requested repetition of the corrected shared 2. OG study geometry. Every lower-floor space and opening is an estimate, including rooms whose upstairs counts are resident-confirmed.",
+      "method": "Resident-requested repetition of the earlier 2. OG sketch. The new top-floor dimensional candidate has not been propagated. Every lower-floor space and opening remains an estimate.",
+      "frozenSource": {
+        "path": "data/source/house55-2og-sketch-baseline.json",
+        "sha256": "accdfa4f54f719e96f001cc23235f6ee24d32105ea1c15c6838c1161e720cee6",
+        "sourceCommit": "3eac42c1bbbc908c458f7c18241edef26f41ac95"
+      },
       "floorPlateSource": "Complete unmodified LoD2 horizontal section at this floor’s provisional guide; holes and disconnected components are retained.",
       "provisionalElevationAboveBuildingBase": 3.1636666666666664,
       "provisionalPlaneCampusY": 5.985666666666667,

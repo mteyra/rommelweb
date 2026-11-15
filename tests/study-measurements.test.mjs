@@ -1,0 +1,51 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { studyRoomMeasurements } from '../src/study-measurements.js';
+
+const rectangle = (x, z, width, depth) => [[x, z], [x + width, z], [x + width, z + depth], [x, z + depth], [x, z]];
+const close = (actual, expected) => assert.ok(Math.abs(actual - expected) < 1e-8, `${actual} should equal ${expected}`);
+const transform = (ring, angle) => ring.map(([x, z]) => [
+  x * Math.cos(angle) - z * Math.sin(angle) + 61,
+  x * Math.sin(angle) + z * Math.cos(angle) - 34,
+]);
+
+test('study room spans follow the rotated building axes, not world-aligned bounds', () => {
+  for (const angle of [0, Math.PI / 7, Math.PI / 2, -Math.PI / 5]) {
+    const outer = transform(rectangle(0, 0, 30, 10), angle);
+    const polygon = transform(rectangle(2, 1, 3, 6), angle);
+    for (const reverse of [false, true]) {
+      const level = {isStudy: true, floorOutline: [{outer: reverse ? [...outer].reverse() : outer}]};
+      const space = {kind: 'room', polygon: reverse ? [...polygon].reverse() : polygon};
+      const before = structuredClone({level, space});
+      const result = studyRoomMeasurements(level, space);
+      close(result.shortSpan, 3);
+      close(result.longSpan, 6);
+      close(result.area, 18);
+      assert.deepEqual({level, space}, before, 'display measurements do not rewrite source geometry');
+    }
+  }
+});
+
+test('nonrectangular room area excludes recesses and holes rather than multiplying its spans', () => {
+  const angle = Math.PI / 5;
+  const level = {isStudy: true, floorOutline: [{outer: transform(rectangle(0, 0, 30, 10), angle)}]};
+  const polygon = transform([[1, 1], [7, 1], [7, 3], [4, 3], [4, 5], [1, 5], [1, 1]], angle);
+  const hole = transform(rectangle(2, 2, 1, 1), angle);
+  for (const ring of [hole, [...hole].reverse()]) {
+    const result = studyRoomMeasurements(level, {kind: 'room', polygon, holes: [ring]});
+    close(result.shortSpan, 4);
+    close(result.longSpan, 6);
+    close(result.area, 17);
+    assert.notEqual(result.area, result.shortSpan * result.longSpan);
+  }
+});
+
+test('only study rooms receive envelope measurements', () => {
+  const level = {isStudy: true, floorOutline: [{outer: rectangle(0, 0, 30, 10)}]};
+  const room = {kind: 'room', polygon: rectangle(1, 1, 3, 6)};
+  assert.equal(studyRoomMeasurements({...level, isStudy: false}, room), null);
+  assert.equal(studyRoomMeasurements({...level, isStudy: undefined}, room), null);
+  for (const kind of ['corridor', 'stairs', 'lift', 'shared', 'service']) {
+    assert.equal(studyRoomMeasurements(level, {...room, kind}), null);
+  }
+});

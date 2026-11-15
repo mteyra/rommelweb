@@ -1,8 +1,10 @@
-# Red House 55 · resident sketch and lower-floor studies
+# Red House 55 · dimension fit and earlier lower-floor studies
 
 Reviewed 15 November 2026. The user selected **older Red House 55, Campus Süd I, 2. Obergeschoss** as the first interior study. This corresponds to above-ground index **2** in the current schema. Their annotated model screenshot supplies a proposed arrangement and identifies missing roof areas and a central stair. They subsequently corrected the stair and R1–R3 alignment and requested extrapolation to **1. OG and EG (indexes 1 and 0)**. These are resident observations and explicitly requested layout assumptions, not a dimensioned floor survey.
 
-The implementation stores all three study floors in `public/data/interior-studies.json`, separate from approved `public/data/interiors.json`, which remains empty. The official exterior is unchanged. The resident has now confirmed **20 rooms on 2. OG**, across all six hallway runs. Seven bay layouts follow the original sketch and thirteen layouts remain estimated; confirmed counts do not establish wall coordinates. L1–L3 occupy the existing left-block outline, with L3 against the attached stair. Each lower floor repeats 20 shared-layout references as estimates, leaving extra wings unassigned. No physical room number, resident, measured door position, opening swing or surveyed interior wall has been established.
+The implementation stores all three study floors in `public/data/interior-studies.json`, separate from approved `public/data/interiors.json`, which remains empty. The official exterior is unchanged. The resident has confirmed **20 rooms on 2. OG**, across all six hallway runs. A subsequent dimensional fit regularizes their approximate envelopes; **all twenty top-floor room layouts are now estimated**, even where the original sketch supplied a count and divider strokes. The enlarged L block still adjoins its stair at L3. **EG and 1. OG retain the earlier twenty-room sketch extrapolation**, frozen before this top-floor fit, with additional wings unassigned. No physical room number, resident, measured door position, opening swing or surveyed interior wall has been established.
+
+The resident describes the twenty rooms as broadly similar singles, with variation of “one hand length.” A roughly **0.20 m** variation is a working interpretation, not a measured tolerance. The [dimension refit](HOUSE55-DIMENSION-REFIT.md), [source-dimension evidence](HOUSE55-DIMENSION-EVIDENCE.md) and [independent scale audit](HOUSE55-SCALE-AUDIT.md) distinguish the resulting common-envelope study from proof of full apartment dimensions. The R run remains unresolved, and no building-scale change is used to disguise that constraint.
 
 ![House 55 second-floor resident study with both absent wings removed and compact room markers](preview/single-floor.png)
 
@@ -20,16 +22,16 @@ Locations here refer to the supplied screenshot, not compass directions inferred
 
 The latest resident check confirms the room counts represented by these hallway runs. It does not establish room identities, physical numbers, tenancy or precise apartment/partition boundaries.
 
-## Accepted resident revisions
+## Accepted resident revisions and their history
 
 The resident's follow-ups establish the following revisions:
 
-- **Stair against the left block:** the earlier alignment moved it approximately **0.447 m** to the then-labeled L2 wall, preserving width, run and orientation and producing about **2.98 m of shared boundary**. With the same block now divided into three rooms, that adjoining room is **L3**. The stair does not move again. These dimensions describe model alignment, not a new survey.
+- **Stair against the left block:** the earlier alignment moved it approximately **0.447 m** to the then-labeled L2 wall, preserving width, run and orientation and producing about **2.98 m of shared boundary**. Dividing that block into three made the adjoining room **L3**. This is the frozen lower-floor baseline. The later top-floor dimensional fit moves the attached stair with the revised L block while preserving the L3 relationship. These dimensions describe model alignment, not a new survey.
 - **R1–R3 toward the stair:** shift the block approximately **0.20 m** and align its rear wall and end edges with the source-plan boundary. The generator uses `RoofSurface` 39 vertices **6–7** and adjacent edges **5–6** and **7–8** to avoid small geometric protrusions. The resident has confirmed three rooms here; clear widths and internal wall locations remain unmeasured.
-- **Twenty upstairs rooms:** after double-checking, the resident confirmed the existing counts in every hallway except the left block, which has **three rooms rather than two**. L1–L3 divide its unchanged outer outline. The current six counts are **4 + 3 + 4 + 3 + 3 + 3 = 20**.
-- **Repeat the corrected shared arrangement below:** EG and 1. OG inherit it as a layout assumption. The user requested extrapolation; no independently observed lower-floor drawing or dimensions were supplied.
+- **Twenty upstairs rooms:** after double-checking, the resident confirmed the existing counts in every hallway except the left block, which has **three rooms rather than two**. The first count correction divided the unchanged L outline into three; the later dimensional fit expands that inferred block. The current six counts remain **4 + 3 + 4 + 3 + 3 + 3 = 20**.
+- **Repeat the corrected shared arrangement below:** the user requested extrapolation to EG and 1. OG before the dimensional refit. These floors retain that earlier arrangement as an assumption; no independently observed lower-floor drawing or dimensions were supplied. The new top-floor candidate is not copied down automatically.
 
-These corrections supersede the earlier approximate positioning. The original annotated screenshot remains archived unchanged, and provenance records the derived revisions separately.
+The original annotated screenshot remains archived unchanged. The [frozen earlier sketch](../data/source/house55-2og-sketch-baseline.json) records the twenty-room arrangement used below; [provenance](../data/source/house55-2og-study-provenance.json) records the later top-floor changes separately.
 
 ## Evidence and registration
 
@@ -41,6 +43,7 @@ These corrections supersede the earlier approximate positioning. The original an
 | [Older single-room sketch](https://rommelwood.de/media/images/zimmerskizze.jpg), from [Rommelwood's room-layout page](https://rommelwood.de/wohnen/zimmergrundriss/) | Approximately **2.70 × 3.30 m clear living zone**, with kitchen, bathroom and entrance outside that rectangle; approximately 2.50 m clear ceiling | Unassigned typical room, with variation/mirroring cautions. The 2.70 m width is not a measured structural bay pitch; clear ceiling height is not floor-to-floor height |
 | [Current Süd I rental-category chart](https://werkswelt.de/data/uploads/wohnen/mietpreislisten/2026/erlangen/760-campus-sued-i-2026.pdf) | Single-apartment category average of **16.4 m²** | Category averages include the chart's allocation rules. Do not divide a floor area by 16.4 to obtain a room count or construct a rectangle from it |
 | [Retained public-map aggregate](../public/data/room-markers.json), sourced from [Rommelwood's map](https://rommelwood.de/map/) | House 55 has **20 markers at source floor 2**, with 24 at floors 0 and 1 | Marker counts are not a verified current floor plan or occupancy count. Their coordinates were previously found unsuitable for precise interior placement |
+| [Frozen earlier twenty-room sketch](../data/source/house55-2og-sketch-baseline.json) | Exact study version used to reproduce EG and 1. OG | An earlier unmeasured interpretation, not evidence that the current top-floor fit repeats below |
 
 The refined screenshot registration fits **17 manually observed corners on the same horizontal source-roof plane**, with an approximately **1.09 px RMS fitting residual** and **1.77 px maximum residual**, expressed in the archived image's pixels. The retained provenance records conversion from the manual digitization canvas to that original image. Four ridge controls from the earlier fit were excluded because they are not on the same plane. This measures fit consistency, **not partition accuracy**: hand-stroke placement, roof-versus-interior setbacks, wall thickness and the source model's own limits remain unresolved. The derived lengths below describe source-anchored, rectified annotation runs, not measured clear internal widths.
 
@@ -50,19 +53,19 @@ The source roof plane is used only for horizontal registration. All three study 
 
 The resident's latest check was: “I double checked. We have the correct count for all the hallways except for L1, L2. There should also be a third dorm there L3.”
 
-| Hallway run / drawing labels | Confirmed 2. OG room count | Partition-position evidence |
+| Hallway run / drawing labels | Confirmed 2. OG room count | Current partition-position evidence |
 | --- | ---: | --- |
-| Southwest / A–D | 4 | Original sketch divisions; unmeasured |
-| East / E–G | 3 | Original sketch divisions; unmeasured |
-| West / W1–W4 | 4 | Estimated dividers within the marked region |
-| Left / L1–L3 | 3 | Revised equal subdivision of the unchanged left block; unmeasured |
+| Southwest / A–D | 4 | Evenly spaced estimated dividers replace unequal hand-stroke positions |
+| East / E–G | 3 | Evenly spaced estimated dividers replace unequal hand-stroke positions |
+| West / W1–W4 | 4 | Estimated 3.00 m gross bays extend into former corridor space |
+| Left / L1–L3 | 3 | Estimated 3.00 m gross bays in an enlarged block; stair remains against L3 |
 | Right / R1–R3 | 3 | Estimated dividers within the corrected outer alignment |
-| North / N1–N3 | 3 | Estimated dividers within the marked region |
+| North / N1–N3 | 3 | Earlier estimated dividers retained; corridor boundary refitted to the common depth |
 | **Total** | **20** | **Counts confirmed by the resident; geometry remains a study** |
 
 The original study had 19 candidates because it inferred only two left-block rooms. Its alternative two-room interpretation of the R block is also superseded by the resident's confirmation. Those earlier alternatives describe the research history, not the current count.
 
-The confirmed upstairs total now agrees with the public map's **20 floor-2 markers**. This resolves the count comparison, not the map-coordinate or room-number evidence. The map also reports **24 markers on each lower floor**. EG and 1. OG currently repeat 20 shared-layout references as assumptions and leave extra wings unassigned; their full counts and additional spaces remain unverified.
+The confirmed upstairs total now agrees with the public map's **20 floor-2 markers**. This resolves the count comparison, not the map-coordinate or room-number evidence. The map also reports **24 markers on each lower floor**. EG and 1. OG retain 20 shared-layout references from the earlier sketch as assumptions and leave extra wings unassigned; their full counts and additional spaces remain unverified.
 
 The earlier inference assumed repeated rooms could be compared with one typical **2.70 m clear living-zone width**. That unassigned typology cannot override the resident's count or establish every room's width. The left and right runs need measured partition positions and room dimensions. Keep the boundary convention explicit when checking a measured run:
 
@@ -74,19 +77,29 @@ run length ≈ n × clear room width
 
 All terms must use the same boundary convention; the equation is not a reason to change a resident-confirmed count. The current 3.25 m façade-window pitch is an illustrative rendering parameter and supplies no independent interior measurement.
 
+## Current top-floor envelope study
+
+The dimensional refit changes **index 2 only**. SW and east divide their existing source-anchored runs evenly, producing gross bays of approximately **3.02 m** and **3.05 m**. W tests four **3.00 m** bays; L tests three **3.00 m** bays, replacing the earlier approximately **2.23 m** L subdivisions. N retains gross widths around **3.19 m**. These seventeen non-R envelopes now share a fitted gross depth of approximately **5.40 m**.
+
+The common depth is the mean of the seventeen projected gross depths in the preceding width-only candidate, minimizing their squared depth changes. Five inferred corridor-facing boundaries move to produce that fit; the exterior is not rescaled. This objective regularizes prior modeling assumptions. It does not measure a complete apartment or reconstruct its undimensioned bathroom, kitchenette and entrance zones.
+
+The stair remains against L3 at its earlier width-fit position, approximately **0.70 m plan-right** of the frozen sketch position. The depth fit extends L3's contact with it without moving the stair again. This preserves the resident's adjacency, not a measured stair coordinate. L1 has only partial façade frontage in this candidate, so its outline and window relationship still need checking.
+
+R retains its exact polygons, with only approximately **8.08 m** of fixed source frontage, or **2.69 m gross per bay before walls**. Three literal 2.70 m clear-width living zones do not fit that frontage as equal façade-facing rectangles. This unresolved boundary/template question does not establish a narrower real apartment type. R is not lengthened to manufacture an equal area. The fit also does not prove equal usable areas elsewhere. See the [full refit record](HOUSE55-DIMENSION-REFIT.md) and [scale audit](HOUSE55-SCALE-AUDIT.md).
+
 ## Implemented display and its limits
 
 The **2. OG** study uses the existing provisional second-floor envelope section and subtracts the complete plan projections of the two sloping roof wings marked green. This changes only that displayed study plate; every retained LoD2 source vertex remains unchanged. The bays and corridor are limited to the annotated flat-roof plan. Stepped edge regions outside that annotation remain unassigned.
 
-The **EG and 1. OG** studies retain their complete original exterior-section outlines, including lower wings beneath the two green-marked upper roof areas. They do not inherit the upper exclusions. Only the corrected shared room/stair/corridor arrangement is repeated; the additional areas have no assigned room, route or use. The generator retains shared interior dividers and opening coordinates while clipping outer space edges to each floor's own source outline. This handles small source-coordinate differences without moving official vertices. Every lower-floor space and opening is `estimated`, and `extrapolatedFrom: 2` states the source of the assumption. Floor-specific IDs prevent interactions from being attached to a different level.
+The **EG and 1. OG** studies retain their complete original exterior-section outlines, including lower wings beneath the two green-marked upper roof areas. They do not inherit the upper exclusions. Their geometry remains the earlier room/stair/corridor extrapolation, reproduced from `data/source/house55-2og-sketch-baseline.json`; **none of the new top-floor dimensional changes is inherited**. The additional areas have no assigned room, route or use. The generator retains the baseline's interior dividers and opening coordinates while clipping outer space edges to each floor's own source outline. This handles small source-coordinate differences without moving official vertices. Every lower-floor space and opening is `estimated`. `extrapolatedFrom: 2` identifies the originating floor; the source notes and frozen baseline identify the version. Floor-specific IDs prevent interactions from being attached to a different level.
 
-The central stair follows the blue mark's direction and accepted left-block alignment, now adjoining L3. Its displayed treads are symbolic; they do not specify actual riser count, landing geometry, connections between floors or safe clearances. The **potential corridor** is the remainder between the study rooms and stair, not a verified circulation or egress plan. Its lower-floor repetition is also an estimate.
+The central stair follows the blue mark's direction and accepted L3 adjacency, with different estimated positions in the refitted top floor and frozen baseline below. Its displayed treads are symbolic; they do not specify actual riser count, landing geometry, connections between floors or safe clearances. The **potential corridor** is the remainder between the study rooms and stair, not a verified circulation or egress plan. Its lower-floor repetition is also an estimate.
 
 Every opening is **estimated**, including those beside sketch-divided bays: the generator places illustrative **0.90 m room openings** on candidate corridor-facing boundaries and a **1.10 m stair-access gap**. No door location or width was supplied by the annotation, and no hinge or swing is inferred. These gaps make the interaction framework inspectable; they do not establish real doors.
 
-The renderer uses a low 1.05 m display cutaway, which is not a measured wall or ceiling height. On 2. OG, sketch-following and estimated cells retain their separate evidence tags and solid/dashed wall treatment. Lower floors have no inherited `sketchBoundaries` and identify their repeated layouts as assumed from 2. OG. Selection shows the evidence note and a correction action; there is no resident-card placeholder for study cells. All labels and IDs are temporary study references, not physical room numbers.
+The renderer uses a low 1.05 m display cutaway, which is not a measured wall or ceiling height. On 2. OG, all twenty room envelopes carry `estimated` confidence; any retained solid sketch boundary denotes that individual source line, not a surveyed room. Lower floors have no inherited `sketchBoundaries`. Their UI says “Extrapolated study · see source notes” so it does not imply that the latest top-floor fit repeats below. Selection shows the evidence note and a correction action; there is no resident-card placeholder for study cells. All labels and IDs are temporary study references, not physical room numbers.
 
-The map uses compact labels **A–G**, **W1–W4**, **L1–L3**, **R1–R3**, and **N1–N3**. Upstairs they represent the 20 resident-confirmed rooms through unmeasured sketch/estimated geometry; on lower floors they identify assumed repetitions. They are drawing references only. Room markers and small door buttons open the full label and evidence. Colliding markers hide until there is room to display them, while “Rooms & drawing key” retains a keyboard-accessible list of every space. The near-overhead camera aligns the long building axis horizontally on desktop and vertically on portrait phones without changing geometry.
+The map uses compact labels **A–G**, **W1–W4**, **L1–L3**, **R1–R3**, and **N1–N3**. Upstairs they represent the 20 resident-confirmed rooms through estimated geometry; on lower floors they identify assumed repetitions of the earlier sketch. They are drawing references only. Room markers and small door buttons open the full label and evidence. Study-room cards also compute approximate spans along the building axes and polygon area minus holes, explicitly labeled **“Study envelope · before walls”** and **“Not measured living area.”** These measurements are taken from the current selected polygon, not a fixed target apartment size. Colliding markers hide until there is room to display them, while “Rooms & drawing key” retains a keyboard-accessible list of every space. The near-overhead camera aligns the long building axis horizontally on desktop and vertically on portrait phones without changing geometry.
 
 `getDisplayLevel` prefers an approved floor if one is added later. Study records cannot create approval or floor-height anchors. Approving a future plan requires its own measurements, source/reuse review and independent layout check.
 
@@ -96,7 +109,7 @@ To reproduce the registration and derived study for review:
 node scripts/generate-house55-study.mjs /tmp/house55-study-geometry.json
 ```
 
-By default the generator writes a review JSON and SVG outside the repository. The JSON's `level` is the corrected 2. OG record; `levels` contains EG, 1. OG and 2. OG, with registration, corrections and lower-floor assumptions retained in `metadata`. After review, `--write-study` updates House 55's study records, and `--write-provenance` refreshes the archived metadata. Neither option changes approved interiors or deploys the website. Computational checks are separate from release QA and do not validate the real-world layout. Current release verification belongs in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).
+By default the generator writes a review JSON and SVG outside the repository. The JSON's `level` is the dimensionally refitted 2. OG record; `levels` contains EG, 1. OG and 2. OG, with registration, corrections and lower-floor assumptions retained in `metadata`. Lower-floor reproduction reads the frozen baseline, whose path, digest and source commit are recorded in provenance, rather than copying the latest `level`. After review, `--write-study` updates House 55's study records, and `--write-provenance` refreshes the archived metadata. Neither option changes approved interiors or deploys the website. Computational checks are separate from release QA and do not validate the real-world layout. Current release verification belongs in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).
 
 ## Smallest useful resident checks
 
@@ -104,12 +117,12 @@ By default the generator writes a review JSON and SVG outside the repository. Th
 2. Locate and measure each real door opening, recording its room reference and whether it serves a shared/service space. Supply physical room numbers only when confirmed.
 3. Measure clear widths and distances across several consecutive partitions or door centers, recording the exact endpoints and wall-thickness convention.
 4. Identify the actual floor elevation, stair/landing outline, corridor widths and occupied boundary beside both upper exclusions before approving geometry.
-5. Check EG and 1. OG separately: confirm which upstairs walls repeat, identify the additional wings and any shared/service spaces, and record their actual counts, doors and circulation. Upstairs count confirmation does not verify the lower floors.
+5. Check EG and 1. OG separately before applying any top-floor refit there: confirm which walls repeat, identify the additional wings and any shared/service spaces, and record their actual counts, doors and circulation. Upstairs count confirmation does not verify the lower floors.
 
 Actual door locations, hinge sides and swings stay unknown until observed; the displayed estimated gaps do not resolve them. Physical room numbers remain absent during this study. No resident names, tenancy, contact details or occupancy records are needed. Follow [INTERIOR-FORMAT.md](INTERIOR-FORMAT.md) when approved geometry is ready, and preserve wall-thickness gaps rather than snapping clear-room outlines into a shared partition.
 
 ## Publication and interpretation
 
-The resident annotation, confirmed upstairs counts and accepted alignment corrections are implemented as clearly labeled studies; they must not silently populate the approved floor-plan dataset. Partition and door geometry remain unmeasured, and lower-floor repetition remains assumed. The former upstairs 19/20 discrepancy and alternative R count are superseded, while lower-floor completeness and all actual room-number assignments remain unresolved. A study cell is not an official room number or evidence of a resident, and an unassigned lower wing must not be presented as empty or occupied.
+The resident annotation, confirmed upstairs counts, accepted alignment relationships and top-floor dimensional fit are implemented as clearly labeled studies; they must not silently populate the approved floor-plan dataset. Partition and door geometry remain unmeasured. Lower floors retain an assumed earlier sketch, not the current top-floor fit. The former upstairs 19/20 discrepancy and alternative R count are superseded, while the R width/type fit, lower-floor completeness and all actual room-number assignments remain unresolved. A study cell is not an official room number or evidence of a resident, and an unassigned lower wing must not be presented as empty or occupied.
 
 External room drawings and photographs are linked, not bundled or traced as an exact House 55 plan. See [INTERIOR-PLAN-EVIDENCE.md](INTERIOR-PLAN-EVIDENCE.md) for the earlier search and [ROOM-TYPOLOGY-RESEARCH.md](ROOM-TYPOLOGY-RESEARCH.md) for the distinction between living-zone dimensions and category-average areas.

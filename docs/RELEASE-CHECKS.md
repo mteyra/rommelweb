@@ -1,8 +1,20 @@
 # Release checks
 
-Checked on 15 November 2026. Current results cover the stair/R1–R3 correction, resident confirmation of 20 upstairs rooms, and lower-floor extrapolation. Earlier release checks remain below as a recorded baseline.
+Checked on 15 November 2026. Current results cover the House 55 top-floor dimensional audit, similar-size candidate envelopes, computed room cards and preservation of the earlier lower-floor sketch. Earlier release checks remain below as recorded baselines.
 
 ## Current revision
+
+The resident confirms twenty top-floor rooms and believes they are generally similar single apartments, with size differences roughly a hand length. The revised study keeps all twenty references and the source exterior. Seventeen non-R envelopes use approximately 3.00–3.19 m gross bays and a fitted common depth of about 5.40 m. The depth comes from minimizing movement from the approximate sketch; it is not a measured apartment dimension. R1–R3 retain their exact source-aligned polygons and remain explicitly unresolved. Their fixed frontage cannot accommodate three literal 2.70 m clear widths plus walls, but the approximate room reference and exterior source do not establish actual R room sizes.
+
+- `npm test`: **96 passing tests**, including current-data hashes for the evidence report, independent verification of seventeen 2.70 × 3.30 m packing rectangles and their hypothetical 0.10 m inset, the three unresolved R cases, repeated bay widths, source-preserving topology, stairs/L3 contact, frozen lower-floor geometry, and rotated/concave room measurements.
+- `npm run build`: passed, including the unchanged path-cache source check.
+- The [independent dimension audit](HOUSE55-DIMENSION-REFIT.md) records the source dimensions, former errors, corridor diagnostics, numerical tolerances, unknown full apartment dimensions and a reproducible [before/after drawing](preview/house55-dimension-audit.png). Packing witnesses prove geometric containment only; no window, bathroom or service arrangement is asserted.
+- EG and 1. OG preserve the exact earlier room and doorway geometry from the archived pre-refit baseline. Their headers, cards and source notes explain the extrapolation. The latest top-floor candidate is not silently copied down.
+- Isolated Firefox production checks cover **1440 × 1000**, **390 × 844**, and **320 × 568**: floor selection, all twenty room references, room and door cards, computed envelope dimensions, unresolved R notes, source/correction links, the stair target, day/night mode, and return navigation. Refreshed previews cover all three floors, the unfolded stack, daylight and phone layouts.
+- Room-card measurements are calculated from the selected polygon, with holes subtracted from area. They explicitly say “Study envelope · before walls” and “Not measured living area.” The drawing remains uncluttered.
+- No horizontal overflow, overlapping visible markers, browser console errors, audio/video elements, cookies, localStorage or sessionStorage entries were observed. Approved interiors and all official exterior coordinates remain unchanged.
+
+## Previous baseline — twenty-room sketch and lower-floor extrapolation
 
 The current House 55 / 2. OG count is **20 rooms**, confirmed by the resident across all six hallway runs: **4 southwest + 3 east + 4 west + 3 left + 3 right + 3 north**. L1–L3 divide the existing left block, so the attached stair now meets L3 without moving again. R1–R3 retain the accepted alignment. Partition and door positions remain unmeasured, and labels remain study references. EG and 1. OG repeat 20 assumed shared-layout rooms with `extrapolatedFrom: 2`; every lower-floor space and opening is estimated. Their full source sections retain additional wings without assigned rooms or use. Only 2. OG has the two resident-marked floor exclusions. Approved interiors and official exterior geometry remain unchanged.
 

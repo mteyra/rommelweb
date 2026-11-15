@@ -432,12 +432,11 @@ test('House 55 studies cover its three floors while retaining the directly annot
   assert.equal(Object.hasOwn(resolved, 'elevation'), false);
   assert.equal(Object.hasOwn(resolved, 'reviewedAt'), false);
   assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'estimated'));
-  assert.ok(resolved.spaces.some(space => space.kind === 'room' && space.confidence === 'sketch'));
   assert.equal(resolved.spaces.filter(space => space.kind === 'room').length, 20, 'the resident-confirmed count includes three L rooms');
   assert.equal(resolved.spaces.length, 22, 'twenty rooms plus the stair and corridor areas');
   assert.equal(resolved.doors.length, 21, 'twenty estimated room openings and one estimated stair opening');
-  assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'sketch').length, 7);
-  assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'estimated').length, 13, 'confirmed counts do not upgrade estimated partition positions to observed geometry');
+  assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'sketch').length, 0);
+  assert.equal(resolved.spaces.filter(space => space.kind === 'room' && space.confidence === 'estimated').length, 20, 'fitted envelopes remain estimates even where counts and approximate positions were sketched');
   for (const [prefix, count] of [['W', 4], ['L', 3], ['R', 3], ['N', 3]]) {
     assert.deepEqual(resolved.spaces.filter(space => new RegExp(`^${prefix}\\d+$`).test(space.shortLabel)).map(space => space.shortLabel).sort(),
       Array.from({length: count}, (_, i) => `${prefix}${i + 1}`), `${prefix} run matches the confirmed room count`);
@@ -489,6 +488,34 @@ test('every published floor preserves usable area and leaves the stairs independ
   }
 });
 
+test('the top-floor dimensional fit equalizes repeated bays without forcing the unresolved R facade to grow', async () => {
+  const published = await read('interior-studies'), plan = display(published);
+  const magnitude = Math.hypot(0.676, 0.737);
+  const local = ([x, z]) => [(x * 0.676 + z * 0.737) / magnitude, (-x * 0.737 + z * 0.676) / magnitude];
+  const span = (label, axis) => {
+    const points = plan.spaces.find(space => space.shortLabel === label).polygon.map(local).map(point => point[axis]);
+    return Math.max(...points) - Math.min(...points);
+  };
+  for (const [labels, axis, target] of [
+    [['A', 'B', 'C', 'D'], 0, 3.0165], [['E', 'F', 'G'], 1, 3.0465],
+    [['W1', 'W2', 'W3', 'W4'], 1, 3], [['L1', 'L2', 'L3'], 0, 3],
+  ]) {
+    for (const label of labels) assert.ok(Math.abs(span(label, axis) - target) < 0.015, `${label} uses the candidate repeated bay within source skew`);
+  }
+  const similar = [...'ABCDEFG', 'W1', 'W2', 'W3', 'W4', 'L1', 'L2', 'L3', 'N1', 'N2', 'N3'];
+  const widths = similar.map(label => span(label, /^W|^[EFG]$/.test(label) ? 1 : 0));
+  const depths = similar.map(label => span(label, /^W|^[EFG]$/.test(label) ? 0 : 1));
+  assert.ok(Math.max(...widths) - Math.min(...widths) < 0.21, 'the seventeen fitted bays vary by approximately a hand length, not by whole metres');
+  assert.ok(Math.max(...depths) - Math.min(...depths) < 0.03, 'a common candidate depth keeps the seventeen full envelopes comparable within source skew');
+  const roof = lod2.buildings.find(building => building.number === '55').surfaces[39];
+  const facade = Math.hypot(roof.points[7][0] - roof.points[6][0], roof.points[7][2] - roof.points[6][2]);
+  assert.ok(facade < 3 * 2.70, 'the exact existing R facade cannot supply three literal 2.70m widths even before walls');
+  for (const label of ['R1', 'R2', 'R3']) {
+    assert.ok(span(label, 0) < 2.71);
+    assert.match(plan.spaces.find(space => space.shortLabel === label).note, /unresolved/);
+  }
+});
+
 test('the corrected stair enclosure is flush to L3 with a continuous shared wall on every displayed floor', async () => {
   const published = await read('interior-studies');
   const magnitude = Math.hypot(0.676, 0.737);
@@ -508,7 +535,7 @@ test('the corrected stair enclosure is flush to L3 with a continuous shared wall
     assert.ok(Math.abs(sy1 - sy0 - 4.304877) < 0.001, 'attaching the stairs preserves the previously registered run');
     const expectedContact = Math.min(sy1, ly1) - Math.max(sy0, ly0);
     const contact = sharedBoundaryLength(stair.polygon, l3.polygon);
-    assert.ok(expectedContact > 2.95 && expectedContact < 3);
+    assert.ok(expectedContact > 2.9 && expectedContact < sy1 - sy0, 'retain substantial contact and the stair access below it');
     assert.ok(Math.abs(contact - expectedContact) < 0.00002, 'the whole adjoining span must be a shared edge rather than one touching corner');
     assert.ok(multiArea(intersection([stair.polygon], [l3.polygon])) < 0.000001, 'flush rooms must not overlap');
   }
@@ -537,15 +564,19 @@ test('R1–R3 remain one continuous block and the corrected upper outline has no
   }
 });
 
-test('lower-floor extrapolations retain their own exterior sections and use distinct same-floor identities', async () => {
+test('lower-floor extrapolations retain the earlier sketch and their own exterior sections while the top-floor fit changes', async () => {
   const published = freeze(await read('interior-studies')), before = structuredClone(published);
-  const upper = display(published), official = lod2.buildings.find(building => building.number === '55');
+  const baseline = JSON.parse(await readFile(new URL('../data/source/house55-2og-sketch-baseline.json', import.meta.url)));
+  const upper = baseline.level, official = lod2.buildings.find(building => building.number === '55');
+  assert.notDeepEqual(upper.spaces.find(space => space.shortLabel === 'L1').polygon,
+    display(published).spaces.find(space => space.shortLabel === 'L1').polygon, 'the previous 2.23m-wide L room must not be mistaken for the new top-floor fit');
   const elevations = getLevelElevations(emptyApproved, '55', 3, official.height);
   const allIds = published.buildings['55'].levels.flatMap(plan => [...plan.spaces, ...(plan.doors || []), ...(plan.excludedAreas || [])].map(item => item.id));
   assert.equal(new Set(allIds).size, allIds.length, 'same-looking floor plans still need globally unique interaction IDs');
   for (const floor of [0, 1]) {
     const plan = getDisplayLevel(emptyApproved, published, '55', floor);
     assert.equal(plan.extrapolatedFrom, 2);
+    assert.match(plan.notes, /earlier.*before its dimensional refit/);
     assert.equal(Object.hasOwn(plan, 'elevation'), false);
     assert.equal(Object.hasOwn(plan, 'reviewedAt'), false);
     assert.ok(plan.spaces.every(space => space.confidence === 'estimated'));
@@ -566,7 +597,7 @@ test('lower-floor extrapolations retain their own exterior sections and use dist
       assert.notEqual(space.id, original.id);
       const clippedOriginal = intersection([original.polygon, ...(original.holes || [])], sourceOutline);
       const copied = [space.polygon, ...(space.holes || [])];
-      const message = `floor ${floor}, ${space.shortLabel}: repeat the corrected space, clipping only its exterior to this source section`;
+      const message = `floor ${floor}, ${space.shortLabel}: preserve the frozen earlier sketch, clipping only its exterior to this source section`;
       const addedArea = assertSourceBoundaryFit([copied], clippedOriginal, message);
       const missingArea = assertSourceBoundaryFit(clippedOriginal, [copied], message);
       assert.ok(addedArea + missingArea < sourceBoundaryAreaTolerance, `${message}: total difference is ${addedArea + missingArea} m²`);

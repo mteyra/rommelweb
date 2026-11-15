@@ -7,6 +7,7 @@ import { validateInteriorStudies, getDisplayLevel } from './interior-studies.js'
 import { calendarDraft, orderedDrafts } from './events.js';
 import { icon } from './icons.js';
 import { roomReferences, roomReferenceSource } from './room-references.js';
+import { studyRoomMeasurements } from './study-measurements.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -103,7 +104,7 @@ function renderFloor() {
   $('#floor-stage').hidden = !inFloors;
   $('#floor-stage-title').textContent = inFloors ? `House ${state.selected} / ${state.floor === null ? 'Floor study' : level?.isStudy ? floorNotation(state.floor) : level?.label || floorName(state.floor)}` : '';
   $('#floor-stage-note').textContent = state.floor === null ? 'Choose a level to look inside.'
-    : extrapolated ? `Layout assumed from ${floorNotation(level.extrapolatedFrom)}.`
+    : extrapolated ? 'Extrapolated study · see source notes.'
       : level?.isStudy ? 'Resident sketch · dashed divisions are estimates.'
       : level?.spaces.length ? 'Explore a room or a marked doorway.' : 'Interior plan awaiting a verified layout.';
   $('#floor-stage').classList.toggle('is-study', Boolean(level?.isStudy));
@@ -113,8 +114,10 @@ function renderFloor() {
     : 'Almost overhead. Drag to adjust; All levels returns to the stack.';
   $('#floor-detail summary').innerHTML = `${state.floor === null ? 'About these levels' : level?.isStudy ? 'Rooms & drawing key' : esc(level?.label || floorName(state.floor))}<span aria-hidden="true">＋</span>`;
   const spaceButtons = level ? `<div class="room-grid">${level.spaces.map(space => `<button class="room-chip${level.isStudy && space.confidence === 'estimated' ? ' is-estimated' : ''}" data-space="${esc(space.id)}"${level.isStudy ? ` aria-label="${esc(`${space.label}, ${space.confidence === 'estimated' ? 'estimated area' : 'resident sketch'}, temporary study label`)}"` : ''}>${esc(space.label)}</button>`).join('')}</div>` : '';
+  const dimensionEvidence = level?.isStudy && state.selected === '55' && state.floor === 2
+    ? '<a class="text-button" href="https://github.com/mteyra/rommelweb/blob/main/docs/HOUSE55-DIMENSION-REFIT.md" target="_blank" rel="noopener">Room dimensions & evidence ↗</a>' : '';
   $('#floor-detail-content').innerHTML = level?.isStudy
-    ? `<p class="study-evidence">${extrapolated ? `Layout assumed from ${floorNotation(level.extrapolatedFrom)}` : 'A resident-sketch study'}</p><div class="study-legend" aria-label="Drawing key">${extrapolated ? '' : '<span data-evidence="sketch">Sketch</span>'}<span data-evidence="estimated">Estimate</span>${level.excludedAreas?.length ? '<span data-evidence="excluded">Excluded</span>' : ''}</div>${spaceButtons}<p>Lettered labels are temporary, not physical room numbers. Divisions and doorway positions still need verification.</p>${studyNotes(level)}<small>Source: ${esc(level.source)}</small><div class="floor-reference-actions"><button class="text-button" id="contribute-floor">Correct this study ↗</button></div>`
+    ? `<p class="study-evidence">${extrapolated ? 'Extrapolated study · see source notes' : 'A resident-sketch study'}</p><div class="study-legend" aria-label="Drawing key">${extrapolated ? '' : '<span data-evidence="sketch">Sketch</span>'}<span data-evidence="estimated">Estimate</span>${level.excludedAreas?.length ? '<span data-evidence="excluded">Excluded</span>' : ''}</div>${spaceButtons}<p>Lettered labels are temporary, not physical room numbers. Divisions and doorway positions still need verification.</p>${studyNotes(level)}<small>Source: ${esc(level.source)}</small><div class="floor-reference-actions"><button class="text-button" id="contribute-floor">Correct this study ↗</button>${dimensionEvidence}</div>`
     : level ? `${spaceButtons}<p>${level.elevation} m above building base. Approved room and doorway geometry; walls shown as a low cutaway.</p><small>${esc(level.source)} · reviewed ${esc(level.reviewedAt)}</small>`
       : `<p>${state.floor === null ? 'Each plate cuts through the actual exterior at its level. Upper sections follow the stepped roofs. Floor heights and room plans still need verification.' : 'This is the exterior section at a provisional floor height. A house-and-floor plan is needed to place its rooms, corridors and doors accurately.'}</p><div class="floor-reference-actions"><button class="text-button" id="room-references">Published room designs ↗</button><button class="text-button" id="contribute-floor">Add a floor detail ↗</button></div>`;
   $$('#floor-detail-content [data-space]').forEach(button => button.onclick = () => spaceDialog({house: state.selected, floor: state.floor, spaceId: button.dataset.space}));
@@ -139,7 +142,7 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
     const extrapolated = level.extrapolatedFrom !== undefined;
     const title = `${door ? door.label : space.label} · study`;
     const description = extrapolated
-      ? `This ${door ? 'doorway' : space.kind === 'stairs' ? 'stair area' : space.kind} follows the corrected ${floorNotation(level.extrapolatedFrom)} layout, carried down at the resident’s request. Its position on this floor still needs verification.`
+      ? `This ${door ? 'doorway' : space.kind === 'stairs' ? 'stair area' : space.kind} is extrapolated from a study of ${floorNotation(level.extrapolatedFrom)}. The source notes identify the version used; its position on this floor still needs verification.`
       : door
       ? estimated ? 'Estimated doorway position. The opening, hinge and direction still need verification.' : 'Doorway marked in the resident sketch. Its position and dimensions still need verification.'
       : space.kind === 'room'
@@ -147,7 +150,10 @@ function spaceDialog({ house: number, floor, spaceId, openingId }) {
         : space.kind === 'stairs'
           ? estimated ? 'Estimated stair area. Its shape and connections between floors are unverified.' : 'Stair area marked in the resident sketch. Its exact shape and connections between floors are unverified.'
           : estimated ? 'An estimated space within the resident sketch.' : 'A space marked in the resident sketch; its boundaries are approximate.';
-    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
+    const measurement = !door ? studyRoomMeasurements(level, space) : null;
+    const dimensions = measurement
+      ? `<div class="source-item"><strong>Study envelope · before walls</strong><p>≈ ${measurement.shortSpan.toFixed(1)} × ${measurement.longSpan.toFixed(1)} m span · ≈ ${measurement.area.toFixed(1)} m² gross polygon area</p><p>Not measured living area. Spans follow the building axes; polygon area excludes recesses and cutouts.</p></div>` : '';
+    modal(`<div class="modal-eyebrow">HOUSE ${esc(number)} / ${esc(level.label)}</div><h2 class="modal-title">${esc(title)}</h2><div class="study-card-evidence${estimated ? ' is-estimated' : ''}">${extrapolated ? 'Assumed layout' : estimated ? 'Estimated' : 'Resident sketch'}</div><p class="modal-lead">${esc(description)}</p>${space.kind === 'room' ? '<p class="study-identity-note">This is a temporary study label, not a physical room number or a resident assignment.</p>' : ''}${dimensions}${item.note ? `<p class="study-item-note">${esc(item.note)}</p>` : ''}<div class="modal-actions"><button class="outline-button" id="correct-space-study">Suggest a correction ↗</button></div><p class="source-note">Source: ${esc(level.source)}. Study geometry is separate from approved plans; no resident information or occupancy is published.</p>`);
     $('#correct-space-study').onclick = () => {
       correctionDialog(number, floor);
       const observation = $('#correction-form').elements.observation;
