@@ -214,16 +214,16 @@ export function createOldHouseModuleLayouts({studies,lod2,topPlan,firstFloorPlan
   if(topPlan.levelIndex!==2||firstFloorPlan.levelIndex!==1||groundFloorPlan.levelIndex!==0)
     throw Error('Expected the accepted House 55 templates for all three floors.');
   const result=clone(studies),source=lod2.buildings.find(building=>building.number==='55');
-  // A resident-confirmed independent plan supersedes its earlier shell fit.
-  // Keep it intact when regenerating the remaining provisional houses.
+  // An independent floor supersedes only its own earlier shell fit. Mixed
+  // houses may still have provisional lower floors awaiting resident review.
   const activeHouses=TARGET_HOUSES.filter(house=>
-    !studies.buildings[house]?.levels.some(isIndependentLayout));
+    studies.buildings[house]?.levels.some(level=>!isIndependentLayout(level)));
   const metadata={
     schemaVersion:1,status:'provisional-fit-for-site-check',units:'metres',
     sourceHashes:{topPlan:hash(topPlan),firstFloorPlan:hash(firstFloorPlan),groundFloorPlan:hash(groundFloorPlan)},
     dimensions:{singleWidth:2.7,singleDepth:6,sideWallAllocation:0.2,modulePitch:3.1,hallWidth:1.4,sharedWidth:6.2,sharedDepth:7.4},
     notes:[
-      `Only the existing provisional interior studies for Houses ${activeHouses.join(', ')} are replaced. Resident-confirmed independent houses are retained verbatim.`,
+      `Only the existing provisional floors for Houses ${activeHouses.join(', ')} are replaced. Resident-directed independent floors are retained verbatim, including completed floors within mixed houses.`,
       'All previous floor outlines and folded LoD2 exterior surfaces remain unchanged. No room or shared envelope is stretched, warped or cropped.',
       'Gray residual floor is deliberately unassigned. House 55 cinema, laundry, balcony and window placements do not establish uses or openings in another house.',
       'The layout is a provisional fit to support an in-person check, not a survey, confirmed room inventory or internal furnishing plan.',
@@ -233,11 +233,17 @@ export function createOldHouseModuleLayouts({studies,lod2,topPlan,firstFloorPlan
     const previous=studies.buildings[house];
     if(!previous)throw Error(`Missing House ${house} study.`);
     const target=lod2.buildings.find(building=>building.number===house),frame=coordinateFrame(topPlan,source,target);
-    const plans=previous.levels.map(level=>createLocalPlan(house,level,level.index===2?topPlan:level.index===1?firstFloorPlan:groundFloorPlan,frame));
+    const plans=previous.levels.filter(level=>!isIndependentLayout(level))
+      .map(level=>createLocalPlan(house,level,level.index===2?topPlan:level.index===1?firstFloorPlan:groundFloorPlan,frame));
+    const hasIndependentFloor=previous.levels.some(isIndependentLayout);
     result.buildings[house]={
-      ...clone(previous),sourceDate:'2026-11-15',
-      source:'Provisional House 55 room modules fitted rigidly inside each unchanged existing source floor. Gray remainder is unassigned for resident verification; folded exterior evidence is preserved.',
-      levels:previous.levels.map((level,index)=>createStudyLevel(house,level,plans[index],frame)),
+      ...clone(previous),
+      ...(!hasIndependentFloor?{
+        sourceDate:'2026-11-15',
+        source:'Provisional House 55 room modules fitted rigidly inside each unchanged existing source floor. Gray remainder is unassigned for resident verification; folded exterior evidence is preserved.',
+      }:{}),
+      levels:previous.levels.map(level=>isIndependentLayout(level)?clone(level)
+        :createStudyLevel(house,level,plans.find(plan=>plan.levelIndex===level.index),frame)),
     };
     metadata.houses[house]={coordinateFrame:frame,coreTranslation:clone(PLACEMENTS[house].core),levels:plans};
   }

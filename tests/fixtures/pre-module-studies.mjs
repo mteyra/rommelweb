@@ -54,6 +54,17 @@ export function assertUnchangedOtherFloors(current, historical) {
       `House ${number} retains its original floor inventory`);
     for (const original of building.levels) {
       const level = next.levels.find(item => item.index === original.index);
+      // Yellow has an independently completed top floor only. Its dedicated
+      // suite protects that replacement and the two untouched lower floors.
+      if (number === '51' && level.index === 2 && level.layoutBasis === 'resident-module-layout') {
+        const changes = ['label', 'source', 'notes', 'layoutBasis', 'floorOutline', 'spaces', 'doors',
+          'wallBands', 'dimensionGuides', 'layoutWindows', 'extrapolatedFrom'];
+        assert.deepEqual(without(level, changes), without(original, changes),
+          '51/2: source openings and other original source fields remain exact');
+        assert.ok(level.spaces.every(space => space.confidence === 'estimated'));
+        assert.ok(level.doors.every(door => door.confidence === 'estimated'));
+        continue;
+      }
       if (level.layoutBasis !== 'fitted-module-layout') {
         assert.deepEqual(level, original);
         continue;

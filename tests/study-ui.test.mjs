@@ -247,3 +247,65 @@ test('Green common spaces are separate from apartment cards and link to their ow
   view.accuracyDialog();
   assert.match(view.element('#modal-body').innerHTML, /Green follows Red on both upper floors, including both first-floor balconies/);
 });
+
+const yellowMixedLevels = () => {
+  const records = allModuleLevels().map(level => ({...level, layoutBasis: 'fitted-module-layout'}));
+  const top = records[2];
+  top.layoutBasis = 'resident-module-layout';
+  top.spaces = [
+    {id: 'a-e', kind: 'room', label: 'Room E · A wing', shortLabel: 'E', confidence: 'estimated', polygon: rectangle(0.2, 1.4, 2.7, 6)},
+    {id: 'east-e', kind: 'room', label: 'Room E · East wing', shortLabel: 'E', confidence: 'estimated', polygon: rectangle(3.3, 1.4, 2.7, 6)},
+    {id: 'n-0', kind: 'room', label: 'Room N0', shortLabel: 'N0', confidence: 'estimated', polygon: rectangle(6.4, 1.4, 2.7, 6)},
+  ];
+  top.doors = top.spaces.map(space => ({id: `${space.id}-door`, label: `${space.label} doorway`,
+    spaceId: space.id, confidence: 'estimated', segment: [[0.2, 1.4], [1.1, 1.4]]}));
+  return records;
+};
+
+test('Yellow top floor identifies both E rooms and N0 with its own evidence and annotated doors', () => {
+  const records = yellowMixedLevels(), view = ui(records, 2, '51');
+  view.renderFloor();
+  const details = view.element('#floor-detail-content').innerHTML;
+  assert.match(details, /Resident-marked top-floor layout · Yellow House/);
+  assert.match(details, /HOUSE51-TOP-FLOOR-LAYOUT\.md/);
+  assert.match(details, /EG and 1\. OG retain their provisional layouts/);
+  assert.doesNotMatch(details, /HOUSE55-MODULE-LAYOUT\.md|original outline retained|Resident-confirmed arrangement/);
+  for (const space of records[2].spaces) {
+    assert.ok(details.includes(space.label));
+    view.spaceDialog({house: '51', floor: 2, spaceId: space.id});
+    const card = view.element('#modal-body').innerHTML;
+    assert.ok(card.includes(`${space.label} · study`));
+    assert.match(card, /Resident-marked top-floor layout/);
+    assert.match(card, /2\.70 × 6\.00 m · 16\.20 m² clear polygon area/);
+    view.spaceDialog({house: '51', floor: 2, spaceId: space.id, openingId: `${space.id}-door`});
+    assert.match(view.element('#modal-body').innerHTML, /resident’s lime-green mark/);
+  }
+});
+
+test('Yellow top-floor completion preserves both lower floors’ existing controls and cards', () => {
+  const previous = allModuleLevels().map(level => ({...level, layoutBasis: 'fitted-module-layout'}));
+  for (const index of [0, 1]) {
+    const before = ui(previous, index, '51'), after = ui(yellowMixedLevels(), index, '51');
+    for (const view of [before, after]) {
+      view.renderFloor();
+      view.spaceDialog({house: '51', floor: index, spaceId: `room-${index}`});
+    }
+    for (const selector of ['#floor-stage-title', '#floor-stage-note', '#floor-detail-content', '#modal-body']) {
+      assert.equal(after.element(selector).innerHTML, before.element(selector).innerHTML, `${index}: ${selector}`);
+      assert.equal(after.element(selector).textContent, before.element(selector).textContent, `${index}: ${selector}`);
+    }
+  }
+});
+
+test('Yellow mixed-floor model evidence reports only the top floor as resident-marked', () => {
+  const view = ui(yellowMixedLevels(), null, '51');
+  view.renderFloor();
+  assert.match(view.element('#floor-detail-content').innerHTML, /Yellow’s 2\. OG follows the resident’s room and doorway annotation/);
+  assert.match(view.element('#floor-detail-content').innerHTML, /EG and 1\. OG retain their existing provisional layouts/);
+  view.accuracyDialog();
+  const copy = view.element('#modal-body').innerHTML;
+  assert.match(copy, /Yellow House 51’s 2\. OG has a resident-marked layout/);
+  assert.match(copy, /House 51’s EG and 1\. OG retain their provisional modules and original outlines/);
+  assert.match(copy, /HOUSE51-TOP-FLOOR-LAYOUT\.md/);
+  assert.doesNotMatch(copy, /Houses 51 use provisional modules|House 51 uses independent layouts on all three levels/);
+});

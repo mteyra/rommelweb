@@ -1,0 +1,1013 @@
+{
+  "checkedAt": "2026-11-15T19:54:48.079Z",
+  "browser": "Firefox via WebDriver BiDi",
+  "url": "http://127.0.0.1:4186/rommelweb/?qa=yellow-top",
+  "floors": [
+    {
+      "floor": 2,
+      "singles": 21,
+      "spaces": 24,
+      "doors": 23,
+      "windows": 25,
+      "cards": [
+        {
+          "id": "module-51-2-room-E-G",
+          "label": "Room G",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-E-F",
+          "label": "Room F",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-E-E",
+          "label": "Room E \u00b7 East wing",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-N-N3",
+          "label": "Room N3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-N-N2",
+          "label": "Room N2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-N-N1",
+          "label": "Room N1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-N-N0",
+          "label": "Room N0",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-R-R3",
+          "label": "Room R3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-R-R2",
+          "label": "Room R2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-R-R1",
+          "label": "Room R1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-L-L3",
+          "label": "Room L3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-L-L2",
+          "label": "Room L2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-L-L1",
+          "label": "Room L1",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-A-E",
+          "label": "Room E \u00b7 A wing",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-A-D",
+          "label": "Room D",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-A-C",
+          "label": "Room C",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-A-B",
+          "label": "Room B",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-A-A",
+          "label": "Room A",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-W-W4",
+          "label": "Room W4",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-W-W3",
+          "label": "Room W3",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-room-W-W2",
+          "label": "Room W2",
+          "kind": "room",
+          "dimensions": "2.70 \u00d7 6.00 m \u00b7 16.20 m\u00b2 clear"
+        },
+        {
+          "id": "module-51-2-hall-east",
+          "label": "East hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "module-51-2-hall-west",
+          "label": "West hall",
+          "kind": "corridor"
+        },
+        {
+          "id": "module-51-2-stairs",
+          "label": "Stairwell",
+          "kind": "stairs"
+        }
+      ],
+      "doorLabels": [
+        {
+          "title": "Room G doorway",
+          "aria": "Explore Room G doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room F doorway",
+          "aria": "Explore Room F doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room E \u00b7 East wing doorway",
+          "aria": "Explore Room E \u00b7 East wing doorway, estimated layout, House 51, floor 2",
+          "hidden": true,
+          "text": ""
+        },
+        {
+          "title": "Room N3 doorway",
+          "aria": "Explore Room N3 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room N2 doorway",
+          "aria": "Explore Room N2 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room N1 doorway",
+          "aria": "Explore Room N1 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room N0 doorway",
+          "aria": "Explore Room N0 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room R3 doorway",
+          "aria": "Explore Room R3 doorway, estimated layout, House 51, floor 2",
+          "hidden": true,
+          "text": ""
+        },
+        {
+          "title": "Room R2 doorway",
+          "aria": "Explore Room R2 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room R1 doorway",
+          "aria": "Explore Room R1 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room L3 doorway",
+          "aria": "Explore Room L3 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room L2 doorway",
+          "aria": "Explore Room L2 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room L1 doorway",
+          "aria": "Explore Room L1 doorway, estimated layout, House 51, floor 2",
+          "hidden": true,
+          "text": ""
+        },
+        {
+          "title": "Room E \u00b7 A wing doorway",
+          "aria": "Explore Room E \u00b7 A wing doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room D doorway",
+          "aria": "Explore Room D doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room C doorway",
+          "aria": "Explore Room C doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room B doorway",
+          "aria": "Explore Room B doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room A doorway",
+          "aria": "Explore Room A doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room W4 doorway",
+          "aria": "Explore Room W4 doorway, estimated layout, House 51, floor 2",
+          "hidden": true,
+          "text": ""
+        },
+        {
+          "title": "Room W3 doorway",
+          "aria": "Explore Room W3 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "Room W2 doorway",
+          "aria": "Explore Room W2 doorway, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "East hall stair entry",
+          "aria": "Explore East hall stair entry, estimated layout, House 51, floor 2",
+          "hidden": false,
+          "text": ""
+        },
+        {
+          "title": "West hall stair entry",
+          "aria": "Explore West hall stair entry, estimated layout, House 51, floor 2",
+          "hidden": true,
+          "text": ""
+        }
+      ],
+      "doorCards": [
+        "Room G doorway",
+        "Room F doorway",
+        "Room N3 doorway",
+        "Room N2 doorway",
+        "Room N1 doorway",
+        "Room N0 doorway",
+        "Room R2 doorway",
+        "Room R1 doorway",
+        "Room L3 doorway",
+        "Room L2 doorway",
+        "Room E \u00b7 A wing doorway",
+        "Room D doorway",
+        "Room C doorway",
+        "Room B doorway",
+        "Room A doorway",
+        "Room W3 doorway",
+        "Room W2 doorway",
+        "East hall stair entry"
+      ],
+      "responsive": [
+        {
+          "floor": 2,
+          "width": 1440,
+          "height": 1000,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 42,
+          "visibleDimensionCount": 13,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 29,
+          "visibleDimensionCount": 12,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 390,
+          "height": 844,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 29,
+          "visibleDimensionCount": 12,
+          "theme": "day",
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 8,
+          "visibleDimensionCount": 2,
+          "selectedYellowOnly": true
+        },
+        {
+          "floor": 2,
+          "width": 320,
+          "height": 568,
+          "horizontalOverflow": false,
+          "visibleLabelCount": 8,
+          "visibleDimensionCount": 2,
+          "theme": "day",
+          "selectedYellowOnly": true
+        }
+      ],
+      "bothEs": [
+        {
+          "title": "Room E \u00b7 East wing",
+          "text": "E",
+          "hidden": false
+        },
+        {
+          "title": "Room E \u00b7 A wing",
+          "text": "E",
+          "hidden": false
+        }
+      ],
+      "foldUnfoldCameraRestored": true
+    },
+    {
+      "floor": 1,
+      "spaces": 21,
+      "singles": 14,
+      "shared": 4,
+      "unchangedProvisionalUI": true,
+      "identicalCameraAndLabels": true
+    },
+    {
+      "floor": 0,
+      "spaces": 21,
+      "singles": 14,
+      "shared": 4,
+      "unchangedProvisionalUI": true,
+      "identicalCameraAndLabels": true
+    }
+  ],
+  "checks": [
+    "Both E labels stay E on the floor, with distinct A-wing/East-wing card and doorway names.",
+    "Model dialog correctly separates Yellow\u2019s updated top floor, its two provisional lower floors and completed Red/White/Green houses.",
+    "All three levels of Red55, White57, Green59 and Brown53 retain their existing room controls and evidence modes.",
+    "Yellow EG and 1. OG screenshots are pixel-identical to c73bc34 at 1440 \u00d7 1000 with the same browser and camera.",
+    "Deeper zoom and pan verified three additional doorway cards and the physical corner apertures. R3 and W4 icons remain covered by hall labels at the captured views; existing label handling was preserved."
+  ],
+  "screenshots": [
+    "docs/preview/house51-top-folded-night.png",
+    "docs/preview/house51-top-stack-night.png",
+    "docs/preview/house51-top-night.png",
+    "docs/preview/house51-top-day.png",
+    "docs/preview/house51-top-east-wing-e-card.png",
+    "docs/preview/house51-top-n0-card.png",
+    "docs/preview/house51-top-a-wing-e-card.png",
+    "docs/preview/house51-top-n0-door-card.png",
+    "docs/preview/house51-top-new-e-door-card.png",
+    "docs/preview/house51-top-phone-390-night.png",
+    "docs/preview/house51-top-phone-390-day.png",
+    "docs/preview/house51-top-n0-phone-390.png",
+    "docs/preview/house51-top-phone-320-night.png",
+    "docs/preview/house51-top-phone-320-day.png",
+    "docs/preview/house51-top-n0-phone-320.png",
+    "docs/preview/house51-top-preserved-first-night.png",
+    "docs/preview/house51-top-preserved-eg-night.png",
+    "docs/preview/house51-top-model-evidence.png"
+  ],
+  "lowerBaseline": [
+    {
+      "floor": 1,
+      "baselineCommit": "c73bc342664cfb1cf66789bb6057f0573c44721f",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "floor": 0,
+      "baselineCommit": "c73bc342664cfb1cf66789bb6057f0573c44721f",
+      "viewport": [
+        1440,
+        1000
+      ]
+    }
+  ],
+  "loadedBundles": [
+    "http://127.0.0.1:4186/rommelweb/assets/index-DVyyO9yI.js"
+  ],
+  "errors": [],
+  "passed": true,
+  "lowerFloorPixelComparison": [
+    {
+      "floor": 0,
+      "baselineCommit": "c73bc342664cfb1cf66789bb6057f0573c44721f",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "identicalPixels": true,
+      "changedPixels": "0 (0)"
+    },
+    {
+      "floor": 1,
+      "baselineCommit": "c73bc342664cfb1cf66789bb6057f0573c44721f",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "identicalPixels": true,
+      "changedPixels": "0 (0)"
+    }
+  ],
+  "closeDoorCheck": {
+    "checkedAt": "2026-11-15T20:05:51.380Z",
+    "browser": "Firefox via WebDriver BiDi",
+    "url": "http://127.0.0.1:4186/rommelweb/?qa=yellow-top",
+    "screenshots": [
+      "docs/preview/house51-top-corner-doors-east-close-night.png",
+      "docs/preview/house51-top-corner-doors-east-close-day.png",
+      "docs/preview/house51-top-corner-doors-west-close-night.png",
+      "docs/preview/house51-top-corner-doors-west-close-day.png"
+    ],
+    "closeDoorCards": [
+      "Room E \u00b7 East wing doorway",
+      "West hall stair entry",
+      "Room L1 doorway"
+    ],
+    "closeDoorViews": [
+      {
+        "side": "east",
+        "labels": [
+          {
+            "title": "Room G doorway",
+            "aria": "Explore Room G doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 518.7833251953125,
+              "y": 301.2166748046875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room F doorway",
+            "aria": "Explore Room F doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 518.4166870117188,
+              "y": 402.91668701171875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room E \u00b7 East wing doorway",
+            "aria": "Explore Room E \u00b7 East wing doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 517.3499755859375,
+              "y": 697.5333251953125,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room N3 doorway",
+            "aria": "Explore Room N3 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 156.5833282470703,
+              "y": 839.61669921875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room N2 doorway",
+            "aria": "Explore Room N2 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 259.51666259765625,
+              "y": 839.61669921875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room N1 doorway",
+            "aria": "Explore Room N1 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 555.433349609375,
+              "y": 839.61669921875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room N0 doorway",
+            "aria": "Explore Room N0 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 658.3499755859375,
+              "y": 839.61669921875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room R3 doorway",
+            "aria": "Explore Room R3 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room R2 doorway",
+            "aria": "Explore Room R2 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 953.4166870117188,
+              "y": 658.9166870117188,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room R1 doorway",
+            "aria": "Explore Room R1 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 1055.9833984375,
+              "y": 658.9166870117188,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room L3 doorway",
+            "aria": "Explore Room L3 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room L2 doorway",
+            "aria": "Explore Room L2 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room L1 doorway",
+            "aria": "Explore Room L1 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room E \u00b7 A wing doorway",
+            "aria": "Explore Room E \u00b7 A wing doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room D doorway",
+            "aria": "Explore Room D doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room C doorway",
+            "aria": "Explore Room C doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room B doorway",
+            "aria": "Explore Room B doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room A doorway",
+            "aria": "Explore Room A doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room W4 doorway",
+            "aria": "Explore Room W4 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room W3 doorway",
+            "aria": "Explore Room W3 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room W2 doorway",
+            "aria": "Explore Room W2 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "East hall stair entry",
+            "aria": "Explore East hall stair entry, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 1203.86669921875,
+              "y": 703.9666748046875,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "West hall stair entry",
+            "aria": "Explore West hall stair entry, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 1372.183349609375,
+              "y": 320.25,
+              "width": 26,
+              "height": 26
+            }
+          }
+        ]
+      },
+      {
+        "side": "west",
+        "labels": [
+          {
+            "title": "Room G doorway",
+            "aria": "Explore Room G doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room F doorway",
+            "aria": "Explore Room F doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room E \u00b7 East wing doorway",
+            "aria": "Explore Room E \u00b7 East wing doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room N3 doorway",
+            "aria": "Explore Room N3 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room N2 doorway",
+            "aria": "Explore Room N2 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room N1 doorway",
+            "aria": "Explore Room N1 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room N0 doorway",
+            "aria": "Explore Room N0 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room R3 doorway",
+            "aria": "Explore Room R3 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room R2 doorway",
+            "aria": "Explore Room R2 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room R1 doorway",
+            "aria": "Explore Room R1 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room L3 doorway",
+            "aria": "Explore Room L3 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 164.28334045410156,
+              "y": 364.73333740234375,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room L2 doorway",
+            "aria": "Explore Room L2 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 361.8999938964844,
+              "y": 364.73333740234375,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room L1 doorway",
+            "aria": "Explore Room L1 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 655.13330078125,
+              "y": 364.73333740234375,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room E \u00b7 A wing doorway",
+            "aria": "Explore Room E \u00b7 A wing doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 560.0166625976562,
+              "y": 187.28334045410156,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room D doorway",
+            "aria": "Explore Room D doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 852.25,
+              "y": 187.28334045410156,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room C doorway",
+            "aria": "Explore Room C doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 953.9000244140625,
+              "y": 187.28334045410156,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room B doorway",
+            "aria": "Explore Room B doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 1246.13330078125,
+              "y": 187.28334045410156,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room A doorway",
+            "aria": "Explore Room A doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 1347.7833251953125,
+              "y": 187.28334045410156,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room W4 doorway",
+            "aria": "Explore Room W4 doorway, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "Room W3 doorway",
+            "aria": "Explore Room W3 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 795.816650390625,
+              "y": 620.3499755859375,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "Room W2 doorway",
+            "aria": "Explore Room W2 doorway, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 795.9833374023438,
+              "y": 723.316650390625,
+              "width": 26,
+              "height": 26
+            }
+          },
+          {
+            "title": "East hall stair entry",
+            "aria": "Explore East hall stair entry, estimated layout, House 51, floor 2",
+            "hidden": true,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "title": "West hall stair entry",
+            "aria": "Explore West hall stair entry, estimated layout, House 51, floor 2",
+            "hidden": false,
+            "bounds": {
+              "x": 113.80000305175781,
+              "y": 320.25,
+              "width": 26,
+              "height": 26
+            }
+          }
+        ]
+      }
+    ],
+    "allFiveOverviewHiddenMarkersExposedAtZoom": false,
+    "markersStillCoveredByHallLabels": [
+      "Room R3 doorway",
+      "Room W4 doorway"
+    ],
+    "visualReview": "The east and west close views show the physical doorway apertures, including R3 and W4. Their icons remain hidden by the existing hall-label collision handling at these views. E-East, L1 and the west stair doorway cards open correctly after zooming; all 21 room cards are available in the drawing key.",
+    "status": "completed-with-existing-label-occlusion"
+  },
+  "finalBuild": {
+    "bundle": "index-DVyyO9yI.js",
+    "bundleGzipKb": 234.79,
+    "canonicalMetadataAndRuntimeDataMatchPublic": true
+  }
+}

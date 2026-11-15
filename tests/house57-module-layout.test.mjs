@@ -11,13 +11,14 @@ import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
-  oldHouseLayouts, before, historical, archivedGreen] = await Promise.all([
+  oldHouseLayouts, before, historical, archivedGreen, archivedYellow] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
   read('public/data/interiors.json'), read('public/data/room-markers.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/house57-module-layouts.json'),
   read('public/data/old-house-module-layouts.json'), read('tests/fixtures/house57-before-resident-layout.json'),
   readHistoricalStudies(), read('tests/fixtures/house59-before-resident-layout.json'),
+  read('tests/fixtures/house51-before-top-floor-layout.json'),
 ]);
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts};
 const snapshot = structuredClone(input), generated = createHouse57ModuleLayouts(input);
@@ -342,10 +343,11 @@ test('preservation receipt protects Red, all other houses, original source exter
   assert.equal(receipt.house55Unchanged, true);
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['57']);
   // This receipt describes the earlier White release. Reconstruct that dated
-  // record with Green's exact retained pre-completion data; current Green is
-  // protected independently by house59-module-layout.test.mjs.
+  // record with Green's and Yellow's retained pre-completion data; their
+  // current layouts are protected independently by their dedicated suites.
   const whiteReleaseStudies = structuredClone(studies);
   whiteReleaseStudies.buildings['59'] = structuredClone(archivedGreen.building);
+  whiteReleaseStudies.buildings['51'] = structuredClone(archivedYellow.building);
   assert.equal(sha(JSON.stringify(whiteReleaseStudies, null, 2) + '\n'), receipt.studyChangeScope.afterSha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.whiteCanonical.path}`, import.meta.url))),
     receipt.whiteCanonical.sha256);
@@ -359,7 +361,8 @@ test('preservation receipt protects Red, all other houses, original source exter
   assert.equal(receipt.otherBuildings.length, 9);
   assert.ok(receipt.otherBuildings.every(record => record.exteriorUnchanged && record.campusUnchanged));
   for (const house of ['51', '53', '59']) {
-    const layout = house === '59' ? archivedGreen.layout : oldHouseLayouts.houses[house];
+    const layout = ({'51': archivedYellow, '59': archivedGreen})[house]?.layout
+      ?? oldHouseLayouts.houses[house];
     assert.equal(sha(JSON.stringify(layout)), receipt.retainedFittedHouses[house].sha256);
   }
   assert.equal(receipt.currentFittedCatalogExcludes57, true);

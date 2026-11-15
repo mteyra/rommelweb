@@ -11,13 +11,13 @@ import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
 const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
-  oldHouseLayouts, before, historical] = await Promise.all([
+  oldHouseLayouts, before, historical, archivedYellow] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
   read('public/data/interiors.json'), read('public/data/room-markers.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/house59-module-layouts.json'),
   read('public/data/old-house-module-layouts.json'), read('tests/fixtures/house59-before-resident-layout.json'),
-  readHistoricalStudies(),
+  readHistoricalStudies(), read('tests/fixtures/house51-before-top-floor-layout.json'),
 ]);
 const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts};
 const snapshot = structuredClone(input), generated = createHouse59ModuleLayouts(input);
@@ -368,8 +368,11 @@ test('Green preservation receipt protects completed Red and White, remaining pro
     assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
   }
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['59']);
-  assert.equal(sha(await readFile(new URL(`../${receipt.studyChangeScope.path}`, import.meta.url))),
-    receipt.studyChangeScope.afterSha256);
+  // This dated receipt predates Yellow's top-floor replacement. Recreate its
+  // exact Yellow record instead of weakening the earlier release audit.
+  const greenReleaseStudies = structuredClone(studies);
+  greenReleaseStudies.buildings['51'] = structuredClone(archivedYellow.building);
+  assert.equal(sha(JSON.stringify(greenReleaseStudies, null, 2) + '\n'), receipt.studyChangeScope.afterSha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.greenCanonical.path}`, import.meta.url))),
     receipt.greenCanonical.sha256);
   assert.equal(sha(await readFile(new URL(`../${receipt.historicalGreenFit.path}`, import.meta.url))),
@@ -377,10 +380,11 @@ test('Green preservation receipt protects completed Red and White, remaining pro
   for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
     assert.notEqual(house, '59');
     assert.equal(record.unchanged, true);
-    assert.equal(sha(JSON.stringify(studies.buildings[house])), record.sha256, house);
+    assert.equal(sha(JSON.stringify(greenReleaseStudies.buildings[house])), record.sha256, house);
   }
   for (const house of ['51', '53']) {
-    assert.equal(sha(JSON.stringify(oldHouseLayouts.houses[house])), receipt.retainedFittedHouses[house].sha256);
+    const layout = house === '51' ? archivedYellow.layout : oldHouseLayouts.houses[house];
+    assert.equal(sha(JSON.stringify(layout)), receipt.retainedFittedHouses[house].sha256);
   }
   assert.equal(receipt.currentFittedCatalogExcludes59, true);
   assert.equal(oldHouseLayouts.houses['59'], undefined);

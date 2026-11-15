@@ -2,7 +2,22 @@
 
 Updated on 15 November 2026. Checks below are tied to their named model revisions; they establish implementation behavior and conditional consistency, not surveyed interior accuracy.
 
-## Current revision — Green House 59 completed floors
+## Current revision — Yellow House 51 top floor
+
+Only **House 51 / 2. OG** changes. The [resident’s annotated plan](HOUSE51-TOP-FLOOR-LAYOUT.md) adds **E beside D** in the A bank and **N0 beside N1**, retains W4/W3/W2, removes the blue surplus regions, and moves all room entrances to the lime-marked ends of their hall-facing walls. Yellow’s **EG and 1. OG remain unchanged** pending separate review.
+
+- The **501.72 m²** independent outline contains **21 singles**, two connected hall regions and the stair, with complete disjoint coverage and no unassigned remainder. Singles retain **2.70 × 6.00 m** clear dimensions, **3.10 m modules** and **1.40 m halls**.
+- All **21 room doorways** and both stair entrances lie on actual shared boundaries. Every room reaches the stair. The marked door ends use schematic **0.90 m openings**, centered **0.60 m from the clear-room corner**. Both L3 and L2 open near their left corner, as drawn.
+- The added E and existing East-bank E keep their floor labels, with distinct room/door/window identifiers and wing-specific card names. All **25 layout windows** remain on the independent exterior boundary; original folded façade evidence stays separate.
+- Yellow’s retained registration keeps the staircase **exactly aligned** with both lower floors. The [preservation receipt](evidence/house51-top-floor-preservation.json) verifies **87 protected files**, both lower-floor records and their fitting metadata, all other house records, the completed Red/White/Green plans, and source exterior/campus geometry against `c73bc34`.
+- The provisional generator now skips independent layouts **per floor**, retaining Yellow EG/1. OG and all House 53 floors in the current catalog. The [historical Yellow fixture](../tests/fixtures/house51-before-top-floor-layout.json) preserves the earlier fit and dated regression checks. An isolated command-line test reconstructs this release from the original fitted Yellow record, then verifies generic regeneration leaves the outputs unchanged.
+- **All 274 tests pass**, including 11 focused Yellow geometry, scope and regeneration tests. The production build and path-cache check pass; JavaScript is **234.79 kB gzipped**, with the existing bundle-size advisory.
+- The Firefox [browser receipt](evidence/house51-top-browser.json) covers all **24 space cards**, including the 21 singles, both E identities and N0; 21 doorway cards across overview and close views; fold/unfold camera restoration; and both themes at **1440 × 1000**, **390 × 844** and **320 × 568**. The physical R3/W4 door apertures are correct, while their icons remain covered by hall labels at the tested zooms under the existing label-collision behavior. All room cards remain available through the drawing key.
+- Yellow **EG and 1. OG are pixel-identical** to `c73bc34` in matched **1440 × 1000** browser captures, with zero changed pixels and identical camera/label state. Completed Red, White and Green controls and the remaining provisional floors also pass. No application console errors or horizontal overflow were observed.
+
+Reviewed views: [top floor](preview/house51-top-night.png), [daylight](preview/house51-top-day.png), [new E](preview/house51-top-a-wing-e-card.png), [N0 doorway](preview/house51-top-n0-door-card.png), [east corner doors](preview/house51-top-corner-doors-east-close-day.png), [phone](preview/house51-top-phone-390-day.png), [unchanged 1. OG](preview/house51-top-preserved-first-night.png) and [unchanged EG](preview/house51-top-preserved-eg-night.png). Publication uses the existing GitHub Pages workflow on `main`.
+
+## Previous revision — Green House 59 completed floors
 
 Green House **59** uses Red’s exact **2. OG and 1. OG** layouts, including both first-floor balconies. EG restores the missing single dorm, merges the entire N wing and its short bank hall into one **Hausmeister** enclosure, and assigns **Garden room** beside the east hall and **Storage** beside the west hall. The [Green layout note](HOUSE59-MODULE-LAYOUT.md) records the supplied annotation and its interpretation.
 
