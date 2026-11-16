@@ -7,6 +7,7 @@ import {addBlackHousePhotoDetails} from './black-house-photo-details.js';
 import {addBlueCourtyardPhotoDetails} from './blue-courtyard-photo-details.js';
 import {addTurquoisePhotoDetails} from './turquoise-photo-details.js';
 import {addPinkHousePhotoDetails} from './pink-house-photo-details.js';
+import {addLilaPhotoDetails} from './lila-photo-details.js';
 import {addGrauPhotoDetails} from './grau-photo-details.js';
 import {addWhiteHousePhotoDetails} from './white-house-photo-details.js';
 
@@ -239,29 +240,6 @@ export function createExteriorDetails(building, {house = building.number, levels
   }
 
   // Face directions start at the photographed corner and run along its outside.
-  if (house === '53a') {
-    const southEast = [23.079, 0, -58.260], northEast = [28.636, 0, -80.206];
-    const southWest = [0.996, 0, -63.869], northWest = [6.564, 0, -85.824];
-    const east = face([9, 4, 1, 3], southEast, northEast);
-    const south = face([2], southEast, southWest), north = face([7], northEast, northWest);
-    stairElevation('53a-east-stair', east, 7.80, 14.80);
-    cornerLoggia('53a-top-southeast-loggia', 4, east, south, 7.30, 3.30);
-    cornerLoggia('53a-middle-northeast-loggia', 2, face([3, 1, 4, 9], northEast, southEast), north, 6.00, 3.25);
-    cornerLoggia('53a-upper-northwest-loggia', 3, face([7], northWest, northEast), face([5, 8], northWest, southWest), 6.80, 3.25);
-    groundFrontage('53a-north-bike-storage', north, 0.16, north.span - 0.16, 'bike-storage');
-    photographicRows(2, southEast, southWest, {
-      0: [0.15, 0.32],
-      4: [0.279, 0.426, 0.570, 0.695, 0.824, 0.947],
-      3: [0.067, 0.220, 0.355, 0.497, 0.632, 0.757, 0.892],
-      2: [0.086, 0.227, 0.376, 0.507, 0.642, 0.780, 0.925],
-    }, [0]);
-    photographicRows(7, northWest, northEast, {
-      4: [0.402, 0.497, 0.634, 0.764, 0.946],
-      3: [0.551, 0.677, 0.820, 0.950],
-      2: [0.403, 0.554, 0.682, 0.778],
-      1: [0.410, 0.551, 0.680, 0.822, 0.952],
-    });
-  }
   // The eight-photo November 16 request refines only these registered faces.
   // Source surfaces, floor guides and every interior remain independent.
   const photoHelpers = {
@@ -278,6 +256,7 @@ export function createExteriorDetails(building, {house = building.number, levels
   if (house === '59a') addPinkHousePhotoDetails(photoContext);
   if (house === '55a') addGrauPhotoDetails(photoContext);
   if (house === '57') addWhiteHousePhotoDetails(photoContext);
+  if (house === '53a') addLilaPhotoDetails(photoContext);
   if (['51', '53', '49', '51a'].includes(house)) {
     const surfaces = house === '51a' ? output.photoSurfaceIndices.map(index => building.surfaces[index])
       : [...new Set([...output.layoutsBySurface.keys(), ...output.exclusionsBySurface.keys()])];
@@ -377,7 +356,10 @@ export function createExteriorDetails(building, {house = building.number, levels
         const equipment = [];
         // Equipment silhouettes are restricted to the three photographed roofs.
         if (['51a', '53a', '55a'].includes(house)) {
-          for (const [fu, fv, width, depth] of [[0.54, 0.48, 2.2, 1.5], [0.27, 0.42, 0.8, 0.75]]) {
+          const equipmentSizes = house === '53a'
+            ? [[0.50, 0.43, 3.85, 2.45], [0.29, 0.43, 0.95, 0.85]]
+            : [[0.54, 0.48, 2.2, 1.5], [0.27, 0.42, 0.8, 0.75]];
+          for (const [fu, fv, width, depth] of equipmentSizes) {
             const origin = lift(minU + (maxU - minU) * fu, minV + (maxV - minV) * fv);
             const ring = [origin, add(origin, mul(u, width)), add(add(origin, mul(u, width)), mul(v, depth)), add(origin, mul(v, depth))];
             if (roofContains(roof, ring)) {
@@ -385,11 +367,26 @@ export function createExteriorDetails(building, {house = building.number, levels
               equipment.push(ring);
             }
           }
-          for (const fu of [0.18, 0.33, 0.64, 0.77]) for (const fv of [0.22, 0.70]) {
+          const ventPositions = house === '53a'
+            ? [[.11,.18],[.14,.18],[.18,.20],[.28,.18],[.33,.21],[.39,.18],[.52,.18],[.59,.22],[.68,.18],[.78,.20],
+              [.16,.40],[.20,.42],[.36,.37],[.41,.39],[.77,.39],[.82,.44],
+              [.12,.67],[.17,.68],[.25,.73],[.32,.69],[.39,.70],[.47,.74],[.60,.72],[.65,.69],[.76,.73],[.84,.68],
+              [.20,.85],[.43,.84],[.68,.85]]
+            : [0.18, 0.33, 0.64, 0.77].flatMap(fu => [0.22, 0.70].map(fv => [fu, fv]));
+          let ventCount = 0;
+          for (const [fu, fv] of ventPositions) {
             const origin = lift(minU + (maxU - minU) * fu, minV + (maxV - minV) * fv);
             const ring = [origin, add(origin, mul(u, 0.19)), add(add(origin, mul(u, 0.19)), mul(v, 0.19)), add(origin, mul(v, 0.19))];
-            if (roofContains(roof, ring) && !equipment.some(polygon => insideXZ(origin, closed(polygon)))) box('detailRoofHardware', origin, u, v, 0.19, 0.19, 0.26);
+            if (roofContains(roof, ring) && !equipment.some(polygon => insideXZ(origin, closed(polygon)))) {
+              box('detailRoofHardware', origin, u, v, 0.19, 0.19, 0.26);
+              ventCount++;
+            }
           }
+          if (house === '53a') output.features.push({
+            id: '53a-photo-roof-hardware', kind: 'roof-hardware', sourceSurfaceIndices: [building.surfaces.indexOf(roof)],
+            equipmentCount: equipment.length, ventCount,
+            evidence: 'Resident aerial photo 1 shows a broad dark central equipment box, a smaller box and scattered short vents over a planted roof. Counts, positions and hardware dimensions are illustrative; all remain below the unchanged source roof cap.',
+          });
         }
         for (let a = Math.ceil(minU / 0.7); a * 0.7 < maxU; a++) for (let b = Math.ceil(minV / 0.7); b * 0.7 < maxV; b++) {
           if (Math.abs((a * 17 + b * 29) % 5) > 1) continue;

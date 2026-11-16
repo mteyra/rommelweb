@@ -488,8 +488,9 @@ export class CampusScene {
     exteriorTriangles.push(...Object.entries(architecturalDetails.siteTriangleLayers || {}).map(([role, positions]) => [role, positions, true]));
     for (const [themeRole, positions, scenery] of exteriorTriangles) {
       if (!positions.length) continue;
-      const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: 0.92, depthWrite: true});
-      material.userData = {themeRole, detailType: 'surface'};
+      const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: architecturalDetails.surfaceOpacity ?? 0.92, depthWrite: true});
+      material.userData = {themeRole, detailType: 'surface',
+        ...(architecturalDetails.surfaceOpacity != null ? {surfaceOpacity: architecturalDetails.surfaceOpacity} : {})};
       if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
       if (architecturalDetails.materialOverrides?.[themeRole]) material.userData.themeOverride = architecturalDetails.materialOverrides[themeRole];
       const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
@@ -764,7 +765,7 @@ export class CampusScene {
       material.opacity = dim ? blend(0.12, 0.18) : material.userData.windowLayer === 'glass' ? 0.87 : material.userData.windowLayer === 'construction' ? 0.70 : 0.96;
     });
     building.detailMaterials?.forEach(material => {
-      material.opacity = dim ? blend(0.18, 0.26) : material.userData.detailType === 'line' ? active ? 0.9 : 0.68 : 0.94;
+      material.opacity = dim ? blend(0.18, 0.26) : material.userData.detailType === 'line' ? active ? 0.9 : 0.68 : material.userData.surfaceOpacity ?? 0.94;
     });
     building.lineMaterials.forEach((material, i) => {
       material.color.copy(active ? colors.activeInk : colors.ink);

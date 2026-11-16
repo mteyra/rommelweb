@@ -10,6 +10,8 @@ The repository and GitHub Pages demo are public. See [release checks](docs/RELEA
 
 **Red House 55 exterior:** the folded model now follows the latest entrance and backside photos, with aligned window stacks, separate red glazing groups, a recessed entrance and “55” sign, and finer canopy, dormer and drainage details. The original building shape and every internal layout remain unchanged. [Exterior refinement](docs/HOUSE55-EXTERIOR-REFINEMENT.md).
 
+**Lila / House 53a exterior:** eight resident photographs now guide all four façades: four rotating corner balconies including the previously missing southwest 1. OG recess, windowless entrance wings, four open galleries, the recessed signed entrance, and a two-sided bicycle cage with lavender “lila” lettering. Separate window rows preserve each side’s offsets and blank timber spans. Building dimensions and every interior plan remain unchanged. [Photo analysis, previews and checks](docs/LILA-EXTERIOR-PHOTO-STUDY.md).
+
 **Türkis / House 57a exterior:** four resident photographs now guide its seven corner balconies, open north gallery, recessed entrance, wraparound bicycle cage and separate window patterns on each side. Building dimensions and all interior plans remain unchanged. [Photo analysis and exterior design](docs/TURQUOISE-EXTERIOR.md).
 
 **Black / House 49 exterior:** six photographs now guide all four façades, five lime corner balconies, the open north gallery and signed entrance, the northwest bicycle cage, and corrected window patterns. Dorm dimensions and every interior floorplan are unchanged. [Photo analysis and exterior design](docs/BLACK-PHOTO-EXTERIOR.md).
@@ -123,6 +125,7 @@ The GitHub Actions workflow builds, tests and deploys `dist/` through GitHub Pag
 | `src/facade.js` | Photo-informed schematic seams clipped to unchanged exterior surfaces |
 | `src/windows.js` | Separate newer/older window profiles, house-specific corrections and appearance-only row guides |
 | `src/exterior-details.js` | Photo-registered loggias, stair fronts, roof details, shared glazing and explicit window rows |
+| `src/lila-photo-details.js` / `src/lila-window-layout.js` | Eight-photo Lila exterior, four corner balconies, entrance, bicycle cage and façade-specific window rows |
 | `src/exterior-presentation.js` | Cut recesses from display surfaces without editing source geometry or interior sections |
 | `src/main.js` | House selection, animated group/QR carousel, theme control, local timeline and dialogs |
 | `src/data.js` | Public community listings and small data helpers |
