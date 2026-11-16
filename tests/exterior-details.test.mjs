@@ -169,10 +169,10 @@ test('Red shared glazing and roof-light stay localized and create no extra occup
   }
   assert.ok(detail.features.every(feature => !['corner-loggia', 'recessed-stair-elevation'].includes(feature.kind)));
   assert.equal(detail.features.find(feature => feature.kind === 'sloped-roof-window').divisions, 3);
-  for (const number of ['57', '59']) assert.equal(detailFor(buildings.get(number)).exclusionsBySurface.size, 0,
+  for (const number of ['59']) assert.equal(detailFor(buildings.get(number)).exclusionsBySurface.size, 0,
     'Unphotographed old houses retain their existing opaque surfaces');
-  for (const number of ['51', '53']) assert.ok(detailFor(buildings.get(number)).features.every(feature => !feature.id.startsWith('55-')),
-    'Yellow and Orange use their own photographic openings, never Red details');
+  for (const number of ['51', '53', '57']) assert.ok(detailFor(buildings.get(number)).features.every(feature => !feature.id.startsWith('55-')),
+    'Yellow, Orange and White use their own photographic openings, never Red details');
 });
 
 test('invalid storey input fails instead of changing the architectural model to fit it', () => {

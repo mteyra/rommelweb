@@ -1,0 +1,30 @@
+{
+  "baselineCommit": "cda73a8df499bde16f3a13057d796b361980231d",
+  "success": true,
+  "views": [
+    {
+      "house": "57",
+      "floor": 0,
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "identical": true
+    },
+    {
+      "house": "57",
+      "floor": 1,
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "identical": true
+    },
+    {
+      "house": "57",
+      "floor": 2,
+      "width": 1440,
+      "height": 1000,
+      "changedPixels": 0,
+      "identical": true
+    }
+  ]
+}

@@ -28,7 +28,9 @@ The sandbox can explore alternative rectangle proportions while retaining **16.2
 
 **House 55 / EG:** the ground floor repeats the updated 1. OG apartments and retains all three blue-marked areas. The east/R **cinema** and west/L **laundry** each occupy **9.30 × 7.40 m**, enclosed with one hallway door near the stair. The **7.83 m² stair-side extension** remains unassigned. Its footprint stays **716.01 m²**. [Ground-floor derivation](docs/HOUSE55-GROUND-FLOOR-LAYOUT.md).
 
-**White House 57:** all three floors now use Red’s completed layout, replacing the previous fitted outlines. The only differences are **no east balcony on 1. OG**, an east/R **Gym** on EG and a west/L **Study** on EG. The west balcony, shared apartments, rooms, halls and stairs retain Red’s geometry. [White-floor comparison and derivation](docs/HOUSE57-MODULE-LAYOUT.md).
+**White House 57 exterior:** seven resident photographs now guide its separate window patterns, blank end walls, white common-room glazing, two upright roof dormers, open bicycle areas and recessed entrance marked **57**. Its size and every interior remain unchanged. [Photo analysis, mesh views and preservation checks](docs/WHITE-EXTERIOR-PHOTO-STUDY.md).
+
+**White House 57 floors:** all three floors use Red’s completed layout, replacing the previous fitted outlines. The only differences are **no east balcony on 1. OG**, an east/R **Gym** on EG and a west/L **Study** on EG. The west balcony, shared apartments, rooms, halls and stairs retain Red’s geometry. [White-floor comparison and derivation](docs/HOUSE57-MODULE-LAYOUT.md).
 
 **Green House 59:** **2. OG and 1. OG match Red**, including both first-floor balconies. EG restores the missing single dorm and joins the N wing into one **Hausmeister** enclosure. The adjacent east/R space is the **Garden room**, with its marked hallway entrance; the west/L space is **Storage**. [Green-floor annotation and derivation](docs/HOUSE59-MODULE-LAYOUT.md).
 

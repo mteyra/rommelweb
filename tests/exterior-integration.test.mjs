@@ -46,7 +46,9 @@ test('photographic exteriors integrate with all eleven fixed buildings, colored 
         if ((mix === 0 || mix === 1) && OLD_WINDOW_COLORS[house]) {
           const frames = building.windowMaterials.filter(material => material.userData.themeRole === 'oldWindowFrame');
           assert.ok(frames.length);
-          for (const frame of frames) assert.equal(frame.color.getHex(), OLD_WINDOW_COLORS[house][mix ? 'day' : 'night']);
+          const expected = house === '57' ? (mix ? 0xe3e4dc : 0xd7dbd5)
+            : OLD_WINDOW_COLORS[house][mix ? 'day' : 'night'];
+          for (const frame of frames) assert.equal(frame.color.getHex(), expected);
         }
         for (const material of building.detailMaterials) assert.ok([material.color.r, material.color.g, material.color.b, material.opacity].every(Number.isFinite));
         if (building.weathering) {

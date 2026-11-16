@@ -27,7 +27,7 @@ test('clicking recessed photo windows selects the near facade, including Yellow 
     renderer: {domElement: {getBoundingClientRect: () => ({left: 0, top: 0, width: 100, height: 100})}},
   });
   try {
-    const photoHouses = ['49', '51', '51a', '53'];
+    const photoHouses = ['49', '51', '51a', '53', '57'];
     for (const house of [...photoHouses, '55']) {
       const original = campus.buildings.find(building => building.number === house);
       const source = lod2.buildings.find(building => building.number === house);
@@ -77,7 +77,7 @@ test('clicking recessed photo windows selects the near facade, including Yellow 
       }
       assert.ok(houseChecked > 0, `${house}: exercise actual recessed openings`);
     }
-    assert.ok(checked > 100, 'cover every generated photo-window opening across all four houses');
+    assert.ok(checked > 200, 'cover every generated photo-window opening across all five houses');
     assert.equal(previouslyMissed, 2, 'retain both reproduced Yellow-house selection regressions');
     assert.equal(view.buildings.get('55').exteriorPickables.some(mesh => mesh.userData.role === 'facade-window'), false,
       'the existing Red facade keeps its original picking targets');

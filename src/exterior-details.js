@@ -8,6 +8,7 @@ import {addBlueCourtyardPhotoDetails} from './blue-courtyard-photo-details.js';
 import {addTurquoisePhotoDetails} from './turquoise-photo-details.js';
 import {addPinkHousePhotoDetails} from './pink-house-photo-details.js';
 import {addGrauPhotoDetails} from './grau-photo-details.js';
+import {addWhiteHousePhotoDetails} from './white-house-photo-details.js';
 
 /**
  * Replaceable photographic façade details, in the unmodified campus metre frame.
@@ -276,6 +277,7 @@ export function createExteriorDetails(building, {house = building.number, levels
   if (house === '57a') addTurquoisePhotoDetails(photoContext);
   if (house === '59a') addPinkHousePhotoDetails(photoContext);
   if (house === '55a') addGrauPhotoDetails(photoContext);
+  if (house === '57') addWhiteHousePhotoDetails(photoContext);
   if (['51', '53', '49', '51a'].includes(house)) {
     const surfaces = house === '51a' ? output.photoSurfaceIndices.map(index => building.surfaces[index])
       : [...new Set([...output.layoutsBySurface.keys(), ...output.exclusionsBySurface.keys()])];

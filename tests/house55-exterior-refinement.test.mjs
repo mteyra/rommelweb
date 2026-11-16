@@ -125,7 +125,7 @@ test('Red features stay local while separately photographed houses retain their 
   for (const other of lod2.buildings.filter(item => item.number !== '55')) {
     const result = createExteriorDetails(other);
     assert.ok(result.features.every(item => !redIds.has(item.id)));
-    if (['51', '53'].includes(other.number)) {
+    if (['51', '53', '57'].includes(other.number)) {
       assert.ok(result.signs.length > 0, 'Newly photographed entrances carry their own signs');
       assert.ok(result.signs.every(sign => sign.lines.at(-1) === other.number), 'Never copy the Red address');
     } else if (other.number === '57a') {

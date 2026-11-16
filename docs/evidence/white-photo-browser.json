@@ -1,0 +1,901 @@
+{
+  "house": "57",
+  "browser": "Isolated Firefox WebDriver BiDi",
+  "success": true,
+  "exteriorViews": [
+    {
+      "version": "after",
+      "name": "northeast",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/northeast-day-after.png",
+      "house": "57",
+      "position": [
+        67.51355377568956,
+        11.323699730687304,
+        3.8647197824251407
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "northeast",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/northeast-night-after.png",
+      "house": "57",
+      "position": [
+        67.51355377568956,
+        11.323699730687304,
+        3.8647197824251407
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "southeast",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/southeast-day-after.png",
+      "house": "57",
+      "position": [
+        73.8355034234227,
+        12.385807472568214,
+        81.56516865422043
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "southeast",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/southeast-night-after.png",
+      "house": "57",
+      "position": [
+        73.8355034234227,
+        12.385807472568214,
+        81.56516865422043
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "southwest",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/southwest-day-after.png",
+      "house": "57",
+      "position": [
+        -4.359107546543186,
+        11.453174971052324,
+        70.16358287966841
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "southwest",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/southwest-night-after.png",
+      "house": "57",
+      "position": [
+        -4.359107546543186,
+        11.453174971052324,
+        70.16358287966841
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "northwest",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/northwest-day-after.png",
+      "house": "57",
+      "position": [
+        -10.533678801369433,
+        12.508596913268862,
+        -9.762296640657624
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "northwest",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/northwest-night-after.png",
+      "house": "57",
+      "position": [
+        -10.533678801369433,
+        12.508596913268862,
+        -9.762296640657624
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "east-corner",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/east-corner-day-after.png",
+      "house": "57",
+      "position": [
+        93.70455644695383,
+        19.783511289390766,
+        36.46550000000001
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "east-corner",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/east-corner-night-after.png",
+      "house": "57",
+      "position": [
+        93.70455644695383,
+        19.783511289390766,
+        36.46550000000001
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "south-corner",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/south-corner-day-after.png",
+      "house": "57",
+      "position": [
+        32.172,
+        17.82899293630851,
+        88.22546468154256
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "south-corner",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/south-corner-night-after.png",
+      "house": "57",
+      "position": [
+        32.172,
+        17.82899293630851,
+        88.22546468154256
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "west-corner",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/west-corner-day-after.png",
+      "house": "57",
+      "position": [
+        -27.846133370030778,
+        19.480626674006153,
+        36.46550000000001
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "west-corner",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/west-corner-night-after.png",
+      "house": "57",
+      "position": [
+        -27.846133370030778,
+        19.480626674006153,
+        36.46550000000001
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "north-corner",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/north-corner-day-after.png",
+      "house": "57",
+      "position": [
+        32.172000000000004,
+        17.872216767683526,
+        -15.51058383841763
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "north-corner",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/north-corner-night-after.png",
+      "house": "57",
+      "position": [
+        32.172000000000004,
+        17.872216767683526,
+        -15.51058383841763
+      ],
+      "target": [
+        32.172,
+        7.477,
+        36.465500000000006
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "entrance-close",
+      "theme": "day",
+      "path": "/tmp/rommel-white-review/entrance-close-day-after.png",
+      "house": "57",
+      "position": [
+        12.75334829189801,
+        6.407569948445722,
+        19.836098666487548
+      ],
+      "target": [
+        26.3,
+        5.2,
+        34.5
+      ],
+      "features": 24
+    },
+    {
+      "version": "after",
+      "name": "entrance-close",
+      "theme": "night",
+      "path": "/tmp/rommel-white-review/entrance-close-night-after.png",
+      "house": "57",
+      "position": [
+        12.75334829189801,
+        6.407569948445722,
+        19.836098666487548
+      ],
+      "target": [
+        26.3,
+        5.2,
+        34.5
+      ],
+      "features": 24
+    }
+  ],
+  "exteriorErrors": [],
+  "app": {
+    "house": "57",
+    "browser": "Isolated Firefox WebDriver BiDi",
+    "baseURL": "http://127.0.0.1:5238/rommelweb/",
+    "expectedBundle": "index-BYnqMYhA.js",
+    "views": [
+      {
+        "house": "57",
+        "width": 1440,
+        "floor": 0,
+        "view": "floor",
+        "height": 1000,
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 43
+      },
+      {
+        "house": "57",
+        "width": 1440,
+        "floor": 1,
+        "view": "floor",
+        "height": 1000,
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 42
+      },
+      {
+        "house": "57",
+        "width": 1440,
+        "floor": 2,
+        "view": "floor",
+        "height": 1000,
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 42
+      },
+      {
+        "house": "57",
+        "width": 390,
+        "floor": 0,
+        "view": "floor",
+        "height": 844,
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 20
+      },
+      {
+        "house": "57",
+        "width": 390,
+        "floor": 1,
+        "view": "floor",
+        "height": 844,
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 18
+      },
+      {
+        "house": "57",
+        "width": 390,
+        "floor": 2,
+        "view": "floor",
+        "height": 844,
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 37
+      },
+      {
+        "house": "57",
+        "width": 320,
+        "floor": 0,
+        "view": "floor",
+        "height": 568,
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "57",
+        "width": 320,
+        "floor": 1,
+        "view": "floor",
+        "height": 568,
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 8
+      },
+      {
+        "house": "57",
+        "width": 320,
+        "floor": 2,
+        "view": "floor",
+        "height": 568,
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 8
+      }
+    ],
+    "cards": [
+      {
+        "floor": 0,
+        "label": "Room F",
+        "space": "study-57-0-east-2",
+        "title": "Room F \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room E",
+        "space": "study-57-0-east-1",
+        "title": "Room E \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room N2",
+        "space": "study-57-0-upper-right-2",
+        "title": "Room N2 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room N1",
+        "space": "study-57-0-upper-right-1",
+        "title": "Room N1 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room R3",
+        "space": "study-57-0-center-right-3",
+        "title": "Room R3 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room R2",
+        "space": "study-57-0-center-right-2",
+        "title": "Room R2 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room R1",
+        "space": "study-57-0-center-right-1",
+        "title": "Room R1 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room L3",
+        "space": "study-57-0-center-left-3",
+        "title": "Room L3 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room L2",
+        "space": "study-57-0-center-left-2",
+        "title": "Room L2 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room L1",
+        "space": "study-57-0-center-left-1",
+        "title": "Room L1 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room D",
+        "space": "study-57-0-sw-4",
+        "title": "Room D \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room C",
+        "space": "study-57-0-sw-3",
+        "title": "Room C \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room B",
+        "space": "study-57-0-sw-2",
+        "title": "Room B \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room W4",
+        "space": "study-57-0-west-4",
+        "title": "Room W4 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room W3",
+        "space": "study-57-0-west-3",
+        "title": "Room W3 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Room W2",
+        "space": "study-57-0-west-2",
+        "title": "Room W2 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Shared apartment W1",
+        "space": "study-57-0-west-1",
+        "title": "Shared apartment W1 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Shared apartment A",
+        "space": "study-57-0-sw-1",
+        "title": "Shared apartment A \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Shared apartment N3\u2013N4",
+        "space": "study-57-0-upper-right-3",
+        "title": "Shared apartment N3\u2013N4 \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Shared apartment G\u2013H",
+        "space": "study-57-0-east-3",
+        "title": "Shared apartment G\u2013H \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Gym",
+        "space": "study-57-0-common-R",
+        "title": "Gym \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Study",
+        "space": "study-57-0-common-L",
+        "title": "Study \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "East hall",
+        "space": "study-57-0-potential-corridor-east",
+        "title": "East hall \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "West hall",
+        "space": "study-57-0-potential-corridor",
+        "title": "West hall \u00b7 study"
+      },
+      {
+        "floor": 0,
+        "label": "Stairwell",
+        "space": "study-57-0-stairs",
+        "title": "Stairwell \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room F",
+        "space": "study-57-1-east-2",
+        "title": "Room F \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room E",
+        "space": "study-57-1-east-1",
+        "title": "Room E \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room N2",
+        "space": "study-57-1-upper-right-2",
+        "title": "Room N2 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room N1",
+        "space": "study-57-1-upper-right-1",
+        "title": "Room N1 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room R3",
+        "space": "study-57-1-center-right-3",
+        "title": "Room R3 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room R2",
+        "space": "study-57-1-center-right-2",
+        "title": "Room R2 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room R1",
+        "space": "study-57-1-center-right-1",
+        "title": "Room R1 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room L3",
+        "space": "study-57-1-center-left-3",
+        "title": "Room L3 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room L2",
+        "space": "study-57-1-center-left-2",
+        "title": "Room L2 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room L1",
+        "space": "study-57-1-center-left-1",
+        "title": "Room L1 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room D",
+        "space": "study-57-1-sw-4",
+        "title": "Room D \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room C",
+        "space": "study-57-1-sw-3",
+        "title": "Room C \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room B",
+        "space": "study-57-1-sw-2",
+        "title": "Room B \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room W4",
+        "space": "study-57-1-west-4",
+        "title": "Room W4 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room W3",
+        "space": "study-57-1-west-3",
+        "title": "Room W3 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Room W2",
+        "space": "study-57-1-west-2",
+        "title": "Room W2 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Shared apartment W1",
+        "space": "study-57-1-west-1",
+        "title": "Shared apartment W1 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Shared apartment A",
+        "space": "study-57-1-sw-1",
+        "title": "Shared apartment A \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Shared apartment N3\u2013N4",
+        "space": "study-57-1-upper-right-3",
+        "title": "Shared apartment N3\u2013N4 \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Shared apartment G\u2013H",
+        "space": "study-57-1-east-3",
+        "title": "Shared apartment G\u2013H \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "West balcony",
+        "space": "study-57-1-common-L",
+        "title": "West balcony \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "East hall",
+        "space": "study-57-1-potential-corridor-east",
+        "title": "East hall \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "West hall",
+        "space": "study-57-1-potential-corridor",
+        "title": "West hall \u00b7 study"
+      },
+      {
+        "floor": 1,
+        "label": "Stairwell",
+        "space": "study-57-1-stairs",
+        "title": "Stairwell \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room G",
+        "space": "study-57-2-east-3",
+        "title": "Room G \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room F",
+        "space": "study-57-2-east-2",
+        "title": "Room F \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room E",
+        "space": "study-57-2-east-1",
+        "title": "Room E \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room N3",
+        "space": "study-57-2-upper-right-3",
+        "title": "Room N3 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room N2",
+        "space": "study-57-2-upper-right-2",
+        "title": "Room N2 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room N1",
+        "space": "study-57-2-upper-right-1",
+        "title": "Room N1 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room R3",
+        "space": "study-57-2-center-right-3",
+        "title": "Room R3 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room R2",
+        "space": "study-57-2-center-right-2",
+        "title": "Room R2 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room R1",
+        "space": "study-57-2-center-right-1",
+        "title": "Room R1 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room L3",
+        "space": "study-57-2-center-left-3",
+        "title": "Room L3 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room L2",
+        "space": "study-57-2-center-left-2",
+        "title": "Room L2 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room L1",
+        "space": "study-57-2-center-left-1",
+        "title": "Room L1 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room D",
+        "space": "study-57-2-sw-4",
+        "title": "Room D \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room C",
+        "space": "study-57-2-sw-3",
+        "title": "Room C \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room B",
+        "space": "study-57-2-sw-2",
+        "title": "Room B \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room A",
+        "space": "study-57-2-sw-1",
+        "title": "Room A \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room W4",
+        "space": "study-57-2-west-4",
+        "title": "Room W4 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room W3",
+        "space": "study-57-2-west-3",
+        "title": "Room W3 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room W2",
+        "space": "study-57-2-west-2",
+        "title": "Room W2 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Room W1",
+        "space": "study-57-2-west-1",
+        "title": "Room W1 \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "East hall",
+        "space": "study-57-2-potential-corridor-east",
+        "title": "East hall \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "West hall",
+        "space": "study-57-2-potential-corridor",
+        "title": "West hall \u00b7 study"
+      },
+      {
+        "floor": 2,
+        "label": "Stairwell",
+        "space": "study-57-2-stairs",
+        "title": "Stairwell \u00b7 study"
+      }
+    ],
+    "errors": [],
+    "loadedBundles": [
+      "http://127.0.0.1:5238/rommelweb/assets/index-BYnqMYhA.js"
+    ],
+    "success": true
+  },
+  "interiorPixelComparison": {
+    "baselineCommit": "cda73a8df499bde16f3a13057d796b361980231d",
+    "success": true,
+    "views": [
+      {
+        "house": "57",
+        "floor": 0,
+        "width": 1440,
+        "height": 1000,
+        "changedPixels": 0,
+        "identical": true
+      },
+      {
+        "house": "57",
+        "floor": 1,
+        "width": 1440,
+        "height": 1000,
+        "changedPixels": 0,
+        "identical": true
+      },
+      {
+        "house": "57",
+        "floor": 2,
+        "width": 1440,
+        "height": 1000,
+        "changedPixels": 0,
+        "identical": true
+      }
+    ]
+  },
+  "reviewedAt": "2026-11-16T03:26:05.016019+00:00",
+  "integratedBaseline": "03720d4ad2cd044f4a5493c9975313cc1d12da3b"
+}

@@ -382,7 +382,11 @@ export class CampusScene {
       fill.userData.role = type;
       fill.userData.themeRole = roof ? 'roof' : family;
       if (!roof && data.number === '55' && family === 'plates') fill.userData.themeOverride = RED_CLADDING;
-      if (photographed) fill.userData.themeOverride = PHOTO_CLADDING;
+      if (photographed || !roof && family === 'plates' && architecturalDetails.photoCladding) {
+        fill.userData.themeOverride = architecturalDetails.photoCladding || PHOTO_CLADDING;
+      }
+      if (roof && architecturalDetails.materialOverrides?.roof) fill.userData.themeOverride = architecturalDetails.materialOverrides.roof;
+      if (architecturalDetails.opaqueShell) fill.userData.opaquePhotoShell = true;
       const mesh = new THREE.Mesh(geometry, fill);
       mesh.userData = { house: data.number, floor: null, source: 'LoD2-BY' };
       exterior.add(mesh);
@@ -456,7 +460,7 @@ export class CampusScene {
       const themeRole = layer === 'glass' ? 'windowGlass' : layer === 'sill' ? 'windowSill' : ['reveal', 'blind'].includes(layer) ? 'windowFrame' : family === 'plates' ? 'oldWindowFrame' : 'windowFrame';
       const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: layer === 'glass' ? 0.87 : 0.96, depthWrite: true});
       material.userData = {themeRole, windowLayer: layer};
-      if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      if (themeRole === 'oldWindowFrame') material.userData.themeOverride = architecturalDetails.materialOverrides?.oldWindowFrame || OLD_WINDOW_COLORS[data.number];
       const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
       mesh.renderOrder = layer === 'reveal' ? 2 : layer === 'frame' ? 3 : 4;
       if (layer === 'frame' && [...windowStudies.values()].some(study => study.patches.some(patch => patch.recessDepth))) {
@@ -471,7 +475,7 @@ export class CampusScene {
     if (windowLinework.length) {
       const material = new THREE.LineBasicMaterial({color: 0x7f8179, transparent: true, opacity: 0.7, depthWrite: false});
       material.userData = {themeRole: family === 'plates' ? 'oldWindowFrame' : 'windowSill', windowLayer: 'construction'};
-      if (family === 'plates') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      if (family === 'plates') material.userData.themeOverride = architecturalDetails.materialOverrides?.oldWindowFrame || OLD_WINDOW_COLORS[data.number];
       const mesh = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(windowLinework.flat(2), 3)), material);
       mesh.renderOrder = 5;
       windowGroup.add(mesh);
@@ -480,13 +484,16 @@ export class CampusScene {
     exterior.add(windowGroup);
     const detailGroup = new THREE.Group(), detailMaterials = [];
     detailGroup.userData = {role: 'photographic-exterior-details', features: architecturalDetails.features, status: 'Replaceable visual hypotheses inside the fixed source envelope; not an approved interior.'};
-    for (const [themeRole, positions] of Object.entries(architecturalDetails.triangleLayers)) {
+    const exteriorTriangles = Object.entries(architecturalDetails.triangleLayers).map(([role, positions]) => [role, positions, false]);
+    exteriorTriangles.push(...Object.entries(architecturalDetails.siteTriangleLayers || {}).map(([role, positions]) => [role, positions, true]));
+    for (const [themeRole, positions, scenery] of exteriorTriangles) {
       if (!positions.length) continue;
       const material = new THREE.MeshBasicMaterial({color: SCENE_THEMES.night[themeRole], side: THREE.DoubleSide, transparent: true, opacity: 0.92, depthWrite: true});
       material.userData = {themeRole, detailType: 'surface'};
       if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      if (architecturalDetails.materialOverrides?.[themeRole]) material.userData.themeOverride = architecturalDetails.materialOverrides[themeRole];
       const mesh = new THREE.Mesh(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)), material);
-      mesh.userData = {house: data.number, floor: null, role: 'photographic-exterior-details'};
+      mesh.userData = {house: data.number, floor: null, role: scenery ? 'exterior-site-scenery' : 'photographic-exterior-details'};
       // The source shell writes depth first, preventing far-side glazing from
       // bleeding through a translucent roof when it is batched with near faces.
       mesh.renderOrder = 1;
@@ -494,11 +501,14 @@ export class CampusScene {
       detailMaterials.push(material);
       exteriorPickables.push(mesh);
     }
-    for (const [themeRole, segments] of Object.entries(architecturalDetails.segmentLayers)) {
+    const exteriorSegments = Object.entries(architecturalDetails.segmentLayers);
+    exteriorSegments.push(...Object.entries(architecturalDetails.siteSegmentLayers || {}));
+    for (const [themeRole, segments] of exteriorSegments) {
       if (!segments.length) continue;
       const material = new THREE.LineBasicMaterial({color: SCENE_THEMES.night[themeRole], transparent: true, opacity: 0.75, depthWrite: false});
       material.userData = {themeRole, detailType: 'line'};
       if (themeRole === 'oldWindowFrame') material.userData.themeOverride = OLD_WINDOW_COLORS[data.number];
+      if (architecturalDetails.materialOverrides?.[themeRole]) material.userData.themeOverride = architecturalDetails.materialOverrides[themeRole];
       const mesh = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(segments.flat(2), 3)), material);
       mesh.renderOrder = 3;
       detailGroup.add(mesh);
@@ -744,7 +754,8 @@ export class CampusScene {
       material.opacity = active ? 0.98 : hovered ? 0.94 : dim ? 0.2 : 0.76;
     });
     building.exteriorFills.forEach(material => {
-      material.opacity = dim ? blend(0.16, 0.26) : material.userData.role === 'RoofSurface' ? active ? 1 : blend(0.72, 0.91) : active ? blend(0.65, 0.94) : blend(0.54, 0.86);
+      material.opacity = dim ? blend(0.16, 0.26) : material.userData.opaquePhotoShell ? 1
+        : material.userData.role === 'RoofSurface' ? active ? 1 : blend(0.72, 0.91) : active ? blend(0.65, 0.94) : blend(0.54, 0.86);
     });
     building.jointMaterial.opacity = dim ? 0.07 : active ? 0.46 : 0.34;
     if (building.weathering) building.weathering.material.opacity = dim ? blend(0.07, 0.13) : active ? 0.56 : 0.42;
