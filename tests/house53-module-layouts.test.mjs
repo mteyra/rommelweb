@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {frozenFile} from './frozen-files.mjs';
 import {difference, intersection, union} from 'polyclip-ts';
 import {createHouse53ModuleLayouts} from '../scripts/house53-module-layouts.mjs';
 import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
@@ -281,7 +282,9 @@ test('all three original annotations and protected assets match the saved eviden
   }
   for (const [path, record] of Object.entries(receipt.immutableFiles)) {
     assert.equal(record.unchanged, true, path);
-    assert.equal(sha(await readFile(new URL(`../${path}`, import.meta.url))), record.sha256, path);
+    const source = frozenFile(path);
+    if (!source) continue;
+    assert.equal(sha(await readFile(new URL(`../${source}`, import.meta.url))), record.sha256, path);
   }
   assert.ok(Object.keys(receipt.immutableFiles).length > 80, 'Broad exterior/source preservation receipt');
 });

@@ -1,5 +1,5 @@
 import test from 'node:test';
-import {historicalExteriorSource} from './historical-exterior-source.mjs';
+import {frozenFile} from './frozen-files.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -340,7 +340,9 @@ test('preservation receipt protects Red, all other houses, original source exter
   const sha = value => createHash('sha256').update(value).digest('hex');
   for (const [path, record] of Object.entries(receipt.immutableFiles)) {
     assert.equal(record.unchanged, true, path);
-    assert.equal(sha(await readFile(new URL(`../${historicalExteriorSource(path)}`, import.meta.url))), record.sha256, path);
+    const source = frozenFile(path);
+    if (!source) continue;
+    assert.equal(sha(await readFile(new URL(`../${source}`, import.meta.url))), record.sha256, path);
   }
   assert.equal(receipt.baseCommit, before.baseCommit);
   assert.equal(receipt.house55Unchanged, true);

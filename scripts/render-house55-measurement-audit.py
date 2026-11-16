@@ -237,7 +237,7 @@ def main():
     text(49, 985, "The historical reference split is independent of the measured 1.43 / 1.29 split. This probe supplies no replacement wall coordinates.", "small")
     text(49, 1008, "Inputs: saved interior-study JSON · retained rAlignment provenance · resident stair measurements · independently calculated width-conflict audit.", "small")
     svg.append("</svg>")
-    out = repo / "docs/preview/house55-measured-stair-conflict.svg"
+    out = repo / "docs/screenshots/house-55-red/house55-measured-stair-conflict.svg"
     out.write_text("\n".join(svg) + "\n")
     print(out)
     if not args.no_png:

@@ -353,7 +353,7 @@ def draw(level, source, spaces, internal, rows, report):
     ax.set_xlim(-12.5, 34.5)
     ax.set_ylim(20.2, -9.2)
     ax.axis("off")
-    fig.savefig(ROOT / "docs/preview/house55-area-study.png", dpi=160)
+    fig.savefig(ROOT / "docs/screenshots/house-55-red/house55-area-study.png", dpi=160)
     plt.close(fig)
 
 

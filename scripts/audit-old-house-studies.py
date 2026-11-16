@@ -710,5 +710,5 @@ if __name__ == "__main__":
     parser.add_argument("--study", type=Path, default=ROOT/"public/data/interior-studies.json")
     parser.add_argument("--metadata", type=Path, default=ROOT/"data/source/old-house-study-provenance.json")
     parser.add_argument("--output", type=Path, default=ROOT/"docs/evidence/old-house-studies-audit.json")
-    parser.add_argument("--plot", type=Path, default=ROOT/"docs/evidence/old-house-studies-overview.png")
+    parser.add_argument("--plot", type=Path, default=ROOT/"docs/screenshots/older-houses/old-house-studies-overview.png")
     main(parser.parse_args())

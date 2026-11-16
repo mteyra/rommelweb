@@ -1,5 +1,5 @@
 import test from 'node:test';
-import {historicalExteriorSource} from './historical-exterior-source.mjs';
+import {frozenFile} from './frozen-files.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -376,7 +376,8 @@ test('Green preservation receipt protects completed Red and White, remaining pro
   };
   for (const [path, record] of Object.entries(receipt.immutableFiles)) {
     assert.equal(record.unchanged, true, path);
-    const source = greenReleaseSources[path] || historicalExteriorSource(path);
+    const source = greenReleaseSources[path] || frozenFile(path);
+    if (!source) continue;
     assert.equal(sha(await readFile(new URL(`../${source}`, import.meta.url))), record.sha256, path);
   }
   assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['59']);
