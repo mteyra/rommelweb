@@ -128,6 +128,13 @@ test('Red features stay local while separately photographed houses retain their 
     if (['51', '53'].includes(other.number)) {
       assert.ok(result.signs.length > 0, 'Newly photographed entrances carry their own signs');
       assert.ok(result.signs.every(sign => sign.lines.at(-1) === other.number), 'Never copy the Red address');
+    } else if (other.number === '57a') {
+      // The later Turquoise photo pass has its own single-line address and bike
+      // wordmark. Its geometry is covered by turquoise-photo-details.test.mjs;
+      // this historical Red test continues to check ownership and locality.
+      assert.ok(result.signs.every(sign => sign.id.startsWith('57a-')), 'Turquoise signs keep their own identity');
+      assert.ok(result.signs.some(sign => sign.id === '57a-entrance-address' && /57a$/.test(sign.lines[0])),
+        'Turquoise carries its photographed address, never the Red address');
     } else {
       assert.deepEqual(result.signs || [], [], 'Unphotographed entrances do not gain invented signs');
       assert.equal(result.triangleLayers.detailCladding?.length || 0, 0, 'Unphotographed houses retain their previous cladding');

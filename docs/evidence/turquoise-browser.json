@@ -1,0 +1,738 @@
+{
+  "building": "57a / Turkois",
+  "completedAt": "2026-11-16T01:45:49.506292+00:00",
+  "success": true,
+  "scope": "Exterior mesh visual inspection and existing app interaction verification. This QA work changed no application source or interior data.",
+  "baselineCommit": "662a1e1e767b105ffd17b9a8e729f20f773e376d",
+  "sourceSha256": {
+    "src/turquoise-photo-details.js": "c1298787744a8843155f3867b066966ce90b8fa248707dd7d844eb1856d70ffd",
+    "src/turquoise-window-layout.js": "8062cccbd30584f3c35b5ea3f77ff59331464332d93455a92c89f37d51963ac8"
+  },
+  "environment": {
+    "browser": "Firefox 159.0.1 headless",
+    "driver": "WebDriver BiDi",
+    "dedicatedProfile": "/tmp/rommel-turquoise-firefox",
+    "debugPort": 9275,
+    "server": "http://127.0.0.1:5195/rommelweb/",
+    "renderViewport": [
+      1440,
+      1000
+    ],
+    "appViewports": [
+      [
+        1440,
+        1000
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        844
+      ]
+    ]
+  },
+  "exterior": {
+    "fullDirectionalPass": {
+      "views": [
+        {
+          "version": "final",
+          "name": "north",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/north-day-final.png",
+          "house": "57a",
+          "position": [
+            84.63036738044279,
+            18.158986793701537,
+            -46.91917203096794
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:47.445921+00:00",
+          "sha256": "7d0467a734d03dcda1859a1b9ea123a4f5407a06c357e5bf02db3e1f18eb5214"
+        },
+        {
+          "version": "final",
+          "name": "north",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/north-night-final.png",
+          "house": "57a",
+          "position": [
+            84.63036738044279,
+            18.158986793701537,
+            -46.91917203096794
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:48.208927+00:00",
+          "sha256": "c1192c16f461339c76672943de633a6d3cf4d5f7941092b308fa3bd66c465b00"
+        },
+        {
+          "version": "final",
+          "name": "east",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/east-day-final.png",
+          "house": "57a",
+          "position": [
+            118.91490866932264,
+            18.14301534255135,
+            11.044417896101844
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:48.962932+00:00",
+          "sha256": "b3d91c2d66ae45fa5a8658d4a5502ef5907acf80794e07734e5b95b6243ffc16"
+        },
+        {
+          "version": "final",
+          "name": "east",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/east-night-final.png",
+          "house": "57a",
+          "position": [
+            118.91490866932264,
+            18.14301534255135,
+            11.044417896101844
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:49.725937+00:00",
+          "sha256": "90be896f3b0adce6dc0d778daebb7571e0b1203be1fa9018a4659e1eebcc2eab"
+        },
+        {
+          "version": "final",
+          "name": "south",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/south-day-final.png",
+          "house": "57a",
+          "position": [
+            61.07583489292839,
+            18.155261176952077,
+            45.48707080466556
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:50.492942+00:00",
+          "sha256": "b46c6afecc6b50d602c36e60b40bad554928a38afbd6ec88646a696d19a19acb"
+        },
+        {
+          "version": "final",
+          "name": "south",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/south-night-final.png",
+          "house": "57a",
+          "position": [
+            61.07583489292839,
+            18.155261176952077,
+            45.48707080466556
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:51.276948+00:00",
+          "sha256": "d7ff3e061cb10346fe6fadeae729574ebf7913bca6e26edce0ee2458593d3ba6"
+        },
+        {
+          "version": "final",
+          "name": "west",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/west-day-final.png",
+          "house": "57a",
+          "position": [
+            26.804955440668863,
+            18.1406557852767,
+            -12.434589789633439
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:52.012953+00:00",
+          "sha256": "aeca3d6ec3eb628ea2929ac1dbf0d5156109d62b84b50217e572ac18d4e57f53"
+        },
+        {
+          "version": "final",
+          "name": "west",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/west-night-final.png",
+          "house": "57a",
+          "position": [
+            26.804955440668863,
+            18.1406557852767,
+            -12.434589789633439
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:52.751958+00:00",
+          "sha256": "e4396429a42c662006f2d64b71c3fcdad89c4a5c29da59900f34df30b4afa50e"
+        },
+        {
+          "version": "final",
+          "name": "north-east",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/north-east-day-final.png",
+          "house": "57a",
+          "position": [
+            119.42293364623512,
+            19.346195001262625,
+            -27.776159096648318
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:53.818965+00:00",
+          "sha256": "5a211d2a745a2aa01a67e3157cf302285f8e3e484dd5694cb060195b50dff4cd"
+        },
+        {
+          "version": "final",
+          "name": "north-east",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/north-east-night-final.png",
+          "house": "57a",
+          "position": [
+            119.42293364623512,
+            19.346195001262625,
+            -27.776159096648318
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:54.664971+00:00",
+          "sha256": "9fc3df0a6bc2236fd4f90ba66902e2a0b57a52acaae1a8b48d82557c0b93c824"
+        },
+        {
+          "version": "final",
+          "name": "north-west",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/north-west-day-final.png",
+          "house": "57a",
+          "position": [
+            45.768038430773075,
+            19.34670154522992,
+            -47.27639389907032
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:55.559978+00:00",
+          "sha256": "3014c3ffec442e6eb1d9c8c40f78a00bfbc6d67bbde69aa6f5840d0d97213370"
+        },
+        {
+          "version": "final",
+          "name": "north-west",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/north-west-night-final.png",
+          "house": "57a",
+          "position": [
+            45.768038430773075,
+            19.34670154522992,
+            -47.27639389907032
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:56.268982+00:00",
+          "sha256": "7ecacfe7d004059aa5ab6e7a234a2f7cbc4531632892409654dd7638b5ae9866"
+        },
+        {
+          "version": "final",
+          "name": "south-east",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/south-east-day-final.png",
+          "house": "57a",
+          "position": [
+            99.9352470547145,
+            19.348084352037194,
+            45.89120493410891
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:56.990987+00:00",
+          "sha256": "f581ff0e5bbc35059cc4b4c6ab55caeba987e410ae7422f8f03b4c2c0a741e29"
+        },
+        {
+          "version": "final",
+          "name": "south-east",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/south-east-night-final.png",
+          "house": "57a",
+          "position": [
+            99.9352470547145,
+            19.348084352037194,
+            45.89120493410891
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:57.741992+00:00",
+          "sha256": "93740e26729d304d776076887f7cc866027871effd5af3cca6977366eacf8a6a"
+        },
+        {
+          "version": "final",
+          "name": "south-west",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/south-west-day-final.png",
+          "house": "57a",
+          "position": [
+            26.291136409089006,
+            19.344011622093262,
+            26.370234645878483
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:58.498998+00:00",
+          "sha256": "b6fbad79bd24c9b0681132d7f1a5a96ae3f35efb27359d4c05c47e793e484100"
+        },
+        {
+          "version": "final",
+          "name": "south-west",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/south-west-night-final.png",
+          "house": "57a",
+          "position": [
+            26.291136409089006,
+            19.344011622093262,
+            26.370234645878483
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:31:59.239003+00:00",
+          "sha256": "c8c577ffbfc730738264281c57d1fa0e017581182a621de8b22959f0e21b2dd8"
+        }
+      ],
+      "errors": [],
+      "success": true
+    },
+    "latestIntercomTargetedPass": {
+      "views": [
+        {
+          "version": "intercom-final",
+          "name": "north-east",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/north-east-day-intercom-final.png",
+          "house": "57a",
+          "position": [
+            119.42293364623512,
+            19.346195001262625,
+            -27.776159096648318
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:43:11.330958+00:00",
+          "sha256": "47bcfaa1fa5f7b0003a0b604788410116575083b36b20b84ae165ad2fba653ee"
+        },
+        {
+          "version": "intercom-final",
+          "name": "north-east",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/north-east-night-intercom-final.png",
+          "house": "57a",
+          "position": [
+            119.42293364623512,
+            19.346195001262625,
+            -27.776159096648318
+          ],
+          "target": [
+            72.8485,
+            13.389000000000001,
+            -0.6979999999999995
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:43:12.354966+00:00",
+          "sha256": "e52a23fa4b42d84e4a9bb62f6bbfdd90f739c2e419aec3d3e4fecdb4a0ce8486"
+        }
+      ],
+      "errors": [],
+      "success": true
+    },
+    "latestEntrancePass": {
+      "views": [
+        {
+          "version": "entrance",
+          "name": "entrance",
+          "theme": "day",
+          "path": "/tmp/rommel-turquoise-review/entrance-day-entrance.png",
+          "house": "57a",
+          "position": [
+            80.58692736299956,
+            4.507569948445721,
+            -31.135985670917286
+          ],
+          "target": [
+            75.66,
+            3.3,
+            -11.79
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:43:46.106217+00:00",
+          "sha256": "8ce5e83cc37c8a99019b57ef096b61542b1059082b12f5ff1ba87349930b21da"
+        },
+        {
+          "version": "entrance",
+          "name": "entrance",
+          "theme": "night",
+          "path": "/tmp/rommel-turquoise-review/entrance-night-entrance.png",
+          "house": "57a",
+          "position": [
+            80.58692736299956,
+            4.507569948445721,
+            -31.135985670917286
+          ],
+          "target": [
+            75.66,
+            3.3,
+            -11.79
+          ],
+          "features": 23,
+          "capturedAt": "2026-11-16T01:43:46.892222+00:00",
+          "sha256": "3ca8158519f1a401a8c389c0ce101f853184d4f20541228341bcfff9edfa87a1"
+        }
+      ],
+      "errors": [],
+      "success": true
+    },
+    "reviewFindings": [
+      "Four broad facades, north gallery, northeast bicycle cage, and seven staggered corner loggias checked against supplied photos.",
+      "Gallery concrete slab fronts are exposed without wood strips crossing the openings.",
+      "Entrance address fascia is fully visible below the first gallery slab; complete address text is readable.",
+      "The bicycle-cage t\u00fcrkis wordmark remains intact.",
+      "Turquoise service-door plaque is visible through its matching source-shell opening.",
+      "Intercom is mounted flush on the entrance right reveal."
+    ],
+    "note": "Sixteen day/night directional captures preceded the final small intercom adjustment. Northeast and entrance day/night captures were refreshed after that adjustment."
+  },
+  "app": {
+    "success": true,
+    "floorChecks": [
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 3,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 4,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 6,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 1440,
+        "floor": 7,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "57a",
+        "width": 390,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "57a",
+        "width": 390,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 29
+      },
+      {
+        "house": "57a",
+        "width": 390,
+        "floor": 7,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 29
+      },
+      {
+        "house": "57a",
+        "width": 320,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 8
+      },
+      {
+        "house": "57a",
+        "width": 320,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 25
+      },
+      {
+        "house": "57a",
+        "width": 320,
+        "floor": 7,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 25
+      }
+    ],
+    "floorCheckCount": 14,
+    "consoleErrors": [],
+    "checks": [
+      "House 57a selects via URL hash.",
+      "Day and night themes render at desktop and both mobile widths.",
+      "Fold/unfold works at all three widths.",
+      "Floors 0\u20137 work at desktop; floors 0,1,7 work at both mobile widths.",
+      "Each tested floor has exactly one scene canvas and visible room labels.",
+      "No horizontal page overflow at any tested floor/viewport."
+    ],
+    "screenshots": [
+      {
+        "path": "/tmp/rommel-turquoise-app-review/57a-1440-day.png",
+        "width": 1440,
+        "view": "day",
+        "capturedAt": "2026-11-16T01:36:20.365829+00:00",
+        "sha256": "c6d6500f1ffa0b9a63859a5206a90f9910a58342e6e4b4f35f86e49c0b4998f5"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review/57a-1440-night.png",
+        "width": 1440,
+        "view": "night",
+        "capturedAt": "2026-11-16T01:36:21.512838+00:00",
+        "sha256": "8cfed2a21b7bbc6f439c833de2feb802d7075b2f81673bb3618aef7134698eca"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review/57a-1440-floor.png",
+        "width": 1440,
+        "view": "floor",
+        "capturedAt": "2026-11-16T01:36:24.813864+00:00",
+        "sha256": "a607dba5ae534652ccf5a005b91ef9d7b96c7861df1b8a2bd65831589217e886"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review/57a-390-day.png",
+        "width": 390,
+        "view": "day",
+        "capturedAt": "2026-11-16T01:36:46.471034+00:00",
+        "sha256": "f2ab97b253e5fb85d1fd8af5de6317cce50fe4b3f8353dc7920099f4c2442297"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review/57a-390-night.png",
+        "width": 390,
+        "view": "night",
+        "capturedAt": "2026-11-16T01:36:47.476042+00:00",
+        "sha256": "e295616e50e20a4159e6360a0536fd7397f06d0b1f6a63c3989232a6212eafe8"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review/57a-390-floor.png",
+        "width": 390,
+        "view": "floor",
+        "capturedAt": "2026-11-16T01:36:51.216071+00:00",
+        "sha256": "a48199aae6458df3b7e3edfc2bfdbf84c4e7cd9f3a793c78d1dca4bf43e22415"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review-320/57a-320-day.png",
+        "width": 320,
+        "view": "day",
+        "capturedAt": "2026-11-16T01:42:35.999695+00:00",
+        "sha256": "541b3dd4687fca6328503a32a70bf0186baa80ae7878c75db02e9aa711d38fcf"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review-320/57a-320-night.png",
+        "width": 320,
+        "view": "night",
+        "capturedAt": "2026-11-16T01:42:36.920702+00:00",
+        "sha256": "90e9da0bf8abe318cd2634e601b2d7960060705ac22582bdf4b116638b34f3c4"
+      },
+      {
+        "path": "/tmp/rommel-turquoise-app-review-320/57a-320-floor.png",
+        "width": 320,
+        "view": "floor",
+        "capturedAt": "2026-11-16T01:42:39.376720+00:00",
+        "sha256": "0d02863d639966c17bfce94b89d7192a0b264769bc131519df5127609928543b"
+      }
+    ],
+    "harnessRecovery": "The sequential run passed desktop and390px checks, then one BiDi script.evaluate timed out at320px without an app console error. Closing the earlier QA context and rerunning320px in a fresh context passed all remaining checks.",
+    "mobileRecoveryReport": {
+      "views": [
+        {
+          "house": "57a",
+          "width": 320,
+          "floor": 0,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 8
+        },
+        {
+          "house": "57a",
+          "width": 320,
+          "floor": 1,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 25
+        },
+        {
+          "house": "57a",
+          "width": 320,
+          "floor": 7,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 25
+        }
+      ],
+      "errors": [],
+      "startedAt": "2026-11-16T01:42:23.910Z",
+      "success": true,
+      "completedAt": "2026-11-16T01:42:40.823Z"
+    }
+  },
+  "interiorPixelComparison": {
+    "floor": 1,
+    "theme": "day",
+    "method": "ImageMagick compare -metric AE",
+    "absoluteErrorPixels": 0,
+    "before": {
+      "path": "/tmp/rommel-turquoise-review/interior-57a-before.png",
+      "sha256": "b2dde8969f9e0cb2de6d679d571191f84e373c2b8b8cabe743e5c008706b4b02"
+    },
+    "after": {
+      "path": "/tmp/rommel-turquoise-review/interior-57a-final.png",
+      "sha256": "b2dde8969f9e0cb2de6d679d571191f84e373c2b8b8cabe743e5c008706b4b02"
+    },
+    "result": "Exact pixel equality"
+  },
+  "savedReviewAssets": [
+    {
+      "path": "docs/preview/turquoise-exterior.webp",
+      "sha256": "d294cc8cf2f1e9bddf94188c896b07b50f152361d840b03bbaf361a4916694a6"
+    },
+    {
+      "path": "docs/preview/turquoise-entrance-day.webp",
+      "sha256": "0c1800df2c722bcc405dee51640ec4e4df1e4d757595a5ea7b0519acab5ae9dd"
+    },
+    {
+      "path": "docs/preview/turquoise-north-east-night.webp",
+      "sha256": "bda7cc2ef60c2f5784b1953d1c5b8424ad3e8c709adddf0f2e7cde517f8f865e"
+    }
+  ],
+  "temporaryCaptureNote": "Full-size raw captures and harnesses live under /tmp; only the compact final review assets are retained in the repository.",
+  "accuracyNote": "Photo-informed exterior reconstruction. Camera perspective and unseen dimensions remain estimates; no surveyed accuracy claim."
+}

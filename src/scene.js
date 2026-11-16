@@ -35,6 +35,8 @@ export const SCENE_THEMES = Object.freeze({
     detailMetal: 0x92958b, detailRecess: 0x202422, detailSoffit: 0x555a4c, detailLime: 0x8eaa56, detailRoofBed: 0x41443a, detailRoofHardware: 0x5c615a, detailRoofTexture: 0x686e52, detailGlazing: 0x243235,
     detailCladding: RED_CLADDING.night, detailThreshold: 0x555a51, detailSign: 0xe9e8df,
     detailLightPanel: 0xc5c6b9, detailLimeShade: 0x44522c,
+    detailGraphite: 0x172023, detailConcrete: 0x6b8890, detailCoolRecess: 0x263d43, detailCoolLight: 0xc7eff0,
+    detailAcidLime: 0xa2b64d, detailAcidShade: 0x687b32, detailTurquoisePlaque: 0x478d86,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
@@ -44,6 +46,8 @@ export const SCENE_THEMES = Object.freeze({
     detailMetal: 0x626c68, detailRecess: 0x454d47, detailSoffit: 0x858b77, detailLime: 0x9db667, detailRoofBed: 0x868873, detailRoofHardware: 0x69716c, detailRoofTexture: 0x626c4b, detailGlazing: 0x566f70,
     detailCladding: RED_CLADDING.day, detailThreshold: 0x9c9e90, detailSign: 0xf1eee5,
     detailLightPanel: 0xe1e2d5, detailLimeShade: 0x60733c,
+    detailGraphite: 0x293237, detailConcrete: 0xacb5af, detailCoolRecess: 0x667875, detailCoolLight: 0xe2eae0,
+    detailAcidLime: 0xb2c669, detailAcidShade: 0x80954b, detailTurquoisePlaque: 0x48988e,
   }),
 });
 
@@ -496,14 +500,19 @@ export class CampusScene {
       const canvas = document.createElement('canvas');
       const context = canvas.getContext?.('2d');
       if (!context) continue;
-      canvas.width = 1024; canvas.height = 512;
-      context.fillStyle = '#ffffff';
+      canvas.width = 1024; canvas.height = sign.style === 'fascia' ? 96 : 512;
+      context.fillStyle = sign.style === 'wordmark' ? '#101915' : '#ffffff';
       context.textAlign = 'center';
       context.textBaseline = 'middle';
-      context.font = '600 74px Arial, sans-serif';
-      context.fillText(sign.lines[0], 512, 105, 980);
-      context.font = '500 285px Arial, sans-serif';
-      context.fillText(sign.lines[1], 512, 335);
+      if (sign.style === 'wordmark' || sign.style === 'fascia') {
+        context.font = sign.style === 'wordmark' ? '800 340px Arial, sans-serif' : '500 56px Arial, sans-serif';
+        context.fillText(sign.lines[0], 512, canvas.height / 2, 1000);
+      } else {
+        context.font = '600 74px Arial, sans-serif';
+        context.fillText(sign.lines[0], 512, 105, 980);
+        context.font = '500 285px Arial, sans-serif';
+        context.fillText(sign.lines[1], 512, 335);
+      }
       const texture = new THREE.CanvasTexture(canvas);
       texture.colorSpace = THREE.SRGBColorSpace;
       const geometry = new THREE.BufferGeometry();

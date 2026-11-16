@@ -10,6 +10,8 @@ The repository and GitHub Pages demo are public. See [release checks](docs/RELEA
 
 **Red House 55 exterior:** the folded model now follows the latest entrance and backside photos, with aligned window stacks, separate red glazing groups, a recessed entrance and “55” sign, and finer canopy, dormer and drainage details. The original building shape and every internal layout remain unchanged. [Exterior refinement](docs/HOUSE55-EXTERIOR-REFINEMENT.md).
 
+**Türkis / House 57a exterior:** four resident photographs now guide its seven corner balconies, open north gallery, recessed entrance, wraparound bicycle cage and separate window patterns on each side. Building dimensions and all interior plans remain unchanged. [Photo analysis and exterior design](docs/TURQUOISE-EXTERIOR.md).
+
 **House 55 module layout:** the campus’s unfolded **2. OG**, the [plan study](https://mteyra.github.io/rommelweb/house55-study/) and the [layout sandbox](https://mteyra.github.io/rommelweb/house55-layout/) now start from one shared plan: **20 clear 2.70 × 6.00 m rooms**, **3.10 m modules**, **1.40 m halls** and a **2.70 m stair split (1.30 + 1.40 m)**. Each module allocates a **0.20 m side wall on each side**, leaving **0.40 m between adjacent clear rooms**. The independent outline follows the latest annotated dimensions; the folded official exterior and its source window placements remain unchanged. [Dimensions and assumptions](docs/HOUSE55-MODULE-LAYOUT.md) · [Sandbox guide](docs/HOUSE55-LAYOUT-SANDBOX.md).
 
 The sandbox can explore alternative rectangle proportions while retaining **16.20 m² per room**. Saved sandbox edits are local variants; they do not automatically change the shared starting plan.
