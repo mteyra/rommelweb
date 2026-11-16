@@ -39,6 +39,7 @@ export const SCENE_THEMES = Object.freeze({
     detailAcidLime: 0xa2b64d, detailAcidShade: 0x687b32, detailTurquoisePlaque: 0x478d86,
     detailPinkGallerySoffit: 0x88afb7, detailPinkGalleryWall: 0x50676b, detailPinkGalleryLight: 0xd3f6fb,
     detailBlueShopGreen: 0x458827, detailBlueShopGlass: 0x2c4a50, detailBlueBlind: 0x303b3d,
+    detailBlackPorchWall: 0x74736c, detailBlackPorchSoffit: 0xc0bba3,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
@@ -52,6 +53,7 @@ export const SCENE_THEMES = Object.freeze({
     detailAcidLime: 0xb2c669, detailAcidShade: 0x80954b, detailTurquoisePlaque: 0x48988e,
     detailPinkGallerySoffit: 0xc0c6bf, detailPinkGalleryWall: 0x818b87, detailPinkGalleryLight: 0xe4efed,
     detailBlueShopGreen: 0x489b24, detailBlueShopGlass: 0x6c888b, detailBlueBlind: 0x455354,
+    detailBlackPorchWall: 0xa3a39b, detailBlackPorchSoffit: 0xd5d1bc,
   }),
 });
 

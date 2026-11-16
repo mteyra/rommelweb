@@ -12,6 +12,8 @@ The repository and GitHub Pages demo are public. See [release checks](docs/RELEA
 
 **Türkis / House 57a exterior:** four resident photographs now guide its seven corner balconies, open north gallery, recessed entrance, wraparound bicycle cage and separate window patterns on each side. Building dimensions and all interior plans remain unchanged. [Photo analysis and exterior design](docs/TURQUOISE-EXTERIOR.md).
 
+**Black / House 49 exterior:** six photographs now guide all four façades, five lime corner balconies, the open north gallery and signed entrance, the northwest bicycle cage, and corrected window patterns. Dorm dimensions and every interior floorplan are unchanged. [Photo analysis and exterior design](docs/BLACK-PHOTO-EXTERIOR.md).
+
 **Pink / House 59a exterior:** resident photographs now guide its staggered windows, five corner balconies, open entrance galleries and wraparound bicycle cage. Building dimensions and all interiors remain unchanged. [Photo analysis and exterior design](docs/PINK-EXTERIOR-PHOTO-STUDY.md).
 
 **Blue House 51a exterior:** all four elevations follow the seven resident photographs, including aligned upper windows, six southeast ground windows, the recessed “blau” entrance and restaurant glazing around the west corner. The building dimensions and every interior layout remain unchanged. [Photo study and checks](docs/BLUE-PHOTO-EXTERIOR.md) · [Rendered elevations](docs/evidence/blue-photo-exterior-overview.webp).
