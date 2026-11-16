@@ -1,5 +1,7 @@
 # Photograph-to-façade upgrade
 
+**Grau 55a update:** the [seven-photo exterior reconstruction](GRAU-PHOTO-EXTERIOR.md) supersedes the earlier Grau window rows, ground-glazing placeholders and stair depiction below. It models the photographed bicycle cage, entrance and five open landings, and registers all four elevations while preserving the original dimensions and interiors.
+
 **House 55 update:** the [later exterior refinement](HOUSE55-EXTERIOR-REFINEMENT.md) supersedes this report’s earlier eight-bay courtyard glazing and window-display treatment. It adds the photographed separate entrance, grouped glazing and upright roof-3 dormer, while preserving all internal layouts and source geometry. The other-house work below remains current.
 
 Reviewed 15 November 2026. The resident's six photographs and the architect's gallery support a more recognizable exterior appearance on the existing campus model. This is an **unmeasured appearance study**, not a façade survey. No accuracy percentage is justified.

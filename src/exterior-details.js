@@ -7,6 +7,7 @@ import {addBlackHousePhotoDetails} from './black-house-photo-details.js';
 import {addBlueCourtyardPhotoDetails} from './blue-courtyard-photo-details.js';
 import {addTurquoisePhotoDetails} from './turquoise-photo-details.js';
 import {addPinkHousePhotoDetails} from './pink-house-photo-details.js';
+import {addGrauPhotoDetails} from './grau-photo-details.js';
 
 /**
  * Replaceable photographic façade details, in the unmodified campus metre frame.
@@ -260,25 +261,6 @@ export function createExteriorDetails(building, {house = building.number, levels
       1: [0.410, 0.551, 0.680, 0.822, 0.952],
     });
   }
-  if (house === '55a') {
-    const southWest = [19.092, 0, -8.705], southEast = [40.872, 0, -14.857];
-    const northWest = [12.881, 0, -30.699], northEast = [34.692, 0, -36.870];
-    const north = face([2, 0, 4, 6], northWest, northEast);
-    stairElevation('55a-north-stair', north, 7.84, 14.81);
-    cornerLoggia('55a-top-southwest-loggia', 5, face([5, 3], southWest, southEast), face([9], southWest, northWest), 6.90, 3.25);
-    cornerLoggia('55a-middle-southeast-loggia', 3, face([7], southEast, northEast), face([3, 5], southEast, southWest), 9.90, 3.20);
-    cornerLoggia('55a-lower-southwest-loggia', 2, face([5, 3], southWest, southEast), face([9], southWest, northWest), 6.90, 3.25);
-    cornerLoggia('55a-upper-northeast-loggia', 4, face([6, 4, 0, 2], northEast, northWest), face([7], northEast, southEast), 7.30, 3.25);
-    cornerLoggia('55a-lower-northwest-loggia', 1, north, face([9], northWest, southWest), 6.90, 3.25);
-    groundFrontage('55a-northeast-ground-glazing', face([6, 4], northEast, northWest), 0.10, 7.55, 'shared-ground-glazing');
-    groundFrontage('55a-east-ground-glazing', face([7], northEast, southEast), 0.10, 5.80, 'shared-ground-glazing');
-    photographicRows(7, northEast, southEast, {
-      5: [0.085, 0.191, 0.316, 0.452, 0.590],
-      4: [0.224, 0.355, 0.492, 0.596],
-      3: [0.087, 0.202, 0.319, 0.457],
-    });
-  }
-
   // The eight-photo November 16 request refines only these registered faces.
   // Source surfaces, floor guides and every interior remain independent.
   const photoHelpers = {
@@ -293,6 +275,7 @@ export function createExteriorDetails(building, {house = building.number, levels
   if (house === '51a') addBlueCourtyardPhotoDetails(photoContext);
   if (house === '57a') addTurquoisePhotoDetails(photoContext);
   if (house === '59a') addPinkHousePhotoDetails(photoContext);
+  if (house === '55a') addGrauPhotoDetails(photoContext);
   if (['51', '53', '49', '51a'].includes(house)) {
     const surfaces = house === '51a' ? output.photoSurfaceIndices.map(index => building.surfaces[index])
       : [...new Set([...output.layoutsBySurface.keys(), ...output.exclusionsBySurface.keys()])];

@@ -152,6 +152,12 @@ test('Red features stay local while separately photographed houses retain their 
       assert.ok(result.signs.some(sign => sign.id === '49-address' && / 49$/.test(sign.lines[0])),
         'The photographed Black entrance carries its own address');
       assert.ok(result.signs.some(sign => sign.id === '49-schwarz-wordmark' && sign.lines[0] === 'schwarz'));
+    } else if (other.number === '55a') {
+      assert.ok(result.signs.every(sign => sign.id.startsWith('55a-')), 'Grau signs keep their own identity');
+      assert.ok(result.signs.some(sign => sign.id === '55a-entrance-address' && /55a$/.test(sign.lines[0])),
+        'Grau carries its photographed entrance address');
+      assert.ok(result.signs.some(sign => sign.id === '55a-grau-bicycle-wordmark' && sign.lines[0] === 'grau'),
+        'Grau lettering belongs to the bicycle cage beside the entrance');
     } else {
       assert.deepEqual(result.signs || [], [], 'Unphotographed entrances do not gain invented signs');
       assert.equal(result.triangleLayers.detailCladding?.length || 0, 0, 'Unphotographed houses retain their previous cladding');

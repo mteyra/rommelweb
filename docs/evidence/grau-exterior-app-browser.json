@@ -1,0 +1,114 @@
+{
+  "views": [
+    {
+      "house": "55a",
+      "width": 1440,
+      "floor": 0,
+      "view": "floor",
+      "scroll": 1440,
+      "canvas": 1,
+      "rooms": 9
+    },
+    {
+      "house": "55a",
+      "width": 1440,
+      "floor": 1,
+      "view": "floor",
+      "scroll": 1440,
+      "canvas": 1,
+      "rooms": 30
+    },
+    {
+      "house": "55a",
+      "width": 1440,
+      "floor": 2,
+      "view": "floor",
+      "scroll": 1440,
+      "canvas": 1,
+      "rooms": 28
+    },
+    {
+      "house": "55a",
+      "width": 1440,
+      "floor": 3,
+      "view": "floor",
+      "scroll": 1440,
+      "canvas": 1,
+      "rooms": 30
+    },
+    {
+      "house": "55a",
+      "width": 1440,
+      "floor": 4,
+      "view": "floor",
+      "scroll": 1440,
+      "canvas": 1,
+      "rooms": 30
+    },
+    {
+      "house": "55a",
+      "width": 1440,
+      "floor": 5,
+      "view": "floor",
+      "scroll": 1440,
+      "canvas": 1,
+      "rooms": 28
+    },
+    {
+      "house": "55a",
+      "width": 390,
+      "floor": 0,
+      "view": "floor",
+      "scroll": 390,
+      "canvas": 1,
+      "rooms": 9
+    },
+    {
+      "house": "55a",
+      "width": 390,
+      "floor": 1,
+      "view": "floor",
+      "scroll": 390,
+      "canvas": 1,
+      "rooms": 29
+    },
+    {
+      "house": "55a",
+      "width": 390,
+      "floor": 2,
+      "view": "floor",
+      "scroll": 390,
+      "canvas": 1,
+      "rooms": 28
+    },
+    {
+      "house": "55a",
+      "width": 390,
+      "floor": 3,
+      "view": "floor",
+      "scroll": 390,
+      "canvas": 1,
+      "rooms": 30
+    },
+    {
+      "house": "55a",
+      "width": 390,
+      "floor": 4,
+      "view": "floor",
+      "scroll": 390,
+      "canvas": 1,
+      "rooms": 30
+    },
+    {
+      "house": "55a",
+      "width": 390,
+      "floor": 5,
+      "view": "floor",
+      "scroll": 390,
+      "canvas": 1,
+      "rooms": 28
+    }
+  ],
+  "errors": [],
+  "success": true
+}

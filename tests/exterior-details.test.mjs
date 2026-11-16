@@ -103,7 +103,7 @@ test('corner loggias open both elevations and their floors stay on the existing 
   const grey = detailFor(buildings.get('55a'));
   const wide = grey.features.find(feature => feature.id === '55a-middle-southeast-loggia');
   assert.equal(wide.sourceSurfaceIndices[0], 7, 'the long side of the large Grey middle loggia faces ESE');
-  assert.equal(wide.frontWidth, 9.9);
+  assert.equal(wide.frontWidth, 9.43);
   assert.equal(wide.returnWidth, 3.2);
 });
 
@@ -114,8 +114,8 @@ test('photo-positioned window counts survive the recess masks without inventing 
       house: number, family: 'timber', exclusionsBySurface: detail.exclusionsBySurface, layoutsBySurface: detail.layoutsBySurface,
     });
     for (const [surface, layout] of detail.layoutsBySurface) {
-      assert.equal(layout.replace, number === '51a',
-        'Blue has complete four-elevation coverage; unseen rows on the other dorms retain their baseline');
+      assert.equal(layout.replace, ['51a', '55a'].includes(number),
+        'Blue and Grau have four-elevation coverage; unseen Lila rows retain their baseline');
       for (const row of layout.rows) {
         const patches = windows.get(surface).patches.filter(patch => patch.floor === row.floor);
         if (number === '51a' && [1, 3, 5].includes(building.surfaces.indexOf(surface))) {
@@ -123,6 +123,11 @@ test('photo-positioned window counts survive the recess masks without inventing 
           // fragments. Its complete four-column count is checked separately.
           assert.ok(patches.length <= row.centers.length,
             'A source fragment cannot introduce more windows than the complete photographed row');
+          continue;
+        }
+        if (number === '55a' && [3, 5].includes(building.surfaces.indexOf(surface))) {
+          assert.ok(patches.length <= row.centers.length,
+            'Grau south source fragments share one photographed elevation');
           continue;
         }
         assert.equal(patches.length, row.centers.length,
