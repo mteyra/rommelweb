@@ -1,0 +1,1278 @@
+{
+  "scope": "Lila 53a exterior photo review",
+  "browser": "Firefox headless WebDriver BiDi",
+  "exterior": {
+    "views": [
+      {
+        "version": "reviewed",
+        "name": "east",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          48.923284735152464,
+          9.843898356847177,
+          -63.383184680239935
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "east",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          48.923284735152464,
+          9.843898356847177,
+          -63.383184680239935
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "north",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          23.483913252931607,
+          9.837029803403055,
+          -106.04689045380857
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "north",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          23.483913252931607,
+          9.837029803403055,
+          -106.04689045380857
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "west",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          -19.269905119132233,
+          9.840107044065562,
+          -80.6864666590789
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "west",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          -19.269905119132233,
+          9.840107044065562,
+          -80.6864666590789
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "south",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          6.1808517258762325,
+          9.83764486917905,
+          -38.027940334853945
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "south",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          6.1808517258762325,
+          9.83764486917905,
+          -38.027940334853945
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "northeast",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          52.65136348375488,
+          16.564419877084497,
+          -95.46389168041969
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "northeast",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          52.65136348375488,
+          16.564419877084497,
+          -95.46389168041969
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "southwest",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          -23.025538659526276,
+          16.56589015703007,
+          -48.61628559172182
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "southwest",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          -23.025538659526276,
+          16.56589015703007,
+          -48.61628559172182
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "overview",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          49.94893976122312,
+          34.742203386660734,
+          -50.29303729067141
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "overview",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          49.94893976122312,
+          34.742203386660734,
+          -50.29303729067141
+        ],
+        "target": [
+          14.816,
+          7.556000000000001,
+          -72.042
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "entrance-close",
+        "theme": "day",
+        "house": "53a",
+        "position": [
+          44.844226913390116,
+          4.697600360547327,
+          -64.58908171239013
+        ],
+        "target": [
+          25.5,
+          3.4,
+          -69.5
+        ],
+        "features": 19
+      },
+      {
+        "version": "reviewed",
+        "name": "entrance-close",
+        "theme": "night",
+        "house": "53a",
+        "position": [
+          44.844226913390116,
+          4.697600360547327,
+          -64.58908171239013
+        ],
+        "target": [
+          25.5,
+          3.4,
+          -69.5
+        ],
+        "features": 19
+      }
+    ],
+    "errors": [],
+    "success": true
+  },
+  "application": {
+    "views": [
+      {
+        "house": "53a",
+        "width": 1440,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "53a",
+        "width": 1440,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 1440,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 1440,
+        "floor": 3,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 1440,
+        "floor": 4,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 390,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 10
+      },
+      {
+        "house": "53a",
+        "width": 390,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 390,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 390,
+        "floor": 3,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 390,
+        "floor": 4,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53a",
+        "width": 320,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "53a",
+        "width": 320,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 28
+      },
+      {
+        "house": "53a",
+        "width": 320,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 29
+      },
+      {
+        "house": "53a",
+        "width": 320,
+        "floor": 3,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 28
+      },
+      {
+        "house": "53a",
+        "width": 320,
+        "floor": 4,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 29
+      }
+    ],
+    "errors": [],
+    "success": true
+  },
+  "checks": {
+    "fullSuite": {
+      "passed": 389,
+      "failed": 0
+    },
+    "finalLilaGeometrySuite": {
+      "passed": 7,
+      "failed": 0
+    },
+    "finalProductionBuild": "passed",
+    "note": "Full suite loaded six original Lila tests; final header adjustment and added sign-occlusion regression passed separately in the seven-test Lila suite."
+  },
+  "integration": {
+    "baselineHead": "4b8037d5cb2aeac7cbf161b98fd1dfb5d90b9aab",
+    "sourceState": {
+      "kind": "working-tree",
+      "note": "SHA-256 hashes identify the tested final implementation after integrating the Black, Grau and White exterior releases.",
+      "fileSha256": {
+        "src/exterior-details.js": "d08377cc82af80152e042876af6e778ddbc104ce2d3adf2cc1812568c87800e4",
+        "src/scene.js": "e97fb66e6b8a4169de6374ef4e776f857747d0b2863f418603a63b9dc076afc7",
+        "src/lila-photo-details.js": "5e26a3970c76fec3eecbd84feee86fef87d63a0b25eb8f255932b58d63124607",
+        "src/lila-window-layout.js": "f95b5fad9228615c30a2e1775d92c525f4be38ec8ffd979e515535af4a9d91be"
+      }
+    },
+    "note": "Lila combined with the concurrent Black, Grau and White exterior releases. The earlier full suite predates integration; focused combined tests, build, source/scene preservation audit and final isolated browser renders validate this source. The most recent full-application run is retained with its own earlier baseline below.",
+    "focusedSuites": {
+      "files": [
+        "tests/lila-photo-details.test.mjs",
+        "tests/white-photo-details.test.mjs",
+        "tests/exterior-integration.test.mjs",
+        "tests/exterior-details.test.mjs",
+        "tests/house55-exterior-refinement.test.mjs",
+        "tests/photo-window-picking.test.mjs"
+      ],
+      "passed": 30,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "preservation": {
+      "success": true,
+      "protectedFiles": 151,
+      "changedProtectedFiles": [],
+      "interiorSceneMeshesUnchanged": true,
+      "otherExteriorSceneMeshesUnchanged": true,
+      "otherHouseOutputsUnchanged": true
+    },
+    "diffReview": {
+      "baselineHead": "4b8037d5cb2aeac7cbf161b98fd1dfb5d90b9aab",
+      "scope": "Existing-file differences are limited to Lila exterior dispatch/roof hardware, optional Lila-only material opacity, Lila-specific assertions and documentation. Black, Grau and White dispatches/assertions plus White site scenery and material overrides are retained.",
+      "unwantedChanges": []
+    },
+    "renderComparison": [
+      {
+        "view": "east-day",
+        "identical": true
+      },
+      {
+        "view": "east-night",
+        "identical": true
+      },
+      {
+        "view": "north-day",
+        "identical": true
+      },
+      {
+        "view": "north-night",
+        "identical": true
+      },
+      {
+        "view": "west-day",
+        "identical": true
+      },
+      {
+        "view": "west-night",
+        "identical": true
+      },
+      {
+        "view": "south-day",
+        "identical": true
+      },
+      {
+        "view": "south-night",
+        "identical": true
+      },
+      {
+        "view": "northeast-day",
+        "identical": true
+      },
+      {
+        "view": "northeast-night",
+        "identical": true
+      },
+      {
+        "view": "southwest-day",
+        "identical": true
+      },
+      {
+        "view": "southwest-night",
+        "identical": true
+      },
+      {
+        "view": "overview-day",
+        "identical": true
+      },
+      {
+        "view": "overview-night",
+        "identical": true
+      },
+      {
+        "view": "entrance-close-day",
+        "identical": true
+      },
+      {
+        "view": "entrance-close-night",
+        "identical": true
+      },
+      {
+        "view": "interior-53a-0",
+        "identical": true
+      },
+      {
+        "view": "interior-53a-1",
+        "identical": true
+      },
+      {
+        "view": "interior-53a-2",
+        "identical": true
+      },
+      {
+        "view": "interior-53a-3",
+        "identical": true
+      },
+      {
+        "view": "interior-53a-4",
+        "identical": true
+      }
+    ],
+    "isolatedReview": {
+      "views": [
+        {
+          "version": "release",
+          "name": "east",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/east-day-release.png",
+          "house": "53a",
+          "position": [
+            48.923284735152464,
+            9.843898356847177,
+            -63.383184680239935
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "east",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/east-night-release.png",
+          "house": "53a",
+          "position": [
+            48.923284735152464,
+            9.843898356847177,
+            -63.383184680239935
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "north",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/north-day-release.png",
+          "house": "53a",
+          "position": [
+            23.483913252931607,
+            9.837029803403055,
+            -106.04689045380857
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "north",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/north-night-release.png",
+          "house": "53a",
+          "position": [
+            23.483913252931607,
+            9.837029803403055,
+            -106.04689045380857
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "west",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/west-day-release.png",
+          "house": "53a",
+          "position": [
+            -19.269905119132233,
+            9.840107044065562,
+            -80.6864666590789
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "west",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/west-night-release.png",
+          "house": "53a",
+          "position": [
+            -19.269905119132233,
+            9.840107044065562,
+            -80.6864666590789
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "south",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/south-day-release.png",
+          "house": "53a",
+          "position": [
+            6.1808517258762325,
+            9.83764486917905,
+            -38.027940334853945
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "south",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/south-night-release.png",
+          "house": "53a",
+          "position": [
+            6.1808517258762325,
+            9.83764486917905,
+            -38.027940334853945
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "northeast",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/northeast-day-release.png",
+          "house": "53a",
+          "position": [
+            52.65136348375488,
+            16.564419877084497,
+            -95.46389168041969
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "northeast",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/northeast-night-release.png",
+          "house": "53a",
+          "position": [
+            52.65136348375488,
+            16.564419877084497,
+            -95.46389168041969
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "southwest",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/southwest-day-release.png",
+          "house": "53a",
+          "position": [
+            -23.025538659526276,
+            16.56589015703007,
+            -48.61628559172182
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "southwest",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/southwest-night-release.png",
+          "house": "53a",
+          "position": [
+            -23.025538659526276,
+            16.56589015703007,
+            -48.61628559172182
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "overview",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/overview-day-release.png",
+          "house": "53a",
+          "position": [
+            49.94893976122312,
+            34.742203386660734,
+            -50.29303729067141
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "overview",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/overview-night-release.png",
+          "house": "53a",
+          "position": [
+            49.94893976122312,
+            34.742203386660734,
+            -50.29303729067141
+          ],
+          "target": [
+            14.816,
+            7.556000000000001,
+            -72.042
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "entrance-close",
+          "theme": "day",
+          "path": "/tmp/rommel-lila-review/entrance-close-day-release.png",
+          "house": "53a",
+          "position": [
+            44.844226913390116,
+            4.697600360547327,
+            -64.58908171239013
+          ],
+          "target": [
+            25.5,
+            3.4,
+            -69.5
+          ],
+          "features": 19
+        },
+        {
+          "version": "release",
+          "name": "entrance-close",
+          "theme": "night",
+          "path": "/tmp/rommel-lila-review/entrance-close-night-release.png",
+          "house": "53a",
+          "position": [
+            44.844226913390116,
+            4.697600360547327,
+            -64.58908171239013
+          ],
+          "target": [
+            25.5,
+            3.4,
+            -69.5
+          ],
+          "features": 19
+        }
+      ],
+      "errors": [],
+      "success": true
+    },
+    "application": {
+      "views": [
+        {
+          "house": "53a",
+          "width": 1440,
+          "floor": 0,
+          "view": "floor",
+          "scroll": 1440,
+          "canvas": 1,
+          "rooms": 9
+        },
+        {
+          "house": "53a",
+          "width": 1440,
+          "floor": 1,
+          "view": "floor",
+          "scroll": 1440,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 1440,
+          "floor": 2,
+          "view": "floor",
+          "scroll": 1440,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 1440,
+          "floor": 3,
+          "view": "floor",
+          "scroll": 1440,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 1440,
+          "floor": 4,
+          "view": "floor",
+          "scroll": 1440,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 390,
+          "floor": 0,
+          "view": "floor",
+          "scroll": 390,
+          "canvas": 1,
+          "rooms": 10
+        },
+        {
+          "house": "53a",
+          "width": 390,
+          "floor": 1,
+          "view": "floor",
+          "scroll": 390,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 390,
+          "floor": 2,
+          "view": "floor",
+          "scroll": 390,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 390,
+          "floor": 3,
+          "view": "floor",
+          "scroll": 390,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 390,
+          "floor": 4,
+          "view": "floor",
+          "scroll": 390,
+          "canvas": 1,
+          "rooms": 30
+        },
+        {
+          "house": "53a",
+          "width": 320,
+          "floor": 0,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 9
+        },
+        {
+          "house": "53a",
+          "width": 320,
+          "floor": 1,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 28
+        },
+        {
+          "house": "53a",
+          "width": 320,
+          "floor": 2,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 29
+        },
+        {
+          "house": "53a",
+          "width": 320,
+          "floor": 3,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 28
+        },
+        {
+          "house": "53a",
+          "width": 320,
+          "floor": 4,
+          "view": "floor",
+          "scroll": 320,
+          "canvas": 1,
+          "rooms": 29
+        }
+      ],
+      "errors": [],
+      "success": true,
+      "baselineHead": "03720d4ad2cd044f4a5493c9975313cc1d12da3b"
+    }
+  },
+  "integrationHistory": [
+    {
+      "baselineHead": "9052cc637d3ff0f693dc070d3a7c7c8a6b4650d1",
+      "sourceHead": "ad2c94f2afbe3f49f18dc0aa4d9debe79f90f80c",
+      "note": "Lila rebased onto the concurrent Black exterior release. The previous full suite result predates this integration; the focused combined suites, production build, source/scene preservation audit and browser checks below validate the combined source.",
+      "focusedSuites": {
+        "files": [
+          "tests/lila-photo-details.test.mjs",
+          "tests/black-house-photo-details.test.mjs",
+          "tests/exterior-details.test.mjs",
+          "tests/house55-exterior-refinement.test.mjs"
+        ],
+        "passed": 27,
+        "failed": 0
+      },
+      "productionBuild": "passed",
+      "preservation": {
+        "success": true,
+        "protectedFiles": 144,
+        "changedProtectedFiles": [],
+        "interiorSceneMeshesUnchanged": true,
+        "otherExteriorSceneMeshesUnchanged": true,
+        "otherHouseOutputsUnchanged": true
+      },
+      "renderComparison": [
+        {
+          "view": "east-day",
+          "identical": true
+        },
+        {
+          "view": "east-night",
+          "identical": true
+        },
+        {
+          "view": "north-day",
+          "identical": true
+        },
+        {
+          "view": "north-night",
+          "identical": true
+        },
+        {
+          "view": "west-day",
+          "identical": true
+        },
+        {
+          "view": "west-night",
+          "identical": true
+        },
+        {
+          "view": "south-day",
+          "identical": true
+        },
+        {
+          "view": "south-night",
+          "identical": true
+        },
+        {
+          "view": "northeast-day",
+          "identical": true
+        },
+        {
+          "view": "northeast-night",
+          "identical": true
+        },
+        {
+          "view": "southwest-day",
+          "identical": true
+        },
+        {
+          "view": "southwest-night",
+          "identical": true
+        },
+        {
+          "view": "overview-day",
+          "identical": true
+        },
+        {
+          "view": "overview-night",
+          "identical": true
+        },
+        {
+          "view": "entrance-close-day",
+          "identical": true
+        },
+        {
+          "view": "entrance-close-night",
+          "identical": true
+        },
+        {
+          "view": "interior-53a-0",
+          "identical": true
+        },
+        {
+          "view": "interior-53a-1",
+          "identical": true
+        },
+        {
+          "view": "interior-53a-2",
+          "identical": true
+        },
+        {
+          "view": "interior-53a-3",
+          "identical": true
+        },
+        {
+          "view": "interior-53a-4",
+          "identical": true
+        }
+      ],
+      "application": {
+        "views": [
+          {
+            "house": "53a",
+            "width": 1440,
+            "floor": 0,
+            "view": "floor",
+            "scroll": 1440,
+            "canvas": 1,
+            "rooms": 9
+          },
+          {
+            "house": "53a",
+            "width": 1440,
+            "floor": 1,
+            "view": "floor",
+            "scroll": 1440,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 1440,
+            "floor": 2,
+            "view": "floor",
+            "scroll": 1440,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 1440,
+            "floor": 3,
+            "view": "floor",
+            "scroll": 1440,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 1440,
+            "floor": 4,
+            "view": "floor",
+            "scroll": 1440,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 390,
+            "floor": 0,
+            "view": "floor",
+            "scroll": 390,
+            "canvas": 1,
+            "rooms": 10
+          },
+          {
+            "house": "53a",
+            "width": 390,
+            "floor": 1,
+            "view": "floor",
+            "scroll": 390,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 390,
+            "floor": 2,
+            "view": "floor",
+            "scroll": 390,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 390,
+            "floor": 3,
+            "view": "floor",
+            "scroll": 390,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 390,
+            "floor": 4,
+            "view": "floor",
+            "scroll": 390,
+            "canvas": 1,
+            "rooms": 30
+          },
+          {
+            "house": "53a",
+            "width": 320,
+            "floor": 0,
+            "view": "floor",
+            "scroll": 320,
+            "canvas": 1,
+            "rooms": 9
+          },
+          {
+            "house": "53a",
+            "width": 320,
+            "floor": 1,
+            "view": "floor",
+            "scroll": 320,
+            "canvas": 1,
+            "rooms": 28
+          },
+          {
+            "house": "53a",
+            "width": 320,
+            "floor": 2,
+            "view": "floor",
+            "scroll": 320,
+            "canvas": 1,
+            "rooms": 29
+          },
+          {
+            "house": "53a",
+            "width": 320,
+            "floor": 3,
+            "view": "floor",
+            "scroll": 320,
+            "canvas": 1,
+            "rooms": 28
+          },
+          {
+            "house": "53a",
+            "width": 320,
+            "floor": 4,
+            "view": "floor",
+            "scroll": 320,
+            "canvas": 1,
+            "rooms": 29
+          }
+        ],
+        "errors": [],
+        "success": true
+      }
+    }
+  ],
+  "priorIntegrationChecks": [
+    {
+      "baselineHead": "03720d4ad2cd044f4a5493c9975313cc1d12da3b",
+      "focusedSuites": {
+        "files": [
+          "tests/lila-photo-details.test.mjs",
+          "tests/black-house-photo-details.test.mjs",
+          "tests/grau-photo-details.test.mjs",
+          "tests/exterior-details.test.mjs",
+          "tests/house55-exterior-refinement.test.mjs"
+        ],
+        "passed": 35,
+        "failed": 0
+      },
+      "productionBuild": "passed",
+      "preservation": {
+        "success": true,
+        "protectedFiles": 148,
+        "changedProtectedFiles": [],
+        "interiorSceneMeshesUnchanged": true,
+        "otherExteriorSceneMeshesUnchanged": true,
+        "otherHouseOutputsUnchanged": true
+      },
+      "identicalRenders": 21,
+      "applicationViews": 15,
+      "applicationSuccess": true
+    }
+  ]
+}

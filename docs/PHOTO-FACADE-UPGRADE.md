@@ -1,5 +1,7 @@
 # Photograph-to-façade upgrade
 
+**Lila update:** the [eight-photo exterior reconstruction](LILA-EXTERIOR-PHOTO-STUDY.md) supersedes this report’s earlier Lila inventory. It adds the missing southwest first-floor balcony, corrects all four elevations, rebuilds the entrance and wraparound bicycle cage, and replaces the earlier partial window rows. Lila’s dimensions and all interior plans remain unchanged.
+
 **Grau 55a update:** the [seven-photo exterior reconstruction](GRAU-PHOTO-EXTERIOR.md) supersedes the earlier Grau window rows, ground-glazing placeholders and stair depiction below. It models the photographed bicycle cage, entrance and five open landings, and registers all four elevations while preserving the original dimensions and interiors.
 
 **House 55 update:** the [later exterior refinement](HOUSE55-EXTERIOR-REFINEMENT.md) supersedes this report’s earlier eight-bay courtyard glazing and window-display treatment. It adds the photographed separate entrance, grouped glazing and upright roof-3 dormer, while preserving all internal layouts and source geometry. The other-house work below remains current.
