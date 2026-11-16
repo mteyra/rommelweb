@@ -1,0 +1,1320 @@
+{
+  "baseline": "662a1e1e767b105ffd17b9a8e729f20f773e376d",
+  "scope": "Pink 59a exterior only; every source shell and interior unchanged",
+  "concurrentTasks": [
+    {
+      "house": "57a",
+      "description": "Turquoise exterior refinement observed separately during this task; retained byte-identically in both current-source audit copies"
+    },
+    {
+      "house": "51a",
+      "description": "Blue exterior task appeared during final verification; retained byte-identically in both current-source audit copies and reported separately from Pink"
+    }
+  ],
+  "reviewedAt": "2026-11-16T01:35:21.104Z",
+  "success": true,
+  "protectedFiles": [
+    {
+      "path": "data/source/dorms-lod2.gml",
+      "before": "b9a84843ec4074d4d505673c3fc78da194737e410c2b7727cc1a236b318bfef2",
+      "after": "b9a84843ec4074d4d505673c3fc78da194737e410c2b7727cc1a236b318bfef2",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/generate-old-house-studies-before-module-layout.mjs",
+      "before": "653923748d1ee7e6a21fdfd7286895d769da2bfa5e72f5a780ea640abc0c8bc2",
+      "after": "653923748d1ee7e6a21fdfd7286895d769da2bfa5e72f5a780ea640abc0c8bc2",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house-markers.json",
+      "before": "9396efa3c5ab18b557f64e20e87d395f4a25ffd70110aa207d10c45277c5eb00",
+      "after": "9396efa3c5ab18b557f64e20e87d395f4a25ffd70110aa207d10c45277c5eb00",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house51-1og-resident-annotation.png",
+      "before": "a1b3965b7afcb579224086779bbe771d562ca4411f50321b8ebf6c7711100567",
+      "after": "a1b3965b7afcb579224086779bbe771d562ca4411f50321b8ebf6c7711100567",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house51-2og-resident-annotation.png",
+      "before": "1f898a8bcfc9a1030232d294554a3328c3b4001ca6dcc0d85e38abc4a80072d9",
+      "after": "1f898a8bcfc9a1030232d294554a3328c3b4001ca6dcc0d85e38abc4a80072d9",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house51-eg-resident-annotation.png",
+      "before": "5b5ea5454f08a61209a917af39994ece6756be42de5333469f3e335c0b742b61",
+      "after": "5b5ea5454f08a61209a917af39994ece6756be42de5333469f3e335c0b742b61",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house53-1og-resident-annotation.png",
+      "before": "537d5ab1bf861722d06f0c4e516536b926efc7c674d22337fc2447325ac55fe2",
+      "after": "537d5ab1bf861722d06f0c4e516536b926efc7c674d22337fc2447325ac55fe2",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house53-2og-resident-annotation.png",
+      "before": "add982c84bbf1e14e2cf75029485c2124fa735b741441273e8d429cccc2caca8",
+      "after": "add982c84bbf1e14e2cf75029485c2124fa735b741441273e8d429cccc2caca8",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house53-eg-resident-annotation.png",
+      "before": "cc923c79eda879f64da3f423795bd50e2465adda6aa77a909704108d88e747be",
+      "after": "cc923c79eda879f64da3f423795bd50e2465adda6aa77a909704108d88e747be",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-1og-before-module-layout.json",
+      "before": "2bfed9415d985f0d04d232e34a1b7773f4890da74c07f4f0c90fb81ac326238b",
+      "after": "2bfed9415d985f0d04d232e34a1b7773f4890da74c07f4f0c90fb81ac326238b",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-1og-module-breakdown.png",
+      "before": "45915f968a893a4a950125fbabe0fb99d0944aa9e8c871d6ece76d29f4a4959a",
+      "after": "45915f968a893a4a950125fbabe0fb99d0944aa9e8c871d6ece76d29f4a4959a",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-1og-module-outline.png",
+      "before": "0d782eefd4858f8cd4e12a3c1770bd42ae3dc907f7461503af5ecf1bc0110277",
+      "after": "0d782eefd4858f8cd4e12a3c1770bd42ae3dc907f7461503af5ecf1bc0110277",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-1og-shared-envelope.png",
+      "before": "6e5d1834fc096e579a02c3a95c005a0e5605cd15866663dd10313cf08563549b",
+      "after": "6e5d1834fc096e579a02c3a95c005a0e5605cd15866663dd10313cf08563549b",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-area-baseline.json",
+      "before": "868a6f93a7cde1cd09909c3b6e5009cc862c3035e4828d9b8fb578fb0cee4de8",
+      "after": "868a6f93a7cde1cd09909c3b6e5009cc862c3035e4828d9b8fb578fb0cee4de8",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-area-wall-marks.png",
+      "before": "03ad1ccd28fdfd585762f8e4743b5f09984df6382fa0f21c2a83c2d9d75c7ba6",
+      "after": "03ad1ccd28fdfd585762f8e4743b5f09984df6382fa0f21c2a83c2d9d75c7ba6",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-before-module-layout.json",
+      "before": "0f6b1537c4f8741bff9afc29f2c79376e6f49f1ec8850148321ecfbb76b77ebc",
+      "after": "0f6b1537c4f8741bff9afc29f2c79376e6f49f1ec8850148321ecfbb76b77ebc",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-dimension-baseline.json",
+      "before": "43b7917c18c3734a86992403083e08c212e552fc776c4fea6c5eb21eb2a2a3c1",
+      "after": "43b7917c18c3734a86992403083e08c212e552fc776c4fea6c5eb21eb2a2a3c1",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-hallway-measurements.json",
+      "before": "a7beb308beef1be4266c380634aad8cd0d409674918a661ce6bee8acb04b189b",
+      "after": "a7beb308beef1be4266c380634aad8cd0d409674918a661ce6bee8acb04b189b",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-l-overlap-correction.png",
+      "before": "a35b1a9df6d55c7626148f536448d8ce4254c6b2206e09b385e4ca2417810e07",
+      "after": "a35b1a9df6d55c7626148f536448d8ce4254c6b2206e09b385e4ca2417810e07",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-left-correction.png",
+      "before": "dbad4facac5f354b934020577ee83e4a8b4372dceb43ac3fe660fa44c14191fd",
+      "after": "dbad4facac5f354b934020577ee83e4a8b4372dceb43ac3fe660fa44c14191fd",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-measured-fit-constraints.json",
+      "before": "79588d9823c4c92b64f2acd1ba94591a7910c12720e87c3749feb948c6ba0df9",
+      "after": "79588d9823c4c92b64f2acd1ba94591a7910c12720e87c3749feb948c6ba0df9",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-module-breakdown.png",
+      "before": "56aee29c1d9060e0d5b385f301d155ae149471683d334220223592c8cbdc5a29",
+      "after": "56aee29c1d9060e0d5b385f301d155ae149471683d334220223592c8cbdc5a29",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-module-outline.png",
+      "before": "3c70ff6fbfb337e0d93d76b2c7d149ca0aadd22b7609843a2a48d4630f9b074a",
+      "after": "3c70ff6fbfb337e0d93d76b2c7d149ca0aadd22b7609843a2a48d4630f9b074a",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-overlap-reference.png",
+      "before": "6159c5a93209886b108c3dcd0fe2d925a8e7eb171d6b502fc85352043254b204",
+      "after": "6159c5a93209886b108c3dcd0fe2d925a8e7eb171d6b502fc85352043254b204",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-r-alignment-baseline.json",
+      "before": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2",
+      "after": "8334489d75c63f813fa293a715e335e5ca1d68b0e65c1059f20362ce1548fff2",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-resident-markup.png",
+      "before": "46e8288900b26170fa83ee93ae8bbaa68a0385e55280ade3d01583cd94a757ba",
+      "after": "46e8288900b26170fa83ee93ae8bbaa68a0385e55280ade3d01583cd94a757ba",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-sketch-baseline.json",
+      "before": "accdfa4f54f719e96f001cc23235f6ee24d32105ea1c15c6838c1161e720cee6",
+      "after": "accdfa4f54f719e96f001cc23235f6ee24d32105ea1c15c6838c1161e720cee6",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-stair-measurements.json",
+      "before": "9a2e150adb92f716f42245b5d31a5ab731733ab41f940e3c2494517ee3348de4",
+      "after": "9a2e150adb92f716f42245b5d31a5ab731733ab41f940e3c2494517ee3348de4",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-stair-ratio-baseline.json",
+      "before": "64801d3747c247f45404f1300abd5b9e3b779734e411c35e8a349354f50c5eba",
+      "after": "64801d3747c247f45404f1300abd5b9e3b779734e411c35e8a349354f50c5eba",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-study-provenance.json",
+      "before": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
+      "after": "a26f5fcaa92d085f346fdd4c3b3b7019553a539d551268ac0659647d94e5e069",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-wall-offset-baseline.json",
+      "before": "9a214415e0532f5960cfebf1009a7f44e2bbbba6479ab878c59c97b1dbfb16d8",
+      "after": "9a214415e0532f5960cfebf1009a7f44e2bbbba6479ab878c59c97b1dbfb16d8",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-wall-offsets.png",
+      "before": "d5ff81c25d2b18fd198124ff29c0bfe47efb632d7f7e83c52320c2c7b4d79d9e",
+      "after": "d5ff81c25d2b18fd198124ff29c0bfe47efb632d7f7e83c52320c2c7b4d79d9e",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-2og-window-marks.png",
+      "before": "dbdf4328b8b55fd1b49e330caa337f860b6b5fec6c68c35202521792476c7824",
+      "after": "dbdf4328b8b55fd1b49e330caa337f860b6b5fec6c68c35202521792476c7824",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-common-enclosure-annotation.png",
+      "before": "78ff0cf48a8559bfdc52ccb27b405dd32782f47b7ab08c52e653e8620fb468aa",
+      "after": "78ff0cf48a8559bfdc52ccb27b405dd32782f47b7ab08c52e653e8620fb468aa",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-eg-before-module-layout.json",
+      "before": "37445207af2f1432237b4d7c33ff19517067f68c7b7d4e629d587cd1b7117aa9",
+      "after": "37445207af2f1432237b4d7c33ff19517067f68c7b7d4e629d587cd1b7117aa9",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-exterior-dimension-request.png",
+      "before": "4b48c3bec6134e17a0624526b9d4669caee1447bf285e47d71b942334c83cef4",
+      "after": "4b48c3bec6134e17a0624526b9d4669caee1447bf285e47d71b942334c83cef4",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-first-floor-shared-pairs-annotation.png",
+      "before": "e04efddf493fe02160cbf51a6371c31c38e09a53555d70dd3f9e53d41210dfc0",
+      "after": "e04efddf493fe02160cbf51a6371c31c38e09a53555d70dd3f9e53d41210dfc0",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-ground-floor-shared-pairs-annotation.png",
+      "before": "5229a5dd4dc5e293c52e49c25ffd801122afa174e303d95a72aab4eccc78ccdd",
+      "after": "5229a5dd4dc5e293c52e49c25ffd801122afa174e303d95a72aab4eccc78ccdd",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house55-stair-ratio-mark.png",
+      "before": "7e0d117946c06d72cd33cf67c0b55bbd63644387cd5e19fd50d63b782c53a2e4",
+      "after": "7e0d117946c06d72cd33cf67c0b55bbd63644387cd5e19fd50d63b782c53a2e4",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/house59-eg-resident-annotation.png",
+      "before": "d7647b1ec8d4892aa9105c4188cd5f8098b1603a5cc152bec1c778c925a87bf4",
+      "after": "d7647b1ec8d4892aa9105c4188cd5f8098b1603a5cc152bec1c778c925a87bf4",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/interior-studies-before-module-layout.json",
+      "before": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+      "after": "69e0d4405068142b1ffcb5ba49ff3227577e046929936649877b168c9e603334",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/lod2-source.json",
+      "before": "1401fa4c6f5131de70984438a141bebc7f2444753d7d0728ac53c2a218afd90d",
+      "after": "1401fa4c6f5131de70984438a141bebc7f2444753d7d0728ac53c2a218afd90d",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/newer-layout-exterior-reservations.json",
+      "before": "95b2df560d693863614f0c0f33a489afc672af2b340c5347b0452cf0b50092ba",
+      "after": "95b2df560d693863614f0c0f33a489afc672af2b340c5347b0452cf0b50092ba",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/old-house-study-provenance.json",
+      "before": "c3d6cf5e0258376abbd9d4b5dae15560e571096d1c5df41603825f2aec6e0e6a",
+      "after": "c3d6cf5e0258376abbd9d4b5dae15560e571096d1c5df41603825f2aec6e0e6a",
+      "unchanged": true
+    },
+    {
+      "path": "data/source/osm-raw.json",
+      "before": "074224fe0657c43551b28bc97d7f1773100e3a82addc6c661ce7ed40cea1bc7f",
+      "after": "074224fe0657c43551b28bc97d7f1773100e3a82addc6c661ce7ed40cea1bc7f",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/campus.geojson",
+      "before": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
+      "after": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/campus.json",
+      "before": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "after": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house51-first-floor-layout.json",
+      "before": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
+      "after": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house51-ground-floor-layout.json",
+      "before": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44",
+      "after": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house51-top-floor-layout.json",
+      "before": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
+      "after": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house53-module-layouts.json",
+      "before": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f",
+      "after": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house55-first-floor-layout.json",
+      "before": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3",
+      "after": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house55-ground-floor-layout.json",
+      "before": "5d75a54fd62c30b55dd1a8ff0665a4ace55a27ecc0e38bc983cbed224e7e43ed",
+      "after": "5d75a54fd62c30b55dd1a8ff0665a4ace55a27ecc0e38bc983cbed224e7e43ed",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house55-module-layout.json",
+      "before": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165",
+      "after": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house57-module-layouts.json",
+      "before": "5cbcef27ab20cba3b359bddbc077fc05173f167f27907d66d3372349b05797f4",
+      "after": "5cbcef27ab20cba3b359bddbc077fc05173f167f27907d66d3372349b05797f4",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/house59-module-layouts.json",
+      "before": "317f884704242e3c38fe54a5f181aabae5f6d68e8b24d1b0c00de318c384714c",
+      "after": "317f884704242e3c38fe54a5f181aabae5f6d68e8b24d1b0c00de318c384714c",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/interior-studies.json",
+      "before": "428b9c32d793f1de648367e847e561f51d833e8c482ab324cab957cb8a62e466",
+      "after": "428b9c32d793f1de648367e847e561f51d833e8c482ab324cab957cb8a62e466",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/interiors.json",
+      "before": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "after": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/lod2.json",
+      "before": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "after": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/new-house-module-layouts.json",
+      "before": "2a08d98f5d77a2d81759cd9fa9995275a6e9e532cd6658a340d6c4ec67ff3120",
+      "after": "2a08d98f5d77a2d81759cd9fa9995275a6e9e532cd6658a340d6c4ec67ff3120",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/old-house-module-layouts.json",
+      "before": "22760c6cf6f2cbe2996d338359874b23864813ac3e4ff63edc94ac1ea5801da3",
+      "after": "22760c6cf6f2cbe2996d338359874b23864813ac3e4ff63edc94ac1ea5801da3",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/path-network.json",
+      "before": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d",
+      "after": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d",
+      "unchanged": true
+    },
+    {
+      "path": "public/data/room-markers.json",
+      "before": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826",
+      "after": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-layout/geometry.js",
+      "before": "0301b81fc056c1204838fbdb6443e98da79108f3a245264bda4ac35a931da6c4",
+      "after": "0301b81fc056c1204838fbdb6443e98da79108f3a245264bda4ac35a931da6c4",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-layout/index.html",
+      "before": "688eb607c2e002c9db8ded58566c36b7721a82229947634871d67dd0ddaff21e",
+      "after": "688eb607c2e002c9db8ded58566c36b7721a82229947634871d67dd0ddaff21e",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-layout/layout.css",
+      "before": "5895e555efb659674e95e7b44106661b0e3f7cfbae386c5d9e802ff33588f38e",
+      "after": "5895e555efb659674e95e7b44106661b0e3f7cfbae386c5d9e802ff33588f38e",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-layout/layout.js",
+      "before": "d0e4789a73d512138d7b62a0dc93c934519878f0e0f3f9ae1e3d9462bd48a97d",
+      "after": "d0e4789a73d512138d7b62a0dc93c934519878f0e0f3f9ae1e3d9462bd48a97d",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-layout/shell.json",
+      "before": "fb0765bea42826441098f7bd1b6b05e599320f4f3f91045fe85ff52e91ce480d",
+      "after": "fb0765bea42826441098f7bd1b6b05e599320f4f3f91045fe85ff52e91ce480d",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-study/index.html",
+      "before": "f1774efc1d27bfcae8f048f8460d258ec2f0e842c37d6b3f412f35a4f3649a3d",
+      "after": "f1774efc1d27bfcae8f048f8460d258ec2f0e842c37d6b3f412f35a4f3649a3d",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-study/plan.json",
+      "before": "608b8a90843030798c7c3816a77cffca4f7ab03ea9bea3c768974ca56b49ccbc",
+      "after": "608b8a90843030798c7c3816a77cffca4f7ab03ea9bea3c768974ca56b49ccbc",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-study/previous.json",
+      "before": "d63000cfaf0d74f22716702c54ba25efa4e00734ae5b4d54471b2a04c9b984f9",
+      "after": "d63000cfaf0d74f22716702c54ba25efa4e00734ae5b4d54471b2a04c9b984f9",
+      "unchanged": true
+    },
+    {
+      "path": "public/house55-study/study.js",
+      "before": "6929b1389be4d912f2ea790980d57ac320f14f1d1ec0605b96021f01faf3e3bf",
+      "after": "6929b1389be4d912f2ea790980d57ac320f14f1d1ec0605b96021f01faf3e3bf",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/acquire-campus.py",
+      "before": "300be2e99514a535f71a76eefed3ea1c61e2b809189edd7d4b70865f0a79e305",
+      "after": "300be2e99514a535f71a76eefed3ea1c61e2b809189edd7d4b70865f0a79e305",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/acquire-lod2.py",
+      "before": "bd0b9696e898f1808601c261e79043684017317c1ebf55b347ed9e16e732b2ba",
+      "after": "bd0b9696e898f1808601c261e79043684017317c1ebf55b347ed9e16e732b2ba",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-house55-area.py",
+      "before": "d96ce0890f738144e6e112c807d84b05b12df20156c75a97854f819cea09a3d3",
+      "after": "d96ce0890f738144e6e112c807d84b05b12df20156c75a97854f819cea09a3d3",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-house55-dimensions.py",
+      "before": "c2134455d8345d00d194c76f1cc7d3f94b97fdf157cfce2d1fc2d78287983802",
+      "after": "c2134455d8345d00d194c76f1cc7d3f94b97fdf157cfce2d1fc2d78287983802",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-house55-measured-plan.py",
+      "before": "80c709eb1ddcf40b6875632a39a68f701c4abaac22b2b40ded3a9af919020846",
+      "after": "80c709eb1ddcf40b6875632a39a68f701c4abaac22b2b40ded3a9af919020846",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-house55-recovery.py",
+      "before": "9295df0a1856398c52e76c04066a91b5440b5e164f92e95b90d357bb3ada1842",
+      "after": "9295df0a1856398c52e76c04066a91b5440b5e164f92e95b90d357bb3ada1842",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-house55-stair-measurement.py",
+      "before": "0f8ad14269a14e40fef91bb3d0ab99ef2282d89d99441988fb79eeff4f333542",
+      "after": "0f8ad14269a14e40fef91bb3d0ab99ef2282d89d99441988fb79eeff4f333542",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-house55-west-hall-measurement.py",
+      "before": "10759e0dbf9dbe7af466f4f4ef985d3f49bdbf197afa30722791e7f516678542",
+      "after": "10759e0dbf9dbe7af466f4f4ef985d3f49bdbf197afa30722791e7f516678542",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/audit-old-house-studies.py",
+      "before": "2115e8dd6671714fdb95264ca0f524924833e31d729dc2f8a684b83d82566e36",
+      "after": "2115e8dd6671714fdb95264ca0f524924833e31d729dc2f8a684b83d82566e36",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/build-path-network.mjs",
+      "before": "39d7f51335fe0ced33b3fb521e88401e6b26949fc3353b603d16333ba695506a",
+      "after": "39d7f51335fe0ced33b3fb521e88401e6b26949fc3353b603d16333ba695506a",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/export-house55-layout-shell.py",
+      "before": "339943186dd5c1a87510c433c9fe4e6652b3a113d88bdfca514faa4f4bd97e63",
+      "after": "339943186dd5c1a87510c433c9fe4e6652b3a113d88bdfca514faa4f4bd97e63",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/export-house55-previous-plan.py",
+      "before": "f263ab99330f62fce5d2e1a88f88b9540f64879ea769106a8897706901476055",
+      "after": "f263ab99330f62fce5d2e1a88f88b9540f64879ea769106a8897706901476055",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/export-house55-study-page.py",
+      "before": "b0cb0a18a2217d3fd900b07ac9c37019c58b0d1c38c51fafa799607084b72d8a",
+      "after": "b0cb0a18a2217d3fd900b07ac9c37019c58b0d1c38c51fafa799607084b72d8a",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/extract-room-markers.py",
+      "before": "5a81074d5f6012a8008654742b97068bcb746e5053ad777c40a0b1627cb2a7c6",
+      "after": "5a81074d5f6012a8008654742b97068bcb746e5053ad777c40a0b1627cb2a7c6",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/extrapolate-house55-levels.mjs",
+      "before": "84168c0a271dd959c72b3d93dd236af4c104f47a1e3145550295f20f1271d083",
+      "after": "84168c0a271dd959c72b3d93dd236af4c104f47a1e3145550295f20f1271d083",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/fit-house55-measured-plan.py",
+      "before": "763535e696380fa85229af7d2e212f186f288eb60b4b1c317f0c0eec5501f2b7",
+      "after": "763535e696380fa85229af7d2e212f186f288eb60b4b1c317f0c0eec5501f2b7",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/generate-house55-study.mjs",
+      "before": "f94b6402d9ffd379451c4594867100fb0ddf0f9af7fa643b61b552d095d21aef",
+      "after": "f94b6402d9ffd379451c4594867100fb0ddf0f9af7fa643b61b552d095d21aef",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/generate-old-house-studies.mjs",
+      "before": "adc46a01b275eb7a9f0fbb5dbaeaa397c8c8f0f413666ddd59b5668162f22bac",
+      "after": "adc46a01b275eb7a9f0fbb5dbaeaa397c8c8f0f413666ddd59b5668162f22bac",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house51-first-floor-layout.mjs",
+      "before": "8e961fb0bb7145d85deb6db1bc0a40c57650b322a1ebdc3844bb948c27e858e9",
+      "after": "8e961fb0bb7145d85deb6db1bc0a40c57650b322a1ebdc3844bb948c27e858e9",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house51-ground-floor-layout.mjs",
+      "before": "f540adc514e4d4eb36027decd705bed6594a372cfb0fa70f6e77464edbcfd0bb",
+      "after": "f540adc514e4d4eb36027decd705bed6594a372cfb0fa70f6e77464edbcfd0bb",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house51-top-floor-layout.mjs",
+      "before": "189a79acdb6f8b135ae5a5f01bea3c2919fb0d20cfe491ec501a0ee8a8544a65",
+      "after": "189a79acdb6f8b135ae5a5f01bea3c2919fb0d20cfe491ec501a0ee8a8544a65",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house53-module-layouts.mjs",
+      "before": "b03e7bf8606d7c83c9a331cb397c9e96427afb3ffd9449f0a2bf33666b509a44",
+      "after": "b03e7bf8606d7c83c9a331cb397c9e96427afb3ffd9449f0a2bf33666b509a44",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-area-study.mjs",
+      "before": "07d0d88ae24e5a09bc459a52d985cf22ebcb0bf028f11b27c1e5a1a618ac30da",
+      "after": "07d0d88ae24e5a09bc459a52d985cf22ebcb0bf028f11b27c1e5a1a618ac30da",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-first-floor-layout.mjs",
+      "before": "59aa8c43f1ff04ad6a3947b2ba1deaea2db9d261e0904a6149e14863aa0661e5",
+      "after": "59aa8c43f1ff04ad6a3947b2ba1deaea2db9d261e0904a6149e14863aa0661e5",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-ground-floor-layout.mjs",
+      "before": "d0f56d615540148e4dc8bc90ab07329d32c2eb434ab07f5dea954cea89085f3e",
+      "after": "d0f56d615540148e4dc8bc90ab07329d32c2eb434ab07f5dea954cea89085f3e",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-module-layout.mjs",
+      "before": "08833b4b20891cf10cc2bce7d273bbacf4af28ae6d739d7878e741f42de9ee64",
+      "after": "08833b4b20891cf10cc2bce7d273bbacf4af28ae6d739d7878e741f42de9ee64",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-r-alignment.mjs",
+      "before": "8395b78de9c6cd38e882806a34eaf728a905e004c4dc37b62fd21c18d5e4b644",
+      "after": "8395b78de9c6cd38e882806a34eaf728a905e004c4dc37b62fd21c18d5e4b644",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-stair-alignment.mjs",
+      "before": "f9406400f0d5f10b3f0a632c47664f9ffb113e8363d525e050e7eb341be43ee2",
+      "after": "f9406400f0d5f10b3f0a632c47664f9ffb113e8363d525e050e7eb341be43ee2",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house55-window-wall-study.mjs",
+      "before": "af5717ae47646e67f6b95cb4ac9652d7484f6c85b4497ae4f200963f873cf65e",
+      "after": "af5717ae47646e67f6b95cb4ac9652d7484f6c85b4497ae4f200963f873cf65e",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house57-module-layout.mjs",
+      "before": "0cbe47a544740620a8afee28e0f85ed69d5d7615ae6a2b4f1014ffd0a545147f",
+      "after": "0cbe47a544740620a8afee28e0f85ed69d5d7615ae6a2b4f1014ffd0a545147f",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/house59-module-layout.mjs",
+      "before": "53ad48f815c5c508a6b69d45cec3dd138ef015395358780ebe7243f50e6992f0",
+      "after": "53ad48f815c5c508a6b69d45cec3dd138ef015395358780ebe7243f50e6992f0",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/new-house-module-layout.mjs",
+      "before": "7bdc624158fe4bddff285b47b1a353e3398061da3448347a577b76e1445d9acf",
+      "after": "7bdc624158fe4bddff285b47b1a353e3398061da3448347a577b76e1445d9acf",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/old-house-module-layout.mjs",
+      "before": "31c22373e393e8c2a42885475f882ce694563245f1d66dd134459b75319b6530",
+      "after": "31c22373e393e8c2a42885475f882ce694563245f1d66dd134459b75319b6530",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/render-house55-measurement-audit.py",
+      "before": "e3dff212d073d4dc433ba030d2356beacd846bfae515755de7dd66ccf180327b",
+      "after": "e3dff212d073d4dc433ba030d2356beacd846bfae515755de7dd66ccf180327b",
+      "unchanged": true
+    },
+    {
+      "path": "src/apartment-concepts.js",
+      "before": "b95a65c3f88220fab86f06ba29f6b86527d8d9dd62db44b05954652ef86a8a27",
+      "after": "b95a65c3f88220fab86f06ba29f6b86527d8d9dd62db44b05954652ef86a8a27",
+      "unchanged": true
+    },
+    {
+      "path": "src/apartment-wireframe.js",
+      "before": "3b5f88d1205113a3ee2d3f4dd5cfe599ed5bf90459db5b9c2f1b095c59366c2d",
+      "after": "3b5f88d1205113a3ee2d3f4dd5cfe599ed5bf90459db5b9c2f1b095c59366c2d",
+      "unchanged": true
+    },
+    {
+      "path": "src/data.js",
+      "before": "a7d70d274a3d0b720cda5bbfaec80809182729ca996ecdb632ace824c573da77",
+      "after": "a7d70d274a3d0b720cda5bbfaec80809182729ca996ecdb632ace824c573da77",
+      "unchanged": true
+    },
+    {
+      "path": "src/house55-window-alignment.js",
+      "before": "2234698ca5cae5d2424f318079c52e1b33bedd2fb1332779101a021b1ba56e26",
+      "after": "2234698ca5cae5d2424f318079c52e1b33bedd2fb1332779101a021b1ba56e26",
+      "unchanged": true
+    },
+    {
+      "path": "src/interior-studies.js",
+      "before": "b1bf414829f149206977a94a69e598faaede7c92fae8353517f743c3d176bea7",
+      "after": "b1bf414829f149206977a94a69e598faaede7c92fae8353517f743c3d176bea7",
+      "unchanged": true
+    },
+    {
+      "path": "src/interior-wireframe.js",
+      "before": "c3ee172ad7575e1ad80701bee626395c2e8e0e892fd3b21cb1567cbf53735456",
+      "after": "c3ee172ad7575e1ad80701bee626395c2e8e0e892fd3b21cb1567cbf53735456",
+      "unchanged": true
+    },
+    {
+      "path": "src/interiors.js",
+      "before": "4c956ac5c62c4a8eaf8bd0e9274e9b940ff9bbd93190e3f1fc0e2c12a7ccf696",
+      "after": "4c956ac5c62c4a8eaf8bd0e9274e9b940ff9bbd93190e3f1fc0e2c12a7ccf696",
+      "unchanged": true
+    },
+    {
+      "path": "src/sections.js",
+      "before": "4199dbfb0112a688d181b781d402fdb37ce53b7e048d546807b31c6f9dc0c238",
+      "after": "4199dbfb0112a688d181b781d402fdb37ce53b7e048d546807b31c6f9dc0c238",
+      "unchanged": true
+    },
+    {
+      "path": "src/study-measurements.js",
+      "before": "3f3797ed07cd076823cb0ced01aa48a5870df2ebf8c81da0ec3a68c968f83f18",
+      "after": "3f3797ed07cd076823cb0ced01aa48a5870df2ebf8c81da0ec3a68c968f83f18",
+      "unchanged": true
+    }
+  ],
+  "changedProtectedFiles": [],
+  "currentSourceHashes": {
+    "apartment-concepts.js": "b95a65c3f88220fab86f06ba29f6b86527d8d9dd62db44b05954652ef86a8a27",
+    "apartment-wireframe.js": "3b5f88d1205113a3ee2d3f4dd5cfe599ed5bf90459db5b9c2f1b095c59366c2d",
+    "black-house-photo-details.js": "0ec8d144537cb12ac6587ea455774598f61ef0d8d899fe42ff543921195ab723",
+    "blue-courtyard-photo-details.js": "421931fa30b88386dde636ec03de0ab418e8d4332ee8d6d4e244329b63c96e81",
+    "data.js": "a7d70d274a3d0b720cda5bbfaec80809182729ca996ecdb632ace824c573da77",
+    "events.js": "4c7d07ed3a693ba1deb1226054a88ea79ddabc5c3c716bacc155013a655559b3",
+    "exterior-details.js": "1a1eeffad11e6dcc8c45a9b5ff60078693bd9c6930e7366adfa83094030c155f",
+    "exterior-presentation.js": "4e3f8e2bccc59bb2b09a657a84a778c23f7fa2d8ccb3e2b5a582f242703d2c17",
+    "facade.js": "ca83d4176be07984029949ddb2a351e3e5999e376bcf861559aebb3632eb02c3",
+    "house51-photo-details.js": "0affdbf5b0c15a252500b0584714f469709e836335e474693d9e5488f7250681",
+    "house53-photo-details.js": "0776fb30aa16e2112162936a07b6b092333bc743ef8df73caa3522ed99ed42ec",
+    "house55-entrance.js": "487e1acd22394c840c75e9e3e9f5363df962de6d5c9313f79bfde6ae8f8f140e",
+    "house55-window-alignment.js": "2234698ca5cae5d2424f318079c52e1b33bedd2fb1332779101a021b1ba56e26",
+    "icons.js": "eafbcfafa447b94146589ab462199cc74d062a881c033b1f01e5e8e5131d3e32",
+    "interior-studies.js": "b1bf414829f149206977a94a69e598faaede7c92fae8353517f743c3d176bea7",
+    "interior-wireframe.js": "c3ee172ad7575e1ad80701bee626395c2e8e0e892fd3b21cb1567cbf53735456",
+    "interiors.js": "4c956ac5c62c4a8eaf8bd0e9274e9b940ff9bbd93190e3f1fc0e2c12a7ccf696",
+    "main.js": "9a2e3b7ecc5117a8a94a0b2a2c71cfd88f200cf9afe709212d207a2bfcfbcb5e",
+    "path-network.js": "4cf9c0ec5f4cd0ef7f913912c99e3409d4d93e745eeee201df3cdf60443e1702",
+    "paths.js": "14b96f2e13c541bbd168350a63b50db6a41a523b698df31e84762ec48ad23865",
+    "pink-bicycle-details.js": "a131a75a0163967c2ca3aec72d59517869a562675a4f70be7f57a31a3b4a87b2",
+    "pink-house-photo-details.js": "16b6ca630dd5c41fdd03c42da685d88be37572f8960f40479ea154e8e90353f6",
+    "room-references.js": "eebd48d1c7b10ddd74faad5d72cd4cb29ef6d3b45c6998c61cb16e2cbe2ef040",
+    "scene.js": "3ce32aadc1a6bd88f281dc530763fe4fd0680cc2e9447e02163dd8780d47b5f8",
+    "sections.js": "4199dbfb0112a688d181b781d402fdb37ce53b7e048d546807b31c6f9dc0c238",
+    "study-measurements.js": "3f3797ed07cd076823cb0ced01aa48a5870df2ebf8c81da0ec3a68c968f83f18",
+    "turquoise-photo-details.js": "c1298787744a8843155f3867b066966ce90b8fa248707dd7d844eb1856d70ffd",
+    "turquoise-window-layout.js": "8062cccbd30584f3c35b5ea3f77ff59331464332d93455a92c89f37d51963ac8",
+    "windows.js": "0051b33e14ce0a7bb48a7dadf740e2d5f8f97ddca2a4f76c919a14a15b8f3e2e"
+  },
+  "preservedPinkShell": {
+    "house": "59a",
+    "baseY": 2.4,
+    "height": 18.333,
+    "levels": 6,
+    "sourceSurfaces": 10,
+    "groundPolygons": [
+      [
+        [
+          57.05,
+          44.096
+        ],
+        [
+          64.843,
+          43.987
+        ],
+        [
+          71.897,
+          43.898
+        ],
+        [
+          73.534,
+          43.852
+        ],
+        [
+          79.7,
+          43.779
+        ],
+        [
+          79.992,
+          66.643
+        ],
+        [
+          73.816,
+          66.726
+        ],
+        [
+          57.372,
+          66.961
+        ],
+        [
+          57.05,
+          44.096
+        ]
+      ]
+    ],
+    "sourceDigest": "0d84d13e437467a9ae886faa939de06fc902fe777d9a89a474ac5a05b5e1c480"
+  },
+  "otherHouseOutputs": [
+    {
+      "house": "49",
+      "before": {
+        "details": "5ddac5599b4d6cd5cc903159446d35b8a55e8e00a646756310e3291256c6e9b3",
+        "windows": "71fe3eb8c4d0e106a8b972c7402112ee8fec9155d7017e9ed6fd4d36af58fd35",
+        "weathering": "8e603869b24076b7de7c435cc2eb3dd58bce642a79d8b7be81000bf6d2fec9a5"
+      },
+      "after": {
+        "details": "5ddac5599b4d6cd5cc903159446d35b8a55e8e00a646756310e3291256c6e9b3",
+        "windows": "71fe3eb8c4d0e106a8b972c7402112ee8fec9155d7017e9ed6fd4d36af58fd35",
+        "weathering": "8e603869b24076b7de7c435cc2eb3dd58bce642a79d8b7be81000bf6d2fec9a5"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "51",
+      "before": {
+        "details": "354f393282d4c0462ea202915c77b5a7f2533dbd72f6f3f34fa1fb0a27f70b63",
+        "windows": "ee32616c54ed00c3c30c538e40f3c53c9ceb1c5638b21bceb821df718f60ecb4",
+        "weathering": "c48596a3526718784455966f2abddd1d7ab8d1d5fad446beb6c50c0ae65232c3"
+      },
+      "after": {
+        "details": "354f393282d4c0462ea202915c77b5a7f2533dbd72f6f3f34fa1fb0a27f70b63",
+        "windows": "ee32616c54ed00c3c30c538e40f3c53c9ceb1c5638b21bceb821df718f60ecb4",
+        "weathering": "c48596a3526718784455966f2abddd1d7ab8d1d5fad446beb6c50c0ae65232c3"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "51a",
+      "before": {
+        "details": "0d1df5a84d493f0d035af5e63438d9df2ddef28e61b8c5528859b67acdbef3d2",
+        "windows": "5b3c730052da6a30d564eb6a2d2009bc64b264d480fbd1f0e508fcb59efae9ac",
+        "weathering": "1da84f93d454be0d0493a06a3b07da34c59a592bfce7656ec2c134d7cd32659d"
+      },
+      "after": {
+        "details": "0d1df5a84d493f0d035af5e63438d9df2ddef28e61b8c5528859b67acdbef3d2",
+        "windows": "5b3c730052da6a30d564eb6a2d2009bc64b264d480fbd1f0e508fcb59efae9ac",
+        "weathering": "1da84f93d454be0d0493a06a3b07da34c59a592bfce7656ec2c134d7cd32659d"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "53",
+      "before": {
+        "details": "c32f9364132c61c61a451595590c31671c4a64668efed87205d8e1a36fe83fff",
+        "windows": "32126fc4dd11a260fdea24093f7771405c76761841afc2f2825bc9d92b76fd31",
+        "weathering": "a937ec1435ace19872374232a8da9b7fe321b7ae90bae2ecbc926a886e091167"
+      },
+      "after": {
+        "details": "c32f9364132c61c61a451595590c31671c4a64668efed87205d8e1a36fe83fff",
+        "windows": "32126fc4dd11a260fdea24093f7771405c76761841afc2f2825bc9d92b76fd31",
+        "weathering": "a937ec1435ace19872374232a8da9b7fe321b7ae90bae2ecbc926a886e091167"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "53a",
+      "before": {
+        "details": "6f77985b82991a78380ebeeb519679179c6a6f32d663b2af140a46118501e942",
+        "windows": "f47695cf3d58b902328f8f5f233bc6402bdf3a18052325b36b635e19cde5c63c",
+        "weathering": "351717358776ce2e65501ba59ebb41d79a58e280ad143c49e80a1508b1a4a4ed"
+      },
+      "after": {
+        "details": "6f77985b82991a78380ebeeb519679179c6a6f32d663b2af140a46118501e942",
+        "windows": "f47695cf3d58b902328f8f5f233bc6402bdf3a18052325b36b635e19cde5c63c",
+        "weathering": "351717358776ce2e65501ba59ebb41d79a58e280ad143c49e80a1508b1a4a4ed"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "55",
+      "before": {
+        "details": "835529a64b3626be11a979406122f0fb188b37526ba1f8263198d91149350a58",
+        "windows": "2bd1aca75a729236a6380fb2ed3fd190394315803b2330402578e9bee8c70731",
+        "weathering": "549981fafb034d885e82b8e31c93d2c4b0d37a8802ef250812457caf8dac3422"
+      },
+      "after": {
+        "details": "835529a64b3626be11a979406122f0fb188b37526ba1f8263198d91149350a58",
+        "windows": "2bd1aca75a729236a6380fb2ed3fd190394315803b2330402578e9bee8c70731",
+        "weathering": "549981fafb034d885e82b8e31c93d2c4b0d37a8802ef250812457caf8dac3422"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "55a",
+      "before": {
+        "details": "eb483b4ea6b1dc147edceecb3fc030e96549f57cd3ff6d700ddf6a43ee570cfc",
+        "windows": "5c5b5f696ace8b065e87f83134dbca9e86548b0630c21e5a8fc84d758556f1e3",
+        "weathering": "275450308f3b1dd53ba95fec109b934ff6277ed5f42f21695a9b37b7759dcfb6"
+      },
+      "after": {
+        "details": "eb483b4ea6b1dc147edceecb3fc030e96549f57cd3ff6d700ddf6a43ee570cfc",
+        "windows": "5c5b5f696ace8b065e87f83134dbca9e86548b0630c21e5a8fc84d758556f1e3",
+        "weathering": "275450308f3b1dd53ba95fec109b934ff6277ed5f42f21695a9b37b7759dcfb6"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "57",
+      "before": {
+        "details": "5a85c9f784385753f46afdc17986c3b25611edc6d25f0ef2d5944f58e93c15ec",
+        "windows": "53616ee725602bd48a4386fcd7fb5d480b74b3faf7f22a2fb9bfa001ef6d2143",
+        "weathering": "9e123bc8278ffdd75042660f21adb5274addec69a5c7d137e6cf9738507cfb59"
+      },
+      "after": {
+        "details": "5a85c9f784385753f46afdc17986c3b25611edc6d25f0ef2d5944f58e93c15ec",
+        "windows": "53616ee725602bd48a4386fcd7fb5d480b74b3faf7f22a2fb9bfa001ef6d2143",
+        "weathering": "9e123bc8278ffdd75042660f21adb5274addec69a5c7d137e6cf9738507cfb59"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "57a",
+      "before": {
+        "details": "4c3703ae9987e591ed0ed2005d641d4e761ab1274029227b8248905c9f2eeb69",
+        "windows": "85be8d1ae3a15ced013cf620d404f3ce6c6de2256396464165b11aab10e0c1a3",
+        "weathering": "b92640e18b03ce604e5d9b2dd21f45c69f0613f970b0c23d2a4f8f55af7870b9"
+      },
+      "after": {
+        "details": "4c3703ae9987e591ed0ed2005d641d4e761ab1274029227b8248905c9f2eeb69",
+        "windows": "85be8d1ae3a15ced013cf620d404f3ce6c6de2256396464165b11aab10e0c1a3",
+        "weathering": "b92640e18b03ce604e5d9b2dd21f45c69f0613f970b0c23d2a4f8f55af7870b9"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    },
+    {
+      "house": "59",
+      "before": {
+        "details": "c88d5eeb635a217556b2d1e0141050278db650ae9eaac4176a598f94445421eb",
+        "windows": "c762459def303ac8f5f38ce92734fa1107c8a0059716030d2c489697915124ec",
+        "weathering": "56f5b3b63681d3a031b08313949aa5f05b52fa659914b6d040ea7804a64c60b8"
+      },
+      "after": {
+        "details": "c88d5eeb635a217556b2d1e0141050278db650ae9eaac4176a598f94445421eb",
+        "windows": "c762459def303ac8f5f38ce92734fa1107c8a0059716030d2c489697915124ec",
+        "weathering": "56f5b3b63681d3a031b08313949aa5f05b52fa659914b6d040ea7804a64c60b8"
+      },
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    }
+  ],
+  "releaseComparison": [
+    {
+      "house": "49",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "51",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "51a",
+      "unchanged": {
+        "details": false,
+        "windows": false,
+        "weathering": false
+      },
+      "concurrentTask": true
+    },
+    {
+      "house": "53",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "53a",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "55",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "55a",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "57",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    },
+    {
+      "house": "57a",
+      "unchanged": {
+        "details": false,
+        "windows": false,
+        "weathering": false
+      },
+      "concurrentTask": true
+    },
+    {
+      "house": "59",
+      "unchanged": {
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      "concurrentTask": false
+    }
+  ],
+  "sceneMeshes": [
+    {
+      "house": "49",
+      "theme": "night",
+      "interiorBefore": "72a610df7fe9a5dbf4fb6cdb2e1e463fb4e064424fa3efc55d4b3b09701063b6",
+      "interiorAfter": "72a610df7fe9a5dbf4fb6cdb2e1e463fb4e064424fa3efc55d4b3b09701063b6",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "ad7da6a19e5e07b0228ceafa28ba077d0003fbccaec293936c770be39bf27920",
+      "exteriorAfter": "ad7da6a19e5e07b0228ceafa28ba077d0003fbccaec293936c770be39bf27920",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "51",
+      "theme": "night",
+      "interiorBefore": "6e583db0394289d20eacfa675ca790764ab74bee5e96f26b8274ddfd9afbd976",
+      "interiorAfter": "6e583db0394289d20eacfa675ca790764ab74bee5e96f26b8274ddfd9afbd976",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "cc2f2953782b10f0c000d50b423abfb3c82f9687535cbac37be9f8ebdd0d3a52",
+      "exteriorAfter": "cc2f2953782b10f0c000d50b423abfb3c82f9687535cbac37be9f8ebdd0d3a52",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "51a",
+      "theme": "night",
+      "interiorBefore": "2952d253246fa0f9bd4754eb4cc75ab15bf849cc8bcfb96c2762633dcfaa2929",
+      "interiorAfter": "2952d253246fa0f9bd4754eb4cc75ab15bf849cc8bcfb96c2762633dcfaa2929",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "981d29b43e1f6d6a8dc7dbacbbe847a8f779266bbffe0e5a6f746615d7d85675",
+      "exteriorAfter": "981d29b43e1f6d6a8dc7dbacbbe847a8f779266bbffe0e5a6f746615d7d85675",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": false
+    },
+    {
+      "house": "53",
+      "theme": "night",
+      "interiorBefore": "0320eb49a2445c9c583e431d8dd157701e98a41806a1ac55be5de044f0d5e70b",
+      "interiorAfter": "0320eb49a2445c9c583e431d8dd157701e98a41806a1ac55be5de044f0d5e70b",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "8897000ff90ea7758df007629e4657a7b4fb2c655cf1124f1fb87af7f09748ae",
+      "exteriorAfter": "8897000ff90ea7758df007629e4657a7b4fb2c655cf1124f1fb87af7f09748ae",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "53a",
+      "theme": "night",
+      "interiorBefore": "47828c76d28a80c22ec8ad8131bc4023547dc6c088e2cfaa30b1339728661cd1",
+      "interiorAfter": "47828c76d28a80c22ec8ad8131bc4023547dc6c088e2cfaa30b1339728661cd1",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "39a7efb08c626ee4637bc1b0259597864874d7e475bf3776eea2b2889215b45e",
+      "exteriorAfter": "39a7efb08c626ee4637bc1b0259597864874d7e475bf3776eea2b2889215b45e",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "55",
+      "theme": "night",
+      "interiorBefore": "bd173e360ed2187414b683787d30e1b33c018c694e13dc102ab820ba4fd78c5b",
+      "interiorAfter": "bd173e360ed2187414b683787d30e1b33c018c694e13dc102ab820ba4fd78c5b",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "61014091115f2891f4319694fdf52d532516d2ed832aa987c9c14aca0954357e",
+      "exteriorAfter": "61014091115f2891f4319694fdf52d532516d2ed832aa987c9c14aca0954357e",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "55a",
+      "theme": "night",
+      "interiorBefore": "7035656ee9418a39b5480a8ddbb064bb53d15ca96a79569507c9eb3bc0f4b4c8",
+      "interiorAfter": "7035656ee9418a39b5480a8ddbb064bb53d15ca96a79569507c9eb3bc0f4b4c8",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "28881cdb88616f28488434f094498ff45c837b134068571a2dfe878c54964ee9",
+      "exteriorAfter": "28881cdb88616f28488434f094498ff45c837b134068571a2dfe878c54964ee9",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "57",
+      "theme": "night",
+      "interiorBefore": "767c8e5d75baea95fe728aeaa84cb0ed3115d22c20bef49df8bc52b805202587",
+      "interiorAfter": "767c8e5d75baea95fe728aeaa84cb0ed3115d22c20bef49df8bc52b805202587",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "74d94bd17c3de4b2d3c39507350eec7f3c30818ccc43f5020f17df02c14a4eef",
+      "exteriorAfter": "74d94bd17c3de4b2d3c39507350eec7f3c30818ccc43f5020f17df02c14a4eef",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "57a",
+      "theme": "night",
+      "interiorBefore": "d013b9462ff0b2e40ca2a0a5f3f612bfe95fa78bc324aef3f20fac23aa7a9dc3",
+      "interiorAfter": "d013b9462ff0b2e40ca2a0a5f3f612bfe95fa78bc324aef3f20fac23aa7a9dc3",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "cc8b8ccaa27258446103bfbbd83cc66e74ff7f355b988995e05225fdb07af56b",
+      "exteriorAfter": "cc8b8ccaa27258446103bfbbd83cc66e74ff7f355b988995e05225fdb07af56b",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": false
+    },
+    {
+      "house": "59",
+      "theme": "night",
+      "interiorBefore": "c12bfb5e61a4cff79f8a07c9afe0a3831bf37642833edad5b308ccbc3bc7e4db",
+      "interiorAfter": "c12bfb5e61a4cff79f8a07c9afe0a3831bf37642833edad5b308ccbc3bc7e4db",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "82bf7e1499a40852622ed25224dbdb522bc92ff9a81b24136a20b15cae8d9d62",
+      "exteriorAfter": "82bf7e1499a40852622ed25224dbdb522bc92ff9a81b24136a20b15cae8d9d62",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "59a",
+      "theme": "night",
+      "interiorBefore": "92f90b2a2b179ec587f43303ce435bdf5d5895744860a8bd7dd62017b3ebf155",
+      "interiorAfter": "92f90b2a2b179ec587f43303ce435bdf5d5895744860a8bd7dd62017b3ebf155",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true
+    },
+    {
+      "house": "49",
+      "theme": "day",
+      "interiorBefore": "92a548f450257b353133ea2d6a5ca895d9eda63eb6b2fee571d77d629f51a591",
+      "interiorAfter": "92a548f450257b353133ea2d6a5ca895d9eda63eb6b2fee571d77d629f51a591",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "341d7593a5c2b00981bd5c566cf3bec76cbe0c6bc156c92ebf6cad5c88cbf7e5",
+      "exteriorAfter": "341d7593a5c2b00981bd5c566cf3bec76cbe0c6bc156c92ebf6cad5c88cbf7e5",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "51",
+      "theme": "day",
+      "interiorBefore": "b20428f9e0f81d7c82b05d4d97e4df9aa8d46579633b67da05d9efb24a845faa",
+      "interiorAfter": "b20428f9e0f81d7c82b05d4d97e4df9aa8d46579633b67da05d9efb24a845faa",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "491b27da9dbdf9dd07e022092c95b23403ecc110122b30f085c6daa89a89ecd8",
+      "exteriorAfter": "491b27da9dbdf9dd07e022092c95b23403ecc110122b30f085c6daa89a89ecd8",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "51a",
+      "theme": "day",
+      "interiorBefore": "eb69b58107e60779dbeccf2ddb66e692e98a27eade5cd755bb52966887a9b49b",
+      "interiorAfter": "eb69b58107e60779dbeccf2ddb66e692e98a27eade5cd755bb52966887a9b49b",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "0c5323ba2582aae5769cca7d1f6b2f3603314ad7944a462a645a4976c1281ba3",
+      "exteriorAfter": "0c5323ba2582aae5769cca7d1f6b2f3603314ad7944a462a645a4976c1281ba3",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": false
+    },
+    {
+      "house": "53",
+      "theme": "day",
+      "interiorBefore": "7511b28c651915c0b8cc95479dda04980968cc80244057663c5c049fd75d100c",
+      "interiorAfter": "7511b28c651915c0b8cc95479dda04980968cc80244057663c5c049fd75d100c",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "0de63ea13dc1a4c42b18ed58f30204a3ceefff431cabbe24c10035435f36d973",
+      "exteriorAfter": "0de63ea13dc1a4c42b18ed58f30204a3ceefff431cabbe24c10035435f36d973",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "53a",
+      "theme": "day",
+      "interiorBefore": "4d1df6eb9e0ee853214bef24d0bc2014d068e030e2c642e278d69ebbe86a428b",
+      "interiorAfter": "4d1df6eb9e0ee853214bef24d0bc2014d068e030e2c642e278d69ebbe86a428b",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "e46616df3cdb38e7f02a97fffa83b3551291bb219c7684e7da1e856105b847eb",
+      "exteriorAfter": "e46616df3cdb38e7f02a97fffa83b3551291bb219c7684e7da1e856105b847eb",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "55",
+      "theme": "day",
+      "interiorBefore": "3273d8d0708b36f5958e379e99905b6c4d8a4e33b266740d76123eddbec7f8c9",
+      "interiorAfter": "3273d8d0708b36f5958e379e99905b6c4d8a4e33b266740d76123eddbec7f8c9",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "47068583b5c15be8e34bb45fd16ead450c558e082d5f86f0ef5ef322cbf54d62",
+      "exteriorAfter": "47068583b5c15be8e34bb45fd16ead450c558e082d5f86f0ef5ef322cbf54d62",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "55a",
+      "theme": "day",
+      "interiorBefore": "fb7f498cceeb139f43f540811d6e53f8914e5ae315f1703a848cc36113041a31",
+      "interiorAfter": "fb7f498cceeb139f43f540811d6e53f8914e5ae315f1703a848cc36113041a31",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "57111edd8ae88c9ecbf92cdfc228cc5cd2afbd001305aea7c8be7fe1c966a057",
+      "exteriorAfter": "57111edd8ae88c9ecbf92cdfc228cc5cd2afbd001305aea7c8be7fe1c966a057",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "57",
+      "theme": "day",
+      "interiorBefore": "995a8529f76d4ad849ee6a71ad38a369700c9fad5a81629b149ca7b3c0565f63",
+      "interiorAfter": "995a8529f76d4ad849ee6a71ad38a369700c9fad5a81629b149ca7b3c0565f63",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "283e174e10a0b19555d2ad613bc73a244ac417a1a3fde9c4c30df2f6624e4b5a",
+      "exteriorAfter": "283e174e10a0b19555d2ad613bc73a244ac417a1a3fde9c4c30df2f6624e4b5a",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "57a",
+      "theme": "day",
+      "interiorBefore": "310147487d8a3fadabdd531db43fc11a8f5a2ade4ccab31e00804b89f78a0e52",
+      "interiorAfter": "310147487d8a3fadabdd531db43fc11a8f5a2ade4ccab31e00804b89f78a0e52",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "32e1139da6821ce69dbbf90ff196536597d6a22b06b54da1ececd87d4243c957",
+      "exteriorAfter": "32e1139da6821ce69dbbf90ff196536597d6a22b06b54da1ececd87d4243c957",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": false
+    },
+    {
+      "house": "59",
+      "theme": "day",
+      "interiorBefore": "32ee4083dec8d19298935be8e4771f0aa189ee494ece85faade9e718ca696a3f",
+      "interiorAfter": "32ee4083dec8d19298935be8e4771f0aa189ee494ece85faade9e718ca696a3f",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true,
+      "exteriorBefore": "f5d6e06e0d41e50237e6c4789d45d652adca733e988d510453480dd93057ea0d",
+      "exteriorAfter": "f5d6e06e0d41e50237e6c4789d45d652adca733e988d510453480dd93057ea0d",
+      "exteriorUnchanged": true,
+      "releaseExteriorUnchanged": true
+    },
+    {
+      "house": "59a",
+      "theme": "day",
+      "interiorBefore": "22a0d330f39880c691a05322f420a631a9cddc6a4541be4fc5f9f1d61c67429d",
+      "interiorAfter": "22a0d330f39880c691a05322f420a631a9cddc6a4541be4fc5f9f1d61c67429d",
+      "interiorUnchanged": true,
+      "pinkDoesNotAffectInterior": true
+    }
+  ]
+}

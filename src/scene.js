@@ -37,6 +37,7 @@ export const SCENE_THEMES = Object.freeze({
     detailLightPanel: 0xc5c6b9, detailLimeShade: 0x44522c,
     detailGraphite: 0x172023, detailConcrete: 0x6b8890, detailCoolRecess: 0x263d43, detailCoolLight: 0xc7eff0,
     detailAcidLime: 0xa2b64d, detailAcidShade: 0x687b32, detailTurquoisePlaque: 0x478d86,
+    detailPinkGallerySoffit: 0x88afb7, detailPinkGalleryWall: 0x50676b, detailPinkGalleryLight: 0xd3f6fb,
   }),
   day: Object.freeze({
     background: 0xe8e5da, ink: 0x62655d, activeInk: 0x303a32, compass: 0x96978a,
@@ -48,6 +49,7 @@ export const SCENE_THEMES = Object.freeze({
     detailLightPanel: 0xe1e2d5, detailLimeShade: 0x60733c,
     detailGraphite: 0x293237, detailConcrete: 0xacb5af, detailCoolRecess: 0x667875, detailCoolLight: 0xe2eae0,
     detailAcidLime: 0xb2c669, detailAcidShade: 0x80954b, detailTurquoisePlaque: 0x48988e,
+    detailPinkGallerySoffit: 0xc0c6bf, detailPinkGalleryWall: 0x818b87, detailPinkGalleryLight: 0xe4efed,
   }),
 });
 
@@ -501,7 +503,7 @@ export class CampusScene {
       const context = canvas.getContext?.('2d');
       if (!context) continue;
       canvas.width = 1024; canvas.height = sign.style === 'fascia' ? 96 : 512;
-      context.fillStyle = sign.style === 'wordmark' ? '#101915' : '#ffffff';
+      context.fillStyle = sign.ink || (sign.style === 'wordmark' ? '#101915' : '#ffffff');
       context.textAlign = 'center';
       context.textBaseline = 'middle';
       if (sign.style === 'wordmark' || sign.style === 'fascia') {

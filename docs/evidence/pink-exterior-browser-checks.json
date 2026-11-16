@@ -1,0 +1,254 @@
+{
+  "scope": "Pink 59a exterior browser review, 16 November 2026",
+  "exterior": {
+    "success": true,
+    "themes": [
+      "day",
+      "night"
+    ],
+    "viewCount": 14,
+    "directions": [
+      "north",
+      "east",
+      "south",
+      "west",
+      "north-east",
+      "south-east",
+      "south-west"
+    ],
+    "errors": []
+  },
+  "frozenPinkIntegration": {
+    "views": [
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 6
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 3,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 4,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 390,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 7
+      },
+      {
+        "house": "59a",
+        "width": 390,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 390,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 320,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 6
+      },
+      {
+        "house": "59a",
+        "width": 320,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 25
+      },
+      {
+        "house": "59a",
+        "width": 320,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 25
+      }
+    ],
+    "errors": [],
+    "success": true
+  },
+  "sharedWorkspace": {
+    "views": [
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 6
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 3,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 4,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 1440,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 390,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 7
+      },
+      {
+        "house": "59a",
+        "width": 390,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 390,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "59a",
+        "width": 320,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 6
+      },
+      {
+        "house": "59a",
+        "width": 320,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 25
+      },
+      {
+        "house": "59a",
+        "width": 320,
+        "floor": 5,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 25
+      }
+    ],
+    "errors": [],
+    "success": true
+  },
+  "notes": [
+    "Actual app checks include day/night switching, unfolding, floor selection and folding at 1440, 390 and 320 pixels.",
+    "Initial shared-development run encountered undefined color during concurrent exterior edits. A fresh run and the frozen Pink integration both passed without errors.",
+    "Interior preservation is established by the separate source and scene-tree audit, not by image equality."
+  ]
+}

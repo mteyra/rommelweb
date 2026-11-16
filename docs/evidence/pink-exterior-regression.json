@@ -1,0 +1,70 @@
+{
+  "reviewedAt": "2026-11-16T01:45:20.904864+00:00",
+  "success": true,
+  "baselineHead": "662a1e1e767b105ffd17b9a8e729f20f773e376d",
+  "scope": "Complete stable-release regression plus Pink exterior integration; every baseline test retained. Concurrent Blue and Turquoise work was absent from the frozen archive.",
+  "construction": {
+    "baseline": "git archive HEAD",
+    "baselineTestFiles": 52,
+    "additionalTestFiles": [
+      "tests/pink-photo-details.test.mjs"
+    ],
+    "existingTestAdjustment": "Red exterior identity test adds only the newly photographed Pink address/wordmark branch; all other baseline assertions retained.",
+    "renderer": "Current backward-compatible sign renderer and Pink theme roles overlaid verbatim; exact hash recorded below."
+  },
+  "overlayFileSha256": {
+    "src/pink-house-photo-details.js": "16b6ca630dd5c41fdd03c42da685d88be37572f8960f40479ea154e8e90353f6",
+    "src/pink-bicycle-details.js": "a131a75a0163967c2ca3aec72d59517869a562675a4f70be7f57a31a3b4a87b2",
+    "src/scene.js": "3ce32aadc1a6bd88f281dc530763fe4fd0680cc2e9447e02163dd8780d47b5f8",
+    "tests/pink-photo-details.test.mjs": "876d739c0b3e9ec909e51db25996a72d6497731688baafb72371d0d69e906be6",
+    "scripts/check-pink-preservation.mjs": "fd2cc9cd8e60980ed1d71d70b89b200b6c158aa56e21c5b2f1c5721a7b187780",
+    "src/exterior-details.js": "82e2a80942b7e33e0e363f2e546d4c73efbe1099d4ca815cbc927df99a6e2767",
+    "tests/house55-exterior-refinement.test.mjs": "61a7ce591f78a011769aac69fcab4ffdfb9315ac77afd8e158276c9da87b7ef6"
+  },
+  "currentPinkModulesAndTestsMatchFrozenSources": true,
+  "test": {
+    "command": "npm test",
+    "tests": 372,
+    "pass": 372,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "baselineCases": 365,
+    "newPinkCases": 7,
+    "nearWindowRays": 66
+  },
+  "build": {
+    "command": "npm run build",
+    "success": true,
+    "pathSourceCheck": true,
+    "modules": 89,
+    "javascriptBytesApprox": 866400,
+    "javascriptGzipBytesApprox": 253590,
+    "warning": "Existing Vite chunk-size advisory above 500 kB; build completed successfully."
+  },
+  "preservationReceipt": "pink-exterior-preservation.json",
+  "sharedWorkspaceRun": {
+    "tests": 383,
+    "pass": 379,
+    "fail": 4,
+    "note": "Separate run while other exterior tasks were unfinished; every Pink test passed. Failures below belong to concurrent Blue/Turquoise work, which this frozen full regression does not include.",
+    "failures": [
+      {
+        "house": "51a",
+        "test": "all four Blue elevations use complete photographed upper rows within the unchanged source shell"
+      },
+      {
+        "house": "51a",
+        "test": "six separate southeast ground windows remain separate from the corner restaurant glazing"
+      },
+      {
+        "house": "51a",
+        "test": "the residential entrance occupies the central northwest wall between blank timber and restaurant"
+      },
+      {
+        "house": "57a",
+        "test": "the retained timber shell cannot hide the address, service plaque or concrete gallery slab edges"
+      }
+    ]
+  }
+}
