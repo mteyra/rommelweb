@@ -1,0 +1,170 @@
+{
+  "checkedAt": "2026-11-16T01:51:08.886582+00:00",
+  "house": "51a",
+  "scope": "Blue exterior geometry, real app controls, and retained interior appearance; no public publication",
+  "browser": "Isolated headless Firefox 159 / WebDriver BiDi / software WebGL",
+  "sourceSha256": {
+    "src/blue-courtyard-photo-details.js": "afee79e01895858e370754053020266ab891558ed7993071369fc94cb81d6c1d",
+    "src/exterior-details.js": "1a1eeffad11e6dcc8c45a9b5ff60078693bd9c6930e7366adfa83094030c155f",
+    "src/scene.js": "3ce32aadc1a6bd88f281dc530763fe4fd0680cc2e9447e02163dd8780d47b5f8"
+  },
+  "exterior": {
+    "success": true,
+    "renderedViews": 18,
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "themes": [
+      "day",
+      "night"
+    ],
+    "views": [
+      "northeast",
+      "southeast",
+      "southwest",
+      "northwest",
+      "east-corner",
+      "south-corner",
+      "west-corner",
+      "north-corner",
+      "entrance-close"
+    ],
+    "visualReview": {
+      "northeastUpperColumns": 6,
+      "southeastUpperColumns": 7,
+      "southwestUpperColumns": 6,
+      "northwestUpperColumns": 4,
+      "alignedUpperRows": true,
+      "southeastGroundOpenings": 6,
+      "northeastGroundBays": 4,
+      "recessedNorthwestDormEntrance": true,
+      "greenRestaurantGlazingWrapsWestCorner": true,
+      "noBalconiesOrBicycleCageAdded": true
+    },
+    "consoleErrors": []
+  },
+  "interiorPreservation": {
+    "allThreeFloorPngsByteIdentical": true,
+    "floors": [
+      {
+        "floor": 0,
+        "before_sha256": "dca71fd5dce140a8ca5687bc9a355bf09cad6b28bd9c00b2084b506438d87fb0",
+        "after_sha256": "dca71fd5dce140a8ca5687bc9a355bf09cad6b28bd9c00b2084b506438d87fb0",
+        "byte_identical": true
+      },
+      {
+        "floor": 1,
+        "before_sha256": "0f262439bf6059ec6cc4203b4c6f9bad868203348ceb675b6e2c1d409d6feccf",
+        "after_sha256": "0f262439bf6059ec6cc4203b4c6f9bad868203348ceb675b6e2c1d409d6feccf",
+        "byte_identical": true
+      },
+      {
+        "floor": 2,
+        "before_sha256": "0f262439bf6059ec6cc4203b4c6f9bad868203348ceb675b6e2c1d409d6feccf",
+        "after_sha256": "0f262439bf6059ec6cc4203b4c6f9bad868203348ceb675b6e2c1d409d6feccf",
+        "byte_identical": true
+      }
+    ]
+  },
+  "app": {
+    "success": true,
+    "viewportWidths": [
+      1440,
+      390,
+      320
+    ],
+    "themes": [
+      "day",
+      "night"
+    ],
+    "floorSelectionChecks": [
+      {
+        "house": "51a",
+        "width": 1440,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 6
+      },
+      {
+        "house": "51a",
+        "width": 1440,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 8
+      },
+      {
+        "house": "51a",
+        "width": 1440,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 8
+      },
+      {
+        "house": "51a",
+        "width": 390,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 7
+      },
+      {
+        "house": "51a",
+        "width": 390,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "51a",
+        "width": 390,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 9
+      },
+      {
+        "house": "51a",
+        "width": 320,
+        "floor": 0,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 6
+      },
+      {
+        "house": "51a",
+        "width": 320,
+        "floor": 1,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 7
+      },
+      {
+        "house": "51a",
+        "width": 320,
+        "floor": 2,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 7
+      }
+    ],
+    "unfoldAndFold": true,
+    "noHorizontalOverflow": true,
+    "oneWebGlCanvas": true,
+    "consoleErrors": []
+  },
+  "success": true
+}

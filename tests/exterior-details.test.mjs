@@ -114,9 +114,18 @@ test('photo-positioned window counts survive the recess masks without inventing 
       house: number, family: 'timber', exclusionsBySurface: detail.exclusionsBySurface, layoutsBySurface: detail.layoutsBySurface,
     });
     for (const [surface, layout] of detail.layoutsBySurface) {
-      assert.equal(layout.replace, false, 'unseen rows retain the baseline rather than being silently declared empty');
+      assert.equal(layout.replace, number === '51a',
+        'Blue has complete four-elevation coverage; unseen rows on the other dorms retain their baseline');
       for (const row of layout.rows) {
-        assert.equal(windows.get(surface).patches.filter(patch => patch.floor === row.floor).length, row.centers.length,
+        const patches = windows.get(surface).patches.filter(patch => patch.floor === row.floor);
+        if (number === '51a' && [1, 3, 5].includes(building.surfaces.indexOf(surface))) {
+          // The northwest elevation shares one row across three source wall
+          // fragments. Its complete four-column count is checked separately.
+          assert.ok(patches.length <= row.centers.length,
+            'A source fragment cannot introduce more windows than the complete photographed row');
+          continue;
+        }
+        assert.equal(patches.length, row.centers.length,
           `${number} source face ${building.surfaces.indexOf(surface)}, floor ${row.floor}: a photographed window should not be discarded to accommodate a wrong recess`);
       }
     }

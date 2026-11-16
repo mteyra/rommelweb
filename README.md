@@ -14,6 +14,8 @@ The repository and GitHub Pages demo are public. See [release checks](docs/RELEA
 
 **Pink / House 59a exterior:** resident photographs now guide its staggered windows, five corner balconies, open entrance galleries and wraparound bicycle cage. Building dimensions and all interiors remain unchanged. [Photo analysis and exterior design](docs/PINK-EXTERIOR-PHOTO-STUDY.md).
 
+**Blue House 51a exterior:** all four elevations follow the seven resident photographs, including aligned upper windows, six southeast ground windows, the recessed “blau” entrance and restaurant glazing around the west corner. The building dimensions and every interior layout remain unchanged. [Photo study and checks](docs/BLUE-PHOTO-EXTERIOR.md) · [Rendered elevations](docs/evidence/blue-photo-exterior-overview.webp).
+
 **House 55 module layout:** the campus’s unfolded **2. OG**, the [plan study](https://mteyra.github.io/rommelweb/house55-study/) and the [layout sandbox](https://mteyra.github.io/rommelweb/house55-layout/) now start from one shared plan: **20 clear 2.70 × 6.00 m rooms**, **3.10 m modules**, **1.40 m halls** and a **2.70 m stair split (1.30 + 1.40 m)**. Each module allocates a **0.20 m side wall on each side**, leaving **0.40 m between adjacent clear rooms**. The independent outline follows the latest annotated dimensions; the folded official exterior and its source window placements remain unchanged. [Dimensions and assumptions](docs/HOUSE55-MODULE-LAYOUT.md) · [Sandbox guide](docs/HOUSE55-LAYOUT-SANDBOX.md).
 
 The sandbox can explore alternative rectangle proportions while retaining **16.20 m² per room**. Saved sandbox edits are local variants; they do not automatically change the shared starting plan.

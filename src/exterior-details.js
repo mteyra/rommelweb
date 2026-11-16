@@ -237,15 +237,6 @@ export function createExteriorDetails(building, {house = building.number, levels
   }
 
   // Face directions start at the photographed corner and run along its outside.
-  if (house === '51a') {
-    const west = [-44.433, 0, 29.797], south = [-29.024, 0, 46.518];
-    const north = [-27.730, 0, 14.365], east = [-12.330, 0, 31.066];
-    groundFrontage('51a-southwest-shared-glazing', face([6], west, south), 0.18, 13.70, 'shared-ground-glazing');
-    photographicRows(6, west, south, {
-      1: [0.08, 0.20, 0.36, 0.49, 0.64, 0.73],
-      2: [0.08, 0.20, 0.36, 0.49, 0.64, 0.73],
-    });
-  }
   if (house === '53a') {
     const southEast = [23.079, 0, -58.260], northEast = [28.636, 0, -80.206];
     const southWest = [0.996, 0, -63.869], northWest = [6.564, 0, -85.824];
@@ -303,7 +294,7 @@ export function createExteriorDetails(building, {house = building.number, levels
   if (house === '57a') addTurquoisePhotoDetails(photoContext);
   if (house === '59a') addPinkHousePhotoDetails(photoContext);
   if (['51', '53', '49', '51a'].includes(house)) {
-    const surfaces = house === '51a' ? [building.surfaces[2]]
+    const surfaces = house === '51a' ? output.photoSurfaceIndices.map(index => building.surfaces[index])
       : [...new Set([...output.layoutsBySurface.keys(), ...output.exclusionsBySurface.keys()])];
     output.photoSurfaceIndices = surfaces.map(surface => building.surfaces.indexOf(surface));
     for (const surface of surfaces) {
