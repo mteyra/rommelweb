@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {difference, intersection, union} from 'polyclip-ts';
 import {floorSection} from '../src/sections.js';
 import {getLevelElevations} from '../src/interiors.js';
-import {createExteriorDetails} from '../src/exterior-details.js';
+import frozenExteriorReservations from '../data/source/newer-layout-exterior-reservations.json' with {type:'json'};
 import {validateInteriorStudies} from '../src/interior-studies.js';
 
 export const NEWER_HOUSES = ['49', '51a', '53a', '55a', '57a', '59a'];
@@ -57,25 +57,22 @@ const mapping=frame=>({
   local:p=>[frame.axisU,frame.axisV].map(a=>round((p[0]-frame.originCampusXZ[0])*a[0]+(p[1]-frame.originCampusXZ[1])*a[1])),
 });
 
-/** Read the same horizontal recess slabs used by the current folded renderer.
- * They are protected appearance estimates, not a new building survey. */
+/** Preserve the exact exterior reservations used by the saved layout.
+ * Later facade appearance changes must never feed back into room placement. */
 export function protectedExteriorPolygons(building,levelIndex,elevations) {
-  const rows=elevations.map(e=>e+building.baseY);
-  const details=createExteriorDetails(building,{levels:rows.length,absoluteFloorElevations:rows});
-  const triangles=details.triangleLayers.detailRecess||[],polygons=[];
-  for(let i=0;i<triangles.length;i+=9){
-    const points=[0,3,6].map(j=>triangles.slice(i+j,i+j+3));
-    const y=points[0][1];
-    if(points.some(p=>Math.abs(p[1]-y)>1e-7))continue;
-    if(![.06,.08].some(offset=>Math.abs(y-rows[levelIndex]-offset)<1e-6))continue;
-    const ring=[...points,points[0]].map(p=>[p[0],p[2]]);
-    if(areaRing(ring)>1e-6)polygons.push([ring]);
+  if(frozenExteriorReservations.schemaVersion!==1)throw Error('Unsupported frozen exterior reservation archive.');
+  const entry=NEWER_HOUSES.includes(building?.number)&&frozenExteriorReservations.houses[building.number];
+  if(!entry)throw Error(`No frozen exterior reservations for house ${building?.number}.`);
+  if(hash(building)!==entry.sourceBuildingHash)throw Error(`House ${building.number}: source building differs from the saved layout reservation baseline.`);
+  if(!Array.isArray(elevations)||!elevations.every(Number.isFinite)
+    ||JSON.stringify(elevations)!==JSON.stringify(entry.relativeFloorElevations)){
+    throw Error(`House ${building.number}: floor elevations differ from the saved layout reservation baseline.`);
   }
-  return {
-    polygons:merged(polygons),
-    features:details.features.filter(f=>['corner-loggia','recessed-stair-elevation','bike-storage','shared-ground-glazing'].includes(f.kind)
-      &&(f.floor===undefined||f.floor===levelIndex)).map(clone),
-  };
+  if(!Number.isInteger(levelIndex)||levelIndex<0||levelIndex>=elevations.length)throw Error(`Unsupported frozen exterior reservation floor ${building.number}/${levelIndex}.`);
+  if(!Array.isArray(entry.levels)||entry.levels.length!==elevations.length||hash(entry.levels)!==entry.reservationsHash){
+    throw Error(`House ${building.number}: frozen exterior reservation archive is incomplete or modified.`);
+  }
+  return clone(entry.levels[levelIndex]);
 }
 
 function apartment({label,bank,x,y,width,depth,typology='newer-single',side}) {

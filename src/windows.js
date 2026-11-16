@@ -193,8 +193,9 @@ function lineCoveredIntervals(a, b, triangles) {
 /** Construction cues remain a shallow independent layer on the source wall. */
 function addWindowConstruction(layers, linework, frame, triangles, rectangle, specification) {
   const [left, bottom, right, top] = rectangle;
-  const {headHeight = 0, transomRatio = 0.5, headStyle = 'solid'} = specification;
-  const lift = (point, offset) => frame.lift(point).map((value, i) => value + frame.normal[i] * offset);
+  const {headHeight = 0, transomRatio = 0.5, headStyle = 'solid', recessDepth = 0} = specification;
+  if (!Number.isFinite(recessDepth) || recessDepth < 0 || recessDepth > 0.3) throw new Error('Window recess depth must be a finite shallow appearance allowance');
+  const lift = (point, offset) => frame.lift(point).map((value, i) => value + frame.normal[i] * (offset - recessDepth));
   const add = (key, rect, offset) => {
     for (const polygon of clipRectangle(rect, triangles)) for (let i = 1; i + 1 < polygon.length; i++) {
       layers[key].push(...[polygon[0], polygon[i], polygon[i + 1]].flatMap(point => lift(point, offset)));
@@ -210,7 +211,28 @@ function addWindowConstruction(layers, linework, frame, triangles, rectangle, sp
     const points = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
     points.forEach((point, index) => line(point, points[(index + 1) % 4]));
   };
-  add('reveal', [left - 0.022, bottom - 0.018, right + 0.022, top + 0.018], 0.012);
+  if (recessDepth) {
+    const corners = [[left, bottom], [right, bottom], [right, top], [left, top]];
+    // Actual display opening: four reveal faces reach from the unchanged wall
+    // plane to the inset frame. Clip each edge to its own source wall record.
+    for (let edge = 0; edge < 4; edge++) {
+      const a = corners[edge], b = corners[(edge + 1) % 4];
+      for (const [low, high] of lineCoveredIntervals(a, b, triangles)) {
+        const at = t => a.map((value, i) => value + (b[i] - value) * t);
+        const p = at(low), q = at(high);
+        const points = [lift(p, recessDepth), lift(q, recessDepth), lift(q, 0.016), lift(p, 0.016)];
+        layers.reveal.push(...[points[0], points[1], points[2], points[0], points[2], points[3]].flat());
+      }
+    }
+    // The metal sill has a real shallow slope and a front drip, rather than a
+    // bright stripe on the glazing. Neither opening width nor centre changes.
+    for (const [low, high] of lineCoveredIntervals([left, bottom], [right, bottom], triangles)) {
+      const x0 = left + (right - left) * low, x1 = left + (right - left) * high;
+      const points = [lift([x0, bottom], recessDepth + 0.025), lift([x1, bottom], recessDepth + 0.025),
+        lift([x1, bottom + 0.055], 0.025), lift([x0, bottom + 0.055], 0.025)];
+      layers.sill.push(...[points[0], points[1], points[2], points[0], points[2], points[3]].flat());
+    }
+  } else add('reveal', [left - 0.022, bottom - 0.018, right + 0.022, top + 0.018], 0.012);
   add('frame', rectangle, 0.016);
   add('glass', [left + 0.075, bottom + 0.085, right - 0.075, top - Math.max(0.075, headHeight)], 0.024);
   if (headHeight) add(headStyle === 'slatted' ? 'blind' : 'head',
@@ -285,8 +307,10 @@ export function createWindowStudy(surface, absoluteFloorElevations, roofElevatio
       if (clipRectangle([left - clearance, bottom - clearance, right + clearance, top + clearance], maskTriangles).some(polygon => area(polygon) > 1e-9)) continue;
       const clippedArea = clipRectangle(rectangle, wallTriangles).reduce((sum, polygon) => sum + area(polygon), 0);
       if (layout ? clippedArea < 0.00001 : Math.abs(clippedArea - width * height) > 0.00001) continue;
-      addWindowConstruction(layers, linework, frame, wallTriangles, rectangle, {headHeight, headStyle, transomRatio});
-      patches.push({floor, corners: [[left, bottom], [right, bottom], [right, top], [left, top]].map(point => frame.lift(point))});
+      const recessDepth = options.explicitLayout?.recessDepth || 0;
+      addWindowConstruction(layers, linework, frame, wallTriangles, rectangle, {headHeight, headStyle, transomRatio, recessDepth});
+      patches.push({floor, corners: [[left, bottom], [right, bottom], [right, top], [left, top]].map(point => frame.lift(point)),
+        ...(recessDepth ? {recessDepth} : {})});
       construction.push({floor, headHeight, headStyle, transomRatio, explicit: Boolean(explicitRow)});
       if (clipRectangle([center - 0.0001, (bottom + top) / 2 - 0.0001, center + 0.0001, (bottom + top) / 2 + 0.0001], wallTriangles).length) count++;
     }

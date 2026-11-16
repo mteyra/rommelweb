@@ -116,7 +116,7 @@ test('the courtyard opening is upright, local to roof3 and below its existing ri
   assert.equal(masks(33).length, 1, 'The distinct opposite-slope opening remains independently registered');
 });
 
-test('courtyard entrance, address, dormer and rainwater refinements are restricted to House 55', () => {
+test('Red features stay local while separately photographed houses retain their own identities', () => {
   const redIds = new Set([
     '55-courtyard-entry-glazing', '55-courtyard-glazing-return', '55-recessed-entrance',
     '55-courtyard-rainwater', '55-courtyard-dormer',
@@ -125,7 +125,12 @@ test('courtyard entrance, address, dormer and rainwater refinements are restrict
   for (const other of lod2.buildings.filter(item => item.number !== '55')) {
     const result = createExteriorDetails(other);
     assert.ok(result.features.every(item => !redIds.has(item.id)));
-    assert.deepEqual(result.signs || [], [], 'The photographed House 55 address is not copied to another building');
-    assert.equal(result.triangleLayers.detailCladding?.length || 0, 0, 'Red entrance cladding is local');
+    if (['51', '53'].includes(other.number)) {
+      assert.ok(result.signs.length > 0, 'Newly photographed entrances carry their own signs');
+      assert.ok(result.signs.every(sign => sign.lines.at(-1) === other.number), 'Never copy the Red address');
+    } else {
+      assert.deepEqual(result.signs || [], [], 'Unphotographed entrances do not gain invented signs');
+      assert.equal(result.triangleLayers.detailCladding?.length || 0, 0, 'Unphotographed houses retain their previous cladding');
+    }
   }
 });

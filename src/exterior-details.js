@@ -1,6 +1,10 @@
 import {ShapeUtils, Vector2} from 'three';
 import {surfaceFrame} from './facade.js';
 import {addHouse55Entrance} from './house55-entrance.js';
+import {addHouse51PhotoDetails} from './house51-photo-details.js';
+import {addHouse53PhotoDetails} from './house53-photo-details.js';
+import {addBlackHousePhotoDetails} from './black-house-photo-details.js';
+import {addBlueCourtyardPhotoDetails} from './blue-courtyard-photo-details.js';
 
 /**
  * Replaceable photographic façade details, in the unmodified campus metre frame.
@@ -235,7 +239,6 @@ export function createExteriorDetails(building, {house = building.number, levels
     const west = [-44.433, 0, 29.797], south = [-29.024, 0, 46.518];
     const north = [-27.730, 0, 14.365], east = [-12.330, 0, 31.066];
     groundFrontage('51a-southwest-shared-glazing', face([6], west, south), 0.18, 13.70, 'shared-ground-glazing');
-    groundFrontage('51a-courtyard-shared-glazing', face([2], north, east), 0.18, 5.50, 'shared-ground-glazing');
     photographicRows(6, west, south, {
       1: [0.08, 0.20, 0.36, 0.49, 0.64, 0.73],
       2: [0.08, 0.20, 0.36, 0.49, 0.64, 0.73],
@@ -281,6 +284,28 @@ export function createExteriorDetails(building, {house = building.number, levels
       4: [0.224, 0.355, 0.492, 0.596],
       3: [0.087, 0.202, 0.319, 0.457],
     });
+  }
+
+  // The eight-photo November 16 request refines only these registered faces.
+  // Source surfaces, floor guides and every interior remain independent.
+  const photoHelpers = {
+    face, facePoint, faceMask, wall, quad, line, wire, mask, closed, atY,
+    add, sub, mul, unit, dot, lerp, box, railing, faceGlazing, photographicRows,
+    polygon, cornerLoggia,
+  };
+  const photoContext = {building, base, rows, highest, output, helpers: photoHelpers};
+  if (house === '51') addHouse51PhotoDetails(photoContext);
+  if (house === '53') addHouse53PhotoDetails(photoContext);
+  if (house === '49') addBlackHousePhotoDetails(photoContext);
+  if (house === '51a') addBlueCourtyardPhotoDetails(photoContext);
+  if (['51', '53', '49', '51a'].includes(house)) {
+    const surfaces = house === '51a' ? [building.surfaces[2]]
+      : [...new Set([...output.layoutsBySurface.keys(), ...output.exclusionsBySurface.keys()])];
+    output.photoSurfaceIndices = surfaces.map(surface => building.surfaces.indexOf(surface));
+    for (const surface of surfaces) {
+      const layout = output.layoutsBySurface.get(surface);
+      if (layout) layout.recessDepth = 0.14;
+    }
   }
 
   if (house === '55') {

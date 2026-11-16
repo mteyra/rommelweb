@@ -1,0 +1,426 @@
+{
+  "reviewedAt": "2026-11-16T00:09:44.441330+00:00",
+  "baselineCommit": "be019fdef706cc7ea3210db3ecbb69ce2242f549",
+  "scope": "Photographed folded exteriors only; no interior data or floor mesh changes",
+  "fileAudit": {
+    "reviewedAt": "2026-11-16T00:08:07.716Z",
+    "baselineFiles": 542,
+    "protectedFileCount": 111,
+    "protectedChanged": [
+      "scripts/new-house-module-layout.mjs"
+    ],
+    "protectedUnexpectedChanged": [],
+    "intentionalPreservationEdits": [
+      {
+        "path": "scripts/new-house-module-layout.mjs",
+        "reason": "Freeze the exact prior exterior reservations so appearance edits cannot change future room or hall generation.",
+        "archive": "data/source/newer-layout-exterior-reservations.json",
+        "verifiedFloors": 34,
+        "savedGeneratorOutputExact": true
+      }
+    ],
+    "publicDataFiles": 18,
+    "changedPublicDataFiles": [],
+    "changedExistingPaths": [
+      "scripts/new-house-module-layout.mjs",
+      "src/exterior-details.js",
+      "src/facade.js",
+      "src/scene.js",
+      "src/windows.js",
+      "tests/exterior-details.test.mjs",
+      "tests/house55-exterior-refinement.test.mjs",
+      "tests/house57-module-layout.test.mjs",
+      "tests/house59-module-layout.test.mjs",
+      "tests/new-house-module-layout.test.mjs"
+    ],
+    "unchangedHouses": [
+      {
+        "house": "53a",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      {
+        "house": "55",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      {
+        "house": "55a",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      {
+        "house": "57",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      {
+        "house": "57a",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      {
+        "house": "59",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      },
+      {
+        "house": "59a",
+        "details": true,
+        "windows": true,
+        "weathering": true
+      }
+    ],
+    "changedUnphotographedFaces": []
+  },
+  "sceneAudit": {
+    "reviewedAt": "2026-11-16T00:08:07.716Z",
+    "comparison": "Geometry buffers, material JSON/color, role, house/floor identity, child order, visibility, transforms, render order, and day/night appearance against original checkout snapshot.",
+    "sceneUnchanged": [
+      {
+        "house": "53a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "55",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "55a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "57",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "57a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "59",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "59a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      }
+    ],
+    "floorMeshesUnchanged": [
+      {
+        "house": "49",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "51",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "51a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "53",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "53a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "55",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "55a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "57",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "57a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "59",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      },
+      {
+        "house": "59a",
+        "equal": true,
+        "themes": {
+          "night": true,
+          "day": true
+        }
+      }
+    ],
+    "checkedRecessedWindows": 142,
+    "newWindowRayMisses": []
+  },
+  "interiorRasterComparisons": [
+    {
+      "house": "51",
+      "floor": 1,
+      "identicalPngBytes": true,
+      "sha256": "5446ab0a0ff8e6366e15d8e81c84b0a420b09d44a8531c8c06fab3dbd586b26f",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "house": "51a",
+      "floor": 1,
+      "identicalPngBytes": true,
+      "sha256": "0f262439bf6059ec6cc4203b4c6f9bad868203348ceb675b6e2c1d409d6feccf",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "house": "49",
+      "floor": 1,
+      "identicalPngBytes": true,
+      "sha256": "95b590a98ef40f284c2e32839a1b87f252f236cdd01711b51a07edbcfaf9c9c1",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "house": "53",
+      "floor": 1,
+      "identicalPngBytes": true,
+      "sha256": "3c180f83910cb5c3a0d404b6b1220fb55aa82910b3851a4262449e1a485cdb27",
+      "viewport": [
+        1440,
+        1000
+      ]
+    },
+    {
+      "house": "55",
+      "floor": 1,
+      "identicalPngBytes": true,
+      "sha256": "38cce58dcbc60a0f9e1629b1027631fc3b633765c2b22b0b28e9c52f8a93ef9e",
+      "viewport": [
+        1440,
+        1000
+      ]
+    }
+  ],
+  "publicDataHashes": {
+    "public/data/campus.geojson": {
+      "beforeSha256": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b",
+      "afterSha256": "8d5ba90b427bf56230988301421ac2bd8b6df4928f48245c5a7da0b31d1b054b"
+    },
+    "public/data/campus.json": {
+      "beforeSha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011",
+      "afterSha256": "8c94f6cd7080931db2c16c14a7b738b45280024c83add1af6c728449df016011"
+    },
+    "public/data/house51-first-floor-layout.json": {
+      "beforeSha256": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9",
+      "afterSha256": "d175c78614d04302f6ca12624ee73bae500cf4a3da308b7fd5e60ff94765dbf9"
+    },
+    "public/data/house51-ground-floor-layout.json": {
+      "beforeSha256": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44",
+      "afterSha256": "0bec3b412e9c7e1371a28c1dadfdb032f1d16a39a29e8b6f64b34e30a46d6b44"
+    },
+    "public/data/house51-top-floor-layout.json": {
+      "beforeSha256": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7",
+      "afterSha256": "a82f604f9434048257feb65a56eaee50e50deea2b27cb493c0b72f66afb577b7"
+    },
+    "public/data/house53-module-layouts.json": {
+      "beforeSha256": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f",
+      "afterSha256": "a681fd6caca3d21c5ef692a8b569b91c3336a46250d9fa33a8f6b2b5f07fa05f"
+    },
+    "public/data/house55-first-floor-layout.json": {
+      "beforeSha256": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3",
+      "afterSha256": "bbd171887af144513abf595bd3b2afe2e5aafb3d5fd7fa4866cc700dbffa24d3"
+    },
+    "public/data/house55-ground-floor-layout.json": {
+      "beforeSha256": "5d75a54fd62c30b55dd1a8ff0665a4ace55a27ecc0e38bc983cbed224e7e43ed",
+      "afterSha256": "5d75a54fd62c30b55dd1a8ff0665a4ace55a27ecc0e38bc983cbed224e7e43ed"
+    },
+    "public/data/house55-module-layout.json": {
+      "beforeSha256": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165",
+      "afterSha256": "62b8bef1ad8288246307dd25a8cbdedbccf063d0b6883e8970673e71a99b9165"
+    },
+    "public/data/house57-module-layouts.json": {
+      "beforeSha256": "5cbcef27ab20cba3b359bddbc077fc05173f167f27907d66d3372349b05797f4",
+      "afterSha256": "5cbcef27ab20cba3b359bddbc077fc05173f167f27907d66d3372349b05797f4"
+    },
+    "public/data/house59-module-layouts.json": {
+      "beforeSha256": "317f884704242e3c38fe54a5f181aabae5f6d68e8b24d1b0c00de318c384714c",
+      "afterSha256": "317f884704242e3c38fe54a5f181aabae5f6d68e8b24d1b0c00de318c384714c"
+    },
+    "public/data/interior-studies.json": {
+      "beforeSha256": "428b9c32d793f1de648367e847e561f51d833e8c482ab324cab957cb8a62e466",
+      "afterSha256": "428b9c32d793f1de648367e847e561f51d833e8c482ab324cab957cb8a62e466"
+    },
+    "public/data/interiors.json": {
+      "beforeSha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5",
+      "afterSha256": "69095d5837bee0d3bf394ddeab18bd3ac4c8dc5bbdf8cbe94a31746b838bf8a5"
+    },
+    "public/data/lod2.json": {
+      "beforeSha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6",
+      "afterSha256": "ee9253c11fd6daab202a2b37368ea720676ff1bdd2990e23b28185fb927f3ea6"
+    },
+    "public/data/new-house-module-layouts.json": {
+      "beforeSha256": "2a08d98f5d77a2d81759cd9fa9995275a6e9e532cd6658a340d6c4ec67ff3120",
+      "afterSha256": "2a08d98f5d77a2d81759cd9fa9995275a6e9e532cd6658a340d6c4ec67ff3120"
+    },
+    "public/data/old-house-module-layouts.json": {
+      "beforeSha256": "22760c6cf6f2cbe2996d338359874b23864813ac3e4ff63edc94ac1ea5801da3",
+      "afterSha256": "22760c6cf6f2cbe2996d338359874b23864813ac3e4ff63edc94ac1ea5801da3"
+    },
+    "public/data/path-network.json": {
+      "beforeSha256": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d",
+      "afterSha256": "a21672a60b281d671f21774bca79b9e8a13ac6f02a8df8ef71de84947230679d"
+    },
+    "public/data/room-markers.json": {
+      "beforeSha256": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826",
+      "afterSha256": "246eb759310c67c2327a0b58957052ab06e230cbf90c4d2947dea6769f75e826"
+    }
+  },
+  "browser": {
+    "views": [
+      {
+        "house": "51",
+        "width": 1440,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 51
+      },
+      {
+        "house": "51a",
+        "width": 1440,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 8
+      },
+      {
+        "house": "49",
+        "width": 1440,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 30
+      },
+      {
+        "house": "53",
+        "width": 1440,
+        "view": "floor",
+        "scroll": 1440,
+        "canvas": 1,
+        "rooms": 51
+      },
+      {
+        "house": "53",
+        "width": 390,
+        "view": "floor",
+        "scroll": 390,
+        "canvas": 1,
+        "rooms": 27
+      },
+      {
+        "house": "53",
+        "width": 320,
+        "view": "floor",
+        "scroll": 320,
+        "canvas": 1,
+        "rooms": 27
+      }
+    ],
+    "errors": [],
+    "success": true
+  },
+  "tests": {
+    "command": "node --test tests/*.test.mjs",
+    "passed": 365,
+    "failed": 0
+  },
+  "limitations": [
+    "Exterior offsets and depths remain unmeasured estimates.",
+    "Black southeast balcony display conflicts with the saved E7/hall arrangement; interior and regeneration outputs are preserved.",
+    "Unphotographed elevations retain existing assumptions."
+  ]
+}

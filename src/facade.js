@@ -101,12 +101,39 @@ const timberPalettes = Object.freeze({
   day: [new Color(0x908d85), new Color(0xa08b70)],
   night: [new Color(0x545149), new Color(0x594b3b)],
 });
+const photographedTimberPalettes = Object.freeze({
+  day: [new Color(0x626966), new Color(0xbb8e59)],
+  night: [new Color(0x343936), new Color(0x62482d)],
+});
+
+/** Clip one convex board slice to a horizontal weathering band. */
+function clipBoardBand(points, bottom, top) {
+  let result = points;
+  for (const [height, above] of [[bottom, true], [top, false]]) {
+    const clipped = [];
+    for (let i = 0; i < result.length; i++) {
+      const a = result[i], b = result[(i + 1) % result.length];
+      const aInside = above ? a[1] >= height : a[1] <= height;
+      const bInside = above ? b[1] >= height : b[1] <= height;
+      if (aInside) clipped.push(a);
+      if (aInside !== bInside) {
+        const t = (height - a[1]) / (b[1] - a[1]);
+        clipped.push([a[0] + (b[0] - a[0]) * t, height]);
+      }
+    }
+    result = clipped;
+    if (result.length < 3) return [];
+  }
+  return result;
+}
 /**
  * Original, restrained board-color study on the unchanged source wall plane.
  * Returns triangle positions and linear-RGB day/night vertex colors. Palette,
  * grain, board module and weathering are illustrative, never image samples.
  * Adjacent board pairs share a color field to keep the layer small;
  * the separate groove/line study still resolves every individual board.
+ * refinedWeathering is opt-in for photographed elevations only: it resolves
+ * single boards and storey weathering bands without modifying their plane.
  * elevations, when supplied, are absolute storey edges including the roof;
  * otherwise a 3m display module is used from elevationOrigin.
  */
@@ -141,7 +168,8 @@ export function createTimberBoardStudy(surface, options = {}) {
   })));
   const events = [...new Set(visible.flat(2).map(point => point[0]))].sort((a, b) => a - b);
   const result = {...empty};
-  const phase = dot(frame.origin, frame.u), pitch = FACADE_PROFILES.timber.spacing, groupSize = 2;
+  const refined = options.refinedWeathering === true;
+  const phase = dot(frame.origin, frame.u), pitch = FACADE_PROFILES.timber.spacing, groupSize = refined ? 1 : 2;
   const seam = index => index * pitch + (noise(index) - 0.5) * 0.018 - phase;
   const color = (index, y, palette) => {
     let band = elevations.findIndex((height, i) => i < elevations.length - 1 && y <= elevations[i + 1]);
@@ -154,6 +182,32 @@ export function createTimberBoardStudy(surface, options = {}) {
     const [silver, ochre] = palette;
     return ['r', 'g', 'b'].map(key => (silver[key] + (ochre[key] - silver[key]) * warmth) * brightness);
   };
+  const refinedColor = (index, y, palette, band, across) => {
+    const fraction = Math.min(1, Math.max(0, (y - elevations[band]) / (elevations[band + 1] - elevations[band])));
+    const sheltered = Math.min(1, Math.max(0, (fraction - 0.08) / 0.65));
+    const upper = band === elevations.length - 2;
+    // The photographed exposed top storey is charcoal/silver. Below it,
+    // sheltered upper board ends retain honey tones while the lower ends
+    // darken. Resolve this in linear RGB before the scene applies its layer
+    // opacity; transparency should not supply the material's color contrast.
+    const warmth = upper
+      ? 0.015 + noise(index + 91) * 0.11 + 0.10 * fraction ** 10
+      : 0.06 + noise(index + 91) * 0.17 + 0.68 * sheltered;
+    const streak = 0.065 * Math.cos(fraction * Math.PI * (1 + noise(index + 47)) * 1.7 + noise(index + 113));
+    // Long, irregular vertical streaks belong to individual slim boards,
+    // without adding an artificial repeated knot or raster texture. A slight
+    // transverse grain gradient uses the existing vertices, adding no faces.
+    const grainSide = noise(index + 61) < 0.5 ? across : 1 - across;
+    const brightness = (0.65 + noise(index + 137) * 0.64 + streak)
+      * (upper ? 0.96 : 0.75 + 0.25 * sheltered) * (0.88 + 0.20 * grainSide);
+    const [silver, ochre] = palette;
+    return ['r', 'g', 'b'].map(key => (silver[key] + (ochre[key] - silver[key]) * warmth) * brightness);
+  };
+  const weatheringBands = refined ? elevations.slice(0, -1).flatMap((height, band) => {
+    const interval = elevations[band + 1] - height;
+    const stops = [0, 0.12, 0.80, 1].map(fraction => (height + interval * fraction - frame.origin[1]) / frame.v[1]);
+    return stops.slice(1).map((top, i) => ({bottom: stops[i], top, band}));
+  }) : [];
   for (let index = (Math.floor((frame.minU + phase) / pitch / groupSize) - 1) * groupSize; seam(index) < frame.maxU; index += groupSize) {
     const left = Math.max(frame.minU, seam(index) + 0.011), right = Math.min(frame.maxU, seam(index + groupSize));
     if (right - left <= 1e-8) continue;
@@ -171,14 +225,39 @@ export function createTimberBoardStudy(surface, options = {}) {
         const low = crossings[edge - 1], high = crossings[edge];
         const points = [[a, low.slope * a + low.intercept], [b, low.slope * b + low.intercept],
           [b, high.slope * b + high.intercept], [a, high.slope * a + high.intercept]];
-        for (const triangle of [[0, 1, 2], [0, 2, 3]]) {
-          const [p, q, r] = triangle.map(vertex => points[vertex]);
-          if (Math.abs((q[0] - p[0]) * (r[1] - p[1]) - (r[0] - p[0]) * (q[1] - p[1])) < 1e-10) continue;
-          for (const vertex of triangle) {
-            const world = frame.lift(points[vertex]);
-            result.positions.push(...world);
-            result.dayColors.push(...color(index, world[1], timberPalettes.day));
-            result.nightColors.push(...color(index, world[1], timberPalettes.night));
+        if (refined) {
+          const min = Math.min(...points.map(point => point[1])), max = Math.max(...points.map(point => point[1]));
+          // Extend the end bands to any tiny source overhang beyond the
+          // supplied guide range; appearance guides never crop source walls.
+          for (let bandIndex = 0; bandIndex < weatheringBands.length; bandIndex++) {
+            const band = weatheringBands[bandIndex];
+            const bottom = bandIndex === 0 ? Math.min(min, band.bottom) : band.bottom;
+            const top = bandIndex === weatheringBands.length - 1 ? Math.max(max, band.top) : band.top;
+            if (top <= min || bottom >= max) continue;
+            const polygon = clipBoardBand(points, bottom, top);
+            for (let vertex = 1; vertex + 1 < polygon.length; vertex++) {
+              const triangle = [polygon[0], polygon[vertex], polygon[vertex + 1]];
+              const [p, q, r] = triangle;
+              if (Math.abs((q[0] - p[0]) * (r[1] - p[1]) - (r[0] - p[0]) * (q[1] - p[1])) < 1e-10) continue;
+              for (const point of triangle) {
+                const world = frame.lift(point);
+                const across = Math.min(1, Math.max(0, (point[0] - left) / (right - left)));
+                result.positions.push(...world);
+                result.dayColors.push(...refinedColor(index, world[1], photographedTimberPalettes.day, band.band, across));
+                result.nightColors.push(...refinedColor(index, world[1], photographedTimberPalettes.night, band.band, across));
+              }
+            }
+          }
+        } else {
+          for (const triangle of [[0, 1, 2], [0, 2, 3]]) {
+            const [p, q, r] = triangle.map(vertex => points[vertex]);
+            if (Math.abs((q[0] - p[0]) * (r[1] - p[1]) - (r[0] - p[0]) * (q[1] - p[1])) < 1e-10) continue;
+            for (const vertex of triangle) {
+              const world = frame.lift(points[vertex]);
+              result.positions.push(...world);
+              result.dayColors.push(...color(index, world[1], timberPalettes.day));
+              result.nightColors.push(...color(index, world[1], timberPalettes.night));
+            }
           }
         }
       }

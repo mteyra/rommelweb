@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {historicalExteriorSource} from './historical-exterior-source.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -59,7 +60,7 @@ test('all merged old/newer study records and folded source inputs retain their e
   assert.equal(Object.keys(before.newerStudyHashes).length,6);
   assert.equal(Object.keys(before.fileHashes).length,25);
   for(const [path,digest] of Object.entries(before.fileHashes)){
-    assert.equal(hash(await readFile(new URL(`../${path}`,import.meta.url))),digest,path);
+    assert.equal(hash(await readFile(new URL(`../${historicalExteriorSource(path)}`,import.meta.url))),digest,path);
   }
 });
 
