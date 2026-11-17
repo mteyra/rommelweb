@@ -11,7 +11,7 @@ A static Three.js map of the eleven student houses at Campus Süd, Erlangen. Vit
 | UI, panels, scene, build, tests, deploy, privacy | `docs/SOFTWARE.md` |
 | Finding a picture of a house or floor | `docs/screenshots/README.md` (filenames only; open an image only if needed) |
 
-Don't read `docs/archive/` unless a guide points there, and never read the top-level `archive/` (superseded code) unless asked. Don't read `docs/evidence/` or `docs/data/`: they're machine records for tests. Large files to search rather than read whole: `public/data/*.json`, `src/styles.css`, `src/scene.js`, `src/main.js`.
+Don't read `docs/archive/` unless a guide points there, and never read the top-level `archive/` (superseded code) unless asked. Don't read `docs/evidence/` or `docs/data/`: they're machine records for tests. Large files to search rather than read whole: `public/data/*.json`, `src/scene.js`, `src/main.js`. Styles: `src/styles.css` lists the 15 files in `src/styles/` and what each covers.
 
 ## Hard rules
 

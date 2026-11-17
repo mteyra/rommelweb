@@ -1,0 +1,224 @@
+/* The world is the page. Its instruments float around the edges. */
+
+#app {
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+#scene {
+  position: absolute;
+  inset: 0;
+  outline-offset: -4px;
+  touch-action: none;
+}
+
+#scene,
+#map-labels {
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+}
+
+body[data-ready] #scene,
+body[data-ready] #map-labels {
+  opacity: 1;
+}
+
+#scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.world-header {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 90px;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.world-header>* {
+  pointer-events: auto;
+}
+
+.brand {
+  position: absolute;
+  left: var(--edge);
+  top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -1.1px;
+  line-height: 1.2;
+  min-height: 32px;
+}
+
+.brand svg {
+  color: var(--accent);
+  width: 22px;
+  height: 26px;
+}
+
+.brand-dot {
+  color: var(--accent);
+}
+
+.brand:hover {
+  color: #fff;
+}
+
+.location-trail {
+  position: absolute;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.4px;
+}
+
+.location-trail span {
+  padding: 0 11px;
+  color: #71716c;
+}
+
+.location-trail button {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.waybar {
+  position: absolute;
+  top: 22px;
+  right: var(--edge);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px;
+  border: 1px solid #d3d4ca20;
+  border-radius: 40px;
+  background: #232523b8;
+  backdrop-filter: var(--blur);
+  box-shadow: 0 2px 18px #0001;
+}
+
+.waybar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-size: 11px;
+  line-height: 1.1;
+  color: #c7c7be;
+  min-height: 37px;
+}
+
+.waybar button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.waybar button:hover {
+  background: #d3d4ca0c;
+  color: var(--ink);
+}
+
+.waybar button[aria-expanded='true'] {
+  background: #d3d4ca1c;
+  color: var(--accent);
+}
+
+.waybar .waybar-info {
+  width: 36px;
+  padding: 10px;
+}
+
+.waybar .waybar-theme {
+  width: 36px;
+  padding: 10px;
+}
+
+.waybar .theme-moon,
+body[data-theme='day'] .waybar .theme-sun {
+  display: none;
+}
+
+body[data-theme='day'] .waybar .theme-moon {
+  display: block;
+}
+
+.waybar-divider {
+  width: 1px;
+  height: 17px;
+  background: var(--line);
+  margin: 0 2px;
+}
+
+#scene-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -.7px;
+}
+
+#scene-loading small,#scene-loading>span:not(.loading-orbit) {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .2px;
+  color: var(--muted);
+}
+
+.loading-orbit {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #d3d4ca25;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  margin-bottom: 15px;
+  animation: orbit 1.5s linear infinite;
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#scene-loading button {
+  margin-top: 10px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+#scene-loading a {
+  font-size: 13px;
+  color: var(--accent);
+}
+

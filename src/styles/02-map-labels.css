@@ -1,0 +1,249 @@
+/* Labels sit in the model's space; only the label itself catches input. */
+
+.map-labels {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.exterior-dimensions {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  color: #c2c4b7;
+}
+
+.exterior-dimensions path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: .8;
+  vector-effect: non-scaling-stroke;
+}
+
+.exterior-dimensions .dimension-extensions {
+  opacity: .3;
+}
+
+.exterior-dimensions .dimension-line {
+  opacity: .65;
+}
+
+.exterior-dimensions .dimension-study-guide {
+  color: #8bb7c8;
+}
+
+.exterior-dimensions .dimension-study-guide .dimension-line {
+  stroke-dasharray: 4 3;
+}
+
+.exterior-dimensions text {
+  fill: currentColor;
+  stroke: #151715;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.15px;
+}
+
+body[data-theme='day'] .exterior-dimensions {
+  color: #4f5e50;
+}
+
+body[data-theme='day'] .exterior-dimensions .dimension-study-guide {
+  color: #386b82;
+}
+
+body[data-theme='day'] .exterior-dimensions text {
+  stroke: #e8e5da;
+}
+
+@media (max-width: 700px) {
+  .exterior-dimensions text {
+    font-size: 10px;
+  }
+}
+
+.map-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  pointer-events: auto;
+  white-space: nowrap;
+}
+
+.house-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 29px;
+  padding: 5px 9px;
+  border: 1px solid #d9d9cf33;
+  border-radius: 4px;
+  background: #1d1f1de6;
+  color: #e4e5da;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .1px;
+  box-shadow: 0 4px 12px #0002;
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+  white-space: nowrap;
+}
+
+.house-label:hover,.house-label.active {
+  background: #d3d4ca;
+  color: #1e1f1d;
+  border-color: #e6e6db;
+}
+
+.house-label.active {
+  box-shadow: 0 0 0 3px #d3d4ca13,0 6px 20px #0004;
+}
+
+.house-label::after {
+  content: '';
+  width: 1px;
+  height: 10px;
+  background: #cacbc14d;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.house-label .label-color,.house-label i,.house-label .house-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--house-color,var(--accent));
+}
+
+.club-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid #cbccc23d;
+  border-radius: 30px;
+  background: #20211fec;
+  color: #e3e3d9;
+  font-size: 10px;
+  pointer-events: auto;
+  white-space: nowrap;
+  box-shadow: 0 6px 22px #0003;
+}
+
+.club-label .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.club-label:hover,.club-label.active {
+  background: var(--accent);
+  color: #20211f;
+}
+
+.room-label {
+  position: absolute;
+  padding: 3px 5px;
+  background: #222422f2;
+  border: 1px solid #c7c8bf5c;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #edede2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.map-label[hidden] {
+  display: none;
+}
+
+.fallback-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 100px 15% 180px;
+}
+
+.fallback-map polygon {
+  fill: #2f312e;
+  stroke: #c9cac0;
+  stroke-width: .6;
+  cursor: pointer;
+}
+
+.fallback-map polygon:hover {
+  fill: #4d4e4a;
+}
+
+.fallback-map text {
+  fill: #edede2;
+  font-size: 4px;
+  font-family: var(--mono);
+  pointer-events: none;
+}
+
+.empty-state {
+  padding: 21px 8px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.panel-close,.modal-close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #d8d8ce1a;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 300;
+  color: #a5a59d;
+  background: #1b1d1b38;
+}
+
+.panel-close:hover,.modal-close:hover {
+  background: #d3d4ca12;
+  color: #eeeee4;
+  border-color: #d8d8ce45;
+}
+
+.round-button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d8d8ce25;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #cfd0c6;
+}
+
+.round-button:hover {
+  background: #d3d4ca15;
+  border-color: #d3d4ca50;
+}
+

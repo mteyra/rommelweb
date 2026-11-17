@@ -1,0 +1,52 @@
+/* Responsive controls leave the map itself as the navigation. */
+
+@media (min-width:1600px) {
+  .house-controls {
+    bottom: 90px;
+  }
+}
+
+@media (max-width:700px) {
+  body.timeline-open .house-controls {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .waybar #open-groups > svg,
+  .waybar #open-timeline > svg {
+    display: none;
+  }
+
+  .waybar .waybar-theme {
+    width: 31px;
+    padding: 8px;
+  }
+
+  .house-controls {
+    left: var(--edge);
+    bottom: 98px;
+    width: 177px;
+  }
+
+  .house-controls:has(#explode-building[aria-expanded='true']) {
+    left: var(--edge);
+    bottom: 98px;
+    width: 249px;
+    max-height: calc(100dvh - 195px);
+  }
+}
+
+@media (max-width:380px) {
+  .brand {
+    font-size: 17px;
+  }
+
+  .brand > svg {
+    display: none;
+  }
+
+  .waybar .waybar-theme {
+    width: 28px;
+  }
+}
+

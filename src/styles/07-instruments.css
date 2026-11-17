@@ -1,0 +1,20 @@
+/* Quiet neutral instruments. The campus keeps its own material colors. */
+
+#app,
+#scene-loading {
+  background: #151715;
+}
+
+.world-header {
+  background: linear-gradient(#15171555, transparent);
+}
+
+.location-trail {
+  display: block;
+  left: 50%;
+  top: 37px;
+  transform: translateX(-50%);
+  max-width: calc(100% - 630px);
+  color: #aaa99b;
+}
+

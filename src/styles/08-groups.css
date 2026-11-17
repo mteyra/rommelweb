@@ -1,0 +1,257 @@
+/* A community appears just beneath the place breadcrumb. */
+
+.group-deck {
+  position: absolute;
+  top: 77px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 21px;
+  width: 528px;
+  max-width: calc(100vw - 115px);
+  padding: 18px 22px 18px 19px;
+  border: 1px solid #d1d1c61b;
+  border-radius: 8px;
+  background: #262624eb;
+  box-shadow: 0 12px 45px #0002;
+  backdrop-filter: blur(22px);
+}
+
+.group-qr-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group-qr {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border: 1px solid #d5d6cb26;
+  border-radius: 3px;
+  background: #e8e8de;
+  color: #2a2b28;
+  transition: opacity 150ms ease;
+}
+
+.group-qr svg,
+.group-qr canvas,
+.group-qr img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.group-qr-column > small {
+  display: none;
+  max-width: 106px;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .3px;
+  line-height: 1.6;
+  text-align: center;
+  color: #9c9d94;
+}
+
+.group-qr.is-locked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  border: 1px dashed #d0d1c638;
+  background: #1f1f1d;
+  color: #b2b2a9;
+}
+
+.group-qr.is-locked > svg.icon {
+  width: 25px;
+  height: 25px;
+}
+
+.group-qr.is-locked > span,
+.group-qr .qr-unavailable {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-align: center;
+  line-height: 1.45;
+  letter-spacing: .2px;
+}
+
+.group-copy {
+  position: relative;
+  min-width: 0;
+  transition: opacity 150ms ease, translate 180ms var(--ease-out);
+}
+
+.group-copy.is-changing,
+.group-qr.is-changing {
+  opacity: 0;
+  transition-duration: 90ms;
+}
+
+.group-copy.is-changing {
+  translate: 0 2px;
+}
+
+#modal[open] {
+  animation: instrument-arrive 180ms var(--ease-out);
+}
+
+@keyframes instrument-arrive {
+  from {
+    opacity: 0;
+    translate: 0 5px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.group-copy .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1.35px;
+  line-height: 1.3;
+  color: #9a9b92;
+}
+
+.group-copy h1 {
+  margin: 5px 0;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -.65px;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #e4e5da;
+}
+
+.group-location {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  padding: 0 76px 0 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: -.1px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #afb0a6;
+}
+
+.group-location svg {
+  display: none;
+}
+
+.group-location:hover {
+  color: #e7e8dc;
+}
+
+.group-toggle-details {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  min-height: 36px;
+  padding: 3px 0 3px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #c7c8bd;
+}
+
+.group-toggle-details:hover {
+  color: #f3f4e8;
+}
+
+.group-pagination {
+  display: contents;
+}
+
+.group-pagination > button {
+  position: absolute;
+  top: 36px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #2a2b2844;
+  color: #d7d8cd;
+  font-size: 28px;
+  font-weight: 300;
+  opacity: .6;
+}
+
+.group-pagination > button:hover,
+.group-pagination > button:focus-visible {
+  opacity: 1;
+  background: #393a3677;
+}
+
+#group-prev {
+  left: -54px;
+}
+
+#group-next {
+  right: -54px;
+}
+
+.group-pagination > span {
+  position: absolute;
+  left: 50%;
+  bottom: -23px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 8px;
+  line-height: 1.3;
+  letter-spacing: 1.2px;
+  color: #999b91;
+  opacity: .6;
+}
+
+.group-details {
+  grid-column: 1 / -1;
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid #cbccc118;
+}
+
+.group-details > p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #b5b6ac;
+}
+
+.group-actions {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-top: 18px;
+}
+
+.group-actions .full-button {
+  width: auto;
+  min-height: 42px;
+  padding: 11px 15px;
+  font-size: 12px;
+}
+
+.group-actions > span {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #989a90;
+}
+

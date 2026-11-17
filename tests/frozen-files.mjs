@@ -31,6 +31,10 @@ const BEFORE_OLD_STAGE_ARCHIVE = [
   'tests/house55-exterior-refinement.test.mjs',
 ];
 
+// Stylesheet split into src/styles/, November 2026: the original single
+// file is kept as a dated copy.
+const BEFORE_STYLE_SPLIT = ['src/styles.css'];
+
 const root = new URL('../', import.meta.url);
 
 export function frozenFile(path) {
@@ -41,6 +45,7 @@ export function frozenFile(path) {
   if (EXTERIOR_BEFORE_20261116.includes(path)) {
     return `tests/fixtures/exterior-before-20261116/${path.slice(4)}.txt`;
   }
+  if (BEFORE_STYLE_SPLIT.includes(path)) return 'tests/fixtures/before-style-split/styles.css.txt';
   if (BEFORE_OLD_STAGE_ARCHIVE.includes(path)) {
     return `tests/fixtures/before-old-stage-archive/${path.replaceAll('/', '_')}.txt`;
   }

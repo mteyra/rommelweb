@@ -13,7 +13,7 @@ npm ci                  # install
 npm run dev             # local server; prints the URL (base path /rommelweb/)
 npm test                # all tests, about 2 minutes
 node --test tests/X.test.mjs   # one file
-npm run build           # checks the path cache, then builds dist/
+npm run build           # checks the path cache, then builds dist/ (app code and Three.js as separate files)
 npm run preview         # serve the build
 ```
 
@@ -60,7 +60,7 @@ UI state lives in one object at the top of `main.js`:
 | Published room types | `room-references.js`; `main.js` `roomReferencesDialog()` |
 | Streets and paths | `paths.js` (runtime), `path-network.js` (build time) |
 | Floor sections through the shell | `sections.js` |
-| Layout, responsive design, motion | `styles.css` (one file); reduced motion via `prefers-reduced-motion` |
+| Layout, responsive design, motion | `styles.css` imports 15 files from `src/styles/` in a fixed order (the order is the cascade, so keep it); reduced motion via `prefers-reduced-motion` |
 
 `index.html` holds the static shell: header, Groups and Timeline buttons, panels and data credits.
 
@@ -139,5 +139,4 @@ Before any resident pilot, the archived [privacy boundary](archive/PRIVACY-BOUND
 
 ## Known issues
 
-- One 930 KB JavaScript bundle (Vite warns). Three.js could be split into its own chunk.
-- `styles.css` (about 3,900 lines) and `main.js` (about 800 lines) are single large files.
+- `main.js` (about 800 lines) and `scene.js` (about 1,300 lines) are single large files.

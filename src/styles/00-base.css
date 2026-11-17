@@ -1,0 +1,169 @@
+@font-face {
+  font-family: Manrope;
+  src: url('/fonts/manrope.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: Manrope,sans-serif;
+  color: #e3e3d9;
+  background: #151715;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ink: #e3e3d9;
+  --paper: #151715;
+  --panel: #262624ec;
+  --raised: #32322f;
+  --muted: #a4a59d;
+  --faint: #757570;
+  --line: #e1e2d622;
+  --accent: #dadacf;
+  --soft-accent: #dadacf11;
+  --mono: 'JetBrains Mono',monospace;
+  --edge: 30px;
+  --shadow: 0 20px 80px #0005;
+  --blur: blur(24px);
+  --ease-out: cubic-bezier(.22, .68, .22, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,body {
+  margin: 0;
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+button,input,select,textarea {
+  font: inherit;
+}
+
+button,a,input,select,textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  border: 0;
+  background: none;
+}
+
+button:disabled,a[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+button,a {
+  touch-action: manipulation;
+}
+
+button,a,input,select,textarea,summary {
+  outline-offset: 4px;
+}
+
+button,a {
+  transition: background-color 160ms,color 160ms,border-color 160ms,opacity 160ms,box-shadow 160ms;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+p,h1,h2,h3,h4 {
+  margin: 0;
+}
+
+h1,h2,h3,h4 {
+  font-weight: 500;
+}
+
+svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+button svg {
+  pointer-events: none;
+}
+
+input,textarea,select {
+  min-width: 0;
+  color: var(--ink);
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.eyebrow,.modal-eyebrow,.section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1.7px;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 20px;
+  z-index: 100;
+  padding: 13px 20px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 13px;
+}
+
+.skip-link:focus {
+  top: 14px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
