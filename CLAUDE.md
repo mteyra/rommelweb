@@ -24,6 +24,6 @@ Don't read `docs/archive/` unless a guide points there, and never read the top-l
 
 ## Commands
 
-`npm run dev` · `npm test` (371 tests, about 2 minutes; `node --test tests/<file>` for one) · `npm run build`
+`npm run dev` · `npm test` (364 tests, about 2 minutes; `node --test tests/<file>` for one) · `npm run build`
 
 If a receipt test fails on a hash after an intended change, follow "Release receipts" in `docs/SOFTWARE.md`.

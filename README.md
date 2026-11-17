@@ -54,7 +54,7 @@ This is an independent resident project, not an official FAU, Studierendenwerk o
 ## Working on it
 
 ```sh
-npm test         # 371 tests
+npm test         # 364 tests
 npm run build    # production build in dist/
 ```
 

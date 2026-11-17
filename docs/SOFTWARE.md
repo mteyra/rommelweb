@@ -94,7 +94,7 @@ Standalone page, copied as-is into the build: `public/house55-layout/` (House 55
 
 ## Tests
 
-371 tests in `tests/*.test.mjs` (Node's built-in runner), about 100 seconds in total. They cover:
+364 tests in `tests/*.test.mjs` (Node's built-in runner), about 100 seconds in total. They cover:
 
 - **Final older houses:** `older-houses-final.test.mjs` locks all 15 older-house floors byte for byte. Never update its fingerprints.
 
@@ -140,4 +140,4 @@ Before any resident pilot, the archived [privacy boundary](archive/PRIVACY-BOUND
 ## Known issues
 
 - One 930 KB JavaScript bundle (Vite warns). Three.js could be split into its own chunk.
-- `styles.css` (about 3,900 lines) and `main.js` (about 870 lines) are single large files.
+- `styles.css` (about 3,900 lines) and `main.js` (about 800 lines) are single large files.
