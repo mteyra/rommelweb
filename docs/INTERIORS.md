@@ -24,7 +24,7 @@ src/interior-studies.js   validate, pick the level to display, outline tests
 src/interior-wireframe.js walls, door gaps, selectable room targets
 src/study-measurements.js dimension labels and exterior dimension runs
 src/apartment-concepts.js furniture layout for one selected room
-src/main.js               floor panel text, room dialog, links to this file
+src/ui/house-panel.js     floor panel text, room and door cards, links to this file
 ```
 
 `public/data/interiors.json` is for approved, surveyed plans. It is empty and takes precedence over studies once a floor is approved (`src/interiors.js`).

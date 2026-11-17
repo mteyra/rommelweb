@@ -41,23 +41,23 @@ Source data refresh: `uv run scripts/acquire-lod2.py` and `python3 scripts/acqui
 3. Creates `new CampusScene(...)` from `src/scene.js`, which also loads `path-network.json`.
 4. Binds the UI. Without WebGL it calls `activateFallback()`, a 2D map with keyboard-accessible house buttons.
 
-UI state lives in one object at the top of `main.js`:
+UI state lives in one object in `src/ui/core.js`, which also holds the loaded data, the scene and the shared helpers (`$`, `modal`, `toast`). Other files read the data live and change it only through its setters (`setData`, `setScene`, `setGroupList`, `setLastFocus`):
 `state = {selected, floor, exploded, apartment, groupsOpen, groupDetails, timelineOpen, groupIndex, drafts, theme}`.
 
 ## Where each feature lives
 
 | Feature | Code |
 | --- | --- |
-| Select a house, hover, return to overview | `main.js` `travel()`, `renderHouse()`; `scene.js` `select()`, `pickAt()`, `setHovered()`, `reset()` |
-| Unfold floors, pick a floor, top view | `main.js` `selectFloor()`, `renderFloor()`; `scene.js` `explode()`, `setFloor()`, `setTop()` |
-| Room and door dialog | `main.js` `spaceDialog()`, `studyNotes()` |
+| Select a house, hover, return to overview | `ui/house-panel.js` `travel()`, `renderHouse()`; `scene.js` `select()`, `pickAt()`, `setHovered()`, `reset()` |
+| Unfold floors, pick a floor, top view | `ui/house-panel.js` `selectFloor()`, `renderFloor()`; `scene.js` `explode()`, `setFloor()`, `setTop()` |
+| Room and door dialog | `ui/house-panel.js` `spaceDialog()`, `studyNotes()` |
 | Furniture concept for a room | `apartment-concepts.js` (layout), `apartment-wireframe.js` (drawing); `scene.js` `focusApartment()` |
 | Dimension labels | `study-measurements.js`; `scene.js` `renderExteriorDimensions()` |
 | Day / night | `main.js` `setTheme()`; `scene.js` `SCENE_THEMES`, `applyTheme()` |
-| Groups carousel and QR codes | `main.js` `setGroups()`, `renderGroup()`, `stepGroup()`; group data in `data.js` `clubs` |
-| Timeline drafts and `.ics` export | `main.js` `setTimeline()`, `renderTimeline()`, `eventDraftDialog()`; `events.js` |
-| About, accuracy and correction download | `main.js` `toolsDialog()`, `accuracyDialog()`, `correctionDialog()`; `data.js` `downloadFile()` |
-| Published room types | `room-references.js`; `main.js` `roomReferencesDialog()` |
+| Groups carousel and QR codes | `ui/groups.js` `setGroups()`, `renderGroup()`, `stepGroup()`; group data in `data.js` `clubs` |
+| Timeline drafts and `.ics` export | `ui/timeline.js` `setTimeline()`, `renderTimeline()`, `eventDraftDialog()`; `events.js` |
+| About, accuracy and correction download | `ui/dialogs.js` `toolsDialog()`, `accuracyDialog()`, `correctionDialog()`; `data.js` `downloadFile()` |
+| Published room types | `room-references.js`; `ui/dialogs.js` `roomReferencesDialog()` |
 | Streets and paths | `paths.js` (runtime), `path-network.js` (build time) |
 | Floor sections through the shell | `sections.js` |
 | Layout, responsive design, motion | `styles.css` imports 15 files from `src/styles/` in a fixed order (the order is the cascade, so keep it); reduced motion via `prefers-reduced-motion` |
@@ -68,7 +68,10 @@ UI state lives in one object at the top of `main.js`:
 
 | File | Role |
 | --- | --- |
-| `main.js` | App entry, state, every panel and dialog, links to these docs |
+| `main.js` | App entry: loads the data, builds the scene, wires every button and key, theme switch, 2D fallback |
+| `ui/core.js` | Shared state, loaded data, `$`, `modal`, `toast`, panel animation |
+| `ui/house-panel.js` | House and floor navigation, floor panel text, room and door cards, links to these docs |
+| `ui/groups.js`, `ui/timeline.js`, `ui/dialogs.js` | Groups carousel, timeline panel, the other dialogs |
 | `scene.js` | `CampusScene`: Three.js scene, camera, picking, buildings, floors, themes |
 | `data.js` | Group listings and small helpers (`floorName`, `escapeHTML`, `downloadFile`) |
 | `events.js`, `icons.js`, `room-references.js` | Timeline helpers, inline SVG icons, room-type references |
@@ -99,7 +102,7 @@ Standalone page, copied as-is into the build: `public/house55-layout/` (House 55
 - **Final older houses:** `older-houses-final.test.mjs` locks all 15 older-house floors byte for byte. Never update its fingerprints.
 
 - **Per house:** `house5X-*.test.mjs` (floor plans) and `<house>-photo-details.test.mjs` (exteriors).
-- **UI:** `study-ui.test.mjs` runs the real `main.js` panel code in a VM and checks wording, links and controls; also `theme`, `motion`, `fallback` and `scene-views`.
+- **UI:** `study-ui.test.mjs` joins `main.js` and the `ui/` files into one script and runs the real panel code in a VM (add any new `ui/` file to its `appFiles` list) and checks wording, links and controls; also `theme`, `motion`, `fallback` and `scene-views`.
 - **Geometry:** `sections`, `paths`, `path-network`, `geometry`, `windows`, `facade`.
 
 **Release receipts.** `docs/evidence/*-preservation.json` record, for each past task, the hashes of the files it left untouched, and tests re-check them. `tests/frozen-files.mjs` decides where each recorded file is read today:
@@ -139,4 +142,4 @@ Before any resident pilot, the archived [privacy boundary](archive/PRIVACY-BOUND
 
 ## Known issues
 
-- `main.js` (about 800 lines) and `scene.js` (about 1,300 lines) are single large files.
+- `scene.js` (about 1,300 lines) is one large file; it's a single tightly connected 3D engine, so it stays whole.

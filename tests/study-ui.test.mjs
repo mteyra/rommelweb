@@ -9,8 +9,12 @@ import {escapeHTML as esc, floorName} from '../src/data.js';
 // Exercise the actual UI functions with their data/measurement dependencies.
 // Bootstrapping and browser-only imports are omitted; these checks concern the
 // rendered wording and controls, not browser layout or the Three.js scene.
-const source = (await readFile(new URL('../src/main.js', import.meta.url), 'utf8'))
+// main.js and its src/ui/ modules, joined in dependency order into one script.
+const appFiles = ['ui/core.js', 'ui/house-panel.js', 'ui/groups.js', 'ui/timeline.js', 'ui/dialogs.js', 'main.js'];
+const source = (await Promise.all(appFiles.map(file => readFile(new URL(`../src/${file}`, import.meta.url), 'utf8'))))
+  .join('\n')
   .replace(/^import .*;\n/gm, '')
+  .replace(/^export /gm, '')
   .replace('import.meta.env.BASE_URL', "'/'")
   .replace(/^init\(\);$/m, '');
 const rectangle = (x, z, width, depth) => [[x, z], [x + width, z], [x + width, z + depth], [x, z + depth], [x, z]];
