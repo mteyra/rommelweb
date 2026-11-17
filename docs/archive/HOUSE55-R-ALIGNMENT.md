@@ -4,7 +4,7 @@
 
 Updated **15 November 2026**, **2. OG / index 2**. The latest candidate aligns the two estimated sides of R1–R3 to the endpoints of the opposite source recess. The official exterior, twenty resident-confirmed room references, 24 window records, gross stairwell and west stair entry are retained. Absolute apartment dimensions, partitions, clear stair widths and east stair access remain unverified.
 
-This step follows the [earlier conditional area scenario](HOUSE55-AREA-STUDY.md). Its source is [house55-r-alignment.mjs](../../scripts/house55-r-alignment.mjs), with computed inputs and results under `rAlignment` in [study provenance](../../data/source/house55-2og-study-provenance.json). Values below describe the calculation, not measurement accuracy or statistical confidence.
+This step follows the [earlier conditional area scenario](HOUSE55-AREA-STUDY.md). Its source is [house55-r-alignment.mjs](../../archive/scripts/house55-r-alignment.mjs), with computed inputs and results under `rAlignment` in [study provenance](../../data/source/house55-2og-study-provenance.json). Values below describe the calculation, not measurement accuracy or statistical confidence.
 
 ![Current conditional area plan, including the aligned R bank and unassigned stair-side strip](../screenshots/house-55-red/house55-area-study.png)
 
@@ -58,7 +58,7 @@ The separate **symbolic flight** receives an explicit **0.10 m inset on each sid
 
 ## Reproduction and remaining evidence
 
-The stage reads the [frozen area-stage baseline](../../data/source/house55-2og-r-alignment-baseline.json), commit `0064399`, and checks its digest before applying the alignment. The normal generator runs the earlier stages, then this one:
+The stage reads the [frozen area-stage baseline](../../archive/data/source/house55-2og-r-alignment-baseline.json), commit `0064399`, and checks its digest before applying the alignment. The normal generator runs the earlier stages, then this one:
 
 ```sh
 node scripts/generate-house55-study.mjs /tmp/house55-study-geometry.json

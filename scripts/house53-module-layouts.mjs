@@ -3,8 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {intersection, union} from 'polyclip-ts';
-import {createRegistration} from './generate-old-house-studies.mjs';
-import {createOldHouseModuleLayouts} from './old-house-module-layout.mjs';
+import {createRegistration} from './lib/older-house-registration.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 
 const clone = value => structuredClone(value);
@@ -385,24 +384,19 @@ export function createHouse53ModuleLayouts({studies, lod2, topPlan, oldHouseLayo
 
 async function main() {
   const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-  const [studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts, campus] = await Promise.all([
+  const [studies, lod2, topPlan, campus] = await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/lod2.json'),
-    read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
-    read('public/data/house55-ground-floor-layout.json'), read('public/data/old-house-module-layouts.json'),
-    read('public/data/campus.json'),
+    read('public/data/house55-module-layout.json'), read('public/data/campus.json'),
   ]);
   for (const annotation of annotations) {
     const bytes = await readFile(new URL(`../${annotation.path}`, import.meta.url));
     assert.equal(createHash('sha256').update(bytes).digest('hex'), annotation.sha256,
       `Source annotation digest must match: ${annotation.path}`);
   }
-  const {studies: updated, metadata} = createHouse53ModuleLayouts({studies, lod2, topPlan, oldHouseLayouts});
-  const remaining = createOldHouseModuleLayouts({studies: updated, lod2, topPlan, firstFloorPlan, groundFloorPlan});
-  assert.deepEqual(remaining.studies, updated, 'Refreshing provisional metadata must preserve all accepted study records.');
+  const {studies: updated, metadata} = createHouse53ModuleLayouts({studies, lod2, topPlan});
   validateInteriorStudies(updated, campus, lod2);
   await writeFile(new URL('../public/data/house53-module-layouts.json', import.meta.url), `${JSON.stringify(metadata, null, 2)}\n`);
   await writeFile(new URL('../public/data/interior-studies.json', import.meta.url), `${JSON.stringify(updated, null, 2)}\n`);
-  await writeFile(new URL('../public/data/old-house-module-layouts.json', import.meta.url), `${JSON.stringify(remaining.metadata, null, 2)}\n`);
   for (const plan of metadata.levels) console.log(`Generated Orange ${plan.levelIndex}: ${plan.totals.singleCount} singles, ${plan.totals.sharedApartmentCount} shared, ${plan.commonAreas.length} common enclosures; ${plan.totals.shellArea.toFixed(2)} m².`);
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

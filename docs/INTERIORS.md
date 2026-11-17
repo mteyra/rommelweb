@@ -4,8 +4,9 @@ Read this before changing any floor plan, room, door or interior file. It replac
 
 ## Rules
 
+0. **The older houses are final.** All 15 floors of Houses 51, 53, 55, 57 and 59 are finished, resident-approved layouts and will not change. `tests/older-houses-final.test.mjs` fails if a single byte of them changes. Don't edit, regenerate differently or "improve" them, and never update that test's fingerprints. Their generators stay only as the record of how each plan was built.
 1. **Exteriors are fixed.** Never move, rescale or reshape a building to make rooms fit. The official LoD2 shell in `public/data/lod2.json` is the outer limit; see [EXTERIORS.md](EXTERIORS.md).
-2. **Generate, don't hand-edit.** Change a floor by editing its generator in `scripts/` and running it. Never edit `public/data/interior-studies.json` by hand.
+2. **Generate, don't hand-edit.** Change a newer-house floor by editing its generator in `scripts/` and running it. Never edit `public/data/interior-studies.json` by hand.
 3. **One floor at a time.** Each generator rewrites only its own house or floor, and its tests check that every other floor stays byte-identical.
 4. **Nothing is surveyed.** Older houses follow the resident's annotated sketches; newer houses are estimates. Keep every space `confidence: "estimated"` and never claim an accuracy percentage.
 5. **No occupancy.** Labels such as "Room G" are drawing references, not real room numbers. Never attach people to rooms. See the privacy rules in [SOFTWARE.md](SOFTWARE.md#privacy-rules).
@@ -101,7 +102,7 @@ This floor repeats the 1. OG apartments. The east/R **Cinema** and west/L **Laun
 
 #### House 55 layout sandbox
 
-`public/house55-layout/` is a standalone page for trying other room proportions while keeping 16.20 m² per room. Saved edits stay in the visitor's browser and never change the shared plan. Its starting data, `shell.json`, is written by `npm run layout:build`. `public/house55-study/` shows the 2. OG plan on its own.
+`public/house55-layout/` is a standalone page for trying other room proportions while keeping 16.20 m² per room. Saved edits stay in the visitor's browser and never change the shared plan. Its starting data, `shell.json`, is written by `npm run layout:build`.
 
 ### House 57 (White)
 
@@ -156,7 +157,7 @@ Total: 380 apartments and 408 places. Typical upper floors have 14 singles. WG i
 
 ## Older-house history
 
-Before the module system, older floors were "fitted" with variable room sizes. Those placements stay in test fixtures, and `old-house-module-layouts.json` is now an empty catalog. Don't revive that method. The history is in `archive/OLD-HOUSES-STUDY.md` and `archive/OLD-HOUSES-MODULE-LAYOUT.md`.
+Before the final module layouts, the older floors went through earlier stages: plans "fitted" with variable room sizes, area and alignment studies of House 55, and a standalone House 55 study page. All of that code, its tests and that page are in the top-level `archive/` folder, and the write-ups are in `docs/archive/` (start with `OLD-HOUSES-STUDY.md` and `HOUSE55-INTERIOR-STUDY.md`). Don't revive those methods. The current generators only share one helper with them, `scripts/lib/older-house-registration.mjs`, which places a House 55-based plan onto another house's official outline.
 
 ## Evidence and open questions
 
@@ -164,10 +165,10 @@ Before the module system, older floors were "fitted" with variable room sizes. T
 - **What would improve the model most:** full floor plans identified by house and floor; wall thicknesses; bathroom and kitchen layouts; floor-to-floor heights; door positions.
 - **How corrections arrive:** the app's "Add a floor detail" downloads a JSON proposal. Nothing uploads automatically. The format is in `archive/INTERIOR-FORMAT.md`.
 
-## Change checklist
+## Change checklist (newer houses only)
 
-1. Edit the generator for that house or floor (or the shared dimensions, for House 55).
-2. Run its `npm run layout:*` command (listed in [SOFTWARE.md](SOFTWARE.md#commands)).
-3. Run its tests: `node --test tests/house5X-*.test.mjs tests/interior-studies.test.mjs tests/study-ui.test.mjs`.
+1. Edit `scripts/new-house-module-layout.mjs`.
+2. Run `npm run layout:new-houses`.
+3. Run its tests: `node --test tests/new-house-module-layout.test.mjs tests/older-houses-final.test.mjs tests/interior-studies.test.mjs tests/study-ui.test.mjs`. The older-house lock must still pass.
 4. Check the floor in the app (`npm run dev`, select the house, then **Unfold the floors**).
-5. Add new screenshots to `screenshots/house-5X-<color>/`.
+5. Add new screenshots to `screenshots/house-<number>-<name>/`.

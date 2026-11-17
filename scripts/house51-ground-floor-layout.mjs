@@ -3,7 +3,6 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {union, intersection} from 'polyclip-ts';
-import {createOldHouseModuleLayouts} from './old-house-module-layout.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 
 const clone = value => structuredClone(value);
@@ -298,25 +297,17 @@ export function createHouse51GroundFloorLayout({studies, firstFloorPlan}) {
 
 async function main() {
   const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-  const [studies, firstFloorPlan, lod2, redTopPlan, redFirstFloorPlan, redGroundFloorPlan, campus] = await Promise.all([
+  const [studies, firstFloorPlan, lod2, campus] = await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/house51-first-floor-layout.json'),
-    read('public/data/lod2.json'), read('public/data/house55-module-layout.json'),
-    read('public/data/house55-first-floor-layout.json'), read('public/data/house55-ground-floor-layout.json'),
-    read('public/data/campus.json'),
+    read('public/data/lod2.json'), read('public/data/campus.json'),
   ]);
   const bytes = await readFile(new URL(`../${annotation.path}`, import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex'), annotation.sha256,
     'House 51 EG annotation must match its recorded source digest.');
   const {studies: updated, plan} = createHouse51GroundFloorLayout({studies, firstFloorPlan});
-  const remainingFits = createOldHouseModuleLayouts({
-    studies: updated, lod2, topPlan: redTopPlan, firstFloorPlan: redFirstFloorPlan, groundFloorPlan: redGroundFloorPlan,
-  });
-  assert.deepEqual(remainingFits.studies, updated,
-    'Refreshing remaining provisional fits must preserve every study record.');
   validateInteriorStudies(updated, campus, lod2);
   await writeFile(new URL('../public/data/house51-ground-floor-layout.json', import.meta.url), `${JSON.stringify(plan, null, 2)}\n`);
   await writeFile(new URL('../public/data/interior-studies.json', import.meta.url), `${JSON.stringify(updated, null, 2)}\n`);
-  await writeFile(new URL('../public/data/old-house-module-layouts.json', import.meta.url), `${JSON.stringify(remainingFits.metadata, null, 2)}\n`);
   console.log(`Generated House 51 / EG: ${plan.totals.singleCount} singles, one shared apartment, Sports room and Laundry, ${plan.totals.shellArea.toFixed(2)} m² independent outline.`);
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

@@ -2,7 +2,7 @@ import {readFile, writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {difference, union} from 'polyclip-ts';
-import {createRegistration} from './generate-old-house-studies.mjs';
+import {createRegistration} from './lib/older-house-registration.mjs';
 import {createStudyLevel} from './house55-module-layout.mjs';
 import {createFirstFloorStudyLevel} from './house55-first-floor-layout.mjs';
 import {createGroundFloorStudyLevel} from './house55-ground-floor-layout.mjs';
@@ -286,12 +286,12 @@ export function createHouse59ModuleLayouts({studies, lod2, topPlan, firstFloorPl
 
 async function main() {
   const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-  const [studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts, campus] = await Promise.all([
+  const [studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, campus] = await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/house55-module-layout.json'),
     read('public/data/house55-first-floor-layout.json'), read('public/data/house55-ground-floor-layout.json'),
-    read('public/data/old-house-module-layouts.json'), read('public/data/campus.json'),
+    read('public/data/campus.json'),
   ]);
-  const result = createHouse59ModuleLayouts({studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts});
+  const result = createHouse59ModuleLayouts({studies, lod2, topPlan, firstFloorPlan, groundFloorPlan});
   validateInteriorStudies(result.studies, campus, lod2);
   await writeFile(new URL('../public/data/house59-module-layouts.json', import.meta.url), JSON.stringify(result.metadata, null, 2) + '\n');
   await writeFile(new URL('../public/data/interior-studies.json', import.meta.url), JSON.stringify(result.studies, null, 2) + '\n');

@@ -10,18 +10,15 @@ import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {difference, intersection, union} from 'polyclip-ts';
 import {createHouse51FirstFloorLayout} from '../scripts/house51-first-floor-layout.mjs';
-import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, topPlan, published, before, catalog, campus, lod2, redTop, redFirst, redGround,
+const [studies, topPlan, published, before, campus, lod2,
   archivedOrange, beforeGround] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/house51-top-floor-layout.json'),
   read('public/data/house51-first-floor-layout.json'), read('tests/fixtures/house51-before-first-floor-layout.json'),
-  read('public/data/old-house-module-layouts.json'), read('public/data/campus.json'), read('public/data/lod2.json'),
-  read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
-  read('public/data/house55-ground-floor-layout.json'),
+  read('public/data/campus.json'), read('public/data/lod2.json'),
   read('tests/fixtures/house53-before-resident-layout.json'),
   read('tests/fixtures/house51-before-ground-floor-layout.json'),
 ]);
@@ -30,9 +27,6 @@ const result = createHouse51FirstFloorLayout(input), plan = result.plan;
 const firstFloorInput = structuredClone(input);
 firstFloorInput.studies.buildings['51'] = structuredClone(before.building);
 const firstFloorRelease = createHouse51FirstFloorLayout(firstFloorInput);
-const firstFloorReleaseFits = createOldHouseModuleLayouts({
-  studies: firstFloorRelease.studies, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
-});
 const level = result.studies.buildings['51'].levels.find(item => item.index === 1);
 const close = (actual, expected, label = '') =>
   assert.ok(Math.abs(actual - expected) < 1e-6, `${label}: ${actual} vs ${expected}`);
@@ -247,63 +241,6 @@ test('selection identities stay unique and schematic windows remain on the exter
     close(distance(a, b), 1.05, `${window.id} schematic width`);
     [a, b, middle].forEach(point => close(boundaryDistance(point, {polygon: level.floorOutline[0].outer}), 0,
       `${window.id} on exterior`));
-  }
-});
-
-test('the historical middle-floor release retains its EG fit and current regeneration protects every completed floor', () => {
-  const fitted = createOldHouseModuleLayouts({
-    studies, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
-  });
-  assert.deepEqual(fitted.studies, studies);
-  assert.deepEqual(fitted.metadata, catalog);
-  assert.deepEqual(firstFloorReleaseFits.metadata.houses['51'].levels.map(item => item.levelIndex), [0]);
-  assert.deepEqual(firstFloorReleaseFits.metadata.houses['51'].levels[0],
-    before.layout.levels.find(item => item.levelIndex === 0));
-  assert.deepEqual(Object.keys(catalog.houses), [], 'Completed houses have no current provisional fitting records');
-});
-
-test('both Yellow CLIs and generic regeneration keep current outputs unchanged in an isolated workspace', async t => {
-  const temporary = await mkdtemp(join(tmpdir(), 'rommelweb-yellow-first-'));
-  t.after(() => rm(temporary, {recursive: true, force: true}));
-  await Promise.all(['scripts', 'src', 'public/data', 'data/source'].map(path =>
-    mkdir(join(temporary, path), {recursive: true})));
-  const paths = [
-    'package.json', 'scripts/house51-first-floor-layout.mjs', 'scripts/house51-top-floor-layout.mjs',
-    'scripts/old-house-module-layout.mjs', 'scripts/generate-old-house-studies.mjs',
-    'src/interior-studies.js', 'src/interiors.js', 'src/sections.js', 'public/data/interior-studies.json',
-    'public/data/lod2.json', 'public/data/campus.json', 'public/data/house55-module-layout.json',
-    'public/data/house55-first-floor-layout.json', 'public/data/house55-ground-floor-layout.json',
-    'public/data/house51-top-floor-layout.json', 'public/data/old-house-module-layouts.json',
-    'data/source/house51-1og-resident-annotation.png',
-  ];
-  await Promise.all(paths.map(path => copyFile(new URL(`../${path}`, import.meta.url), join(temporary, path))));
-  await symlink(fileURLToPath(new URL('../node_modules', import.meta.url)), join(temporary, 'node_modules'), 'dir');
-  const original = structuredClone(studies), originalCatalog = structuredClone(catalog);
-  original.buildings['51'] = structuredClone(before.building);
-  originalCatalog.houses['51'] = structuredClone(before.layout);
-  await Promise.all([
-    writeFile(join(temporary, 'public/data/interior-studies.json'), JSON.stringify(original, null, 2) + '\n'),
-    writeFile(join(temporary, 'public/data/old-house-module-layouts.json'), JSON.stringify(originalCatalog, null, 2) + '\n'),
-  ]);
-  const run = promisify(execFile);
-  const historicalOutputs = {
-    'public/data/interior-studies.json': JSON.stringify(firstFloorRelease.studies, null, 2) + '\n',
-    'public/data/old-house-module-layouts.json': JSON.stringify(firstFloorReleaseFits.metadata, null, 2) + '\n',
-    'public/data/house51-first-floor-layout.json': JSON.stringify(published, null, 2) + '\n',
-    'public/data/house51-top-floor-layout.json': JSON.stringify(topPlan, null, 2) + '\n',
-  };
-  await run(process.execPath, [join(temporary, 'scripts/house51-first-floor-layout.mjs')], {cwd: temporary});
-  for (const [path, expected] of Object.entries(historicalOutputs)) {
-    assert.equal(await readFile(join(temporary, path), 'utf8'), expected, `${path}: exact historical release`);
-    await copyFile(new URL(`../${path}`, import.meta.url), join(temporary, path));
-  }
-  for (const command of ['house51-first-floor-layout', 'house51-top-floor-layout', 'old-house-module-layout']) {
-    await run(process.execPath, [join(temporary, `scripts/${command}.mjs`)], {cwd: temporary});
-    for (const path of ['public/data/interior-studies.json', 'public/data/old-house-module-layouts.json',
-      'public/data/house51-first-floor-layout.json', 'public/data/house51-top-floor-layout.json']) {
-      assert.equal(await readFile(join(temporary, path), 'utf8'), await readFile(new URL(`../${path}`, import.meta.url), 'utf8'),
-        `${path} after ${command}`);
-    }
   }
 });
 

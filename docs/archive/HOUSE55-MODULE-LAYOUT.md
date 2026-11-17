@@ -58,7 +58,7 @@ Floor heights remain provisional. Bathroom/kitchen partitions, actual net usable
 | --- | --- |
 | [Canonical module data](../../public/data/house55-module-layout.json) | Exact drawing-coordinate outline, room polygons, modules, side walls, halls, stair zones and assumptions |
 | [Campus study data](../../public/data/interior-studies.json) | House 55 level 2 receives the same plan in campus coordinates, marked `layoutBasis: "resident-module-layout"` |
-| [Standalone study](../../public/house55-study/study.js) | Reads the canonical module data directly |
+| [Standalone study](../../archive/public/house55-study/study.js) | Reads the canonical module data directly |
 | [Sandbox starting data](../../public/house55-layout/shell.json) | Same outline and twenty starting room rectangles; editing variants retain 16.20 m² each |
 
 The campus renders `layoutWindows` with the independent floor. Its retained `windows` and `windowCoverage` remain the folded façade inventory. Source windows continue to be validated against their original LoD2 wall surfaces; relocated layout windows are validated against the independent plan. Outline labels say **Layout / m**, and room popups report **2.70 × 6.00 m / 16.20 m² clear polygon area**.

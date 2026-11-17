@@ -5,25 +5,22 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {difference, intersection, union} from 'polyclip-ts';
 import {createHouse57ModuleLayouts} from '../scripts/house57-module-layout.mjs';
-import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
-import {generateOldHouseStudies} from '../scripts/generate-old-house-studies.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {readHistoricalStudies} from './fixtures/pre-module-studies.mjs';
 import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, lod2, campus, interiors, roomMarkers, topPlan, firstFloorPlan, groundFloorPlan, published,
-  oldHouseLayouts, before, historical, archivedGreen, archivedYellow, archivedOrange] = await Promise.all([
+const [studies, lod2, campus, topPlan, firstFloorPlan, groundFloorPlan, published,
+  before, historical, archivedGreen, archivedYellow, archivedOrange] = await Promise.all([
   read('public/data/interior-studies.json'), read('public/data/lod2.json'), read('public/data/campus.json'),
-  read('public/data/interiors.json'), read('public/data/room-markers.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
   read('public/data/house55-ground-floor-layout.json'), read('public/data/house57-module-layouts.json'),
-  read('public/data/old-house-module-layouts.json'), read('tests/fixtures/house57-before-resident-layout.json'),
+  read('tests/fixtures/house57-before-resident-layout.json'),
   readHistoricalStudies(), read('tests/fixtures/house59-before-resident-layout.json'),
   read('tests/fixtures/house51-before-top-floor-layout.json'),
   read('tests/fixtures/house53-before-resident-layout.json'),
 ]);
-const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan, oldHouseLayouts};
+const input = {studies, lod2, topPlan, firstFloorPlan, groundFloorPlan};
 const snapshot = structuredClone(input), generated = createHouse57ModuleLayouts(input);
 const epsilon = 1e-6;
 const close = (actual, expected, message = '') =>
@@ -323,18 +320,6 @@ test('White study identifiers are unique, stable, floor-specific and reference e
   assert.equal(new Set(identifiers).size, identifiers.length);
 });
 
-test('legacy fitting and source-study generation cannot overwrite the independently accepted White layout', () => {
-  const fitted = createOldHouseModuleLayouts(input);
-  assert.deepEqual(fitted.studies, studies);
-  assert.deepEqual(Object.keys(fitted.metadata.houses), []);
-  assert.deepEqual(fitted.metadata, oldHouseLayouts);
-  const mixed = structuredClone(historical);
-  mixed.buildings['57'] = structuredClone(studies.buildings['57']);
-  const previous = structuredClone(mixed.buildings['57']);
-  const result = generateOldHouseStudies({studies: mixed, lod2, campus, interiors, roomMarkers});
-  assert.deepEqual(result.studies.buildings['57'], previous);
-});
-
 test('preservation receipt protects Red, all other houses, original source exteriors and retained historical evidence', async () => {
   const receipt = await read('docs/evidence/house57-layout-preservation.json');
   const sha = value => createHash('sha256').update(value).digest('hex');
@@ -371,5 +356,4 @@ test('preservation receipt protects Red, all other houses, original source exter
     assert.equal(sha(JSON.stringify(layout)), receipt.retainedFittedHouses[house].sha256);
   }
   assert.equal(receipt.currentFittedCatalogExcludes57, true);
-  assert.equal(oldHouseLayouts.houses['57'], undefined);
 });

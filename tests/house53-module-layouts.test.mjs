@@ -5,19 +5,17 @@ import {createHash} from 'node:crypto';
 import {frozenFile} from './frozen-files.mjs';
 import {difference, intersection, union} from 'polyclip-ts';
 import {createHouse53ModuleLayouts} from '../scripts/house53-module-layouts.mjs';
-import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, published, before, catalog, campus, lod2, topPlan, firstFloorPlan, groundFloorPlan] =
+const [studies, published, before, campus, lod2, topPlan] =
   await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/house53-module-layouts.json'),
-    read('tests/fixtures/house53-before-resident-layout.json'), read('public/data/old-house-module-layouts.json'),
+    read('tests/fixtures/house53-before-resident-layout.json'),
     read('public/data/campus.json'), read('public/data/lod2.json'),
-    read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
-    read('public/data/house55-ground-floor-layout.json'),
+    read('public/data/house55-module-layout.json'),
   ]);
-const input = {studies, lod2, topPlan, oldHouseLayouts: catalog}, snapshot = structuredClone(input);
+const input = {studies, lod2, topPlan}, snapshot = structuredClone(input);
 const generated = createHouse53ModuleLayouts(input);
 const plans = generated.metadata.levels;
 const close = (a, b, label = '') => assert.ok(Math.abs(a - b) < 1e-6, `${label}: ${a} vs ${b}`);
@@ -45,28 +43,6 @@ const local = (point, frame) => [frame.axisU, frame.axisV].map(axis => Math.roun
   ((point[0] - frame.originCampusXZ[0]) * axis[0] +
    (point[1] - frame.originCampusXZ[1]) * axis[1])) / 1e7);
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
-
-test('Orange generation is immutable, reproducible from the old fit, and preserves all other buildings', () => {
-  assert.deepEqual(input, snapshot);
-  assert.deepEqual(generated.metadata, published);
-  assert.deepEqual(generated.studies, studies);
-  assert.deepEqual(createHouse53ModuleLayouts({...input, studies: generated.studies}), generated);
-  const original = structuredClone(studies), oldCatalog = structuredClone(catalog);
-  original.buildings['53'] = structuredClone(before.building);
-  oldCatalog.houses['53'] = structuredClone(before.layout);
-  assert.deepEqual(createHouse53ModuleLayouts({...input, studies: original, oldHouseLayouts: oldCatalog}), generated);
-  for (const [house, building] of Object.entries(original.buildings)) {
-    if (house !== '53') assert.deepEqual(studies.buildings[house], building, house);
-  }
-  for (const [field, value] of Object.entries(before.building)) {
-    if (!['source', 'levels'].includes(field)) assert.deepEqual(studies.buildings['53'][field], value, field);
-  }
-  for (const previous of before.building.levels) {
-    const current = levelFor(previous.index);
-    for (const field of ['windows', 'windowCoverage']) assert.deepEqual(current[field], previous[field]);
-  }
-  assert.equal(validateInteriorStudies(studies, campus, lod2), true);
-});
 
 test('all three inventories follow Orange’s own red additions and blue removals', () => {
   const common = ['E/E', 'E/F', 'E/G', 'N/N0', 'N/N1', 'N/N2',
@@ -262,13 +238,6 @@ test('selection IDs distinguish both E rooms and windows touch only their own ex
       }
     }
   }
-});
-
-test('generic regeneration keeps all fifteen accepted floors without provisional fits', () => {
-  const rebuilt = createOldHouseModuleLayouts({studies, lod2, topPlan, firstFloorPlan, groundFloorPlan});
-  assert.deepEqual(rebuilt.studies, studies);
-  assert.deepEqual(rebuilt.metadata, catalog);
-  assert.deepEqual(Object.keys(catalog.houses), []);
 });
 
 test('all three original annotations and protected assets match the saved evidence receipt', async () => {

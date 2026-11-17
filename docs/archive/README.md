@@ -53,3 +53,5 @@ History and source detail. **None of this describes the current model**; the cur
 | [WHITE-EXTERIOR-PHOTO-STUDY.md](WHITE-EXTERIOR-PHOTO-STUDY.md) | White 57 exterior from seven photographs |
 | [WINDOW-REFERENCES.md](WINDOW-REFERENCES.md) | Identified-house photographs, narrow-window typology and unmeasured-placement limits |
 | [api-contract.yaml](api-contract.yaml) | Proposed API for the future resident service; nothing deployed |
+
+The code from these stages (scripts, tests and the old House 55 study page) is in the top-level [`archive/`](../../archive/README.md) folder.

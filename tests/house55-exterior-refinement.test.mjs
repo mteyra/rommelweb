@@ -7,12 +7,12 @@ import {surfaceFrame} from '../src/facade.js';
 import {getOldFacadeRowGuides} from '../src/windows.js';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [lod2, studies, interiors, top, first, ground, otherHouses] = await Promise.all([
+const [lod2, studies, interiors, top, first, ground] = await Promise.all([
   read('public/data/lod2.json'), read('public/data/interior-studies.json'), read('public/data/interiors.json'),
   read('public/data/house55-module-layout.json'), read('public/data/house55-first-floor-layout.json'),
-  read('public/data/house55-ground-floor-layout.json'), read('public/data/old-house-module-layouts.json'),
+  read('public/data/house55-ground-floor-layout.json'),
 ]);
-const records = {lod2, studies, interiors, top, first, ground, otherHouses};
+const records = {lod2, studies, interiors, top, first, ground};
 const snapshot = structuredClone(records);
 const building = lod2.buildings.find(item => item.number === '55');
 const options = {levels: 3, absoluteFloorElevations: getOldFacadeRowGuides(building, 3, interiors).elevations};

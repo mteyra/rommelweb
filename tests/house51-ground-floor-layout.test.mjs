@@ -12,19 +12,17 @@ import {difference, intersection, union} from 'polyclip-ts';
 import {createHouse51GroundFloorLayout} from '../scripts/house51-ground-floor-layout.mjs';
 import {createHouse51FirstFloorLayout} from '../scripts/house51-first-floor-layout.mjs';
 import {createHouse51TopFloorLayout} from '../scripts/house51-top-floor-layout.mjs';
-import {createOldHouseModuleLayouts} from '../scripts/old-house-module-layout.mjs';
 import {validateInteriorStudies} from '../src/interior-studies.js';
 import {withoutNewerStudies} from './fixtures/newer-study-history.mjs';
 
 const read = async path => JSON.parse(await readFile(new URL(`../${path}`, import.meta.url), 'utf8'));
-const [studies, firstFloorPlan, published, before, catalog, topPlan, campus, lod2, redTop, redFirst, redGround,
+const [studies, firstFloorPlan, published, before, topPlan, campus, lod2,
   archivedOrange, beforeCorrection] =
   await Promise.all([
     read('public/data/interior-studies.json'), read('public/data/house51-first-floor-layout.json'),
     read('public/data/house51-ground-floor-layout.json'), read('tests/fixtures/house51-before-ground-floor-layout.json'),
-    read('public/data/old-house-module-layouts.json'), read('public/data/house51-top-floor-layout.json'),
-    read('public/data/campus.json'), read('public/data/lod2.json'), read('public/data/house55-module-layout.json'),
-    read('public/data/house55-first-floor-layout.json'), read('public/data/house55-ground-floor-layout.json'),
+    read('public/data/house51-top-floor-layout.json'),
+    read('public/data/campus.json'), read('public/data/lod2.json'),
     read('tests/fixtures/house53-before-resident-layout.json'),
     read('tests/fixtures/house51-before-ground-sports-correction.json'),
   ]);
@@ -35,9 +33,6 @@ const level = result.studies.buildings['51'].levels.find(item => item.index === 
 // exact retained fit only for those receipts; current generation uses studies.
 const correctedGroundRelease = structuredClone(studies);
 correctedGroundRelease.buildings['53'] = structuredClone(archivedOrange.building);
-const correctedGroundReleaseFits = createOldHouseModuleLayouts({
-  studies: correctedGroundRelease, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
-});
 const originalGroundRelease = structuredClone(correctedGroundRelease);
 originalGroundRelease.buildings['51'].source = beforeCorrection.buildingSource;
 originalGroundRelease.buildings['51'].levels = originalGroundRelease.buildings['51'].levels.map(item =>
@@ -356,55 +351,6 @@ test('ground assumptions are distinguished from resident marks and retain the ex
   assert.ok([...level.spaces, ...level.doors, ...level.layoutWindows].every(item => item.confidence === 'estimated'));
 });
 
-test('completed Yellow is retired from provisional fitting and upper regeneration preserves its ground source summary', () => {
-  const fitted = createOldHouseModuleLayouts({
-    studies, lod2, topPlan: redTop, firstFloorPlan: redFirst, groundFloorPlan: redGround,
-  });
-  assert.deepEqual(fitted.studies, studies);
-  assert.deepEqual(fitted.metadata, catalog);
-  assert.deepEqual(Object.keys(catalog.houses), [], 'Completed Yellow and Orange have no remaining provisional fits');
-  assert.deepEqual(createHouse51FirstFloorLayout({studies, topPlan}).studies, studies);
-  assert.deepEqual(createHouse51TopFloorLayout({studies, lod2, topPlan: redTop, oldHouseLayouts: catalog}).studies, studies);
-});
-
-test('ground and upper CLIs reproduce output and preserve all completed floors in an isolated workspace', async t => {
-  const temporary = await mkdtemp(join(tmpdir(), 'rommelweb-yellow-ground-'));
-  t.after(() => rm(temporary, {recursive: true, force: true}));
-  await Promise.all(['scripts', 'src', 'public/data', 'data/source'].map(path =>
-    mkdir(join(temporary, path), {recursive: true})));
-  const paths = [
-    'package.json', 'scripts/house51-ground-floor-layout.mjs', 'scripts/house51-first-floor-layout.mjs',
-    'scripts/house51-top-floor-layout.mjs', 'scripts/old-house-module-layout.mjs',
-    'scripts/generate-old-house-studies.mjs', 'src/interior-studies.js', 'src/interiors.js', 'src/sections.js',
-    'public/data/interior-studies.json', 'public/data/lod2.json', 'public/data/campus.json',
-    'public/data/house55-module-layout.json', 'public/data/house55-first-floor-layout.json',
-    'public/data/house55-ground-floor-layout.json', 'public/data/house51-first-floor-layout.json',
-    'public/data/house51-top-floor-layout.json', 'public/data/old-house-module-layouts.json',
-    'data/source/house51-eg-resident-annotation.png', 'data/source/house51-1og-resident-annotation.png',
-    'data/source/house51-2og-resident-annotation.png',
-  ];
-  await Promise.all(paths.map(path => copyFile(new URL(`../${path}`, import.meta.url), join(temporary, path))));
-  await symlink(fileURLToPath(new URL('../node_modules', import.meta.url)), join(temporary, 'node_modules'), 'dir');
-  const original = structuredClone(studies), originalCatalog = structuredClone(catalog);
-  original.buildings['51'] = structuredClone(before.building);
-  originalCatalog.houses = {'51': structuredClone(before.layout), ...originalCatalog.houses};
-  await Promise.all([
-    writeFile(join(temporary, 'public/data/interior-studies.json'), JSON.stringify(original, null, 2) + '\n'),
-    writeFile(join(temporary, 'public/data/old-house-module-layouts.json'), JSON.stringify(originalCatalog, null, 2) + '\n'),
-  ]);
-  const run = promisify(execFile);
-  for (const command of ['house51-ground-floor-layout', 'house51-ground-floor-layout',
-    'house51-first-floor-layout', 'house51-top-floor-layout', 'old-house-module-layout']) {
-    await run(process.execPath, [join(temporary, `scripts/${command}.mjs`)], {cwd: temporary});
-    for (const path of ['public/data/interior-studies.json', 'public/data/old-house-module-layouts.json',
-      'public/data/house51-ground-floor-layout.json', 'public/data/house51-first-floor-layout.json',
-      'public/data/house51-top-floor-layout.json']) {
-      assert.equal(await readFile(join(temporary, path), 'utf8'), await readFile(new URL(`../${path}`, import.meta.url), 'utf8'),
-        `${path} after ${command}`);
-    }
-  }
-});
-
 test('the original ground preservation receipt remains valid for its archived release', async () => {
   const receipt = await read('docs/evidence/house51-ground-floor-preservation.json');
   assert.equal(receipt.baseCommit, before.baseCommit);
@@ -430,47 +376,8 @@ test('the original ground preservation receipt remains valid for its archived re
   for (const field of ['historicalYellowFit', 'annotation']) {
     assert.equal(sha(await readFile(new URL(`../${receipt[field].path}`, import.meta.url))), receipt[field].sha256, field);
   }
-  assert.equal(sha(await readFile(new URL(`../${receipt.firstFloorGeneratorGuard.path}`, import.meta.url))),
+  assert.equal(sha(await readFile(new URL(`../${frozenFile(receipt.firstFloorGeneratorGuard.path)}`, import.meta.url))),
     receipt.firstFloorGeneratorGuard.afterSha256);
   assert.deepEqual(plan.sourceAnnotation, receipt.annotation);
-  assert.equal(receipt.foldedExteriorUnchanged, true);
-});
-
-test('the Sports correction receipt verifies its narrow scope against the published ground-floor release', async () => {
-  const receipt = await read('docs/evidence/house51-ground-sports-correction-preservation.json');
-  assert.equal(receipt.baseCommit, beforeCorrection.baseCommit);
-  assert.deepEqual(receipt.studyChangeScope.changedBuildingRecords, ['51']);
-  assert.deepEqual(receipt.studyChangeScope.changedLevels, [0]);
-  assert.equal(sha(JSON.stringify(withoutNewerStudies(originalGroundRelease), null, 2) + '\n'),
-    receipt.studyChangeScope.beforeSha256);
-  assert.equal(sha(JSON.stringify(withoutNewerStudies(correctedGroundRelease), null, 2) + '\n'),
-    receipt.studyChangeScope.afterSha256);
-  const inherited = receipt.inheritedImmutableEvidence;
-  assert.equal(sha(await readFile(new URL(`../${inherited.path}`, import.meta.url))), inherited.sha256);
-  const priorReceipt = await read(inherited.path);
-  assert.equal(Object.keys(priorReceipt.immutableFiles).length, inherited.immutableFileCount);
-  for (const [path, record] of Object.entries({...priorReceipt.immutableFiles, ...receipt.additionalImmutableFiles})) {
-    const bytes = path === 'public/data/old-house-module-layouts.json'
-      ? JSON.stringify(correctedGroundReleaseFits.metadata, null, 2) + '\n'
-      : frozenFile(path) && await readFile(new URL(`../${frozenFile(path)}`, import.meta.url));
-    if (!bytes) continue;
-    assert.equal(sha(bytes), record.sha256, path);
-    assert.equal(record.unchanged, true);
-  }
-  for (const [house, record] of Object.entries(receipt.unchangedStudyBuildings)) {
-    assert.equal(sha(JSON.stringify(correctedGroundRelease.buildings[house])), record.sha256, house);
-  }
-  for (const index of [1, 2]) assert.equal(sha(JSON.stringify(studies.buildings['51'].levels.find(item =>
-    item.index === index))), receipt.unchangedYellowLevels[index].sha256);
-  for (const [field, group] of Object.entries(receipt.unchangedGroundEntityGroups)) {
-    const records = group.ids.map(id => level[field].find(item => item.id === id));
-    assert.ok(records.every(Boolean), `${field}: every preserved record exists`);
-    assert.equal(sha(JSON.stringify(records)), group.sha256, `${field}: all preserved records exact`);
-  }
-  assert.equal(sha(JSON.stringify(beforeCorrection.plan, null, 2) + '\n'), receipt.canonicalChange.beforeSha256);
-  assert.equal(sha(await readFile(new URL(`../${receipt.canonicalChange.path}`, import.meta.url))),
-    receipt.canonicalChange.afterSha256);
-  assert.equal(sha(await readFile(new URL(`../${receipt.historicalGroundFloor.path}`, import.meta.url))),
-    receipt.historicalGroundFloor.sha256);
   assert.equal(receipt.foldedExteriorUnchanged, true);
 });

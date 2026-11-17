@@ -19,6 +19,8 @@ npm run preview         # serve the build
 
 Pushing to `main` runs `.github/workflows/pages.yml`: `npm ci`, `npm test`, `npm run build`, then a deploy to GitHub Pages at https://mteyra.github.io/rommelweb/.
 
+Floor-plan generators (the older-house plans are final; their generators reproduce them exactly and are kept as a record):
+
 | Generator | Regenerates |
 | --- | --- |
 | `npm run layout:build` | House 55 2. OG, the canonical module plan and the sandbox data |
@@ -26,7 +28,6 @@ Pushing to `main` runs `.github/workflows/pages.yml`: `npm ci`, `npm test`, `npm
 | `npm run layout:yellow-top` / `layout:yellow-first` / `layout:yellow-ground` | House 51 floors |
 | `npm run layout:orange-house` / `layout:white-house` / `layout:green-house` | Houses 53, 57, 59 |
 | `npm run layout:new-houses` | The six newer houses |
-| `npm run layout:old-houses` | Historical fitter (now produces an empty catalog) |
 | `npm run paths:build` | `public/data/path-network.json` from OSM paths |
 
 Source data refresh: `uv run scripts/acquire-lod2.py` and `python3 scripts/acquire-campus.py`. Both rebuild from the retained source subset in `data/source/`.
@@ -75,7 +76,7 @@ UI state lives in one object at the top of `main.js`:
 | `interiors.js`, `interior-studies.js`, `interior-wireframe.js`, `study-measurements.js`, `apartment-*.js` | Interiors; see [INTERIORS.md](INTERIORS.md) |
 | `facade.js`, `windows.js`, `exterior-*.js`, `*-photo-details.js`, `*-window-layout.js`, `*-bicycle-details.js`, `house55-*.js` | Exteriors; see [EXTERIORS.md](EXTERIORS.md) |
 
-Standalone pages, copied as-is into the build: `public/house55-study/` (2. OG plan viewer) and `public/house55-layout/` (layout sandbox).
+Standalone page, copied as-is into the build: `public/house55-layout/` (House 55 layout sandbox).
 
 ## Data files (`public/data/`)
 
@@ -86,14 +87,16 @@ Standalone pages, copied as-is into the build: `public/house55-study/` (2. OG pl
 | `interior-studies.json` | yes | Every floor plan of every house |
 | `interiors.json` | yes | Approved surveyed plans (empty) |
 | `path-network.json` | yes | Precomputed paths with a source hash |
-| `house5X-*.json`, `new-house-module-layouts.json`, `old-house-module-layouts.json` | no | Canonical plans written by the generators |
+| `house5X-*.json`, `new-house-module-layouts.json` | no | Canonical plans written by the generators |
 | `campus.geojson`, `room-markers.json` | no | Reference footprints and aggregate room-research counts |
 
 `data/source/` holds the retained raw sources (LoD2 GML, OSM), resident annotations and historical baselines. Treat it as read-only input.
 
 ## Tests
 
-409 tests in `tests/*.test.mjs` (Node's built-in runner), about 100 seconds in total. They cover:
+371 tests in `tests/*.test.mjs` (Node's built-in runner), about 100 seconds in total. They cover:
+
+- **Final older houses:** `older-houses-final.test.mjs` locks all 15 older-house floors byte for byte. Never update its fingerprints.
 
 - **Per house:** `house5X-*.test.mjs` (floor plans) and `<house>-photo-details.test.mjs` (exteriors).
 - **UI:** `study-ui.test.mjs` runs the real `main.js` panel code in a VM and checks wording, links and controls; also `theme`, `motion`, `fallback` and `scene-views`.
@@ -102,6 +105,7 @@ Standalone pages, copied as-is into the build: `public/house55-study/` (2. OG pl
 **Release receipts.** `docs/evidence/*-preservation.json` record, for each past task, the hashes of the files it left untouched, and tests re-check them. `tests/frozen-files.mjs` decides where each recorded file is read today:
 - Docs and screenshots are not frozen.
 - Code changed later for an approved reason is read from a dated copy in `tests/fixtures/`.
+- Files moved into `archive/` are read from there.
 - Everything else must still match.
 
 If a test fails with a hash mismatch after you intentionally change data or code, add a dated fixture copy and map it there. Don't edit the receipt.
@@ -130,10 +134,10 @@ Before any resident pilot, the archived [privacy boundary](archive/PRIVACY-BOUND
 | `docs/EXTERIORS.md`, `INTERIORS.md`, `SOFTWARE.md` | Always the starting point |
 | `docs/screenshots/README.md` | Looking for a picture of a house, floor or UI state |
 | `docs/archive/` | Only for history or a source detail the guides don't cover |
+| `archive/` | Never, unless asked: superseded scripts, tests and pages from earlier interior stages |
 | `docs/evidence/`, `docs/data/` | Never by hand; machine records read by tests |
 
 ## Known issues
 
 - One 930 KB JavaScript bundle (Vite warns). Three.js could be split into its own chunk.
 - `styles.css` (about 3,900 lines) and `main.js` (about 870 lines) are single large files.
-- Per-house cases are hard-coded in several places, such as the doc-link chain in `renderFloor()` and the `if (house === …)` list in `exterior-details.js`.

@@ -105,6 +105,6 @@ npm test
 npm run build
 ```
 
-The generator commands above write review files. The audit commands check the saved public study; the old-house audit also accepts `--study` and `--metadata` to inspect review files. Current release results and browser views are recorded in [RELEASE-CHECKS.md](RELEASE-CHECKS.md); source assumptions and registration are retained in [old-house provenance](../../data/source/old-house-study-provenance.json).
+The generator commands above write review files. The audit commands check the saved public study; the old-house audit also accepts `--study` and `--metadata` to inspect review files. Current release results and browser views are recorded in [RELEASE-CHECKS.md](RELEASE-CHECKS.md); source assumptions and registration are retained in [old-house provenance](../../archive/data/source/old-house-study-provenance.json).
 
 The highest-value next evidence is a clear room width and depth in one room of each bank; the actual stair enclosure and flight widths; wall thickness at an identified return; the eastern stair access; and identified plans or room-count observations for the central banks of 51/53 and the east bank of 59. Actual floor elevations and lower-wing plans are needed before the repeated cores can become complete lower-floor interiors.

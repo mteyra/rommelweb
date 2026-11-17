@@ -84,11 +84,11 @@ EG and 1. OG repeat the updated core as explicitly unverified extrapolations, re
 
 ## Reproduction and history
 
-The area step is implemented in [house55-area-study.mjs](../../scripts/house55-area-study.mjs) and starts from the frozen [preceding aligned candidate](../../data/source/house55-2og-area-baseline.json), commit `9738610`. The [earlier dimensional report](HOUSE55-DIMENSION-REFIT.md) is retained as history.
+The area step is implemented in [house55-area-study.mjs](../../archive/scripts/house55-area-study.mjs) and starts from the frozen [preceding aligned candidate](../../data/source/house55-2og-area-baseline.json), commit `9738610`. The [earlier dimensional report](HOUSE55-DIMENSION-REFIT.md) is retained as history.
 
 ```sh
 node scripts/generate-house55-study.mjs /tmp/house55-study.json --write-study --write-provenance
 uv run scripts/audit-house55-area.py
 ```
 
-The generator now continues through the later R-alignment step; its current output is not a reproduction of this historical final state alone. The archived audit and diagram above describe the retained area-stage calculation; the audit command now checks the current R-aligned study. Inspect `metadata.areaStudy` and the [frozen area-stage baseline](../../data/source/house55-2og-r-alignment-baseline.json) when comparing that stage. Neither generation nor an audit approves an interior. Build and browser validation are recorded separately in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).
+The generator now continues through the later R-alignment step; its current output is not a reproduction of this historical final state alone. The archived audit and diagram above describe the retained area-stage calculation; the audit command now checks the current R-aligned study. Inspect `metadata.areaStudy` and the [frozen area-stage baseline](../../archive/data/source/house55-2og-r-alignment-baseline.json) when comparing that stage. Neither generation nor an audit approves an interior. Build and browser validation are recorded separately in [RELEASE-CHECKS.md](RELEASE-CHECKS.md).

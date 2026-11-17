@@ -58,6 +58,6 @@ npm test
 npm run build
 ```
 
-The historical fitter is [`scripts/old-house-module-layout.mjs`](../../scripts/old-house-module-layout.mjs). It skips all 15 independent resident-module floors, leaving [`public/data/interior-studies.json`](../../public/data/interior-studies.json) unchanged and producing an empty `houses` catalog in [`public/data/old-house-module-layouts.json`](../../public/data/old-house-module-layouts.json). Use the house-specific generators linked above to reproduce current layouts. Tests still reproduce and check the original four-house fitted geometry using isolated historical fixtures.
+The historical fitter is [`scripts/old-house-module-layout.mjs`](../../archive/scripts/old-house-module-layout.mjs). It skips all 15 independent resident-module floors, leaving [`public/data/interior-studies.json`](../../public/data/interior-studies.json) unchanged and producing an empty `houses` catalog in [`public/data/old-house-module-layouts.json`](../../archive/public/data/old-house-module-layouts.json). Use the house-specific generators linked above to reproduce current layouts. Tests still reproduce and check the original four-house fitted geometry using isolated historical fixtures.
 
 The earlier variable-dimension study is retained in [the historical report](OLD-HOUSES-STUDY.md). Original research and source limitations remain in [the evidence ledger](OLD-HOUSES-INTERIOR-EVIDENCE.md).

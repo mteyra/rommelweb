@@ -1,0 +1,33 @@
+{
+  "name": "rommelweb",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "paths:build": "node scripts/build-path-network.mjs",
+    "layout:build": "node scripts/house55-module-layout.mjs",
+    "layout:first-floor": "node scripts/house55-first-floor-layout.mjs",
+    "layout:ground-floor": "node scripts/house55-ground-floor-layout.mjs",
+    "layout:old-houses": "node scripts/old-house-module-layout.mjs",
+    "layout:new-houses": "node scripts/new-house-module-layout.mjs",
+    "layout:white-house": "node scripts/house57-module-layout.mjs",
+    "layout:green-house": "node scripts/house59-module-layout.mjs",
+    "layout:yellow-top": "node scripts/house51-top-floor-layout.mjs",
+    "layout:yellow-first": "node scripts/house51-first-floor-layout.mjs",
+    "layout:orange-house": "node scripts/house53-module-layouts.mjs",
+    "layout:yellow-ground": "node scripts/house51-ground-floor-layout.mjs",
+    "prebuild": "node scripts/build-path-network.mjs --check",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "polyclip-ts": "^0.16.8",
+    "qrcode": "^1.5.4",
+    "three": "^0.181.2"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2"
+  }
+}

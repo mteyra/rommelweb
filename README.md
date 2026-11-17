@@ -54,7 +54,7 @@ This is an independent resident project, not an official FAU, Studierendenwerk o
 ## Working on it
 
 ```sh
-npm test         # 409 tests
+npm test         # 371 tests
 npm run build    # production build in dist/
 ```
 
@@ -74,11 +74,12 @@ Screenshots of every house and floor are in [docs/screenshots](docs/screenshots/
 rommelweb/
 ├── index.html · src/          app (Three.js scene, UI, per-house exterior details)
 ├── public/data/               survey geometry and floor plans (JSON)
-├── public/house55-*/          standalone House 55 plan viewer and layout sandbox
+├── public/house55-layout/     House 55 layout sandbox
 ├── scripts/                   floor-plan generators, data acquisition, audits
 ├── data/source/               raw survey data and resident annotations
 ├── tests/                     test suite
-└── docs/                      three guides, screenshots, archive
+├── docs/                      three guides, screenshots, archived write-ups
+└── archive/                   superseded code from earlier interior stages
 ```
 
 ## Data credits
